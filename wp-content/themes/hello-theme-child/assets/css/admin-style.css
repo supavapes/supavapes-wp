@@ -1,0 +1,4 @@
+.wp-list-table.fixed.table-view-list,
+#adminmenuwrap {
+    position: relative !important;
+}
