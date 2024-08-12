@@ -1,0 +1,71 @@
+/**
+* All of the CSS for your admin-specific functionality should be
+* included in this file.
+*/
+#wetfgf_dialog{width:500px;font-size:15px;font-weight:bold}
+
+#wetfgf_dialog p{font-size:15px;font-weight:bold}
+
+.paid_plugin{margin-bottom:20px}
+
+.dotstore_plugin_supports_feature{margin-top:-19px!important}
+
+.paid_plugin h3{border-bottom:1px solid #CCC;padding-bottom:20px}
+
+.free_plugin h3{padding-bottom:20px;border-bottom:1px solid #CCC}
+
+.plug-containter{width:100%;display:inline-block;margin-left:20px}
+
+.plug-containter .contain-section{width:25%;display:inline-block;margin-top:30px}
+
+.plug-containter .contain-section .contain-img{width:30%;display:inline-block}
+
+.plug-containter .contain-section .contain-title{width:50%;display:inline-block;vertical-align:middle;margin-left:10px}
+
+.plug-containter .contain-section .contain-title a{text-decoration:none;line-height:20px;font-weight:bold}
+
+.version_logo_img{position:absolute;right:0;top:0}
+
+/* Modals CSS Start */
+.modal{display:none;position:fixed;z-index:9999;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0, 0, 0);background-color:rgba(0, 0, 0, 0.4)}
+
+.modal-content{position:relative;background-color:#FEFEFE;margin:auto;padding:0;border:1px solid #888;width:60%;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);-webkit-animation-name:animatetop;-webkit-animation-duration:0.4s;animation-name:animatetop;animation-duration:0.4s}
+
+@-webkit-keyframes animatetop{from{top:-300px;opacity:0}to{top:0;opacity:1}}
+
+@keyframes animatetop{from{top:-300px;opacity:0}to{top:0;opacity:1}}
+
+.close{color:white;float:right;font-size:28px;font-weight:bold;margin-top:15px}
+
+.close:hover,.close:focus{color:#000;text-decoration:none;cursor:pointer}
+
+.modal-header{padding:2px 16px;background-color:#0073AA;color:white;cursor:all-scroll}
+.modal-header h2{color:#FFF}
+.modal-body{padding:2px 16px}
+
+.modal-footer{padding:2px 16px;margin-bottom:10px;text-align:right;color:white}
+
+/* Modals CSS End */
+
+.wqcmv-modal-loading{text-align:center;padding:20px}
+
+.wqcmv-modal-loading img{margin:0 auto}
+
+.wqcmv-modal-loading p{padding-bottom:0}
+
+.wqcmv-accordion{background-color:#EEE;color:#444;cursor:pointer;padding:18px;width:100%;border:none;text-align:left;outline:none;font-size:15px;transition:0.4s}
+
+.wqcmv-active, .wqcmv-accordion:hover{background-color:#CCC}
+
+.wqcmv-panel{padding-left:15px;display:none}
+.wqcmv-notification-logs{margin:20px 0}
+.wqcmv-notification-log{margin-bottom:10px}
+
+
+/* CSS for centering the jQuery UI dialog */
+.ui-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

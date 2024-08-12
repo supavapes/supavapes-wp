@@ -1,0 +1,215 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-06-10 13:07+0530\n"
+"PO-Revision-Date: 2020-06-10 13:08+0530\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-Basepath: D:/xampp/htdocs/free-plugins/wp-content/plugins/woo-quick-cart-for-multiple-variations\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __(;esc_html__;_e\n"
+"Last-Translator: \n"
+"Language: en\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-variant_purchase_extended-admin.php:123
+msgid "DotStore Plugins"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:131
+#: woo-quick-cart-for-multiple-variations.php:155
+msgid "Quick Bulk Variations Checkout for WooCommerce"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:153
+#, php-format
+msgid "If you like %1$s plugin, please leave us ★★★★★ ratings on %2$s."
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:153
+msgid "Variable Product Purchase Extended Settings"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:153
+msgid "WordPress"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:169
+#: admin/class-variant_purchase_extended-admin.php:171
+msgid "Product Visiblity"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:225
+msgid "Product are back into stock"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:294
+msgid "Continue purchasing"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:461
+msgid "Variants per page cannot be negative."
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:463
+msgid "Variants per page cannot be 0."
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:465
+msgid "Variants per page cannot be a decimal value."
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:471
+msgid "Button text cannot be negative."
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:710
+msgid "Click here"
+msgstr ""
+
+#: admin/class-variant_purchase_extended-admin.php:711
+#, php-format
+msgid "%1$s to view license and terms of use."
+msgstr ""
+
+#: admin/partials/header/plugin-header.php:32
+#: admin/partials/header/plugin-header.php:37
+#: admin/partials/header/plugin-header.php:42
+msgid "active"
+msgstr ""
+
+#: admin/partials/header/plugin-sidebar.php:42
+msgid "Conditional Product Fees For WooCommerce Checkout"
+msgstr ""
+
+#: admin/partials/header/plugin-sidebar.php:46
+msgid "Blocker – Prevent Fake Orders And Blacklist Fraud Customers for WooCommerce"
+msgstr ""
+
+#: admin/partials/header/plugin-sidebar.php:50
+msgid "Advanced Product Size Charts for WooCommerce"
+msgstr ""
+
+#: admin/partials/header/plugin-sidebar.php:54
+msgid "Enhanced Ecommerce Google Analytics for WooCommerce"
+msgstr ""
+
+#: admin/partials/header/plugin-sidebar.php:58
+msgid "Advanced Menu Manager For WordPress"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:35
+msgid "Title"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:36
+msgid "SKU"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:37
+msgid "Price"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:38
+msgid "Quantity"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:156
+#, php-format
+msgid "%1$d Available"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:161
+#, php-format
+msgid "In Stock %1$s"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:163
+msgid "In Stock"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:167
+msgid "Not In Stock (BO Allowed)"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:169
+msgid "Not In Stock"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:172
+msgid "In Stock (BO Allowed)"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:213
+#: includes/variant_purchase_extended_functions.php:243
+#: includes/variant_purchase_extended_functions.php:295
+msgid "N/A"
+msgstr ""
+
+#: includes/variant_purchase_extended_functions.php:231
+#: includes/variant_purchase_extended_functions.php:314
+msgid "Notify Me"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:121
+msgid "Please wait while the products are loading !!"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:122
+msgid "Please wait..."
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:224
+msgid "Click here to contact admin for unavailable products."
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:238
+msgid "Previous"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:239
+msgid "Next"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:258
+msgid "Add to cart"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:421
+msgid "Contact Admin"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:524
+msgid "Request for out of stock products"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:695
+msgid "Click on submit to notify"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:700
+msgid "Enter Details"
+msgstr ""
+
+#: public/class-variant_purchase_extended-public.php:969
+msgid "Stock Status"
+msgstr ""
+
+#: woo-quick-cart-for-multiple-variations.php:125
+msgid "Docs"
+msgstr ""
+
+#: woo-quick-cart-for-multiple-variations.php:126
+msgid "Support "
+msgstr ""
+
+#: woo-quick-cart-for-multiple-variations.php:142
+msgid "Settings"
+msgstr ""
+
+#: woo-quick-cart-for-multiple-variations.php:156
+msgid "WooCommerce"
+msgstr ""
