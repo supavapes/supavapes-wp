@@ -1,0 +1,216 @@
+09:38:12 - Start List of Activate Plugins
+09:38:12 - query-monitor/query-monitor.php
+09:38:12 - advanced-custom-fields-pro/acf.php
+09:38:12 - ajax-search-for-woocommerce/ajax-search-for-woocommerce.php
+09:38:12 - bp-custom-order-status-for-woocommerce/main.php
+09:38:12 - classic-widgets/classic-widgets.php
+09:38:12 - comments-like-dislike/comments-like-dislike.php
+09:38:12 - download-plugin/download-plugin.php
+09:38:12 - elementor-pro/elementor-pro.php
+09:38:12 - elementor/elementor.php
+09:38:12 - image-optimization/image-optimization.php
+09:38:12 - mailchimp-for-wp/mailchimp-for-wp.php
+09:38:12 - pojo-accessibility/pojo-accessibility.php
+09:38:12 - s2w-import-shopify-to-woocommerce/s2w-import-shopify-to-woocommerce.php
+09:38:12 - sassy-social-share/sassy-social-share.php
+09:38:12 - woo-discount-rules-pro/woo-discount-rules-pro.php
+09:38:12 - woo-discount-rules/woo-discount-rules.php
+09:38:12 - woo-product-gallery-slider/woo-product-gallery-slider.php
+09:38:12 - woo-quick-cart-for-multiple-variations/woo-quick-cart-for-multiple-variations.php
+09:38:12 - woo-update-manager/woo-update-manager.php
+09:38:12 - woocommerce-gateway-moneris/woocommerce-gateway-moneris.php
+09:38:12 - woocommerce-pdf-invoices-packing-slips/woocommerce-pdf-invoices-packingslips.php
+09:38:12 - woocommerce/woocommerce.php
+09:38:12 - wp-crontrol/wp-crontrol.php
+09:38:12 - wp-mail-logging/wp-mail-logging.php
+09:38:12 - wp-mail-smtp/wp_mail_smtp.php
+09:38:12 - yith-woocommerce-wishlist/init.php
+09:38:12 - End List of Activate Plugins
+09:38:24 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+09:38:24 - Not occur wp_error
+09:38:24 - oliver_pos_subscription_client_id = 00000000-0000-0000-0000-000000000000
+09:38:24 - oliver_pos_subscription_token = 00000000-0000-0000-0000-000000000000
+09:38:24 - oliver_pos_subscription_udid = 0
+09:38:24 - trigger_update_version_number = https://app.oliverpos.com/api/WCBridge/ChangeBridgeVersion/?clientId=00000000-0000-0000-0000-000000000000&version=2.4.2.2
+09:38:24 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=00000000-0000-0000-0000-000000000000
+09:43:23 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=00000000-0000-0000-0000-000000000000&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+09:43:24 - Not occur wp_error
+09:43:24 - oliver_pos_subscription_client_id = 00000000-0000-0000-0000-000000000000
+09:43:24 - oliver_pos_subscription_token = 00000000-0000-0000-0000-000000000000
+09:43:24 - oliver_pos_subscription_udid = 0
+09:43:24 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=00000000-0000-0000-0000-000000000000
+09:45:27 - connect with key:sub_1PiZ5EFEFc9T4WKrrcf9mEZg error: {"Message":"cURL error 28: Operation timed out after 5000 milliseconds with 0 bytes received"}
+09:45:54 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=00000000-0000-0000-0000-000000000000&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+09:45:54 - Not occur wp_error
+09:45:54 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+09:45:54 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+09:45:54 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+09:45:54 - oliver_pos_subscription_udid = 5407922122
+09:45:54 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:08:28 - Start List of Activate Plugins
+10:08:28 - query-monitor/query-monitor.php
+10:08:28 - advanced-custom-fields-pro/acf.php
+10:08:28 - ajax-search-for-woocommerce/ajax-search-for-woocommerce.php
+10:08:28 - bp-custom-order-status-for-woocommerce/main.php
+10:08:28 - classic-widgets/classic-widgets.php
+10:08:28 - comments-like-dislike/comments-like-dislike.php
+10:08:28 - download-plugin/download-plugin.php
+10:08:28 - elementor-pro/elementor-pro.php
+10:08:28 - elementor/elementor.php
+10:08:28 - image-optimization/image-optimization.php
+10:08:28 - mailchimp-for-wp/mailchimp-for-wp.php
+10:08:28 - oliver-pos/oliver-pos.php
+10:08:28 - pojo-accessibility/pojo-accessibility.php
+10:08:28 - s2w-import-shopify-to-woocommerce/s2w-import-shopify-to-woocommerce.php
+10:08:28 - sassy-social-share/sassy-social-share.php
+10:08:28 - woo-discount-rules-pro/woo-discount-rules-pro.php
+10:08:28 - woo-discount-rules/woo-discount-rules.php
+10:08:28 - woo-product-gallery-slider/woo-product-gallery-slider.php
+10:08:28 - woo-quick-cart-for-multiple-variations/woo-quick-cart-for-multiple-variations.php
+10:08:28 - woo-update-manager/woo-update-manager.php
+10:08:28 - woocommerce-gateway-moneris/woocommerce-gateway-moneris.php
+10:08:28 - woocommerce-payments/woocommerce-payments.php
+10:08:28 - woocommerce-pdf-invoices-packing-slips/woocommerce-pdf-invoices-packingslips.php
+10:08:28 - woocommerce/woocommerce.php
+10:08:28 - wp-crontrol/wp-crontrol.php
+10:08:28 - wp-mail-logging/wp-mail-logging.php
+10:08:28 - wp-mail-smtp/wp_mail_smtp.php
+10:08:28 - yith-woocommerce-wishlist/init.php
+10:08:28 - End List of Activate Plugins
+10:08:29 - trigger_update_version_number = https://app.oliverpos.com/api/WCBridge/ChangeBridgeVersion/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4&version=2.4.2.2
+10:08:39 - Start List of Activate Plugins
+10:08:39 - query-monitor/query-monitor.php
+10:08:39 - advanced-custom-fields-pro/acf.php
+10:08:39 - ajax-search-for-woocommerce/ajax-search-for-woocommerce.php
+10:08:39 - bp-custom-order-status-for-woocommerce/main.php
+10:08:39 - classic-widgets/classic-widgets.php
+10:08:39 - comments-like-dislike/comments-like-dislike.php
+10:08:39 - download-plugin/download-plugin.php
+10:08:39 - elementor-pro/elementor-pro.php
+10:08:39 - elementor/elementor.php
+10:08:39 - image-optimization/image-optimization.php
+10:08:39 - mailchimp-for-wp/mailchimp-for-wp.php
+10:08:39 - oliver-pos/oliver-pos.php
+10:08:39 - pojo-accessibility/pojo-accessibility.php
+10:08:39 - s2w-import-shopify-to-woocommerce/s2w-import-shopify-to-woocommerce.php
+10:08:39 - sassy-social-share/sassy-social-share.php
+10:08:39 - woo-discount-rules-pro/woo-discount-rules-pro.php
+10:08:39 - woo-discount-rules/woo-discount-rules.php
+10:08:39 - woo-product-gallery-slider/woo-product-gallery-slider.php
+10:08:39 - woo-quick-cart-for-multiple-variations/woo-quick-cart-for-multiple-variations.php
+10:08:39 - woo-update-manager/woo-update-manager.php
+10:08:39 - woocommerce-gateway-moneris/woocommerce-gateway-moneris.php
+10:08:39 - woocommerce-payments/woocommerce-payments.php
+10:08:39 - woocommerce-pdf-invoices-packing-slips/woocommerce-pdf-invoices-packingslips.php
+10:08:39 - woocommerce/woocommerce.php
+10:08:39 - wp-crontrol/wp-crontrol.php
+10:08:39 - wp-mail-logging/wp-mail-logging.php
+10:08:39 - wp-mail-smtp/wp_mail_smtp.php
+10:08:39 - yith-woocommerce-wishlist/init.php
+10:08:39 - End List of Activate Plugins
+10:08:40 - trigger_update_version_number = https://app.oliverpos.com/api/WCBridge/ChangeBridgeVersion/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4&version=2.4.2.2
+10:08:48 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+10:08:48 - Not occur wp_error
+10:08:48 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+10:08:48 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:08:48 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+10:08:48 - oliver_pos_subscription_udid = 5407922122
+10:08:48 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:14:01 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+10:14:01 - Not occur wp_error
+10:14:01 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+10:14:01 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:14:01 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+10:14:01 - oliver_pos_subscription_udid = 5407922122
+10:14:01 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:16:15 - create warehouse response=1
+10:16:15 - warehouse updated =1
+10:20:51 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+10:20:52 - Not occur wp_error
+10:20:52 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+10:20:52 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:20:52 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+10:20:52 - oliver_pos_subscription_udid = 5407922122
+10:20:52 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+10:47:18 - New order trigger
+10:47:18 - order update difference time=1722422838
+10:47:18 - try post
+10:47:18 - Update order trigger33267
+10:47:18 - order update difference time=0
+10:47:29 - update order trigger delay
+10:48:23 - Update order trigger33267
+10:48:23 - order update difference time=1722422903
+10:48:23 - try post
+10:48:23 - Update order trigger33267
+10:48:23 - order update difference time=0
+10:48:32 - update order trigger delay
+10:52:42 - Update order trigger33267
+10:52:42 - order update difference time=1722423162
+10:52:42 - try post
+10:52:42 - Update order trigger33267
+10:52:42 - order update difference time=0
+10:52:49 - update order trigger delay
+11:05:29 - Update order trigger33267
+11:05:29 - order update difference time=1722423929
+11:05:29 - try post
+11:05:30 - Update order trigger33267
+11:05:30 - order update difference time=1
+11:05:39 - update order trigger delay
+11:10:15 - Update order trigger33267
+11:10:15 - order update difference time=1722424215
+11:10:15 - try post
+11:10:15 - Update order trigger33267
+11:10:15 - order update difference time=0
+11:10:27 - update order trigger delay
+11:10:31 - Update order trigger33267
+11:10:31 - order update difference time=1722424231
+11:10:31 - try post
+11:10:32 - Update order trigger33267
+11:10:32 - order update difference time=1
+11:10:32 - Update order trigger33267
+11:10:32 - order update difference time=1
+11:10:32 - Update order trigger33267
+11:10:32 - order update difference time=1
+11:10:41 - Update order trigger33267
+11:10:41 - order update difference time=10
+11:10:41 - try post
+11:10:41 - update order trigger delay
+11:10:41 - Update order trigger33267
+11:10:41 - order update difference time=0
+11:10:42 - Update order trigger33267
+11:10:42 - order update difference time=1
+11:10:42 - Update order trigger33267
+11:10:42 - order update difference time=1
+11:17:20 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+11:17:21 - Not occur wp_error
+11:17:21 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+11:17:21 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+11:17:21 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+11:17:21 - oliver_pos_subscription_udid = 5407922122
+11:17:21 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+11:20:43 - New order trigger
+11:20:43 - order update difference time=1722424843
+11:20:43 - try post
+11:20:43 - Update order trigger33268
+11:20:43 - order update difference time=0
+11:20:52 - update order trigger delay
+11:31:22 - Update order trigger33268
+11:31:22 - order update difference time=1722425482
+11:31:22 - try post
+11:31:22 - Update order trigger33268
+11:31:22 - order update difference time=0
+11:31:30 - update order trigger delay
+14:34:48 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+14:34:48 - Not occur wp_error
+14:34:48 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+14:34:48 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+14:34:48 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+14:34:48 - oliver_pos_subscription_udid = 5407922122
+14:34:48 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4
+14:43:29 - init connection url = https://app.oliverpos.com/api/v1/Account/InitConnection/?sourceUrl=https://woocommerce-401163-4488997.cloudwaysapps.com&clientGuid=ccbb85b0-0efc-4478-8201-2bc758c1bec4&clientToken=9add8c04f38cb548734a6b296850b43a&version=2.4.2.2
+14:43:30 - Not occur wp_error
+14:43:30 - oliver_pos_subscription_autologin_token = SXH5PgP0UhRg6hMGFU4bgybBOL/2ed8cbAz+zkDc4X6Lj5piYIu1IycVhBi/3gszQ36T1ylieBTEHORJYPUMVzV/52ZC2Sie33d4elze7Ns=
+14:43:30 - oliver_pos_subscription_client_id = ccbb85b0-0efc-4478-8201-2bc758c1bec4
+14:43:30 - oliver_pos_subscription_token = 8306b53f-2ca7-47a5-9f61-f47ac99cb72e
+14:43:30 - oliver_pos_subscription_udid = 5407922122
+14:43:30 - trigger_bridge_details = https://app.oliverpos.com/api/WCBridge/TriggerBridgeDetail/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4

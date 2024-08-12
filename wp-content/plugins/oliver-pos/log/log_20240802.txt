@@ -1,0 +1,163 @@
+05:47:05 - update order trigger delay
+05:50:10 - Update order trigger33267
+05:50:10 - order update difference time=100692
+05:50:10 - try post
+05:50:10 - Update order trigger33267
+05:50:10 - order update difference time=0
+05:54:17 - update order trigger delay
+05:56:46 - Update order trigger33277
+05:56:46 - order update difference time=1722578206
+05:56:46 - try post
+05:56:46 - Update order trigger33277
+05:56:46 - order update difference time=0
+05:56:57 - update order trigger delay
+06:21:34 - Start List of Activate Plugins
+06:21:34 - advanced-custom-fields-pro/acf.php
+06:21:34 - ajax-search-for-woocommerce/ajax-search-for-woocommerce.php
+06:21:34 - bp-custom-order-status-for-woocommerce/main.php
+06:21:34 - classic-widgets/classic-widgets.php
+06:21:34 - comments-like-dislike/comments-like-dislike.php
+06:21:34 - download-plugin/download-plugin.php
+06:21:34 - elementor-pro/elementor-pro.php
+06:21:34 - elementor/elementor.php
+06:21:34 - image-optimization/image-optimization.php
+06:21:34 - mailchimp-for-wp/mailchimp-for-wp.php
+06:21:34 - oliver-pos/oliver-pos.php
+06:21:34 - pojo-accessibility/pojo-accessibility.php
+06:21:34 - s2w-import-shopify-to-woocommerce/s2w-import-shopify-to-woocommerce.php
+06:21:34 - sassy-social-share/sassy-social-share.php
+06:21:34 - woo-discount-rules-pro/woo-discount-rules-pro.php
+06:21:34 - woo-discount-rules/woo-discount-rules.php
+06:21:34 - woo-product-gallery-slider/woo-product-gallery-slider.php
+06:21:34 - woo-quick-cart-for-multiple-variations/woo-quick-cart-for-multiple-variations.php
+06:21:34 - woo-stripe-payment/stripe-payments.php
+06:21:34 - woo-update-manager/woo-update-manager.php
+06:21:34 - woocommerce-gateway-moneris/woocommerce-gateway-moneris.php
+06:21:34 - woocommerce-pdf-invoices-packing-slips/woocommerce-pdf-invoices-packingslips.php
+06:21:34 - woocommerce/woocommerce.php
+06:21:34 - wp-crontrol/wp-crontrol.php
+06:21:34 - wp-mail-logging/wp-mail-logging.php
+06:21:34 - wp-mail-smtp/wp_mail_smtp.php
+06:21:34 - yith-woocommerce-wishlist/init.php
+06:21:34 - End List of Activate Plugins
+06:21:35 - trigger_update_version_number = https://app.oliverpos.com/api/WCBridge/ChangeBridgeVersion/?clientId=ccbb85b0-0efc-4478-8201-2bc758c1bec4&version=2.4.2.2
+06:28:07 - Update order trigger33267
+06:28:07 - order update difference time=1722580087
+06:28:07 - try post
+06:28:07 - Update order trigger33267
+06:28:07 - order update difference time=0
+06:28:47 - update order trigger delay
+06:35:05 - Update order trigger33267
+06:35:05 - order update difference time=1722580505
+06:35:05 - try post
+06:35:05 - Update order trigger33267
+06:35:05 - order update difference time=0
+06:35:40 - update order trigger delay
+06:36:00 - Update order trigger33267
+06:36:00 - order update difference time=1722580560
+06:36:00 - try post
+06:36:00 - Update order trigger33267
+06:36:00 - order update difference time=0
+06:36:44 - update order trigger delay
+06:38:49 - Update order trigger33267
+06:38:49 - order update difference time=1722580729
+06:38:49 - try post
+06:38:49 - Update order trigger33267
+06:38:49 - order update difference time=0
+06:39:23 - update order trigger delay
+06:40:31 - Update order trigger33267
+06:40:31 - order update difference time=1722580831
+06:40:31 - try post
+06:40:31 - Update order trigger33267
+06:40:31 - order update difference time=0
+06:40:47 - Update order trigger33267
+06:40:47 - order update difference time=16
+06:40:47 - try post
+06:40:47 - Update order trigger33267
+06:40:47 - order update difference time=0
+06:41:01 - update order trigger delay
+06:50:46 - Update order trigger33267
+06:50:46 - order update difference time=1722581446
+06:50:46 - try post
+06:50:46 - Update order trigger33267
+06:50:46 - order update difference time=0
+06:50:56 - update order trigger delay
+06:51:41 - Update order trigger33267
+06:51:41 - order update difference time=1722581501
+06:51:41 - try post
+06:51:41 - Update order trigger33267
+06:51:41 - order update difference time=0
+06:52:01 - update order trigger delay
+06:52:03 - Update order trigger33267
+06:52:03 - order update difference time=22
+06:52:03 - try post
+06:52:03 - Update order trigger33267
+06:52:03 - order update difference time=22
+06:52:03 - try post
+06:52:05 - Update order trigger33267
+06:52:05 - order update difference time=1722581525
+06:52:05 - try post
+06:52:05 - Update order trigger33267
+06:52:05 - order update difference time=0
+06:52:10 - Update order trigger33267
+06:52:10 - order update difference time=5
+06:52:10 - Update order trigger33267
+06:52:10 - order update difference time=5
+06:52:19 - Update order trigger33267
+06:52:19 - order update difference time=14
+06:52:19 - try post
+06:52:19 - Update order trigger33267
+06:52:19 - order update difference time=0
+06:52:19 - Update order trigger33267
+06:52:19 - order update difference time=0
+06:52:19 - === === ===
+06:52:19 - Start oliver_pos_update_customer trigger
+06:52:20 - Stop oliver_pos_update_customer trigger
+06:52:20 - Update order trigger33267
+06:52:20 - order update difference time=1
+06:52:20 - change order status
+06:52:20 - update order trigger delay
+06:52:20 - Update order trigger33267
+06:52:20 - order update difference time=1
+06:52:20 - Update order trigger33267
+06:52:20 - order update difference time=1
+06:52:22 - Update order trigger33267
+06:52:22 - order update difference time=3
+06:52:31 - Update order trigger33267
+06:52:31 - order update difference time=1722581551
+06:52:31 - try post
+06:52:31 - Update order trigger33267
+06:52:31 - order update difference time=0
+06:52:31 - Update order trigger33267
+06:52:31 - order update difference time=0
+06:52:32 - reduce stock from default
+06:52:32 - Start update product trigger
+06:52:32 - End update product trigger
+06:52:32 - unhook_oliver_order_emails_admin = 33267
+06:52:32 - unhook_oliver_order_emails_admin = 33267
+06:52:33 - unhook_oliver_order_emails_customer = 33267
+06:52:33 - unhook_oliver_order_emails_customer = 33267
+06:52:34 - change order status
+06:52:39 - update order trigger delay
+06:59:52 - Update order trigger33267
+06:59:52 - order update difference time=1722581992
+06:59:52 - try post
+07:00:10 - update order trigger delay
+07:46:43 - New order trigger
+07:46:43 - order update difference time=1722584803
+07:46:43 - try post
+07:46:43 - Update order trigger33279
+07:46:43 - order update difference time=0
+07:47:08 - update order trigger delay
+07:47:10 - Update order trigger33279
+07:47:10 - order update difference time=27
+07:47:10 - try post
+07:47:10 - Update order trigger33279
+07:47:10 - order update difference time=27
+07:47:10 - try post
+07:47:31 - Update order trigger33279
+07:47:31 - order update difference time=1722584851
+07:47:31 - try post
+07:47:31 - Update order trigger33279
+07:47:31 - order update difference time=0
+10:07:08 - Deactivate try dis connect = https://app.oliverpos.com/api/v1/Account/Disconnect/
