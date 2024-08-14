@@ -36,7 +36,7 @@ function hello_elementor_child_scripts_styles()
 		'sv-slick-min-style',
 		get_stylesheet_directory_uri() . '/assets/css/slick_slider/slick.min.css',
 		array(),
-		rand(),
+		rand( ),
 		'all'
 	);
 	wp_enqueue_style(
