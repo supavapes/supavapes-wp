@@ -87,7 +87,7 @@ if(!empty($customer_orders)){
 					?>
 				</div>
 				<div class="dashboard-box-data-detail">
-					<label class="dashboard-box-data-lable"><?php esc_html_e('Order Total','hello-elementor-child'); ?></label>
+					<label class="dashboard-box-data-lable"><?php esc_html_e('Order Total test dev','hello-elementor-child'); ?></label>
 					<p class="dashboard-box-data-value">$<?php echo esc_html($order_total); ?></p>
 				</div>
 			</div>
