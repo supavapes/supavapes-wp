@@ -23,6 +23,7 @@ wp-content/*
 
 # Configuration
 wp-config.php
+gitautodeploy.php
 
 # Log files
 *.log
