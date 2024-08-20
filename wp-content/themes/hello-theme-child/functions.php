@@ -3389,28 +3389,26 @@ function display_google_map() {
             ];
             
             // Info window content
-            // var infoWindowContent = [
-            //     ['<div class="info_content">' +
-            //     '<h2>Brooklyn Museum</h2>' +
-            //     '<h3>200 Eastern Pkwy, Brooklyn, NY 11238</h3>' +
-            //     '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' +
-            //     '</div>'],
-            //     ['<div class="info_content">' +
-            //     '<h2>Central Library</h2>' +
-            //     '<h3>10 Grand Army Plaza, Brooklyn, NY 11238</h3>' +
-            //     '<p>The Central Library is the main branch of the Brooklyn Public Library, located at Flatbush Avenue.</p>' +
-            //     '</div>'],
-            //     // ['<div class="info_content">' +
-            //     // '<h2>Prospect Park Zoo</h2>' +
-            //     // '<h3>450 Flatbush Ave, Brooklyn, NY 11225</h3>' +
-            //     // '<p>The Prospect Park Zoo is a 12-acre zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
-            //     // '</div>'],
-            //     // ['<div class="info_content">' +
-            //     // '<h2>Barclays Center</h2>' +
-            //     // '<h3>620 Atlantic Ave, Brooklyn, NY 11217</h3>' +
-            //     // '<p>Barclays Center is a multi-purpose indoor arena in the New York City borough of Brooklyn.</p>' +
-            //     // '</div>']
-            // ];
+            var infoWindowContent = [
+                ['<div class="info_content">' +
+                '<h2>Supa Vapes Hawkesbury</h2>' +
+                '<h3>1502 Main St E, Hawkesbury, ON K6A 1C7, Canada</h3>' +
+                '</div>'],
+                ['<div class="info_content">' +
+                '<h2>Supa Vapes 729 Walkley Rd</h2>' +
+                '<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
+                '</div>'],
+                // ['<div class="info_content">' +
+                // '<h2>Prospect Park Zoo</h2>' +
+                // '<h3>450 Flatbush Ave, Brooklyn, NY 11225</h3>' +
+                // '<p>The Prospect Park Zoo is a 12-acre zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
+                // '</div>'],
+                // ['<div class="info_content">' +
+                // '<h2>Barclays Center</h2>' +
+                // '<h3>620 Atlantic Ave, Brooklyn, NY 11217</h3>' +
+                // '<p>Barclays Center is a multi-purpose indoor arena in the New York City borough of Brooklyn.</p>' +
+                // '</div>']
+            ];
             
             // Add multiple markers to map
             var infoWindow = new google.maps.InfoWindow(), marker, i;
