@@ -3381,10 +3381,11 @@ function display_google_map() {
             
             // Multiple markers location, latitude, and longitude
             var markers = [
-                ['Supa Vapes Hawkesbury', 45.607236555267214, -74.58476481651162],
-                // ['Central Library, Brooklyn, NY', 40.67254944015601, -73.9682162170653],
+                ['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
+                ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749],
                 // ['Prospect Park Zoo, NY', 40.66427511834109, -73.96512605857858],
                 // ['Barclays Center, Brooklyn, NY', 40.68268267107631, -73.97546296241961]
+				
             ];
             
             // Info window content
@@ -3394,11 +3395,11 @@ function display_google_map() {
                 '<h3>200 Eastern Pkwy, Brooklyn, NY 11238</h3>' +
                 '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' +
                 '</div>'],
-                // ['<div class="info_content">' +
-                // '<h2>Central Library</h2>' +
-                // '<h3>10 Grand Army Plaza, Brooklyn, NY 11238</h3>' +
-                // '<p>The Central Library is the main branch of the Brooklyn Public Library, located at Flatbush Avenue.</p>' +
-                // '</div>'],
+                ['<div class="info_content">' +
+                '<h2>Central Library</h2>' +
+                '<h3>10 Grand Army Plaza, Brooklyn, NY 11238</h3>' +
+                '<p>The Central Library is the main branch of the Brooklyn Public Library, located at Flatbush Avenue.</p>' +
+                '</div>'],
                 // ['<div class="info_content">' +
                 // '<h2>Prospect Park Zoo</h2>' +
                 // '<h3>450 Flatbush Ave, Brooklyn, NY 11225</h3>' +
