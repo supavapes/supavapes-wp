@@ -3439,7 +3439,7 @@ function display_google_map() {
 
             // Set zoom level
             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                this.setZoom(14); // Set zoom level to 14 after bounds are determined
+                this.setZoom(10); // Set zoom level to 14 after bounds are determined
                 google.maps.event.removeListener(boundsListener);
             });
         }
