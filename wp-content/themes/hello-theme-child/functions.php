@@ -3367,28 +3367,21 @@ function display_google_map() {
     <div id="mapCanvas" style="width: 100%; height: 500px;"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
     <script>
-        // Initialize and add the map
         function initMap() {
             var map;
             var bounds = new google.maps.LatLngBounds();
             var mapOptions = {
                 mapTypeId: 'roadmap'
             };
-            
-            // Display a map on the web page
+
             map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
             map.setTilt(50);
-            
-            // Multiple markers location, latitude, and longitude
+
             var markers = [
                 ['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
-                ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749],
-                // ['Prospect Park Zoo, NY', 40.66427511834109, -73.96512605857858],
-                // ['Barclays Center, Brooklyn, NY', 40.68268267107631, -73.97546296241961]
-				
+                ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749]
             ];
-            
-            // Info window content
+
             var infoWindowContent = [
                 ['<div class="info_content">' +
                 '<h2>Supa Vapes Hawkesbury</h2>' +
@@ -3397,23 +3390,11 @@ function display_google_map() {
                 ['<div class="info_content">' +
                 '<h2>Supa Vapes 729 Walkley Rd</h2>' +
                 '<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
-                '</div>'],
-                // ['<div class="info_content">' +
-                // '<h2>Prospect Park Zoo</h2>' +
-                // '<h3>450 Flatbush Ave, Brooklyn, NY 11225</h3>' +
-                // '<p>The Prospect Park Zoo is a 12-acre zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
-                // '</div>'],
-                // ['<div class="info_content">' +
-                // '<h2>Barclays Center</h2>' +
-                // '<h3>620 Atlantic Ave, Brooklyn, NY 11217</h3>' +
-                // '<p>Barclays Center is a multi-purpose indoor arena in the New York City borough of Brooklyn.</p>' +
-                // '</div>']
+                '</div>']
             ];
-            
-            // Add multiple markers to map
+
             var infoWindow = new google.maps.InfoWindow(), marker, i;
-            
-            // Place each marker on the map  
+
             for (i = 0; i < markers.length; i++) {
                 var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                 bounds.extend(position);
@@ -3422,8 +3403,7 @@ function display_google_map() {
                     map: map,
                     title: markers[i][0]
                 });
-                
-                // Add info window to marker    
+
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         infoWindow.setContent(infoWindowContent[i][0]);
@@ -3432,21 +3412,25 @@ function display_google_map() {
                 })(marker, i));
             }
 
-            // Center the map to fit all markers on the screen
             map.fitBounds(bounds);
 
-            // Set zoom level
             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                this.setZoom(10); // Set zoom level to 14 after bounds are determined
+                // Adjust the zoom based on the screen width
+                var zoomLevel = 10;
+                if (window.innerWidth < 768) { // For devices with width < 768px (like phones)
+                    zoomLevel = 8;
+                } else if (window.innerWidth < 1024) { // For devices with width < 1024px (like tablets)
+                    zoomLevel = 9;
+                }
+                this.setZoom(zoomLevel);
                 google.maps.event.removeListener(boundsListener);
             });
         }
-        
-        window.initMap = initMap; // Ensures the initMap function is called
+
+        window.initMap = initMap;
     </script>
     <?php
     return ob_get_clean();
 }
-
 // Register the shortcode
 add_shortcode('google_map_shortcode', 'display_google_map');
