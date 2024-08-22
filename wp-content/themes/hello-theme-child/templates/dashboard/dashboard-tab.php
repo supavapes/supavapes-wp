@@ -36,7 +36,7 @@ if(!empty($customer_orders)){
 	<div class="chart-container">
 		<div class="chart-header">
 		<div class="year-dropdown">
-            <label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In','hello-elementor-child'); ?></label>
+            <label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In dev test','hello-elementor-child'); ?></label>
             <select id="purchase-year">
                 <option value="2024"><?php esc_html_e('2024','hello-elementor-child'); ?></option>
                 <option value="2023"><?php esc_html_e('2023','hello-elementor-child'); ?></option>
@@ -44,7 +44,6 @@ if(!empty($customer_orders)){
                 <option value="2021"><?php esc_html_e('2021','hello-elementor-child'); ?></option>
             </select>
         </div>
-			
 			<div class="tabs">
 				<div class="tab" data-tab="day"><?php esc_html_e('Daily','hello-elementor-child'); ?></div>
 				<div class="tab" data-tab="month"><?php esc_html_e('Monthly','hello-elementor-child'); ?></div>
