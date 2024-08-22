@@ -20,6 +20,12 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
+    jQuery(document).on('wpcf7mailsent', function(event) {
+        setTimeout(function() {
+            window.location.href = 'https://dev.supavapes.com/contact-us/';
+        }, 3000); // Wait for 3 seconds to redirect.
+    });
+    
     // Function to refresh cart fragments
     function refreshCartFragments() {
         jQuery.ajax({
