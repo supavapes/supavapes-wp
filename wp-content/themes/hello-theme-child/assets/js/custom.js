@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
 
     jQuery(document).on('wpcf7mailsent', function(event) {
         setTimeout(function() {
-            window.location.href = 'https://dev.supavapes.com/contact-us/';
+            window.location.href = '/contact-us/';
         }, 3000); // Wait for 3 seconds to redirect.
     });
     
