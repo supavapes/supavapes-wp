@@ -9,8 +9,10 @@
  *
  * @package HelloElementorChild
  */
-if (!defined('ABSPATH')) {
-		exit; // Exit if accessed directly.
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
@@ -18,211 +20,290 @@ define('HELLO_ELEMENTOR_CHILD_THEME_PATH', get_stylesheet_directory());
 include 'includes/classes/class-wc-custom-emails-manager.php';
 // include 'includes/classes/class-wc-custom-sms-manager.php';
 include 'includes/classes/class-mailchimp-subscribers-table.php';
-
 // include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
 
 /**
- * Load child theme scripts & styles.
- *
- * @return void
+ * If the function, `supavapes_wp_enqueue_scripts_callback` doesn't exist.
  */
-function hello_elementor_child_scripts_styles()
-{
+if ( ! function_exists( 'supavapes_wp_enqueue_scripts_callback' ) ) {
+	/**
+	 * Enqueue the custom scripts and styles for the site front.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_wp_enqueue_scripts_callback() {
+		/************************ ENQUEUE CSS FILES ************************/
 
-	/**
-	 * Slick Slider CSS
-	 */
-	wp_enqueue_style(
-		'sv-slick-min-style',
-		get_stylesheet_directory_uri() . '/assets/css/slick_slider/slick.min.css',
-		array(),
-		rand(),
-		'all'
-	);
-	wp_enqueue_style(
-		'sv-slick-theme-style',
-		get_stylesheet_directory_uri() . '/assets/css/slick_slider/slick-theme.min.css',
-		array(),
-		rand(),
-		'all'
-	);
-	wp_enqueue_style(
+		// Enqueue slick minified style.
+		wp_enqueue_style(
+			'sv-slick-min-style',
+			get_stylesheet_directory_uri() . '/assets/css/slick_slider/slick.min.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/slick_slider/slick.min.css' ),
+			'all'
+		);
+
+		// Enqueue slick theme minified style.
+		wp_enqueue_style(
+			'sv-slick-theme-style',
+			get_stylesheet_directory_uri() . '/assets/css/slick_slider/slick-theme.min.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/slick_slider/slick-theme.min.css' ),
+			'all'
+		);
+
+		// Enqueue slick theme minified style.
+		wp_enqueue_style(
+			'sv-jquery-ui-css',
+			get_stylesheet_directory_uri() . '/assets/css/jquery-ui.min.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/jquery-ui.min.css' ),
+			'all'
+		);
+
+		// Enqueue the child theme style file.
+		wp_enqueue_style(
 			'hello-elementor-child-style',
-		get_stylesheet_directory_uri() . '/style.css',
-			[
-				'hello-elementor-theme-style',
-			], 
-			HELLO_ELEMENTOR_CHILD_VERSION, 'all', 11
-	);
-	wp_enqueue_style(
+			get_stylesheet_directory_uri() . '/style.css',
+			array( 'hello-elementor-theme-style' ),
+			filemtime( get_stylesheet_directory() . '/style.css' ), 
+			'all'
+		);
+
+		// Enqueue the child theme custom style file.
+		wp_enqueue_style(
 			'hello-elementor-child-custom',
-		get_stylesheet_directory_uri() . '/assets/css/custom.css',
-		array(),
-		rand(),
-		'all'
-	);
-	wp_enqueue_style(
+			get_stylesheet_directory_uri() . '/assets/css/custom.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/custom.css' ),
+			'all'
+		);
+
+		// Enqueue the chile theme media style file.
+		wp_enqueue_style(
 			'hello-elementor-child-media',
-		get_stylesheet_directory_uri() . '/assets/css/media.css',
-		array(),
-		rand(),
-		'all'
-	);
-	/**
-	 * Slick Slider JS
-	 */
-	wp_enqueue_script(
+			get_stylesheet_directory_uri() . '/assets/css/media.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/media.css' ),
+			'all'
+		);
+
+		/************************ ENQUEUE JS FILES ************************/
+
+		// Enqueue the slick script file.
+		wp_enqueue_script(
 			'sv-slick-slider-js',
 			get_stylesheet_directory_uri() . '/assets/js/slick.js',
 			array(),
-			rand(),
-			true
-	);
-
-	/**
-	 * Chart JS
-	 */
-	if(is_account_page()){ 
-		wp_enqueue_script(
-			'sv-chart-js',
-			get_stylesheet_directory_uri() . '/assets/js/chart.js',
-			array(),
-			rand(),
+			filemtime( get_stylesheet_directory() . '/assets/js/slick.js' ),
 			true
 		);
+
+		// Enqueue the chart script file.
+		if ( is_account_page() ) {
+			wp_enqueue_script(
+				'sv-chart-js',
+				get_stylesheet_directory_uri() . '/assets/js/chart.js',
+				array(),
+				filemtime( get_stylesheet_directory() . '/assets/js/chart.js' ),
+				true
+			);
+		}
+
+		// Enqueue the jQuery UI dialog script.
+		wp_enqueue_script( 'jquery-ui-dialog' );
+
+		// Enqueue the custom script file.
+		wp_enqueue_script(
+			'sv-custom-js',
+			get_stylesheet_directory_uri() . '/assets/js/custom.js',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/js/custom.js' ),
+			true
+		);
+
+		// Enqueue the custom frontend script file.
+		wp_enqueue_script(
+			'sv-frontend-js',
+			get_stylesheet_directory_uri() . '/assets/js/frontend.js',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/js/frontend.js' ),
+			true
+		);
+
+		// Localize the custom script variables.
+		wp_localize_script(
+			'sv-custom-js',
+			'sv_ajax',
+			array(
+				'ajax_url'                     => admin_url( 'admin-ajax.php' ),
+				'cart_url'                     => wc_get_cart_url(),
+				'site_url'                     => get_site_url(),
+				'verify_age_disagree_btn'      => get_field( 'verify_age_disagree_button_url', 'option' ),
+				'nonce'                        => wp_create_nonce( 'quick_view_nonce' ),
+				'search_variations_nonce'      => wp_create_nonce( 'search_variations_nonce' ),
+				'quick_view_add_to_cart_nonce' => wp_create_nonce( 'quick_view_add_to_cart_nonce' ),
+				'failure_attempt_nonce'        => wp_create_nonce( 'failure_attempt_nonce' ),
+				'fun_questionnaire_nonce'      => wp_create_nonce( 'fun_questionnaire_nonce' ),
+				'current_user'                 => ( is_user_logged_in() ) ? get_current_user_id() : 0,
+				'payment_fail_counter'         => get_field( 'counter_for_prevent_user_to_place_order','option' ),
+			)
+		);
 	}
-	 /**
-	 * Custom JS
+}
+
+add_action( 'wp_enqueue_scripts', 'supavapes_wp_enqueue_scripts_callback', 20 );
+
+/**
+ * If the function, `supavapes_admin_enqueue_scripts_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_admin_enqueue_scripts_callback' ) ) {
+	/**
+	 * Enqueue the custom scripts and styles for the site admin dashboard.
+	 *
+	 * @since 1.0.0
 	 */
-	wp_enqueue_script(
-		'sv-custom-js',
-		get_stylesheet_directory_uri() . '/assets/js/custom.js',
-		array(),
-		filemtime( get_stylesheet_directory() . '/assets/js/custom.js' ),
-		true
-	);
-	wp_enqueue_script(
-		'sv-frontend-js',
-		get_stylesheet_directory_uri() . '/assets/js/frontend.js',
-		array(),
-		rand(),
-		true
-	);
+	function enqueue_support_request_scripts() {
+		// Enqueue the custom style for the admin dashboard.
+		wp_enqueue_style(
+			'sv-custom_wp_admin_css',
+			get_stylesheet_directory_uri() . '/assets/css/admin-style.css',
+			array(),
+			filemtime( get_stylesheet_directory() . '/assets/css/admin-style.css' ).
+			'all'
+		);
 
+		// Enqueue the custom script for the admin dashboard.
+		wp_enqueue_script(
+			'support-request-actions',
+			get_stylesheet_directory_uri() . '/assets/js/support-request-actions.js',
+			array( 'jquery' ),
+			filemtime( get_stylesheet_directory() . '/assets/js/support-request-actions.js' ),
+			true
+		);
 
-	$verify_age_disagree_button_url = get_field('verify_age_disagree_button_url', 'option');
-	$current_user = wp_get_current_user();
-	$user_id = $current_user->ID;
-	$counter_for_prevent_user_to_place_order = get_field('counter_for_prevent_user_to_place_order','option');
-	$ajax_data = array(
-		'ajax_url' => admin_url('admin-ajax.php'),
-		'cart_url' => wc_get_cart_url(),
-		'site_url' => get_site_url(),
-		'verify_age_disagree_btn' => $verify_age_disagree_button_url,
-		'nonce' => wp_create_nonce('quick_view_nonce'),
-		'search_variations_nonce' => wp_create_nonce('search_variations_nonce'),
-		'quick_view_add_to_cart_nonce' => wp_create_nonce('quick_view_add_to_cart_nonce'),
-		'failure_attempt_nonce' => wp_create_nonce('failure_attempt_nonce'),
-		'fun_questionnaire_nonce' => wp_create_nonce('fun_questionnaire_nonce'),
-		'current_user' => $user_id,
-		'payment_fail_counter' => $counter_for_prevent_user_to_place_order
-	);
-	wp_localize_script('sv-custom-js', 'sv_ajax', $ajax_data);
-
-}
-add_action('wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20);
-
-
-function enqueue_jquery_ui() {
-	wp_enqueue_script('jquery-ui-dialog');
-	wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
-}
-add_action('wp_enqueue_scripts', 'enqueue_jquery_ui');
-
-
-add_action('admin_enqueue_scripts', 'enqueue_support_request_scripts',1);
-function enqueue_support_request_scripts() {
-	wp_enqueue_script('support-request-actions', get_stylesheet_directory_uri() . '/assets/js/support-request-actions.js', array('jquery'), null, true);
-	wp_localize_script('support-request-actions', 'supportRequest', array(
-		'ajax_url' => admin_url('admin-ajax.php'),
-		'nonce' => wp_create_nonce('support_request_nonce')
-	));
-
-
-	wp_register_style( 'sv-custom_wp_admin_css', get_stylesheet_directory_uri() . '/assets/css/admin-style.css', false, '1.0.0' );
-	wp_enqueue_style( 'sv-custom_wp_admin_css' );
+		// Localize the custom script variables.
+		wp_localize_script(
+			'support-request-actions',
+			'supportRequest',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( 'support_request_nonce' ),
+			)
+		);
+	}
 }
 
+add_action( 'admin_enqueue_scripts', 'supavapes_admin_enqueue_scripts_callback', 1 );
 
 /**
-* Function to register Custom Post Type Multiple Payment Attempt Failur.
-*
-* @since 1.0.0
-* 
-*/
-function custom_register_multiple_payment_attempt_failur() {
+ * If the function, `supavapes_init_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_init_callback' ) ) {
+	/**
+	 * Add custom action on WordPress initialization.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_init_callback() {
+		// Enqueue custom endpoints for customer dashboard.
+		add_rewrite_endpoint( 'notification-preference', EP_ROOT | EP_PAGES );
+		add_rewrite_endpoint( 'wishlist', EP_ROOT | EP_PAGES );
+		add_rewrite_endpoint( 'support-request', EP_ROOT | EP_PAGES );
+		add_rewrite_endpoint('view-request', EP_ROOT | EP_PAGES);
 
-	require_once get_stylesheet_directory() . '/templates/custom-post-types/cpt.php';
-	
+		// Register custom post types.
+		require_once get_stylesheet_directory() . '/includes/custom-post-types/index.php';
+
+		// Register custom taxonomies.
+		require_once get_stylesheet_directory() . '/includes/custom-taxonomies/index.php';
+
+		// Start custom session.
+		if ( ! session_id() ) {
+			session_start();
+		}
+	}
 }
-add_action( 'init', 'custom_register_multiple_payment_attempt_failur' );
 
+add_action( 'init', 'supavapes_init_callback' );
 
 /**
-* Function to display product reviews.
-*
-* @param Array $atts This variable holds the atts value array.
-* @since 1.0.0
-* Pass product ids as a shortcode attribute. Multiple Ids with comma(,) Seprated
-* Use of Shortcode: [product_reviews ids=""]
-* 
-*/
-function sv_product_reviews($atts)
-{
+ * If the function, `supavapes_product_reviews_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_product_reviews_callback' ) ) {
+	/**
+	 * Display product reviews.
+	 * Pass product ids as a shortcode attribute. In case of multiple product IDs, pass them comma-separated.
+	 * Use of Shortcode: [product_reviews ids=""]
+	 *
+	 * @param array $atts Shortcode arrtibutes.
+	 *
+	 * @return string
+	 * @since 1.0.0
+	 */
+	function supavapes_product_reviews_callback( $atts = array() ) {
+		// Return, if it's the admin screen.
+		if ( is_admin() ) {
+			return;
+		}
 
-	$atts = shortcode_atts(
-		array(
-			'ids' => '',
-		),
-		$atts,
-		'product_reviews'
-	);
-	$output = '';
-	ob_start();
-	set_query_var('shortcode_atts', $atts);
-	require locate_template('templates/shortcodes/product-reviews.php');
-	$output = ob_get_clean();
-	return $output;
+		$atts = shortcode_atts(
+			array(
+				'ids' => '',
+			),
+			$atts,
+			'product_reviews'
+		);
 
+		// Start preparing the shortcode HTML.
+		ob_start();
+
+		set_query_var( 'shortcode_atts', $atts );
+		require locate_template( 'templates/shortcodes/product-reviews.php' );
+
+		return ob_get_clean();
+	}
 }
-add_shortcode('product_reviews', 'sv_product_reviews');
-
-
+add_shortcode( 'product_reviews', 'supavapes_product_reviews_callback' );
 
 /**
-* Function to display Monthly Deals Products.
-*
-* @param Array $atts This variable holds the atts value array.
-* @since 1.0.0
-* Pass term id as a shortcode attribute. Set limit to display number of products. Default limit will be 8.
-* Use of Shortcode: [[monthly_deals limit=""]
-* 
-*/
-function sv_monthly_deals_slider($atts)
-{
-	$atts = shortcode_atts(
-		array(
-			'limit' => 8,
-		),
-		$atts
-	);
-	ob_start();
-	set_query_var('shortcode_atts', $atts);
-	require locate_template('templates/shortcodes/monthly-deals.php');
-	return ob_get_clean();
+ * If the function, `supavapes_monthly_deals_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_monthly_deals_callback' ) ) {
+	/**
+	 * Display the monthly deals on the homepage.
+	 * Pass term id as a shortcode attribute. Set limit to display number of products. Default limit will be 8.
+	 * Use of Shortcode: [[monthly_deals limit=""]
+	 *
+	 * @param array $atts Shortcode arrtibutes.
+	 *
+	 * @return string
+	 * @since 1.0.0
+	 */
+	function supavapes_monthly_deals_callback( $atts = array() ) {
+		// Return, if it's the admin screen.
+		if ( is_admin() ) {
+			return;
+		}
 
+		$atts = shortcode_atts(
+			array(
+				'limit' => 8,
+			),
+			$atts
+		);
+
+		// Start preparing the shortcode HTML.
+		ob_start();
+
+		set_query_var( 'shortcode_atts', $atts );
+		require locate_template( 'templates/shortcodes/monthly-deals.php' );
+
+		return ob_get_clean();
+	}
 }
-add_shortcode('monthly_deals', 'sv_monthly_deals_slider');
+
+add_shortcode( 'monthly_deals', 'supavapes_monthly_deals_callback' );
 
 
 /**
@@ -1158,16 +1239,6 @@ function sv_fun_questionaries() {
 }
 add_shortcode('fun_questionaries','sv_fun_questionaries');
 
-
-function sv_add_notification_preference_endpoint() {
-	add_rewrite_endpoint( 'notification-preference', EP_ROOT | EP_PAGES );
-	add_rewrite_endpoint( 'wishlist', EP_ROOT | EP_PAGES );
-	add_rewrite_endpoint( 'support-request', EP_ROOT | EP_PAGES );+
-	add_rewrite_endpoint('view-request', EP_ROOT | EP_PAGES);
-
-}
-add_action( 'init', 'sv_add_notification_preference_endpoint' );
-
 function sv_add_custom_query_vars( $vars ) {
 	$vars[] = 'notification-preference';
 	$vars[] = 'wishlist';
@@ -1250,53 +1321,6 @@ function sv_wishlist_my_account() {
 	}
 }
 add_action( 'woocommerce_account_wishlist_endpoint', 'sv_wishlist_my_account' );
-
-
-// Flush rewrite rules to ensure new endpoints work
-add_action( 'init', 'flush_rewrite_rules_on_activation' );
-function flush_rewrite_rules_on_activation() {
-	if ( function_exists( 'flush_rewrite_rules' ) ) {
-		flush_rewrite_rules();
-	}
-}
-
-function sv_start_session() {
-	if (!session_id()) {
-		session_start();
-	}
-}
-add_action('init', 'sv_start_session', 1);
-
-
-/**
-* Function to save notification preferences.
-*
-* @since 1.0.0 
-*/
-function sv_save_notification_preference_settings() {
-
-	if ( isset( $_POST['save_preferences'] ) ) {
-		$nonce = isset( $_POST['save_preference_nonce'] ) ? sanitize_text_field( $_POST['save_preference_nonce'] ) : '';
-		if ( !empty( $nonce ) && wp_verify_nonce( $nonce, 'save_preference_action' ) ) {
-			$preference_value = isset( $_POST['preference_value'] ) ? sanitize_text_field( $_POST['preference_value'] ) : '';
-			$user_id = get_current_user_id();
-			$email = isset( $_POST['email'] ) ? 'on' : 'off';
-			$whatsapp = isset( $_POST['whatsapp'] ) ? 'on' : 'off';
-			$sms = isset( $_POST['sms'] ) ? 'on' : 'off';
-			update_user_meta( $user_id, 'email', $email );
-			update_user_meta( $user_id, 'whatsapp', $whatsapp );
-			update_user_meta( $user_id, 'sms', $sms );
-
-			// Set session variable
-			$_SESSION['preferences_saved'] = true;
-
-			// Redirect to the same page to avoid form resubmission
-			wp_redirect($_SERVER['REQUEST_URI']);
-			exit;
-		}
-	}
-}
-add_action( 'init', 'sv_save_notification_preference_settings' );
 
 
 function sv_remove_duplicate_notices($message, $message_code = '') {
@@ -2286,36 +2310,6 @@ function sv_handle_payment_failed($order_id) {
 	if (!headers_sent()) {
 		header('Set-Cookie: payment_fail_counter=' . $counter . '; Path=' . COOKIEPATH . '; Domain=' . COOKIE_DOMAIN . '; Max-Age=' . (86400 * 30) . '; SameSite=Lax');
 	}
-
-}
-
-
-// Hook into the 'init' action to register the custom taxonomy
-add_action('init', 'sv_register_store_locator_taxonomy', 0);
-function sv_register_store_locator_taxonomy() {
-
-	$labels = array(
-		'name'                       => _x('Store Locators', 'taxonomy general name', 'supavapes'),
-		'singular_name'              => _x('Store Locator', 'taxonomy singular name', 'supavapes'),
-		'search_items'               => __('Search Store Locators', 'supavapes'),
-		'all_items'                  => __('All Store Locators', 'supavapes'),
-		'parent_item'                => __('Parent Store Locator', 'supavapes'),
-		'parent_item_colon'          => __('Parent Store Locator:', 'supavapes'),
-		'edit_item'                  => __('Edit Store Locator', 'supavapes'),
-		'update_item'                => __('Update Store Locator', 'supavapes'),
-		'add_new_item'               => __('Add New Store Locator', 'supavapes'),
-		'new_item_name'              => __('New Store Locator Name', 'supavapes'),
-		'menu_name'                  => __('Store Locator', 'supavapes'),
-	);
-	$args = array(
-		'hierarchical'               => true,
-		'labels'                     => $labels,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'query_var'                  => true,
-		'rewrite'                    => array('slug' => 'store-locator'),
-	);
-	register_taxonomy('store_locator', array('product'), $args);
 
 }
 
