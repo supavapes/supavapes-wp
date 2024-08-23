@@ -3337,7 +3337,7 @@ if ( ! function_exists( 'sv_duplicate_comment_id_callback' ) ) {
 add_filter( 'duplicate_comment_id', 'sv_duplicate_comment_id_callback', 99 );
 
 
-add_filter('woocommerce_available_payment_gateways', 'sv_disable_credit_card_woocommerce_payments');
+// add_filter('woocommerce_available_payment_gateways', 'sv_disable_credit_card_woocommerce_payments');
 function sv_disable_credit_card_woocommerce_payments($available_gateways) {
 	// Check if WooCommerce Payments is available
 	if (isset($available_gateways['woocommerce_payments'])) {
