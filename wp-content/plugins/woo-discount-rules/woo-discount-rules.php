@@ -5,13 +5,13 @@
  * Description: Simple to complex discount rules for your WooCommerce store. Core package.
  * Author: Flycart
  * Author URI: https://www.flycart.org
- * Version: 2.6.4
+ * Version: 2.6.5
  * Slug: woo-discount-rules
  * Text Domain: woo-discount-rules
  * Domain Path: /i18n/languages/
  * Requires at least: 4.6.1
  * WC requires at least: 3.0
- * WC tested up to: 8.9
+ * WC tested up to: 9.1
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
  * Current version of our app
  */
 if (!defined('WDR_VERSION')) {
-    define('WDR_VERSION', '2.6.4');
+    define('WDR_VERSION', '2.6.5');
 }
 
 global $awdr_load_version;

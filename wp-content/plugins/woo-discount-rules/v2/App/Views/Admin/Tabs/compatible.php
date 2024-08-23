@@ -9,7 +9,7 @@
         <div class="awdr-compatible-form">
             <form name="compatible_form" id="compatible-form" method="post">
                 <?php $has_compatibility_plugin = false; ?>
-                <h1><?php _e('Compatibility for Woo Discount Rules', 'woo-discount-rules') ?></h1>
+                <h1><?php _e('Plugins Compatible with Discount Rules', 'woo-discount-rules') ?></h1>
                 <div class="awdr-compatible-field-container">
                     <?php
                         $base->loadFields($has_compatibility_plugin);

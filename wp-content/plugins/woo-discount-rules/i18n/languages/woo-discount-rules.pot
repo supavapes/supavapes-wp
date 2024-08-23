@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Discount Rules Core plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules Core 2.6.3\n"
+"Project-Id-Version: Discount Rules Core 2.6.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-discount-rules\n"
 "Last-Translator: Anantharaj B <anantharaj@flycart.org>\n"
 "Language-Team: Flycart Support <support@flycart.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-06-06T11:57:04+00:00\n"
+"POT-Creation-Date: 2024-08-14T05:02:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: woo-discount-rules\n"
@@ -36,7 +36,7 @@ msgid "Flycart"
 msgstr ""
 
 #: common.php:9
-#: v2/App/Controllers/Admin/WDRAjax.php:868
+#: v2/App/Controllers/Admin/WDRAjax.php:872
 msgid "Invalid request"
 msgstr ""
 
@@ -160,7 +160,7 @@ msgstr ""
 #: v2/App/Helpers/ProOptions.php:136
 #: v2/App/Helpers/ProOptions.php:144
 #: v2/App/Helpers/ProOptions.php:152
-#: v2/App/Views/Admin/Tabs/settings.php:292
+#: v2/App/Views/Admin/Tabs/settings.php:295
 msgid "Cart"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgid "Copied!"
 msgstr ""
 
 #: v2/App/Controllers/Admin/Settings.php:581
-#: v2/App/Views/Admin/Tabs/settings.php:578
+#: v2/App/Views/Admin/Tabs/settings.php:598
 msgid "Copy ShortCode"
 msgstr ""
 
@@ -565,7 +565,7 @@ msgstr ""
 
 #: v2/App/Controllers/Admin/Tabs/Statistics.php:76
 #: v2/App/Helpers/Helper.php:171
-#: v2/App/Views/Admin/Tabs/settings.php:319
+#: v2/App/Views/Admin/Tabs/settings.php:322
 #: v2/App/Views/Admin/Tabs/Statistics.php:230
 msgid "Coupon"
 msgstr ""
@@ -586,14 +586,14 @@ msgstr ""
 msgid "All Cart discounts (discount label)"
 msgstr ""
 
-#: v2/App/Controllers/Admin/Tabs/Statistics.php:140
-#: v2/App/Controllers/Admin/Tabs/Statistics.php:171
+#: v2/App/Controllers/Admin/Tabs/Statistics.php:137
+#: v2/App/Controllers/Admin/Tabs/Statistics.php:166
 #: v2/App/Controllers/Admin/WDRAjax.php:73
 #: v2/App/Controllers/Admin/WDRAjax.php:76
 msgid "Authentication required"
 msgstr ""
 
-#: v2/App/Controllers/Admin/WDRAjax.php:829
+#: v2/App/Controllers/Admin/WDRAjax.php:833
 msgid "Search State"
 msgstr ""
 
@@ -608,7 +608,7 @@ msgstr ""
 #: v2/App/Helpers/ProOptions.php:46
 #: v2/App/Helpers/ProOptions.php:52
 #: v2/App/Helpers/ProOptions.php:58
-#: v2/App/Views/Admin/Tabs/settings.php:131
+#: v2/App/Views/Admin/Tabs/settings.php:134
 msgid "Product"
 msgstr ""
 
@@ -678,7 +678,7 @@ msgid "Sorry, it is not possible to apply coupon <b>\"%s\"</b> as you already ha
 msgstr ""
 
 #: v2/App/Controllers/ManageDiscount.php:1762
-#: v2/App/Views/Admin/Tabs/settings.php:441
+#: v2/App/Views/Admin/Tabs/settings.php:461
 msgid "Discount <strong>{{title}}</strong> has been applied to your cart."
 msgstr ""
 
@@ -1073,26 +1073,26 @@ msgid "Woocommerce after main content(Archive / Shop / Cat Pages / single produc
 msgstr ""
 
 #: v2/App/Helpers/Woocommerce.php:1112
-#: v2/App/Views/Admin/Tabs/settings.php:230
-#: v2/App/Views/Admin/Tabs/settings.php:248
+#: v2/App/Views/Admin/Tabs/settings.php:233
+#: v2/App/Views/Admin/Tabs/settings.php:251
 msgid "Woocommerce before single product"
 msgstr ""
 
 #: v2/App/Helpers/Woocommerce.php:1113
-#: v2/App/Views/Admin/Tabs/settings.php:232
-#: v2/App/Views/Admin/Tabs/settings.php:250
+#: v2/App/Views/Admin/Tabs/settings.php:235
+#: v2/App/Views/Admin/Tabs/settings.php:253
 msgid "Woocommerce before single product summary"
 msgstr ""
 
 #: v2/App/Helpers/Woocommerce.php:1114
-#: v2/App/Views/Admin/Tabs/settings.php:231
-#: v2/App/Views/Admin/Tabs/settings.php:249
+#: v2/App/Views/Admin/Tabs/settings.php:234
+#: v2/App/Views/Admin/Tabs/settings.php:252
 msgid "Woocommerce after single product summary"
 msgstr ""
 
 #: v2/App/Helpers/Woocommerce.php:1115
-#: v2/App/Views/Admin/Tabs/settings.php:229
-#: v2/App/Views/Admin/Tabs/settings.php:247
+#: v2/App/Views/Admin/Tabs/settings.php:232
+#: v2/App/Views/Admin/Tabs/settings.php:250
 msgid "Woocommerce after single product"
 msgstr ""
 
@@ -1260,12 +1260,12 @@ msgstr ""
 #: v2/App/Views/Admin/Rules/Manage.php:187
 #: v2/App/Views/Admin/Rules/Manage.php:188
 #: v2/App/Views/Admin/Tabs/settings.php:24
-#: v2/App/Views/Admin/Tabs/settings.php:65
-#: v2/App/Views/Admin/Tabs/settings.php:138
-#: v2/App/Views/Admin/Tabs/settings.php:204
-#: v2/App/Views/Admin/Tabs/settings.php:275
-#: v2/App/Views/Admin/Tabs/settings.php:394
-#: v2/App/Views/Admin/Tabs/settings.php:478
+#: v2/App/Views/Admin/Tabs/settings.php:67
+#: v2/App/Views/Admin/Tabs/settings.php:141
+#: v2/App/Views/Admin/Tabs/settings.php:207
+#: v2/App/Views/Admin/Tabs/settings.php:278
+#: v2/App/Views/Admin/Tabs/settings.php:414
+#: v2/App/Views/Admin/Tabs/settings.php:498
 msgid "Read Docs"
 msgstr ""
 
@@ -1354,7 +1354,7 @@ msgid "Preview"
 msgstr ""
 
 #: v2/App/Views/Admin/Rules/DiscountBatch/Main.php:22
-#: v2/App/Views/Admin/Tabs/settings.php:658
+#: v2/App/Views/Admin/Tabs/settings.php:678
 msgid "Note:"
 msgstr ""
 
@@ -1375,18 +1375,18 @@ msgstr ""
 #: v2/App/Views/Admin/Tabs/AdvancedOptions.php:37
 #: v2/App/Views/Admin/Tabs/AdvancedOptions.php:52
 #: v2/App/Views/Admin/Tabs/settings.php:56
-#: v2/App/Views/Admin/Tabs/settings.php:87
-#: v2/App/Views/Admin/Tabs/settings.php:103
-#: v2/App/Views/Admin/Tabs/settings.php:118
-#: v2/App/Views/Admin/Tabs/settings.php:209
-#: v2/App/Views/Admin/Tabs/settings.php:304
-#: v2/App/Views/Admin/Tabs/settings.php:333
-#: v2/App/Views/Admin/Tabs/settings.php:425
-#: v2/App/Views/Admin/Tabs/settings.php:547
-#: v2/App/Views/Admin/Tabs/settings.php:564
-#: v2/App/Views/Admin/Tabs/settings.php:598
-#: v2/App/Views/Admin/Tabs/settings.php:615
-#: v2/App/Views/Admin/Tabs/settings.php:632
+#: v2/App/Views/Admin/Tabs/settings.php:90
+#: v2/App/Views/Admin/Tabs/settings.php:106
+#: v2/App/Views/Admin/Tabs/settings.php:121
+#: v2/App/Views/Admin/Tabs/settings.php:212
+#: v2/App/Views/Admin/Tabs/settings.php:307
+#: v2/App/Views/Admin/Tabs/settings.php:336
+#: v2/App/Views/Admin/Tabs/settings.php:445
+#: v2/App/Views/Admin/Tabs/settings.php:567
+#: v2/App/Views/Admin/Tabs/settings.php:584
+#: v2/App/Views/Admin/Tabs/settings.php:618
+#: v2/App/Views/Admin/Tabs/settings.php:635
+#: v2/App/Views/Admin/Tabs/settings.php:652
 msgid "Yes"
 msgstr ""
 
@@ -1395,18 +1395,18 @@ msgstr ""
 #: v2/App/Views/Admin/Tabs/AdvancedOptions.php:41
 #: v2/App/Views/Admin/Tabs/AdvancedOptions.php:56
 #: v2/App/Views/Admin/Tabs/settings.php:60
-#: v2/App/Views/Admin/Tabs/settings.php:91
-#: v2/App/Views/Admin/Tabs/settings.php:107
-#: v2/App/Views/Admin/Tabs/settings.php:122
-#: v2/App/Views/Admin/Tabs/settings.php:212
-#: v2/App/Views/Admin/Tabs/settings.php:308
-#: v2/App/Views/Admin/Tabs/settings.php:339
-#: v2/App/Views/Admin/Tabs/settings.php:430
-#: v2/App/Views/Admin/Tabs/settings.php:552
-#: v2/App/Views/Admin/Tabs/settings.php:569
-#: v2/App/Views/Admin/Tabs/settings.php:603
-#: v2/App/Views/Admin/Tabs/settings.php:620
-#: v2/App/Views/Admin/Tabs/settings.php:637
+#: v2/App/Views/Admin/Tabs/settings.php:94
+#: v2/App/Views/Admin/Tabs/settings.php:110
+#: v2/App/Views/Admin/Tabs/settings.php:125
+#: v2/App/Views/Admin/Tabs/settings.php:215
+#: v2/App/Views/Admin/Tabs/settings.php:311
+#: v2/App/Views/Admin/Tabs/settings.php:342
+#: v2/App/Views/Admin/Tabs/settings.php:450
+#: v2/App/Views/Admin/Tabs/settings.php:572
+#: v2/App/Views/Admin/Tabs/settings.php:589
+#: v2/App/Views/Admin/Tabs/settings.php:623
+#: v2/App/Views/Admin/Tabs/settings.php:640
+#: v2/App/Views/Admin/Tabs/settings.php:657
 msgid "No"
 msgstr ""
 
@@ -1510,7 +1510,7 @@ msgid "Discount Type"
 msgstr ""
 
 #: v2/App/Views/Admin/Rules/Discounts/Bulk.php:63
-#: v2/App/Views/Admin/Tabs/settings.php:724
+#: v2/App/Views/Admin/Tabs/settings.php:744
 msgid "Discount Value"
 msgstr ""
 
@@ -1912,7 +1912,7 @@ msgid "Disable recalculate when coupon apply"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/compatible.php:12
-msgid "Compatibility for Woo Discount Rules"
+msgid "Plugins Compatible with Discount Rules"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/compatible.php:24
@@ -2078,7 +2078,7 @@ msgid "Enabled"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/DiscountRule.php:286
-#: v2/App/Views/Admin/Tabs/settings.php:398
+#: v2/App/Views/Admin/Tabs/settings.php:418
 msgid "Disabled"
 msgstr ""
 
@@ -2357,7 +2357,7 @@ msgid "BOGO Adjustment"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/Recipe.php:54
-#: v2/App/Views/Admin/Tabs/settings.php:532
+#: v2/App/Views/Admin/Tabs/settings.php:552
 msgid "Unlock this feature by <a href='https://www.flycart.org/products/wordpress/woocommerce-discount-rules?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=unlock_pro' target='_blank'>Upgrading to Pro</a>"
 msgstr ""
 
@@ -2406,7 +2406,7 @@ msgid "Calculate discount from"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:24
-msgid "sale price or regular price"
+msgid "Choose which price should be taken to calculate the discount"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:28
@@ -2418,15 +2418,15 @@ msgid "Regular price"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:35
-msgid "Apply discount"
+msgid "Choose how the discount rules should apply"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:36
-msgid "Highest/Lowest/First/All matched rules"
+msgid "Set the rule priority."
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:37
-msgid "<p class=\"wdr_settings_desc_text   text-warning\"><strong>Note</strong> : Priority will not work for free shipping rule.</p>"
+msgid "<p class=\"wdr_settings_desc_text   text-warning\"><strong>Note</strong> : This does not apply for the \"free shipping\" rule type.</p>"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:41
@@ -2454,537 +2454,551 @@ msgid "This apply the discount rules in a sequential order."
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:65
-msgid "Choose how discount rules should work"
+msgid "Choose discount rules behaviour with default WooCommerce Coupons"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:66
 msgid "Choose how discount rules should work when WooCommerce coupons (or third party) coupons are used?"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:73
+#: v2/App/Views/Admin/Tabs/settings.php:76
 msgid "Let both coupons and discount rules run together"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:74
+#: v2/App/Views/Admin/Tabs/settings.php:77
 msgid "Disable the coupons (discount rules will work)"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:75
+#: v2/App/Views/Admin/Tabs/settings.php:78
 msgid "Disable the discount rules (coupons will work)"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:81
-msgid "Refresh order review in checkout"
+#: v2/App/Views/Admin/Tabs/settings.php:84
+msgid "Re-check discounts at the checkout page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:82
+#: v2/App/Views/Admin/Tabs/settings.php:85
 msgid "Useful when you have purchase history/shipping address based discount."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:96
+#: v2/App/Views/Admin/Tabs/settings.php:99
 msgid "Suppress third party discount plugins"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:97
-msgid "Suppress third party plugins from modifying the prices. other discount plugins may not works!"
+#: v2/App/Views/Admin/Tabs/settings.php:100
+msgid "Useful when you are using multiple discount plugins. This will suppress the third party plugins from modifying the prices. When enabled, other discount plugins might not work."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:98
+#: v2/App/Views/Admin/Tabs/settings.php:101
 msgid "Change this option only if recommended."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:112
-msgid "Use minified CSS and JS"
+#: v2/App/Views/Admin/Tabs/settings.php:115
+msgid "Use the minified CSS & JS files of discount rules"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:137
+#: v2/App/Views/Admin/Tabs/settings.php:140
 msgid "On-sale badge"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:138
-msgid "show on-sale badge"
+#: v2/App/Views/Admin/Tabs/settings.php:141
+msgid "NOTE: If you see any wrong percentages on the badge when enabled, it is very likely that your theme might have an override that causes a conflict. Contact our support team for assistance [https://www.flycart.org/support]"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:145
+#: v2/App/Views/Admin/Tabs/settings.php:148
 msgid "Show only after a rule condition is matched exactly"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:146
+#: v2/App/Views/Admin/Tabs/settings.php:149
 msgid "Show on products that are covered under any discount rule in the plugin"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:147
+#: v2/App/Views/Admin/Tabs/settings.php:150
 msgid "Do not show"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:153
+#: v2/App/Views/Admin/Tabs/settings.php:156
 msgid "Do you want to customize the sale badge?"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:154
+#: v2/App/Views/Admin/Tabs/settings.php:157
 msgid "Customize the sale badge"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:164
+#: v2/App/Views/Admin/Tabs/settings.php:167
 msgid "Yes, I would like to customize the sale badge"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:168
+#: v2/App/Views/Admin/Tabs/settings.php:171
 msgid "Force override the label for sale badge (useful when your theme has override for sale badge)."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:173
+#: v2/App/Views/Admin/Tabs/settings.php:176
 msgid "I would like to display percentage in sale badge (Displays only when rule matches else displays default sale badge content)."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:179
+#: v2/App/Views/Admin/Tabs/settings.php:182
 msgid "Sale badge content"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:180
-#: v2/App/Views/Admin/Tabs/settings.php:192
-msgid "You can use HTML inside. <br><b>IMPORTANT NOTE:</b> This customized sale badge will be applicable only for products that are part of the discount rules configured in this plugin <b>Eg:</b><span class=\"onsale\">Sale!</span>"
+#: v2/App/Views/Admin/Tabs/settings.php:183
+msgid "<b>Eg:</b><span class=\"onsale\">Sale!</span> <br>NOTE: You can use HTML inside. <b>IMPORTANT:</b> This customized sale badge will apply only for products that are part of discount rules configured in this plugin"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:184
+#: v2/App/Views/Admin/Tabs/settings.php:187
 msgid "Sale!"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:191
+#: v2/App/Views/Admin/Tabs/settings.php:194
 msgid "Sale badge percentage content"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:196
+#: v2/App/Views/Admin/Tabs/settings.php:195
+msgid "You can use HTML inside. <br><b>IMPORTANT NOTE:</b> This customized sale badge will be applicable only for products that are part of the discount rules configured in this plugin <b>Eg:</b><span class=\"onsale\">Sale!</span>"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:199
 msgid "{{percentage}}%"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:203
-msgid "Show discount table "
+#: v2/App/Views/Admin/Tabs/settings.php:206
+msgid "Show bulk discount table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:204
-msgid "Show discount table on product page"
+#: v2/App/Views/Admin/Tabs/settings.php:207
+msgid "Turn on / off the discount table on product pages. NOTE: Applies only when you have a Bulk Discount rules."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:213
-#: v2/App/Views/Admin/Tabs/settings.php:653
+#: v2/App/Views/Admin/Tabs/settings.php:216
+#: v2/App/Views/Admin/Tabs/settings.php:673
 msgid "Customize Discount Table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:220
-msgid "Position to show discount table"
+#: v2/App/Views/Admin/Tabs/settings.php:223
+msgid "Discount table location"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:221
-msgid "Position to show discount table on product page"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:225
-#: v2/App/Views/Admin/Tabs/settings.php:243
-msgid "Woocommerce before add to cart form"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:226
-#: v2/App/Views/Admin/Tabs/settings.php:244
-msgid "Woocommerce product meta end"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:227
-#: v2/App/Views/Admin/Tabs/settings.php:245
-msgid "Woocommerce product meta start"
+#: v2/App/Views/Admin/Tabs/settings.php:224
+msgid "Choose the location to show the discount table on the product pages"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:228
 #: v2/App/Views/Admin/Tabs/settings.php:246
+msgid "Woocommerce before add to cart form"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:229
+#: v2/App/Views/Admin/Tabs/settings.php:247
+msgid "Woocommerce product meta end"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:230
+#: v2/App/Views/Admin/Tabs/settings.php:248
+msgid "Woocommerce product meta start"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:231
+#: v2/App/Views/Admin/Tabs/settings.php:249
 msgid "Woocommerce after add to cart form"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:238
-msgid "Position to show discount bar"
+#: v2/App/Views/Admin/Tabs/settings.php:241
+msgid "Discount bar location"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:239
-msgid "Position to show discount bar on product page"
+#: v2/App/Views/Admin/Tabs/settings.php:242
+msgid "Choose the location to show the discount bar on the product pages"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:256
+#: v2/App/Views/Admin/Tabs/settings.php:259
 msgid "Show strikeout price"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:257
-msgid "Show product strikeout price on"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:262
-msgid "On shop page?"
+#: v2/App/Views/Admin/Tabs/settings.php:260
+msgid "Choose pages that display prices with strike through"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:265
-msgid "On product page?"
+msgid "Shop"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:268
-msgid "On category page?"
+msgid "Product pages"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:274
-msgid "Show Strikeout when"
+#: v2/App/Views/Admin/Tabs/settings.php:271
+msgid "Category pages"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:275
-msgid "Show Strikeout when this option is matched"
+#: v2/App/Views/Admin/Tabs/settings.php:277
+msgid "When prices should be shown with a strike through"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:279
-msgid "Show when a rule condition is matched"
+#: v2/App/Views/Admin/Tabs/settings.php:278
+msgid "Choose how to apply the strike through line on the prices"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:280
-msgid "Show after a rule condition is matched"
+#: v2/App/Views/Admin/Tabs/settings.php:282
+msgid "Show right before a rule condition matches"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:281
-msgid "Shown on quantity update (dynamic)"
+#: v2/App/Views/Admin/Tabs/settings.php:283
+msgid "Show right after a rule condition matches"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:298
-msgid "Show strikeout on cart"
+#: v2/App/Views/Admin/Tabs/settings.php:284
+msgid "Show at the time of quantity being updated (handled dynamically)"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:299
-msgid "Show price strikeout on cart"
+#: v2/App/Views/Admin/Tabs/settings.php:301
+msgid "Show strikeout on cart page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:313
+#: v2/App/Views/Admin/Tabs/settings.php:302
+msgid "Turn this option on to display prices with strike through in the cart pages when discount applies"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:316
 msgid "Apply cart discount as"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:314
-msgid "Apply cart discount as fee/coupon"
+#: v2/App/Views/Admin/Tabs/settings.php:317
+msgid "Choose how to process the cart discount rules. You can choose to process as a coupon or a fee."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:318
+#: v2/App/Views/Admin/Tabs/settings.php:321
 msgid "Fee"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:325
-msgid "Combine all cart discounts"
+#: v2/App/Views/Admin/Tabs/settings.php:328
+msgid "Combine all cart discounts into one"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:326
-msgid "Combine all cart discounts in single discount label"
+#: v2/App/Views/Admin/Tabs/settings.php:329
+msgid "Useful if you would like to show all the cart based discounts as one line item in the cart totals."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:345
-#: v2/App/Views/Admin/Tabs/settings.php:346
-msgid "Discount label for combined discounts"
+#: v2/App/Views/Admin/Tabs/settings.php:348
+msgid "Label for combined discount amount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:358
+#: v2/App/Views/Admin/Tabs/settings.php:349
+msgid "The label shows up under the cart totals section"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:361
 msgid "Promotion"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:363
-msgid "Condition based promotion"
+#: v2/App/Views/Admin/Tabs/settings.php:366
+msgid "Promotional Banners"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:364
-msgid "Display Condition based promotion messages in cart/product/shop pages<br>If enabled an option to add promotion message will displays on each rule(when promotion condition is added)"
+#: v2/App/Views/Admin/Tabs/settings.php:367
+msgid "This section allows you to configure simple banners about your discount promotions on the shop / product / cart pages"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:369
-msgid "Subtotal Promotion?"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:372
-msgid "Cart Quantity Promotion?"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:378
-msgid "Condition based promo text"
+#: v2/App/Views/Admin/Tabs/settings.php:375
+msgid "Use subtotal based rules"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:379
-msgid "Condition based promo text (available only for subtotal based discounts) "
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:383
-msgid "Select the page to display promotion message"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:384
-msgid "Shop page"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:385
-msgid "Product page"
+msgid "Enable \"Use subtotal based rules\" option if you would like to use the discount rules that have subtotal condition. Useful if you want to show banners like \"Spend $100 more to get 10% discount\""
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:386
-msgid "Cart page"
+msgid "Use quantity based rules"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:387
-msgid "Checkout page"
+#: v2/App/Views/Admin/Tabs/settings.php:389
+msgid "Enable \"Use quantity based rules\" option if you would like to use the discount rules that have cart quantity condition. Useful if you want to show banners like \"Buy 2 more items to get 10% discount\""
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:393
-msgid "Display you saved text"
-msgstr ""
-
-#: v2/App/Views/Admin/Tabs/settings.php:394
-msgid "Display you saved text when rule applied"
+#: v2/App/Views/Admin/Tabs/settings.php:398
+msgid "Choose pages to show the banner"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:399
-msgid "On each line item"
+msgid "Choose pages to show the banner. Only available for subtotal or item quantity based discount rules."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:400
-msgid "On after total"
+#: v2/App/Views/Admin/Tabs/settings.php:403
+msgid "Select the page to display promotion message"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:401
-msgid "Both in line item and after total"
+#: v2/App/Views/Admin/Tabs/settings.php:404
+msgid "Shop page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:408
-msgid "Savings text to show"
+#: v2/App/Views/Admin/Tabs/settings.php:405
+msgid "Product page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:409
-msgid "You save text to show when rule applied"
+#: v2/App/Views/Admin/Tabs/settings.php:406
+msgid "Cart page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:418
-msgid "Show a discount applied message on cart?"
+#: v2/App/Views/Admin/Tabs/settings.php:407
+msgid "Checkout page"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:413
+msgid "Show \"You saved\" text under line items in cart / checkout"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:414
+msgid "Useful to inform the customer that they have saved money with your promotions and helps build long term relationship."
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:419
-msgid "Show message in cart page on rule applied"
+msgid "On each line item"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:435
-msgid "Applied rule message text on cart"
+#: v2/App/Views/Admin/Tabs/settings.php:420
+msgid "On after total"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:436
-msgid "Text to show when rule applied"
+#: v2/App/Views/Admin/Tabs/settings.php:421
+msgid "Both in line item and after total"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:478
-msgid "On-Sale page"
+#: v2/App/Views/Admin/Tabs/settings.php:428
+msgid "Savings text to show"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:484
-msgid "Select rules for the On Sale Page"
+#: v2/App/Views/Admin/Tabs/settings.php:429
+msgid "You save text to show when rule applied"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:438
+msgid "Show notifications on the cart page"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:439
+msgid "Turn on / off the notifications that appear on the cart page when a discount rule is applied"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:455
+msgid "Notification text"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:456
+msgid "You can use HTML tags like to style the text"
 msgstr ""
 
 #: v2/App/Views/Admin/Tabs/settings.php:498
+msgid "On-Sale page"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:504
+msgid "Choose the discount rules to be used to build the on sale page?"
+msgstr ""
+
+#: v2/App/Views/Admin/Tabs/settings.php:518
 msgid "Type the name of the rule to select it"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:506
+#: v2/App/Views/Admin/Tabs/settings.php:526
 msgid "All active rules"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:530
-msgid "Save and Build Index"
+#: v2/App/Views/Admin/Tabs/settings.php:550
+msgid "Save and build the page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:539
+#: v2/App/Views/Admin/Tabs/settings.php:559
 msgid "Exclude out of stock products"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:540
-msgid "This setting will exclude out of stock products on On-Sale page."
+#: v2/App/Views/Admin/Tabs/settings.php:560
+msgid "This will exclude out-of-stock items from showing on the \"On Sale\" page"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:557
-msgid "Select cron to run daily"
+#: v2/App/Views/Admin/Tabs/settings.php:577
+msgid "Automatically update the page on a daily basis"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:558
-msgid "This setting will be useful for validity based rules."
+#: v2/App/Views/Admin/Tabs/settings.php:578
+msgid "This will be useful to automatically add or remove items from the page based on discount rules with specific date validity."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:575
-msgid "ShortCode to load all products which has discount through Woo Discount Rules"
+#: v2/App/Views/Admin/Tabs/settings.php:595
+msgid "Shortcode to display the Sale page:"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:584
-msgid "Third party plugin conflict fixes & options"
+#: v2/App/Views/Admin/Tabs/settings.php:604
+msgid "Advanced Options - Handle third-party plugin conflicts"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:585
-msgid "Use these advanced options ONLY when you use a third party plugin that interacts with product pricing & discounts and only when you DONT see the discounts applying. Otherwise these options should be left as NO."
+#: v2/App/Views/Admin/Tabs/settings.php:605
+msgid "The following are advanced options primarily to resolve conflicts produced by third-party plugins. Third party plugins that interact with pricing & discount hooks of WooCommerce often cause issues. Use these options ONLY when you see the discount rules are NOT applying."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:586
-msgid "IMPORTANT: Please consult with our support team by opening a ticket at <a href=\"https://www.flycart.org/support\" target=\"_blank\">https://www.flycart.org/support</a> before you use these options."
+#: v2/App/Views/Admin/Tabs/settings.php:606
+msgid "Please consult with our support team by opening a ticket at <a href=\"https://www.flycart.org/support\" target=\"_blank\">https://www.flycart.org/support</a> before you turn on these options."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:591
-msgid "Do you have custom prices set using another plugin or custom code? (Example: A wholesale price or a country specific pricing)"
+#: v2/App/Views/Admin/Tabs/settings.php:611
+msgid "Do you use a third-party plugin or custom code to set product prices?"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:592
-msgid "If you have custom prices for your products like using another plugin and if you do not see the discount NOT applied, enable this option."
+#: v2/App/Views/Admin/Tabs/settings.php:612
+msgid "Example: If you use plugins for wholesale pricing or country-specific pricing that manage product prices, there's a chance that discount rules may not apply. In such cases, you can activate this option to ensure compatibility."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:608
-msgid "Disable re-calculating the cart total on cart page"
+#: v2/App/Views/Admin/Tabs/settings.php:628
+msgid "Disable re-calculation of totals on the cart page?"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:609
-msgid "This will be helpful if you see the discounts not working. It could be because other plugins might be force re-calculating the totals in cart."
+#: v2/App/Views/Admin/Tabs/settings.php:629
+msgid "If a third-party plugin triggers a recalculation of totals on the cart page alongside WooCommerce, this may interfere with the application of discount rules. Activating this option can help ensure discount rules function correctly in such scenarios."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:625
-msgid "Disable re-calculating the total when applying the coupon."
+#: v2/App/Views/Admin/Tabs/settings.php:645
+msgid "Disable re-calculation of totals while a coupon is applied?"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:626
-msgid "This will be useful, if you see the discounts being removed after the coupon applies... or the discount does not work after applying a coupon."
+#: v2/App/Views/Admin/Tabs/settings.php:646
+msgid "This option is useful if discounts are removed or fail to apply after a coupon is used."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:656
+#: v2/App/Views/Admin/Tabs/settings.php:676
 msgid "Settings Saved"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:657
+#: v2/App/Views/Admin/Tabs/settings.php:677
 msgid "Oops! Something went wrong."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:658
+#: v2/App/Views/Admin/Tabs/settings.php:678
 msgid " This table contains sample content for design purpose."
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:668
+#: v2/App/Views/Admin/Tabs/settings.php:688
 msgid "Table Header"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:669
+#: v2/App/Views/Admin/Tabs/settings.php:689
 msgid "Show/Hide table header column names"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:674
+#: v2/App/Views/Admin/Tabs/settings.php:694
 msgid "Show"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:677
+#: v2/App/Views/Admin/Tabs/settings.php:697
 msgid "Don't Show"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:682
+#: v2/App/Views/Admin/Tabs/settings.php:702
 msgid "Title column Name on table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:683
+#: v2/App/Views/Admin/Tabs/settings.php:703
 msgid "Give name for rule title column"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:694
+#: v2/App/Views/Admin/Tabs/settings.php:714
 msgid "Discount column Name on table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:695
+#: v2/App/Views/Admin/Tabs/settings.php:715
 msgid "Give name for discount column"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:706
+#: v2/App/Views/Admin/Tabs/settings.php:726
 msgid "Range column Name on table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:707
+#: v2/App/Views/Admin/Tabs/settings.php:727
 msgid "Give name for range column"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:718
+#: v2/App/Views/Admin/Tabs/settings.php:738
 msgid "Discount column value on table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:719
+#: v2/App/Views/Admin/Tabs/settings.php:739
 msgid "Show Discount value/price in table"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:727
+#: v2/App/Views/Admin/Tabs/settings.php:747
 msgid "Discounted Price"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:802
-#: v2/App/Views/Admin/Tabs/settings.php:825
+#: v2/App/Views/Admin/Tabs/settings.php:822
+#: v2/App/Views/Admin/Tabs/settings.php:845
 msgid "Bulk Rule"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:810
-#: v2/App/Views/Admin/Tabs/settings.php:856
-#: v2/App/Views/Admin/Tabs/settings.php:923
+#: v2/App/Views/Admin/Tabs/settings.php:830
+#: v2/App/Views/Admin/Tabs/settings.php:876
+#: v2/App/Views/Admin/Tabs/settings.php:943
 #: v2/App/Views/Templates/discount_table.php:142
 msgid " flat"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:816
+#: v2/App/Views/Admin/Tabs/settings.php:836
 msgid "1 - 5"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:839
+#: v2/App/Views/Admin/Tabs/settings.php:859
 msgid "11 - 15"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:848
+#: v2/App/Views/Admin/Tabs/settings.php:868
 msgid "Bulk Flat discount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:862
+#: v2/App/Views/Admin/Tabs/settings.php:882
 msgid "50 - 60"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:871
+#: v2/App/Views/Admin/Tabs/settings.php:891
 msgid "Bulk percentage discount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:884
+#: v2/App/Views/Admin/Tabs/settings.php:904
 msgid "70 - 80"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:893
+#: v2/App/Views/Admin/Tabs/settings.php:913
 msgid "Bulk % discount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:906
+#: v2/App/Views/Admin/Tabs/settings.php:926
 msgid "450 - 500"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:915
+#: v2/App/Views/Admin/Tabs/settings.php:935
 msgid "Bulk flat"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:929
+#: v2/App/Views/Admin/Tabs/settings.php:949
 msgid "600 - 700"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:938
+#: v2/App/Views/Admin/Tabs/settings.php:958
 msgid "set percentage discount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:951
+#: v2/App/Views/Admin/Tabs/settings.php:971
 msgid "5"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:960
+#: v2/App/Views/Admin/Tabs/settings.php:980
 msgid "Fixed discount for set"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:973
+#: v2/App/Views/Admin/Tabs/settings.php:993
 msgid "10"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:982
+#: v2/App/Views/Admin/Tabs/settings.php:1002
 msgid "set flat discount"
 msgstr ""
 
-#: v2/App/Views/Admin/Tabs/settings.php:995
+#: v2/App/Views/Admin/Tabs/settings.php:1015
 msgid "15"
 msgstr ""
 

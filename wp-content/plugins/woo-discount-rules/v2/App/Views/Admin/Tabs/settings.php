@@ -21,7 +21,7 @@
                     <tr>
                         <td scope="row">
                             <label for="calculate_discount_from" class="awdr-left-align"><?php _e('Calculate discount from', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('sale price or regular price', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4167066-discount-based-on-regular-price-sale-price-discount-rules-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=sale_regular_price_settings" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose which price should be taken to calculate the discount', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4167066-discount-based-on-regular-price-sale-price-discount-rules-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=sale_regular_price_settings" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
                         </td>
                         <td>
                             <select name="calculate_discount_from">
@@ -32,9 +32,9 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="apply_product_discount_to" class="awdr-left-align"><?php _e('Apply discount', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Highest/Lowest/First/All matched rules', 'woo-discount-rules'); ?><br />
-                                <?php _e('<p class="wdr_settings_desc_text   text-warning"><strong>Note</strong> : Priority will not work for free shipping rule.</p>', 'woo-discount-rules'); ?></span>
+                            <label for="apply_product_discount_to" class="awdr-left-align"><?php _e('Choose how the discount rules should apply', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Set the rule priority.', 'woo-discount-rules'); ?><br />
+                                <?php _e('<p class="wdr_settings_desc_text   text-warning"><strong>Note</strong> : This does not apply for the "free shipping" rule type.</p>', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <select name="apply_product_discount_to" class="apply_product_and_cart_discount_to" data-subsequent="apply_product_discount_subsequently_row">
@@ -62,8 +62,11 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="disable_coupon_when_rule_applied" class="awdr-left-align"><?php _e('Choose how discount rules should work', 'woo-discount-rules') ?> - <a href=" https://docs.flycart.org/en/articles/4178875-choose-how-discount-rules-should-work-when-woocommerce-coupons-are-used-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=choose_how_discount_rules_works_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose how discount rules should work when WooCommerce coupons (or third party) coupons are used?', 'woo-discount-rules'); ?></span>
+                            <label for="disable_coupon_when_rule_applied" class="awdr-left-align"><?php _e('Choose discount rules behaviour with default WooCommerce Coupons', 'woo-discount-rules') ?>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose how discount rules should work when WooCommerce coupons (or third party) coupons are used?', 'woo-discount-rules'); ?>
+                            - <a href=" https://docs.flycart.org/en/articles/4178875-choose-how-discount-rules-should-work-when-woocommerce-coupons-are-used-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=choose_how_discount_rules_works_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></label>
+                            </span>
+
                         </td>
                         <td>
                             <?php
@@ -78,7 +81,7 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label class="awdr-left-align"><?php _e('Refresh order review in checkout', 'woo-discount-rules') ?></label>
+                            <label class="awdr-left-align"><?php _e('Re-check discounts at the checkout page', 'woo-discount-rules') ?></label>
                             <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Useful when you have purchase history/shipping address based discount.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
@@ -94,7 +97,7 @@
                     <tr>
                         <td scope="row">
                             <label class="awdr-left-align"><?php _e('Suppress third party discount plugins', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Suppress third party plugins from modifying the prices. other discount plugins may not works!', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Useful when you are using multiple discount plugins. This will suppress the third party plugins from modifying the prices. When enabled, other discount plugins might not work.', 'woo-discount-rules'); ?></span>
                             <span class="wdr_settings_desc_text awdr-clear-both text-warning"><?php esc_attr_e('Change this option only if recommended.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
@@ -109,7 +112,7 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label class="awdr-left-align"><?php _e('Use minified CSS and JS', 'woo-discount-rules') ?></label>
+                            <label class="awdr-left-align"><?php _e('Use the minified CSS & JS files of discount rules', 'woo-discount-rules') ?></label>
                             <span class="wdr_settings_desc_text awdr-clear-both"></span>
                         </td>
                         <td>
@@ -135,7 +138,7 @@
                     <tr>
                         <td scope="row">
                             <label for="" class="awdr-left-align"><?php _e('On-sale badge', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('show on-sale badge', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4179583-sale-tag-dynamic-sale-badge-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_on_sale_badge_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('NOTE: If you see any wrong percentages on the badge when enabled, it is very likely that your theme might have an override that causes a conflict. Contact our support team for assistance [https://www.flycart.org/support]', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4179583-sale-tag-dynamic-sale-badge-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_on_sale_badge_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
                         </td>
                         <td>
                             <?php
@@ -177,7 +180,7 @@
                     <tr class="sale_badge_customizer" style="<?php echo ($show_on_sale_badge != 'disabled' && $customize_on_sale_badge == 1) ? '':'display:none;'?>">
                         <td scope="row">
                             <label for="" class="awdr-left-align"><?php _e('Sale badge content', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('You can use HTML inside. <br><b>IMPORTANT NOTE:</b> This customized sale badge will be applicable only for products that are part of the discount rules configured in this plugin <b>Eg:</b><span class="onsale">Sale!</span>', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('<b>Eg:</b><span class="onsale">Sale!</span> <br>NOTE: You can use HTML inside. <b>IMPORTANT:</b> This customized sale badge will apply only for products that are part of discount rules configured in this plugin', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <textarea name="on_sale_badge_html"
@@ -200,8 +203,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Show discount table ', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Show discount table on product page', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4230405-all-about-discount-table-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_discount_table_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
+                            <label for="" class="awdr-left-align"><?php _e('Show bulk discount table', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Turn on / off the discount table on product pages. NOTE: Applies only when you have a Bulk Discount rules.', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4230405-all-about-discount-table-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_discount_table_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
                         </td>
                         <td>
                             <input type="radio" name="show_bulk_table" id="show_bulk_table_layout" class="bulk_table_layout settings_option_show_hide"
@@ -217,8 +220,8 @@
                     <tr class="hide_table_position"
                         style="<?php echo (!$configuration->getConfig('show_bulk_table', 0) ? 'display:none' : ''); ?>">
                         <td scope="row">
-                            <label for="position_to_show_bulk_table" class="awdr-left-align"><?php _e('Position to show discount table', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Position to show discount table on product page', 'woo-discount-rules'); ?></span>
+                            <label for="position_to_show_bulk_table" class="awdr-left-align"><?php _e('Discount table location', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose the location to show the discount table on the product pages', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <select name="position_to_show_bulk_table">
@@ -235,8 +238,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="position_to_show_discount_bar" class="awdr-left-align"><?php _e('Position to show discount bar', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Position to show discount bar on product page', 'woo-discount-rules'); ?></span>
+                            <label for="position_to_show_discount_bar" class="awdr-left-align"><?php _e('Discount bar location', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose the location to show the discount bar on the product pages', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <select name="position_to_show_discount_bar">
@@ -254,31 +257,31 @@
                     <tr>
                         <td scope="row">
                             <label for="" class="awdr-left-align"><?php _e('Show strikeout price', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Show product strikeout price on', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose pages that display prices with strike through', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="checkbox" name="modify_price_at_shop_page" id="modify_price_at_shop_page"
                                    value="1" <?php echo($configuration->getConfig('modify_price_at_shop_page', 1) ? 'checked' : '') ?>><label
-                                    for="modify_price_at_shop_page" class="padding10"><?php _e('On shop page?', 'woo-discount-rules'); ?></label>
+                                    for="modify_price_at_shop_page" class="padding10"><?php _e('Shop', 'woo-discount-rules'); ?></label>
                             <input type="checkbox" name="modify_price_at_product_page" id="modify_price_at_product_page"
                                    value="1" <?php echo($configuration->getConfig('modify_price_at_product_page', 1) ? 'checked' : '') ?>><label
-                                    for="modify_price_at_product_page" class="padding10"><?php _e('On product page?', 'woo-discount-rules'); ?></label>
+                                    for="modify_price_at_product_page" class="padding10"><?php _e('Product pages', 'woo-discount-rules'); ?></label>
                             <input type="checkbox" name="modify_price_at_category_page" id="modify_price_at_category_page"
                                    value="1" <?php echo($configuration->getConfig('modify_price_at_category_page', 1) ? 'checked' : '') ?>><label
-                                    for="modify_price_at_category_page" class="padding10"><?php _e('On category page?', 'woo-discount-rules'); ?></label>
+                                    for="modify_price_at_category_page" class="padding10"><?php _e('Category pages', 'woo-discount-rules'); ?></label>
 
                         </td>
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Show Strikeout when', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Show Strikeout when this option is matched', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4178894-display-discounted-price-with-strikethrough-on-default-prices-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_strike_out_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
+                            <label for="" class="awdr-left-align"><?php _e('When prices should be shown with a strike through', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose how to apply the strike through line on the prices', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4178894-display-discounted-price-with-strikethrough-on-default-prices-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=show_strike_out_setting" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
                         </td>
                         <td>
                             <select name="show_strikeout_when">
-                                <option value="show_when_matched" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_when_matched') ? 'selected' : ''; ?> ><?php _e('Show when a rule condition is matched', 'woo-discount-rules'); ?></option>
-                                <option value="show_after_matched" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_after_matched') ? 'selected' : ''; ?>><?php _e('Show after a rule condition is matched', 'woo-discount-rules'); ?></option>
-                                <option value="show_dynamically" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_dynamically') ? 'selected' : ''; ?>><?php _e('Shown on quantity update (dynamic)', 'woo-discount-rules'); ?></option>
+                                <option value="show_when_matched" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_when_matched') ? 'selected' : ''; ?> ><?php _e('Show right before a rule condition matches', 'woo-discount-rules'); ?></option>
+                                <option value="show_after_matched" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_after_matched') ? 'selected' : ''; ?>><?php _e('Show right after a rule condition matches', 'woo-discount-rules'); ?></option>
+                                <option value="show_dynamically" <?php echo ($configuration->getConfig('show_strikeout_when', 'show_when_matched') == 'show_dynamically') ? 'selected' : ''; ?>><?php _e('Show at the time of quantity being updated (handled dynamically)', 'woo-discount-rules'); ?></option>
                             </select>
                         </td>
                     </tr>
@@ -295,8 +298,8 @@
                     <tbody style="background-color: #fff;">
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Show strikeout on cart', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Show price strikeout on cart', 'woo-discount-rules'); ?></span>
+                            <label for="" class="awdr-left-align"><?php _e('Show strikeout on cart page', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Turn this option on to display prices with strike through in the cart pages when discount applies', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="radio" name="show_strikeout_on_cart" id="show_strikeout_on_cart"
@@ -311,7 +314,7 @@
                     <tr>
                         <td scope="row">
                             <label for="" class="awdr-left-align"><?php _e('Apply cart discount as', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Apply cart discount as fee/coupon', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose how to process the cart discount rules. You can choose to process as a coupon or a fee.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <select name="apply_cart_discount_as">
@@ -322,8 +325,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Combine all cart discounts', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Combine all cart discounts in single discount label', 'woo-discount-rules'); ?></span>
+                            <label for="" class="awdr-left-align"><?php _e('Combine all cart discounts into one', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Useful if you would like to show all the cart based discounts as one line item in the cart totals.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="radio" name="combine_all_cart_discounts" id="combine_all_cart_discounts"
@@ -342,8 +345,8 @@
                     <tr class="combine_all_cart_discounts"
                         style="<?php echo(!$configuration->getConfig('combine_all_cart_discounts', 0) ? 'display:none' : '') ?>">
                         <td scope="row">
-                            <label for="discount_label_for_combined_discounts" class="awdr-left-align"><?php _e('Discount label for combined discounts', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Discount label for combined discounts', 'woo-discount-rules'); ?></span>
+                            <label for="discount_label_for_combined_discounts" class="awdr-left-align"><?php _e('Label for combined discount amount', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('The label shows up under the cart totals section', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="text" name="discount_label_for_combined_discounts"
@@ -360,23 +363,40 @@
                     <tbody style="background-color: #fff;">
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Condition based promotion', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('Display Condition based promotion messages in cart/product/shop pages<br>If enabled an option to add promotion message will displays on each rule(when promotion condition is added)', 'woo-discount-rules'); ?></span>
+                            <label for="" class="awdr-left-align"><?php _e('Promotional Banners', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This section allows you to configure simple banners about your discount promotions on the shop / product / cart pages', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
-                            <input type="checkbox" name="show_subtotal_promotion" id="show_subtotal_promotion" class="awdr_show_condition_promotion_message"
-                                   value="1" <?php echo($configuration->getConfig('show_subtotal_promotion', 0) ? 'checked' : '') ?>><label
-                                    for="show_subtotal_promotion" class="padding10"><?php _e('Subtotal Promotion?', 'woo-discount-rules'); ?></label>
-                            <input type="checkbox" name="show_cart_quantity_promotion" id="show_cart_quantity_promotion" class="awdr_show_condition_promotion_message"
-                                   value="1" <?php echo($configuration->getConfig('show_cart_quantity_promotion', 0) ? 'checked' : '') ?>><label
-                                    for="show_cart_quantity_promotion" class="padding10"><?php _e('Cart Quantity Promotion?', 'woo-discount-rules'); ?></label>
+                        <div class="awdr-promotion-banner">
+                            <div>
+                                <div>
+                                    <input type="checkbox" name="show_subtotal_promotion" id="show_subtotal_promotion" class="awdr_show_condition_promotion_message"
+                                           value="1" <?php echo($configuration->getConfig('show_subtotal_promotion', 0) ? 'checked' : '') ?>>
+                                    <label for="show_subtotal_promotion" class=""><?php _e('Use subtotal based rules', 'woo-discount-rules'); ?></label>
+                                </div>
+
+                                <span class="wdr_settings_desc_text awdr-clear-both">
+                                    <?php _e('Enable "Use subtotal based rules" option if you would like to use the discount rules that have subtotal condition. Useful if you want to show banners like "Spend $100 more to get 10% discount"','woo-discount-rules');?></span>
+
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="checkbox" name="show_cart_quantity_promotion" id="show_cart_quantity_promotion" class="awdr_show_condition_promotion_message"
+                                           value="1" <?php echo($configuration->getConfig('show_cart_quantity_promotion', 0) ? 'checked' : '') ?>><label
+                                            for="show_cart_quantity_promotion" class=""><?php _e('Use quantity based rules', 'woo-discount-rules'); ?></label>
+                                </div>
+                                <span class="wdr_settings_desc_text awdr-clear-both">
+                                    <?php _e('Enable "Use quantity based rules" option if you would like to use the discount rules that have cart quantity condition. Useful if you want to show banners like "Buy 2 more items to get 10% discount"','woo-discount-rules');?></span>
+
+                            </div>
+                        </div>
                         </td>
 
                     </tr>
                     <tr class="awdr_promotion_message_display_pages" <!--style="--><?php /*echo ($configuration->getConfig('show_subtotal_promotion', 0) || $configuration->getConfig('show_cart_quantity_promotion', 0)) ? '' : 'display:none'; */?>">
                         <td scope="row">
-                            <label for="show_promo_text" class="awdr-left-align"><?php _e('Condition based promo text', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Condition based promo text (available only for subtotal based discounts) ', 'woo-discount-rules'); ?></span>
+                            <label for="show_promo_text" class="awdr-left-align"><?php _e('Choose pages to show the banner', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Choose pages to show the banner. Only available for subtotal or item quantity based discount rules.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <?php $show_promo_text = $configuration->getConfig('show_promo_text', ''); ?>
@@ -390,8 +410,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="display_saving_text" class="awdr-left-align"><?php _e('Display you saved text', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Display you saved text when rule applied', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4129525-display-you-saved-message-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=display_you_saved_text" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
+                            <label for="display_saving_text" class="awdr-left-align"><?php _e('Show "You saved" text under line items in cart / checkout', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Useful to inform the customer that they have saved money with your promotions and helps build long term relationship.', 'woo-discount-rules'); ?> - <a href="https://docs.flycart.org/en/articles/4129525-display-you-saved-message-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=display_you_saved_text" target="_blank"><?php esc_html_e('Read Docs', 'woo-discount-rules'); ?></a></span>
                         </td>
                         <td>
                             <select name="display_saving_text" class="settings_option_show_hide_on_change">
@@ -415,8 +435,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Show a discount applied message on cart?', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Show message in cart page on rule applied', 'woo-discount-rules'); ?></span>
+                            <label for="" class="awdr-left-align"><?php _e('Show notifications on the cart page', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Turn on / off the notifications that appear on the cart page when a discount rule is applied', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="radio" name="show_applied_rules_message_on_cart" class="settings_option_show_hide"
@@ -432,8 +452,8 @@
                     </tr>
                     <tr class="hide_alert_message_text" style="<?php echo (!$configuration->getConfig('show_applied_rules_message_on_cart', 0)) ? 'display:none' : ''; ?>">
                         <td scope="row">
-                            <label for="applied_rule_message" class="awdr-left-align"><?php _e('Applied rule message text on cart', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Text to show when rule applied', 'woo-discount-rules'); ?></span>
+                            <label for="applied_rule_message" class="awdr-left-align"><?php _e('Notification text', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('You can use HTML tags like to style the text', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <textarea name="applied_rule_message"
@@ -481,7 +501,7 @@
                     <tr>
                         <td scope="row">
                             <?php
-                            _e('Select rules for the On Sale Page', 'woo-discount-rules' );
+                            _e('Choose the discount rules to be used to build the on sale page?', 'woo-discount-rules' );
                             ?>
                         </td>
                         <td scope="row">
@@ -527,7 +547,7 @@
                                 <div class="awdr_rebuild_on_sale_list_notice">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-warning" id="awdr_rebuild_on_sale_list" data-awdr_nonce="<?php echo esc_attr(\Wdr\App\Helpers\Helper::create_nonce('wdr_ajax_rule_build_index')); ?>"><?php _e('Save and Build Index', 'woo-discount-rules' ); ?></button>
+                            <button type="button" class="btn btn-warning" id="awdr_rebuild_on_sale_list" data-awdr_nonce="<?php echo esc_attr(\Wdr\App\Helpers\Helper::create_nonce('wdr_ajax_rule_build_index')); ?>"><?php _e('Save and build the page', 'woo-discount-rules' ); ?></button>
                             <?php } else {
                                 _e("Unlock this feature by <a href='https://www.flycart.org/products/wordpress/woocommerce-discount-rules?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=unlock_pro' target='_blank'>Upgrading to Pro</a>", 'woo-discount-rules');
                             }?>
@@ -537,7 +557,7 @@
                     <tr>
                         <td scope="row">
                             <label for="" class="awdr-left-align"><?php _e('Exclude out of stock products', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This setting will exclude out of stock products on On-Sale page.', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will exclude out-of-stock items from showing on the "On Sale" page', 'woo-discount-rules'); ?></span>
                         </td>
 
                         <td>
@@ -554,8 +574,8 @@
                     </tr>
                     <tr>
                         <td scope="row">
-                            <label for="" class="awdr-left-align"><?php _e('Select cron to run daily', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This setting will be useful for validity based rules.', 'woo-discount-rules'); ?></span>
+                            <label for="" class="awdr-left-align"><?php _e('Automatically update the page on a daily basis', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will be useful to automatically add or remove items from the page based on discount rules with specific date validity.', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <input type="radio" name="run_rebuild_on_sale_index_cron" class="settings_option_show_hide"
@@ -572,7 +592,7 @@
                     <tr>
                         <td scope="row" colspan="2">
                             <?php
-                            _e('ShortCode to load all products which has discount through Woo Discount Rules', 'woo-discount-rules' );
+                            _e('Shortcode to display the Sale page:', 'woo-discount-rules' );
                             ?>
                             <span id="awdr_shortcode_text">[awdr_sale_items_list]</span>
                             <button type="button" class="btn btn-warning" id="awdr_shortcode_copy_btn"><?php _e('Copy ShortCode', 'woo-discount-rules' ); ?></button>
@@ -581,15 +601,15 @@
                     <?php } ?>
                     </tbody>
                 </table>
-                <h1><?php _e('Third party plugin conflict fixes & options', 'woo-discount-rules'); ?></h1>
-                <p><?php _e('Use these advanced options ONLY when you use a third party plugin that interacts with product pricing & discounts and only when you DONT see the discounts applying. Otherwise these options should be left as NO.', 'woo-discount-rules'); ?></p>
-                <p style="color:tomato; font-weight: normal;"><?php _e('IMPORTANT: Please consult with our support team by opening a ticket at <a href="https://www.flycart.org/support" target="_blank">https://www.flycart.org/support</a> before you use these options.', 'woo-discount-rules'); ?></p>
+                <h1><?php _e('Advanced Options - Handle third-party plugin conflicts', 'woo-discount-rules'); ?></h1>
+                <p><?php _e('The following are advanced options primarily to resolve conflicts produced by third-party plugins. Third party plugins that interact with pricing & discount hooks of WooCommerce often cause issues. Use these options ONLY when you see the discount rules are NOT applying.', 'woo-discount-rules'); ?></p>
+                <p style="color:tomato; font-weight: normal;"><?php _e('Please consult with our support team by opening a ticket at <a href="https://www.flycart.org/support" target="_blank">https://www.flycart.org/support</a> before you turn on these options.', 'woo-discount-rules'); ?></p>
                 <table class="wdr-general-setting form-table">
                     <tbody style="background-color: #fff;">
                         <tr>
                             <td scope="row">
-                                <label for="" class="awdr-left-align"><?php _e('Do you have custom prices set using another plugin or custom code? (Example: A wholesale price or a country specific pricing)', 'woo-discount-rules') ?></label>
-                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('If you have custom prices for your products like using another plugin and if you do not see the discount NOT applied, enable this option.', 'woo-discount-rules'); ?></span>
+                                <label for="" class="awdr-left-align"><?php _e('Do you use a third-party plugin or custom code to set product prices?', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('Example: If you use plugins for wholesale pricing or country-specific pricing that manage product prices, there\'s a chance that discount rules may not apply. In such cases, you can activate this option to ensure compatibility.', 'woo-discount-rules'); ?></span>
                             </td>
                             <td>
                                 <input type="radio" name="wdr_override_custom_price" class="settings_option_show_hide"
@@ -605,8 +625,8 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculating the cart total on cart page', 'woo-discount-rules') ?></label>
-                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will be helpful if you see the discounts not working. It could be because other plugins might be force re-calculating the totals in cart.', 'woo-discount-rules'); ?></span>
+                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculation of totals on the cart page?', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('If a third-party plugin triggers a recalculation of totals on the cart page alongside WooCommerce, this may interfere with the application of discount rules. Activating this option can help ensure discount rules function correctly in such scenarios.', 'woo-discount-rules'); ?></span>
                             </td>
                             <td>
                                 <input type="radio" name="disable_recalculate_total" class="settings_option_show_hide"
@@ -622,8 +642,8 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculating the total when applying the coupon.', 'woo-discount-rules') ?></label>
-                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will be useful, if you see the discounts being removed after the coupon applies... or the discount does not work after applying a coupon.', 'woo-discount-rules'); ?></span>
+                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculation of totals while a coupon is applied?', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This option is useful if discounts are removed or fail to apply after a coupon is used.', 'woo-discount-rules'); ?></span>
                             </td>
                             <td>
                                 <input type="radio" name="disable_recalculate_total_when_coupon_apply" class="settings_option_show_hide"

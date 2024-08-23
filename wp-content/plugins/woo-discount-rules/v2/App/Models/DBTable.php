@@ -190,7 +190,7 @@ class DBTable
             $language_query = '';
             if (!empty($current_language)) {
                 $current_language = esc_sql($current_language);
-                $language_query = ' AND (rule_language IS NULL OR rule_language = "[]" OR rule_language LIKE \'%"' . $current_language . '"%\')';
+                $language_query = ' AND (rule_language IS NULL OR rule_language = \'[]\' OR rule_language LIKE \'%"' . $current_language . '"%\')';
             }
             $query = "SELECT * FROM {$rules_table_name} WHERE  enabled = %d AND deleted = %d AND (date_from <= %d OR date_from IS NULL) AND (date_to >= %d OR date_to IS NULL) AND (usage_limits > used_limits OR used_limits IS NULL OR usage_limits = 0) {$language_query} ORDER BY priority ASC";
             return self::$rules['front_end'] = $wpdb->get_results($wpdb->prepare($query, array(1, 0, $current_time, $current_time)), OBJECT);

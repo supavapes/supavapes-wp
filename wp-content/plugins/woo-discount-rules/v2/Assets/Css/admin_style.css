@@ -1579,3 +1579,8 @@ div.awdr_recipe_main_card{
 .displaying-num {
     margin-left: 100px
 }
+.awdr-promotion-banner{
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}

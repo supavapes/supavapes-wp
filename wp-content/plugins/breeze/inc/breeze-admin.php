@@ -401,7 +401,9 @@ INLINEJS;
 	 * @param WP_Admin_Bar $wp_admin_bar
 	 */
 	function register_admin_bar_menu( WP_Admin_Bar $wp_admin_bar ) {
-		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'editor' ) ) {
+
+		if ( ! ( current_user_can( 'manage_options' ) || current_user_can( 'editor' ) )
+		&& ! ( is_plugin_active( 'woocommerce/woocommerce.php' ) && current_user_can( 'manage_woocommerce' ) ) ) {
 			return;
 		}
 
@@ -471,7 +473,7 @@ INLINEJS;
 		);
 		$wp_admin_bar->add_node( $args );
 
-		// Editor role can only use Purge all cache option
+		// Only admin can purge cache per module.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}

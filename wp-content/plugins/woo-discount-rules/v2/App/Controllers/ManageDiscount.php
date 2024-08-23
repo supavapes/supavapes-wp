@@ -1184,7 +1184,7 @@ class ManageDiscount extends Base
                 }
                 $product_ids = array();
                 if(!empty(self::$apply_as_coupon_values)){
-                    if(array_key_exists($coupon_data, self::$apply_as_coupon_values)){
+                    if( is_string($coupon_data) && is_array(self::$apply_as_coupon_values) &&  array_key_exists($coupon_data, self::$apply_as_coupon_values)){
                         $coupon_code = $coupon_data;
                         $amount = self::$apply_as_coupon_values[$coupon_code]['value'];
                         $cart_item_keys = self::$apply_as_coupon_values[$coupon_code]['cart_item_keys'];

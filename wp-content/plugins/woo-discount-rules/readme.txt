@@ -3,8 +3,8 @@ Contributors: flycart
 Donate link: https://flycart.org/
 Tags: woocommerce, coupons, discounts, dynamic pricing, bulk discount
 Requires at least: 4.4.1
-Tested up to: 6.5
-Stable tag: 2.6.4
+Tested up to: 6.6
+Stable tag: 2.6.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -335,6 +335,10 @@ Note : Enable recursive checkbox if the discounts should be applied in sequentia
 * Dutch Translation - [@mvdburg1971](https://profiles.wordpress.org/mvdburg1971) - Michael van der Burg
 
 == Changelog ==
+= 2.6.5 - 14/08/24 =
+* Improved: Enhanced product search functionality.
+* Improved: label changes.
+
 = 2.6.4 - 11/06/24 =
 * Add: Compatibility for WordPress 6.5
 * Add: Compatibility for WooCommerce 8.9

@@ -156,9 +156,11 @@ class WDRAjax extends Base
         Helper::validateRequest('wdr_ajax_select2');
         //For loading all language Product in select box.
         $this->load_all_wpml_products();
-        $query = $this->input->post('query', '');
+        $query = wc_clean(wp_unslash($this->input->post('query', '')));
         //to disable other search classes
-        remove_all_filters('woocommerce_data_stores');
+        if (apply_filters('advanced_woo_discount_rules_remove_data_store_filters_while_search_products', true)) {
+            remove_all_filters('woocommerce_data_stores');
+        }
         $data_store = WC_Data_Store::load('product');
         $ids = $data_store->search_products($query, '', true, false, $this->search_result_limit);
         return array_values(array_map( function ( $post_id ) {
@@ -167,7 +169,7 @@ class WDRAjax extends Base
 
             return array(
                 'id'   => (string) $post_id,
-                'text' => '#' . $post_id . ' ' . $product_title,
+                'text' => '#' . $post_id . ' ' . rawurldecode(wp_strip_all_tags($product_title)),
             );
         }, array_filter( $ids ) ));
     }
@@ -345,13 +347,15 @@ class WDRAjax extends Base
         Helper::validateRequest('wdr_ajax_select2');
         $query = $this->input->post('query', '');
         $query = "*$query*";
-        $users = get_users(array('fields' => array('ID', 'user_nicename'), 'search' => $query, 'orderby' => 'user_nicename'));
-        return array_map(function ($user) {
+        $user_label_field = apply_filters('advanced_woo_discount_rule_user_condition_field_name', 'user_nicename') ;
+        $users = get_users(array('fields' => array('ID', $user_label_field), 'search' => $query, 'orderby' => $user_label_field));
+
+        return array_filter(array_map(function ($user) use ($user_label_field) {
             return array(
                 'id' => (string)$user->ID,
-                'text' => $user->user_nicename,
+                'text' => isset($user->$user_label_field) ? $user->$user_label_field : $user->user_nicename,
             );
-        }, $users);
+        }, $users));
     }
 
     /**
