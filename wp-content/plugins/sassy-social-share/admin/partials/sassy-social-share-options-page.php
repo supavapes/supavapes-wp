@@ -2320,6 +2320,24 @@ defined( 'ABSPATH' ) or die( "Cheating........Uh!!" );
 							</div>
 							</td>
 						</tr>
+
+						<tr>
+							<th>
+							<label for="heateor_sss_native_sharing"><?php _e("Trigger device specific social sharing on click of More icon", 'sassy-social-share' ); ?></label>
+							<img id="heateor_sss_native_sharing_help" class="heateor_sss_help_bubble" src="<?php echo plugins_url( '../../images/info.png', __FILE__ ) ?>" />
+							</th>
+							<td>
+							<input id="heateor_sss_native_sharing" name="heateor_sss[native_sharing]" type="checkbox" <?php echo isset( $options['native_sharing'] ) ? 'checked = "checked"' : '';?> value="1" />
+							</td>
+						</tr>
+						
+						<tr class="heateor_sss_help_content" id="heateor_sss_native_sharing_help_cont">
+							<td colspan="2">
+							<div>
+							<?php _e( 'Triggers device specific native social share dialogue on click of the More icon instead of showing all the social networks in a layover popup.', 'sassy-social-share' ) ?>
+							</div>
+							</td>
+						</tr>
 					</table>
 					</div>
 				</div>

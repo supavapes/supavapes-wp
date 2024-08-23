@@ -3,8 +3,8 @@ Contributors: Heateor, kamirkhan, mohammadfarhankhan, the_champ
 Donate link: https://www.heateor.com/donate/?action=Sassy+Social+Share
 Tags: social share, social sharing, social media, facebook share, facebook like, facebook social share, wordpress social share, share buttons, social share buttons, twitter tweet, whatsapp share, line share, gab share, gab social share, gab, parler share, parler social share, gettr, gettr share, gettr social share, mewe share, mewe social share, mewe, mastodon share, mastodon social share, mastodon, rutube share, rutube social share, rutube, google news, google news share, google news icon, RSS, RSS Feed, x, x share, yelp, google translate, Google maps, tiktok, Teams, flickr, threads, Gab, Gab share, Line
 Requires at least: 2.5.0
-Tested up to: 6.5.4
-Stable tag: 3.3.64
+Tested up to: 6.6.1
+Stable tag: 3.3.65
 License: GPLv2 or later
 
 Slickest, Simplest and Optimized Share buttons. Facebook, X (Twitter), Reddit, Pinterest, Whatsapp, Gab, Gettr and over 100 more.
@@ -125,6 +125,9 @@ Yes, we can help you with it. Just drop an email at support[at]heateor[dot]com
 4. **Universal Sharing Popup**: Universal Sharing popup having all the supported sharing and bookmarking services
 
 == Changelog ==
+= 3.3.65 [3 July 2024] =
+* [Improvement] Added an option in the Miscellaneous section to control the behavior of the More social share icon
+
 = 3.3.64 [13 June 2024] =
 * [Improvement] Minor improvements
 
@@ -1441,3 +1444,6 @@ Yes, we can help you with it. Just drop an email at support[at]heateor[dot]com
 
 = 3.3.64 [13 June 2024] =
 * [Improvement] Minor improvements
+
+= 3.3.65 [3 July 2024] =
+* [Improvement] Added an option in the Miscellaneous section to control the behavior of the More social share icon 

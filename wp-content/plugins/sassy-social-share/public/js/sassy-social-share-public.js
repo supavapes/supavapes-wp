@@ -3,7 +3,7 @@ function heateorSssDetermineWhatsappShareAPI(a){if(a)return-1!=navigator.userAge
  * Show more sharing services popup
  */
 function heateorSssMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
-	if (navigator.share !== undefined) {
+	if (typeof heateorSssNativeSharing !== 'undefined' && heateorSssNativeSharing == 1 && navigator.share !== undefined) {
 		navigator.share({
 			title: postTitle,
 			text: postTitle,
