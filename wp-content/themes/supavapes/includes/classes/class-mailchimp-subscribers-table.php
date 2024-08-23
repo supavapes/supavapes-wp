@@ -19,8 +19,8 @@ class Mailchimp_Subscribers_Table extends WP_List_Table {
 
     public function __construct($subscribers) {
         parent::__construct([
-            'singular' => __('Subscriber', 'hello-elementor-child'),
-            'plural'   => __('Subscribers', 'hello-elementor-child'),
+            'singular' => __('Subscriber', 'supavapes'),
+            'plural'   => __('Subscribers', 'supavapes'),
             'ajax'     => false
         ]);
         $this->subscribers = $subscribers;
@@ -28,10 +28,10 @@ class Mailchimp_Subscribers_Table extends WP_List_Table {
 
     public function get_columns() {
         $columns = [
-            'email_address' => __('Email Address', 'hello-elementor-child'),
-            'phone_number'  => __('Phone Number', 'hello-elementor-child'),
-            'status'        => __('Status', 'hello-elementor-child'),
-            'action'        => __('Action', 'hello-elementor-child')
+            'email_address' => __('Email Address', 'supavapes'),
+            'phone_number'  => __('Phone Number', 'supavapes'),
+            'status'        => __('Status', 'supavapes'),
+            'action'        => __('Action', 'supavapes')
         ];
         return $columns;
     }
@@ -62,12 +62,12 @@ class Mailchimp_Subscribers_Table extends WP_List_Table {
                 return isset($item['merge_fields']['PHONE']) ? esc_html($item['merge_fields']['PHONE']) : '';
             case 'status':
                 // Change "subscribed" to "active" and "unsubscribed" to "inactive" with colors
-                $status = ($item['status'] == 'subscribed') ? __('Active', 'hello-elementor-child') : __('Inactive', 'hello-elementor-child');
+                $status = ($item['status'] == 'subscribed') ? __('Active', 'supavapes') : __('Inactive', 'supavapes');
                 $color = ($item['status'] == 'subscribed') ? 'green' : 'red';
                 return '<span style="color:' . esc_attr($color) . ';">' . esc_html($status) . '</span>';
             case 'action':
                 $action_url = admin_url('admin-post.php?action=mailchimp_subscription_action&email=' . urlencode($item['email_address']));
-                $action_text = ($item['status'] == 'subscribed') ? esc_html__('Unsubscribe', 'hello-elementor-child') : esc_html__('Subscribe', 'hello-elementor-child');
+                $action_text = ($item['status'] == 'subscribed') ? esc_html__('Unsubscribe', 'supavapes') : esc_html__('Subscribe', 'supavapes');
                 $action = ($item['status'] == 'subscribed') ? 'unsubscribe' : 'subscribe';
                 return '<a class="button" href="' . esc_url($action_url . '&action_type=' . $action) . '">' . $action_text . '</a>';
             default:

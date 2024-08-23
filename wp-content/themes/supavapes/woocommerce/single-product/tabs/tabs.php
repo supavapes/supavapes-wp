@@ -38,7 +38,7 @@ if ( ! empty( $product_tabs ) ) :
     ?>
     <div class="variable-table-wrap" id="variable-table-wrap">
         <div class="filter-wrap">
-            <h3 class="available-options-heading"><?php echo esc_html__('Available Options', 'hello-elementor-child'); ?></h3>
+            <h3 class="available-options-heading"><?php echo esc_html__('Available Options', 'supavapes'); ?></h3>
             <div class="search-variation-input-wrap">
                 <input type="text" name="search-variation" id="search_variation" placeholder="Enter 3 or more charcters" data-product_id="<?php echo $product_id; ?>" fdprocessedid="7jpdgp">
                 <a href="javascript:void(0);" class="search-variation-enter"><svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,7 @@ if ( ! empty( $product_tabs ) ) :
                             <div class="filter">
                                 <label><?php echo wc_attribute_label($attribute->get_name()); ?></label>
                                 <select class="form-control" name="<?php echo wc_attribute_label($attribute->get_name()); ?>" id="<?php echo $formatted_attribute_name;  ?>">
-                                    <option value=""><?php echo esc_html__('Any', 'hello-elementor-child'); ?></option>
+                                    <option value=""><?php echo esc_html__('Any', 'supavapes'); ?></option>
                                     <?php
                                     // Check if it's a taxonomy-based attribute
                                     if ($attribute->is_taxonomy()) {

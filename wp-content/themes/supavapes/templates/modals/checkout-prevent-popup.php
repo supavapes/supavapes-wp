@@ -14,10 +14,10 @@ $checkout_popup_sub_heading = get_field('checkout_popup_sub_heading','option');
 			<div class="checkout-prevent-popup-content-detail">
 				<div class="checkout-prevent-popup-left">
 					<?php if(!empty($checkout_popup_heading)) {?>
-						<h2><?php echo esc_html($checkout_popup_heading,'hello-elementor-child'); ?></h2>
+						<h2><?php echo esc_html($checkout_popup_heading,'supavapes'); ?></h2>
 					<?php }?>
 					<?php if(!empty($checkout_popup_sub_heading)){?>	
-						<p><?php echo esc_html($checkout_popup_sub_heading,'hello-elementor-child'); ?></p>
+						<p><?php echo esc_html($checkout_popup_sub_heading,'supavapes'); ?></p>
 					<?php }?>	
 					<form>
 						<div class="form-control">
@@ -41,9 +41,9 @@ $checkout_popup_sub_heading = get_field('checkout_popup_sub_heading','option');
 						</div>
 						<div class="form-group">
 							<input type="checkbox" id="send-me-copy">
-							<label for="send-me-copy"><?php esc_html_e('Send me a copy','hello-elementor-child'); ?></label>
+							<label for="send-me-copy"><?php esc_html_e('Send me a copy','supavapes'); ?></label>
 						</div>
-						<button type="submit" class="multiple-payment-attempt-failur-submit"><span><?php esc_html_e('Submit','hello-elementor-child'); ?></span>
+						<button type="submit" class="multiple-payment-attempt-failur-submit"><span><?php esc_html_e('Submit','supavapes'); ?></span>
 							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M17.1685 6.83144L9.2485 12.3303L0.964495 9.56858C0.386257 9.37544 -0.00330583 8.83293 2.11451e-05 8.22343C0.0033919 7.61394 0.39742 7.07475 0.97789 6.88835L22.1573 0.0678196C22.6607 -0.0940205 23.2133 0.038796 23.5872 0.412775C23.9612 0.786754 24.094 1.3393 23.9322 1.84276L17.1116 23.0221C16.9252 23.6026 16.386 23.9966 15.7766 24C15.1671 24.0033 14.6245 23.6137 14.4314 23.0355L11.6563 14.7114L17.1685 6.83144Z" fill="#EC4E34"></path>
 							</svg>

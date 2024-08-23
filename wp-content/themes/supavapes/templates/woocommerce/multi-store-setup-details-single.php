@@ -19,11 +19,11 @@ if(isset($terms) && !empty($terms)){
 	</svg>
 
         <div class="surface-pick-up-embed__location-info">
-            <h3 class="surface-pick-up-embed__location-availability"><?php esc_html_e('Pickup available at','hello-elementor-child'); ?><b><?php echo esc_html($store_location); ?></b></h3>
-            <small class="surface-pick-up-embed__location-pick-up-time"><?php esc_html_e('Usually ready in 24 hours','hello-elementor-child'); ?></small>
+            <h3 class="surface-pick-up-embed__location-availability"><?php esc_html_e('Pickup available at','supavapes'); ?><b><?php echo esc_html($store_location); ?></b></h3>
+            <small class="surface-pick-up-embed__location-pick-up-time"><?php esc_html_e('Usually ready in 24 hours','supavapes'); ?></small>
         </div>
         <a href="javascript:void(0);" class="surface-pick-up-embed__modal-btn check-available-stores" data-product_id="<?php echo esc_attr($product->get_id()); ?>">
-            <?php esc_html_e('Check availability at other stores','hello-elementor-child'); ?>
+            <?php esc_html_e('Check availability at other stores','supavapes'); ?>
         </a>
     </div>
 </div>
@@ -38,7 +38,7 @@ if (is_plugin_active('sassy-social-share/sassy-social-share.php')) {
     //plugin is activated
     ?>
     <div class="sv-social-share-icons">
-        <label><?php echo esc_html__('Share:', 'hello-elementor-child'); ?></label>
+        <label><?php echo esc_html__('Share:', 'supavapes'); ?></label>
         <?php echo do_shortcode('[Sassy_Social_Share]'); ?>
     </div>
     <?php

@@ -50,18 +50,18 @@
 				<div class="sv-blog">
 					<a href="<?php the_permalink(); ?>" class="sv-blog-img">
 						<?php if (has_post_thumbnail()) : ?>
-							<img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo esc_attr(get_the_title(),'hello-elementor-child'); ?>">
+							<img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo esc_attr(get_the_title(),'supavapes'); ?>">
 						<?php endif; ?>
 					</a>
 					<div class="sv-blog-content">
-						<a href="<?php echo esc_url(get_the_permalink()); ?>" class="sv-blog-title"><?php echo esc_html(get_the_title(),'hello-elementor-child'); ?></a>
+						<a href="<?php echo esc_url(get_the_permalink()); ?>" class="sv-blog-title"><?php echo esc_html(get_the_title(),'supavapes'); ?></a>
 						<div class="sv-blog-meta-detail">
 							<div class="sv-blog-meta">
 								<svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M7.15861 7.71054C9.25148 7.71054 10.9481 6.01393 10.9481 3.92107C10.9481 1.8282 9.25148 0.131592 7.15861 0.131592C5.06575 0.131592 3.36914 1.8282 3.36914 3.92107C3.36914 6.01393 5.06575 7.71054 7.15861 7.71054Z" fill="#424242"/>
 										<path fill-rule="evenodd" clip-rule="evenodd" d="M13.8952 16.1316C14.0068 16.1316 14.1137 16.0873 14.1926 16.0084C14.2715 15.9295 14.3158 15.8225 14.3158 15.711V15.7105C14.3158 13.8121 13.5617 11.9915 12.2193 10.6491C10.8769 9.30675 9.05629 8.55261 7.1579 8.55261C3.20455 8.55261 0 11.7572 0 15.7105V15.711C0 15.8225 0.0443076 15.9295 0.123176 16.0084C0.202043 16.0873 0.309011 16.1316 0.420547 16.1316H13.8952Z" fill="#424242"/>
 									</svg>
-								<span class="sv-blog-meta-title author"><?php echo esc_html($author_name,'hello-elementor-child'); ?></span>
+								<span class="sv-blog-meta-title author"><?php echo esc_html($author_name,'supavapes'); ?></span>
 							</div>
 							<div class="sv-blog-meta">
 							<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,8 +71,8 @@
 							</div>
 						</div>
 						<?php $trimmed_post_content = wp_trim_words($post_content, 20, '...'); ?>
-						<p class="sv-blog-text"><?php echo esc_html($trimmed_post_content,'hello-elementor-child'); ?></p>
-						<a href="<?php echo esc_url(get_the_permalink()); ?>" class="sv-blog-link"><?php esc_html_e('Read More','hello-elementor-child'); ?>
+						<p class="sv-blog-text"><?php echo esc_html($trimmed_post_content,'supavapes'); ?></p>
+						<a href="<?php echo esc_url(get_the_permalink()); ?>" class="sv-blog-link"><?php esc_html_e('Read More','supavapes'); ?>
 							<svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M20.0183 7.7734L12.5955 0.350527C12.3955 0.157364 12.1276 0.0504805 11.8496 0.0528965C11.5715 0.0553126 11.3056 0.166835 11.1089 0.363444C10.9123 0.560052 10.8008 0.826016 10.7984 1.10405C10.796 1.38209 10.9029 1.64995 11.096 1.84995L16.7088 7.4627H1.06041C0.779172 7.4627 0.509452 7.57442 0.310587 7.77328C0.111721 7.97215 0 8.24187 0 8.52311C0 8.80435 0.111721 9.07406 0.310587 9.27293C0.509452 9.4718 0.779172 9.58352 1.06041 9.58352H16.7088L11.096 15.1963C10.9948 15.2941 10.914 15.4111 10.8584 15.5405C10.8028 15.6698 10.7736 15.809 10.7723 15.9498C10.7711 16.0906 10.7979 16.2302 10.8513 16.3605C10.9046 16.4909 10.9833 16.6093 11.0829 16.7088C11.1825 16.8084 11.3009 16.8871 11.4312 16.9405C11.5615 16.9938 11.7011 17.0206 11.8419 17.0194C11.9827 17.0182 12.1219 16.9889 12.2512 16.9333C12.3806 16.8778 12.4976 16.797 12.5955 16.6957L20.0183 9.27282C20.2171 9.07396 20.3288 8.80429 20.3288 8.52311C20.3288 8.24192 20.2171 7.97225 20.0183 7.7734Z" fill="white"></path>
 							</svg>

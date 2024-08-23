@@ -35,8 +35,8 @@ if ( ! class_exists( 'WC_Email_Payment_Fail_Multiple_Attempt_Order', false ) ) :
 			$this->id             = 'customer_payment_fail_multiple_attempt_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Payment Fail Multiple Attempt', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Payment Fail Multiple Attempt', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-request-email.php';
 			$this->template_plain = 'emails/plain/customer-request-email.php';
 			$this->template_cart_detail = 'emails/cart-detail.php';

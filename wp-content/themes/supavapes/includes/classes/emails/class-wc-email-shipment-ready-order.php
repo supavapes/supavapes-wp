@@ -30,8 +30,8 @@ if ( ! class_exists( 'WC_Email_Shipment_Ready_Order', false ) ) :
 			$this->id             = 'customer_shipment_ready_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Ready For Shipment', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Ready For Shipment', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-shipment-ready-order.php';
 			$this->template_plain = 'emails/plain/customer-shipment-ready-order.php';
 			$this->placeholders   = array(
@@ -53,7 +53,7 @@ if ( ! class_exists( 'WC_Email_Shipment_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_subject() {
-			return __( 'Your Order is ready for shipment', 'hello-elementor-child' );
+			return __( 'Your Order is ready for shipment', 'supavapes' );
 		}
 
 		/**
@@ -63,7 +63,7 @@ if ( ! class_exists( 'WC_Email_Shipment_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Ready For Shipment', 'default email subject for rental ggreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Ready For Shipment', 'default email subject for rental ggreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -138,7 +138,7 @@ if ( ! class_exists( 'WC_Email_Shipment_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

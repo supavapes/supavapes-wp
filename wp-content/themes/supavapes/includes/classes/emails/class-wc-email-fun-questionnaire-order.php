@@ -36,8 +36,8 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 			$this->id             = 'customer_fun_questionnaire_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Fun Questionnaire', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they pass the quize.', 'hello-elementor-child' );
+			$this->title          = __( 'Fun Questionnaire', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they pass the quize.', 'supavapes' );
 			$this->template_html  = 'emails/customer-fun-questionnaire-order.php';
 			$this->template_plain = 'emails/plain/customer-fun-questionnaire-order.php';
 			$this->placeholders   = array();
@@ -53,7 +53,7 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_subject() {
-			return __( 'Congratulations! Enjoy a 20% Discount on Your Next Purchase', 'hello-elementor-child' );
+			return __( 'Congratulations! Enjoy a 20% Discount on Your Next Purchase', 'supavapes' );
 		}
 
 		/**
@@ -63,7 +63,7 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Quiz Result: Pass', 'default email subject for rental ggreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Quiz Result: Pass', 'default email subject for rental ggreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -165,7 +165,7 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 		 * @since 3.7.0
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

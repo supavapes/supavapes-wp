@@ -18,7 +18,7 @@ $subscribe_modal_form_text = get_field('subscribe_modal_form_text','option');
                 ?>
                  <video preload="auto" id="deal-popup-video" autoplay="autoplay" loop="loop" muted playsinline>
 					<source src="<?php echo esc_url($subscriber_modal_video); ?>" type="video/mp4">
-					<?php esc_html_e('Your browser does not support the video tag.','hello-elementor-child'); ?>
+					<?php esc_html_e('Your browser does not support the video tag.','supavapes'); ?>
 				</video>
                 <?php }else{
                     $subscriber_modal_image = get_field('subscriber_modal_image','option');
@@ -29,7 +29,7 @@ $subscribe_modal_form_text = get_field('subscribe_modal_form_text','option');
         </div>
         <div class="deal-popup-right">
             <h2><?php echo wp_kses_post($subscribe_modal_popup_text); ?></h2>
-            <p><?php echo esc_html($subscribe_modal_form_text,'hello-elementor-child'); ?></p>
+            <p><?php echo esc_html($subscribe_modal_form_text,'supavapes'); ?></p>
             <?php echo do_shortcode('[mailchimp_form button_text="Sign Up"]'); ?>
         </div>
         </div>

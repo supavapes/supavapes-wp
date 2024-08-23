@@ -18,6 +18,6 @@ $my_account_banner_text = get_field('my_account_banner_text','option');
 			?>
 		</div>
 		<?php if(!empty($my_account_banner_text)){?>
-			<h1 class="page-main-title"><?php echo esc_html($my_account_banner_text,'hello-elementor-child'); ?></h1>
+			<h1 class="page-main-title"><?php echo esc_html($my_account_banner_text,'supavapes'); ?></h1>
 		<?php }?>
 	</div>

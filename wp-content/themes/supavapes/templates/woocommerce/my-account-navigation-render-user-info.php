@@ -33,7 +33,7 @@ if ( $current_logged_in_user->exists() ) {
             <?php }?>
             <p class="user-email"><?php echo esc_html($email); ?></p>
             <?php if ($custom_avatar): ?>
-                <a href="javascript:void(0);" class="sv-remove-avatar"><?php esc_html_e('Remove Avatar', 'hello-elementor-child'); ?></a>
+                <a href="javascript:void(0);" class="sv-remove-avatar"><?php esc_html_e('Remove Avatar', 'supavapes'); ?></a>
             <?php endif; ?>
         </div>
     </div>

@@ -35,8 +35,8 @@ if ( ! class_exists( 'WC_Send_Approve_Request', false ) ) :
 			$this->id             = 'customer_approve_request';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Approve Request Email', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Approve Request Email', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-custom-email.php';
 			$this->template_plain = 'emails/plain/customer-custom-email.php';
 			$this->placeholders   = array(
@@ -56,7 +56,7 @@ if ( ! class_exists( 'WC_Send_Approve_Request', false ) ) :
 		 * @since  3.1.0
 		 */
 		public function get_default_subject() {
-			return __( 'Support Request Approved', 'hello-elementor-child' );
+			return __( 'Support Request Approved', 'supavapes' );
 		}
 
 		/**
@@ -66,7 +66,7 @@ if ( ! class_exists( 'WC_Send_Approve_Request', false ) ) :
 		 * @since  3.1.0
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Request Approved ', 'default email subject for rental agreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Request Approved ', 'default email subject for rental agreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -183,7 +183,7 @@ if ( ! class_exists( 'WC_Send_Approve_Request', false ) ) :
 		 * @since 3.7.0
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

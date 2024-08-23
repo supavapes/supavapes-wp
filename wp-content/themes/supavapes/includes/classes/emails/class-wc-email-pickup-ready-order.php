@@ -30,8 +30,8 @@ if ( ! class_exists( 'WC_Email_Pickup_Ready_Order', false ) ) :
 			$this->id             = 'customer_pickup_ready_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Pickup Ready order', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Pickup Ready order', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-pickup-ready-order.php';
 			$this->template_plain = 'emails/plain/customer-pickup-ready-order.php';
 			$this->placeholders   = array(
@@ -52,7 +52,7 @@ if ( ! class_exists( 'WC_Email_Pickup_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_subject() {
-			return __( 'Pickup Ready Your Order', 'hello-elementor-child' );
+			return __( 'Pickup Ready Your Order', 'supavapes' );
 		}
 
 		/**
@@ -62,7 +62,7 @@ if ( ! class_exists( 'WC_Email_Pickup_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Pickup Ready', 'default email subject for rental ggreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Pickup Ready', 'default email subject for rental ggreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WC_Email_Pickup_Ready_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

@@ -19,30 +19,30 @@ if ( $current_logged_in_user->exists() ) {
 			<?php }?>
 		</li>
 		<li class="my-account-user-dashboard">
-			<a href="/my-account/"><?php echo esc_html('Dashboard','hello-elementor-child'); ?></a>
+			<a href="/my-account/"><?php echo esc_html('Dashboard','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-orders">
-			<a href="/my-account/orders/"><?php echo esc_html('Orders','hello-elementor-child'); ?></a>
+			<a href="/my-account/orders/"><?php echo esc_html('Orders','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-notifications">
-			<a href="/my-account/notification-preference/"><?php echo esc_html('Notification','hello-elementor-child'); ?></a>
+			<a href="/my-account/notification-preference/"><?php echo esc_html('Notification','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-support-request">
-			<a href="/my-account/support-request/"><?php echo esc_html('Support Request','hello-elementor-child'); ?></a>
+			<a href="/my-account/support-request/"><?php echo esc_html('Support Request','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-wishlist">
-			<a href="/my-account/wishlist/"><?php echo esc_html('Wishlist','hello-elementor-child'); ?></a>
+			<a href="/my-account/wishlist/"><?php echo esc_html('Wishlist','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-address">
-			<a href="/my-account/edit-address/"><?php echo esc_html('Addresses','hello-elementor-child'); ?></a>
+			<a href="/my-account/edit-address/"><?php echo esc_html('Addresses','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-payment">
-			<a href="/my-account/payment-methods/"><?php echo esc_html('Payment methods','hello-elementor-child'); ?></a>
+			<a href="/my-account/payment-methods/"><?php echo esc_html('Payment methods','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-account">
-			<a href="/my-account/edit-account/"><?php echo esc_html('Account details','hello-elementor-child'); ?></a>
+			<a href="/my-account/edit-account/"><?php echo esc_html('Account details','supavapes'); ?></a>
 		</li>
 		<li class="my-account-user-logout">
-			<a href="/my-account/customer-logout/?_wpnonce=29cd3023d9"><?php echo esc_html('Logout','hello-elementor-child'); ?></a>
+			<a href="/my-account/customer-logout/?_wpnonce=29cd3023d9"><?php echo esc_html('Logout','supavapes'); ?></a>
 		</li>
 	</ul>

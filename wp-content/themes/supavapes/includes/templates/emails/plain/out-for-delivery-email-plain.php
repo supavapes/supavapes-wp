@@ -9,14 +9,14 @@
 defined( 'ABSPATH' ) || exit;
 
 /* translators: 1: %s: order ID, 2: order date, 3: admin email */
-$opening_paragraph = sprintf( __( 'This email is regarding the order #%1$d which was placed on %2$s. Please find a rental agreement in the attachment. You need to revert back to the email %3$s after digitally signing it or you can bring a copy of the same when you arrive for boarding your reservtaion. Please note than a signed agreement before onboarding is a MUST.', 'hello-elementor-child' ), $item_data->first_name, $item_data->last_name, $item_data->admin_email );
+$opening_paragraph = sprintf( __( 'This email is regarding the order #%1$d which was placed on %2$s. Please find a rental agreement in the attachment. You need to revert back to the email %3$s after digitally signing it or you can bring a copy of the same when you arrive for boarding your reservtaion. Please note than a signed agreement before onboarding is a MUST.', 'supavapes' ), $item_data->first_name, $item_data->last_name, $item_data->admin_email );
 
 echo esc_html( "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n" );
 echo esc_html( wp_strip_all_tags( $email_heading));
 echo esc_html( "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n" );
 echo esc_html( wp_strip_all_tags( $opening_paragraph ) );
 echo esc_html( "\n----------------------------------------\n\n" );
-echo esc_html( wp_strip_all_tags( __( 'This is a system generated email. Please DO NOT respond to it.', 'hello-elementor-child' ) ) );
+echo esc_html( wp_strip_all_tags( __( 'This is a system generated email. Please DO NOT respond to it.', 'supavapes' ) ) );
 echo esc_html( "\n----------------------------------------\n\n" );
 /* translators: 1: %s: order view URL */
-echo esc_html( wp_strip_all_tags( sprintf( __( 'You can view the order details in the dashboard here: %s', 'hello-elementor-child' ), $item_data->order_view_url ) ) );
+echo esc_html( wp_strip_all_tags( sprintf( __( 'You can view the order details in the dashboard here: %s', 'supavapes' ), $item_data->order_view_url ) ) );

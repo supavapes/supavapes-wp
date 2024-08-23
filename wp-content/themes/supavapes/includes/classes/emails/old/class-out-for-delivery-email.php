@@ -28,15 +28,15 @@ class Out_For_Delivery_Email extends WC_Email {
 	public function __construct() {
 		// Email slug we can use to filter other data.
 		$this->id          = 'custom_email';
-		$this->title       = __( 'Out For Delivery', 'hello-elementor-child' );
-		$this->description = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+		$this->title       = __( 'Out For Delivery', 'supavapes' );
+		$this->description = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 
 		// For admin area to let the user know we are sending this email to the customer.
 		$this->customer_email = true;
-		$this->heading        = __( 'Out For Delivery', 'hello-elementor-child' );
+		$this->heading        = __( 'Out For Delivery', 'supavapes' );
 
 		// translators: placeholder is {blogname}, a variable that will be substituted when email is sent out.
-		$this->subject = sprintf( _x( '[%s] Out For Delivery', 'default email subject for rental ggreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+		$this->subject = sprintf( _x( '[%s] Out For Delivery', 'default email subject for rental ggreement being sent to the customer', 'supavapes' ), '{blogname}' );
 
 		// Template paths.
 		$this->template_html  = 'out-for-delivery-email-html.php';
@@ -220,33 +220,33 @@ class Out_For_Delivery_Email extends WC_Email {
 	public function init_form_fields() {
 		$this->form_fields = array(
 			'enabled' => array(
-				'title'   => __( 'Enable/Disable', 'hello-elementor-child' ),
+				'title'   => __( 'Enable/Disable', 'supavapes' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Enable this email notification', 'hello-elementor-child' ),
+				'label'   => __( 'Enable this email notification', 'supavapes' ),
 				'default' => 'yes'
 			),
 			'subject' => array(
-				'title'       => __( 'Subject', 'hello-elementor-child' ),
+				'title'       => __( 'Subject', 'supavapes' ),
 				'type'        => 'text',
-				'description' => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'hello-elementor-child' ), $this->subject ),
+				'description' => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'supavapes' ), $this->subject ),
 				'placeholder' => '',
 				'default'     => ''
 			),
 			'heading' => array(
-				'title'       => __( 'Email Heading', 'hello-elementor-child' ),
+				'title'       => __( 'Email Heading', 'supavapes' ),
 				'type'        => 'text',
-				'description' => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'hello-elementor-child' ), $this->heading ),
+				'description' => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'supavapes' ), $this->heading ),
 				'placeholder' => '',
 				'default'     => ''
 			),
 			'email_type' => array(
-				'title'       => __( 'Email type', 'hello-elementor-child' ),
+				'title'       => __( 'Email type', 'supavapes' ),
 				'type'        => 'select',
-				'description' => __( 'Choose which format of email to send.', 'hello-elementor-child' ),
+				'description' => __( 'Choose which format of email to send.', 'supavapes' ),
 				'default'     => 'html',
 				'class'       => 'email_type',
 				'options'		=> array(
-					'html' => __( 'HTML', 'hello-elementor-child' ),
+					'html' => __( 'HTML', 'supavapes' ),
 				)
 			)
 		);

@@ -20,6 +20,6 @@ $checkout_banner_text = get_field('checkout_banner_text','option');
 			?>
 		</div>
 		<?php if(!empty($checkout_banner_text)){?>
-			<h1 class="page-main-title"><?php echo esc_html($checkout_banner_text,'hello-elementor-child'); ?></h1>
+			<h1 class="page-main-title"><?php echo esc_html($checkout_banner_text,'supavapes'); ?></h1>
 		<?php }?>
 	</div>

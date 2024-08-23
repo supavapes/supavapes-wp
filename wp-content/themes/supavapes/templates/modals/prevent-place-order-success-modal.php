@@ -20,10 +20,10 @@ $checkout_prevent_success_popup_thank_you_message = get_field('checkout_prevent_
             <div class="sv-email-modal__body">
                 <div class="sv-email-modal__heading-info">
                     <?php if(!empty($checkout_prevent_success_popup_thank_you_text)){?>
-                        <h2 class="sv-email-modal__title"><?php echo esc_html($checkout_prevent_success_popup_thank_you_text,'hello-elementor-child'); ?></h2>
+                        <h2 class="sv-email-modal__title"><?php echo esc_html($checkout_prevent_success_popup_thank_you_text,'supavapes'); ?></h2>
                     <?php }?>
                     <?php if(!empty($checkout_prevent_success_popup_thank_you_message)){?>
-                        <p class="sv-email-modal__description"><?php echo esc_html($checkout_prevent_success_popup_thank_you_message,'hello-elementor-child'); ?></p>
+                        <p class="sv-email-modal__description"><?php echo esc_html($checkout_prevent_success_popup_thank_you_message,'supavapes'); ?></p>
                     <?php }?>
                 </div>
             </div>

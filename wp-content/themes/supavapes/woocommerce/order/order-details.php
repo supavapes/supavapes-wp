@@ -57,9 +57,9 @@
             class="customer-support button <?php echo $is_support_disabled ? 'disabled' : ''; ?>" 
             data-order_id="<?php echo $order_id; ?>"
         >
-            <?php esc_html_e('Customer Support', 'hello-elementor-child'); ?>
+            <?php esc_html_e('Customer Support', 'supavapes'); ?>
             <?php if ($is_support_disabled): ?>
-                <span class="support-disabled-message"><?php esc_html_e('This order is no longer available for support request', 'hello-elementor-child'); ?></span>
+                <span class="support-disabled-message"><?php esc_html_e('This order is no longer available for support request', 'supavapes'); ?></span>
             <?php endif; ?>
         </a>
 		 <?php
@@ -127,9 +127,9 @@
 		<div class="deal-popup-content-box">
 			<div class="customer-support-form">
 			<div class="select-order-item-box">
-				<h3 class="select-oreder-title"><?php esc_html_e('Select Order items','hello-elementor-child'); ?></h3>
+				<h3 class="select-oreder-title"><?php esc_html_e('Select Order items','supavapes'); ?></h3>
 				<div class="multi-select-box">
-					<div class="selected-items"><span class="placeholder"><?php esc_html_e('Select Items','hello-elementor-child'); ?></span></div>
+					<div class="selected-items"><span class="placeholder"><?php esc_html_e('Select Items','supavapes'); ?></span></div>
 						<div class="options-container" style="display: none;">
 
 						</div>
@@ -137,7 +137,7 @@
 					</div>
 				</div>
 				<div class="upload-img-box">
-					<h3 class="select-oreder-title"><?php esc_html_e('Upload product images','hello-elementor-child'); ?></h3>
+					<h3 class="select-oreder-title"><?php esc_html_e('Upload product images','supavapes'); ?></h3>
 					<div class="upload-img-list">
 						<div class="customer-support-img-box">
 							<img alt="" src="/wp-content/uploads/2024/07/placeholedr-img.png" class="customer-support-img" height="150" width="150">
@@ -166,7 +166,7 @@
 					<textarea id="additional-info" placeholder=<?php esc_html_e("Additional information"); ?> ></textarea>
 				</div>
 				<button type="submit" class="button" id="customer-support-submit">
-                    <span><?php esc_html_e('Submit','hello-elementor-child'); ?></span>
+                    <span><?php esc_html_e('Submit','supavapes'); ?></span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1685 6.83144L9.2485 12.3303L0.964495 9.56858C0.386257 9.37544 -0.00330583 8.83293 2.11451e-05 8.22343C0.0033919 7.61394 0.39742 7.07475 0.97789 6.88835L22.1573 0.0678196C22.6607 -0.0940205 23.2133 0.038796 23.5872 0.412775C23.9612 0.786754 24.094 1.3393 23.9322 1.84276L17.1116 23.0221C16.9252 23.6026 16.386 23.9966 15.7766 24C15.1671 24.0033 14.6245 23.6137 14.4314 23.0355L11.6563 14.7114L17.1685 6.83144Z" fill="#EC4E34"></path>
                     </svg>

@@ -29,7 +29,7 @@ $product_ids = explode(',', $atts['ids']);
 				?>
 				<div class="slider-box">
 					<div class="sv-product-review">
-						<p class="add-read-more show-less-content dfdsf"><?php echo esc_html($comment_content,'hello-elementor-child'); ?></p>
+						<p class="add-read-more show-less-content dfdsf"><?php echo esc_html($comment_content,'supavapes'); ?></p>
 						<div class="sv-product-review-from">
 							<h3><?php echo esc_html(get_comment_author($reviews[0]->comment_ID)); ?></h3>
 							<ul class="sv-stars">
@@ -54,7 +54,7 @@ $product_ids = explode(',', $atts['ids']);
 						<div class="sv-product-img"><?php echo wp_kses_post($image); ?></div>
 						<span class="divider"></span>
 						<div class="sv-product-detail">
-							<h4 class="sv-product-name"><?php echo esc_html($p_title,'hello-elementor-child'); ?></h4>
+							<h4 class="sv-product-name"><?php echo esc_html($p_title,'supavapes'); ?></h4>
 							<p class="sv-product-price"><?php echo wp_kses_post($price); ?></p>
 						</div>
 					</a>

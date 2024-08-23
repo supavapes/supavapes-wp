@@ -35,8 +35,8 @@ if ( ! class_exists( 'WC_Email_Subscribe_Admin', false ) ) :
 			$this->id             = 'customer_subscriber_admin_email';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Subscriber Admin Email', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the admin when subscribe to Newsletter.', 'hello-elementor-child' );
+			$this->title          = __( 'Subscriber Admin Email', 'supavapes' );
+			$this->description    = __( 'An email sent to the admin when subscribe to Newsletter.', 'supavapes' );
 			$this->template_html  = 'emails/customer-request-email.php';
 			$this->template_plain = 'emails/plain/customer-request-email.php';
 			$this->placeholders   = array(
@@ -54,7 +54,7 @@ if ( ! class_exists( 'WC_Email_Subscribe_Admin', false ) ) :
 		 * @since  3.1.0
 		 */
 		public function get_default_subject() {
-			return __( 'New Subscriber', 'hello-elementor-child' );
+			return __( 'New Subscriber', 'supavapes' );
 		}
 
 		/**
@@ -64,7 +64,7 @@ if ( ! class_exists( 'WC_Email_Subscribe_Admin', false ) ) :
 		 * @since  3.1.0
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] New Subscriber ', 'default email subject for rental agreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] New Subscriber ', 'default email subject for rental agreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -171,7 +171,7 @@ if ( ! class_exists( 'WC_Email_Subscribe_Admin', false ) ) :
 		 * @since 3.7.0
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

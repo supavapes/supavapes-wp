@@ -61,7 +61,7 @@ if ( is_plugin_active( 'sassy-social-share/sassy-social-share.php' ) ) {
 	//plugin is activated
 	?>
 	<div class="sv-social-share-icons">
-		<label><?php echo esc_html__('Share:','hello-elementor-child'); ?></label>
+		<label><?php echo esc_html__('Share:','supavapes'); ?></label>
 		<?php echo do_shortcode('[Sassy_Social_Share]'); ?>
 	</div>
 	<?php

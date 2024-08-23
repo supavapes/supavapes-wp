@@ -56,7 +56,7 @@ if($rating_num == 0){
             </ul>
         </div>
         <div class="sv-our-product-detail">
-            <h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'hello-elementor-child');?></h3>
+            <h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'supavapes');?></h3>
             <p class="sv-our-product-price">
             <?php echo wp_kses_post($price); ?>
             </p>
@@ -65,9 +65,9 @@ if($rating_num == 0){
             if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
                 $product_type = $product_data->get_type();
                 if( $product_type == 'variable' ){?>
-                <a href="<?php echo esc_url(get_permalink( $product->get_id() ));?>" class="sv-shop-btn"><?php echo esc_html__('Select Options','hello-elementor-child'); ?></a> 
+                <a href="<?php echo esc_url(get_permalink( $product->get_id() ));?>" class="sv-shop-btn"><?php echo esc_html__('Select Options','supavapes'); ?></a> 
             <?php }else{?>
-                <a href="<?php echo esc_url(get_permalink( $product->get_id() ));?>" class="sv-shop-btn"><?php echo esc_html__('Shop Now','hello-elementor-child'); ?></a> 
+                <a href="<?php echo esc_url(get_permalink( $product->get_id() ));?>" class="sv-shop-btn"><?php echo esc_html__('Shop Now','supavapes'); ?></a> 
                 <?php }?>
             <?php }?>
         <div class="sv-product-reactions">

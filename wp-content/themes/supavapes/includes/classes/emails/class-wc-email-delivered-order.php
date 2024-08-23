@@ -30,8 +30,8 @@ if ( ! class_exists( 'WC_Email_Delivered_Order', false ) ) :
 			$this->id             = 'customer_delivered_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Delivery order', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Delivery order', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-delivered-order.php';
 			$this->template_plain = 'emails/plain/customer-delivered-order.php';
 			$this->placeholders   = array(
@@ -53,7 +53,7 @@ if ( ! class_exists( 'WC_Email_Delivered_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_subject() {
-			return __( 'Your Order is Delivered', 'hello-elementor-child' );
+			return __( 'Your Order is Delivered', 'supavapes' );
 		}
 
 		/**
@@ -63,7 +63,7 @@ if ( ! class_exists( 'WC_Email_Delivered_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Delivered', 'default email subject for rental agreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Delivered', 'default email subject for rental agreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -138,7 +138,7 @@ if ( ! class_exists( 'WC_Email_Delivered_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

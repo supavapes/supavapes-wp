@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /* translators: 1: %s: order item name, 2: order ID, 3: order date */
-$opening_paragraph = sprintf( __( 'This is to update you that your request for cancelling reservation for %1$s in order #%2$s that you placed on %3$s has been approved. The details about the reservation item are as follows:', 'hello-elementor-child' ), $item_data->first_name, $item_data->last_name);
+$opening_paragraph = sprintf( __( 'This is to update you that your request for cancelling reservation for %1$s in order #%2$s that you placed on %3$s has been approved. The details about the reservation item are as follows:', 'supavapes' ), $item_data->first_name, $item_data->last_name);
 $order_item        = $item_data->item;
 
 /**
@@ -32,11 +32,11 @@ do_action( 'woocommerce_email_header', $email_heading );
 		</tr>
 	</tbody>
 </table>
-<p><?php esc_html_e( 'This is a system generated email. Please DO NOT respond to it.', 'hello-elementor-child' ); ?></p>
+<p><?php esc_html_e( 'This is a system generated email. Please DO NOT respond to it.', 'supavapes' ); ?></p>
 <p>
 	<?php
 	/* translators: 1: %s: order view URL */
-	echo wp_kses_post( make_clickable( sprintf( __( 'You can view this order in the dashboard here: %s', 'hello-elementor-child' ), $item_data->order_view_url ) ) );
+	echo wp_kses_post( make_clickable( sprintf( __( 'You can view this order in the dashboard here: %s', 'supavapes' ), $item_data->order_view_url ) ) );
 	?>
 </p>
 <?php

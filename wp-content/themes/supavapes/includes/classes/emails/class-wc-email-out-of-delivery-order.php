@@ -30,8 +30,8 @@ if ( ! class_exists( 'WC_Email_Out_Of_Delivery_Order', false ) ) :
 			$this->id             = 'customer_out_of_delivery_order';
 			$this->customer_email = true;
 
-			$this->title          = __( 'Out Of Delivery order', 'hello-elementor-child' );
-			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'hello-elementor-child' );
+			$this->title          = __( 'Out Of Delivery order', 'supavapes' );
+			$this->description    = __( 'An email sent to the customer when they place a custom order.', 'supavapes' );
 			$this->template_html  = 'emails/customer-out-of-delivery-order.php';
 			$this->template_plain = 'emails/plain/customer-out-of-delivery-order.php';
 			$this->placeholders   = array(
@@ -53,7 +53,7 @@ if ( ! class_exists( 'WC_Email_Out_Of_Delivery_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_subject() {
-			return __( 'Your Order is Out for Delivery', 'hello-elementor-child' );
+			return __( 'Your Order is Out for Delivery', 'supavapes' );
 		}
 
 		/**
@@ -63,7 +63,7 @@ if ( ! class_exists( 'WC_Email_Out_Of_Delivery_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_heading() {
-			return sprintf( _x( '[%s] Out For Delivery', 'default email subject for rental ggreement being sent to the customer', 'hello-elementor-child' ), '{blogname}' );
+			return sprintf( _x( '[%s] Out For Delivery', 'default email subject for rental ggreement being sent to the customer', 'supavapes' ), '{blogname}' );
 		}
 
 		/**
@@ -138,7 +138,7 @@ if ( ! class_exists( 'WC_Email_Out_Of_Delivery_Order', false ) ) :
 		 * @return string
 		 */
 		public function get_default_additional_content() {
-			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
+			return __( 'Thanks for using {site_url}!', 'supavapes' );
 		}
 	}
 

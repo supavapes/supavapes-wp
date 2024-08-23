@@ -383,9 +383,9 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_r
 */
 function sv_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Product Category', 'hello-elementor-child' ),
+		'name'          => __( 'Product Category', 'supavapes' ),
 		'id'            => 'product-cat-widgets',
-		'description'   => __( 'Widgets in this area will be shown on shop page to list product categories', 'hello-elementor-child' ),
+		'description'   => __( 'Widgets in this area will be shown on shop page to list product categories', 'supavapes' ),
 		'before_widget'	=> '<div class="widget-wrap">',
 		'after_widget'	=> '</div>',
 		'before_title'	=> '<h4 class="widget-title">',
@@ -393,9 +393,9 @@ function sv_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Product Filters', 'hello-elementor-child' ),
+		'name'          => __( 'Product Filters', 'supavapes' ),
 		'id'            => 'product-cat-filters',
-		'description'   => __( 'Widgets in this area will be shown on shop page to filter products', 'hello-elementor-child' ),
+		'description'   => __( 'Widgets in this area will be shown on shop page to filter products', 'supavapes' ),
 		'before_widget'	=> '<div class="widget-wrap">',
 		'after_widget'	=> '</div>',
 		'before_title'	=> '<h4 class="widget-title">',
@@ -1081,8 +1081,8 @@ function sv_send_approval_email($customer_email, $order_id, $new_order_id) {
 add_filter('manage_support_request_posts_columns', 'add_support_request_columns');
 function add_support_request_columns($columns) {
 	
-	$columns['parent_post'] = __('Order ID', 'hello-elementor-child');
-	$columns['status'] = __('Request Status', 'hello-elementor-child');
+	$columns['parent_post'] = __('Order ID', 'supavapes');
+	$columns['status'] = __('Request Status', 'supavapes');
 	return $columns;
 
 }
@@ -1100,17 +1100,17 @@ function render_support_request_columns($column, $post_id) {
 				echo $parent_id;
 			}
 		} else {
-			_e('No Parent', 'hello-elementor-child');
+			_e('No Parent', 'supavapes');
 		}
 	} elseif ($column == 'status') {
 		$approved = get_post_meta($post_id, '_support_request_approved', true);
 		$declined = get_post_meta($post_id, '_support_request_declined', true);
 		if ($approved) {
-			echo '<span style="color: green;">' . __('Approved', 'hello-elementor-child') . '</span>';
+			echo '<span style="color: green;">' . __('Approved', 'supavapes') . '</span>';
 		} elseif ($declined) {
-			echo '<span style="color: red;">' . __('Declined', 'hello-elementor-child') . '</span>';
+			echo '<span style="color: red;">' . __('Declined', 'supavapes') . '</span>';
 		} else {
-			echo __('Pending', 'hello-elementor-child');
+			echo __('Pending', 'supavapes');
 		}
 	}
 }
@@ -1180,16 +1180,16 @@ add_filter( 'query_vars', 'sv_add_custom_query_vars', 0 );
 function sv_add_custom_menu_item_my_account( $items ) {
 	
 	$items = array(
-		'dashboard'       => __( 'Dashboard', 'hello-elementor-child' ),
-		'orders'          => __( 'Orders', 'hello-elementor-child' ),
-		'notification-preference' => __('Notification','hello-elementor-child'),
-		'support-request' => __('Support Request','hello-elementor-child'),
-		'wishlist' => __('Wishlist','hello-elementor-child'),
-		'downloads'       => __( 'Downloads', 'hello-elementor-child' ),
-		'edit-address'    => _n( 'Addresses', 'Address', (int) wc_shipping_enabled(), 'hello-elementor-child' ),
-		'payment-methods' => __( 'Payment methods', 'hello-elementor-child' ),
-		'edit-account'    => __( 'Account details', 'hello-elementor-child' ),
-		'customer-logout' => __( 'Logout', 'hello-elementor-child' ),
+		'dashboard'       => __( 'Dashboard', 'supavapes' ),
+		'orders'          => __( 'Orders', 'supavapes' ),
+		'notification-preference' => __('Notification','supavapes'),
+		'support-request' => __('Support Request','supavapes'),
+		'wishlist' => __('Wishlist','supavapes'),
+		'downloads'       => __( 'Downloads', 'supavapes' ),
+		'edit-address'    => _n( 'Addresses', 'Address', (int) wc_shipping_enabled(), 'supavapes' ),
+		'payment-methods' => __( 'Payment methods', 'supavapes' ),
+		'edit-account'    => __( 'Account details', 'supavapes' ),
+		'customer-logout' => __( 'Logout', 'supavapes' ),
 		);
 	if ( isset( $items['downloads'] ) ) {
 		unset( $items['downloads'] );
@@ -1459,12 +1459,12 @@ function sv_create_coupon($coupon_code, $emails_to_add) {
 */ 
 function custom_woocommerce_catalog_orderby( $orderby ) {
 
-	$orderby['menu_order'] = __( 'Sort By', 'hello-elementor-child' );
-	$orderby['popularity'] = __( 'Popularity', 'hello-elementor-child' );
-	$orderby['rating'] = __( 'Average Rating', 'hello-elementor-child' );
-	$orderby['date'] = __( 'Latest', 'hello-elementor-child' );
-	$orderby['price'] = __( 'Price: Low to High', 'hello-elementor-child' );
-	$orderby['price-desc'] = __( 'Price: High to Low', 'hello-elementor-child' );
+	$orderby['menu_order'] = __( 'Sort By', 'supavapes' );
+	$orderby['popularity'] = __( 'Popularity', 'supavapes' );
+	$orderby['rating'] = __( 'Average Rating', 'supavapes' );
+	$orderby['date'] = __( 'Latest', 'supavapes' );
+	$orderby['price'] = __( 'Price: Low to High', 'supavapes' );
+	$orderby['price-desc'] = __( 'Price: High to Low', 'supavapes' );
 	return $orderby;
 
 }
@@ -1766,11 +1766,11 @@ function sv_mailchimp_subscribers_page() {
 	$table->prepare_items();
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e('Mailchimp Subscribers', 'hello-elementor-child'); ?></h1>
+		<h1><?php esc_html_e('Mailchimp Subscribers', 'supavapes'); ?></h1>
 		<form method="get">
 			<input type="hidden" name="page" value="<?php echo esc_attr($_REQUEST['page']); ?>" />
 			<?php
-			$table->search_box(__('Search Subscribers', 'hello-elementor-child'), 'search_id');
+			$table->search_box(__('Search Subscribers', 'supavapes'), 'search_id');
 			?>
 		</form>
 		<?php $table->display(); ?>
@@ -1814,7 +1814,7 @@ function sv_handle_mailchimp_subscription_action() {
 		$member_id = md5(strtolower($email));
 		$new_status = ($action_type === 'subscribe') ? 'subscribed' : 'unsubscribed';
 		if ($new_status === 'subscribe') {
-			wc_add_notice(__('Status changed successfully!', 'hello-elementor-child'), 'success');
+			wc_add_notice(__('Status changed successfully!', 'supavapes'), 'success');
 		}
 		$url = 'https://' . substr($api_key, strpos($api_key, '-') + 1) . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/' . $member_id;
 		$response = wp_remote_request($url, [
@@ -2194,22 +2194,22 @@ function sv_show_last_login_details_in_user_profile($user) {
 	$last_login_ip = get_user_meta($user->ID, 'last_login_ip', true);
 	$location = get_location_from_ip($last_login_ip);
 	?>
-	<h3><?php echo esc_html__('Last Login Details','hello-elementor-child'); ?></h3>
+	<h3><?php echo esc_html__('Last Login Details','supavapes'); ?></h3>
 	<table class="form-table">
 		<tr>
-			<th><label for="last_login"><?php echo esc_html__('Last Login','hello-elementor-child'); ?></label></th>
+			<th><label for="last_login"><?php echo esc_html__('Last Login','supavapes'); ?></label></th>
 			<td>
 				<input type="text" name="last_login" id="last_login" value="<?php echo esc_attr($last_login); ?>" class="regular-text" disabled />
 			</td>
 		</tr>
 		<tr>
-			<th><label for="last_login_ip"><?php echo esc_html__('Last Login IP','hello-elementor-child'); ?></label></th>
+			<th><label for="last_login_ip"><?php echo esc_html__('Last Login IP','supavapes'); ?></label></th>
 			<td>
 				<input type="text" name="last_login_ip" id="last_login_ip" value="<?php echo esc_attr($last_login_ip); ?>" class="regular-text" disabled />
 			</td>
 		</tr>
 		<tr>
-			<th><label for="last_login_location"><?php echo esc_html__('Last Login Location','hello-elementor-child'); ?></label></th>
+			<th><label for="last_login_location"><?php echo esc_html__('Last Login Location','supavapes'); ?></label></th>
 			<td>
 				<input type="text" name="last_login_location" id="last_login_location" value="<?php echo esc_attr($location); ?>" class="regular-text" disabled />
 			</td>
@@ -2238,7 +2238,7 @@ function sv_calculate_and_display_savings() {
 	$percentage_multiplier = 1 + ($dynamic_percentage / 100); // Convert percentage to multiplier
 	$increased_amount = $total_amount * $percentage_multiplier; // Apply dynamic percentage
 	$savings = $increased_amount - $total_amount;
-	return sprintf(__('%s', 'hello-elementor-child'), wc_price($savings));
+	return sprintf(__('%s', 'supavapes'), wc_price($savings));
 	
 }
 
@@ -2295,17 +2295,17 @@ add_action('init', 'sv_register_store_locator_taxonomy', 0);
 function sv_register_store_locator_taxonomy() {
 
 	$labels = array(
-		'name'                       => _x('Store Locators', 'taxonomy general name', 'hello-elementor-child'),
-		'singular_name'              => _x('Store Locator', 'taxonomy singular name', 'hello-elementor-child'),
-		'search_items'               => __('Search Store Locators', 'hello-elementor-child'),
-		'all_items'                  => __('All Store Locators', 'hello-elementor-child'),
-		'parent_item'                => __('Parent Store Locator', 'hello-elementor-child'),
-		'parent_item_colon'          => __('Parent Store Locator:', 'hello-elementor-child'),
-		'edit_item'                  => __('Edit Store Locator', 'hello-elementor-child'),
-		'update_item'                => __('Update Store Locator', 'hello-elementor-child'),
-		'add_new_item'               => __('Add New Store Locator', 'hello-elementor-child'),
-		'new_item_name'              => __('New Store Locator Name', 'hello-elementor-child'),
-		'menu_name'                  => __('Store Locator', 'hello-elementor-child'),
+		'name'                       => _x('Store Locators', 'taxonomy general name', 'supavapes'),
+		'singular_name'              => _x('Store Locator', 'taxonomy singular name', 'supavapes'),
+		'search_items'               => __('Search Store Locators', 'supavapes'),
+		'all_items'                  => __('All Store Locators', 'supavapes'),
+		'parent_item'                => __('Parent Store Locator', 'supavapes'),
+		'parent_item_colon'          => __('Parent Store Locator:', 'supavapes'),
+		'edit_item'                  => __('Edit Store Locator', 'supavapes'),
+		'update_item'                => __('Update Store Locator', 'supavapes'),
+		'add_new_item'               => __('Add New Store Locator', 'supavapes'),
+		'new_item_name'              => __('New Store Locator Name', 'supavapes'),
+		'menu_name'                  => __('Store Locator', 'supavapes'),
 	);
 	$args = array(
 		'hierarchical'               => true,
@@ -2361,10 +2361,10 @@ function sv_available_store_details() {
 					?>
 					<li class="surface-pick-up-item surface-pick-up-item--available" data-surface-pick-up-item="">
 						<div class="surface-pick-up-item__header">
-							<h3 class="surface-pick-up-item__pick-up-location"><?php echo esc_html($store['name'],'hello-elementor-child'); ?></h3>
+							<h3 class="surface-pick-up-item__pick-up-location"><?php echo esc_html($store['name'],'supavapes'); ?></h3>
 							<p class="surface-pick-up-item__pick-up-distance">
 								<span data-distance="" data-latitude="45.607124" data-longitude="-74.584797"><?php echo number_format((float)$distance_km, 2, '.', ''); ?></span>
-								<span data-distance-unit="metric"><?php echo esc_html__('km','hello-elementor-child'); ?></span>
+								<span data-distance-unit="metric"><?php echo esc_html__('km','supavapes'); ?></span>
 							</p>
 						</div>
 						<?php if($store['pickup_avialablility'] == 1){ ?>
@@ -2372,7 +2372,7 @@ function sv_available_store_details() {
 							<svg width="14" height="15" class="surface-pick-up-icon" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M13.6747 2.88135C13.2415 2.44761 12.5381 2.44789 12.1044 2.88135L5.03702 9.94902L1.89587 6.8079C1.46213 6.37416 0.759044 6.37416 0.325304 6.8079C-0.108435 7.24163 -0.108435 7.94472 0.325304 8.37846L4.25157 12.3047C4.4683 12.5215 4.7525 12.6301 5.03672 12.6301C5.32094 12.6301 5.6054 12.5217 5.82213 12.3047L13.6747 4.45189C14.1084 4.01845 14.1084 3.31507 13.6747 2.88135Z" fill="#51A551"></path>
 							</svg>            
-							<?php echo esc_html__('Pickup available, usually ready in 24 hours','hello-elementor-child'); ?>            
+							<?php echo esc_html__('Pickup available, usually ready in 24 hours','supavapes'); ?>            
 						</div>
 						<?php } else { ?>
 						<div class="surface-pick-up-item__availability unavailable"> 
@@ -2380,14 +2380,14 @@ function sv_available_store_details() {
 							<path d="M13.7331 11.7904L2.76068 0.817889C2.28214 0.339349 1.50629 0.339349 1.02848 0.817889L0.450213 1.39528C-0.0283263 1.87397 -0.0283263 2.64981 0.450213 3.12759L11.4227 14.1001C11.9014 14.5786 12.6772 14.5786 13.155 14.1001L13.7324 13.5227C14.2118 13.0449 14.2118 12.2689 13.7331 11.7904Z" fill="#EC4E34"/>
 							<path d="M11.4227 0.818263L0.450213 11.7908C-0.0283263 12.2693 -0.0283263 13.0453 0.450213 13.5231L1.0276 14.1005C1.50629 14.579 2.28214 14.579 2.75991 14.1005L13.7331 3.12873C14.2118 2.65019 14.2118 1.87434 13.7331 1.39657L13.1557 0.819181C12.6772 0.339723 11.9014 0.339723 11.4227 0.818263Z" fill="#EC4E34"/>
 							</svg>
-							<?php echo esc_html__('Pickup currently unavailable','hello-elementor-child'); ?>           
+							<?php echo esc_html__('Pickup currently unavailable','supavapes'); ?>           
 						</div> 
 						<?php } ?>
 						<address class="surface-pick-up-item__address-info">
 							<p>
-								<a href="<?php echo esc_url($google_maps_link); ?>" target="_blank"> <?php echo esc_html($store['address_line_1'],'hello-elementor-child'); ?><br>
-								<?php echo esc_html($store['address_line_2'],'hello-elementor-child'); ?></a><br>
-								<a href="tel:<?php echo esc_html($store['contact_number'],'hello-elementor-child'); ?>"><?php echo esc_html($store['contact_number'],'hello-elementor-child'); ?></a><br>
+								<a href="<?php echo esc_url($google_maps_link); ?>" target="_blank"> <?php echo esc_html($store['address_line_1'],'supavapes'); ?><br>
+								<?php echo esc_html($store['address_line_2'],'supavapes'); ?></a><br>
+								<a href="tel:<?php echo esc_html($store['contact_number'],'supavapes'); ?>"><?php echo esc_html($store['contact_number'],'supavapes'); ?></a><br>
 							</p>
 						</address>
 					</li>
@@ -2419,7 +2419,7 @@ function sv_custom_order_meta_box() {
 	if($screen_id == 'woocommerce_page_wc-orders'){
 		add_meta_box(
 			'shop-manager-meta-box',
-			__( 'Shop Managers', 'hello-elementor-child' ),
+			__( 'Shop Managers', 'supavapes' ),
 			'sv_shop_manager_meta_box_callback',
 			$screen_id,
 			'side',
@@ -2429,7 +2429,7 @@ function sv_custom_order_meta_box() {
 	if($screen_id == 'support_request'){
 		add_meta_box(
 			'support_request_meta_box',
-			__('Support Request Actions', 'hello-elementor-child'),
+			__('Support Request Actions', 'supavapes'),
 			'render_support_request_meta_box',
 			'support_request',
 			'side',
@@ -2448,22 +2448,22 @@ function render_support_request_meta_box($post) {
 	$approved = get_post_meta($post->ID, '_support_request_approved', true);
 	$declined = get_post_meta($post->ID, '_support_request_declined', true);
 	if ($approved) {
-		echo '<p style="color: green;">' . __('This request is approved.', 'hello-elementor-child') . '</p>';
+		echo '<p style="color: green;">' . __('This request is approved.', 'supavapes') . '</p>';
 	} elseif ($declined) {
-		echo '<p style="color: red;">' . __('This request is declined.', 'hello-elementor-child') . '</p>';
+		echo '<p style="color: red;">' . __('This request is declined.', 'supavapes') . '</p>';
 	} else {
-		echo '<p><strong>' . __('Status:', 'hello-elementor-child') . '</strong> ' . __('Pending', 'hello-elementor-child') . '</p>';
+		echo '<p><strong>' . __('Status:', 'supavapes') . '</strong> ' . __('Pending', 'supavapes') . '</p>';
 		echo '<div id="support-request-loader" style="display:none;">';
 		echo '<img src="https://woocommerce-401163-4488997.cloudwaysapps.com/wp-content/uploads/2024/07/spinner.gif" alt="Loading...">';
 		echo '</div>';
-		echo '<button type="button" class="button approve-support-request" data-id="' . $post->ID . '">' . __('Approve', 'hello-elementor-child') . '</button> ';
-		echo '<button type="button" class="button decline-support-request" data-id="' . $post->ID . '">' . __('Decline', 'hello-elementor-child') . '</button>';
+		echo '<button type="button" class="button approve-support-request" data-id="' . $post->ID . '">' . __('Approve', 'supavapes') . '</button> ';
+		echo '<button type="button" class="button decline-support-request" data-id="' . $post->ID . '">' . __('Decline', 'supavapes') . '</button>';
 	}
 	echo '
 	<div id="decline-dialog" title="Decline Support Request" style="display: none;">
 		<p>Please provide a reason for declining the support request:</p>
 		<textarea id="decline-reason" rows="4" cols="30"></textarea>
-		<button type="button" id="submit-decline-reason" class="button" data-id="' . $post->ID . '">' . __('Decline Request', 'hello-elementor-child') . '</button>
+		<button type="button" id="submit-decline-reason" class="button" data-id="' . $post->ID . '">' . __('Decline Request', 'supavapes') . '</button>
 	</div>
 	';
 }
@@ -2474,9 +2474,9 @@ function sv_shop_manager_meta_box_callback( $post ) {
 
 	$shop_manager_id = get_post_meta( $post->ID, '_shop_manager', true );
 	$shop_managers = get_users( array( 'role' => 'shop_manager' ) );
-	echo '<p><label for="shop-manager">' . __( 'Select Shop Manager:', 'hello-elementor-child' ) . '</label> ';
+	echo '<p><label for="shop-manager">' . __( 'Select Shop Manager:', 'supavapes' ) . '</label> ';
 	echo '<select id="shop-manager" name="shop_manager">';
-	echo '<option value="">' . __( 'Select a manager', 'hello-elementor-child' ) . '</option>';
+	echo '<option value="">' . __( 'Select a manager', 'supavapes' ) . '</option>';
 	foreach ( $shop_managers as $manager ) {
 		$selected = selected( $shop_manager_id, $manager->ID, false );
 		echo '<option value="' . esc_attr( $manager->ID ) . '" ' . $selected . '>' . esc_html( $manager->display_name ) . '</option>';
@@ -2514,7 +2514,7 @@ function sv_display_shop_manager_in_order_details( $order ) {
 	
 	$shop_manager_id = get_saved_shop_manager_id( $order->get_id() );
 	if ( $shop_manager_id ) {
-		echo '<p><strong>' . __( 'Shop Manager:', 'hello-elementor-child' ) . '</strong> ' . esc_html( get_userdata( $shop_manager_id )->display_name ) . '</p>';
+		echo '<p><strong>' . __( 'Shop Manager:', 'supavapes' ) . '</strong> ' . esc_html( get_userdata( $shop_manager_id )->display_name ) . '</p>';
 	}
 
 }
@@ -2676,7 +2676,7 @@ function add_quantity_rule_message_to_cart_item_name($product_name, $cart_item, 
 	$discount_message = '';
 	if (isset($cart_item['discounted_price']) && $cart_item['discounted_price'] > 0) {
 		$discount_amount = wc_price($cart_item['discounted_price']);
-		$discount_message = sprintf(__('Discounted price %s for this item.', 'hello-elementor-child'), $discount_amount);
+		$discount_message = sprintf(__('Discounted price %s for this item.', 'supavapes'), $discount_amount);
 		$discount_message = '<div class="discount_message" style="color: green;">' . $discount_message . '</div>';
 	}
 	if (isset($cart_item['wdr_free_product']) && 'Free' === $cart_item['wdr_free_product']) {
@@ -2807,7 +2807,7 @@ function get_woo_discount_rules_msg( $product_id, $current_quantity ) {
 							$final_discount = get_woocommerce_currency_symbol() . $rule_discount->value . ' Per Item';
 						}
 					}
-					$messages[] = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to claim %s discount!', 'hello-elementor-child' ), $required_quantity, $required_quantity, $final_discount );
+					$messages[] = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to claim %s discount!', 'supavapes' ), $required_quantity, $required_quantity, $final_discount );
 					break;
 				case 'wdr_buy_x_get_x_discount':
 					$buy_x_get_x_adjustments = \WDRPro\App\Rules\BuyXGetX::getBuyXGetXAdjustments( $rule );
@@ -2816,15 +2816,15 @@ function get_woo_discount_rules_msg( $product_id, $current_quantity ) {
 						foreach ( $buy_x_get_x_adjustments as $buyx_getx_adjustment ) {
 							if ( 'free_product' === $buyx_getx_adjustment->free_type ) {
 								$free_qty = $buyx_getx_adjustment->free_qty;
-								$messages[]  = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s free', 'hello-elementor-child' ), $required_quantity, $required_quantity, $free_qty );
+								$messages[]  = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s free', 'supavapes' ), $required_quantity, $required_quantity, $free_qty );
 							} elseif ( 'percentage' === $buyx_getx_adjustment->free_type ) {
 								$free_qty   = $buyx_getx_adjustment->free_qty;
 								$free_value = $buyx_getx_adjustment->free_value . '%';
-								$messages[]    = sprintf( __( '<a data-qty="%d" class="supa-add-dis"Add %d</a> more to get %s discount for %s items', 'hello-elementor-child' ),$required_quantity, $required_quantity, $free_value, $free_qty, );
+								$messages[]    = sprintf( __( '<a data-qty="%d" class="supa-add-dis"Add %d</a> more to get %s discount for %s items', 'supavapes' ),$required_quantity, $required_quantity, $free_value, $free_qty, );
 							} elseif ( 'flat' === $buyx_getx_adjustment->free_type ) {
 								$free_qty   = $buyx_getx_adjustment->free_qty;
 								$free_value = get_woocommerce_currency_symbol() . $buyx_getx_adjustment->free_value . ' OFF';
-								$messages[]    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for %s items', 'hello-elementor-child' ),$required_quantity, $required_quantity, $free_value, $free_qty, );
+								$messages[]    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for %s items', 'supavapes' ),$required_quantity, $required_quantity, $free_value, $free_qty, );
 							}
 						}
 					}
@@ -2842,7 +2842,7 @@ function get_woo_discount_rules_msg( $product_id, $current_quantity ) {
 								}
 								$product_html .= '</ul>';
 								$free_qty = $buy_x_get_y_adjustment->free_qty;
-								$message  = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get below (%s) free product with %s quantity ', 'hello-elementor-child' ), $required_quantity, $required_quantity, count( $free_products ), $free_qty );
+								$message  = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get below (%s) free product with %s quantity ', 'supavapes' ), $required_quantity, $required_quantity, count( $free_products ), $free_qty );
 								$message  .= $product_html;
 								$messages[] = $message;
 							} elseif ( 'percentage' === $buy_x_get_y_adjustment->free_type ) {
@@ -2854,7 +2854,7 @@ function get_woo_discount_rules_msg( $product_id, $current_quantity ) {
 								$product_html .= '</ul>';
 								$free_qty   = $buy_x_get_y_adjustment->free_qty;
 								$free_value = $buy_x_get_y_adjustment->free_value . '%';
-								$message    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for below (%s) product with %s quantity', 'hello-elementor-child' ),$required_quantity, $required_quantity, $free_value, count( $free_products ), $free_qty );
+								$message    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for below (%s) product with %s quantity', 'supavapes' ),$required_quantity, $required_quantity, $free_value, count( $free_products ), $free_qty );
 								$message  .= $product_html;
 								$messages[] = $message;
 							} elseif ( 'flat' === $buy_x_get_y_adjustment->free_type ) {
@@ -2867,7 +2867,7 @@ function get_woo_discount_rules_msg( $product_id, $current_quantity ) {
 
 								$free_qty   = $buy_x_get_y_adjustment->free_qty;
 								$free_value = $buy_x_get_y_adjustment->free_value . ' OFF';
-								$message    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for below (%s) product with %s quantity', 'hello-elementor-child' ), $required_quantity,$required_quantity, $free_value, count( $free_products ), $free_qty );
+								$message    = sprintf( __( '<a data-qty="%d" class="supa-add-dis">Add %d</a> more to get %s discount for below (%s) product with %s quantity', 'supavapes' ), $required_quantity,$required_quantity, $free_value, count( $free_products ), $free_qty );
 								$message  .= $product_html;
 								$messages[] = $message;
 							}
@@ -3069,7 +3069,7 @@ function remove_add_new_for_support_request() {
 	global $submenu;
 	if (isset($submenu['edit.php?post_type=support_request'])) {
 		foreach ($submenu['edit.php?post_type=support_request'] as $key => $value) {
-			if (in_array(__('Add New', 'hello-elementor-child'), $value)) {
+			if (in_array(__('Add New', 'supavapes'), $value)) {
 				unset($submenu['edit.php?post_type=support_request'][$key]);
 			}
 		}

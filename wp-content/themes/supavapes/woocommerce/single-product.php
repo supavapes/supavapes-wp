@@ -39,7 +39,7 @@ get_header( 'shop' );
 		?>
 	</div>
 	<?php //if(!empty($archive_banner_text)){?>
-		<h1 class="page-main-title"><?php //echo esc_html($archive_banner_text,'hello-elementor-child'); ?></h1>
+		<h1 class="page-main-title"><?php //echo esc_html($archive_banner_text,'supavapes'); ?></h1>
 	<?php //}?>
 </div> -->
 

@@ -22,8 +22,8 @@ $interval = $today->diff($request_date);
 $days_since_submitted = $interval->days;
 ?>
 <div class="woocommerce-support-request-content">
-    <h2><?php esc_html_e('Support Request','hello-elementor-child'); ?> #<?php echo esc_html($request_id); ?></h2>
-    <p><strong><?php esc_html_e('Request Status:','hello-elementor-child'); ?></strong> <?php
+    <h2><?php esc_html_e('Support Request','supavapes'); ?> #<?php echo esc_html($request_id); ?></h2>
+    <p><strong><?php esc_html_e('Request Status:','supavapes'); ?></strong> <?php
     $approved = get_post_meta($request_id, '_support_request_approved', true);
     $declined = get_post_meta($request_id, '_support_request_declined', true);
     $sr_status = 'Pending';
@@ -34,30 +34,30 @@ $days_since_submitted = $interval->days;
     }
     echo esc_html($sr_status);
     ?></p>
-    <p><strong><?php esc_html_e('Request Details:','hello-elementor-child'); ?></strong> <?php echo nl2br(esc_html($support_request->post_content)); ?></p>
+    <p><strong><?php esc_html_e('Request Details:','supavapes'); ?></strong> <?php echo nl2br(esc_html($support_request->post_content)); ?></p>
     <?php if ($sr_status === 'Approved'): ?>
-        <p><?php esc_html_e('Your request is approved and a new order has been generated.'); ?><a href="<?php echo esc_url($new_order->get_view_order_url()); ?>"> <?php  esc_html_e('View Order','hello-elementor-child'); ?></a></p>
+        <p><?php esc_html_e('Your request is approved and a new order has been generated.'); ?><a href="<?php echo esc_url($new_order->get_view_order_url()); ?>"> <?php  esc_html_e('View Order','supavapes'); ?></a></p>
     <?php elseif ($sr_status === 'Declined'): ?>
-        <p><?php esc_html_e('Your request has been declined.','hello-elementor-child'); ?></p>
-        <p><?php esc_html_e('Reason: ','hello-elementor-child'); ?><?php echo esc_html(get_post_meta($request_id, '_support_request_decline_reason', true)); ?></p>
+        <p><?php esc_html_e('Your request has been declined.','supavapes'); ?></p>
+        <p><?php esc_html_e('Reason: ','supavapes'); ?><?php echo esc_html(get_post_meta($request_id, '_support_request_decline_reason', true)); ?></p>
     <?php elseif ($sr_status === 'Pending' && $days_since_submitted > 0): ?>
-        <p><?php esc_html_e('It has been ','hello-elementor-child'); ?><?php echo esc_html($days_since_submitted); ?><?php esc_html_e(' days since you submitted the request. Still did not get a response. Do you want to follow up?','hello-elementor-child') ?></p>
+        <p><?php esc_html_e('It has been ','supavapes'); ?><?php echo esc_html($days_since_submitted); ?><?php esc_html_e(' days since you submitted the request. Still did not get a response. Do you want to follow up?','supavapes') ?></p>
         <div class="follow-up-wrapper">
-            <button id="follow-up-button" class="button"><?php esc_html_e('Follow Up','hello-elementor-child'); ?></button>
+            <button id="follow-up-button" class="button"><?php esc_html_e('Follow Up','supavapes'); ?></button>
             <div id="follow-up-form" style="display: none;">
                 <textarea id="follow-up-text" rows="4" cols="50"></textarea>
                 <div id="follow-up-message"></div>
-                <button id="follow-up-submit" class="button" data-request_id="<?php echo esc_attr($request_id); ?>"><?php esc_html_e('Submit','hello-elementor-child'); ?></button>
+                <button id="follow-up-submit" class="button" data-request_id="<?php echo esc_attr($request_id); ?>"><?php esc_html_e('Submit','supavapes'); ?></button>
             </div>
         </div>
     <?php endif; ?>
     <section class="woocommerce-order-details">
-        <h2 class="woocommerce-order-details__title"><?php esc_html_e('Support Request Details','hello-elementor-child'); ?></h2>
+        <h2 class="woocommerce-order-details__title"><?php esc_html_e('Support Request Details','supavapes'); ?></h2>
         <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
             <thead>
                 <tr>
-                    <th class="woocommerce-table__product-name product-name"><?php esc_html_e('Product','hello-elementor-child'); ?></th>
-                    <th class="woocommerce-table__product-total product-total"><?php esc_html_e('Total','hello-elementor-child'); ?></th>
+                    <th class="woocommerce-table__product-name product-name"><?php esc_html_e('Product','supavapes'); ?></th>
+                    <th class="woocommerce-table__product-total product-total"><?php esc_html_e('Total','supavapes'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -94,18 +94,18 @@ $days_since_submitted = $interval->days;
                 ?>
                 <tr class="woocommerce-table__line-item order_item">
                     <td class="woocommerce-table__product-name product-name" colspan="2">
-                    <?php esc_html_e('No products found for this request.','hello-elementor-child'); ?>
+                    <?php esc_html_e('No products found for this request.','supavapes'); ?>
                     </td>
                 </tr>
                 <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <th scope="row"><?php esc_html_e('Subtotal:','hello-elementor-child'); ?></th>
+                    <th scope="row"><?php esc_html_e('Subtotal:','supavapes'); ?></th>
                     <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($subtotal)); ?></span></td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php esc_html_e('Total:','hello-elementor-child'); ?></th>
+                    <th scope="row"><?php esc_html_e('Total:','supavapes'); ?></th>
                     <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($subtotal)); ?></span></td>
                 </tr>
             </tfoot>

@@ -18,6 +18,6 @@ $cart_banner_text = get_field('cart_banner_text','option');
 			?>
 		</div>
 		<?php if(!empty($cart_banner_text)){?>
-			<h1 class="page-main-title"><?php esc_html_e('Cart','hello-elementor-child'); ?></h1>
+			<h1 class="page-main-title"><?php esc_html_e('Cart','supavapes'); ?></h1>
 		<?php }?>
 	</div>
