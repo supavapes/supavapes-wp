@@ -23,6 +23,9 @@ include 'includes/classes/class-mailchimp-subscribers-table.php';
 // include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
 include 'includes/shortcodes.php';
 
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
 /**
  * If the function, `supavapes_wp_enqueue_scripts_callback` doesn't exist.
  */
@@ -229,381 +232,384 @@ if ( ! function_exists( 'supavapes_init_callback' ) ) {
 add_action( 'init', 'supavapes_init_callback' );
 
 /**
- * Function to update mini cart fragment
- * 
- * @param array $fragments This variable holds the fragments value array.
- * @since 1.0.0
+ * If the function, `supavapes_woocommerce_add_to_cart_fragments_callback` doesn't exist.
  */
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
-
-function iconic_cart_count_fragments( $fragments ) {
-	
-	$fragments['span.cart-counter'] = '<span class="cart-counter">' . WC()->cart->get_cart_contents_count() . '</span>';
-	
-	return $fragments;
-	
-}
-
-add_filter( 'body_class', 'sv_custom_class_in_body' );
-function sv_custom_class_in_body( $classes ) {
-	
-	$classes[] = 'sv-popup-open';
-	
-	return $classes;
-}
-
-/**
-* Function to display whatsapp chat icon
-*
-* @since 1.0.0
-* 
-*/
-add_action( 'wp_footer', function () {  if ( !is_admin() ) {
-	
-	require_once get_stylesheet_directory() . '/templates/woocommerce/render-whatsapp-chat-icon.php';
-
-}},100);
-
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
-
-
-/**
-* Function to Register sidebars for the shop page filters.
-*
-* @since 1.0.0
-* 
-*/
-function sv_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Product Category', 'supavapes' ),
-		'id'            => 'product-cat-widgets',
-		'description'   => __( 'Widgets in this area will be shown on shop page to list product categories', 'supavapes' ),
-		'before_widget'	=> '<div class="widget-wrap">',
-		'after_widget'	=> '</div>',
-		'before_title'	=> '<h4 class="widget-title">',
-		'after_title'	=> '</h4>',
-	) );
-
-	register_sidebar( array(
-		'name'          => __( 'Product Filters', 'supavapes' ),
-		'id'            => 'product-cat-filters',
-		'description'   => __( 'Widgets in this area will be shown on shop page to filter products', 'supavapes' ),
-		'before_widget'	=> '<div class="widget-wrap">',
-		'after_widget'	=> '</div>',
-		'before_title'	=> '<h4 class="widget-title">',
-		'after_title'	=> '</h4>',
-	) );
-}
-add_action( 'widgets_init', 'sv_widgets_init' );
-
-
-/**
-* Function to Add custom setting options pages.
-*
-* @since 1.0.0
-* 
-*/
-if( function_exists('acf_add_options_page') ) {
-	acf_add_options_page(array(
-		'menu_title' => 'Supavapes Settings',
-		'menu_slug' => 'supavapes-settings'
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Verify Age Popup Settings',
-		'menu_title' => 'Verify Age Popup Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Subscriber Modal Popup Settings',
-		'menu_title' => 'Subscriber Modal Popup Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-
-	acf_add_options_sub_page(array(
-		'page_title' => 'Mailchimp Settings',
-		'menu_title' => 'Mailchimp Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-
-	acf_add_options_sub_page(array(
-		'page_title' => 'Announcement Top Bar',
-		'menu_title' => 'Announcement Top Bar',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Twilio Settings',
-		'menu_title' => 'Twilio Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Fun Questionnaries',
-		'menu_title' => 'Fun Questionnaries',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Shop & Category Settings',
-		'menu_title' => 'Shop & Category Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Cart Settings',
-		'menu_title' => 'Cart Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Checkout Settings',
-		'menu_title' => 'Checkout Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'My Account Settings',
-		'menu_title' => 'My Account Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Product Detail Settings',
-		'menu_title' => 'Product Detail Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Jokes Settings',
-		'menu_title' => 'Jokes Settings',
-		'parent_slug' => 'supavapes-settings',
-	));
-	acf_add_options_sub_page(array(
-		'page_title' => 'Customer Support Request',
-		'menu_title' => 'Customer Support Request',
-		'parent_slug' => 'supavapes-settings',
-	));
-
-	acf_add_options_sub_page(array(
-		'page_title' => 'WC Email Content',
-		'menu_title' => 'WC Email Content',
-		'parent_slug' => 'supavapes-settings',
-	));
-
-   
-	
-}
-
-
-/**
-* Function to Modify product rating html.
-*
-* @param String $html This variable holds html of ratting.
-* @param Integer $rating This variable holds rating count.
-* @param Integer $count This variable holds count of ratting.
-* @since 1.0.0
-* 
-*/
-add_filter('woocommerce_product_get_rating_html', function( $html, $rating, $count ){
-		ob_start();
-		require_once get_stylesheet_directory() . '/templates/woocommerce/product-rating-html.php';
-		$html = ob_get_clean();
-		return $html;
-},10,3);
-
-
-/**
-* Function to Render custom widgets which was register to filter products on shop page.
-*
-* @since 1.0.0
-* 
-*/
-add_action( 'woocommerce_before_main_content', 'sv_custom_widgets', 10, 0 );
-function sv_custom_widgets() {
-	require_once get_stylesheet_directory() . '/templates/woocommerce/render-sidebar-filters.php';
-}
-
-
-/**
-* Function to render product data in quick view modal.
-*
-* @since 1.0.0
-* 
-*/
-function sv_quick_view_modal(){
-
-	$popup_html = "";
-	ob_start();
-	require_once get_stylesheet_directory() . '/templates/modals/quick-view-modal.php';
-	$popup_html = ob_get_clean();
-	echo $popup_html;
-
-}
-add_action('wp_footer','sv_quick_view_modal');
-
-
-/**
-* Function to render product data in checkout prevent modal.
-*
-* @since 1.0.0
-* 
-*/
-function sv_checkout_prevent_popup(){
-
-	if(is_checkout()){
-		$popup_html = "";
-		ob_start();	
-		require_once get_stylesheet_directory() . '/templates/modals/checkout-prevent-popup.php';
-		$popup_html = ob_get_clean();
-		echo $popup_html;	
-	}
-
-}
-add_action('wp_footer','sv_checkout_prevent_popup');
-
-
-/**
-* Function to fetch preloader for the site.
-*
-* @since 1.0.0
-* 
-*/
-function sv_site_preloader(){
-
-	$loader_html = "";
-	ob_start();
-	?>
-	<div class="pre-loader_page" id="loader">
-		<div class="loader_row">
-			<span class="sv-loader"></span>
-		</div>
-	</div>
-	<?php
-	$loader_html = ob_get_clean();
-	echo $loader_html;
-
-}
-add_action('wp_footer','sv_site_preloader');
-
-
-/**
-* Ajax callback function to add product in cart with quick cart action icon.
-*
-* @since 1.0.0
-* 
-*/
-function sv_quick_cart_action() {
-
-	$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-	if ( ! wp_verify_nonce( $nonce, 'quick_cart_nonce' ) ) {
-		wp_send_json_error( 'Invalid nonce' );
-	}
-	if ( isset($_POST['product_id'] ) ) {
-		ob_start();
-		require_once get_stylesheet_directory() . '/templates/callback_functions/quick-cart.php';
-		$mini_cart = ob_get_clean();
-		wp_send_json_success(array(
-			'message' => 'Product added to cart successfully',
-			'mini_cart' => $mini_cart,
-			'cart_quantity' => $cart_quantity
-		));
-	} else {
-		wp_send_json_error( 'Product ID is missing' );
-	}
-
-}
-add_action('wp_ajax_quick_cart_action', 'sv_quick_cart_action');
-add_action('wp_ajax_nopriv_quick_cart_action', 'sv_quick_cart_action');
-
-
-/**
-* Ajax callback function to add product in cart with product detail page.
-*
-* @since 1.0.0
-* 
-*/
-function sv_woocommerce_ajax_add_to_cart() {
-
-	if ( isset($_POST['product_id'] ) ) {
-		$product_id = intval( $_POST['product_id'] ); 
-		$quantity = intval( $_POST['quantity'] ); 
-		WC()->cart->add_to_cart( $product_id , $quantity);
-
-		// Get cart quantity
-		$cart_quantity = WC()->cart->get_cart_contents_count();
-
-		// Capture the mini cart HTML
-		ob_start();
-		woocommerce_mini_cart();
-		$mini_cart = ob_get_clean();
-		// Send the mini cart HTML in the response
-		wp_send_json_success(array(
-			'message' => 'Product added to cart successfully',
-			'mini_cart' => $mini_cart,
-			'cart_quantity' => $cart_quantity
-		));
-	} else {
-		wp_send_json_error( 'Product ID is missing' );
-	}
-
-}
-add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'sv_woocommerce_ajax_add_to_cart');
-add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'sv_woocommerce_ajax_add_to_cart');
-
-
-/**
-* Function to render minicart data.
-*
-* @since 1.0.0
-* 
-*/
-function sv_render_minicart_data() {
-
-	ob_start();
-	woocommerce_mini_cart();
-	$mini_cart = ob_get_clean();
-	wp_send_json_success(array(
-		'message' => 'Open Mini Cart',
-		'mini_cart' => $mini_cart,
-	));
-   
-}
-add_action('wp_ajax_render_minicart_data', 'sv_render_minicart_data');
-add_action('wp_ajax_nopriv_render_minicart_data', 'sv_render_minicart_data');
-
-
-/**
-* Function to render verify age popup content.
-*
-* @since 1.0.0
-* 
-*/
-function sv_verify_age_modal(){
-	$popup_html = "";
-	ob_start();
-	require_once get_stylesheet_directory() . '/templates/modals/verify-age-modal.php';
-	$popup_html = ob_get_clean();
-	echo $popup_html;
-}
-add_action('wp_footer','sv_verify_age_modal');
-
-
-/**
-* Function to render store data popup content.
-*
-* @since 1.0.0
-* 
-*/
-function sv_store_data_modal(){
-	if ( is_product() ){
-		$store_popup_html = "";
-		ob_start();
-	
-		$terms = get_the_terms(get_the_ID(), 'store_locator');
-		if ($terms && !is_wp_error($terms)) {
-			set_query_var('terms_values', $terms);
-			require_once get_stylesheet_directory() . '/templates/modals/store-data-popup.php';
-			$store_popup_html = ob_get_clean();
-			echo $store_popup_html;
-		}
+if ( ! function_exists( 'supavapes_woocommerce_add_to_cart_fragments_callback' ) ) {
+	/**
+	 * Function to update mini cart fragment
+	 * 
+	 * @param array $fragments This variable holds the fragments value array.
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_add_to_cart_fragments_callback( $fragments ) {
+		$fragments['span.cart-counter'] = '<span class="cart-counter">' . WC()->cart->get_cart_contents_count() . '</span>';
+		
+		return $fragments;
 		
 	}
 }
-add_action('wp_footer','sv_store_data_modal');
 
+add_filter( 'woocommerce_add_to_cart_fragments', 'supavapes_woocommerce_add_to_cart_fragments_callback' );
+
+/**
+ * If the function, `supavapes_body_class_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_body_class_callback' ) ) {
+	/**
+	 * Add custom classes to the body tag.
+	 *
+	 * @param $classes array Body classes.
+	 *
+	 * @return array
+	 * @since 1.0.0
+	 */
+	function sv_custom_class_in_body( $classes ) {
+		$classes[] = 'sv-popup-open';
+
+		if ( ! is_user_logged_in() && is_account_page() ) {
+			$classes[] = 'sv-logged-out';
+		}
+
+		return $classes;
+	}
+}
+
+add_filter( 'body_class', 'supavapes_body_class_callback' );
+
+/**
+ * If the function, `supavapes_wp_footer_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_wp_footer_callback' ) ) {
+	/**
+	 * Function to display whatsapp chat icon
+	 *
+	 * @since 1.0.0
+	 * 
+	 */
+	function supavapes_wp_footer_callback() {
+		require_once get_stylesheet_directory() . '/templates/woocommerce/render-whatsapp-chat-icon.php';
+
+		// Render the modal for product quick view.
+		require_once get_stylesheet_directory() . '/templates/modals/quick-view-modal.php';
+
+		// Render the modal to prevent checkout after a certain number of failures.
+		if( is_checkout() ) {
+			require_once get_stylesheet_directory() . '/templates/modals/checkout-prevent-popup.php';
+		}
+
+		// Verify age modal when website opens.
+		require_once get_stylesheet_directory() . '/templates/modals/verify-age-modal.php';
+
+		// Show the store availability data.
+		if ( is_product() ) {
+			require_once get_stylesheet_directory() . '/templates/modals/store-data-popup.php';
+		}
+
+		// Site pre-loader.
+		ob_start();
+		?>
+		<div class="pre-loader_page" id="loader">
+			<div class="loader_row">
+				<span class="sv-loader"></span>
+			</div>
+		</div>
+		<?php
+		echo ob_get_clean();
+	}
+}
+
+add_action( 'wp_footer', 'supavapes_wp_footer_callback', 99 );
+
+/**
+ * If the function, `supavapes_widgets_init_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_widgets_init_callback' ) ) {
+	/**
+	 * Function to Register sidebars for the shop page filters.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_widgets_init_callback() {
+		// Register sidebar to show the product categories.
+		register_sidebar(
+			array(
+				'name'          => __( 'Product Category', 'supavapes' ),
+				'id'            => 'product-cat-widgets',
+				'description'   => __( 'Widgets in this area will be shown on shop page to list product categories', 'supavapes' ),
+				'before_widget'	=> '<div class="widget-wrap">',
+				'after_widget'	=> '</div>',
+				'before_title'	=> '<h4 class="widget-title">',
+				'after_title'	=> '</h4>',
+			)
+		);
+
+		// Register sidebar to show the product filters.
+		register_sidebar(
+			array(
+				'name'          => __( 'Product Filters', 'supavapes' ),
+				'id'            => 'product-cat-filters',
+				'description'   => __( 'Widgets in this area will be shown on shop page to filter products', 'supavapes' ),
+				'before_widget'	=> '<div class="widget-wrap">',
+				'after_widget'	=> '</div>',
+				'before_title'	=> '<h4 class="widget-title">',
+				'after_title'	=> '</h4>',
+			)
+		);
+	}
+}
+
+add_action( 'widgets_init', 'supavapes_widgets_init_callback' );
+
+/**
+ * If the function, `supavapes_acf_init_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_acf_init_callback' ) ) {
+	/**
+	 * Initialize the ACF fields.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_acf_init_callback() {
+		if ( function_exists( 'acf_add_options_page' ) ) {
+			acf_add_options_page(
+				array(
+					'menu_title' => __( 'SupaVapes', 'supavapes' ),
+					'menu_slug'  => 'supavapes-settings',
+				)
+			);
+
+			$acf_subpages = array(
+				array(
+					'page_title'  => __( 'Verify Age Popup Settings', 'supavapes' ),
+					'menu_title'  => __( 'Verify Age Popup Settings', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Subscriber Modal Popup Settings', 'supavapes' ),
+					'menu_title'  => __( 'Subscriber Modal Popup Settings', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Mailchimp Settings', 'supavapes' ),
+					'menu_title'  => __( 'Mailchimp Settings', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Announcement Top Bar', 'supavapes' ),
+					'menu_title'  => __( 'Announcement Top Bar', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Twilio Notifications', 'supavapes' ),
+					'menu_title'  => __( 'Twilio Notifications', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Fun Questionnaries', 'supavapes' ),
+					'menu_title'  => __( 'Fun Questionnaries', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Shop & Category Settings', 'supavapes' ),
+					'menu_title'  => __( 'Shop & Category Settings', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Cart', 'supavapes' ),
+					'menu_title'  => __( 'Cart', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Checkout', 'supavapes' ),
+					'menu_title'  => __( 'Checkout', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Customer Dashboard', 'supavapes' ),
+					'menu_title'  => __( 'Customer Dashboard', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Product Individual Page', 'supavapes' ),
+					'menu_title'  => __( 'Product Individual Page', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Jokes: Customer Dashboard', 'supavapes' ),
+					'menu_title'  => __( 'Jokes: Customer Dashboard', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'Customer Support Request', 'supavapes' ),
+					'menu_title'  => __( 'Customer Support Request', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+				array(
+					'page_title'  => __( 'WC Email Content', 'supavapes' ),
+					'menu_title'  => __( 'WC Email Content', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
+			);
+
+			if ( ! empty( $acf_subpages ) && is_array( $acf_subpages ) ) {
+				foreach ( $acf_subpages as $subpage ) {
+					acf_add_options_sub_page(
+						array(
+							'page_title'  => $subpage['page_title'],
+							'menu_title'  => $subpage['menu_title'],
+							'parent_slug' => $subpage['parent_slug'],
+						)
+					);
+				}
+			}
+		}
+	}
+}
+
+add_action( 'acf/init', 'supavapes_acf_init_callback' );
+
+/**
+ * If the function, `supavapes_woocommerce_product_get_rating_html_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_product_get_rating_html_callback' ) ) {
+	/**
+	 * Override the product rating HTML section.
+	 *
+	 * @param string $html   Rating html.
+	 * @param int    $rating Rating.
+	 * @param int    $count  Rating count.
+	 *
+	 * @return string
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_product_get_rating_html_callback( $html, $rating, $count ) {
+		ob_start();
+		require_once get_stylesheet_directory() . '/templates/woocommerce/product-rating-html.php';
+
+		return ob_get_clean();
+	}
+}
+
+add_filter( 'woocommerce_product_get_rating_html', 'supavapes_woocommerce_product_get_rating_html_callback', 10, 3 );
+
+/**
+ * If the function, `supavapes_woocommerce_before_main_content_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_before_main_content_callback' ) ) {
+	/**
+	 * Function to Render custom widgets which was register to filter products on shop page.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_before_main_content_callback() {
+		require_once get_stylesheet_directory() . '/templates/woocommerce/render-sidebar-filters.php';
+	}
+}
+
+add_action( 'woocommerce_before_main_content', 'supavapes_woocommerce_before_main_content_callback' );
+
+/**
+ * If the function, `supavapes_quick_cart_ajax_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_quick_cart_ajax_callback' ) ) {
+	/**
+	 * Render the product quick view window.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_quick_cart_ajax_callback() {
+		$nonce      = filter_input( INPUT_POST, 'nonce', FILTER_SANITIZE_STRING );
+		$product_id = (int) filter_input( INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT );
+
+		// Verify nonce.
+		if ( ! wp_verify_nonce( $nonce, 'quick_cart_nonce' ) ) {
+			$error = new WP_Error( '001', 'Invalid Nonce', 'Nonce for the ajax call quick cart could not be verified.' );
+			wp_send_json_error( $error );
+		}
+
+		// Return error if product ID is missing.
+		if ( empty( $product_id ) || 0 === $product_id ) {
+			$error = new WP_Error( '002', 'Product ID Missing', 'Product could not be added to the cart due to the missing product ID.' );
+			wp_send_json_error( $error );
+		}
+
+		ob_start();
+		require_once get_stylesheet_directory() . '/templates/callback_functions/quick-cart.php';
+		$mini_cart = ob_get_clean();
+
+		// Send the AJAX success response.
+		wp_send_json_success(
+			array(
+				'message'       => __( 'Product is successfully added to the cart.', 'supavapes' ),
+				'mini_cart'     => $mini_cart,
+				'cart_quantity' => $cart_quantity, // Receiving from quick-cart.php.
+			)
+		);
+	}
+}
+
+add_action( 'wp_ajax_quick_cart', 'supavapes_quick_cart_ajax_callback' );
+add_action( 'wp_ajax_nopriv_quick_cart', 'supavapes_quick_cart_ajax_callback' );
+
+/**
+ * If the function, `supavapes_woocommerce_ajax_add_to_cart_ajax_callback` is not defined.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_ajax_add_to_cart_ajax_callback' ) ) {
+	/**
+	 * Add product to cart.
+	 *
+	 * @since 1.00.
+	 */
+	function supavapes_woocommerce_ajax_add_to_cart_ajax_callback() {
+		$product_id = (int) filter_input( INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT );
+		$quantity   = filter_input( INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT );
+		$quantity   = ( ! empty( $quantity ) ) ? (int) $quantity : 1;
+
+		// Return error if product ID is missing.
+		if ( empty( $product_id ) || 0 === $product_id ) {
+			$error = new WP_Error( '002', 'Product ID Missing', 'Product could not be added to the cart due to the missing product ID.' );
+			wp_send_json_error( $error );
+		}
+
+		// Add product to the cart.
+		WC()->cart->add_to_cart( $product_id, $quantity);
+
+		// Send the mini cart HTML in the response.
+		wp_send_json_success(
+			array(
+				'message'       => __( 'Product is successfully added to the cart.', 'supavapes' ),
+				'mini_cart'     => woocommerce_mini_cart(), // Capture the mini cart HTML.
+				'cart_quantity' => WC()->cart->get_cart_contents_count(), // Get cart quantity.
+			)
+		);
+	}
+}
+
+add_action( 'wp_ajax_woocommerce_ajax_add_to_cart', 'supavapes_woocommerce_ajax_add_to_cart_ajax_callback' );
+add_action( 'wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'supavapes_woocommerce_ajax_add_to_cart_ajax_callback' );
+
+/**
+ * If the function, `supavapes_render_minicart_ajax_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_render_minicart_ajax_callback' ) ) {
+	/**
+	 * Render minicart.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_render_minicart_ajax_callback() {
+		// Send the AJAX response.
+		wp_send_json_success(
+			array(
+				'message'   => 'Open Mini Cart',
+				'mini_cart' => woocommerce_mini_cart(),
+			)
+		);
+	}
+}
+
+add_action( 'wp_ajax_render_minicart', 'supavapes_render_minicart_ajax_callback' );
+add_action( 'wp_ajax_nopriv_render_minicart', 'supavapes_render_minicart_ajax_callback' );
 
 /**
 * Ajax callback function to render product data in quick view modal.
@@ -2461,16 +2467,6 @@ function get_woocommerce_sales_data() {
 add_action('wp_ajax_get_sales_data', 'get_woocommerce_sales_data');
 add_action('wp_ajax_nopriv_get_sales_data', 'get_woocommerce_sales_data');
 
-
-add_filter( 'body_class', 'sv_custom_class' );
-function sv_custom_class( $classes ) {
-
-	if (!is_user_logged_in() && is_account_page()) {
-		$classes[] = 'sv-logged-out';
-	}
-	return $classes;
-
-}
 add_filter('woocommerce_cart_item_name', 'add_quantity_rule_message_to_cart_item_name', 20, 3);
 
 function add_quantity_rule_message_to_cart_item_name($product_name, $cart_item, $cart_item_key) {

@@ -1605,7 +1605,7 @@ jQuery(document).ready(function() {
             url: sv_ajax.ajax_url,
             type: 'POST',
             data: {
-                action: 'quick_cart_action',
+                action: 'quick_cart',
                 product_id: productId,
                 nonce: nonce
             },
@@ -1660,7 +1660,7 @@ jQuery(document).ready(function() {
             url: sv_ajax.ajax_url,
             type: 'POST',
             data: {
-                action: 'render_minicart_data'
+                action: 'render_minicart'
             },
             success: function(response) {
                 if (response.success) {
