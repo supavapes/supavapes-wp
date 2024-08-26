@@ -612,24 +612,30 @@ add_action( 'wp_ajax_render_minicart', 'supavapes_render_minicart_ajax_callback'
 add_action( 'wp_ajax_nopriv_render_minicart', 'supavapes_render_minicart_ajax_callback' );
 
 /**
-* Ajax callback function to render product data in quick view modal.
-*
-* @since 1.0.0 
-*/
-function sv_quick_view_product() {
+ * If the function, `supavapes_quick_view_product_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_quick_view_product_callback' ) ) {
+	/**
+	 * Render the quick view modal HTML for the products.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_quick_view_product_callback() {
+		ob_start();
+		require_once get_stylesheet_directory() . '/templates/callback_functions/quick-view.php';
 
-	$product_data = "";
-	ob_start();
-	require_once get_stylesheet_directory() . '/templates/callback_functions/quick-view.php';
-	$product_data = ob_get_clean();
-	$response = array(
-		'html' => $product_data
-	);
-	wp_send_json_success( $response );
-	wp_die();
+		// Send the AJAX response.
+		wp_send_json_success(
+			array(
+				'html' => ob_get_clean(),
+			)
+		);
+		wp_die();
+	}
 }
-add_action('wp_ajax_quick_view_product', 'sv_quick_view_product');
-add_action('wp_ajax_nopriv_quick_view_product', 'sv_quick_view_product');
+
+add_action( 'wp_ajax_quick_view_product', 'supavapes_quick_view_product_callback' );
+add_action( 'wp_ajax_nopriv_quick_view_product', 'supavapes_quick_view_product_callback' );
 
 
 add_action('wp_ajax_get_order_items', 'get_order_items_callback');
