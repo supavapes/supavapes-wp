@@ -305,31 +305,42 @@ if ( ! function_exists( 'supavapes_monthly_deals_callback' ) ) {
 
 add_shortcode( 'monthly_deals', 'supavapes_monthly_deals_callback' );
 
-
 /**
-* Function to display New Arrivals Products.
+ * If the function, `supavapes_new_arrivals_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_new_arrivals_callback' ) ) {
+	/**
+	 * Function to display New Arrivals Products.
+	 * Pass term id as a shortcode attribute. Set limit to display number of products. Default limit will be 8.
+	 * Use of Shortcode: [new_arrivals limit="10"]
+	 *
+	 * @param array $atts Shortcode arrtibutes.
+	 *
+	 * @return string
+	 * @since 1.0.0
+	 */
+	function supavapes_new_arrivals_callback( $atts = array() ) {
+		// Return, if it's the admin screen.
+		if ( is_admin() ) {
+			return;
+		}
 
-* @param Array $atts This variable holds the atts value array.
-* @since 1.0.0
-* Pass term id as a shortcode attribute. Set limit to display number of products. Default limit will be 8.
-* Use of Shortcode: [new_arrivals limit="10"]
-* 
-*/
-function sv_new_arrivals_slider($atts)
-{
-	$atts = shortcode_atts(
-		array(
-			'limit' => 8,
-		),
-		$atts
-	);
-	ob_start();
-	set_query_var('shortcode_atts', $atts);
-	require locate_template('templates/shortcodes/new-arrival.php');
-	return ob_get_clean();
+		$atts = shortcode_atts(
+			array(
+				'limit' => 8,
+			),
+			$atts
+		);
 
+		ob_start();
+		set_query_var( 'shortcode_atts', $atts );
+		require locate_template( 'templates/shortcodes/new-arrival.php' );
+
+		return ob_get_clean();
+	}
 }
-add_shortcode('new_arrivals', 'sv_new_arrivals_slider');
+
+add_shortcode( 'new_arrivals', 'supavapes_new_arrivals_callback' );
 
 
 /**
