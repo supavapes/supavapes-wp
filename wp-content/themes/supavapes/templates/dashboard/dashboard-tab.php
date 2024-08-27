@@ -1,17 +1,15 @@
 <?php
 $user_id = get_current_user_id();
 if ($user_id === 0) {
-    return 'User not logged in.';
+	return 'User not logged in.';
 }
 $customer_orders = wc_get_orders(array(
-    'customer' => $user_id,
-    'limit' => 1,
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'status' => array('pending', 'processing', 'on-hold', 'completed', 'cancelled', 'refunded', 'failed') // Exclude 'draft' status
+	'customer' => $user_id,
+	'limit' => 1,
+	'orderby' => 'date',
+	'order' => 'DESC',
+	'status' => array('pending', 'processing', 'on-hold', 'completed', 'cancelled', 'refunded', 'failed') // Exclude 'draft' status
 ));
-// debug();
-// die('lkoooooooo');
 if(!empty($customer_orders)){
 	$order_data = $customer_orders[0];
 	$order_id = $order_data->get_id();
@@ -26,24 +24,20 @@ if(!empty($customer_orders)){
 			$product_names[] = $product_name;
 		}
 	}
-}else{
-	// echo "No orders found";
 }
-
-
 ?>
 	<h2 class="dashboard-main-title"><?php esc_html_e('Customer ','supavapes'); ?><span><?php esc_html_e('saved money ','supavapes'); ?></span><?php esc_html_e(' when not consuming','supavapes'); ?><span><?php esc_html_e(' cigar','supavapes'); ?></span></h2>
 	<div class="chart-container">
 		<div class="chart-header">
 		<div class="year-dropdown">
-            <label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In dev test','supavapes'); ?></label>
-            <select id="purchase-year">
-                <option value="2024"><?php esc_html_e('2024','supavapes'); ?></option>
-                <option value="2023"><?php esc_html_e('2023','supavapes'); ?></option>
-                <option value="2022"><?php esc_html_e('2022','supavapes'); ?></option>
-                <option value="2021"><?php esc_html_e('2021','supavapes'); ?></option>
-            </select>
-        </div>
+			<label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In dev test','supavapes'); ?></label>
+			<select id="purchase-year">
+				<option value="2024"><?php esc_html_e('2024','supavapes'); ?></option>
+				<option value="2023"><?php esc_html_e('2023','supavapes'); ?></option>
+				<option value="2022"><?php esc_html_e('2022','supavapes'); ?></option>
+				<option value="2021"><?php esc_html_e('2021','supavapes'); ?></option>
+			</select>
+		</div>
 			<div class="tabs">
 				<div class="tab" data-tab="day"><?php esc_html_e('Daily','supavapes'); ?></div>
 				<div class="tab" data-tab="month"><?php esc_html_e('Monthly','supavapes'); ?></div>
@@ -63,7 +57,7 @@ if(!empty($customer_orders)){
 	<div class="dashboard-six-box">
 		<div class="dashboard-box">
 			<h3 class="dashboard-box-title"><?php esc_html_e('Last Order','supavapes'); ?></h3>
-			<?php if(isset($product_names) && !empty($product_names)){?>
+			<?php if ( isset( $product_names ) && !empty( $product_names ) ) { ?>
 			<div class="dashboard-box-data">
 				<div class="dashboard-box-data-detail">
 					<label class="dashboard-box-data-lable"><?php esc_html_e('Order id','supavapes'); ?></label>
@@ -73,7 +67,7 @@ if(!empty($customer_orders)){
 					<label class="dashboard-box-data-lable"><?php esc_html_e('Product Name','supavapes'); ?></label>
 					<?php
 					$count = 1; 
-					if (!empty($product_names)) { 
+					if ( !empty( $product_names ) ) { 
 						foreach ($product_names as $product_name) {
 							if($count === 1){
 					?>
@@ -169,19 +163,19 @@ if(!empty($customer_orders)){
 					$last_login_device = get_user_meta($user_id, 'last_login_device', true);
 			?>
 			<div class="dashboard-box-data">
-				<?php if(isset($last_login_device) && !empty($last_login_device)){?>
+				<?php if ( isset( $last_login_device ) && !empty( $last_login_device ) ) { ?>
 					<div class="dashboard-box-data-detail">
 						<label class="dashboard-box-data-lable"><?php esc_html_e('Device & Browser','supavapes'); ?></label>
 						<p class="dashboard-box-data-value"><?php echo esc_html__($last_login_device,'supavapes'); ?> | <?php echo esc_html__($last_login_browser,'supavapes'); ?></p>
 					</div>
 				<?php }?>
-				<?php if(!empty($formatted_last_login)){?>
+				<?php if ( !empty( $formatted_last_login ) ) { ?>
 					<div class="dashboard-box-data-detail">
 						<label class="dashboard-box-data-lable"><?php echo esc_html__('Date','supavapes'); ?></label>
 						<p class="dashboard-box-data-value"><?php echo esc_html($formatted_last_login); ?></p>
 					</div>
 				<?php }?>
-				<?php if(!empty($location)){?>
+				<?php if ( !empty( $location ) ) { ?>
 					<div class="dashboard-box-data-detail">
 						<label class="dashboard-box-data-lable"><?php echo esc_html__('Location','supavapes'); ?></label>
 						<p class="dashboard-box-data-value"><?php echo esc_html($location,'supavapes'); ?></p>
@@ -197,72 +191,69 @@ if(!empty($customer_orders)){
 		<div class="dashboard-box sv-active-offer-box">
 			<h3 class="dashboard-box-title"><?php esc_html_e('Active Offers','supavapes'); ?></h3>
 			<div class="sv-active-offer-slider">
-    <?php
-    $active_offers = supa_active_offers_from_discount();
-    // debug($active_offers);
-    foreach ($active_offers as $offer) {
-        $offer_title = $offer['title'];
-        $discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
-        $product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
-        $products = isset($offer['products']) ? $offer['products'] : '';
-        $buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
-        $buy = isset($offer['buy']) ? $offer['buy'] : '';
-        $free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
-        $free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
-        $title_to_display = '';
-        $shop_now_url = ''; 
-        $image_url = '';
+	<?php
+	$active_offers = supa_active_offers_from_discount();
+	foreach ($active_offers as $offer) {
+		$offer_title = $offer['title'];
+		$discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
+		$product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
+		$products = isset($offer['products']) ? $offer['products'] : '';
+		$buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
+		$buy = isset($offer['buy']) ? $offer['buy'] : '';
+		$free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
+		$free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
+		$title_to_display = '';
+		$shop_now_url = ''; 
+		$image_url = '';
 
-        if (!empty($product_category)) {
-            $term_val = get_term($product_category);
-            // debug($term_val);
-            if ($term_val && !is_wp_error($term_val)) {
-                $title_to_display = $term_val->name;
-                $shop_now_url = get_term_link($term_val);
-                $thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
-                if ($thumbnail_id) {
-                    $image_url = wp_get_attachment_url($thumbnail_id);
-                }
-            }
-        } elseif (!empty($products)) {
-            $product = wc_get_product($products[0]);
-            if ($product) {
-                $title_to_display = $product->get_name();
-                $shop_now_url = get_permalink($product->get_id());
-                $image_id = $product->get_image_id();
-                if ($image_id) {
-                    $image_url = wp_get_attachment_url($image_id);
-                }
-            }
-        }
-        ?>
-        <div class="sv-deals-item-box">
-            <div class="box-text">
-                <?php if (!empty($buy)) : ?>
-                    <span><?php esc_html_e('BUY','supavapes'); ?> <?php echo esc_html($buy); ?></span>
-                <?php endif; ?>
-                <h4><?php echo esc_html($title_to_display); ?></h4>
-                <?php if (!empty($discount_value)) { ?>
-                    <h4><?php esc_html_e('Get ','supavapes'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
-                <?php } else if (!empty($free_qty)) { ?>
-                    <h4><?php esc_html_e('Get ','supavapes'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
-                <?php } ?>
-                <div class="sv-delas-item-list">
-                    <ul><li><?php esc_html_e('Conditions may apply','supavapes'); ?></li></ul>
-                </div>
-                <a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','supavapes'); ?></a>
-            </div>
-            <div class="box-image">
-                <?php if (!empty($image_url)) : ?>
-                    <img src="<?php echo esc_url($image_url); ?>" alt="image">
-                <?php else : ?>
-                    <img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
-                <?php endif; ?>
-            </div>
-        </div>
-    <?php } ?>
+		if ( !empty( $product_category ) ) {
+			$term_val = get_term($product_category);
+			if ($term_val && !is_wp_error($term_val)) {
+				$title_to_display = $term_val->name;
+				$shop_now_url = get_term_link($term_val);
+				$thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
+				if ($thumbnail_id) {
+					$image_url = wp_get_attachment_url($thumbnail_id);
+				}
+			}
+		} elseif ( !empty( $products ) ) {
+			$product = wc_get_product($products[0]);
+			if ($product) {
+				$title_to_display = $product->get_name();
+				$shop_now_url = get_permalink($product->get_id());
+				$image_id = $product->get_image_id();
+				if ($image_id) {
+					$image_url = wp_get_attachment_url($image_id);
+				}
+			}
+		}
+		?>
+		<div class="sv-deals-item-box">
+			<div class="box-text">
+				<?php if (!empty($buy)) : ?>
+					<span><?php esc_html_e('BUY','supavapes'); ?> <?php echo esc_html($buy); ?></span>
+				<?php endif; ?>
+				<h4><?php echo esc_html($title_to_display); ?></h4>
+				<?php if (!empty($discount_value)) { ?>
+					<h4><?php esc_html_e('Get ','supavapes'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
+				<?php } else if (!empty($free_qty)) { ?>
+					<h4><?php esc_html_e('Get ','supavapes'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
+				<?php } ?>
+				<div class="sv-delas-item-list">
+					<ul><li><?php esc_html_e('Conditions may apply','supavapes'); ?></li></ul>
+				</div>
+				<a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','supavapes'); ?></a>
+			</div>
+			<div class="box-image">
+				<?php if (!empty($image_url)) : ?>
+					<img src="<?php echo esc_url($image_url); ?>" alt="image">
+				<?php else : ?>
+					<img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php } ?>
 </div>
-
 		</div>
 		<div class="dashboard-box joke-slider">
 		<?php

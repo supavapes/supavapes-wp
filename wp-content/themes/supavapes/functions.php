@@ -239,6 +239,7 @@ if ( ! function_exists( 'supavapes_woocommerce_add_to_cart_fragments_callback' )
 	 * Function to update mini cart fragment
 	 * 
 	 * @param array $fragments This variable holds the fragments value array.
+	 * @return array
 	 * @since 1.0.0
 	 */
 	function supavapes_woocommerce_add_to_cart_fragments_callback( $fragments ) {

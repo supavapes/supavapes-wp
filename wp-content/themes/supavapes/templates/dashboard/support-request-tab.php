@@ -7,10 +7,8 @@ $args = array(
     'post_status'    => 'publish',
     'author' => $user_id,
 );
-
 $support_requests = new WP_Query($args);
-
-if ($support_requests->have_posts()) {
+if ( $support_requests->have_posts() ) {
     echo '<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">';
     echo '<thead>';
     echo '<tr>';
@@ -26,16 +24,15 @@ if ($support_requests->have_posts()) {
         $support_requests->the_post();
         $sr_id = get_the_ID();
         $post_title = get_the_title();
-        $post_date = get_the_date();
-        
+        $post_date = get_the_date();      
         // Get request status from post meta
         $approved = get_post_meta($sr_id, '_support_request_approved', true);
         $declined = get_post_meta($sr_id, '_support_request_declined', true);
         $sr_status = 'Pending';
 
-        if ($approved) {
+        if ( $approved ) {
             $sr_status = 'Approved';
-        } elseif ($declined) {
+        } elseif ( $declined ) {
             $sr_status = 'Declined';
         }
 
@@ -54,5 +51,4 @@ if ($support_requests->have_posts()) {
 } else {
     wc_print_notice('No support requests found.', 'notice');
 }
-
 wp_reset_postdata();

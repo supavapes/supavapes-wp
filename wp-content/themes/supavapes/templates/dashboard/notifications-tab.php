@@ -75,7 +75,7 @@ $sms = get_user_meta( $user_id, 'sms', true );
 	?>
 	<p>
 		<button type="submit" class="woocommerce-Button button" name="save_preferences" value="Save"><?php echo esc_html__('Save Preferences','supavapes'); ?></button>
-		<p><?php echo esc_html__('Disclaimer: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem'); ?></p>
+		<p><?php echo esc_html__('Disclaimer: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem','supavapes'); ?></p>
 		<?php wp_nonce_field( 'save_preference_action', 'save_preference_nonce' ); ?>
 	</p>
 </form>
