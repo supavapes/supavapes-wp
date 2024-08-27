@@ -1,6 +1,5 @@
 <?php
 ?>
-
 <div id="overlay" class="overlay"></div>
     <div class="loader_page" id="loader" style="display:none;">
         <div class="loader_row">

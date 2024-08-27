@@ -16,7 +16,6 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-// die('lkkkkkkkkkkkk');
 $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
 if ( $available_gateways ) : ?>

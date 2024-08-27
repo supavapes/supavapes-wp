@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
     <ul class="dropdown-menu dropdown-menu-mini-cart">
         <li>
             <div class="widget_shopping_cart_content">
-                <p>Loading..</p>
+                <p><?php esc_html_e('Loading..','supavapes'); ?></p>
 				<?php
                 	// echo wp_kses_post(woocommerce_mini_cart());
 				?>

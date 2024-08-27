@@ -1,4 +1,7 @@
 <?php
+/**
+ * Popup which shows store details. It shows availability of product in the local store.
+ */
 $terms     = get_the_terms( get_the_ID(), 'store_locator' );
 $term_data = array();
 
@@ -10,7 +13,6 @@ foreach ( $terms as $term ) {
 		'contact_number' => get_term_meta($term->term_id, 'contact_number', true)
 	);
 }
-
 $store_count_class = "";
 if(count($term_data) === 1){
 	$store_count_class = "one-store-locations";

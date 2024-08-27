@@ -17,7 +17,7 @@ $term_ids = explode(',', $atts['term_ids']);
 				echo '<p class="sv-product-tab-links' . esc_html($active_class) . '" onclick="opentab(\'' . esc_html($term_name) . '\')">' . esc_html($term_name) . '</p>';
 				$first_iteration = false;
 			} else {
-				echo '<p>No term found with ID ' . esc_html($term_id) . '</p>';
+				echo '<p>'. esc_html('No term found with ID','supavapes') . esc_html($term_id) . '</p>';
 			}
 		}
 		?>

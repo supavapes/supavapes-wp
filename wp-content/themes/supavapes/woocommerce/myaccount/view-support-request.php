@@ -16,9 +16,9 @@ if (!$support_request || $support_request->post_type != 'support_request') {
 //get_header('myaccount'); ?>
 
 <div class="woocommerce-MyAccount-content">
-    <h2>Support Request #<?php echo $request_id; ?></h2>
+    <h2><?php esc_html_e('Support Request','supavapes'); ?>#<?php echo $request_id; ?></h2>
     
-    <p><strong>Request Status:</strong> <?php 
+    <p><strong><?php esc_html_e('Request Status:','supavapes'); ?></strong> <?php 
     $approved = get_post_meta($request_id, '_support_request_approved', true);
     $declined = get_post_meta($request_id, '_support_request_declined', true);
     $status = 'Pending';
@@ -31,7 +31,7 @@ if (!$support_request || $support_request->post_type != 'support_request') {
     echo esc_html($status);
     ?></p>
 
-    <p><strong>Request Details:</strong> <?php echo nl2br(esc_html($support_request->post_content)); ?></p>
+    <p><strong><?php esc_html_e('Request Details:','supavapes')?></strong> <?php echo nl2br(esc_html($support_request->post_content)); ?></p>
     
     <!-- Add any additional information you want to display here -->
 
@@ -39,4 +39,3 @@ if (!$support_request || $support_request->post_type != 'support_request') {
 
 <?php 
 get_footer();
-//get_footer('myaccount'); ?>

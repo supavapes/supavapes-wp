@@ -92,7 +92,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
                   <?php } ?>
               </div>
               <div class="winning-code">
-                  <p><?php echo esc_html__('The discount coupon code has been sent to your email id. Please check your email for more details.'); ?></p>
+                  <p><?php echo esc_html__('The discount coupon code has been sent to your email id. Please check your email for more details.','supavapes'); ?></p>
               </div>
           </div>
           <div class="thanks">

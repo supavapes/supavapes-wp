@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * This file contains popup html to show after support request added successfully.
+ */
 ?>
 <div class="sv-email-modal" id="sv-email-modal">
 	<div class="overlay"></div>
@@ -15,8 +17,8 @@
             </div>
             <div class="sv-email-modal__body">
                 <div class="sv-email-modal__heading-info">
-                    <h2 class="sv-email-modal__title">Thank you for your request.</h2>
-                    <p class="sv-email-modal__description">Our team will look into the request and get back to you soon.</p>
+                    <h2 class="sv-email-modal__title"><?php esc_html_e('Thank you for your request.','supavapes'); ?></h2>
+                    <p class="sv-email-modal__description"><?php esc_html_e('Our team will look into the request and get back to you soon.','supavapes'); ?></p>
                 </div>
             </div>
         </div>

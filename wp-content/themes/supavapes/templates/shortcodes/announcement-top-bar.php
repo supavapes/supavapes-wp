@@ -1,9 +1,7 @@
 <?php 
-
 $announcement_bar_heading = get_field('announcement_bar_heading','option');
 $announcement_bar_button = get_field('announcement_bar_button','option');
 ?>
-
 <div class="announcement-bar" style="color: #ffffff; background: #ec4e34;" data-announcement-bar="">     
 		<div class="announcement-bar-text">
 			<span class="announcement-bar-close">x</span>

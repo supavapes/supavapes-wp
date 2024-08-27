@@ -1,4 +1,5 @@
 <?php
+$avatar = '';
 $current_logged_in_user = wp_get_current_user();
 if ( $current_logged_in_user->exists() ) {
     // Get user data

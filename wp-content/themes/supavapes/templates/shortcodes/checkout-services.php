@@ -11,7 +11,7 @@
 			<div class="checkout-service-box-img">
 				<img src="<?php echo esc_url($service_icon['url']);?>">
 			</div>
-			<h3 class="checkout-service-box-title"><?php echo esc_html($service_title); ?></h3>
+			<h3 class="checkout-service-box-title"><?php echo esc_html($service_title,'supavapes'); ?></h3>
 		</div>
 	<?php 
 	endwhile;

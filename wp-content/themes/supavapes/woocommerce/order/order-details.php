@@ -22,7 +22,6 @@
  if ( ! $order ) {
 	 return;
  }
- 
  $set_order_status = get_field('set_order_status', 'option');
  $order_items           = $order->get_items( apply_filters( 'woocommerce_purchase_order_item_types', 'line_item' ) );
  $show_purchase_note    = $order->has_status( apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) ) );
@@ -38,7 +37,7 @@
 		 )
 	 );
  }
- 
+
  if ( ! empty( $order ) && !( is_checkout() && ! empty( is_wc_endpoint_url('order-received') ) ) ) {
 	 $current_order_status = 'wc-' . $order->get_status(); // WooCommerce prefixes statuses with 'wc-'
 	 
@@ -131,7 +130,6 @@
 				<div class="multi-select-box">
 					<div class="selected-items"><span class="placeholder"><?php esc_html_e('Select Items','supavapes'); ?></span></div>
 						<div class="options-container" style="display: none;">
-
 						</div>
 						<div class="error-message" id="item-selection-error" style="color: red; display: none;"></div>
 					</div>

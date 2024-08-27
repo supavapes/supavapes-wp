@@ -50,7 +50,7 @@ if($product){
 		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
 		name="<?php echo esc_attr( $input_name ); ?>"
 		value="<?php echo esc_attr( $input_value ); ?>"
-		aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"
+		aria-label="<?php esc_attr_e( 'Product quantity', 'supavapes' ); ?>"
 		size="4"
 		min="<?php echo esc_attr( $min_value ); ?>"
 		max="<?php echo esc_attr( $max_value ); ?>"

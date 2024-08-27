@@ -4,7 +4,7 @@ $atts = get_query_var('shortcode_atts', array(
 ));
 $product_ids = explode(',', $atts['ids']);
 	if (empty($product_ids)) {
-		return esc_html_e('Please provide product IDs.');
+		return esc_html_e('Please provide product IDs.','supavapes');
 	}
 	
 	?>

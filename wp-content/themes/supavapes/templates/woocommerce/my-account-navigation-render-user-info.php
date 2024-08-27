@@ -27,9 +27,9 @@ if ( $current_logged_in_user->exists() ) {
         </div>
         <div class="user-details">
             <?php if(!empty($first_name) && !empty($last_name)) {?>
-                <p class="user-name"><?php echo esc_html($first_name) . ' ' . esc_html($last_name); ?></p>
+                <p class="user-name"><?php echo esc_html($first_name,'supavapes') . ' ' . esc_html($last_name,'supavapes'); ?></p>
             <?php }else{?>
-                <p class="user-name"><?php echo esc_html($user_nicename); ?></p>
+                <p class="user-name"><?php echo esc_html($user_nicename,'supavapes'); ?></p>
             <?php }?>
             <p class="user-email"><?php echo esc_html($email); ?></p>
             <?php if ($custom_avatar): ?>
@@ -39,6 +39,6 @@ if ( $current_logged_in_user->exists() ) {
     </div>
     <?php
     if (!empty($biography)) {
-        echo '<p class="user-biography">' . esc_html($biography) . '</p>';
+        echo '<p class="user-biography">' . esc_html($biography,'supavapes') . '</p>';
     }
 }

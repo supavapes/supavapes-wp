@@ -1,8 +1,6 @@
 <?php
-
 $checkout_banner_text = get_field('checkout_banner_text','option');
 ?>
-
 <div class="page-banner">
 		<div class="page-banner-slider">
 			<?php if( have_rows('checkout_banner_images','option') ):
