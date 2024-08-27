@@ -263,7 +263,7 @@ if ( ! function_exists( 'supavapes_body_class_callback' ) ) {
 	 * @return array
 	 * @since 1.0.0
 	 */
-	function sv_custom_class_in_body( $classes ) {
+	function supavapes_body_class_callback( $classes ) {
 		$classes[] = 'sv-popup-open';
 
 		if ( ! is_user_logged_in() && is_account_page() ) {
