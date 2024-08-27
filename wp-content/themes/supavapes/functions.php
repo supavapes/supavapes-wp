@@ -167,7 +167,7 @@ if ( ! function_exists( 'supavapes_admin_enqueue_scripts_callback' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	function enqueue_support_request_scripts() {
+	function supavapes_admin_enqueue_scripts_callback() {
 		// Enqueue the custom style for the admin dashboard.
 		wp_enqueue_style(
 			'sv-custom_wp_admin_css',
