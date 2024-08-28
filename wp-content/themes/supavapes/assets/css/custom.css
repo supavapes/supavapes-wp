@@ -1557,3 +1557,93 @@ input#submit:hover {background-color: transparent;}
 .quantity input[type=number] {
     -moz-appearance:textfield;
 }
+
+/* Contact form CSS 28-08-2024*/
+
+.sc-contact-form .form-control{
+	margin-bottom: 25px;
+}
+
+.sc-contact-form .form-control:last-child{
+	margin-bottom: 0;
+}
+
+.sc-contact-form .form-control label {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}
+
+.sc-contact-form .form-control input,
+.sc-contact-form .form-control textarea {
+	background: rgba(255, 255, 255, 0.1);
+    border-color: transparent;
+    height: 44px;
+    color: #fff;
+    margin-top: 8px;
+}
+
+.sc-contact-form .form-control textarea{
+	height: 130px !important;
+}
+
+.sc-contact-form .form-control input:hover,
+.sc-contact-form .form-control input:active,
+.sc-contact-form .form-control textarea:active,
+.sc-contact-form .form-control textarea:hover{
+	border-color: #ec4e34 !important;
+}
+.sc-contact-form .form-control span {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+	margin: 0 !important;
+}
+.sc-contact-form .form-control p {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 0;
+}
+.sc-contact-form p:last-child{
+	margin: 0 !important;
+}
+textarea:focus-visible,
+input:focus-visible {
+    outline: none !important;
+}
+.sc-contact-form input.wpcf7-form-control.wpcf7-submit {
+    position: relative;
+    padding: 11px 30px 11px 30px;
+    margin: 0 !important;
+    font-size: 18px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: #fff;
+    background-color: #ec4e34;
+    border-radius: 0;
+    line-height: 20px !important;
+}
+.sc-contact-form input.wpcf7-form-control.wpcf7-submit:hover{
+    color: #ec4e34 !important; 
+    background-color: #fff;
+}
+.form-submit p{
+	position: relative;
+	margin: 0 !important;
+	align-items: center;
+}
+[type=submit]:focus{
+	outline: none !important;
+}
+@media(max-width:1024px){
+	    .form-name.form-control p {
+        flex-direction: column;
+    }
+}
+
+.gm-style-mtc button {
+    background: #EC4E34 !important;
+}
