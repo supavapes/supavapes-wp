@@ -24,6 +24,8 @@ wp-content/*
 # Configuration
 wp-config.php
 gitautodeploy.php
+.DS_Store
+*/.DS_Store
 
 # Log files
 *.log
