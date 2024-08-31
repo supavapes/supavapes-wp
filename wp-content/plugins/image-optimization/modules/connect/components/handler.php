@@ -4,6 +4,7 @@ namespace ImageOptimization\Modules\Connect\Components;
 
 use ImageOptimization\Modules\Connect\Classes\{
 	Config,
+	Data,
 	GrantTypes,
 	Service,
 	Utils,
@@ -66,6 +67,9 @@ class Handler {
 
 		// Exchange the code for an access token and store it
 		Service::get_token( GrantTypes::AUTHORIZATION_CODE, $code );
+
+		// Makes sure we won't stick in the mismatch limbo
+		Data::set_home_url();
 
 		// Redirect to the redirect URI
 		wp_redirect( Utils::get_redirect_uri() );

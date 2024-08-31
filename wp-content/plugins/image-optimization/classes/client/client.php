@@ -3,11 +3,8 @@
 namespace ImageOptimization\Classes\Client;
 
 use ImageOptimization\Classes\Exceptions\Client_Exception;
+use ImageOptimization\Classes\File_Utils;
 use ImageOptimization\Classes\Image\Image;
-use ImageOptimization\Modules\Oauth\{
-	Classes\Data,
-	Components\Connect
-};
 use ImageOptimization\Modules\Stats\Classes\Optimization_Stats;
 use WP_Error;
 
@@ -237,7 +234,10 @@ class Client {
 		} else {
 			$image_mime = image_type_to_mime_type( exif_imagetype( $file ) );
 
-			if ( ! in_array( $image_mime, Image::get_supported_mime_types(), true ) ) {
+			if (
+				! in_array( $image_mime, Image::get_supported_mime_types(), true ) &&
+				( 'application/octet-stream' === $image_mime && 'avif' !== File_Utils::get_extension( $file ) )
+			) {
 				throw new Client_Exception( "Unsupported mime type `$image_mime`" );
 			}
 

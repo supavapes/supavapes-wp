@@ -3,7 +3,10 @@
 namespace ImageOptimization\Modules\Connect;
 
 use ImageOptimization\Classes\Module_Base;
-use ImageOptimization\Modules\Connect\Classes\Data;
+use ImageOptimization\Modules\Connect\Classes\{
+	Data,
+	Utils,
+};
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -45,11 +48,12 @@ class Module extends Module_Base {
 			'Deactivate',
 			'Deactivate_And_Disconnect',
 			'Version',
+			'Switch_Domain',
 		];
 	}
 
 	public static function is_connected() : bool {
-		return ! ! Data::get_access_token();
+		return ! ! Data::get_access_token() && Utils::is_valid_home_url();
 	}
 
 	public static function is_active() : bool {

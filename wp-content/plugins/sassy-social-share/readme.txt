@@ -1,10 +1,10 @@
 === Social Sharing Plugin - Sassy Social Share ===
 Contributors: Heateor, kamirkhan, mohammadfarhankhan, the_champ
 Donate link: https://www.heateor.com/donate/?action=Sassy+Social+Share
-Tags: social share, social sharing, social media, facebook share, facebook like, facebook social share, wordpress social share, share buttons, social share buttons, twitter tweet, whatsapp share, line share, gab share, gab social share, gab, parler share, parler social share, gettr, gettr share, gettr social share, mewe share, mewe social share, mewe, mastodon share, mastodon social share, mastodon, rutube share, rutube social share, rutube, google news, google news share, google news icon, RSS, RSS Feed, x, x share, yelp, google translate, Google maps, tiktok, Teams, flickr, threads, Gab, Gab share, Line
+Tags: social share, social sharing, social media, wordpress social share, share buttons, facebook share, facebook like, social share buttons, twitter tweet, whatsapp share, line share, gab share, gab social share, gab, parler share, parler social share, gettr, gettr share, gettr social share, mewe share, mewe social share, mewe, mastodon share, mastodon social share, mastodon, rutube share, rutube social share, rutube, google news, google news share, google news icon, RSS, RSS Feed, x, x share, yelp, google translate, Google maps, tiktok, Teams, flickr, threads, Gab, Gab share, Line, bluesky
 Requires at least: 2.5.0
 Tested up to: 6.6.1
-Stable tag: 3.3.65
+Stable tag: 3.3.67
 License: GPLv2 or later
 
 Slickest, Simplest and Optimized Share buttons. Facebook, X (Twitter), Reddit, Pinterest, Whatsapp, Gab, Gettr and over 100 more.
@@ -125,6 +125,18 @@ Yes, we can help you with it. Just drop an email at support[at]heateor[dot]com
 4. **Universal Sharing Popup**: Universal Sharing popup having all the supported sharing and bookmarking services
 
 == Changelog ==
+= 3.3.67 [31 August 2024] =
+* [Bugfix] Bluesky share icon was not appearing in the social share bar even after selecting it in the plugin settings
+
+= 3.3.66 [29 August 2024] =
+* [New] Added Micro.blog social share icon
+* [New] Added Micro.blog social follow icon
+* [New] Added Raindrop.io social share icon
+* [New] Added Threads social share icon
+* [New] Added Bluesky social share icon
+* [New] Added Bluesky social follow icon
+* [Improvement] Updated the official Facebook SDK being used throughout the plugin to the latest version 20.0
+
 = 3.3.65 [3 July 2024] =
 * [Improvement] Added an option in the Miscellaneous section to control the behavior of the More social share icon
 
@@ -1447,3 +1459,15 @@ Yes, we can help you with it. Just drop an email at support[at]heateor[dot]com
 
 = 3.3.65 [3 July 2024] =
 * [Improvement] Added an option in the Miscellaneous section to control the behavior of the More social share icon 
+
+= 3.3.66 [29 August 2024] =
+* [New] Added Micro.blog social share icon
+* [New] Added Micro.blog social follow icon
+* [New] Added Raindrop.io social share icon
+* [New] Added Threads social share icon
+* [New] Added Bluesky social share icon
+* [New] Added Bluesky social follow icon
+* [Improvement] Updated the official Facebook SDK being used throughout the plugin to the latest version 20.0
+
+= 3.3.67 [31 August 2024] =
+* [Bugfix] Bluesky share icon was not appearing in the social share bar even after selecting it in the plugin settings

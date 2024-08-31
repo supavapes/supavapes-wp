@@ -22,6 +22,7 @@ use ImageOptimization\Modules\Optimization\{
 	Components\Exceptions\Bulk_Optimization_Token_Not_Found_Error,
 };
 
+use ImageOptimization\Modules\Stats\Classes\Optimization_Stats;
 use Throwable;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -89,6 +90,8 @@ class Bulk_Optimization {
 				->set_status( Image_Status::OPTIMIZATION_FAILED )
 				->set_error_type( Image_Optimization_Error_Type::GENERIC )
 				->save();
+		} finally {
+			Optimization_Stats::get_image_stats( null, true );
 		}
 	}
 
@@ -106,7 +109,8 @@ class Bulk_Optimization {
 			$oi = new Optimize_Image(
 				$image_id,
 				'bulk',
-				$bulk_token
+				$bulk_token,
+				true
 			);
 
 			$oi->optimize();
@@ -133,6 +137,8 @@ class Bulk_Optimization {
 				->set_status( Image_Status::REOPTIMIZING_FAILED )
 				->set_error_type( Image_Optimization_Error_Type::GENERIC )
 				->save();
+		} finally {
+			Optimization_Stats::get_image_stats( null, true );
 		}
 	}
 

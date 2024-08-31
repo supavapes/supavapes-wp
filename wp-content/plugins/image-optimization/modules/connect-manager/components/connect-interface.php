@@ -11,6 +11,7 @@ interface Connect_Interface {
 	public function is_connected(): bool;
 
 	public function is_activated() : bool;
+	public function is_valid_home_url() : bool;
 
 	public function get_connect_status();
 

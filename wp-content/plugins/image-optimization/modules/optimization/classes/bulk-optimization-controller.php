@@ -421,19 +421,13 @@ class Bulk_Optimization_Controller {
 
 		foreach ( $operations as $operation ) {
 			$image_id = $operation->get_args()['attachment_id'];
+			$image = new Image( $image_id );
 
 			try {
-				$image = new Image( $image_id );
-				$meta = new Image_Meta( $image_id );
-				$wp_meta = new WP_Image_Meta( $image_id );
-
-				$original_file_size = $meta->get_original_file_size( Image::SIZE_FULL )
-									  ?? File_System::size( $image->get_file_path( Image::SIZE_FULL ) );
-				$current_file_size = $wp_meta->get_file_size( Image::SIZE_FULL )
-									 ?? File_System::size( $image->get_file_path( Image::SIZE_FULL ) );
+				$stats = Optimization_Stats::get_image_stats( $image_id );
 			} catch ( Invalid_Image_Exception $iie ) {
 				continue;
-			} catch ( File_System_Operation_Error $e ) {
+			} catch ( Throwable $t ) {
 				$original_file_size = 0;
 				$current_file_size = 0;
 			}
@@ -446,8 +440,8 @@ class Bulk_Optimization_Controller {
 				'image_name' => $image->get_attachment_object()->post_title,
 				'image_id' => $image_id,
 				'thumbnail_url' => $image->get_url( 'thumbnail' ),
-				'original_file_size' => $original_file_size,
-				'current_file_size' => $current_file_size,
+				'original_file_size' => $stats['initial_image_size'],
+				'current_file_size' => $stats['current_image_size'],
 			];
 		}
 

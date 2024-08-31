@@ -62,6 +62,8 @@ class Single_Optimization {
 			$oi = new Optimize_Image(
 				$image_id,
 				'manual',
+				null,
+				true
 			);
 
 			$oi->optimize();

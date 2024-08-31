@@ -1,17 +1,6 @@
 <?php
 namespace ImageOptimization\Modules\Core;
 
-// TODO: Remove imports that are not used.
-use ImageOptimization\Modules\Oauth\{
-	Classes\Data,
-	Components\Connect,
-	Rest\Activate,
-	Rest\Connect_Init,
-	Rest\Deactivate,
-	Rest\Disconnect,
-	Rest\Get_Subscriptions,
-};
-
 use ImageOptimization\Modules\Optimization\{
 	Rest\Cancel_Bulk_Optimization,
 	Rest\Optimize_Bulk,
@@ -21,8 +10,9 @@ use ImageOptimization\Modules\Backups\Rest\{
 	Remove_Backups,
 };
 use ImageOptimization\Classes\{
+	Migration\Migration_Manager,
 	Module_Base,
-	Utils,
+	Utils
 };
 
 use ImageOptimization\Plugin;
@@ -39,6 +29,7 @@ class Module extends Module_Base {
 	public static function component_list() : array {
 		return [
 			'Pointers',
+			'Migrations',
 			'Conflicts',
 			'User_Feedback',
 			'Not_Connected',
@@ -63,7 +54,7 @@ class Module extends Module_Base {
 		// @var ImageOptimizer/Modules/ConnectManager/Module
 		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
 
-		if ( ! $module->connect_instance->is_activated() || $module->connect_instance->images_left() > 0 ) {
+		if ( ! $module->connect_instance->get_connect_status() || $module->connect_instance->images_left() > 0 ) {
 			return;
 		}
 
@@ -83,12 +74,48 @@ class Module extends Module_Base {
 						'image-optimization'
 					); ?>
 
-					<a href="https://go.elementor.com/io-panel-upgrade/">
+					<a href="https://go.elementor.com/io-quota-upgrade/">
 						<?php esc_html_e(
 							'Upgrade plan now',
 							'image-optimization'
 						); ?>
 					</a>
+				</span>
+			</p>
+		</div>
+		<?php
+	}
+
+	public function maybe_add_url_mismatch_notice() {
+		// @var ImageOptimizer/Modules/ConnectManager/Module
+		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
+
+		if ( $module->connect_instance->is_valid_home_url() ) {
+			return;
+		}
+
+		?>
+		<div class="notice notice-error notice image-optimizer__notice image-optimizer__notice--error">
+			<p>
+				<b>
+					<?php esc_html_e(
+						'Your license key does not match your current domain, causing a mismatch.',
+						'image-optimization'
+					); ?>
+				</b>
+
+				<span>
+					<?php esc_html_e(
+						'This is most likely due to a change in the domain URL of your site (including HTTP/SSL migration).',
+						'image-optimization'
+					); ?>
+
+					<button type="button" onclick="document.dispatchEvent( new Event( 'image-optimizer/auth/url-mismatch-modal/open' ) );">
+						<?php esc_html_e(
+							'Fix mismatched URL',
+							'image-optimization'
+						); ?>
+					</button>
 				</span>
 			</p>
 		</div>
@@ -106,12 +133,23 @@ class Module extends Module_Base {
 				admin_url( 'admin.php?page=' . \ImageOptimization\Modules\Settings\Module::SETTING_BASE_SLUG ),
 				esc_html__( 'Settings', 'image-optimization' )
 			),
-			'upgrade' => sprintf(
-				'<a href="%s" style="color: #524CFF; font-weight: 700;" target="_blank" rel="noopener noreferrer">%s</a>',
-				'https://go.elementor.com/io-panel-upgrade/',
-				esc_html__( 'Upgrade', 'image-optimization' )
-			),
 		];
+		// @var ImageOptimizer/Modules/ConnectManager/Module
+		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
+
+		if ( $module->connect_instance->is_connected() ) {
+			$custom_links['upgrade'] = sprintf(
+				'<a href="%s" style="color: #524CFF; font-weight: 700;" target="_blank" rel="noopener noreferrer">%s</a>',
+				'https://go.elementor.com/io-plugins-upgrade/',
+				esc_html__( 'Upgrade', 'image-optimization' )
+			);
+		} else {
+			$custom_links['connect'] = sprintf(
+				'<a href="%s" style="color: #524CFF; font-weight: 700;">%s</a>',
+				admin_url( 'admin.php?page=' . \ImageOptimization\Modules\Settings\Module::SETTING_BASE_SLUG ),
+				esc_html__( 'Connect', 'image-optimization' )
+			);
+		}
 
 		return array_merge( $custom_links, $links );
 	}
@@ -174,6 +212,7 @@ class Module extends Module_Base {
 				'isConnectOnFly' => $is_connect_on_fly,
 				'isConnected' => $module->connect_instance->is_connected(),
 				'isActivated' => $module->connect_instance->is_activated(),
+				'isUrlMismatch' => ! $module->connect_instance->is_valid_home_url(),
 				'planData' => $module->connect_instance->is_activated() ? $module->connect_instance->get_connect_status() : null,
 				'licenseKey' => $module->connect_instance->is_activated() ? $module->connect_instance->get_activation_state() : null,
 				'imagesLeft' => $module->connect_instance->is_activated() ? $module->connect_instance->images_left() : null,
@@ -208,6 +247,8 @@ class Module extends Module_Base {
 	public function __construct() {
 		$this->register_components();
 
+		add_action( 'action_scheduler_init', [ Migration_Manager::class, 'init' ] );
+
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_global_assets' ] );
 		add_filter( 'plugin_action_links', [ $this, 'add_plugin_links' ], 10, 2 );
 
@@ -217,6 +258,7 @@ class Module extends Module_Base {
 			}
 
 			add_action( 'admin_notices', [ $this, 'maybe_add_quota_reached_notice' ] );
+			add_action( 'admin_notices', [ $this, 'maybe_add_url_mismatch_notice' ] );
 
 			if ( Utils::is_media_page() ) {
 				add_action('in_admin_header', function () {

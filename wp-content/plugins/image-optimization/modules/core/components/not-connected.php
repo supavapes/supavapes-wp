@@ -107,7 +107,7 @@ class Not_Connected {
 			// @var ImageOptimizer/Modules/ConnectManager/Module
 			$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
 
-			if ( $module->connect_instance->is_connected() ) {
+			if ( $module->connect_instance->is_connected() || ! $module->connect_instance->is_valid_home_url() ) {
 				return;
 			}
 

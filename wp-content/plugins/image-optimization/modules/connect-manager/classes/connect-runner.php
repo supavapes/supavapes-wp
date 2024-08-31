@@ -22,6 +22,10 @@ class Connect_Runner {
 		return $this->connect->is_activated();
 	}
 
+	public function is_valid_home_url() : bool {
+		return $this->connect->is_valid_home_url();
+	}
+
 	public function get_connect_status() {
 		return $this->connect->get_connect_status();
 	}

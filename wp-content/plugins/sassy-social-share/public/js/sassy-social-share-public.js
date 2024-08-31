@@ -50,6 +50,30 @@ function heateorSssMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 		redirect_url: "https://twitter.com/intent/tweet?text=" + (twitterTitle ? twitterTitle : postTitle) + " " + postUrl,
 		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-4 -4 39 39"><path d="M28 8.557a9.913 9.913 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.738 9.738 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.893 9.893 0 0 1-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z" fill="#fff"></path></svg>'
 	  },
+	  threads: {
+	  	background_color: "#000", 
+		title: "Threads",
+		redirect_url: "https://www.threads.net/intent/post?text=" + (twitterTitle ? twitterTitle : postTitle) + "%20" + postUrl,
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-100 -100 648 712"><path fill="#fff" d="M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z"></path></svg>'
+	  },
+	  bluesky: {
+	  	background_color: "#0085ff",
+		title: "BlueSky",
+		redirect_url: "https://bsky.app/intent/compose?text=" + (twitterTitle ? twitterTitle : postTitle) + "%20" + postUrl,
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-3 -3 38 38"><path d="M16 14.903c-.996-1.928-3.709-5.521-6.231-7.293C7.353 5.912 6.43 6.206 5.827 6.478 5.127 6.793 5 7.861 5 8.49s.346 5.155.572 5.91c.747 2.496 3.404 3.34 5.851 3.07.125-.02.252-.036.38-.052-.126.02-.253.037-.38.051-3.586.529-6.771 1.83-2.594 6.457 4.595 4.735 6.297-1.015 7.171-3.93.874 2.915 1.88 8.458 7.089 3.93 3.911-3.93 1.074-5.928-2.512-6.457a8.122 8.122 0 0 1-.38-.051c.128.016.255.033.38.051 2.447.271 5.104-.573 5.85-3.069.227-.755.573-5.281.573-5.91 0-.629-.127-1.697-.827-2.012-.604-.271-1.526-.566-3.942 1.132-2.522 1.772-5.235 5.365-6.231 7.293Z" fill="#fff"/></svg>'
+	  },
+	  raindrop: {
+	  	background_color: "#0b7ed0", 
+		title: "Raindrop.io",
+		redirect_url: "https://app.raindrop.io/add?link=" + postUrl + "&title=" + (twitterTitle ? twitterTitle : postTitle),
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path fill="#fff" fill-rule="evenodd" d="M21.805 8.837a7.82 7.82 0 0 1 0 11.282 9 9 0 0 1-.327.302L16 25.447l-5.478-5.026a9 9 0 0 1-.328-.302 7.82 7.82 0 0 1 0-11.282c3.206-3.116 8.405-3.116 11.611 0" clip-rule="evenodd" opacity=".9"></path><g opacity=".8"><path fill="#fff" d="M10 13.447a6 6 0 0 1 6 6v6h-6a6 6 0 0 1 0-12"></path><mask id="a" width="12" height="13" x="4" y="13" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#0DB4E2" d="M10 13.447a6 6 0 0 1 6 6v6h-6a6 6 0 0 1 0-12"></path></mask><g mask="url(#a)"><path fill="#fff" fill-rule="evenodd" d="M21.805 8.836a7.82 7.82 0 0 1 0 11.283 9 9 0 0 1-.327.301L16 25.447l-5.478-5.027a9 9 0 0 1-.328-.302 7.82 7.82 0 0 1 0-11.282c3.206-3.115 8.405-3.115 11.611 0" clip-rule="evenodd"></path></g></g><g opacity=".8"><path fill="#fff" d="M16 25.447v-6l.003-.17A6 6 0 1 1 22 25.447z"></path><mask id="b" width="12" height="13" x="16" y="13" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#0DB4E2" d="M16 25.447v-6l.003-.17A6 6 0 1 1 22 25.447z"></path></mask><g mask="url(#b)"><path fill="#fff" fill-rule="evenodd" d="M21.805 8.836a7.82 7.82 0 0 1 0 11.283 9 9 0 0 1-.327.301L16 25.447l-5.478-5.027a9 9 0 0 1-.328-.302 7.82 7.82 0 0 1 0-11.282c3.206-3.116 8.405-3.116 11.611 0" clip-rule="evenodd"></path></g></g></svg>'
+	  },
+	  microblog: {
+	  	background_color: "#ff8800", 
+		title: "Micro.blog",
+		redirect_url: "https://micro.blog/post?text=" + (twitterTitle ? twitterTitle : postTitle) + "%20" + postUrl,
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path fill="#fff" d="M25.46 21.73c1.59-1.87 2.54-4.225 2.54-6.785 0-6.093-5.373-11.028-12-11.028S4 8.852 4 14.945c0 6.092 5.373 11.027 12 11.027a12.9 12.9 0 0 0 4.285-.724.39.39 0 0 1 .438.137c1.003 1.354 2.569 2.306 4.31 2.693a.238.238 0 0 0 .235-.38 4.69 4.69 0 0 1 .2-5.97l-.009.002Zm-3.768-8.082-3.09 2.346 1.12 3.714a.35.35 0 0 1-.536.39L16 17.884l-3.186 2.214a.352.352 0 0 1-.536-.39l1.121-3.714-3.09-2.346a.35.35 0 0 1 .204-.63l3.877-.081 1.276-3.664a.351.351 0 0 1 .663 0l1.276 3.664 3.878.08a.351.351 0 0 1 .209.631"></path></svg>'
+	  },
 	  linkedin: {
 	  	background_color: "#0077b5",
 		title: "Linkedin",

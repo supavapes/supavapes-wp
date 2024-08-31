@@ -29,7 +29,7 @@ class Module extends Module_Base {
 			'Get_Subscriptions',
 			'Activate',
 			'Deactivate',
-			"Version",
+			'Version',
 		];
 	}
 

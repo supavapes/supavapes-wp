@@ -26,6 +26,10 @@ class Legacy_Connect implements Connect_Interface {
 		return Connect::is_activated();
 	}
 
+	public function is_valid_home_url() : bool {
+		return true;
+	}
+
 	public function get_connect_status() {
 		return Connect::get_connect_status();
 	}

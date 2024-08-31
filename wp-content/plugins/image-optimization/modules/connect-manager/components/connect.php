@@ -5,6 +5,7 @@ use ImageOptimization\Modules\Connect\{
 	Module as ConnectModule,
 	Classes\Data,
 	Classes\Service,
+	Classes\Utils as ConnectUtils,
 	Rest\Authorize,
 	Rest\Version
 };
@@ -27,6 +28,10 @@ class Connect implements Connect_Interface {
 
 	public function is_activated() : bool {
 		return ConnectModule::is_connected();
+	}
+
+	public function is_valid_home_url() : bool {
+		return ConnectUtils::is_valid_home_url();
 	}
 
 	public function get_connect_status() {
@@ -61,14 +66,17 @@ class Connect implements Connect_Interface {
 			return null;
 		}
 
+		if ( ! empty( $response->site_url ) && Data::get_home_url() !== $response->site_url ) {
+			Data::set_home_url( $response->site_url );
+		}
+
 		set_transient( self::STATUS_CHECK_TRANSIENT, $response, MINUTE_IN_SECONDS * 5 );
 
 		return $response;
 	}
 
 	public function get_connect_data( bool $force = false ): array {
-
-		$data = get_transient(self::STATUS_CHECK_TRANSIENT);
+		$data = get_transient( self::STATUS_CHECK_TRANSIENT );
 
 		$user = [];
 
@@ -77,16 +85,16 @@ class Connect implements Connect_Interface {
 			return $user;
 		}
 
-		// Return if user property does not exists in the data obejct.
-		if ( ! property_exists($data, 'user' ) ) {
+		// Return if user property does not exist in the data object.
+		if ( ! property_exists( $data, 'user' ) ) {
 			return $user;
 		}
-		
-		if ( $data && $data->user->email ) {
+
+		if ( $data->user->email ) {
 			$user = [
 				'user' => [
 					'email' => $data->user->email,
-				]
+				],
 			];
 		}
 

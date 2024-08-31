@@ -17,6 +17,7 @@ class Data {
 	const TOKEN_ID = '_token_id';
 	const SUBSCRIPTION_ID = '_subscription_id';
 	const OPTION_OWNER_USER_ID = '_owner_user_id';
+	const HOME_URL = '_home_url';
 
 	/**
 	 * get_option
@@ -181,6 +182,14 @@ class Data {
 		return self::get_connect_mode_data( self::REFRESH_TOKEN, false );
 	}
 
+	public static function get_home_url() {
+		return self::get_connect_mode_data( self::HOME_URL, false );
+	}
+
+	public static function set_home_url( ?string $home_url = null ): bool {
+		return self::set_connect_mode_data( self::HOME_URL, $home_url ?? home_url() );
+	}
+
 	/**
 	 * set_user_is_owner_option
 	 */
@@ -285,7 +294,9 @@ class Data {
 			self::delete_option( self::TOKEN_ID );
 			self::delete_option( self::SUBSCRIPTION_ID );
 			self::delete_option( self::OPTION_OWNER_USER_ID );
-			delete_transient( 'image_optimizer_status_check ');
+			self::delete_option( self::HOME_URL );
+
+			delete_transient( 'image_optimizer_status_check' );
 		} else {
 			$user_id = get_current_user_id();
 			self::delete_user_data( $user_id, self::ACCESS_TOKEN );
@@ -293,6 +304,8 @@ class Data {
 			self::delete_user_data( $user_id, self::TOKEN_ID );
 			self::delete_user_data( $user_id, self::SUBSCRIPTION_ID );
 			self::delete_user_data( $user_id, self::OPTION_OWNER_USER_ID );
+			self::delete_user_data( $user_id, self::HOME_URL );
+
 			delete_transient( 'image_optimizer_status_check' );
 		}
 	}
@@ -309,9 +322,12 @@ class Data {
 			self::delete_option( self::TOKEN_ID );
 			self::delete_option( self::SUBSCRIPTION_ID );
 			self::delete_option( self::OPTION_OWNER_USER_ID );
-			delete_transient( 'image_optimizer_status_check ');
+			self::delete_option( self::HOME_URL );
+
+			delete_transient( 'image_optimizer_status_check' );
 		} else {
 			$user_id = get_current_user_id();
+
 			self::delete_user_data( $user_id, self::CLIENT_ID );
 			self::delete_user_data( $user_id, self::CLIENT_SECRET );
 			self::delete_user_data( $user_id, self::ACCESS_TOKEN );
@@ -319,6 +335,8 @@ class Data {
 			self::delete_user_data( $user_id, self::TOKEN_ID );
 			self::delete_user_data( $user_id, self::SUBSCRIPTION_ID );
 			self::delete_user_data( $user_id, self::OPTION_OWNER_USER_ID );
+			self::delete_user_data( $user_id, self::HOME_URL );
+
 			delete_transient( 'image_optimizer_status_check' );
 		}
 	}

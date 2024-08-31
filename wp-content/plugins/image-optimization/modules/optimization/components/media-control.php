@@ -5,22 +5,25 @@ namespace ImageOptimization\Modules\Optimization\Components;
 use ImageOptimization\Classes\Image\{
 	Exceptions\Invalid_Image_Exception,
 	Image,
+	Image_Conversion,
+	Image_Conversion_Option,
 	Image_Meta,
 	Image_Optimization_Error_Type,
 	Image_Status
 };
+
 use ImageOptimization\Modules\Oauth\Components\{
-	Connect,
 	Exceptions\Auth_Error,
 };
+
 use ImageOptimization\Modules\Optimization\{
 	Classes\Exceptions\Image_Validation_Error,
 	Classes\Optimization_Error_Message,
 	Classes\Validate_Image,
 	Module,
 };
+
 use ImageOptimization\Classes\File_Utils;
-use ImageOptimization\Modules\Oauth\Classes\Data;
 use ImageOptimization\Modules\Settings\Classes\Settings;
 use ImageOptimization\Modules\Stats\Classes\Optimization_Stats;
 
@@ -141,7 +144,6 @@ class Media_Control {
 		// @var ImageOptimizer/Modules/ConnectManager/Module
 		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
 
-
 		try {
 			if ( ! $module->connect_instance->is_connected() || ! $module->connect_instance->is_activated() ) {
 				throw new Auth_Error( 'You have to activate your license to use Image Optimizer' );
@@ -155,12 +157,15 @@ class Media_Control {
 			if ( Image_Status::OPTIMIZED === $meta->get_status() ) {
 				$global_context['can_be_restored'] = $image->can_be_restored();
 			} else {
-				$path = $image->get_file_path( Image::SIZE_FULL );
-				$is_webp = strtolower( File_Utils::get_extension( $path ) ) === 'webp';
-				$backups_enabled = Settings::get( Settings::BACKUP_ORIGINAL_IMAGES_OPTION_NAME );
-				$webp_conversion_enabled = Settings::get( Settings::CONVERT_TO_WEBP_OPTION_NAME );
+				$ic = new Image_Conversion();
 
-				$global_context['can_be_restored'] = ( ! $is_webp && $webp_conversion_enabled ) || $backups_enabled;
+				$path = $image->get_file_path( Image::SIZE_FULL );
+				$backups_enabled = Settings::get( Settings::BACKUP_ORIGINAL_IMAGES_OPTION_NAME );
+				$conversion_enabled = $ic->is_enabled();
+				$needs_conversion = $conversion_enabled &&
+									strtolower( File_Utils::get_extension( $path ) ) !== $ic->get_current_file_extension();
+
+				$global_context['can_be_restored'] = ( $needs_conversion && $conversion_enabled ) || $backups_enabled;
 			}
 
 			switch ( $meta->get_status() ) {
@@ -198,7 +203,7 @@ class Media_Control {
 						'absolute' => $stats['initial_image_size'] - $stats['current_image_size'],
 					];
 
-					$is_losseless_and_webp = Settings::get( Settings::CONVERT_TO_WEBP_OPTION_NAME )
+					$is_losseless_and_webp = Image_Conversion_Option::WEBP === Settings::get( Settings::CONVERT_TO_FORMAT_OPTION_NAME )
 											 && 'lossless' === Settings::get( Settings::COMPRESSION_LEVEL_OPTION_NAME );
 
 					Module::load_template( $context, 'optimized', array_merge(

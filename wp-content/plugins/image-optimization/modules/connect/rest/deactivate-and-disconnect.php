@@ -8,6 +8,7 @@ use ImageOptimization\Modules\Connect\Classes\{
 	Service
 };
 use Throwable;
+use WP_REST_Request;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -27,8 +28,13 @@ class Deactivate_And_Disconnect extends Route_Base {
 		return 'deactivate_and_disconnect';
 	}
 
-	public function POST() {
+	public function POST( WP_REST_Request $request ) {
 		try {
+			if ( $request->get_param( 'clear_session' ) ) {
+				Data::clear_session();
+				return $this->respond_success_json();
+			}
+
 			Service::deactivate_license();
 			Service::disconnect();
 

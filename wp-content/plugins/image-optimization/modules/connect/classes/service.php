@@ -43,6 +43,7 @@ class Service {
 
 		Data::set_client_id( $client_id );
 		Data::set_client_secret( $client_secret );
+		Data::set_home_url();
 
 		return $client_id;
 	}
@@ -128,7 +129,7 @@ class Service {
 	 * @return array
 	 * @throws Service_Exception
 	 */
-	public static function get_token( string $grant_type, ?string $credential = null ): array {
+	public static function get_token( string $grant_type, ?string $credential = null, ?bool $update = true ): array {
 		$token_url = Utils::get_token_url();
 
 		if ( ! $token_url ) {
@@ -155,7 +156,8 @@ class Service {
 				$body[ GrantTypes::REFRESH_TOKEN ] = $credential;
 				break;
 			case GrantTypes::CLIENT_CREDENTIALS:
-				// nothing to do
+				$body['redirect_uri'] = Utils::get_redirect_uri( Data::get_home_url() );
+
 				break;
 			default:
 				throw new Service_Exception( 'Invalid grant type' );
@@ -170,10 +172,12 @@ class Service {
 			'body' => $body,
 		] );
 
-		Data::set_connect_mode_data( Data::TOKEN_ID, $data['id_token'] ?? null );
-		Data::set_connect_mode_data( Data::ACCESS_TOKEN, $data['access_token'] ?? null );
-		Data::set_connect_mode_data( Data::REFRESH_TOKEN, $data['refresh_token'] ?? null );
-		Data::set_connect_mode_data( Data::OPTION_OWNER_USER_ID, get_current_user_id() ?? null );
+		if ( $update ) {
+			Data::set_connect_mode_data( Data::TOKEN_ID, $data['id_token'] ?? null );
+			Data::set_connect_mode_data( Data::ACCESS_TOKEN, $data['access_token'] ?? null );
+			Data::set_connect_mode_data( Data::REFRESH_TOKEN, $data['refresh_token'] ?? null );
+			Data::set_connect_mode_data( Data::OPTION_OWNER_USER_ID, get_current_user_id() );
+		}
 
 		return $data;
 	}
@@ -213,6 +217,7 @@ class Service {
 	 * @param int    $valid_response_code
 	 *
 	 * @return array|null
+	 * @throws Service_Exception
 	 */
 	public static function request( string $url, array $args, int $valid_response_code = 200 ): ?array {
 		$args['timeout'] = 30;
@@ -251,5 +256,39 @@ class Service {
 		}
 
 		self::get_token( GrantTypes::REFRESH_TOKEN, $current_refresh_token );
+	}
+
+	/**
+	 * @throws Service_Exception
+	 */
+	public static function update_redirect_uri(): void {
+		$client_id = Data::get_client_id();
+
+		if ( ! $client_id ) {
+			throw new Service_Exception( 'Missing client ID' );
+		}
+
+		$client_patch_url = Utils::get_clients_patch_url( $client_id );
+
+		[ 'access_token' => $access_token ] = self::get_token(
+			GrantTypes::CLIENT_CREDENTIALS,
+			null,
+			false
+		);
+
+		self::request( $client_patch_url, [
+			'method' => 'PATCH',
+			'headers' => [
+				'Content-Type' => 'application/json',
+				'Authorization' => "Bearer {$access_token}",
+			],
+			'body' => json_encode( [
+				'redirect_uri' => Utils::get_redirect_uri(),
+			] ),
+		] );
+
+		self::refresh_token();
+
+		Data::set_home_url();
 	}
 }
