@@ -5,6 +5,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 use Wdr\App\Conditions\Base;
+use Wdr\App\Helpers\Woocommerce;
 use WDRPro\App\Helpers\CoreMethodCheck;
 
 class PurchaseFirstOrder extends Base
@@ -52,6 +53,7 @@ class PurchaseFirstOrder extends Base
                 $args = array(
                     'posts_per_page' => 1,
                     'meta_query' => $conditions,
+                    'post_status' => array_keys(apply_filters('advanced_woo_discount_rules_check_purchase_first_order_status', Woocommerce::getOrderStatusList()))
                 );
                 if (CoreMethodCheck::customOrdersTableIsEnabled()) {
                     $cot_query_args = CoreMethodCheck::prepareCOTQueryArgsThroughWPQuery($args);

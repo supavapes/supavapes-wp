@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the Discount Rules PRO 2.0 plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules PRO 2.0 2.6.3\n"
+"Project-Id-Version: Discount Rules PRO 2.0 2.6.5\n"
 "Last-Translator: Anantharaj B <anantharaj@flycart.org>\n"
 "Language-Team: Flycart Support <support@flycart.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-20T04:44:29+00:00\n"
+"POT-Creation-Date: 2024-08-14T05:05:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: woo-discount-rules-pro\n"
@@ -140,11 +140,11 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: App/Conditions/PurchaseFirstOrder.php:18
+#: App/Conditions/PurchaseFirstOrder.php:19
 msgid "First order"
 msgstr ""
 
-#: App/Conditions/PurchaseFirstOrder.php:19
+#: App/Conditions/PurchaseFirstOrder.php:20
 #: App/Conditions/PurchaseLastOrder.php:18
 #: App/Conditions/PurchaseLastOrderAmount.php:18
 #: App/Conditions/PurchasePreviousOrders.php:18
@@ -280,23 +280,23 @@ msgstr ""
 msgid "Bulk Discount"
 msgstr ""
 
-#: App/Controllers/Admin/UpdateHandler.php:98
+#: App/Controllers/Admin/UpdateHandler.php:101
 msgid "Please enter a valid license key"
 msgstr ""
 
-#: App/Controllers/Admin/UpdateHandler.php:101
+#: App/Controllers/Admin/UpdateHandler.php:104
 msgid "License key check : Passed."
 msgstr ""
 
-#: App/Controllers/Admin/UpdateHandler.php:103
+#: App/Controllers/Admin/UpdateHandler.php:106
 msgid "License key seems to be Invalid. Please enter a valid license key"
 msgstr ""
 
-#: App/Controllers/Admin/UpdateHandler.php:229
+#: App/Controllers/Admin/UpdateHandler.php:232
 msgid "License key for the %s seems invalid. %s, you can get it from %s"
 msgstr ""
 
-#: App/Controllers/Admin/UpdateHandler.php:233
+#: App/Controllers/Admin/UpdateHandler.php:236
 msgid "License key for the %s is not entered. %s, you can get it from %s"
 msgstr ""
 
@@ -1553,27 +1553,27 @@ msgid "Select values"
 msgstr ""
 
 #: App/Views/Admin/Settings/cart.php:8
-msgid "Free shipping title"
+msgid "Free shipping method title"
 msgstr ""
 
 #: App/Views/Admin/Settings/cart.php:9
-msgid "Title for free shipping"
+msgid "This will be used as a method title in the cart / checkout pages"
 msgstr ""
 
 #: App/Views/Admin/Settings/cart.php:19
-msgid "Hide other shipping methods"
+msgid "Hide other shipping options when free shipping available"
 msgstr ""
 
 #: App/Views/Admin/Settings/cart.php:20
-msgid "Hide other shipping methods when free shipping rule is applied."
+msgid " Use this if you would like to hide other shipping options when a free shipping discount available"
 msgstr ""
 
 #: App/Views/Admin/Settings/general.php:8
-msgid "Licence key"
+msgid "License Key"
 msgstr ""
 
 #: App/Views/Admin/Settings/general.php:9
-msgid "Add licence key to get auto update"
+msgid "Activate your license for Discount Rules PRO. Retrieve your license key from <a target=\"_blank\" href=\"https://my.flycart.org/my-account\">your account</a> and enter it here. If you haven't purchased a license yet, visit <a target=\"_blank\" href=\"https://www.flycart.org/products/wordpress/woocommerce-discount-rules\">flycart.org</a> to buy one today."
 msgstr ""
 
 #: App/Views/Admin/Settings/general.php:9
@@ -1581,47 +1581,47 @@ msgid "Read Docs"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:8
-msgid "Show cross sell block on cart?"
+msgid "Enable Buy X Get Y based Cross-sell Offers"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:9
-msgid "This setting applies only for Buy X Get Y - Product rule  type only."
+msgid "NOTE: This setting applies only for Buy X Get Y - Product rule type"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:26
-msgid "Limit"
+msgid "Number of Products"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:27
-msgid "Cross sell products limit to display"
+msgid "Number of items to show"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:35
-msgid "Column"
+msgid "Columns"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:36
-msgid "Cross sell Column"
+msgid "Number of columns"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:44
-msgid "Order by"
+msgid "Sorting Order"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:45
-msgid "Cross sell Order by"
+msgid "Sorting order"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:50
-msgid "Rand"
+msgid "Random ordering"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:51
-msgid "Menu order"
+msgid "Menu based ordering"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:52
-msgid "Price"
+msgid "Price based ordering"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:58
@@ -1629,7 +1629,7 @@ msgid "Ordering"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:59
-msgid "Cross sell Ordering"
+msgid "Ascending or descending order of items"
 msgstr ""
 
 #: App/Views/Admin/Settings/promotion.php:64
@@ -1648,43 +1648,43 @@ msgstr ""
 msgid "You may be interested in"
 msgstr ""
 
-#: woo-discount-rules-pro.php:83
+#: woo-discount-rules-pro.php:82
 msgid "Woo Discount Rules 2.0"
 msgstr ""
 
-#: woo-discount-rules-pro.php:86
+#: woo-discount-rules-pro.php:85
 msgid "Since 2.0, you need both the core and pro packages installed and activated."
 msgstr ""
 
-#: woo-discount-rules-pro.php:89
+#: woo-discount-rules-pro.php:88
 msgid "Why we made this change?"
 msgstr ""
 
-#: woo-discount-rules-pro.php:92
+#: woo-discount-rules-pro.php:91
 msgid "This arrangement is to avoid the confusion in the installation and upgrade process. Many users first install the core free version. Then purchase the PRO version and try to install it over the free version. Since both free and pro packages have same names, wordpress asks them to uninstall free and then install pro. As you can see, this is quite confusing for the end users."
 msgstr ""
 
-#: woo-discount-rules-pro.php:95
+#: woo-discount-rules-pro.php:94
 msgid "As a result, starting from 2.0, we now have two packs: 1. Core 2. PRO."
 msgstr ""
 
-#: woo-discount-rules-pro.php:98
+#: woo-discount-rules-pro.php:97
 msgid "What do I need to do?"
 msgstr ""
 
-#: woo-discount-rules-pro.php:101
+#: woo-discount-rules-pro.php:100
 msgid " - Just install both and activate both Core and Pro packs."
 msgstr ""
 
-#: woo-discount-rules-pro.php:104
+#: woo-discount-rules-pro.php:103
 msgid "Install core version"
 msgstr ""
 
-#: woo-discount-rules-pro.php:107
+#: woo-discount-rules-pro.php:106
 msgid "Simple and straight-forward (no uninstalls and re-installs)."
 msgstr ""
 
+#: woo-discount-rules-pro.php:123
 #: woo-discount-rules-pro.php:124
-#: woo-discount-rules-pro.php:125
 msgid "Discount Rules"
 msgstr ""

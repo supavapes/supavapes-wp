@@ -5,8 +5,8 @@ if (!defined('ABSPATH')) {
 ?>
 <tr>
     <td scope="row">
-        <label for="" class="awdr-left-align"><?php esc_html_e('Show cross sell block on cart?', 'woo-discount-rules-pro') ?></label>
-        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('This setting applies only for Buy X Get Y - Product rule  type only.', 'woo-discount-rules-pro'); ?></span>
+        <label for="" class="awdr-left-align"><?php esc_html_e('Enable Buy X Get Y based Cross-sell Offers', 'woo-discount-rules-pro') ?></label>
+        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('NOTE: This setting applies only for Buy X Get Y - Product rule type', 'woo-discount-rules-pro'); ?></span>
     </td>
     <td>
         <?php $show_cross_sell_on_cart = $configuration->getConfig('show_cross_sell_on_cart', 0); ?>
@@ -23,8 +23,8 @@ if (!defined('ABSPATH')) {
 </tr>
 <tr class="hide_show_cross_sell_blocks" style="<?php echo (!$show_cross_sell_on_cart) ? 'display:none' : ''; ?>">
     <td scope="row">
-        <label for="cross_sell_on_cart_limit" class="awdr-left-align"><?php esc_html_e('Limit', 'woo-discount-rules-pro') ?></label>
-        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Cross sell products limit to display', 'woo-discount-rules-pro'); ?></span>
+        <label for="cross_sell_on_cart_limit" class="awdr-left-align"><?php esc_html_e('Number of Products', 'woo-discount-rules-pro') ?></label>
+        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Number of items to show', 'woo-discount-rules-pro'); ?></span>
     </td>
     <td>
         <input name="cross_sell_on_cart_limit" type="number" id="cross_sell_on_cart_limit" value="<?php echo esc_attr($configuration->getConfig('cross_sell_on_cart_limit', 2)); ?>" placeholder="2"/>
@@ -32,8 +32,8 @@ if (!defined('ABSPATH')) {
 </tr>
 <tr class="hide_show_cross_sell_blocks" style="<?php echo (!$show_cross_sell_on_cart) ? 'display:none' : ''; ?>">
     <td scope="row">
-        <label for="cross_sell_on_cart_column" class="awdr-left-align"><?php esc_html_e('Column', 'woo-discount-rules-pro') ?></label>
-        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Cross sell Column', 'woo-discount-rules-pro'); ?></span>
+        <label for="cross_sell_on_cart_column" class="awdr-left-align"><?php esc_html_e('Columns', 'woo-discount-rules-pro') ?></label>
+        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Number of columns', 'woo-discount-rules-pro'); ?></span>
     </td>
     <td>
         <input name="cross_sell_on_cart_column" id="cross_sell_on_cart_column" type="number" value="<?php echo esc_attr($configuration->getConfig('cross_sell_on_cart_column', 2)); ?>" placeholder="2"/>
@@ -41,22 +41,22 @@ if (!defined('ABSPATH')) {
 </tr>
 <tr class="hide_show_cross_sell_blocks" style="<?php echo (!$show_cross_sell_on_cart) ? 'display:none' : ''; ?>">
     <td scope="row">
-        <label for="cross_sell_on_cart_order_by" class="awdr-left-align"><?php esc_html_e('Order by', 'woo-discount-rules-pro') ?></label>
-        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Cross sell Order by', 'woo-discount-rules-pro'); ?></span>
+        <label for="cross_sell_on_cart_order_by" class="awdr-left-align"><?php esc_html_e('Sorting Order', 'woo-discount-rules-pro') ?></label>
+        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Sorting order', 'woo-discount-rules-pro'); ?></span>
     </td>
     <td>
         <?php $cross_sell_on_cart_order_by = $configuration->getConfig('cross_sell_on_cart_order_by', 'rand'); ?>
         <select name="cross_sell_on_cart_order_by" id="cross_sell_on_cart_order_by">
-            <option value="rand"<?php echo ($cross_sell_on_cart_order_by == 'rand')? " selected": '' ?>><?php esc_html_e('Rand', 'woo-discount-rules-pro'); ?></option>
-            <option value="menu_order"<?php echo ($cross_sell_on_cart_order_by == 'menu_order')? " selected": '' ?>><?php esc_html_e('Menu order', 'woo-discount-rules-pro'); ?></option>
-            <option value="price"<?php echo ($cross_sell_on_cart_order_by == 'price')? " selected": '' ?>><?php esc_html_e('Price', 'woo-discount-rules-pro'); ?></option>
+            <option value="rand"<?php echo ($cross_sell_on_cart_order_by == 'rand')? " selected": '' ?>><?php esc_html_e('Random ordering', 'woo-discount-rules-pro'); ?></option>
+            <option value="menu_order"<?php echo ($cross_sell_on_cart_order_by == 'menu_order')? " selected": '' ?>><?php esc_html_e('Menu based ordering', 'woo-discount-rules-pro'); ?></option>
+            <option value="price"<?php echo ($cross_sell_on_cart_order_by == 'price')? " selected": '' ?>><?php esc_html_e('Price based ordering', 'woo-discount-rules-pro'); ?></option>
         </select>
     </td>
 </tr>
 <tr class="hide_show_cross_sell_blocks" style="<?php echo (!$show_cross_sell_on_cart) ? 'display:none' : ''; ?>">
     <td scope="row">
         <label for="cross_sell_on_cart_order" class="awdr-left-align"><?php esc_html_e('Ordering', 'woo-discount-rules-pro') ?></label>
-        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Cross sell Ordering', 'woo-discount-rules-pro'); ?></span>
+        <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_html_e('Ascending or descending order of items', 'woo-discount-rules-pro'); ?></span>
     </td>
     <td>
         <?php $cross_sell_on_cart_order = $configuration->getConfig('cross_sell_on_cart_order', 'desc'); ?>

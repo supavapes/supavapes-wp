@@ -18,8 +18,11 @@ class UpdateHandler
     /**
      * Initialise
      * */
-    public static function init(){
-        self::hooks();
+    public static function init()
+    {
+        if (is_admin()) {
+            self::hooks();
+        }
     }
 
     /**

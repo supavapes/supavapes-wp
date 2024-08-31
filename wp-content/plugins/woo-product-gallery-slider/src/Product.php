@@ -83,7 +83,6 @@ class Product {
 		if ( ! DOING_AJAX ) {
 			wp_die();
 		} // Not Ajax
-
 			// Check for nonce security
 			$nonce            = sanitize_text_field( $_POST['nonce'] );
 			$product_id       = sanitize_text_field( $_POST['product_id'] );
@@ -116,7 +115,7 @@ class Product {
 
 			$variation_cache_data[ $variation_id ] = $variation_markup;
 
-			set_transient( 'wpgs_product_variation_' . $product_id, $variation_cache_data, $expire_time );
+			set_transient( 'wpgs_product_variation_' . $product_id, $variation_cache_data, apply_filters( 'wpgs_clear_variation_cache', $expire_time ) );
 
 		}
 		$data['variation_images'] = $variation_markup;

@@ -3,7 +3,7 @@
         'name' => 'flycart/woo_discount_rules_pro',
         'pretty_version' => 'dev-8.2-deprecated-error',
         'version' => 'dev-8.2-deprecated-error',
-        'reference' => '680e31a929438dedeaec4703f2198727b1036bb2',
+        'reference' => '21cb7e770e25d674ebd147cfd8f16440dee5ecb1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'flycart/woo_discount_rules_pro' => array(
             'pretty_version' => 'dev-8.2-deprecated-error',
             'version' => 'dev-8.2-deprecated-error',
-            'reference' => '680e31a929438dedeaec4703f2198727b1036bb2',
+            'reference' => '21cb7e770e25d674ebd147cfd8f16440dee5ecb1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -4,7 +4,7 @@
  * Single Product Image
  *
  * @package WooCommerce\Templates
- * @version 7.8.0
+ * @version 10.0.0
  */
 
 defined( 'ABSPATH' ) || exit;

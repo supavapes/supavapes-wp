@@ -3,8 +3,8 @@ Contributors: codeixer,im_niloy
 Tags: additional variation image, product gallery slider,woocommerce product gallery slider,woocommerce product image slider,woocommerce product gallery carousel
 Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to:  6.5.3
-Stable tag: 2.3.9
+Tested up to:  6.6.1
+Stable tag: 2.3.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,12 @@ we're using this 'woocommerce_before_single_product_summary' this hook to overri
 
 
 == Changelog ==
+
+= 2.3.10 - 7-Aug-24 =
+* Added: Compatibility support for YITH Quick view plugin
+* Added: global js scope `cix_product_gallery_slider_int()`
+* Tweak: WooCommerce `product-image.php` template version updated
+
 
 = 2.3.9 - 11-Jun-24 =
 * Added: Compatibility support for Astra Pro

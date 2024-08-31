@@ -328,24 +328,26 @@
 
 	};
 
-	$(document).ready(function () {
-
+	window.cix_product_gallery_slider_int = function(){
 		cix_product_gallery_slider.lazyLoad();
 		cix_product_gallery_slider.slick();
 		cix_product_gallery_slider.lightBox();
 		cix_product_gallery_slider.misc();
+		console.log('WPGS: Initialized');
+	}
 
-
+	$(document).ready(function () {
+		cix_product_gallery_slider_int();
 	});
 	
+	$(document).on('qv_loader_stop', function () {
+		cix_product_gallery_slider_int();
+	});
 	// jquery on load
 	$(window).on('load', function () {
-
 		cix_product_gallery_slider.variationImage();
-
 	});
 	
-
 
 })(jQuery);
 

@@ -5,13 +5,13 @@
  * Description: PRO package for Discount Rules. You need both the Core and PRO packages to get the PRO features running.
  * Author: Flycart
  * Author URI: https://www.flycart.org
- * Version: 2.6.3
+ * Version: 2.6.5
  * Slug: woo-discount-rules-pro
  * Text Domain: woo-discount-rules-pro
  * Domain Path: /i18n/languages/
  * Requires at least: 4.6.1
  * WC requires at least: 3.0
- * WC tested up to: 8.6
+ * WC tested up to: 9.1
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
  * Current version of our app
  */
 if (!defined('WDR_PRO_VERSION')) {
-    define('WDR_PRO_VERSION', '2.6.3');
+    define('WDR_PRO_VERSION', '2.6.5');
 }
 
 /**
@@ -58,7 +58,6 @@ if(!function_exists('init_woo_discount_rules_pro')){
         }
     }
 }
-
 add_action('advanced_woo_discount_rules_before_loaded', function (){
     init_woo_discount_rules_pro();
 }, 1);
