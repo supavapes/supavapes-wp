@@ -2,9 +2,9 @@
 Contributors: Cloudways
 Tags: cache,caching, performance, wp-cache, cdn
 Requires at least: 6.0
-Tested up to: 6.5.2
+Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.1.12
+Stable tag: 2.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,11 +160,15 @@ Using Gzip, Breeze compresses the request files, further reducing the size of th
 
 == Changelog ==
 
+= 2.1.13 =
+
+* Fix: The cache will be purged automatically when a scheduled post's status changes to 'Published'.
+* Fix: Update the reference link in the Knowledge Base article under the 'Never Cache URL(s)' option in the ADVANCED OPTIONS tab.
+
 = 2.1.12 =
 
-* Add: Allow Purge All Cache for Shop Managers role.
-* Fix: Excluded wp-login.php from the preload feature to prevent unwanted user logout.
-
+* Add: Shop Managers can now use Purge All Cache option to clear website cache.
+* Fix: Excluded wp-login.php from preload feature that fixes the problem with unwanted user logouts.
 
 = 2.1.11 =
 
