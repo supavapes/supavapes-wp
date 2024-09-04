@@ -3243,3 +3243,34 @@ function display_google_map() {
 }
 // Register the shortcode
 add_shortcode('google_map_shortcode', 'display_google_map');
+
+/**
+ * If the function, `supavapes_woocommerce_variation_options_pricing_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callback' ) ) {
+	/**
+	 * Add custom pricing for ontario and federal locations.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int     $loop           Position in the loop.
+	 * @param array   $variation_data Variation data.
+	 * @param WP_Post $variation      Post data.
+	 */
+	function supavapes_woocommerce_variation_options_pricing_callback( $loop, $variation_data, $variation ) {
+		// Add a field for the Ontario prices.
+		woocommerce_wp_text_input(
+			array(
+				'id'            => "variable_ontario_price_{$loop}",
+				'name'          => "variable_ontario_price[{$loop}]",
+				'value'         => wc_format_localized_price( 100.12 ),
+				'label'         => __( 'Ontario Price', 'supavapes' ),
+				'data_type'     => 'price',
+				'wrapper_class' => 'form-row form-row-first',
+				'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
+			)
+		);
+	}
+}
+
+add_action( 'woocommerce_variation_options_pricing', 'supavapes_woocommerce_variation_options_pricing_callback', 10, 3 );
