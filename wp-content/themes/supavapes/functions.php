@@ -3261,9 +3261,9 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 		// Add a field for the Ontario prices.
 		woocommerce_wp_text_input(
 			array(
-				'id'            => "variable_ontario_price_{$loop}",
-				'name'          => "variable_ontario_price[{$loop}]",
-				'value'         => wc_format_localized_price( 100.12 ),
+				'id'            => "_ontario_price_{$loop}",
+				'name'          => "_ontario_price[{$loop}]",
+				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_ontario_price', true ) ),
 				'label'         => sprintf(
 					/* translators: %s: currency symbol */
 					__( 'Ontario price (%s)', 'woocommerce' ),
@@ -3278,9 +3278,9 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 		// Add a field for the Federal prices.
 		woocommerce_wp_text_input(
 			array(
-				'id'            => "variable_federal_price_{$loop}",
-				'name'          => "variable_federal_price[{$loop}]",
-				'value'         => wc_format_localized_price( 201.12 ),
+				'id'            => "_federal_price_{$loop}",
+				'name'          => "_federal_price[{$loop}]",
+				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_federal_price', true ) ),
 				'label'         => sprintf(
 					/* translators: %s: currency symbol */
 					__( 'Federal price (%s)', 'woocommerce' ),
@@ -3322,27 +3322,30 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 	/**
 	 * Save the free product/variation.
 	 *
-	 * @param int $variation_id Holds the variation ID.
+	 * @param int $product_id Holds the variation ID.
 	 * @param int $loop Holds the loop index for variations listing.
 	 *
 	 * @since 1.0.0
 	 */
-	function supavapes_update_product_meta( $variation_id, $loop = '' ) {
-		if ( ! empty( $loop ) && is_int( $loop ) ) {
-			$ontario_price = ( ! empty( $_POST['variable_ontario_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_ontario_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$federal_price = ( ! empty( $_POST['variable_federal_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_federal_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		} else {
-			$ontario_price = filter_input( INPUT_POST, '_ontario_price', FILTER_SANITIZE_NUMBER_INT );
-			$federal_price = filter_input( INPUT_POST, '_federal_price', FILTER_SANITIZE_NUMBER_INT );
-		}
-		
-		debug( $_POST );
-		var_dump( $ontario_price, $federal_price );
-		die;
+	function supavapes_update_product_meta( $product_id, $loop = '' ) {
+		$posted_array = filter_input_array( INPUT_POST );
 
-		// Update the database now.
-		if ( ! empty( $quantity_to_buy ) ) {
-			update_post_meta( $product_id, 'wcbogo_quantity_to_buy', $quantity_to_buy );
+		if ( isset( $loop ) && is_int( $loop ) ) {
+			$ontario_price = ( ! empty( $posted_array['_ontario_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_ontario_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$federal_price = ( ! empty( $posted_array['_federal_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_federal_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		} else {
+			$ontario_price = ( ! empty( $posted_array['_ontario_price'] ) ) ? $posted_array['_ontario_price'] : 0.0;
+			$federal_price = ( ! empty( $posted_array['_federal_price'] ) ) ? $posted_array['_federal_price'] : 0.0;
+		}
+
+		// Update the ontario price.
+		if ( ! empty( $ontario_price ) ) {
+			update_post_meta( $product_id, '_ontario_price', $ontario_price );
+		}
+
+		// Update the federal price.
+		if ( ! empty( $federal_price ) ) {
+			update_post_meta( $product_id, '_federal_price', $federal_price );
 		}
 	}
 }
@@ -3364,3 +3367,51 @@ if ( ! function_exists( 'supavapes_woocommerce_process_product_meta_callback' ) 
 }
 
 add_action( 'woocommerce_process_product_meta', 'supavapes_woocommerce_process_product_meta_callback' );
+
+/**
+ * If the function `supavapes_woocommerce_product_options_pricing_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback' ) ) {
+	/**
+	 * Add Ontario and Federal prices on the simple products screen.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_product_options_pricing_callback() {
+		global $post;
+
+		// Add a field for the Ontario prices.
+		woocommerce_wp_text_input(
+			array(
+				'id'          => '_ontario_price',
+				'name'        => '_ontario_price',
+				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_ontario_price', true ) ),
+				'label'       => sprintf(
+					/* translators: %s: currency symbol */
+					__( 'Ontario price (%s)', 'woocommerce' ),
+					get_woocommerce_currency_symbol()
+				),
+				'data_type'   => 'price',
+				'placeholder' => __( 'Ontario price (required)', 'supavapes' ),
+			)
+		);
+
+		// Add a field for the Federal prices.
+		woocommerce_wp_text_input(
+			array(
+				'id'          => '_federal_price',
+				'name'        => '_federal_price',
+				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_federal_price', true ) ),
+				'label'       => sprintf(
+					/* translators: %s: currency symbol */
+					__( 'Federal price (%s)', 'woocommerce' ),
+					get_woocommerce_currency_symbol()
+				),
+				'data_type'   => 'price',
+				'placeholder' => __( 'Federal price (required)', 'supavapes' ),
+			)
+		);
+	}
+}
+
+add_action( 'woocommerce_product_options_pricing', 'supavapes_woocommerce_product_options_pricing_callback' );
