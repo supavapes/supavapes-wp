@@ -3264,10 +3264,31 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 				'id'            => "variable_ontario_price_{$loop}",
 				'name'          => "variable_ontario_price[{$loop}]",
 				'value'         => wc_format_localized_price( 100.12 ),
-				'label'         => __( 'Ontario Price', 'supavapes' ),
+				'label'         => sprintf(
+					/* translators: %s: currency symbol */
+					__( 'Ontario price (%s)', 'woocommerce' ),
+					get_woocommerce_currency_symbol()
+				),
 				'data_type'     => 'price',
 				'wrapper_class' => 'form-row form-row-first',
 				'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
+			)
+		);
+
+		// Add a field for the Federal prices.
+		woocommerce_wp_text_input(
+			array(
+				'id'            => "variable_federal_price_{$loop}",
+				'name'          => "variable_federal_price[{$loop}]",
+				'value'         => wc_format_localized_price( 100.12 ),
+				'label'         => sprintf(
+					/* translators: %s: currency symbol */
+					__( 'Federal price (%s)', 'woocommerce' ),
+					get_woocommerce_currency_symbol()
+				),
+				'data_type'     => 'price',
+				'wrapper_class' => 'form-row form-row-last',
+				'placeholder'   => __( 'Federal price (required)', 'supavapes' ),
 			)
 		);
 	}
