@@ -3336,6 +3336,7 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 			$federal_price = filter_input( INPUT_POST, '_federal_price', FILTER_SANITIZE_NUMBER_INT );
 		}
 		
+		debug( $_POST );
 		var_dump( $ontario_price, $federal_price );
 		die;
 
