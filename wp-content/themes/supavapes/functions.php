@@ -3332,8 +3332,8 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 			$ontario_price = ( ! empty( $_POST['variable_ontario_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_ontario_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$federal_price = ( ! empty( $_POST['variable_federal_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_federal_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		} else {
-			$ontario_price = filter_input( INPUT_POST, 'variable_ontario_price', FILTER_SANITIZE_NUMBER_INT );
-			$federal_price = filter_input( INPUT_POST, 'variable_federal_price', FILTER_SANITIZE_NUMBER_INT );
+			$ontario_price = filter_input( INPUT_POST, '_ontario_price', FILTER_SANITIZE_NUMBER_INT );
+			$federal_price = filter_input( INPUT_POST, '_federal_price', FILTER_SANITIZE_NUMBER_INT );
 		}
 		
 		var_dump( $ontario_price, $federal_price );
