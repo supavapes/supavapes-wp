@@ -3309,7 +3309,7 @@ if ( ! function_exists( 'supavapes_woocommerce_save_product_variation_callback' 
 	 * @since 1.0.0
 	 */
 	function supavapes_woocommerce_save_product_variation_callback( $variation_id, $loop ) {
-		$this->supavapes_update_product_meta( $variation_id, $loop );
+		supavapes_update_product_meta( $variation_id, $loop );
 	}
 }
 
@@ -3327,7 +3327,7 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	function supavapes_update_product_meta( $variation_id, $loop ) {
+	function supavapes_update_product_meta( $variation_id, $loop = '' ) {
 		if ( ! empty( $loop ) && is_int( $loop ) ) {
 			$ontario_price = ( ! empty( $_POST['variable_ontario_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_ontario_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$federal_price = ( ! empty( $_POST['variable_federal_price'][ $loop ] ) ) ? wp_unslash( $_POST['variable_federal_price'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -3358,7 +3358,7 @@ if ( ! function_exists( 'supavapes_woocommerce_process_product_meta_callback' ) 
 	 * @since 1.0.0
 	 */
 	function supavapes_woocommerce_process_product_meta_callback( $product_id ) {
-		$this->supavapes_update_product_meta( $product_id );
+		supavapes_update_product_meta( $product_id );
 	}
 }
 
