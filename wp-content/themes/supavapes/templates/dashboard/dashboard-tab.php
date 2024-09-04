@@ -30,7 +30,7 @@ if(!empty($customer_orders)){
 	<div class="chart-container">
 		<div class="chart-header">
 		<div class="year-dropdown">
-			<label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In dev test','supavapes'); ?></label>
+			<label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In','supavapes'); ?></label>
 			<select id="purchase-year">
 				<option value="2024"><?php esc_html_e('2024','supavapes'); ?></option>
 				<option value="2023"><?php esc_html_e('2023','supavapes'); ?></option>
