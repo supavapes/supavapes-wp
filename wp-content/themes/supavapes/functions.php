@@ -3415,3 +3415,10 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 }
 
 add_action( 'woocommerce_product_options_pricing', 'supavapes_woocommerce_product_options_pricing_callback' );
+
+
+add_filter( 'woocommerce_sale_flash', 'bbloomer_rename_sale_badge', 9999 );
+ 
+function bbloomer_rename_sale_badge() {
+   return '<span class="onsale">ON OFFER</span>';
+}
