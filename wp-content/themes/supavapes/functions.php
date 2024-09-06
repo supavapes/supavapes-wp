@@ -3486,7 +3486,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 	}
 }
 
-add_filter('woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2);
+add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
 
 
 /**
@@ -3501,7 +3501,7 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_set_custom_price_in_cart($cart) {
-		if (is_admin() && !defined('DOING_AJAX')) {
+		if (is_admin() && !defined( 'DOING_AJAX' )) {
 			return;
 		}
 
@@ -3532,7 +3532,7 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
 	}
 }
 
-add_action('woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1);
+add_action( 'woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1 );
 
 
 /**
@@ -3570,4 +3570,4 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 	}
 }
 
-add_filter('woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3);
+add_filter( 'woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3 );

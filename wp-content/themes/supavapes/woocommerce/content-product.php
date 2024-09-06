@@ -38,6 +38,17 @@ if($rating_num == 0){
 ?>
 <li <?php wc_product_class( '', $product ); ?>>
 <div class="sv-our-product-box">
+        <?php 
+        if ( isset( $_COOKIE['user_state'] ) ) {
+			$state = sanitize_text_field( $_COOKIE['user_state'] );
+		} 
+        ?>
+
+		<?php if ( $state === 'Gujarat' ) { ?>
+            <span>Ontario</span>
+        <?php } else {?>
+            <span>Federal</span>
+        <?php }?>
         <div class="sv-our-product-img <?php echo esc_attr($rating_class); ?>">
 			<?php echo wp_kses_post($product->get_image()); ?>
             <!-- <img src="/wp-content/uploads/2024/04/Z_Pods_LEX_10K_Pods_-_10ct_10.png" alt="product_iamge" class="sv-our-product-img-thumb"> -->
