@@ -41,6 +41,7 @@ jQuery(document).ready(function() {
                         var country = '';
                         for (var i = 0; i < result.address_components.length; i++) {
                             var component = result.address_components[i];
+                            console.log(component);
                             if (component.types.includes('locality')) {
                                 city = component.long_name;
                             }
@@ -50,18 +51,18 @@ jQuery(document).ready(function() {
                         }
                         jQuery('#location').val(city + ', ' + country);
 
-                        // jQuery.ajax({
-                        //     url: sv_ajax.ajax_url,
-                        //     type: 'POST',
-                        //     data: {
-                        //         action: 'woocommerce_set_dynamic_price',
-                        //         city: city,
-                        //         country: country
-                        //     },
-                        //     success: function(data) {
-                        //        console.log(data);
-                        //     }
-                        // });
+                        jQuery.ajax({
+                            url: sv_ajax.ajax_url,
+                            type: 'POST',
+                            data: {
+                                action: 'woocommerce_set_dynamic_price',
+                                city: city,
+                                country: country
+                            },
+                            success: function(data) {
+                               console.log(data);
+                            }
+                        });
                         
                     } else {
                         jQuery('#location-error').text('Unable to retrieve your location. Please try again.');

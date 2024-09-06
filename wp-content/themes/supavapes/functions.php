@@ -3429,28 +3429,21 @@ if ( ! function_exists( 'supavapes_woocommerce_set_dynamic_price_callback' ) ) {
 	function supavapes_woocommerce_set_dynamic_price_callback() {
 		$city = isset( $_POST['city'] ) ? sanitize_text_field( $_POST['city'] ) : '';
 		$country = isset( $_POST['country'] ) ? sanitize_text_field( $_POST['country'] ) : '';
-		$product_id = 34108; // Replace with your specific product ID
-		$custom_price = 50; // Replace with the custom price for Ahmedabad
 		
-		if ( strtolower( $city ) === 'ahmedabad' ) {
-			// Get the product object
-			$product = wc_get_product( $product_id );
-			
-			if ( $product && $product->is_type( 'simple' ) ) {
-				// Set the custom price
-				$product->set_price( $custom_price );
-				$product->set_regular_price( $custom_price );
-				$product->save();
-			}
-		}
-		
-		// Return a response
-		wp_send_json_success( array( 'message' => 'Price updated based on location.' ) );
+		if ( ! empty( $city ) ) {
+            // Set the city value in a cookie that expires in 7 days
+            setcookie( 'user_city', $city, time() + (86400 * 30), "/" );
+            wp_send_json_success( array( 'message' => 'City value has been set in the cookie.' ) );
+        } else {
+            wp_send_json_error( array( 'message' => 'City value is not provided.' ) );
+        }
+
+        wp_die();
 	}
 }
 
-// add_action( 'wp_ajax_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback' );
-// add_action( 'wp_ajax_nopriv_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback' );
+add_action( 'wp_ajax_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback' );
+add_action( 'wp_ajax_nopriv_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback' );
 
 
 
@@ -3463,7 +3456,9 @@ add_action('woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in
 
 function supavapes_custom_price_html($price, $product) {
     // Check if the city is 'Ahmedabad' - you may set this dynamically based on user location
-    $city = 'ahmedabad';
+	if ( isset( $_COOKIE['user_city'] ) ) {
+		$city = sanitize_text_field( $_COOKIE['user_city'] );
+	}
 
     if (strtolower($city) === 'ahmedabad') {
         $custom_price = get_post_meta($product->get_id(), '_ontario_price', true);
@@ -3487,13 +3482,15 @@ function supavapes_set_custom_price_in_cart($cart) {
 
     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
         // Check if the city is 'Ahmedabad' - set this dynamically based on user location
-        $city = 'ahmedabad';
+        if ( isset( $_COOKIE['user_city'] ) ) {
+			$city = sanitize_text_field( $_COOKIE['user_city'] );
+		}
 
-        if (strtolower($city) === 'ahmedabad') {
+        if ( strtolower($city) === 'ahmedabad' ) {
             $product_id = $cart_item['product_id'];
             $custom_price = get_post_meta($product_id, '_ontario_price', true);
 
-            if ($custom_price) {
+            if ( $custom_price ) {
                 // Set the custom price for the cart item
                 $cart_item['data']->set_price($custom_price);
             }
@@ -3504,11 +3501,11 @@ function supavapes_set_custom_price_in_cart($cart) {
 /**
  * Override cart item price display.
  */
-function supavapes_cart_item_custom_price($price, $cart_item, $cart_item_key) {
-    $custom_price = get_post_meta($cart_item['product_id'], '_ontario_price', true);
-
-    if ($custom_price) {
-        $price = wc_price($custom_price);
+function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
+    
+	$custom_price = get_post_meta($cart_item['product_id'], '_ontario_price', true);
+    if ( $custom_price ) {
+        $price = wc_price( $custom_price );
     }
 
     return $price;
