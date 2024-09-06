@@ -3429,13 +3429,14 @@ if ( ! function_exists( 'supavapes_woocommerce_set_dynamic_price_callback' ) ) {
 	function supavapes_woocommerce_set_dynamic_price_callback() {
 		$city = isset( $_POST['city'] ) ? sanitize_text_field( $_POST['city'] ) : '';
 		$country = isset( $_POST['country'] ) ? sanitize_text_field( $_POST['country'] ) : '';
+		$state = isset( $_POST['state'] ) ? sanitize_text_field( $_POST['state'] ) : '';
 		
-		if ( ! empty( $city ) ) {
-            // Set the city value in a cookie that expires in 7 days
-            setcookie( 'user_city', $city, time() + (86400 * 30), "/" );
-            wp_send_json_success( array( 'message' => 'City value has been set in the cookie.' ) );
+		if ( ! empty( $state ) ) {
+            // Set the state value in a cookie that expires in 7 days
+            setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
+            wp_send_json_success( array( 'message' => 'State value has been set in the cookie.' ) );
         } else {
-            wp_send_json_error( array( 'message' => 'City value is not provided.' ) );
+            wp_send_json_error( array( 'message' => 'State value is not provided.' ) );
         }
 
         wp_die();
@@ -3455,12 +3456,12 @@ add_filter('woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10
 add_action('woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1);
 
 function supavapes_custom_price_html($price, $product) {
-    // Check if the city is 'Ahmedabad' - you may set this dynamically based on user location
-	if ( isset( $_COOKIE['user_city'] ) ) {
-		$city = sanitize_text_field( $_COOKIE['user_city'] );
+    // Check if the state is 'Gujarat' - you may set this dynamically based on user location
+	if ( isset( $_COOKIE['user_state'] ) ) {
+		$state = sanitize_text_field( $_COOKIE['user_state'] );
 	}
 
-    if (strtolower($city) === 'ahmedabad') {
+    if (strtolower($city) === 'Gujarat') {
         $custom_price = get_post_meta($product->get_id(), '_ontario_price', true);
         
         if ($custom_price) {
@@ -3481,12 +3482,12 @@ function supavapes_set_custom_price_in_cart($cart) {
     }
 
     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
-        // Check if the city is 'Ahmedabad' - set this dynamically based on user location
-        if ( isset( $_COOKIE['user_city'] ) ) {
-			$city = sanitize_text_field( $_COOKIE['user_city'] );
+        // Check if the state is 'Gujarat' - set this dynamically based on user location
+        if ( isset( $_COOKIE['user_state'] ) ) {
+			$state = sanitize_text_field( $_COOKIE['user_city'] );
 		}
 
-        if ( strtolower($city) === 'ahmedabad' ) {
+        if ( strtolower($state) === 'Gujarat' ) {
             $product_id = $cart_item['product_id'];
             $custom_price = get_post_meta($product_id, '_ontario_price', true);
 
