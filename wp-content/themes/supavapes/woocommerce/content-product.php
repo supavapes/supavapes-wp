@@ -43,7 +43,6 @@ if($rating_num == 0){
 			$state = sanitize_text_field( $_COOKIE['user_state'] );
 		} 
         ?>
-
 		<?php if ( $state === 'Gujarat' ) { ?>
             <span>Ontario</span>
         <?php } else {?>
