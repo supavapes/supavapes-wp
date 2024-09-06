@@ -3461,7 +3461,7 @@ function supavapes_custom_price_html($price, $product) {
 		$state = sanitize_text_field( $_COOKIE['user_state'] );
 	}
 
-    if (strtolower($city) === 'Gujarat') {
+    if ( $state === 'Gujarat' ) {
         $custom_price = get_post_meta($product->get_id(), '_ontario_price', true);
         
         if ($custom_price) {
@@ -3487,7 +3487,7 @@ function supavapes_set_custom_price_in_cart($cart) {
 			$state = sanitize_text_field( $_COOKIE['user_city'] );
 		}
 
-        if ( strtolower($state) === 'Gujarat' ) {
+        if ( $state === 'Gujarat' ) {
             $product_id = $cart_item['product_id'];
             $custom_price = get_post_meta($product_id, '_ontario_price', true);
 
