@@ -3484,7 +3484,7 @@ function supavapes_set_custom_price_in_cart($cart) {
     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
         // Check if the state is 'Gujarat' - set this dynamically based on user location
         if ( isset( $_COOKIE['user_state'] ) ) {
-			$state = sanitize_text_field( $_COOKIE['user_city'] );
+			$state = sanitize_text_field( $_COOKIE['user_state'] );
 		}
 
         if ( $state === 'Gujarat' ) {
