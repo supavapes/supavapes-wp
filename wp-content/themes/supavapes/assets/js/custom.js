@@ -39,9 +39,10 @@ jQuery(document).ready(function() {
                         var result = response.results[0];
                         var city = '';
                         var country = '';
+                        var state = '';
                         for (var i = 0; i < result.address_components.length; i++) {
                             var component = result.address_components[i];
-                            // console.log(component);
+                            console.log(component);
                             if (component.types.includes('locality')) {
                                 city = component.long_name;
                             }
@@ -53,7 +54,7 @@ jQuery(document).ready(function() {
                             }
                         }
                         jQuery('#location').val(city + ', ' + country);
-                        console.log(state);
+                        console.log("state: "+state);
                         jQuery.ajax({
                             url: sv_ajax.ajax_url,
                             type: 'POST',
