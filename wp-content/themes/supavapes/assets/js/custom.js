@@ -41,23 +41,27 @@ jQuery(document).ready(function() {
                         var country = '';
                         for (var i = 0; i < result.address_components.length; i++) {
                             var component = result.address_components[i];
-                            console.log(component);
+                            // console.log(component);
                             if (component.types.includes('locality')) {
                                 city = component.long_name;
                             }
                             if (component.types.includes('country')) {
                                 country = component.long_name;
                             }
+                            if (component.types.includes('administrative_area_level_3')) {
+                                state = component.long_name;
+                            }
                         }
                         jQuery('#location').val(city + ', ' + country);
-
+                        console.log(state);
                         jQuery.ajax({
                             url: sv_ajax.ajax_url,
                             type: 'POST',
                             data: {
                                 action: 'woocommerce_set_dynamic_price',
                                 city: city,
-                                country: country
+                                country: country,
+                                state: state
                             },
                             success: function(data) {
                                console.log(data);
