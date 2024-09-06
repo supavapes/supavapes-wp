@@ -3417,8 +3417,22 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 add_action( 'woocommerce_product_options_pricing', 'supavapes_woocommerce_product_options_pricing_callback' );
 
 
-add_filter( 'woocommerce_sale_flash', 'bbloomer_rename_sale_badge', 9999 );
- 
-function bbloomer_rename_sale_badge() {
-   return '<span class="onsale">ON OFFER</span>';
+/**
+ * If the function `supavapes_woocommerce_set_dynamic_price_callback` doesn't exist.
+ * 
+ */
+if ( ! function_exists( 'supavapes_woocommerce_set_dynamic_price_callback' ) ) {
+	/**
+	 * Ajax callback function to set dynamic price based on location
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_set_dynamic_price_callback(){
+		echo $city = isset($_POST['city']) ? $_POST['city'] : '';
+		echo $country = isset($_POST['country']) ? $_POST['country'] : '';
+		die('lkoo');
+	}
 }
+
+add_action('wp_ajax_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback');
+add_action('wp_ajax_nopriv_woocommerce_set_dynamic_price', 'supavapes_woocommerce_set_dynamic_price_callback');
