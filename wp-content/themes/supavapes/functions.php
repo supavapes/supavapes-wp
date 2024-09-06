@@ -3449,65 +3449,99 @@ add_action( 'wp_ajax_nopriv_woocommerce_set_dynamic_price', 'supavapes_woocommer
 
 
 /**
- * Display custom price from the meta field '_ontario_price' for specific cities.
+ * If the function `supavapes_custom_price_html` doesn't exist.
  */
-add_filter('woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2);
-add_filter('woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3);
-add_action('woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1);
-
-function supavapes_custom_price_html($price, $product) {
-    // Check if the state is 'Gujarat' - you may set this dynamically based on user location
-	if ( isset( $_COOKIE['user_state'] ) ) {
-		$state = sanitize_text_field( $_COOKIE['user_state'] );
-	}
-
-    if ( $state === 'Gujarat' ) {
-        $custom_price = get_post_meta($product->get_id(), '_ontario_price', true);
-        
-        if ($custom_price) {
-            // Format and display the custom price
-            $price = wc_price($custom_price);
-        }
-    }
-
-    return $price;
-}
-
-/**
- * Set the custom price in the cart.
- */
-function supavapes_set_custom_price_in_cart($cart) {
-    if (is_admin() && !defined('DOING_AJAX')) {
-        return;
-    }
-
-    foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
-        // Check if the state is 'Gujarat' - set this dynamically based on user location
-        if ( isset( $_COOKIE['user_state'] ) ) {
+if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
+	/**
+	 * Set custom price html.
+	 *
+	 * @param float $price Holds the price html.
+	 * @param array $product Holds the product array.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_custom_price_html($price, $product) {
+		// Check if the state is 'Gujarat' - you may set this dynamically based on user location
+		if ( isset( $_COOKIE['user_state'] ) ) {
 			$state = sanitize_text_field( $_COOKIE['user_state'] );
 		}
 
-        if ( $state === 'Gujarat' ) {
-            $product_id = $cart_item['product_id'];
-            $custom_price = get_post_meta($product_id, '_ontario_price', true);
+		if ( $state === 'Gujarat' ) {
+			$custom_price = get_post_meta($product->get_id(), '_ontario_price', true);
+			
+			if ($custom_price) {
+				// Format and display the custom price
+				$price = wc_price($custom_price);
+			}
+		}
 
-            if ( $custom_price ) {
-                // Set the custom price for the cart item
-                $cart_item['data']->set_price($custom_price);
-            }
-        }
-    }
+		return $price;
+	}
 }
+
+add_filter('woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2);
+
 
 /**
- * Override cart item price display.
+ * If the function `supavapes_set_custom_price_in_cart` doesn't exist.
  */
-function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
-    
-	$custom_price = get_post_meta($cart_item['product_id'], '_ontario_price', true);
-    if ( $custom_price ) {
-        $price = wc_price( $custom_price );
-    }
+if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
+	/**
+	 * Set the custom price in the cart.
+	 * 
+	 * @param array $cart holds cart object.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_set_custom_price_in_cart($cart) {
+		if (is_admin() && !defined('DOING_AJAX')) {
+			return;
+		}
 
-    return $price;
+		foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+			// Check if the state is 'Gujarat' - set this dynamically based on user location
+			if ( isset( $_COOKIE['user_state'] ) ) {
+				$state = sanitize_text_field( $_COOKIE['user_state'] );
+			}
+
+			if ( $state === 'Gujarat' ) {
+				$product_id = $cart_item['product_id'];
+				$custom_price = get_post_meta($product_id, '_ontario_price', true);
+
+				if ( $custom_price ) {
+					// Set the custom price for the cart item
+					$cart_item['data']->set_price($custom_price);
+				}
+			}
+		}
+	}
 }
+
+add_action('woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1);
+
+
+/**
+ * If the function `supavapes_cart_item_custom_price` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
+	/**
+	 * Override cart item price display.
+	 * 
+	 * @param $price
+	 * @param $cart_item
+	 * @param $cart_item_key
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
+		
+		$custom_price = get_post_meta($cart_item['product_id'], '_ontario_price', true);
+		if ( $custom_price ) {
+			$price = wc_price( $custom_price );
+		}
+
+		return $price;
+	}
+}
+
+add_filter('woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3);
