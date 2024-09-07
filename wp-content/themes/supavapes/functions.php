@@ -168,9 +168,17 @@ if ( ! function_exists( 'supavapes_admin_enqueue_scripts_callback' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_admin_enqueue_scripts_callback() {
+		$page   = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$action = filter_input( INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		// Enqueue media styles and scripts on the order edit screen.
+		if ( 'wc-orders' === $page && 'edit' === $action ) {
+			wp_enqueue_media();
+		}
+
 		// Enqueue the custom style for the admin dashboard.
 		wp_enqueue_style(
-			'sv-custom_wp_admin_css',
+			'supavapes-custom-admin-style',
 			get_stylesheet_directory_uri() . '/assets/css/admin-style.css',
 			array(),
 			filemtime( get_stylesheet_directory() . '/assets/css/admin-style.css' ).
@@ -179,26 +187,28 @@ if ( ! function_exists( 'supavapes_admin_enqueue_scripts_callback' ) ) {
 
 		// Enqueue the custom script for the admin dashboard.
 		wp_enqueue_script(
-			'support-request-actions',
-			get_stylesheet_directory_uri() . '/assets/js/support-request-actions.js',
+			'supavapes-custom-admin-script',
+			get_stylesheet_directory_uri() . '/assets/js/admin-script.js',
 			array( 'jquery' ),
-			filemtime( get_stylesheet_directory() . '/assets/js/support-request-actions.js' ),
+			filemtime( get_stylesheet_directory() . '/assets/js/admin-script.js' ),
 			true
 		);
 
 		// Localize the custom script variables.
 		wp_localize_script(
-			'support-request-actions',
-			'supportRequest',
+			'supavapes-custom-admin-script',
+			'SupaVapesCustomAdminScript',
 			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'support_request_nonce' ),
+				'ajax_url'                         => admin_url( 'admin-ajax.php' ),
+				'nonce'                            => wp_create_nonce( 'support_request_nonce' ),
+				'media_uploader_modal_header'      => __( 'Upload Order Notes Attachments', 'supavapes' ),
+				'review_attachments_allowed_types' => array( '.jpeg', '.jpg', '.png' ),
 			)
 		);
 	}
 }
 
-add_action( 'admin_enqueue_scripts', 'supavapes_admin_enqueue_scripts_callback', 1 );
+add_action( 'admin_enqueue_scripts', 'supavapes_admin_enqueue_scripts_callback' );
 
 /**
  * If the function, `supavapes_init_callback` doesn't exist.
@@ -2224,44 +2234,62 @@ function sv_available_store_details() {
 
 }
 
-
 /**
- * Add custom meta box.
- *
- * @return void
+ * If the function, `supavapes_add_meta_boxes_callback` doesn't exist.
  */
-// Add custom meta box
-function sv_custom_order_meta_box() {
+if ( ! function_exists( 'supavapes_add_meta_boxes_callback' ) ) {
+	/**
+	 * Remove original order notes metabox and add new one.
+	 * The functionality to remain the same with addition to allowing to upload media files with the notes.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_add_meta_boxes_callback() {
+		global $current_screen;
 
-	$screen = get_current_screen();
-	$screen_id = $screen ? $screen->id : '';
-	if($screen_id == 'woocommerce_page_wc-orders'){
+		/**
+		 * Removing the shop order notes metabox.
+		 * We're adding our own to allow uploading media attachments along with textual notes.
+		 */
+		remove_meta_box( 'woocommerce-order-notes' , 'woocommerce_page_wc-orders' , 'side' );
+
+		// Add custom metabox for order notes that includes media uploads.
 		add_meta_box(
-			'shop-manager-meta-box',
+			'woocommerce-order-notes',
+			__( 'Order notes with media', 'supavapes' ),
+			'supavapes_order_notes_metabox_callback',
+			'woocommerce_page_wc-orders',
+			'side',
+			'default'
+		);
+
+		// Add metabox on the shop orders page to allow the shop managers to assign an order to themselves.
+		add_meta_box(
+			'shop-manager-order-assignment',
 			__( 'Shop Managers', 'supavapes' ),
-			'sv_shop_manager_meta_box_callback',
-			$screen_id,
+			'supavapes_shop_manager_oder_assignment_callback',
+			'woocommerce_page_wc-orders',
 			'side',
 			'high'
 		);
-	}
-	if($screen_id == 'support_request'){
+
+		// Add metabox to showcase the spport request actions.
 		add_meta_box(
-			'support_request_meta_box',
-			__('Support Request Actions', 'supavapes'),
-			'render_support_request_meta_box',
+			'support-request-actions',
+			__( 'Support Request Actions', 'supavapes' ),
+			'supavapes_support_request_actions_callback',
 			'support_request',
 			'side',
 			'high'
 		);
 	}
-
 }
-add_action( 'add_meta_boxes', 'sv_custom_order_meta_box' );
+
+add_action( 'add_meta_boxes', 'supavapes_add_meta_boxes_callback', 99 );
 
 
 // Render the meta box content
-function render_support_request_meta_box($post) {
+function supavapes_support_request_actions_callback($post) {
 	
 	wp_nonce_field('support_request_nonce_action', 'support_request_nonce_field');
 	$approved = get_post_meta($post->ID, '_support_request_approved', true);
@@ -2289,7 +2317,7 @@ function render_support_request_meta_box($post) {
 
 
 // Meta box callback function to display the dropdown
-function sv_shop_manager_meta_box_callback( $post ) {
+function supavapes_shop_manager_oder_assignment_callback( $post ) {
 
 	$shop_manager_id = get_post_meta( $post->ID, '_shop_manager', true );
 	$shop_managers = get_users( array( 'role' => 'shop_manager' ) );
@@ -3571,3 +3599,146 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 }
 
 add_filter( 'woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3 );
+
+/**
+ * If the function, `supavapes_order_notes_metabox_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_order_notes_metabox_callback' ) ) {
+	/**
+	 * Add content for the order notes.
+	 *
+	 * @param object $post WordPress post object.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_order_notes_metabox_callback( $post ) {
+
+		if ( $post instanceof WC_Order ) {
+			$order_id = $post->get_id();
+		} else {
+			$order_id = $post->ID;
+		}
+
+		$args = array( 'order_id' => $order_id );
+
+		if ( 0 !== $order_id ) {
+			$notes = wc_get_order_notes( $args );
+		} else {
+			$notes = array();
+		}
+
+		include trailingslashit( get_stylesheet_directory() ) . 'html-order-notes.php';
+		?>
+		<div class="add_note">
+			<p>
+				<label for="add_order_note"><?php esc_html_e( 'Add note', 'woocommerce' ); ?> <?php echo wc_help_tip( __( 'Add a note for your reference, or add a customer note (the user will be notified).', 'woocommerce' ) ); ?></label>
+				<textarea type="text" name="order_note" id="add_order_note" class="input-text" cols="20" rows="5"></textarea>
+				<div class="order-notes-attachments-container">
+					<div class="gallery-images"></div>
+				</div>
+				<div class="add-order-notes-attachments">
+					<a href="javascript:void(0);"><?php esc_html_e( 'Add attachments', 'supavapes' ); ?></a>
+				</div>
+			</p>
+			<p>
+				<label for="order_note_type" class="screen-reader-text"><?php esc_html_e( 'Note type', 'woocommerce' ); ?></label>
+				<select name="order_note_type" id="order_note_type">
+					<option value=""><?php esc_html_e( 'Private note', 'woocommerce' ); ?></option>
+					<option value="customer"><?php esc_html_e( 'Note to customer', 'woocommerce' ); ?></option>
+				</select>
+				<button type="button" class="add_note button"><?php esc_html_e( 'Add', 'woocommerce' ); ?></button>
+			</p>
+		</div>
+		<?php
+	}
+}
+
+/**
+ * If the function, `supavapes_add_note_attachments_ajax_callback`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_add_note_attachments_ajax_callback' ) ) {
+	/**
+	 * Add media attachments to last added note.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_add_note_attachments_ajax_callback() {
+		global $wpdb;
+
+		$order_id         = (int) filter_input( INPUT_POST, 'order_id', FILTER_SANITIZE_NUMBER_INT );
+		$posted_array     = filter_input_array( INPUT_POST );
+		$note_attachments = $posted_array['note_attachments'];
+
+		// Get the last added note ID.
+		$comment_query = "SELECT `comment_ID` FROM `$wpdb->comments` WHERE  `comment_post_ID` = $order_id AND  `comment_type` LIKE  'order_note' ORDER BY `comment_date` DESC LIMIT 1";
+		$query_results = $wpdb->get_row( $comment_query, ARRAY_A );
+		$comment_id    = ( ! empty( $query_results['comment_ID'] ) ) ? $query_results['comment_ID'] : false;
+
+		// Return, if the db query did not return the previous comment ID.
+		if ( false === $comment_id ) {
+			wp_send_json_error(
+				array(
+					'code'    => 'media-not-attached',
+					'message' => __( 'Unable to add media to the note. Order note not found.', 'supavapes' ),
+				)
+			);
+			wp_die();
+		}
+
+		// Update the comment meta.
+		update_comment_meta( $comment_id, 'attachments', $note_attachments );
+
+		// Send the ajax success response.
+		wp_send_json_error(
+			array(
+				'code' => 'media-attached',
+			)
+		);
+		wp_die();
+	}
+}
+
+add_action( 'wp_ajax_add_note_attachments', 'supavapes_add_note_attachments_ajax_callback' );
+
+/**
+ * If the function, `supavapes_refresh_order_notes_callback`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_refresh_order_notes_callback' ) ) {
+	/**
+	 * Refresh order notes.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_refresh_order_notes_callback() {
+		$order_id = (int) filter_input( INPUT_POST, 'order_id', FILTER_SANITIZE_NUMBER_INT );
+
+		// Return, if the order ID was not received.
+		if ( false === $order_id ) {
+			wp_send_json_error(
+				array(
+					'code'    => 'notes-not-refreshed',
+					'message' => __( 'Unable to refresh the order notes. Order ID not found.', 'supavapes' ),
+				)
+			);
+			wp_die();
+		}
+
+		$args  = array( 'order_id' => $order_id );
+		$notes = wc_get_order_notes( $args );
+
+		ob_start();
+		include trailingslashit( get_stylesheet_directory() ) . 'html-order-notes.php';
+		$html = ob_get_clean();
+
+		// Send the ajax success response.
+		wp_send_json_error(
+			array(
+				'code' => 'notes-refreshed',
+				'html' => $html,
+			)
+		);
+		wp_die();
+	}
+}
+
+add_action( 'wp_ajax_refresh_order_notes', 'supavapes_refresh_order_notes_callback' );
