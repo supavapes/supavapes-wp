@@ -3727,7 +3727,7 @@ if ( ! function_exists( 'supavapes_refresh_order_notes_callback' ) ) {
 		$notes = wc_get_order_notes( $args );
 
 		ob_start();
-		include trailingslashit( get_stylesheet_directory() ) . 'html-order-notes.php';
+		include trailingslashit( get_stylesheet_directory() ) . 'woocommerce/admin/html-order-notes.php';
 		$html = ob_get_clean();
 
 		// Send the ajax success response.
