@@ -3627,7 +3627,7 @@ if ( ! function_exists( 'supavapes_order_notes_metabox_callback' ) ) {
 			$notes = array();
 		}
 
-		include trailingslashit( get_stylesheet_directory() ) . 'html-order-notes.php';
+		include trailingslashit( get_stylesheet_directory() ) . 'woocommerce/admin/html-order-notes.php';
 		?>
 		<div class="add_note">
 			<p>
