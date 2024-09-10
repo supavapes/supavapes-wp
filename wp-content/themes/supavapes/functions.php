@@ -3745,3 +3745,18 @@ if ( ! function_exists( 'supavapes_refresh_order_notes_callback' ) ) {
 }
 
 add_action( 'wp_ajax_refresh_order_notes', 'supavapes_refresh_order_notes_callback' );
+
+
+
+// Add a custom badge to the product details page
+function add_custom_badge_to_product_page() {
+    global $product;
+
+   
+    echo '<span class="custom-badge">Sale!</span>';
+   
+    // Add more conditions as needed
+}
+
+// Hook the function to display the badge before the product summary
+add_action( 'woocommerce_before_single_product_summary', 'add_custom_badge_to_product_page', 10 );
