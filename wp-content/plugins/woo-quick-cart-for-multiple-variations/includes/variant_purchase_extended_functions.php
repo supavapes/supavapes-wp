@@ -214,12 +214,16 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 					?>
 					<div class="vpn_product_image_gallery">
 						<label class="vpn_product_label"><?php echo esc_html__("Product Image",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-						<?php if ( 'Gujarat' === $state ) {?>
-							<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/ontario-variation.png"/>
-						<?php }else{?>
-							<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/federal-variation.png"/>
-						<?php }?>
-						<img src="<?php echo esc_url( $variation_thumbnail ); ?>" alt="">
+						<div class="ontario-federal-image-wrap">
+							<?php if ( 'Gujarat' === $state ) {?>
+								<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/ontario-variation.png"/>
+							<?php }else{?>
+								<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/federal-variation.png"/>
+							<?php }?>
+						</div>
+						<div class="var-thumb-img-wrap">
+							<img src="<?php echo esc_url( $variation_thumbnail ); ?>" alt="">
+						</div>
 					</div>
 					<?php
 				}
