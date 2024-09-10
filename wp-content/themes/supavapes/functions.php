@@ -3782,4 +3782,4 @@ function display_price_based_on_state() {
 }
 
 // Hook the function to display the price before the product summary
-// add_action( 'woocommerce_single_product_summary', 'display_price_based_on_state', 9 );
+add_action( 'woocommerce_before_single_product_summary', 'display_price_based_on_state', 9 );

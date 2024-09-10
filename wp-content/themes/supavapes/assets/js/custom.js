@@ -27,61 +27,63 @@ jQuery(document).ready(function() {
     });
 
     if(jQuery('body').hasClass('single-product') || jQuery('body').hasClass('woocommerce-shop')){
-        
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var lat = position.coords.latitude;
-                var lng = position.coords.longitude;
-                jQuery.get('https://maps.googleapis.com/maps/api/geocode/json', {
-                    latlng: lat + ',' + lng,
-                    key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
-                }, function(response) {
-                    if (response.status === 'OK') {
-                        var result = response.results[0];
-                        var city = '';
-                        var country = '';
-                        var state = '';
-                        for (var i = 0; i < result.address_components.length; i++) {
-                            var component = result.address_components[i];
-                            console.log(component);
-                            if (component.types.includes('locality')) {
-                                city = component.long_name;
+        var userStateCookie = getCookie('user_state');
+        if (!userStateCookie) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    jQuery.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                        latlng: lat + ',' + lng,
+                        key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
+                    }, function(response) {
+                        if (response.status === 'OK') {
+                            var result = response.results[0];
+                            var city = '';
+                            var country = '';
+                            var state = '';
+                            for (var i = 0; i < result.address_components.length; i++) {
+                                var component = result.address_components[i];
+                                console.log(component);
+                                if (component.types.includes('locality')) {
+                                    city = component.long_name;
+                                }
+                                if (component.types.includes('country')) {
+                                    country = component.long_name;
+                                }
+                                if (component.types.includes('administrative_area_level_1')) {
+                                    state = component.long_name;
+                                }
                             }
-                            if (component.types.includes('country')) {
-                                country = component.long_name;
-                            }
-                            if (component.types.includes('administrative_area_level_1')) {
-                                state = component.long_name;
-                            }
+                            jQuery('#location').val(city + ', ' + country);
+                            // console.log("state: "+state);;
+                            jQuery.ajax({
+                                url: sv_ajax.ajax_url,
+                                type: 'POST',
+                                data: {
+                                    action: 'woocommerce_set_dynamic_price',
+                                    city: city,
+                                    country: country,
+                                    state: state
+                                },
+                                success: function(data) {
+                                console.log(data);
+                                }
+                            });
+                            
+                        } else {
+                            jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+                            jQuery('#location-error').show();
                         }
-                        jQuery('#location').val(city + ', ' + country);
-                        // console.log("state: "+state);;
-                        jQuery.ajax({
-                            url: sv_ajax.ajax_url,
-                            type: 'POST',
-                            data: {
-                                action: 'woocommerce_set_dynamic_price',
-                                city: city,
-                                country: country,
-                                state: state
-                            },
-                            success: function(data) {
-                               console.log(data);
-                            }
-                        });
-                        
-                    } else {
-                        jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
-                        jQuery('#location-error').show();
-                    }
+                    });
+                }, function(error) {
+                    jQuery('#location-error').text('Geolocation is not supported by this browser or permission denied.');
+                    jQuery('#location-error').show();
                 });
-            }, function(error) {
-                jQuery('#location-error').text('Geolocation is not supported by this browser or permission denied.');
+            } else {
+                jQuery('#location-error').text('Geolocation is not supported by this browser.');
                 jQuery('#location-error').show();
-            });
-        } else {
-            jQuery('#location-error').text('Geolocation is not supported by this browser.');
-            jQuery('#location-error').show();
+            }
         }
     }
 
