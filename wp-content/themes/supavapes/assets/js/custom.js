@@ -27,8 +27,8 @@ jQuery(document).ready(function() {
     });
 
     if(jQuery('body').hasClass('single-product') || jQuery('body').hasClass('woocommerce-shop')){
-        var userStateCookie = getCookie('user_state');
-        if (!userStateCookie) {
+        // var userStateCookie = getCookie('user_state');
+        // if (!userStateCookie) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var lat = position.coords.latitude;
@@ -84,7 +84,7 @@ jQuery(document).ready(function() {
                 jQuery('#location-error').text('Geolocation is not supported by this browser.');
                 jQuery('#location-error').show();
             }
-        }
+        // }
     }
 
     
