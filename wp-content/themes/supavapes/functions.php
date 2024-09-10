@@ -3577,7 +3577,9 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
-		
+		var_dump($price);
+		var_dump($cart_item);
+		var_dump($cart_item_key);
 		// Check if the state is 'Gujarat' - set this dynamically based on user location
 		if ( isset( $_COOKIE['user_state'] ) ) {
 			$state = sanitize_text_field( $_COOKIE['user_state'] );
