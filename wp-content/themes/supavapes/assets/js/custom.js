@@ -1686,6 +1686,8 @@ jQuery(document).ready(function() {
         var form = jQuery(this);
         var product_id = form.find('button[name="add-to-cart"]').val();
         var quantity = form.find('input[name="quantity"]').val();
+        console.log(product_id);
+        console.log(quantity);
         jQuery.ajax({
             url: sv_ajax.ajax_url,
             type: 'POST',
@@ -1696,7 +1698,7 @@ jQuery(document).ready(function() {
             },
             success: function(response) {
                 if (response.error) {
-                    alert(response.error);
+                    console.log(response.error);
                 } else {
                     var cartQuantity = response.data.cart_quantity;
                     jQuery('.cart-counter').text(cartQuantity);
