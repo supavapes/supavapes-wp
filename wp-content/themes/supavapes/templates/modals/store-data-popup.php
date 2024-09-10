@@ -4,14 +4,15 @@
  */
 $terms     = get_the_terms( get_the_ID(), 'store_locator' );
 $term_data = array();
-
-foreach ( $terms as $term ) {
-	$term_data[] = array(
-		'name' => $term->name,
-		'address_line_1' => get_term_meta($term->term_id, 'address_line_1', true),
-		'address_line_2' => get_term_meta($term->term_id, 'address_line_2', true),
-		'contact_number' => get_term_meta($term->term_id, 'contact_number', true)
-	);
+if($terms){
+	foreach ( $terms as $term ) {
+		$term_data[] = array(
+			'name' => $term->name,
+			'address_line_1' => get_term_meta($term->term_id, 'address_line_1', true),
+			'address_line_2' => get_term_meta($term->term_id, 'address_line_2', true),
+			'contact_number' => get_term_meta($term->term_id, 'contact_number', true)
+		);
+	}
 }
 $store_count_class = "";
 if(count($term_data) === 1){
