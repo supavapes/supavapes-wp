@@ -3748,15 +3748,38 @@ add_action( 'wp_ajax_refresh_order_notes', 'supavapes_refresh_order_notes_callba
 
 
 
-// Add a custom badge to the product details page
-function add_custom_badge_to_product_page() {
+// Function to display the correct price based on the user state
+function display_price_based_on_state() {
     global $product;
 
-   
-    echo '<span class="custom-badge">Sale!</span>';
-   
-    // Add more conditions as needed
+    // Get the product ID
+    $product_id = $product->get_id();
+
+    // Check for Ontario price
+    $ontario_price = get_post_meta( $product_id, '_ontario_price', true );
+
+    // Check for Federal price
+    $federal_price = get_post_meta( $product_id, '_federal_price', true );
+
+    // Get the user's state from the cookie
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+    // Determine which price to show
+    if ( 'ontario' === strtolower( $state ) && $ontario_price ) {
+        // Display Ontario price
+        echo '<span class="product-price">' . wc_price( $ontario_price ) . ' (Ontario Price)</span>';
+    } elseif ( 'federal' === strtolower( $state ) && $federal_price ) {
+        // Display Federal price
+        echo '<span class="product-price">' . wc_price( $federal_price ) . ' (Federal Price)</span>';
+    } else {
+        // Display regular or sale price
+        if ( $product->is_on_sale() ) {
+            echo '<span class="product-price">' . $product->get_sale_price() . ' (Sale Price)</span>';
+        } else {
+            echo '<span class="product-price">' . wc_price( $product->get_regular_price() ) . '</span>';
+        }
+    }
 }
 
-// Hook the function to display the badge before the product summary
-add_action( 'woocommerce_before_single_product_summary', 'add_custom_badge_to_product_page', 10 );
+// Hook the function to display the price before the product summary
+// add_action( 'woocommerce_single_product_summary', 'display_price_based_on_state', 9 );

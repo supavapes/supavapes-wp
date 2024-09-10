@@ -208,6 +208,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 		<div class="cartRow">
 			
 			<div class="cartItem">
+				<?php if ( 'Gujarat' === $state ) {?>
+					<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/ontario-variation.png"/>
+				<?php }else{?>
+					<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/federal-variation.png"/>
+				<?php }?>
 				<?php
 				if ( 'yes' === $wqcmv_enable_thumbnail_visibility ) {
 					?>
