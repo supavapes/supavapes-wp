@@ -614,10 +614,15 @@ if ( ! function_exists( 'supavapes_render_minicart_ajax_callback' ) ) {
 	 */
 	function supavapes_render_minicart_ajax_callback() {
 		// Send the AJAX response.
+
+		ob_start();
+		woocommerce_mini_cart();
+		$mini_cart = ob_get_clean();
+
 		wp_send_json_success(
 			array(
 				'message'   => 'Open Mini Cart',
-				'mini_cart' => woocommerce_mini_cart(),
+				'mini_cart' => $mini_cart,
 			)
 		);
 	}
