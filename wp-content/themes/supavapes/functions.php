@@ -3571,19 +3571,20 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 	 * Override cart item price display.
 	 * 
 	 * @param $price
-	 * @param $cart_item
-	 * @param $cart_item_key
+	 * @param $cart_item holds cart item array
+	 * @param $cart_item_key holds cart item key.
 	 * 
 	 * @since 1.0.0
 	 */
 	function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
-		var_dump($price);
 		echo "price";
-		var_dump($cart_item);
-		echo "cart item";
-		var_dump($cart_item_key);
-		echo "cart item key";
-		die('lkoo');
+		var_dump($price);
+		
+		// var_dump($cart_item);
+		// echo "cart item";
+		// var_dump($cart_item_key);
+		// echo "cart item key";
+		// die('lkoo');
 		// Check if the state is 'Gujarat' - set this dynamically based on user location
 		if ( isset( $_COOKIE['user_state'] ) ) {
 			$state = sanitize_text_field( $_COOKIE['user_state'] );
