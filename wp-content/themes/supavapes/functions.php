@@ -572,8 +572,8 @@ if ( ! function_exists( 'supavapes_woocommerce_ajax_add_to_cart_ajax_callback' )
 	 * @since 1.00.
 	 */
 	function supavapes_woocommerce_ajax_add_to_cart_ajax_callback() {
-		echo $product_id = (int) filter_input( INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT );
-		echo $quantity   = filter_input( INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT );
+		$product_id = (int) filter_input( INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT );
+		$quantity   = filter_input( INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT );
 		$quantity   = ( ! empty( $quantity ) ) ? (int) $quantity : 1;
 
 		// Return error if product ID is missing.
@@ -585,11 +585,15 @@ if ( ! function_exists( 'supavapes_woocommerce_ajax_add_to_cart_ajax_callback' )
 		// Add product to the cart.
 		WC()->cart->add_to_cart( $product_id, $quantity);
 
+		ob_start();
+		woocommerce_mini_cart();
+		$mini_cart = ob_get_clean();
+
 		// Send the mini cart HTML in the response.
 		wp_send_json_success(
 			array(
 				'message'       => __( 'Product is successfully added to the cart.', 'supavapes' ),
-				'mini_cart'     => woocommerce_mini_cart(), // Capture the mini cart HTML.
+				'mini_cart'     => $mini_cart, // Capture the mini cart HTML.
 				'cart_quantity' => WC()->cart->get_cart_contents_count(), // Get cart quantity.
 			)
 		);
