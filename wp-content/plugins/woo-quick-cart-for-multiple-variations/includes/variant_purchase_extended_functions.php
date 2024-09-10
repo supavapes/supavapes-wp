@@ -52,71 +52,90 @@ function wqcmv_updated_headers() {
  */
 function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations = array() ) {
 	
-	if ( 0 === $variation_id ) {
-		return '';
-	}
-	$product = wc_get_product( $variation_id );
+    if ( 0 === $variation_id ) {
+        return '';
+    }
+    
+    $product = wc_get_product( $variation_id );
 
-	if ( false === $product || empty( $product ) ) {
-		return '';
-	}
-	$unavailable_variants_option       = get_option( 'vpe_allow_unavailable_variants' );
-	$wqcmv_enable_thumbnail_visibility = get_option( 'wqcmv_enable_thumbnail_visibility' );
-	$show_out_of_stock_variants        = ( 'yes' === $unavailable_variants_option ) ? 'yes' : 'no';
+    if ( false === $product || empty( $product ) ) {
+        return '';
+    }
 
-	/* return empty when do not display the out of stock variation and variation is outofstock */
-	if ( 'no' === $show_out_of_stock_variants && ( 'instock' !== $product->get_stock_status() && 'onbackorder' !== $product->get_stock_status() ) ) {
-		return '';
-	}
+    $unavailable_variants_option       = get_option( 'vpe_allow_unavailable_variants' );
+    $wqcmv_enable_thumbnail_visibility = get_option( 'wqcmv_enable_thumbnail_visibility' );
+    $show_out_of_stock_variants        = ( 'yes' === $unavailable_variants_option ) ? 'yes' : 'no';
 
-	$stock_availibility = true;
-	$stock_text         = "";
-	$stock_in_cart      = false;
+    // Return empty if variation is out of stock and display is disabled
+    if ( 'no' === $show_out_of_stock_variants && ( 'instock' !== $product->get_stock_status() && 'onbackorder' !== $product->get_stock_status() ) ) {
+        return '';
+    }
 
-	ob_start();
-	$variation_title = $product->get_formatted_name();
-	$parent_id       = $product->get_parent_id();
-	$product_title   = get_the_title( $parent_id );
-	$variation_title = str_replace( $product_title . " - ", " ", $variation_title );
-	$variation_title = wp_strip_all_tags( $variation_title ); //Removed span tag from title.
-	$sku             = $product->get_sku();
-	// Variant image
-	$variation_thumbnail_id = get_post_thumbnail_id( $variation_id );
-	$variation_thumbnail    = wc_placeholder_img_src();
-	if ( '' !== $variation_thumbnail_id ) {
-		$variation_thumbnail_url = wp_get_attachment_image_src( $variation_thumbnail_id, 'thumbnail' );
-		$variation_full_url      = wp_get_attachment_image_src( $variation_thumbnail_id, 'medium' );
-		if ( empty( $variation_thumbnail_url ) ) {
-			$variation_thumbnail = wc_placeholder_img_src();
-		} else {
-			$variation_thumbnail = $variation_thumbnail_url[0];
-			$variation_full      = $variation_full_url[0];
-		}
-	} else {
-		if ( 0 !== $parent_id ) {
-			$variation_thumbnail_id = get_post_thumbnail_id( $parent_id );
-			if ( $variation_thumbnail_id !== '' ) {
-				$variation_thumbnail_url = wp_get_attachment_image_src( $variation_thumbnail_id, 'thumbnail' );
-				$variation_full_url      = wp_get_attachment_image_src( $variation_thumbnail_id, 'medium' );
-				if ( empty( $variation_thumbnail_url ) ) {
-					$variation_thumbnail = wc_placeholder_img_src();
-				} else {
-					$variation_thumbnail = $variation_thumbnail_url[0];
-					$variation_full      = $variation_full_url[0];
-				}
-			}
-		}
-	}
-	// Fetch variant price
-	$reg_price  = get_post_meta( $variation_id, '_regular_price', true );
-	$sale_price = get_post_meta( $variation_id, '_sale_price', true );
-	if ( $sale_price ) {
-		$price = '<del>' . ( is_numeric( $reg_price ) ? wc_price( $reg_price ) : $reg_price ) . '</del><ins>' . ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price ) . '</ins>';
-	}else{
-		$price = '<ins>' . ( is_numeric( $reg_price ) ? wc_price( $reg_price ) : $reg_price ) . '</ins>';
-	}
-	
-	$manage_stock = get_post_meta( $variation_id, '_manage_stock', true );
+    $stock_availibility = true;
+    $stock_text         = "";
+    $stock_in_cart      = false;
+
+    ob_start();
+    $variation_title = $product->get_formatted_name();
+    $parent_id       = $product->get_parent_id();
+    $product_title   = get_the_title( $parent_id );
+    $variation_title = str_replace( $product_title . " - ", " ", $variation_title );
+    $variation_title = wp_strip_all_tags( $variation_title );
+
+    $sku = $product->get_sku();
+
+    // Variant image handling
+    $variation_thumbnail_id = get_post_thumbnail_id( $variation_id );
+    $variation_thumbnail    = wc_placeholder_img_src();
+    if ( '' !== $variation_thumbnail_id ) {
+        $variation_thumbnail_url = wp_get_attachment_image_src( $variation_thumbnail_id, 'thumbnail' );
+        $variation_full_url      = wp_get_attachment_image_src( $variation_thumbnail_id, 'medium' );
+        if ( empty( $variation_thumbnail_url ) ) {
+            $variation_thumbnail = wc_placeholder_img_src();
+        } else {
+            $variation_thumbnail = $variation_thumbnail_url[0];
+            $variation_full      = $variation_full_url[0];
+        }
+    } else {
+        if ( 0 !== $parent_id ) {
+            $variation_thumbnail_id = get_post_thumbnail_id( $parent_id );
+            if ( $variation_thumbnail_id !== '' ) {
+                $variation_thumbnail_url = wp_get_attachment_image_src( $variation_thumbnail_id, 'thumbnail' );
+                $variation_full_url      = wp_get_attachment_image_src( $variation_thumbnail_id, 'medium' );
+                if ( empty( $variation_thumbnail_url ) ) {
+                    $variation_thumbnail = wc_placeholder_img_src();
+                } else {
+                    $variation_thumbnail = $variation_thumbnail_url[0];
+                    $variation_full      = $variation_full_url[0];
+                }
+            }
+        }
+    }
+
+    // Determine Ontario or Federal Price
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+    $custom_price = '';
+    if ( 'Gujarat' === $state ) {
+        $custom_price = get_post_meta( $variation_id, '_ontario_price', true );
+    } else {
+        $custom_price = get_post_meta( $variation_id, '_federal_price', true );
+    }
+
+    // Fetch regular and sale prices
+    $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+    $sale_price = get_post_meta( $variation_id, '_sale_price', true );
+
+    // Determine which price to display
+    if ( $custom_price ) {
+        $price = '<ins>' . wc_price( $custom_price ) . '</ins>';
+    } elseif ( $sale_price ) {
+        $price = '<del>' . ( is_numeric( $reg_price ) ? wc_price( $reg_price ) : $reg_price ) . '</del><ins>' . ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price ) . '</ins>';
+    } else {
+        $price = '<ins>' . ( is_numeric( $reg_price ) ? wc_price( $reg_price ) : $reg_price ) . '</ins>';
+    }
+
+    $manage_stock = get_post_meta( $variation_id, '_manage_stock', true );
 
 	$span             = '';
 	$prod_stock_class = '';
