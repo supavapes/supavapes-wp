@@ -45,9 +45,9 @@ if($rating_num == 0){
         ?>
         <div class="shop-thumbnail-badge-wrap">
             <?php if ( 'Gujarat' === $state ) {?>
-                <img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/ontario-variation.png"/>
+                <img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png"/>
             <?php }else{?>
-                <img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/federal-variation.png"/>
+                <img src="/wp-content/themes/supavapes/assets/images/shop-federal.png"/>
             <?php }?>
         </div>
         <div class="sv-our-product-img <?php echo esc_attr($rating_class); ?>">
