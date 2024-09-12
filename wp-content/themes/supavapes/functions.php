@@ -3592,10 +3592,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 // Determine final price based on state
                 if ( 'Gujarat' == $state ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax;
+                    $final_price += $ontario_tax + $federal_tax;
                 } else {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax + $federal_tax;
+                    $final_price += $federal_tax;
                 }
 				echo "Final Price: ".$final_price;
                 // Set the price for the variation
@@ -3636,10 +3636,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 
             if ( 'Gujarat' == $state ) {
                 $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                $final_price += $ontario_tax;
+                $final_price += $ontario_tax + $federal_tax;
             } else {
                 $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                $final_price += $ontario_tax + $federal_tax;
+                $final_price += $federal_tax;
             }
 
             $price = wc_price( $final_price );
