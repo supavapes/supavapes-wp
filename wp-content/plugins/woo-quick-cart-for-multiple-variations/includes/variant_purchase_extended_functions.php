@@ -115,12 +115,12 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     // Determine Ontario or Federal Price
     $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-    $custom_price = '';
-    if ( 'Gujarat' === $state ) {
-        $custom_price = get_post_meta( $variation_id, '_ontario_price', true );
-    } else {
-        $custom_price = get_post_meta( $variation_id, '_federal_price', true );
-    }
+    // $custom_price = '';
+    // if ( 'Gujarat' === $state ) {
+    //     $custom_price = get_post_meta( $variation_id, '_ontario_price', true );
+    // } else {
+    //     $custom_price = get_post_meta( $variation_id, '_federal_price', true );
+    // }
 
     // Fetch regular and sale prices
     $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
@@ -152,13 +152,13 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 		// Determine final price
 		$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 		$final_price += $tax;
-		echo "Total Tax: ". number_format($tax, 2);
-		echo "Final Price after adding tax: $" . number_format($final_price, 2);
+		// echo "Total Tax: ". number_format($tax, 2);
+		// echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
 
     // Determine which price to display
-    if ( $custom_price ) {
-        $price = '<ins>' . wc_price( $custom_price ) . '</ins>';
+    if ( $final_price ) {
+        $price = '<ins>' . wc_price( $final_price ) . '</ins>';
     } elseif ( $sale_price ) {
         $price = '<del>' . ( is_numeric( $reg_price ) ? wc_price( $reg_price ) : $reg_price ) . '</del><ins>' . ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price ) . '</ins>';
     } else {
