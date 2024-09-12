@@ -3813,8 +3813,8 @@ function display_price_based_on_state() {
 
 
 // Variations (of a variable product)
-add_filter('woocommerce_variation_prices_price', 'custom_variation_price', 99, 3 );
-add_filter('woocommerce_variation_prices_regular_price', 'custom_variation_price', 99, 3 );
+// add_filter('woocommerce_variation_prices_price', 'custom_variation_price', 99, 3 );
+// add_filter('woocommerce_variation_prices_regular_price', 'custom_variation_price', 99, 3 );
 
 function custom_variation_price( $price, $variation, $product ) {
 	// echo $price;

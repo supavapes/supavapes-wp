@@ -126,6 +126,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
     $sale_price = get_post_meta( $variation_id, '_sale_price', true );
 
+	$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+	if(isset($vaping_liquid) && !empty($vaping_liquid)){
+		echo $vaping_liquid;
+	}
+
     // Determine which price to display
     if ( $custom_price ) {
         $price = '<ins>' . wc_price( $custom_price ) . '</ins>';
