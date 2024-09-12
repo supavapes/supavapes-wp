@@ -3387,9 +3387,13 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 		if ( isset( $loop ) && is_int( $loop ) ) {
 			$ontario_price = ( ! empty( $posted_array['_ontario_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_ontario_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$federal_price = ( ! empty( $posted_array['_federal_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_federal_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$vaping_liquid = ( ! empty( $posted_array['_vaping_liquid'][ $loop ] ) ) ? wp_unslash( $posted_array['_vaping_liquid'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
 		} else {
 			$ontario_price = ( ! empty( $posted_array['_ontario_price'] ) ) ? $posted_array['_ontario_price'] : 0.0;
 			$federal_price = ( ! empty( $posted_array['_federal_price'] ) ) ? $posted_array['_federal_price'] : 0.0;
+			$vaping_liquid = ( ! empty( $posted_array['_vaping_liquid'] ) ) ? $posted_array['_vaping_liquid'] : '';
+
 		}
 
 		// Update the ontario price.
@@ -3400,6 +3404,11 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 		// Update the federal price.
 		if ( ! empty( $federal_price ) ) {
 			update_post_meta( $product_id, '_federal_price', $federal_price );
+		}
+
+		// Update the vaping liquid.
+		if ( ! empty( $vaping_liquid ) ) {
+			update_post_meta( $product_id, '_vaping_liquid', $vaping_liquid );
 		}
 	}
 }
