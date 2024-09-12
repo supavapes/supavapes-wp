@@ -129,7 +129,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
-	if (isset($vaping_liquid) && !empty($vaping_liquid)) {
+	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 		echo $vaping_liquid;
 
 
@@ -307,10 +307,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				</div>
 				<div class="vpn_product_price">
 					<label class="vpn_product_label"><?php echo esc_html__("Price",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-					
-				</div>
 					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?></h4>
-					
+				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__("Quantity",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
 						<div class="qtyCount test-quantity-class">
