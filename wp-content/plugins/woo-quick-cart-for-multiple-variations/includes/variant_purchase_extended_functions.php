@@ -190,9 +190,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			$final_price += $include_both_taxes;
     	}
 
+	
 		
 		echo "Ontario Tax: ". number_format($ontario_tax, 2);
 		echo "Federal Tax: ". number_format($federal_tax, 2);
+		echo "Total Tax:" . number_format($ontario_tax + $federal_tax, 2);
 		// echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
 
