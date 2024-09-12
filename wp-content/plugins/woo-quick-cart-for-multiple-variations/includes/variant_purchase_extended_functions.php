@@ -129,8 +129,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
-	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid > 0) {
-		// echo $vaping_liquid;
+	if (isset($vaping_liquid) && !empty($vaping_liquid)) {
+		echo $vaping_liquid;
 
 
 		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
@@ -192,22 +192,13 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			$final_price += $include_both_taxes;
     	}
 
-		// // echo "".
+		// echo "".
 	
 		
-		// echo "Ontario Tax: ". number_format($ontario_tax, 2);
-		// echo "Federal Tax: ". number_format($federal_tax, 2);
-		// echo "Total Tax:" . number_format($ontario_tax + $federal_tax, 2);
+		echo "Ontario Tax: ". number_format($ontario_tax, 2);
+		echo "Federal Tax: ". number_format($federal_tax, 2);
+		echo "Total Tax:" . number_format($ontario_tax + $federal_tax, 2);
 		// echo "Final Price after adding tax: $" . number_format($final_price, 2);
-		?>
-
-		<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?></h4>
-		<h5>Price Breakdown:</h5>
-		<p>Product Price: <?php echo $sale_price; ?></p>
-		<p>Ontario Excise Tax: <?php echo number_format($ontario_tax, 2); ?></p>
-		<p>Federal Excise Tax: <?php echo number_format($federal_tax, 2); ?></p>
-		<p>Wholesale Price: <?php echo number_format($sale_price + $ontario_tax + $federal_tax, 2); ?></p>
-		<?php
 	}
 
     // Determine which price to display
@@ -318,6 +309,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 					<label class="vpn_product_label"><?php echo esc_html__("Price",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
 					
 				</div>
+					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?></h4>
 					
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__("Quantity",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
