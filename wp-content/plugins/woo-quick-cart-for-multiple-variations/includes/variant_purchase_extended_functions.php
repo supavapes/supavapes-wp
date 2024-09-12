@@ -113,7 +113,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     }
 
     // Determine Ontario or Federal Price
-    echo "State: ".$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+    echo "State: ".$state = $_COOKIE['user_state'];
 
     // $custom_price = '';
     // if ( 'Gujarat' === $state ) {
