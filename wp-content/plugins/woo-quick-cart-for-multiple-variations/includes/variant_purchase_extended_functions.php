@@ -133,10 +133,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 		// echo $vaping_liquid;
 
 
-		$ontario_excise_value = get_field('ontario_excise_value', 'option');
+		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
+		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
 		// Initialize duty rate as dynamic values
-		$ontario_duty_per_2ml = $ontario_excise_value; // Duty per 2 ml (first 10ml)
-		$ontario_duty_per_10ml = $ontario_excise_value; // Duty per 10 ml (remaining after 10ml)
+		$ontario_duty_per_2ml = $ontario_excise_value_2_ml; // Duty per 2 ml (first 10ml)
+		$ontario_duty_per_10ml = $ontario_excise_value_10_ml; // Duty per 10 ml (remaining after 10ml)
 
 		// Initialize tax variable
 		$ontario_tax = 0;
@@ -156,10 +157,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			}
 		}
 
-		$federal_excise_value = get_field('federal_excise_value', 'option');
+		$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
+		$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
 		// Initialize duty rate as dynamic values
-		$federal_duty_per_2ml = $federal_excise_value; // Duty per 2 ml (first 10ml)
-		$federal_duty_per_10ml = $federal_excise_value; // Duty per 10 ml (remaining after 10ml)
+		$federal_duty_per_2ml = $federal_excise_value_2_ml; // Duty per 2 ml (first 10ml)
+		$federal_duty_per_10ml = $federal_excise_value_10_ml; // Duty per 10 ml (remaining after 10ml)
 
 		// Initialize tax variable
 		$federal_tax = 0;
