@@ -129,7 +129,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
-	if (isset($vaping_liquid) && !empty($vaping_liquid)) {
+	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid > 0) {
 		// echo $vaping_liquid;
 
 
