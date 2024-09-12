@@ -3696,10 +3696,10 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
 
                 if ( 'Gujarat' == $state ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax + $federal_tax;
+                    $final_price += $ontario_tax;
                 } else {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $federal_tax;
+                    $final_price += $ontario_tax + $federal_tax;
                 }
 
                 $cart_item['data']->set_price( $final_price );
