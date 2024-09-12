@@ -3597,7 +3597,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax + $federal_tax;
                 }
-
+				echo "Final Price: ".$final_price;
                 // Set the price for the variation
                 $variation_obj = wc_get_product( $variation_id );
                 $variation_obj->set_price( $final_price );
