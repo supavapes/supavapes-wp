@@ -3337,7 +3337,7 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_vaping_liquid', true ) ),
 				'label'         => sprintf(
 					/* translators: %s: currency symbol */
-					__( 'Vaping Liquid', 'woocommerce' ),
+					__( 'Vaping Liquid (in ML)', 'woocommerce' ),
 					get_woocommerce_currency_symbol()
 				),
 				'data_type'     => 'text',
@@ -3809,3 +3809,16 @@ function display_price_based_on_state() {
 
 // Hook the function to display the price before the product summary
 // add_action( 'woocommerce_before_single_product_summary', 'display_price_based_on_state', 9 );
+
+
+
+// Variations (of a variable product)
+add_filter('woocommerce_variation_prices_price', 'custom_variation_price', 99, 3 );
+add_filter('woocommerce_variation_prices_regular_price', 'custom_variation_price', 99, 3 );
+
+function custom_variation_price( $price, $variation, $product ) {
+    // Delete product cached price  (if needed)
+    wc_delete_product_transients($variation->get_id());
+
+    return $price * 3; // X3 for testing
+}
