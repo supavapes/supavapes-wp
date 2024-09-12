@@ -3527,27 +3527,78 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 		// Check if the state is 'Gujarat' - you may set this dynamically based on user location
 		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
+		// Set dynamic duty rates
+		$duty_per_2ml = 1.12; // Duty per 2 ml (for the first 10ml)
+		$duty_per_10ml = 1.12; // Duty per 10 ml (for remaining after 10ml)
+
 		if ( $product->is_type( 'variable' ) ) {
 			$available_variations = $product->get_available_variations();
 
 			// Loop through each variation and update the price accordingly
 			foreach ( $available_variations as $variation ) {
 				$variation_id = $variation['variation_id'];
-				$custom_price = $state === 'Gujarat' ? get_post_meta( $variation_id, '_ontario_price', true ) : get_post_meta( $variation_id, '_federal_price', true );
+				
+				// Fetch regular and sale prices
+				$reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+				$sale_price = get_post_meta( $variation_id, '_sale_price', true );
 
-				if ( $custom_price ) {
-					$variation_obj = wc_get_product( $variation_id );
-					$variation_obj->set_price( $custom_price );
-					$variation_obj->set_regular_price( $custom_price );
+				// Fetch vaping_liquid value
+				$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+
+				// Initialize tax variable
+				$tax = 0;
+
+				// Calculate tax if vaping_liquid is greater than 10
+				if ( isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid > 10 ) {
+					$first_part = 10;
+					$second_part = $vaping_liquid - $first_part;
+
+					// Tax calculation for first part (10 ml)
+					$tax += (10 / 2) * $duty_per_2ml;
+
+					// Tax calculation for the second part
+					if ($second_part > 0) {
+						$tax += floor($second_part / 10) * $duty_per_10ml;
+					}
 				}
+
+				// Determine the final price based on regular or sale price, adding the tax
+				$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price + $tax : $reg_price + $tax;
+
+				// Set the price for the variation
+				$variation_obj = wc_get_product( $variation_id );
+				$variation_obj->set_price( $final_price );
+				$variation_obj->set_regular_price( $final_price );
 			}
 		} else {
-			// For simple products, keep the existing logic
-			$custom_price = $state === 'Gujarat' ? get_post_meta( $product->get_id(), '_ontario_price', true ) : get_post_meta( $product->get_id(), '_federal_price', true );
+			// For simple products
+			// Fetch regular and sale prices
+			$reg_price  = $product->get_regular_price();
+			$sale_price = $product->get_sale_price();
+			
+			// Fetch vaping_liquid value for simple product
+			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+			
+			// Initialize tax variable
+			$tax = 0;
 
-			if ( $custom_price ) {
-				$price = wc_price( $custom_price );
+			// Calculate tax if vaping_liquid is greater than 10
+			if ( isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid > 10 ) {
+				$first_part = 10;
+				$second_part = $vaping_liquid - $first_part;
+
+				// Tax calculation for first part (10 ml)
+				$tax += (10 / 2) * $duty_per_2ml;
+
+				// Tax calculation for the second part
+				if ($second_part > 0) {
+					$tax += floor($second_part / 10) * $duty_per_10ml;
+				}
 			}
+
+			// Determine the final price, adding the tax
+			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price + $tax : $reg_price + $tax;
+			$price = wc_price( $final_price );
 		}
 
 		return $price;
@@ -3555,6 +3606,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 }
 
 add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
+
+
 
 /**
  * If the function `supavapes_set_custom_price_in_cart` doesn't exist.
