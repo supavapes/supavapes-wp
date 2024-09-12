@@ -3587,7 +3587,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                         $federal_tax += floor($second_part / 10) * $federal_duty_per_10ml;
                     }
                 }
-
+				echo "Ontario Tax: ".$ontario_tax;
+				echo "Federal Tax: ".$ontario_tax;
                 // Determine final price based on state
                 if ( 'Gujarat' == $state ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;

@@ -309,8 +309,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 					<label class="vpn_product_label"><?php echo esc_html__("Price", 'woocommerce-quick-cart-for-multiple-variations'); ?></label>
 					<h4 class="priceInfo">
 						<?php echo wp_kses_post($price); ?>
-						<?php if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) { 
-								$product_price = '';
+						<?php if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 							?>
 							<span class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.png" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
