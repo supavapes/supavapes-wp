@@ -3390,33 +3390,39 @@ if ( ! function_exists( 'supavapes_update_product_meta' ) ) {
 		$posted_array = filter_input_array( INPUT_POST );
 
 		if ( isset( $loop ) && is_int( $loop ) ) {
-			$ontario_price = ( ! empty( $posted_array['_ontario_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_ontario_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$federal_price = ( ! empty( $posted_array['_federal_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_federal_price'][ $loop ] ) : 0.0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$vaping_liquid = ( ! empty( $posted_array['_vaping_liquid'][ $loop ] ) ) ? wp_unslash( $posted_array['_vaping_liquid'][ $loop ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$ontario_price = ( isset( $posted_array['_ontario_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_ontario_price'][ $loop ] ) : '';
+			$federal_price = ( isset( $posted_array['_federal_price'][ $loop ] ) ) ? wp_unslash( $posted_array['_federal_price'][ $loop ] ) : '';
+			$vaping_liquid = ( isset( $posted_array['_vaping_liquid'][ $loop ] ) ) ? wp_unslash( $posted_array['_vaping_liquid'][ $loop ] ) : '';
 
 		} else {
-			$ontario_price = ( ! empty( $posted_array['_ontario_price'] ) ) ? $posted_array['_ontario_price'] : 0.0;
-			$federal_price = ( ! empty( $posted_array['_federal_price'] ) ) ? $posted_array['_federal_price'] : 0.0;
-			$vaping_liquid = ( ! empty( $posted_array['_vaping_liquid'] ) ) ? $posted_array['_vaping_liquid'] : '';
-
+			$ontario_price = ( isset( $posted_array['_ontario_price'] ) ) ? $posted_array['_ontario_price'] : '';
+			$federal_price = ( isset( $posted_array['_federal_price'] ) ) ? $posted_array['_federal_price'] : '';
+			$vaping_liquid = ( isset( $posted_array['_vaping_liquid'] ) ) ? $posted_array['_vaping_liquid'] : '';
 		}
 
-		// Update the ontario price.
-		if ( ! empty( $ontario_price ) ) {
+		// Update or delete the Ontario price.
+		if ( $ontario_price !== '' ) {
 			update_post_meta( $product_id, '_ontario_price', $ontario_price );
+		} else {
+			delete_post_meta( $product_id, '_ontario_price' );
 		}
 
-		// Update the federal price.
-		if ( ! empty( $federal_price ) ) {
+		// Update or delete the federal price.
+		if ( $federal_price !== '' ) {
 			update_post_meta( $product_id, '_federal_price', $federal_price );
+		} else {
+			delete_post_meta( $product_id, '_federal_price' );
 		}
 
-		// Update the vaping liquid.
-		if ( ! empty( $vaping_liquid ) ) {
+		// Update or delete the vaping liquid.
+		if ( $vaping_liquid !== '' ) {
 			update_post_meta( $product_id, '_vaping_liquid', $vaping_liquid );
+		} else {
+			delete_post_meta( $product_id, '_vaping_liquid' );
 		}
 	}
 }
+
 
 /**
  * If the function `supavapes_woocommerce_process_product_meta_callback` doesn't exist.
