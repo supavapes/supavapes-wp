@@ -131,7 +131,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 		echo $vaping_liquid;
-
+		echo $state;
 
 		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
 		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
@@ -181,7 +181,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			}
 		}
 			
-		if ( 'Gujarat' === $state ) {
+		if ( 'Gujarat' == $state ) {
 			// Determine final price
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$final_price += $ontario_tax;
@@ -288,7 +288,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 					<div class="vpn_product_image_gallery">
 						<label class="vpn_product_label"><?php echo esc_html__("Product Image",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
 						<div class="ontario-federal-image-wrap">
-							<?php if ( 'Gujarat' === $state ) {?>
+							<?php if ( 'Gujarat' == $state ) {?>
 								<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/ontario-variation.png"/>
 							<?php }else{?>
 								<img src="/wp-content/plugins/woo-quick-cart-for-multiple-variations/public/images/federal-variation.png"/>
