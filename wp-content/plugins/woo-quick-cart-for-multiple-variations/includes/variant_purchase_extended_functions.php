@@ -307,7 +307,9 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				</div>
 				<div class="vpn_product_price">
 					<label class="vpn_product_label"><?php echo esc_html__("Price",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?></h4>
+					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?>
+					<img src="https://dev.supavapes.com/wp-content/uploads/2024/09/info-icon.png" style="height: 15px;width: 15px;position: relative;">
+					</h4>
 				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__("Quantity",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
