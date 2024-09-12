@@ -152,7 +152,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 		// Determine final price
 		$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 		$final_price += $tax;
-
+		echo "Total Tax: ". number_format($tax, 2);
 		echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
 
