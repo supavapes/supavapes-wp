@@ -113,7 +113,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     }
 
     // Determine Ontario or Federal Price
-    echo "State: ".$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
     // $custom_price = '';
     // if ( 'Gujarat' === $state ) {
@@ -130,8 +130,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
-		echo $vaping_liquid;
-		echo $state;
+		// echo $vaping_liquid;
+		// echo $state;
 
 		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
 		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
