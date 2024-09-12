@@ -190,6 +190,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			$final_price += $include_both_taxes;
     	}
 
+		// echo "".
 	
 		
 		echo "Ontario Tax: ". number_format($ontario_tax, 2);
@@ -274,13 +275,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	}
 	?>
 	<?php
-	ob_start();
+		ob_start();
 		$price = $price;
 		?>
 		<div class="cartRow">
-			
 			<div class="cartItem">
-				
 				<?php
 				if ( 'yes' === $wqcmv_enable_thumbnail_visibility ) {
 					?>
@@ -307,6 +306,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				<div class="vpn_product_price">
 					<label class="vpn_product_label"><?php echo esc_html__("Price",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
 					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?></h4>
+					<h5>Price Breakdown:</h5>
+					<p>Product Price: <?php echo $sale_price; ?></p>
+					<p>Ontario Excise Tax: <?php echo number_format($ontario_tax, 2); ?></p>
+					<p>Federal Excise Tax: <?php echo number_format($federal_tax, 2); ?></p>
+					<p>Wholesale Price: <?php echo number_format($ontario_tax + $federal_tax, 2); ?></p>
 				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__("Quantity",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
