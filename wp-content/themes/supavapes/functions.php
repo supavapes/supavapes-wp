@@ -3817,8 +3817,8 @@ add_filter('woocommerce_variation_prices_price', 'custom_variation_price', 99, 3
 add_filter('woocommerce_variation_prices_regular_price', 'custom_variation_price', 99, 3 );
 
 function custom_variation_price( $price, $variation, $product ) {
-	echo $price;
-	die('lkooooo');
+	// echo $price;
+	// die('lkooooo');
     // Delete product cached price  (if needed)
     wc_delete_product_transients($variation->get_id());
 
