@@ -3342,7 +3342,7 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_vaping_liquid', true ) ),
 				'label'         => sprintf(
 					/* translators: %s: currency symbol */
-					__( 'Vaping Liquid (in ML)', 'woocommerce' ),
+					__( 'Vaping Liquid (in ml)', 'woocommerce' ),
 					get_woocommerce_currency_symbol()
 				),
 				'data_type'     => 'text',
@@ -3477,6 +3477,23 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 				),
 				'data_type'   => 'price',
 				'placeholder' => __( 'Federal price (required)', 'supavapes' ),
+			)
+		);
+
+
+		// Add a field for the Federal prices.
+		woocommerce_wp_text_input(
+			array(
+				'id'          => '_vaping_liquid',
+				'name'        => '_vaping_liquid',
+				'value'       => get_post_meta( $post->ID, '_vaping_liquid', true ),
+				'label'       => sprintf(
+					/* translators: %s: currency symbol */
+					__( 'Vaping Liquid (in ml)', 'woocommerce' ),
+					get_woocommerce_currency_symbol()
+				),
+				'data_type'   => 'text',
+				'placeholder' => __( 'Vaping Liquid (required)', 'supavapes' ),
 			)
 		);
 	}
@@ -3626,7 +3643,6 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 }
 
 add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
-
 
 
 
