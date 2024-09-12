@@ -306,9 +306,21 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 					<h4><?php echo wp_kses_post( apply_filters( 'wqcmv_variation_title', $variation_title, $variation_id ) ); ?></h4>
 				</div>
 				<div class="vpn_product_price">
-					<label class="vpn_product_label"><?php echo esc_html__("Price",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-					<h4 class="priceInfo"><?php echo wp_kses_post( $price ); ?>
-					<img src="https://dev.supavapes.com/wp-content/uploads/2024/09/info-icon.png" style="height: 15px;width: 15px;position: relative;">
+					<label class="vpn_product_label"><?php echo esc_html__("Price", 'woocommerce-quick-cart-for-multiple-variations'); ?></label>
+					<h4 class="priceInfo">
+						<?php echo wp_kses_post($price); ?>
+						<span class="info-icon-container">
+							<img src="https://dev.supavapes.com/wp-content/uploads/2024/09/info-icon.png" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+							<div class="price-breakup-popup">
+								<p>Regular Price: <?php echo wc_price($reg_price); ?></p>
+								<?php if (isset($sale_price) && !empty($sale_price)): ?>
+									<p>Sale Price: <?php echo wc_price($sale_price); ?></p>
+								<?php endif; ?>
+								<p>Ontario Tax: <?php echo wc_price($ontario_tax); ?></p>
+								<p>Federal Tax: <?php echo wc_price($federal_tax); ?></p>
+								<p>Total Price: <?php echo wp_kses_post($price); ?></p>
+							</div>
+						</span>
 					</h4>
 				</div>
 				<div class="quantity">
