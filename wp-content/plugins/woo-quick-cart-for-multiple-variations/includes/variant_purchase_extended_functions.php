@@ -121,58 +121,51 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     // } else {
     //     $custom_price = get_post_meta( $variation_id, '_federal_price', true );
     // }
+	
 
-	// Check the state and fetch appropriate excise values
-	if ( 'Gujarat' === $state ) {
-		$ontario_excise_value = get_field('ontario_excise_value','option');
-		$federal_excise_value = 0; // No federal excise value if state is Gujarat
-	} else {
-		$ontario_excise_value = get_field('ontario_excise_value','option');
-		$federal_excise_value = get_field('federal_excise_value','option');
-	}
-
-	// Fetch regular and sale prices
-	$reg_price  = get_post_meta( $variation_id, '_regular_price', true );
-	$sale_price = get_post_meta( $variation_id, '_sale_price', true );
+    // Fetch regular and sale prices
+    $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+    $sale_price = get_post_meta( $variation_id, '_sale_price', true );
 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	if (isset($vaping_liquid) && !empty($vaping_liquid)) {
+		// echo $vaping_liquid;
 
-		// Initialize duty rates dynamically based on state
-		$duty_per_2ml = $ontario_excise_value; // Duty for the first 10 ml (if state is Gujarat)
-		$duty_per_10ml = ( 'Gujarat' === $state ) ? $ontario_excise_value : $federal_excise_value; // Duty for remaining ml after 10ml
+		if ( 'Gujarat' === $state ) {
+    	    $ontario_excise_value = get_field('ontario_excise_value', 'option');
+			// Initialize duty rate as dynamic values
+			$duty_per_2ml = $ontario_excise_value; // Duty per 2 ml (first 10ml)
+			$duty_per_10ml = $ontario_excise_value; // Duty per 10 ml (remaining after 10ml)
+    	} else {
+    	    $federal_excise_value = get_field('federal_excise_value', 'option');
+			// Initialize duty rate as dynamic values
+			$duty_per_2ml = $federal_excise_value; // Duty per 2 ml (first 10ml)
+			$duty_per_10ml = $federal_excise_value; // Duty per 10 ml (remaining after 10ml)
+    	}
 
 		// Initialize tax variable
 		$tax = 0;
-
+	
 		// Check if vaping_liquid value is greater than 10
 		if ($vaping_liquid > 10) {
 			// Divide the vaping_liquid value into two parts
 			$first_part = 10;
 			$second_part = $vaping_liquid - $first_part;
-
+	
 			// Calculate tax for the first part (10 ml)
 			$tax += (10 / 2) * $duty_per_2ml; // As $duty_per_2ml per 2 ml => 10 / 2 = 5 units
-
+	
 			// Calculate tax for the second part (if any)
 			if ($second_part > 0) {
 				$tax += floor($second_part / 10) * $duty_per_10ml; // $duty_per_10ml per 10 ml
 			}
 		}
-
-		// Add excise values based on state
-		if ( 'Gujarat' !== $state ) {
-			// Apply both Ontario and Federal excise values if not Gujarat
-			$tax += floatval($federal_excise_value);
-		}
-
+	
 		// Determine final price
 		$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 		$final_price += $tax;
-
-		// Debugging output (if needed)
-		// echo "Total Tax: " . number_format($tax, 2);
+		echo "Total Tax: ". number_format($tax, 2);
 		// echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
 
