@@ -126,9 +126,34 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
     $sale_price = get_post_meta( $variation_id, '_sale_price', true );
 
-	$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
-	if(isset($vaping_liquid) && !empty($vaping_liquid)){
+	// Fetch vaping_liquid value
+	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
+	if (isset($vaping_liquid) && !empty($vaping_liquid)) {
 		echo $vaping_liquid;
+
+		// Initialize tax variable
+		$tax = 0;
+
+		// Check if vaping_liquid value is greater than 10
+		if ($vaping_liquid > 10) {
+			// Divide the vaping_liquid value into two parts
+			$first_part = 10;
+			$second_part = $vaping_liquid - $first_part;
+
+			// Calculate tax for the first part (10 ml)
+			$tax += 5; // As $1 per 2 ml => 10 / 2 = 5$
+
+			// Calculate tax for the second part (if any)
+			if ($second_part > 0) {
+				$tax += floor($second_part / 10); // $1 per 10 ml
+			}
+		}
+
+		// Determine final price
+		$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+		$final_price += $tax;
+
+		echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
 
     // Determine which price to display
