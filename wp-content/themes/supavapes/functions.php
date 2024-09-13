@@ -3598,15 +3598,15 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                     $final_price += $ontario_tax + $federal_tax;
                 }
 
-                // Set the price breakdown for the variation
-                $price_breakdown .= sprintf(
-                    __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
-                    $variation_id,
-                    wc_price( $reg_price ),
-                    wc_price( $ontario_tax ),
-                    wc_price( $federal_tax ),
-                    wc_price( $final_price )
-                );
+                // // Set the price breakdown for the variation
+                // $price_breakdown .= sprintf(
+                //     __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                //     $variation_id,
+                //     wc_price( $reg_price ),
+                //     wc_price( $ontario_tax ),
+                //     wc_price( $federal_tax ),
+                //     wc_price( $final_price )
+                // );
 
                 // Update the variation price in WooCommerce
                 $variation_obj = wc_get_product( $variation_id );
