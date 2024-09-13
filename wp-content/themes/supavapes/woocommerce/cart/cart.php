@@ -39,19 +39,45 @@ do_action( 'woocommerce_before_cart' ); ?>
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-
+			
 				// Fetch the variation ID if it's a variable product.
-				$variation_id = isset($cart_item['variation_id']) ? $cart_item['variation_id'] : 0;
+				$variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
 				$vaping_liquid = '';
 			
 				// Check if the product is a variation and fetch _vaping_liquid value from the variation ID.
-				if ($variation_id) {
-					$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
+				if ( $variation_id ) {
+					$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+					$variation = wc_get_product( $variation_id );
+					$reg_price = $variation->get_regular_price();
+					$sale_price = $variation->get_sale_price();
 				} else {
 					// Fallback for simple products or when no variation ID is present.
-					$vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+					$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
+					$reg_price = $_product->get_regular_price();
+					$sale_price = $_product->get_sale_price();
 				}
-
+			
+				// Initialize tax variables
+				$ontario_tax = 0;
+				$federal_tax = 0;
+			
+				// Calculate taxes using the custom functions if vaping_liquid is set.
+				if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+					$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+					$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+				}
+			
+				// Determine the final price based on the state.
+				$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+			
+				if ( 'Gujarat' == $state ) {
+					$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+					$final_price += $ontario_tax;
+				} else {
+					$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+					$final_price += $ontario_tax + $federal_tax;
+				}
+			
 				/**
 				 * Filter the product name.
 				 *
@@ -65,8 +91,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 					?>
 					<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-						<!-- <td class="product-thumbnail">
-						</td> -->
 						<td class="product-name" data-title="<?php esc_attr_e('Product', 'supavapes'); ?>">
 							<?php
 								$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
@@ -98,21 +122,18 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<span class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
-								<h5 class="header">Price Breakdown</h3>
-									
-									<!-- <p>Regular Price: <?php //echo wc_price($reg_price); ?></p> -->
-									<?php //if (isset($sale_price) && !empty($sale_price)) { ?>
-										<!-- <p><?php //esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($sale_price); ?></p> -->
-									<?php //}else {?>
-										<!-- <p><?php //esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($reg_price); ?></p> -->
-									<?php //}?>
-									<?php //if ( 'Gujarat' == $state ) { ?>
-										<!-- <p><?php //esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($ontario_tax); ?></p> -->
-									<?php //}else{?>
-										<!-- <p><?php //esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($ontario_tax); ?></p> -->
-										<!-- <p><?php //esc_html_e('Federal Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($federal_tax); ?></p> -->
-									<?php //}?>
-										<!-- <p><?php //esc_html_e('Wholesale Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
+									<h5 class="header">Price Breakdown</h5>
+									<p><?php esc_html_e('Regular Price:', 'supavapes'); ?> <?php echo wc_price($reg_price); ?></p>
+									<?php if (isset($sale_price) && !empty($sale_price)) { ?>
+										<p><?php esc_html_e('Sale Price:', 'supavapes'); ?> <?php echo wc_price($sale_price); ?></p>
+									<?php } ?>
+									<?php if ( 'Gujarat' == $state ) { ?>
+										<p><?php esc_html_e('Ontario Excise Tax:', 'supavapes'); ?> <?php echo wc_price($ontario_tax); ?></p>
+									<?php } else { ?>
+										<p><?php esc_html_e('Ontario Excise Tax:', 'supavapes'); ?> <?php echo wc_price($ontario_tax); ?></p>
+										<p><?php esc_html_e('Federal Excise Tax:', 'supavapes'); ?> <?php echo wc_price($federal_tax); ?></p>
+									<?php } ?>
+									<p><?php esc_html_e('Final Price:', 'supavapes'); ?> <?php echo wc_price($final_price); ?></p>
 								</div>
 							</span>
 						</td>
@@ -164,6 +185,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<?php
 				}
 			}
+			
 			?>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 			<tr>
