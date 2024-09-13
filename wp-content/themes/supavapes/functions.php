@@ -3739,6 +3739,16 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
                     $final_price += $ontario_tax + $federal_tax;
                 }
 
+				 // Set the price breakdown for the variation
+				 $price_breakdown .= sprintf(
+                    __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                    $variation_id,
+                    wc_price( $reg_price ),
+                    wc_price( $ontario_tax ),
+                    wc_price( $federal_tax ),
+                    wc_price( $final_price )
+                );
+
                 $cart_item['data']->set_price( $final_price );
 
             } else {
@@ -3837,6 +3847,16 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
             } else {
                 $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
             }
+
+			 // Set the price breakdown for the variation
+			 $price_breakdown .= sprintf(
+				__( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+				$variation_id,
+				wc_price( $reg_price ),
+				wc_price( $ontario_tax ),
+				wc_price( $federal_tax ),
+				wc_price( $final_price )
+			);
 
             $price = wc_price( $final_price );
 
