@@ -133,8 +133,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 
 		// Calculate Ontario and Federal taxes using the defined functions
-		$ontario_tax = calculate_ontario_tax($vaping_liquid);
-		$federal_tax = calculate_federal_tax($vaping_liquid);
+		$ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+		$federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
 		
 		// Determine final price based on state
 		if ('Gujarat' == $state) {
