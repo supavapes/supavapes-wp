@@ -3639,7 +3639,23 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 $final_price += $ontario_tax + $federal_tax;
             }
 
-            $price = wc_price( $final_price );
+			// Prepare the price breakdown details
+			$price_breakdown = sprintf(
+				__( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s', 'woocommerce' ),
+				wc_price( $reg_price ),
+				wc_price( $ontario_tax ),
+				wc_price( $federal_tax )
+			);
+		
+			// Create an info icon with a tooltip
+			$info_icon_html = '<span class="supavapes-price-info">ℹ️
+				<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+			</span>';
+		
+			// Combine price and info icon
+			$price = wc_price( $final_price ) . $info_icon_html;
+
+            // $price = wc_price( $final_price );
         }
 
         return $price;
@@ -3836,7 +3852,20 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
                 $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
             }
 
-            $price = wc_price( $final_price );
+			// Prepare the price breakdown details
+			$price_breakdown = sprintf(
+				__( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s', 'woocommerce' ),
+				wc_price( $reg_price ),
+				wc_price( $ontario_tax ),
+				wc_price( $federal_tax )
+			);
+	
+			// Create an info icon with a tooltip
+			$info_icon_html = '<span class="supavapes-price-info">ℹ️
+				<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+			</span>';
+
+            $price = wc_price( $final_price ) . $info_icon_html;
         }
 
         return $price;
