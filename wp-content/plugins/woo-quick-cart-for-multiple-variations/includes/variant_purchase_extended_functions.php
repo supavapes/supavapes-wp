@@ -129,77 +129,32 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
+
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
-		// echo $vaping_liquid;
-		// echo $state;
 
-		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
-		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
-		// Initialize duty rate as dynamic values
-		$ontario_duty_per_2ml = $ontario_excise_value_2_ml; // Duty per 2 ml (first 10ml)
-		$ontario_duty_per_10ml = $ontario_excise_value_10_ml; // Duty per 10 ml (remaining after 10ml)
-
-		// Initialize tax variable
-		$ontario_tax = 0;
-	
-		// Check if vaping_liquid value is greater than 10
-		if ($vaping_liquid > 10) {
-			// Divide the vaping_liquid value into two parts
-			$first_part = 10;
-			$second_part = $vaping_liquid - $first_part;
-	
-			// Calculate tax for the first part (10 ml)
-			$ontario_tax += (10 / 2) * $ontario_duty_per_2ml; // As $duty_per_2ml per 2 ml => 10 / 2 = 5 units
-	
-			// Calculate tax for the second part (if any)
-			if ($second_part > 0) {
-				$ontario_tax += floor($second_part / 10) * $ontario_duty_per_10ml; // $duty_per_10ml per 10 ml
-			}
-		}
-
-		$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
-		$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
-		// Initialize duty rate as dynamic values
-		$federal_duty_per_2ml = $federal_excise_value_2_ml; // Duty per 2 ml (first 10ml)
-		$federal_duty_per_10ml = $federal_excise_value_10_ml; // Duty per 10 ml (remaining after 10ml)
-
-		// Initialize tax variable
-		$federal_tax = 0;
-	
-		// Check if vaping_liquid value is greater than 10
-		if ($vaping_liquid > 10) {
-			// Divide the vaping_liquid value into two parts
-			$first_part = 10;
-			$second_part = $vaping_liquid - $first_part;
-	
-			// Calculate tax for the first part (10 ml)
-			$federal_tax += (10 / 2) * $federal_duty_per_2ml; // As $duty_per_2ml per 2 ml => 10 / 2 = 5 units
-	
-			// Calculate tax for the second part (if any)
-			if ($second_part > 0) {
-				$federal_tax += floor($second_part / 10) * $federal_duty_per_10ml; // $duty_per_10ml per 10 ml
-			}
-		}
-			
-		if ( 'Gujarat' == $state ) {
-			// Determine final price
+		// Calculate Ontario and Federal taxes using the defined functions
+		$ontario_tax = calculate_ontario_tax($vaping_liquid);
+		$federal_tax = calculate_federal_tax($vaping_liquid);
+		
+		// Determine final price based on state
+		if ('Gujarat' == $state) {
+			// Use only Ontario tax for Gujarat
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$final_price += $ontario_tax;
-    	} else {
-			// Determine final price
+		} else {
+			// Use both Ontario and Federal taxes for other states
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$include_both_taxes = $ontario_tax + $federal_tax;
 			$final_price += $include_both_taxes;
-    	}
+		}
 
-		// echo "".
-	
-		
-		// echo "Ontario Tax: ". number_format($ontario_tax, 2);
-		// echo "Federal Tax: ". number_format($federal_tax, 2);
-		// echo "Total Tax:" . number_format($ontario_tax + $federal_tax, 2);
+		// Optional: Output for debugging purposes
+		// echo "Ontario Tax: " . number_format($ontario_tax, 2);
+		// echo "Federal Tax: " . number_format($federal_tax, 2);
+		// echo "Total Tax: " . number_format($ontario_tax + $federal_tax, 2);
 		// echo "Final Price after adding tax: $" . number_format($final_price, 2);
 	}
+
 
     // Determine which price to display
     if ( $final_price ) {

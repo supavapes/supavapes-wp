@@ -4035,7 +4035,7 @@ function display_price_based_on_state() {
  * @param float $vaping_liquid The volume of the vaping liquid in ml.
  * @return float The calculated Ontario tax amount.
  */
-function calculate_ontario_tax($vaping_liquid) {
+function supavapes_calculate_ontario_tax( $vaping_liquid ) {
     // Fetch duty rates from ACF fields or replace with static values
     $ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
     $ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
@@ -4071,7 +4071,7 @@ function calculate_ontario_tax($vaping_liquid) {
  * @param float $vaping_liquid The volume of the vaping liquid in ml.
  * @return float The calculated Federal tax amount.
  */
-function calculate_federal_tax($vaping_liquid) {
+function supavapes_calculate_federal_tax( $vaping_liquid ) {
     // Fetch duty rates from ACF fields or replace with static values
     $federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
     $federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
