@@ -334,10 +334,6 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 								<h3 class="header">Price Breakdown</h3>
 									<table class="pricetable">
 									<tr>
-									<th></th>
-									<th class='rightprice'>Regular Price</th>
-									</tr>
-									<tr>
 									<td class='leftprice' >Product Price</td>
 									<td class='rightprice'>$69.0</td>
 									</tr>
