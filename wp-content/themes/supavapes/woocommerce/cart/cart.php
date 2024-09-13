@@ -36,11 +36,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<tbody>
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 			<?php
-
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-			
+
 				// Fetch the variation ID if it's a variable product.
 				$variation_id = isset($cart_item['variation_id']) ? $cart_item['variation_id'] : 0;
 				$vaping_liquid = '';
@@ -52,63 +51,49 @@ do_action( 'woocommerce_before_cart' ); ?>
 					// Fallback for simple products or when no variation ID is present.
 					$vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
 				}
-			
+
+				/**
+				 * Filter the product name.
+				 *
+				 * @since 2.1.0
+				 * @param string $product_name Name of the product in the cart.
+				 * @param array $cart_item The product in the cart.
+				 * @param string $cart_item_key Key for the product in the cart.
+				 */
 				$product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
-			
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-			
-					// Calculate taxes
-					$ontario_tax = $vaping_liquid >= 10 ? calculate_ontario_tax($vaping_liquid) : 0;
-					$federal_tax = $vaping_liquid >= 10 ? calculate_federal_tax($vaping_liquid) : 0;
-					$total_tax = $ontario_tax + $federal_tax;
-			
-					// Determine final price including tax
-					$base_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $_product->get_price();
-					$final_price = $base_price + $total_tax;
-			
 					?>
 					<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+						<!-- <td class="product-thumbnail">
+						</td> -->
 						<td class="product-name" data-title="<?php esc_attr_e('Product', 'supavapes'); ?>">
 							<?php
-							$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
-							if (!$product_permalink) {
-								echo $thumbnail; // PHPCS: XSS ok.
-							} else {
-								printf('<a href="%s" class="cart-product-image">%s</a>', esc_url($product_permalink), $thumbnail); // PHPCS: XSS ok.
-							}
-							if (!$product_permalink) {
-								echo wp_kses_post($product_name . '&nbsp;');
-							} else {
-								echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s" class="cart-product-title">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
-							}
+								$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
+								if (!$product_permalink) {
+									echo $thumbnail; // PHPCS: XSS ok.
+								} else {
+									printf('<a href="%s" class="cart-product-image">%s</a>', esc_url($product_permalink), $thumbnail); // PHPCS: XSS ok.
+								}
+								if (!$product_permalink) {
+									echo wp_kses_post($product_name . '&nbsp;');
+								} else {
+									echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s" class="cart-product-title">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
+								}
 							?>
-							<!-- Info icon for price breakdown -->
-							<a href="#" class="info-icon" title="Click for price breakdown" onclick="togglePriceBreakdown(this); return false;">
-								<i class="fa fa-info-circle"></i>
-							</a>
-			
-							<!-- Price Breakdown Container -->
-							<div class="price-breakdown" style="display: none;">
-								<p>Base Price: <?php echo wc_price($base_price); ?></p>
-								<p>Ontario Tax: <?php echo wc_price($ontario_tax); ?></p>
-								<p>Federal Tax: <?php echo wc_price($federal_tax); ?></p>
-								<p>Total Tax: <?php echo wc_price($total_tax); ?></p>
-								<p>Final Price: <?php echo wc_price($final_price); ?></p>
-							</div>
-			
 							<?php
-							do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
-							echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
-			
-							if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
-								echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
-							}
+								do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
+								// Meta data.
+								echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
+								// Backorder notification.
+								if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
+									echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
+								}
 							?>
 						</td>
 						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 							<?php
-							echo apply_filters( 'woocommerce_cart_item_price', wc_price($final_price), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
 						</td>
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'supavapes' ); ?>">
@@ -136,7 +121,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						</td>
 						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'supavapes' ); ?>">
 							<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', wc_price($final_price * $cart_item['quantity']), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
 						</td>
 						<td class="product-remove">
@@ -159,18 +144,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<?php
 				}
 			}
-			?>
-			<script>
-			function togglePriceBreakdown(element) {
-				var breakdown = element.nextElementSibling;
-				if (breakdown.style.display === "none") {
-					breakdown.style.display = "block";
-				} else {
-					breakdown.style.display = "none";
-				}
-			}
-			</script>
-			
 			?>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 			<tr>
