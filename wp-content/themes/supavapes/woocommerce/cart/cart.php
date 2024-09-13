@@ -122,18 +122,39 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<span class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
-									<h5 class="header">Price Breakdown</h5>
-									<p><?php esc_html_e('Regular Price:', 'supavapes'); ?> <?php echo wc_price($reg_price); ?></p>
+								<h5 class="header">Price Breakdown</h3>
+									<table class="pricetable">
 									<?php if (isset($sale_price) && !empty($sale_price)) { ?>
-										<p><?php esc_html_e('Sale Price:', 'supavapes'); ?> <?php echo wc_price($sale_price); ?></p>
-									<?php } ?>
+									<tr>
+									<td class='leftprice' >Product Price</td>
+									<td class='rightprice'><?php echo wc_price($sale_price); ?></td>
+									</tr>
+									<?php }else{?>
+									<tr>
+									<td class='leftprice' >Product Price</td>
+									<td class='rightprice'><?php echo wc_price($reg_price); ?></td>
+									</tr>
+									<?php }?>
 									<?php if ( 'Gujarat' == $state ) { ?>
-										<p><?php esc_html_e('Ontario Excise Tax:', 'supavapes'); ?> <?php echo wc_price($ontario_tax); ?></p>
-									<?php } else { ?>
-										<p><?php esc_html_e('Ontario Excise Tax:', 'supavapes'); ?> <?php echo wc_price($ontario_tax); ?></p>
-										<p><?php esc_html_e('Federal Excise Tax:', 'supavapes'); ?> <?php echo wc_price($federal_tax); ?></p>
+									<tr>
+									<td class='leftprice'>Ontario Excise Tax</td>
+									<td class='rightprice'><?php echo wc_price($ontario_tax); ?></td>
+									</tr>
+									<?php }else{?>
+									<tr>
+									<td class='leftprice'>Ontario Excise Tax</td>
+									<td class='rightprice'><?php echo wc_price($ontario_tax); ?></td>
+									</tr>
+									<tr>
+									<td class='leftprice'>Federal Excise Tax</td>
+									<td class='rightprice'><?php echo wc_price($federal_tax); ?></td>
+									</tr>
 									<?php } ?>
-									<p><?php esc_html_e('Final Price:', 'supavapes'); ?> <?php echo wc_price($final_price); ?></p>
+									<tr class="wholesaleprice">
+									<td class='leftprice'>Wholesale Price</td>
+									<td class='rightprice'><?php echo wp_kses_post($price); ?></td>
+									</tr>
+									</table>
 								</div>
 							</span>
 						</td>
