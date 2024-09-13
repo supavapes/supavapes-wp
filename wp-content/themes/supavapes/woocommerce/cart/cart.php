@@ -152,7 +152,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 									<?php } ?>
 									<tr class="wholesaleprice">
 									<td class='leftprice'>Wholesale Price</td>
-									<td class='rightprice'><?php echo wp_kses_post($price); ?></td>
+									<td class='rightprice'><?php echo wp_kses_post($final_price); ?></td>
 									</tr>
 									</table>
 								</div>
