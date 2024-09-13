@@ -329,7 +329,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 							?>
 							
 							<span class="info-icon-container">
-								<img src="/wp-content/uploads/2024/09/info-icon.png" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
 								<h3 class="header">Price Breakdown</h3>
 									<table class="pricetable">
