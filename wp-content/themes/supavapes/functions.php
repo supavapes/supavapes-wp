@@ -3539,20 +3539,21 @@ add_action( 'wp_ajax_nopriv_woocommerce_set_dynamic_price', 'supavapes_woocommer
 
 
 
-/**
- * If the function `supavapes_custom_price_html` doesn't exist.
- */
 if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
-    function supavapes_custom_price_html($price, $product) {
-        // Get user state dynamically, set default to empty string if not found
+    function supavapes_custom_price_html( $price, $product ) {
+        // Get user state dynamically
         $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
+        // Initialize the price breakdown string
+        $price_breakdown = '';
+
         if ( $product->is_type( 'variable' ) ) {
+            // For variable products
             $available_variations = $product->get_available_variations();
 
             foreach ( $available_variations as $variation ) {
                 $variation_id = $variation['variation_id'];
-                
+
                 // Fetch regular and sale prices
                 $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
                 $sale_price = get_post_meta( $variation_id, '_sale_price', true );
@@ -3565,104 +3566,124 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 $federal_tax = 0;
 
                 // Get dynamic excise values from the options
-                $ontario_duty_per_2ml = get_field('ontario_excise_value_2_ml', 'option');
-                $ontario_duty_per_10ml = get_field('ontario_excise_value_10_ml', 'option');
-                $federal_duty_per_2ml = get_field('federal_excise_value_2_ml', 'option');
-                $federal_duty_per_10ml = get_field('federal_excise_value_10_ml', 'option');
+                $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
+                $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+                $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
+                $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
 
                 // Calculate taxes if vaping_liquid is greater than or equal to 10
-                if ( isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10 ) {
+                if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
                     $first_part = 10;
                     $second_part = $vaping_liquid - $first_part;
 
                     // Ontario tax calculation
-                    $ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $ontario_tax += floor($second_part / 10) * $ontario_duty_per_10ml;
+                    $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
+                    if ( $second_part > 0 ) {
+                        $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
                     }
 
                     // Federal tax calculation
-                    $federal_tax += (10 / 2) * $federal_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $federal_tax += floor($second_part / 10) * $federal_duty_per_10ml;
+                    $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
+                    if ( $second_part > 0 ) {
+                        $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
                     }
                 }
-                // Determine final price based on state
+
+                // Determine the final price based on state
                 if ( 'Gujarat' == $state ) {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+                    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax;
                 } else {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+                    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax + $federal_tax;
                 }
-                // Set the price for the variation
+
+                // Set the price breakdown for the variation
+                $price_breakdown .= sprintf(
+                    __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                    $variation_id,
+                    wc_price( $reg_price ),
+                    wc_price( $ontario_tax ),
+                    wc_price( $federal_tax ),
+                    wc_price( $final_price )
+                );
+
+                // Update the variation price in WooCommerce
                 $variation_obj = wc_get_product( $variation_id );
                 $variation_obj->set_price( $final_price );
                 $variation_obj->set_regular_price( $final_price );
             }
+
         } else {
             // For simple products
             $reg_price  = $product->get_regular_price();
             $sale_price = $product->get_sale_price();
             $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 
+            // Initialize tax variables
             $ontario_tax = 0;
             $federal_tax = 0;
-            
-            $ontario_duty_per_2ml = get_field('ontario_excise_value_2_ml', 'option');
-            $ontario_duty_per_10ml = get_field('ontario_excise_value_10_ml', 'option');
-            $federal_duty_per_2ml = get_field('federal_excise_value_2_ml', 'option');
-            $federal_duty_per_10ml = get_field('federal_excise_value_10_ml', 'option');
 
-            if ( isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10 ) {
+            // Fetch dynamic duty rates from ACF fields
+            $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
+            $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+            $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
+            $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
+
+            // Calculate taxes if vaping_liquid is greater than or equal to 10
+            if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
                 $first_part = 10;
                 $second_part = $vaping_liquid - $first_part;
 
                 // Ontario tax calculation
-                $ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
-                if ($second_part > 0) {
-                    $ontario_tax += floor($second_part / 10) * $ontario_duty_per_10ml;
+                $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
+                if ( $second_part > 0 ) {
+                    $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
                 }
 
                 // Federal tax calculation
-                $federal_tax += (10 / 2) * $federal_duty_per_2ml;
-                if ($second_part > 0) {
-                    $federal_tax += floor($second_part / 10) * $federal_duty_per_10ml;
+                $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
+                if ( $second_part > 0 ) {
+                    $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
                 }
             }
 
+            // Determine the final price based on state
             if ( 'Gujarat' == $state ) {
-                $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+                $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                 $final_price += $ontario_tax;
             } else {
-                $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+                $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                 $final_price += $ontario_tax + $federal_tax;
             }
 
-			// Prepare the price breakdown details
-			$price_breakdown = sprintf(
-				__( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s', 'woocommerce' ),
-				wc_price( $reg_price ),
-				wc_price( $ontario_tax ),
-				wc_price( $federal_tax )
-			);
-		
-			// Create an info icon with a tooltip
-			$info_icon_html = '<span class="supavapes-price-info">ℹ️
-				<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-			</span>';
-		
-			// Combine price and info icon
-			$price = wc_price( $final_price ) . $info_icon_html;
+            // Set the price breakdown for the simple product
+            $price_breakdown = sprintf(
+                __( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                wc_price( $reg_price ),
+                wc_price( $ontario_tax ),
+                wc_price( $federal_tax ),
+                wc_price( $final_price )
+            );
 
-            // $price = wc_price( $final_price );
+            // Update the price display
+            $price = wc_price( $final_price );
         }
+
+        // Add the info icon with tooltip
+        $info_icon_html = '<span class="supavapes-price-info">ℹ️
+            <div class="supavapes-tooltip">' . $price_breakdown . '</div>
+        </span>';
+
+        // Combine the price and info icon
+        $price .= $info_icon_html;
 
         return $price;
     }
 }
 
 add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
+
 
 
 
