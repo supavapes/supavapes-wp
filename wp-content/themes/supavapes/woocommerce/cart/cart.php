@@ -38,7 +38,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+				echo "P ID: ".$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 				/**
 				 * Filter the product name.
 				 *
@@ -82,6 +82,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
+							
 						</td>
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'supavapes' ); ?>">
 						<?php
