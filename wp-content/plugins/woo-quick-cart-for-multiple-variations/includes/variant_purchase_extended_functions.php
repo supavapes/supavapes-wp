@@ -316,13 +316,17 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 								<div class="price-breakup-popup">
 									<!-- <p>Regular Price: <?php //echo wc_price($reg_price); ?></p> -->
 									<?php if (isset($sale_price) && !empty($sale_price)) { ?>
-										<p>Product Price: <?php echo wc_price($sale_price); ?></p>
+										<p><?php esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wc_price($sale_price); ?></p>
 									<?php }else {?>
-										<p>Product Price: <?php echo wc_price($reg_price); ?></p>
+										<p><?php esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wc_price($reg_price); ?></p>
 									<?php }?>
-									<p>Ontario Excise Tax: <?php echo wc_price($ontario_tax); ?></p>
-									<p>Federal Excise Tax: <?php echo wc_price($federal_tax); ?></p>
-									<p>Wholesale Price: <?php echo wp_kses_post($price); ?></p>
+									<?php if ( 'Gujarat' == $state ) { ?>
+										<p><?php esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wc_price($ontario_tax); ?></p>
+									<?php }else{?>
+										<p><?php esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wc_price($ontario_tax); ?></p>
+										<p><?php esc_html_e('Federal Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wc_price($federal_tax); ?></p>
+									<?php }?>
+										<p><?php esc_html_e('Wholesale Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php echo wp_kses_post($price); ?></p>
 								</div>
 							</span>
 						<?php }?>
