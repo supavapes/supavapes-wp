@@ -38,10 +38,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-				echo "P ID: ".$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
 				// Fetch the variation ID if it's a variable product.
-				echo "V ID: ".$variation_id = isset($cart_item['variation_id']) ? $cart_item['variation_id'] : 0;
+				$variation_id = isset($cart_item['variation_id']) ? $cart_item['variation_id'] : 0;
 				$vaping_liquid = '';
 			
 				// Check if the product is a variation and fetch _vaping_liquid value from the variation ID.
