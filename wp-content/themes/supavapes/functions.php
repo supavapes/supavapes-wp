@@ -3592,7 +3592,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 // Determine the final price based on state
                 if ( 'Gujarat' !== $state ) {
                     $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax;
+                    $final_price += $federal_tax;
                 } else {
                     $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax + $federal_tax;
@@ -3651,7 +3651,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
             // Determine the final price based on state
             if ( 'Gujarat' !== $state ) {
                 $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-                $final_price += $ontario_tax;
+                $final_price += $federal_tax;
             } else {
                 $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                 $final_price += $ontario_tax + $federal_tax;
@@ -3734,7 +3734,7 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
 
                 if ( 'Gujarat' !== $state ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax;
+                    $final_price += $federal_tax;
                 } else {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax + $federal_tax;
@@ -3764,7 +3764,7 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
 
                 if ( 'Gujarat' !== $state ) {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax;
+                    $final_price += $federal_tax;
                 } else {
                     $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
                     $final_price += $ontario_tax + $federal_tax;
@@ -3886,7 +3886,7 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 
             // Determine the final price based on state
             if ( 'Gujarat' !== $state ) {
-                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax : $reg_price + $ontario_tax;
+                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $federal_tax : $reg_price + $federal_tax;
             } else {
                 $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
             }
