@@ -4205,6 +4205,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 		$reg_price  = $product->get_regular_price();
 		$sale_price = $product->get_sale_price();
 		$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+		$vaping_liquid = (int)$vaping_liquid;
 		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 		if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
