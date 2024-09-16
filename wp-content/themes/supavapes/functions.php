@@ -4235,8 +4235,7 @@ function add_icon_next_to_price() {
     }
 
     // Output the price with an icon and the info popup
-    echo '<div class="price-with-icon">';
-    echo '<span class="price-icon"><img src="' . get_stylesheet_directory_uri() . '/images/price-icon.png" alt="Price Icon" style="width: 20px; height: 20px; margin-right: 5px;"></span>';
+   
     echo '<span class="price">' . wc_price( $final_price ) . '</span>';
 
     // Add the info icon and price breakdown popup
@@ -4283,7 +4282,7 @@ function add_icon_next_to_price() {
     $info_icon_html = ob_get_clean();
 
     echo $info_icon_html;
-    echo '</div>';
+   
 }
 
 // Remove the default price display
