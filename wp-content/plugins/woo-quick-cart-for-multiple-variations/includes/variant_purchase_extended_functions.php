@@ -60,7 +60,7 @@ function supavapes_calculate_ontario_tax( $vaping_liquid ) {
 	if ($vaping_liquid >= 10) {
 		// Divide the vaping_liquid value into two parts
 		$first_part = 10;
-		$second_part = $vaping_liquid - $first_part;
+		$second_part = (int)$vaping_liquid - $first_part;
 
 		// Calculate tax for the first part (10 ml)
 		$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
