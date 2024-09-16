@@ -3598,15 +3598,15 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                     $final_price += $ontario_tax + $federal_tax;
                 }
 
-                // // Set the price breakdown for the variation
-                // $price_breakdown .= sprintf(
-                //     __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
-                //     $variation_id,
-                //     wc_price( $reg_price ),
-                //     wc_price( $ontario_tax ),
-                //     wc_price( $federal_tax ),
-                //     wc_price( $final_price )
-                // );
+                // Set the price breakdown for the variation
+                $price_breakdown .= sprintf(
+                    __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                    $variation_id,
+                    wc_price( $reg_price ),
+                    wc_price( $ontario_tax ),
+                    wc_price( $federal_tax ),
+                    wc_price( $final_price )
+                );
 
                 // Update the variation price in WooCommerce
                 $variation_obj = wc_get_product( $variation_id );
@@ -3796,10 +3796,10 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
         $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
         // Fetch dynamic duty rates from ACF fields
-        $ontario_duty_per_2ml = get_field('ontario_excise_value_2_ml', 'option');
-        $ontario_duty_per_10ml = get_field('ontario_excise_value_10_ml', 'option');
-        $federal_duty_per_2ml = get_field('federal_excise_value_2_ml', 'option');
-        $federal_duty_per_10ml = get_field('federal_excise_value_10_ml', 'option');
+        $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
+        $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+        $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
+        $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
 
         $ontario_tax = 0;
         $federal_tax = 0;
@@ -3850,10 +3850,10 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 					wc_price( $final_price )
 				);
 
-				// Create an info icon with a tooltip
-				$info_icon_html = '<span class="supavapes-price-info">ℹ️
-					<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-				</span>';
+				// // Create an info icon with a tooltip
+				// $info_icon_html = '<span class="supavapes-price-info">ℹ️
+				// 	<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+				// </span>';
 			}
 
             $price = wc_price( $final_price );
@@ -3900,10 +3900,10 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 					wc_price( $federal_tax )
 				);
 		
-				// Create an info icon with a tooltip
-				$info_icon_html = '<span class="supavapes-price-info">ℹ️
-					<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-				</span>';
+				// // Create an info icon with a tooltip
+				// $info_icon_html = '<span class="supavapes-price-info">ℹ️
+				// 	<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+				// </span>';
 			}
             $price = wc_price( $final_price ) . $info_icon_html;
         }
