@@ -69,7 +69,7 @@ if($rating_num == 0){
         </div>
         <div class="sv-our-product-detail">
             <h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'supavapes');?></h3>
-            <p class="sv-our-product-price">
+            <p class="sv-our-product-price test-class">
             <?php echo wp_kses_post($price); ?>
             </p>
         </div>
