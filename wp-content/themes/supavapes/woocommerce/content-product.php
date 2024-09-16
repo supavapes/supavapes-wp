@@ -56,12 +56,13 @@ if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
 $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 if ( 'Gujarat' !== $state ) {
-    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-    $final_price += $federal_tax;
+    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+    $final_price += floatval( $federal_tax );
 } else {
-    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-    $final_price += $ontario_tax + $federal_tax;
+    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+    $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
 }
+
 
 ?>
 <li <?php wc_product_class( '', $product ); ?>>
