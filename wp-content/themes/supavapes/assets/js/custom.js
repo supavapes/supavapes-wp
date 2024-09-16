@@ -20,7 +20,7 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
-    jQuery('.info-icon-container .info-icon').on('click', function() {
+    jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
         jQuery(this).next('.price-breakup-popup').toggle();
     });
 
