@@ -137,7 +137,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 									<?php }?>
 									<?php if ( 'Gujarat' !== $state ) { ?>
 									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
+									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
 									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
 									</tr>
 									<?php }else{?>
