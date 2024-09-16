@@ -4200,7 +4200,7 @@ function add_icon_next_to_price() {
 }
 
 // Remove the default price display
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 
 // Add the price with the icon in place of the default one
 add_action( 'woocommerce_single_product_summary', 'add_icon_next_to_price', 10 );
