@@ -112,7 +112,7 @@ function supavapes_calculate_federal_tax( $vaping_liquid ) {
  * @return false|string
  */
 function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations = array() ) {
-	
+	echo "innnnnnnnnnn";
     if ( 0 === $variation_id ) {
         return '';
     }
