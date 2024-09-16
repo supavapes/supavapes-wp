@@ -4231,7 +4231,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			}
 
 			// Output the price with an icon and the info popup
-			echo '<span class="price">' . wc_price( $final_price ) . '</span>';
+			// echo '<span class="price">' . wc_price( $final_price ) . '</span>';
 
 			// Add the info icon and price breakdown popup
 			ob_start(); ?>
