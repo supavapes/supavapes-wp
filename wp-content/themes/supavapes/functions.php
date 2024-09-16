@@ -4364,5 +4364,5 @@ function custom_mini_cart_item_quantity_with_breakdown( $quantity_html, $cart_it
     // Append the output to the quantity HTML
     $custom_quantity_html = ob_get_clean();
 
-    return $quantity_html . $custom_quantity_html;
+    return  $custom_quantity_html;
 }
