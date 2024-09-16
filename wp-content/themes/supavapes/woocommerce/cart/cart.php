@@ -70,9 +70,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 				// Determine the final price based on the state.
 				$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 			
-				if ( 'Gujarat' == $state ) {
+				if ( 'Gujarat' !== $state ) {
 					$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-					$final_price += $ontario_tax;
+					$final_price += $federal_tax;
 				} else {
 					$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
 					$final_price += $ontario_tax + $federal_tax;
@@ -138,7 +138,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 									<?php if ( 'Gujarat' !== $state ) { ?>
 									<tr>
 									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
 									</tr>
 									<?php }else{?>
 									<tr>

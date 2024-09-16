@@ -3544,8 +3544,78 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
         // Get user state dynamically
         $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-        // Only for simple products
-        if ( $product->is_type( 'simple' ) ) {
+        // Initialize the price breakdown string
+        $price_breakdown = '';
+
+        if ( $product->is_type( 'variable' ) ) {
+            // For variable products
+            $available_variations = $product->get_available_variations();
+
+            foreach ( $available_variations as $variation ) {
+                $variation_id = $variation['variation_id'];
+
+                // Fetch regular and sale prices
+                $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+                $sale_price = get_post_meta( $variation_id, '_sale_price', true );
+
+                // Fetch vaping_liquid value
+                $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+
+                // Initialize tax variables
+                $ontario_tax = 0;
+                $federal_tax = 0;
+
+                // Get dynamic excise values from the options
+                $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
+                $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+                $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
+                $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
+
+                // Calculate taxes if vaping_liquid is greater than or equal to 10
+                if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+                    $first_part = 10;
+                    $second_part = $vaping_liquid - $first_part;
+
+                    // Ontario tax calculation
+                    $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
+                    if ( $second_part > 0 ) {
+                        $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+                    }
+
+                    // Federal tax calculation
+                    $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
+                    if ( $second_part > 0 ) {
+                        $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
+                    }
+                }
+
+                // Determine the final price based on state
+                if ( 'Gujarat' !== $state ) {
+                    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+                    $final_price += $federal_tax;
+                } else {
+                    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+                    $final_price += $ontario_tax + $federal_tax;
+                }
+
+                // Set the price breakdown for the variation
+                $price_breakdown .= sprintf(
+                    __( 'Variation ID: %d<br>Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+                    $variation_id,
+                    wc_price( $reg_price ),
+                    wc_price( $ontario_tax ),
+                    wc_price( $federal_tax ),
+                    wc_price( $final_price )
+                );
+
+                // Update the variation price in WooCommerce
+                $variation_obj = wc_get_product( $variation_id );
+                $variation_obj->set_price( $final_price );
+                $variation_obj->set_regular_price( $final_price );
+            }
+
+        } else {
+            // For simple products
             $reg_price  = $product->get_regular_price();
             $sale_price = $product->get_sale_price();
             $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
@@ -3587,76 +3657,33 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 $final_price += $ontario_tax + $federal_tax;
             }
 
-            // Show the price breakdown for simple products only
-            if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                // Set the price breakdown for the simple product
-                $price_breakdown = sprintf(
-                    __( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
-                    wc_price( $reg_price ),
-                    wc_price( $ontario_tax ),
-                    wc_price( $federal_tax ),
-                    wc_price( $final_price )
-                );
+			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+					// Set the price breakdown for the simple product
+					$price_breakdown = sprintf(
+						__( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
+						wc_price( $reg_price ),
+						wc_price( $ontario_tax ),
+						wc_price( $federal_tax ),
+						wc_price( $final_price )
+					);
 
-                // Add the info box with breakdown using the provided HTML
-                ob_start(); ?>
-                <div class="price-breakup-popup">
-                    <h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
-                    <table class="pricetable">
-                        <?php if ( isset( $sale_price ) && ! empty( $sale_price ) ) { ?>
-                        <tr>
-                            <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-                        </tr>
-                        <?php } else { ?>
-                        <tr>
-                            <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-                        </tr>
-                        <?php } ?>
-                        <?php if ( 'Gujarat' !== $state ) { ?>
-                        <tr>
-                            <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                        </tr>
-                        <?php } else { ?>
-                        <tr>
-                            <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-                        </tr>
-                        <tr>
-                            <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                        </tr>
-                        <?php } ?>
-                        <tr class="wholesaleprice">
-                            <td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
-                            <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-                        </tr>
-                    </table>
-                </div>
-                <?php 
-                $info_box_html = ob_get_clean();
-
-                // Add the info icon with tooltip
-                $info_icon_html = '<span class="supavapes-price-info">ℹ️
-                    <div class="supavapes-tooltip">' . $info_box_html . '</div>
-                </span>';
-
-                // Combine the price and info icon
-                $price .= $info_icon_html;
-            }
-
+					// Add the info icon with tooltip
+					$info_icon_html = '<span class="supavapes-price-info">ℹ️
+						<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+					</span>';
+			
+					// Combine the price and info icon
+					$price .= $info_icon_html;
+				}	
             // Update the price display
             $price = wc_price( $final_price );
         }
-
+		
         return $price;
     }
 }
 
 add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
-
 
 
 
