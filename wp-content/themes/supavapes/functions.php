@@ -4207,6 +4207,8 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			$product_type = $product_data->get_type();
 		}
 			if( $product_type == 'simple' ){
+
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 			// Get necessary price details
 			$reg_price  = $product->get_regular_price();
 			$sale_price = $product->get_sale_price();
