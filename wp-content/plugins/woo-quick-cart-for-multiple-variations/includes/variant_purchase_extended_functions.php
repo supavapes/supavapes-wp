@@ -44,7 +44,7 @@ function wqcmv_updated_headers() {
 }
 
 
-function wqcmv_calculate_ontario_tax( $vaping_liquid ) {
+function supavapes_calculate_ontario_tax( $vaping_liquid ) {
 	// Fetch duty rates from ACF fields or replace with static values
 	$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
 	$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
@@ -74,7 +74,7 @@ function wqcmv_calculate_ontario_tax( $vaping_liquid ) {
 	return $ontario_tax;
 }
 
-function wqcmv_calculate_federal_tax( $vaping_liquid ) {
+function supavapes_calculate_federal_tax( $vaping_liquid ) {
 	// Fetch duty rates from ACF fields or replace with static values
 	$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
 	$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');

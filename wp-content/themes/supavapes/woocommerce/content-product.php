@@ -37,7 +37,7 @@ if($rating_num == 0){
 
 
 $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-var_dump($vaping_liquid);
+$vaping_liquid = (int)$vaping_liquid;
 $reg_price = $product->get_regular_price();
 $sale_price = $product->get_sale_price();
 
@@ -48,8 +48,8 @@ $federal_tax = 0;
 
 // // Calculate taxes using the custom functions if vaping_liquid is set.
 if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-    // $ontario_tax = wqcmv_calculate_ontario_tax( $vaping_liquid );
-    // $federal_tax = wqcmv_calculate_federal_tax( $vaping_liquid );
+    $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+    $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
 }
 
 // // Determine the final price based on the state.
