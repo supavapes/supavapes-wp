@@ -37,7 +37,7 @@ if($rating_num == 0){
 
 
 $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-$vaping_liquid = (int)$vaping_liquid;
+$vaping_liquid = (int) $vaping_liquid;
 $reg_price = $product->get_regular_price();
 $sale_price = $product->get_sale_price();
 
