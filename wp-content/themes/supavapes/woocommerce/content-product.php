@@ -36,20 +36,20 @@ if($rating_num == 0){
 // echo do_shortcode( '[wpseo_breadcrumb]' );
 
 
-echo "Liquid: ".$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 $reg_price = $product->get_regular_price();
 $sale_price = $product->get_sale_price();
 
 
 // // Initialize tax variables
-// $ontario_tax = 0;
-// $federal_tax = 0;
+$ontario_tax = 0;
+$federal_tax = 0;
 
 // // Calculate taxes using the custom functions if vaping_liquid is set.
-// if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-//     $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-//     $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-// }
+if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+    $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+    $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+}
 
 // // Determine the final price based on the state.
 // $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
