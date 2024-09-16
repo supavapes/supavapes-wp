@@ -20,6 +20,10 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
+    jQuery('.info-icon-container .info-icon').on('click', function() {
+        jQuery(this).next('.price-breakup-popup').toggle();
+    });
+
     jQuery(document).on('wpcf7mailsent', function(event) {
         setTimeout(function() {
             window.location.href = '/contact-us/';
