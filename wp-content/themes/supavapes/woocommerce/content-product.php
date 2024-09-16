@@ -103,7 +103,9 @@ if ( 'Gujarat' !== $state ) {
             <?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
                 $product_type = $product_data->get_type();
             }?>
-            <?php if($product_type == 'simple'){ ?>
+            <?php if( $product_type == 'simple' ){ ?>
+                <?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+							?>
                 <span class="info-icon-container">
                     <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
                     <div class="price-breakup-popup">
@@ -142,7 +144,9 @@ if ( 'Gujarat' !== $state ) {
                         </table>
                     </div>
                 </span>
-            <?php }?>
+            <?php 
+                }
+            }?>
         </div>
         <?php 
             if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
