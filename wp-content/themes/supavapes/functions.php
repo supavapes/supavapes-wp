@@ -4197,33 +4197,11 @@ function add_icon_next_to_price() {
     $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
     $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-    // Initialize tax variables
-    $ontario_tax = 0;
-    $federal_tax = 0;
-
-    // Fetch dynamic duty rates from ACF fields
-    $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
-    $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
-    $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
-    $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
-
-    // Calculate taxes if vaping_liquid is greater than or equal to 10
-    if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-        $first_part = 10;
-        $second_part = $vaping_liquid - $first_part;
-
-        // Ontario tax calculation
-        $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
-        if ( $second_part > 0 ) {
-            $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-        }
-
-        // Federal tax calculation
-        $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
-        if ( $second_part > 0 ) {
-            $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-        }
-    }
+	if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+		$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+		$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+	}
+	
 
     // Determine the final price based on state
     if ( 'Gujarat' !== $state ) {
@@ -4235,52 +4213,52 @@ function add_icon_next_to_price() {
     }
 
     // Output the price with an icon and the info popup
-   
     echo '<span class="price">' . wc_price( $final_price ) . '</span>';
 
     // Add the info icon and price breakdown popup
     ob_start(); ?>
-    <span class="info-icon-container">
-        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-        <div class="price-breakup-popup">
-            <h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
-            <table class="pricetable">
-                <?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-                </tr>
-                <?php } else { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-                </tr>
-                <?php } ?>
-                <?php if ( 'Gujarat' !== $state ) { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                </tr>
-                <?php } else { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-                </tr>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                </tr>
-                <?php } ?>
-                <tr class="wholesaleprice">
-                    <td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-                </tr>
-            </table>
-        </div>
-    </span>
+	<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
+		<span class="info-icon-container">
+			<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+			<div class="price-breakup-popup">
+				<h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
+				<table class="pricetable">
+					<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
+					</tr>
+					<?php } else { ?>
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
+					</tr>
+					<?php } ?>
+					<?php if ( 'Gujarat' !== $state ) { ?>
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+					</tr>
+					<?php } else { ?>
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+					</tr>
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+					</tr>
+					<?php } ?>
+					<tr class="wholesaleprice">
+						<td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+					</tr>
+				</table>
+			</div>
+		</span>
+	<?php }?>
     <?php 
     $info_icon_html = ob_get_clean();
-
     echo $info_icon_html;
    
 }
