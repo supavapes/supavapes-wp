@@ -112,7 +112,6 @@ function supavapes_calculate_federal_tax( $vaping_liquid ) {
  * @return false|string
  */
 function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations = array() ) {
-	echo "innnnnnnnnnn";
     if ( 0 === $variation_id ) {
         return '';
     }
@@ -191,8 +190,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	$vaping_liquid = (int)$vaping_liquid;
-	var_dump($vaping_liquid);
-	echo "vallluee";
+	
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 
 		// Calculate Ontario and Federal taxes using the defined functions
