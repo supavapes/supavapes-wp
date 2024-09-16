@@ -41,12 +41,7 @@ $vaping_liquid = (int)$vaping_liquid;
 $reg_price = $product->get_regular_price();
 $sale_price = $product->get_sale_price();
 
-
-// // Initialize tax variables
-$ontario_tax = 0;
-$federal_tax = 0;
-
-// // Calculate taxes using the custom functions if vaping_liquid is set.
+// Calculate taxes using the custom functions if vaping_liquid is set.
 if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
     $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
     $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );

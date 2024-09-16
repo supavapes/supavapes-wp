@@ -4284,16 +4284,14 @@ function custom_mini_cart_item_quantity_with_breakdown( $quantity_html, $cart_it
     $reg_price  = $product->get_regular_price();
     $sale_price = $product->get_sale_price();
 
-    // Assuming you have access to tax/duty info based on the cart data
-    $federal_tax = 5; // Replace this with actual tax calculation
-    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
-    $ontario_tax = 3; // Replace this with actual tax calculation
+	$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
+	$vaping_liquid = (int)$vaping_liquid;
 
-    // Final price calculation for the breakdown (example)
-    $final_price = $reg_price;
-    if ( ! empty( $sale_price ) ) {
-        $final_price = $sale_price;
-    }
+    // Calculate taxes using the custom functions if vaping_liquid is set.
+	if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+		$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+		$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+	}
 
     if ( 'Gujarat' !== $state ) {
         $final_price += $federal_tax;
