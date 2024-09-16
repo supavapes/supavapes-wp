@@ -199,11 +199,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 		
 		// Determine final price based on state
 		if ('Gujarat' !== $state) {
-			// Use only Ontario tax for Gujarat
+			// Use only Ontario tax for other states.
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$final_price += $ontario_tax;
 		} else {
-			// Use both Ontario and Federal taxes for other states
+			// Use both Ontario and Federal taxes for Ontario (Gujarat)
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$include_both_taxes = $ontario_tax + $federal_tax;
 			$final_price += $include_both_taxes;
