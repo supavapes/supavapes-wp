@@ -4268,3 +4268,101 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 
 // Add the price with the icon in place of the default one
 add_action( 'woocommerce_single_product_summary', 'add_icon_next_to_price', 10 );
+
+
+// Hook to modify the mini cart item quantity and include the price breakdown
+add_filter( 'woocommerce_widget_cart_item_quantity', 'custom_mini_cart_item_quantity_with_breakdown', 10, 3 );
+
+function custom_mini_cart_item_quantity_with_breakdown( $quantity_html, $cart_item, $cart_item_key ) {
+    // Get product details
+    $product = $cart_item['data'];
+    $product_id = $product->get_id();
+    $quantity = $cart_item['quantity'];
+    $product_price = wc_price( $product->get_price() );
+
+    // Get necessary pricing details (this is just an example, customize based on your need)
+    $reg_price  = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+
+    // Assuming you have access to tax/duty info based on the cart data
+    $federal_tax = 5; // Replace this with actual tax calculation
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+    $ontario_tax = 3; // Replace this with actual tax calculation
+
+    // Final price calculation for the breakdown (example)
+    $final_price = $reg_price;
+    if ( ! empty( $sale_price ) ) {
+        $final_price = $sale_price;
+    }
+
+    if ( 'Gujarat' !== $state ) {
+        $final_price += $federal_tax;
+    } else {
+        $final_price += $ontario_tax + $federal_tax;
+    }
+
+    // Start building the custom HTML
+    ob_start();
+
+    ?>
+    <span class="quantity"><?php echo sprintf( '%s &times; %s', $quantity, $product_price ); ?></span>
+
+    <!-- Price Breakdown -->
+    <span class="mini-cart-price-breakdown">
+        <a href="javascript:void(0);" class="price-breakdown-toggle">
+            <i class="fa fa-info-circle"></i>
+        </a>
+        <div class="price-breakdown-popup" style="display: none;">
+            <table class="price-breakdown-table">
+                <?php if ( $sale_price ) : ?>
+                    <tr>
+                        <td><?php esc_html_e( 'Sale Price:', 'woocommerce' ); ?></td>
+                        <td><?php echo wc_price( $sale_price ); ?></td>
+                    </tr>
+                <?php else : ?>
+                    <tr>
+                        <td><?php esc_html_e( 'Regular Price:', 'woocommerce' ); ?></td>
+                        <td><?php echo wc_price( $reg_price ); ?></td>
+                    </tr>
+                <?php endif; ?>
+
+                <?php if ( 'Gujarat' !== $state ) : ?>
+                    <tr>
+                        <td><?php esc_html_e( 'Federal Tax:', 'woocommerce' ); ?></td>
+                        <td><?php echo wc_price( $federal_tax ); ?></td>
+                    </tr>
+                <?php else : ?>
+                    <tr>
+                        <td><?php esc_html_e( 'Ontario Tax:', 'woocommerce' ); ?></td>
+                        <td><?php echo wc_price( $ontario_tax ); ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php esc_html_e( 'Federal Tax:', 'woocommerce' ); ?></td>
+                        <td><?php echo wc_price( $federal_tax ); ?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <td><?php esc_html_e( 'Final Price:', 'woocommerce' ); ?></td>
+                    <td><?php echo wc_price( $final_price ); ?></td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <script>
+    // Toggle the price breakdown on click
+    jQuery(document).ready(function($) {
+        $('.price-breakdown-toggle').on('click', function(e) {
+            e.preventDefault();
+            $(this).next('.price-breakdown-popup').toggle();
+        });
+    });
+    </script>
+
+    <?php
+
+    // Append the output to the quantity HTML
+    $custom_quantity_html = ob_get_clean();
+
+    return $quantity_html . $custom_quantity_html;
+}
