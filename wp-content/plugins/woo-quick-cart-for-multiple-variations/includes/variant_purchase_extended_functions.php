@@ -192,6 +192,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	$vaping_liquid = (int)$vaping_liquid;
 	var_dump($vaping_liquid);
+	echo "vallluee";
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 
 		// Calculate Ontario and Federal taxes using the defined functions
