@@ -4484,3 +4484,66 @@ function my_woocommerce_admin_order_item_values($_product, $item, $item_id = nul
     echo '</td>';
 }
 
+
+
+add_action('woocommerce_checkout_create_order_line_item', 'add_custom_tax_meta_to_order_item', 10, 4);
+function add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $order) {
+    $product = $values['data']; // Get the product object
+
+    // Initialize variables for taxes
+    $ontario_tax = 0;
+    $federal_tax = 0;
+    $final_tax = 0;
+
+    // Check if the product is a variation
+    if ($product->is_type('variable') && $product->get_variation_id()) {
+        $product_id = $product->get_variation_id(); // For variable product (variation ID)
+    } else {
+        $product_id = $product->get_id(); // For simple product (regular product ID)
+    }
+
+    // Retrieve custom meta values based on the product ID (simple or variation)
+    $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+    $vaping_liquid = (int) $vaping_liquid;
+    $reg_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+
+    // Calculate taxes using custom functions if vaping_liquid is set
+    if (!empty($vaping_liquid)) {
+        $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+        $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+    }
+
+    // Determine final price and add taxes
+    $state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+    if ('Gujarat' !== $state) {
+        $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+        $final_tax = floatval($federal_tax);
+    } else {
+        $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+        $final_tax = floatval($ontario_tax) + floatval($federal_tax);
+    }
+
+    // Store the tax values in the order item meta
+    $item->add_meta_data('ontario_tax', $ontario_tax, true);
+    $item->add_meta_data('federal_tax', $federal_tax, true);
+    $item->add_meta_data('final_tax_applied', $final_tax, true);
+}
+
+
+// Add custom column values to display tax data in the admin
+add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta', 10, 3);
+
+function display_order_item_tax_meta($_product, $item, $item_id = null) {
+    // Retrieve the tax meta values
+    $ontario_tax = wc_get_order_item_meta($item_id, 'Ontario Tax', true);
+    $federal_tax = wc_get_order_item_meta($item_id, 'Federal Tax', true);
+    $final_tax = wc_get_order_item_meta($item_id, 'Final Tax Applied', true);
+
+    // Display the tax data
+    echo '<td>';
+    echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
+    echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
+    echo 'Final Tax Applied: ' . wc_price($final_tax);
+    echo '</td>';
+}
