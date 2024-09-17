@@ -4412,15 +4412,7 @@ add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_q
 
 
 
-// Add custom column headers here
-// add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
-function my_woocommerce_admin_order_item_headers() {
-    // set the column name
-    $column_name = 'Price breakdown';
 
-    // display the column name
-    echo '<th>' . $column_name . '</th>';
-}
 
 // Add custom column values
 // add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
@@ -4530,6 +4522,16 @@ function add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $orde
     $item->add_meta_data('final_tax_applied', $final_tax, true);
 }
 
+
+// Add custom column headers here
+add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
+function my_woocommerce_admin_order_item_headers() {
+    // set the column name
+    $column_name = 'Price breakdown';
+
+    // display the column name
+    echo '<th>' . $column_name . '</th>';
+}
 
 // Add custom column values to display tax data in the admin
 add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta', 10, 3);
