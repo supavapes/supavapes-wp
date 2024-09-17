@@ -4537,39 +4537,42 @@ function my_woocommerce_admin_order_item_headers() {
 add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta', 10, 3);
 
 function display_order_item_tax_meta($_product, $item, $item_id = null) {
-    // Retrieve the tax meta values
-    $ontario_tax = wc_get_order_item_meta($item_id, 'ontario_tax', true);
-    $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
-    $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
+    // Check if the item is a product item, not a shipping item
+    if ($item instanceof WC_Order_Item_Product) {
+        // Retrieve the tax meta values
+        $ontario_tax = wc_get_order_item_meta($item_id, 'ontario_tax', true);
+        $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
+        $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
 
-    // Get product or variation product
-    $product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
-    $variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
-    
-    // If a variation ID exists, use it to get the variation price
-    if ($variation_id) {
-        // Get variation product
-        $variation_product = wc_get_product($variation_id);
-        $regular_price = $variation_product->get_regular_price();
-        $sale_price = $variation_product->get_sale_price();
-    } else {
-        // If it's a simple product, get the regular product prices
-        $product = wc_get_product($product_id);
-        $regular_price = $product->get_regular_price();
-        $sale_price = $product->get_sale_price();
+        // Get the product or variation details
+        $product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
+        $variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
+        
+        // Get product or variation price
+        if ($variation_id) {
+            // Get variation product
+            $variation_product = wc_get_product($variation_id);
+            $regular_price = $variation_product->get_regular_price();
+            $sale_price = $variation_product->get_sale_price();
+        } else {
+            // If it's a simple product, get the regular product prices
+            $product = wc_get_product($product_id);
+            $regular_price = $product->get_regular_price();
+            $sale_price = $product->get_sale_price();
+        }
+
+        // Base price: use the sale price if it exists, otherwise use the regular price
+        $base_price = !empty($sale_price) ? $sale_price : $regular_price;
+
+        // Calculate the total wholesale price
+        $wholesale_price = floatval($base_price) + floatval($ontario_tax) + floatval($federal_tax);
+
+        // Display the price breakdown in the admin panel
+        echo '<td>';
+        echo 'Base Price: ' . wc_price($base_price) . '<br>'; // Sale price if available, otherwise regular price
+        echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
+        echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
+        echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
+        echo '</td>';
     }
-
-    // Base price: use the sale price if it exists, otherwise use the regular price
-    $base_price = !empty($sale_price) ? $sale_price : $regular_price;
-
-    // Calculate the total wholesale price
-    $wholesale_price = floatval($base_price) + floatval($ontario_tax) + floatval($federal_tax);
-
-    // Display the price breakdown in the admin panel
-    echo '<td>';
-    echo 'Base Price: ' . wc_price($base_price) . '<br>'; // Sale price if available, otherwise regular price
-    echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
-    echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
-    echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
-    echo '</td>';
 }
