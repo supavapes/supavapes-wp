@@ -4243,7 +4243,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			// Add the info icon and price breakdown popup
 			ob_start(); ?>
 			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
-				<span class="info-icon-container">
+				<div class="info-icon-container">
 					<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 					<div class="price-breakup-popup">
 						<h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
@@ -4413,7 +4413,7 @@ add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_q
 
 
 // Add custom column headers here
-add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
+// add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
 function my_woocommerce_admin_order_item_headers() {
     // set the column name
     $column_name = 'Price breakdown';
@@ -4423,7 +4423,7 @@ function my_woocommerce_admin_order_item_headers() {
 }
 
 // Add custom column values
-add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
+// add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
 function my_woocommerce_admin_order_item_values($_product, $item, $item_id = null) {
     // Check if the item is a product
     if ( $item->get_type() !== 'line_item' ) {
