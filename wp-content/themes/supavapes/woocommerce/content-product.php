@@ -94,7 +94,6 @@ if ( 'Gujarat' !== $state ) {
             <h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'supavapes');?></h3>
             <p class="sv-our-product-price test-class">
             <?php echo wp_kses_post($price); ?>
-            </p>
             <?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
                 $product_type = $product_data->get_type();
             }?>
@@ -142,6 +141,8 @@ if ( 'Gujarat' !== $state ) {
             <?php 
                 }
             }?>
+            </p>
+            
         </div>
         <?php 
             if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
