@@ -4109,6 +4109,11 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 	 * @param float $vaping_liquid The volume of the vaping liquid in ml.
 	 * @return float The calculated Ontario tax amount.
 	 * 
+	 * Ontario tax calculated with the formula.
+	 * 
+	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be change from the back-end settings.
+	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be change from the back-end settings.
+ 	 * 
 	 * @since 1.0.0
 	 */
 	function supavapes_calculate_ontario_tax( $vaping_liquid ) {
@@ -4145,14 +4150,19 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 
 
 /**
- * If the function, `supavapes_calculate_ontario_tax`, doesn't exist.
+ * If the function, `supavapes_calculate_federal_tax`, doesn't exist.
  */
-if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
+if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	/**
 	 * Calculate Federal Tax based on vaping liquid volume.
 	 *
 	 * @param float $vaping_liquid The volume of the vaping liquid in ml.
 	 * @return float The calculated Federal tax amount.
+	 * 
+	 * Federal tax calculated with the formula.
+	 * 
+	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be change from the back-end settings.
+	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be change from the back-end settings.
 	 * 
 	 * @since 1.0.0
 	 */
@@ -4230,9 +4240,6 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 				$final_price += $ontario_tax + $federal_tax;
 			}
 
-			// Output the price with an icon and the info popup
-			// echo '<span class="price">' . wc_price( $final_price ) . '</span>';
-
 			// Add the info icon and price breakdown popup
 			ob_start(); ?>
 			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
@@ -4296,7 +4303,6 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 
 // Add the price with the icon in place of the default one
 add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
-
 
 
 /**
@@ -4400,3 +4406,31 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 }
 
 add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_quantity_with_breakdown_callback', 10, 3 );
+
+
+
+add_action('woocommerce_admin_order_item_values', 'custom_admin_order_item_price_field', 10, 3);
+
+function custom_admin_order_item_price_field($product, $item, $item_id) {
+    // Get the current price of the item
+    $price = wc_get_order_item_meta($item_id, '_line_total', true);
+
+    // Custom HTML for the price input
+    echo '<input type="text" name="custom_price[' . $item_id . ']" value="' . esc_attr($price) . '" class="custom-price-field" />';
+}
+
+
+add_action('woocommerce_before_order_object_save', 'save_custom_order_item_price', 10, 1);
+
+function save_custom_order_item_price($order) {
+    if (isset($_POST['custom_price'])) {
+        foreach ($_POST['custom_price'] as $item_id => $price) {
+            // Sanitize and update the custom price
+            $new_price = wc_format_decimal($price);
+            wc_update_order_item_meta($item_id, '_line_total', $new_price);
+        }
+
+        // Recalculate order totals after the price has been updated
+        $order->calculate_totals();
+    }
+}
