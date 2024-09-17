@@ -4532,6 +4532,7 @@ function my_woocommerce_admin_order_item_headers() {
     echo '<th>' . $column_name . '</th>';
 }
 
+
 // Add custom column values to display tax data in the admin
 add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta', 10, 3);
 
@@ -4541,17 +4542,19 @@ function display_order_item_tax_meta($_product, $item, $item_id = null) {
     $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
     $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
 
-    // Determine if the product is a variation
-    $product = wc_get_product($item->get_product_id());
-
-    if ($product->is_type('variation')) {
-        // Get the variation ID and use it to fetch prices
-        $variation_id = $product->get_id();
+    // Get product or variation product
+    $product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
+    $variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
+    
+    // If a variation ID exists, use it to get the variation price
+    if ($variation_id) {
+        // Get variation product
         $variation_product = wc_get_product($variation_id);
         $regular_price = $variation_product->get_regular_price();
         $sale_price = $variation_product->get_sale_price();
     } else {
-        // If not a variation, get the parent product's prices
+        // If it's a simple product, get the regular product prices
+        $product = wc_get_product($product_id);
         $regular_price = $product->get_regular_price();
         $sale_price = $product->get_sale_price();
     }
