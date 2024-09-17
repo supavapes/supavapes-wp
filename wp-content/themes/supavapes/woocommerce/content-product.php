@@ -100,9 +100,9 @@ if ( 'Gujarat' !== $state ) {
             <?php if( $product_type == 'simple' ){ ?>
                 <?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
 							?>
-                <span class="info-icon-container">
+                <div class="info-icon-container">
                     <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-                    <span class="price-breakup-popup">
+                    <div class="price-breakup-popup">
                     <h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
                         <table class="pricetable">
                         <?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
@@ -136,8 +136,8 @@ if ( 'Gujarat' !== $state ) {
                         <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
                         </tr>
                         </table>
-                    </span>
-                </span>
+                    </div>
+                </div>
             <?php 
                 }
             }?>
