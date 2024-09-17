@@ -4572,7 +4572,7 @@ function display_order_item_tax_meta($_product, $item, $item_id = null) {
         echo 'Base Price: ' . wc_price($base_price) . '<br>'; // Sale price if available, otherwise regular price
         echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
         echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
-        echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
+        // echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
         echo '</td>';
     }
 }
