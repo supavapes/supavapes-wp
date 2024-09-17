@@ -4448,7 +4448,7 @@ function my_woocommerce_admin_order_item_values($_product, $item, $item_id = nul
     }
 
     // Determine the user's state
-    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
     // Determine the final price based on state
     if ( 'Gujarat' !== $state ) {
