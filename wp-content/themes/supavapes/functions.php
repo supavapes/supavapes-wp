@@ -4412,28 +4412,22 @@ add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_q
 
 
 
-add_action('woocommerce_admin_order_item_values', 'custom_admin_order_item_price_field', 10, 3);
+// Add custom column headers here
+add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
+function my_woocommerce_admin_order_item_headers() {
+    // set the column name
+    $column_name = 'Test Column';
 
-function custom_admin_order_item_price_field($product, $item, $item_id) {
-    // Get the current price of the item
-    $price = wc_get_order_item_meta($item_id, '_line_total', true);
-
-    // Custom HTML for the price input
-    echo '<input type="text" name="custom_price[' . $item_id . ']" value="' . esc_attr($price) . '" class="custom-price-field" />';
+    // display the column name
+    echo '<th>' . $column_name . '</th>';
 }
 
+// Add custom column values here
+add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
+function my_woocommerce_admin_order_item_values($_product, $item, $item_id = null) {
+    // get the post meta value from the associated product
+    $value = get_post_meta($_product->post->ID, '_vaping_liquid', 1);
 
-add_action('woocommerce_before_order_object_save', 'save_custom_order_item_price', 10, 1);
-
-function save_custom_order_item_price($order) {
-    if (isset($_POST['custom_price'])) {
-        foreach ($_POST['custom_price'] as $item_id => $price) {
-            // Sanitize and update the custom price
-            $new_price = wc_format_decimal($price);
-            wc_update_order_item_meta($item_id, '_line_total', $new_price);
-        }
-
-        // Recalculate order totals after the price has been updated
-        $order->calculate_totals();
-    }
+    // display the value
+    echo '<td>' . $value . '</td>';
 }
