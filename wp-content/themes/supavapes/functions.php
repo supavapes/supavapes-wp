@@ -4422,14 +4422,30 @@ function my_woocommerce_admin_order_item_headers() {
     echo '<th>' . $column_name . '</th>';
 }
 
-// Add custom column values here
 // Add custom column values
 add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
 function my_woocommerce_admin_order_item_values($_product, $item, $item_id = null) {
-    // Get the product object
-    $product = wc_get_product( $item->get_product_id() );
+    // Check if the item is a product
+    if ( $item->get_type() !== 'line_item' ) {
+        return; // Skip non-product items like shipping or fees
+    }
 
-    // Get the vaping liquid value from post meta
+    // Get the product ID and variation ID (if available)
+    $product_id = $item->get_product_id();
+    $variation_id = $item->get_variation_id();
+
+    // Get the correct product object (use variation if available)
+    if ( $variation_id ) {
+        $product = wc_get_product( $variation_id ); // Get the variation product
+    } else {
+        $product = wc_get_product( $product_id ); // Get the simple/parent product
+    }
+
+    if ( ! $product ) {
+        return; // If the product doesn't exist, stop here
+    }
+
+    // Get the vaping liquid value from post meta (using the variation or parent product ID)
     $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
     $vaping_liquid = (int) $vaping_liquid;
 
@@ -4467,3 +4483,4 @@ function my_woocommerce_admin_order_item_values($_product, $item, $item_id = nul
     echo 'Final Price: ' . wc_price( $final_price );
     echo '</td>';
 }
+
