@@ -4538,9 +4538,9 @@ add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta',
 
 function display_order_item_tax_meta($_product, $item, $item_id = null) {
     // Retrieve the tax meta values
-    $ontario_tax = wc_get_order_item_meta($item_id, 'Ontario Tax', true);
-    $federal_tax = wc_get_order_item_meta($item_id, 'Federal Tax', true);
-    $final_tax = wc_get_order_item_meta($item_id, 'Final Tax Applied', true);
+    $ontario_tax = wc_get_order_item_meta($item_id, 'ontario_tax', true);
+    $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
+    $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
 
     // Display the tax data
     echo '<td>';
