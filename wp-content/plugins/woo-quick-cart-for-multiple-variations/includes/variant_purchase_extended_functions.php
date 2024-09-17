@@ -323,10 +323,10 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				</div>
 				<div class="vpn_product_price">
 					<label class="vpn_product_label"><?php echo esc_html__("Price", 'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-					<h4 class="priceInfo">
-						<?php echo wp_kses_post($price); ?>
-						<?php if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
+					<?php if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 							?>
+					<h4 class="priceInfo price-breakup">
+						<?php echo wp_kses_post($price); ?>
 							<span class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
@@ -378,8 +378,13 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 										<!-- <p><?php //esc_html_e('Wholesale Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
 								</div>
 							</span>
-						<?php }?>
+						
 					</h4>
+					<?php }else{?>
+						<h4 class="priceInfo">
+						<?php echo wp_kses_post($price); ?>
+					</h4>
+					<?php }?>
 				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__( 'Quantity','woocommerce-quick-cart-for-multiple-variations' ); ?></label>
