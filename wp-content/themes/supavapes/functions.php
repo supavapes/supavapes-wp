@@ -4416,18 +4416,54 @@ add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_q
 add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
 function my_woocommerce_admin_order_item_headers() {
     // set the column name
-    $column_name = 'Test Column';
+    $column_name = 'Price breakdown';
 
     // display the column name
     echo '<th>' . $column_name . '</th>';
 }
 
 // Add custom column values here
+// Add custom column values
 add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
 function my_woocommerce_admin_order_item_values($_product, $item, $item_id = null) {
-    // get the post meta value from the associated product
-    $value = get_post_meta($_product->post->ID, '_vaping_liquid', 1);
+    // Get the product object
+    $product = wc_get_product( $item->get_product_id() );
 
-    // display the value
-    echo '<td>' . $value . '</td>';
+    // Get the vaping liquid value from post meta
+    $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+    $vaping_liquid = (int) $vaping_liquid;
+
+    // Get regular and sale prices
+    $reg_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+
+    // Initialize taxes
+    $ontario_tax = 0;
+    $federal_tax = 0;
+
+    // Calculate taxes if vaping_liquid is set
+    if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+        $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+        $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+    }
+
+    // Determine the user's state
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+
+    // Determine the final price based on state
+    if ( 'Gujarat' !== $state ) {
+        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+        $final_price += floatval( $federal_tax );
+    } else {
+        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+        $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+    }
+
+    // Display the price and tax breakdown
+    echo '<td>';
+    echo 'Base Price: ' . wc_price( isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price ) . '<br>';
+    echo 'Ontario Tax: ' . wc_price( $ontario_tax ) . '<br>';
+    echo 'Federal Tax: ' . wc_price( $federal_tax ) . '<br>';
+    echo 'Final Price: ' . wc_price( $final_price );
+    echo '</td>';
 }
