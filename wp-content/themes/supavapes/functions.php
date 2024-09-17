@@ -4411,95 +4411,132 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_quantity_with_breakdown_callback', 10, 3 );
 
 
+/**
+ * If the function, `supavapes_add_custom_tax_meta_to_order_item`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_add_custom_tax_meta_to_order_item' ) ) {
+	/**
+	 * Add tax values to the order meta while placing order.
+	 * 
+	 * @param $item will contain the order item data.
+	 * @param $cart_item_key contains the cart item key.
+	 * @param $values contains the product data to create a product object.
+	 * @param $order contains order details.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_add_custom_tax_meta_to_order_item( $item, $cart_item_key, $values, $order ) {
+		$product = $values['data']; // Get the product object
 
-function supavapes_add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $order) {
-    $product = $values['data']; // Get the product object
+		// Initialize variables for taxes
+		$ontario_tax = 0;
+		$federal_tax = 0;
+		$final_tax = 0;
 
-    // Initialize variables for taxes
-    $ontario_tax = 0;
-    $federal_tax = 0;
-    $final_tax = 0;
+		// Check if the product is a variation
+		if ( $product->is_type('variable') && $product->get_variation_id() ) {
+			$product_id = $product->get_variation_id(); // For variable product (variation ID)
+		} else {
+			$product_id = $product->get_id(); // For simple product (regular product ID)
+		}
 
-    // Check if the product is a variation
-    if ($product->is_type('variable') && $product->get_variation_id()) {
-        $product_id = $product->get_variation_id(); // For variable product (variation ID)
-    } else {
-        $product_id = $product->get_id(); // For simple product (regular product ID)
-    }
+		// Retrieve custom meta values based on the product ID (simple or variation)
+		$vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+		$vaping_liquid = (int) $vaping_liquid;
+		$reg_price = $product->get_regular_price();
+		$sale_price = $product->get_sale_price();
 
-    // Retrieve custom meta values based on the product ID (simple or variation)
-    $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
-    $vaping_liquid = (int) $vaping_liquid;
-    $reg_price = $product->get_regular_price();
-    $sale_price = $product->get_sale_price();
+		// Calculate taxes using custom functions if vaping_liquid is set
+		if ( !empty( $vaping_liquid ) ) {
+			$ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+			$federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+		}
 
-    // Calculate taxes using custom functions if vaping_liquid is set
-    if (!empty($vaping_liquid)) {
-        $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
-        $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
-    }
+		// Determine final price and add taxes
+		$state = isset( $_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state'] ) : '';
+		if ( 'Gujarat' !== $state ) {
+			$final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+			$final_tax = floatval($federal_tax);
+		} else {
+			$final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+			$final_tax = floatval($ontario_tax) + floatval($federal_tax);
+		}
 
-    // Determine final price and add taxes
-    $state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-    if ('Gujarat' !== $state) {
-        $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
-        $final_tax = floatval($federal_tax);
-    } else {
-        $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
-        $final_tax = floatval($ontario_tax) + floatval($federal_tax);
-    }
-
-    // Store the tax values in the order item meta
-    $item->add_meta_data('ontario_tax', $ontario_tax, true);
-    $item->add_meta_data('federal_tax', $federal_tax, true);
-    $item->add_meta_data('final_tax_applied', $final_tax, true);
+		// Store the tax values in the order item meta
+		$item->add_meta_data('ontario_tax', $ontario_tax, true);
+		$item->add_meta_data('federal_tax', $federal_tax, true);
+		$item->add_meta_data('final_tax_applied', $final_tax, true);
+	}
 }
 
 add_action('woocommerce_checkout_create_order_line_item', 'supavapes_add_custom_tax_meta_to_order_item', 10, 4);
 
 
-// Add custom column headers for base price, Ontario tax, and federal tax
-function supavapes_woocommerce_admin_order_item_headers() {
-    echo '<th>Base Price</th>';
-    echo '<th>Ontario Tax</th>';
-    echo '<th>Federal Tax</th>';
+/**
+ * If the function, `supavapes_add_custom_tax_meta_to_order_item`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_admin_order_item_headers' ) ) {
+	/**
+	 * Add custom column headers for base price, Ontario tax, and federal tax
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_admin_order_item_headers() {
+		echo '<th>Base Price</th>';
+		echo '<th>Ontario Tax</th>';
+		echo '<th>Federal Tax</th>';
+	}
 }
 
 add_action('woocommerce_admin_order_item_headers', 'supavapes_woocommerce_admin_order_item_headers');
 
-// Add custom column values to display tax data in the admin
-function supavapes_display_order_item_tax_meta($_product, $item, $item_id = null) {
-    // Check if the item is a product item, not a shipping item
-    if ($item instanceof WC_Order_Item_Product) {
-        // Retrieve the tax meta values
-        $ontario_tax = wc_get_order_item_meta($item_id, 'ontario_tax', true);
-        $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
 
-        // Get the product or variation details
-        $product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
-        $variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
-        
-        // Get product or variation price
-        if ($variation_id) {
-            // Get variation product
-            $variation_product = wc_get_product($variation_id);
-            $regular_price = $variation_product->get_regular_price();
-            $sale_price = $variation_product->get_sale_price();
-        } else {
-            // If it's a simple product, get the regular product prices
-            $product = wc_get_product($product_id);
-            $regular_price = $product->get_regular_price();
-            $sale_price = $product->get_sale_price();
-        }
+/**
+ * If the function, `supavapes_display_order_item_tax_meta`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_display_order_item_tax_meta' ) ) {
+	/**
+	 * Add custom column values to display tax data in the admin.
+	 * 
+	 * @param $_product will contain the product details.
+	 * @param $item contains the order item data.
+	 * @param $item_id contains the order item id.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_display_order_item_tax_meta( $_product, $item, $item_id = null ) {
+		// Check if the item is a product item, not a shipping item
+		if ( $item instanceof WC_Order_Item_Product ) {
+			// Retrieve the tax meta values
+			$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+			$federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
 
-        // Base price: use the sale price if it exists, otherwise use the regular price
-        $base_price = !empty($sale_price) ? $sale_price : $regular_price;
+			// Get the product or variation details
+			$product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
+			$variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
+			
+			// Get product or variation price
+			if ( $variation_id ) {
+				// Get variation product
+				$variation_product = wc_get_product($variation_id);
+				$regular_price = $variation_product->get_regular_price();
+				$sale_price = $variation_product->get_sale_price();
+			} else {
+				// If it's a simple product, get the regular product prices
+				$product = wc_get_product($product_id);
+				$regular_price = $product->get_regular_price();
+				$sale_price = $product->get_sale_price();
+			}
 
-        // Display the values in the respective columns
-        echo '<td>' . wc_price($base_price) . '</td>';
-        echo '<td>' . wc_price($ontario_tax) . '</td>';
-        echo '<td>' . wc_price($federal_tax) . '</td>';
-    }
+			// Base price: use the sale price if it exists, otherwise use the regular price
+			$base_price = !empty( $sale_price ) ? $sale_price : $regular_price;
+
+			// Display the values in the respective columns
+			echo '<td>' . wc_price($base_price) . '</td>';
+			echo '<td>' . wc_price($ontario_tax) . '</td>';
+			echo '<td>' . wc_price($federal_tax) . '</td>';
+		}
+	}
 }
 
 add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_tax_meta', 10, 3);
