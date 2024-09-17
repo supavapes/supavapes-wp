@@ -4477,7 +4477,6 @@ function my_woocommerce_admin_order_item_values($_product, $item, $item_id = nul
 }
 
 
-
 add_action('woocommerce_checkout_create_order_line_item', 'add_custom_tax_meta_to_order_item', 10, 4);
 function add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $order) {
     $product = $values['data']; // Get the product object
@@ -4542,10 +4541,32 @@ function display_order_item_tax_meta($_product, $item, $item_id = null) {
     $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
     $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
 
-    // Display the tax data
+    // Determine if the product is a variation
+    $product = wc_get_product($item->get_product_id());
+
+    if ($product->is_type('variation')) {
+        // Get the variation ID and use it to fetch prices
+        $variation_id = $product->get_id();
+        $variation_product = wc_get_product($variation_id);
+        $regular_price = $variation_product->get_regular_price();
+        $sale_price = $variation_product->get_sale_price();
+    } else {
+        // If not a variation, get the parent product's prices
+        $regular_price = $product->get_regular_price();
+        $sale_price = $product->get_sale_price();
+    }
+
+    // Base price: use the sale price if it exists, otherwise use the regular price
+    $base_price = !empty($sale_price) ? $sale_price : $regular_price;
+
+    // Calculate the total wholesale price
+    $wholesale_price = floatval($base_price) + floatval($ontario_tax) + floatval($federal_tax);
+
+    // Display the price breakdown in the admin panel
     echo '<td>';
+    echo 'Base Price: ' . wc_price($base_price) . '<br>'; // Sale price if available, otherwise regular price
     echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
     echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
-    echo 'Final Tax Applied: ' . wc_price($final_tax);
+    echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
     echo '</td>';
 }
