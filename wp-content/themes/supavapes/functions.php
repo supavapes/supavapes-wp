@@ -4412,73 +4412,7 @@ add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_q
 
 
 
-
-
-// Add custom column values
-// add_action('woocommerce_admin_order_item_values', 'my_woocommerce_admin_order_item_values', 10, 3);
-function my_woocommerce_admin_order_item_values($_product, $item, $item_id = null) {
-    // Check if the item is a product
-    if ( $item->get_type() !== 'line_item' ) {
-        return; // Skip non-product items like shipping or fees
-    }
-
-    // Get the product ID and variation ID (if available)
-    $product_id = $item->get_product_id();
-    $variation_id = $item->get_variation_id();
-
-    // Get the correct product object (use variation if available)
-    if ( $variation_id ) {
-        $product = wc_get_product( $variation_id ); // Get the variation product
-    } else {
-        $product = wc_get_product( $product_id ); // Get the simple/parent product
-    }
-
-    if ( ! $product ) {
-        return; // If the product doesn't exist, stop here
-    }
-
-    // Get the vaping liquid value from post meta (using the variation or parent product ID)
-    $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-    $vaping_liquid = (int) $vaping_liquid;
-
-    // Get regular and sale prices
-    $reg_price = $product->get_regular_price();
-    $sale_price = $product->get_sale_price();
-
-    // Initialize taxes
-    $ontario_tax = 0;
-    $federal_tax = 0;
-
-    // Calculate taxes if vaping_liquid is set
-    if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-        $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-        $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-    }
-
-    // Determine the user's state
-    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
-
-    // Determine the final price based on state
-    if ( 'Gujarat' !== $state ) {
-        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-        $final_price += floatval( $federal_tax );
-    } else {
-        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-        $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
-    }
-
-    // Display the price and tax breakdown
-    echo '<td>';
-    echo 'Base Price: ' . wc_price( isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price ) . '<br>';
-    echo 'Ontario Tax: ' . wc_price( $ontario_tax ) . '<br>';
-    echo 'Federal Tax: ' . wc_price( $federal_tax ) . '<br>';
-    echo 'Final Price: ' . wc_price( $final_price );
-    echo '</td>';
-}
-
-
-add_action('woocommerce_checkout_create_order_line_item', 'add_custom_tax_meta_to_order_item', 10, 4);
-function add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $order) {
+function supavapes_add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $order) {
     $product = $values['data']; // Get the product object
 
     // Initialize variables for taxes
@@ -4521,28 +4455,25 @@ function add_custom_tax_meta_to_order_item($item, $cart_item_key, $values, $orde
     $item->add_meta_data('final_tax_applied', $final_tax, true);
 }
 
+add_action('woocommerce_checkout_create_order_line_item', 'supavapes_add_custom_tax_meta_to_order_item', 10, 4);
 
-// Add custom column headers here
-add_action('woocommerce_admin_order_item_headers', 'my_woocommerce_admin_order_item_headers');
-function my_woocommerce_admin_order_item_headers() {
-    // set the column name
-    $column_name = 'Price breakdown';
 
-    // display the column name
-    echo '<th>' . $column_name . '</th>';
+// Add custom column headers for base price, Ontario tax, and federal tax
+function supavapes_woocommerce_admin_order_item_headers() {
+    echo '<th>Base Price</th>';
+    echo '<th>Ontario Tax</th>';
+    echo '<th>Federal Tax</th>';
 }
 
+add_action('woocommerce_admin_order_item_headers', 'supavapes_woocommerce_admin_order_item_headers');
 
 // Add custom column values to display tax data in the admin
-add_action('woocommerce_admin_order_item_values', 'display_order_item_tax_meta', 10, 3);
-
-function display_order_item_tax_meta($_product, $item, $item_id = null) {
+function supavapes_display_order_item_tax_meta($_product, $item, $item_id = null) {
     // Check if the item is a product item, not a shipping item
     if ($item instanceof WC_Order_Item_Product) {
         // Retrieve the tax meta values
         $ontario_tax = wc_get_order_item_meta($item_id, 'ontario_tax', true);
         $federal_tax = wc_get_order_item_meta($item_id, 'federal_tax', true);
-        $final_tax = wc_get_order_item_meta($item_id, 'final_tax_applied', true);
 
         // Get the product or variation details
         $product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
@@ -4564,15 +4495,11 @@ function display_order_item_tax_meta($_product, $item, $item_id = null) {
         // Base price: use the sale price if it exists, otherwise use the regular price
         $base_price = !empty($sale_price) ? $sale_price : $regular_price;
 
-        // Calculate the total wholesale price
-        $wholesale_price = floatval($base_price) + floatval($ontario_tax) + floatval($federal_tax);
-
-        // Display the price breakdown in the admin panel
-        echo '<td>';
-        echo 'Base Price: ' . wc_price($base_price) . '<br>'; // Sale price if available, otherwise regular price
-        echo 'Ontario Tax: ' . wc_price($ontario_tax) . '<br>';
-        echo 'Federal Tax: ' . wc_price($federal_tax) . '<br>';
-        // echo '<strong>Wholesale Price: ' . wc_price($wholesale_price) . '</strong>'; // Total price with taxes
-        echo '</td>';
+        // Display the values in the respective columns
+        echo '<td>' . wc_price($base_price) . '</td>';
+        echo '<td>' . wc_price($ontario_tax) . '</td>';
+        echo '<td>' . wc_price($federal_tax) . '</td>';
     }
 }
+
+add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_tax_meta', 10, 3);
