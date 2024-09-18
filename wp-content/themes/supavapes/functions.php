@@ -4593,3 +4593,52 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
         }
     }
 }
+
+add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_order_taxes', 10, 1);
+
+function supavapes_recalculate_order_taxes($order) {
+    // Get the billing state from the order
+    $billing_state = $order->get_billing_state();
+
+    // Loop through all items in the order
+    foreach ($order->get_items('line_item') as $item_id => $item) {
+        $product = $item->get_product();
+        $product_id = $product->get_id();
+        
+        // Get the custom vaping liquid field (as in previous logic)
+        $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+        $vaping_liquid = (int) $vaping_liquid;
+
+        // Initialize taxes
+        $ontario_tax = 0;
+        $federal_tax = 0;
+
+        // Only calculate taxes if vaping_liquid is set
+        if (!empty($vaping_liquid)) {
+            $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+            $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+        }
+
+        // Determine the final tax based on the billing state
+        if ('Ontario' !== $billing_state) {
+            // If the customer is outside Gujarat, apply only federal tax
+            $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
+            $final_tax = floatval($federal_tax);
+        } else {
+            // If the customer is from Gujarat, apply both Ontario and federal tax
+            $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
+            $final_tax = floatval($ontario_tax) + floatval($federal_tax);
+        }
+
+        // Apply the tax to the final price
+        $price_with_tax = $final_price + $final_tax;
+
+        // Update the item total and subtotal (after price modification)
+        $item->set_total($price_with_tax * $item->get_quantity());
+        $item->set_subtotal($price_with_tax * $item->get_quantity());
+
+        // Save the tax values as order item meta
+        wc_update_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
+        wc_update_order_item_meta($item_id, 'federal_tax', $federal_tax);
+    }
+}
