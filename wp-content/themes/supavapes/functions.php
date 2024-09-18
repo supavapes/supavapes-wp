@@ -4541,7 +4541,7 @@ add_action('woocommerce_before_order_item_add', 'custom_modify_order_item_price'
 function custom_modify_order_item_price($item_id, $values) {
     // Get the product object from the values
     $product = wc_get_product($values['product_id']);
-
+	die('lkoo');
     // Check if the product exists
     if ($product) {
         // Get the current price
