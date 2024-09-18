@@ -327,7 +327,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 							?>
 					<h4 class="priceInfo price-breakup">
 						<?php echo wp_kses_post($price); ?>
-							<span class="info-icon-container">
+							<div class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
 								<h5 class="header"><?php esc_html_e( 'Price Breakdown','woocommerce-quick-cart-for-multiple-variations' ); ?></h5>
@@ -377,7 +377,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 									<?php //}?>
 										<!-- <p><?php //esc_html_e('Wholesale Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
 								</div>
-							</span>
+							</div>
 						
 					</h4>
 					<?php }else{?>
