@@ -4594,15 +4594,21 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
     }
 }
 
-add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_order_items_based_on_state', 10, 2);
+add_action('woocommerce_before_save_order_items', 'supavapes_recalculate_order_items_based_on_state', 10, 1);
 
-function supavapes_recalculate_order_items_based_on_state($and_taxes, $order) {
-	
+function supavapes_recalculate_order_items_based_on_state($order) {
+    
     // Get the billing state from the order
     $billing_state = $order->get_billing_state();
-	
+
     // Debug log for tracking the billing state
     error_log('Billing state: ' . $billing_state);
+
+    // Check if the billing state is empty
+    if (empty($billing_state)) {
+        error_log('No billing state found.');
+        return;
+    }
 
     // Loop through each line item in the order
     foreach ($order->get_items('line_item') as $item_id => $item) {
@@ -4626,7 +4632,7 @@ function supavapes_recalculate_order_items_based_on_state($and_taxes, $order) {
         }
 
         // Determine price and tax based on the billing state
-        if ('Gujarat' !== $billing_state) {
+        if ('ON' !== $billing_state) {
             // If customer is outside Gujarat, apply only federal tax
             $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
             $final_tax = floatval($federal_tax);
@@ -4654,6 +4660,6 @@ function supavapes_recalculate_order_items_based_on_state($and_taxes, $order) {
         $item->save();
     }
 
-    // Recalculate the totals for the entire order
+    // Recalculate the totals for the entire order after modifying items
     $order->calculate_totals();
 }
