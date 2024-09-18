@@ -4594,72 +4594,65 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
     }
 }
 
-add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_order_taxes', 10, 1);
+add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_order_items_based_on_state', 10, 1);
 
-function supavapes_recalculate_order_taxes($order) {
-    // Check if the order object is available
-    if (!$order || is_wp_error($order)) {
-        return;
-    }
-	debug($order);
+function supavapes_recalculate_order_items_based_on_state($order) {
     // Get the billing state from the order
-    echo $billing_state = $order->get_billing_state();
+    $billing_state = $order->get_billing_state();
 
-    // Debug log for tracking
+    // Debug log for tracking the billing state
     error_log('Billing state: ' . $billing_state);
 
-    // Loop through all items in the order
+    // Loop through each line item in the order
     foreach ($order->get_items('line_item') as $item_id => $item) {
-        $product = $item->get_product();
+        $product = $item->get_product(); // Get the product object
         if (!$product) {
-            continue; // Skip if no product is found
+            continue; // Skip if product doesn't exist
         }
 
-        $product_id = $product->get_id();
-        
-        // Get the custom vaping liquid field
-        $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
-        $vaping_liquid = (int) $vaping_liquid; // Ensure it's an integer
+        $product_id = $product->get_id(); // Get the product ID
+        $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true); // Retrieve custom meta
+        $vaping_liquid = (int) $vaping_liquid;
 
-        // Initialize taxes
+        // Set default tax values
         $ontario_tax = 0;
         $federal_tax = 0;
 
-        // Only calculate taxes if vaping_liquid is set
+        // Only calculate taxes if 'vaping_liquid' is set
         if (!empty($vaping_liquid)) {
             $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
             $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
         }
 
-        // Debug log for tracking tax values
-        error_log('Ontario Tax: ' . $ontario_tax . ', Federal Tax: ' . $federal_tax);
-
-        // Determine the final tax based on the billing state
-        if ('ON' !== $billing_state) {
-            // If the customer is outside Gujarat, apply only federal tax
+        // Determine price and tax based on the billing state
+        if ('Gujarat' !== $billing_state) {
+            // If customer is outside Gujarat, apply only federal tax
             $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
             $final_tax = floatval($federal_tax);
         } else {
-            // If the customer is from Gujarat, apply both Ontario and federal tax
+            // If customer is from Gujarat, apply both Ontario and federal tax
             $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
             $final_tax = floatval($ontario_tax) + floatval($federal_tax);
         }
 
-        // Apply the tax to the final price
+        // Apply the final tax to the price
         $price_with_tax = $final_price + $final_tax;
 
         // Debug log for tracking price with tax
         error_log('Price with tax: ' . $price_with_tax);
 
-        // Update the item total and subtotal (after price modification)
+        // Update the item total and subtotal (after tax modification)
         $item->set_total($price_with_tax * $item->get_quantity());
         $item->set_subtotal($price_with_tax * $item->get_quantity());
 
-        // Save the tax values as order item meta
+        // Save the tax values as meta data for the order item
         wc_update_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
         wc_update_order_item_meta($item_id, 'federal_tax', $federal_tax);
+
+        // Save the item to reflect changes
+        $item->save();
     }
-    
-    // After the items are modified, recalculate the taxes and totals for the entire order
+
+    // Recalculate the totals for the entire order
     $order->calculate_totals();
 }
