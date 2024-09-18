@@ -4325,6 +4325,8 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 			$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 			$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
 		}
+		// Determine the final price based on the state.
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 		// Final price adjustment based on the state (replace $state with the appropriate method to retrieve state)
 		if ( 'Gujarat' !== $state ) {
