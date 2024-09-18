@@ -4598,8 +4598,8 @@ add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_o
 
 function supavapes_recalculate_order_items_based_on_state($order) {
     // Get the billing state from the order
-    $billing_state = $order->get_billing_state();
-
+    echo $billing_state = $order->get_billing_state();
+	die('lkoo');
     // Debug log for tracking the billing state
     error_log('Billing state: ' . $billing_state);
 
