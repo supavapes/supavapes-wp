@@ -4594,7 +4594,7 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
     }
 }
 
-add_action('woocommerce_before_save_order_items', 'supavapes_recalculate_order_items_based_on_state', 10, 1);
+// add_action('woocommerce_before_save_order_items', 'supavapes_recalculate_order_items_based_on_state', 10, 1);
 
 function supavapes_recalculate_order_items_based_on_state($order) {
     
