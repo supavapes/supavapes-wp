@@ -4597,7 +4597,7 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
 add_action('woocommerce_order_before_calculate_totals', 'supavapes_recalculate_order_taxes', 10, 1);
 
 function supavapes_recalculate_order_taxes($order) {
-	die('lkoo');
+	debug($order);
     // Get the billing state from the order
     $billing_state = $order->get_billing_state();
 
