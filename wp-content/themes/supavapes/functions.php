@@ -4635,7 +4635,7 @@ function supavapes_recalculate_order_taxes($order) {
         error_log('Ontario Tax: ' . $ontario_tax . ', Federal Tax: ' . $federal_tax);
 
         // Determine the final tax based on the billing state
-        if ('Gujarat' !== $billing_state) {
+        if ('ON' !== $billing_state) {
             // If the customer is outside Gujarat, apply only federal tax
             $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
             $final_tax = floatval($federal_tax);
