@@ -4289,20 +4289,8 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 	}
 }
 
-	// global $product;
-
-	// $product_data = wc_get_product($product->get_id());
-
-	// if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
-	// 	$product_type = $product_data->get_type();
-	// }
-	// if( $product_type == 'simple' ){
-		// Remove the default price display
-	// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-	// }
-
 // Add the price with the icon in place of the default one
-// add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
+add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
 
 
 /**
