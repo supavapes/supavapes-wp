@@ -4584,6 +4584,10 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
             $item->set_total($price_with_tax * $item->get_quantity()); // Total for all quantities
             $item->set_subtotal($price_with_tax * $item->get_quantity()); // Subtotal for all quantities
 
+            // Save the tax values as order item meta
+            wc_add_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
+            wc_add_order_item_meta($item_id, 'federal_tax', $federal_tax);
+
             // Save changes
             $item->save();
         }
