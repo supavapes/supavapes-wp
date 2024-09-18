@@ -4535,28 +4535,57 @@ add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_
 
 
 
-add_action('woocommerce_new_order_item', 'custom_modify_order_item_price', 10, 2);
+add_action('woocommerce_new_order_item', 'custom_modify_order_item_price_and_tax', 10, 2);
 
-function custom_modify_order_item_price($item_id, $item) {
+function custom_modify_order_item_price_and_tax($item_id, $item) {
     // Check if it's a line item (product)
     if ($item->get_type() === 'line_item') {
         // Get the product object
         $product = $item->get_product();
+        $product_id = $product->get_id(); // Get the product ID
         
         if ($product) {
-            // Get the current price
-            $current_price = $product->get_price();
+            // Get the regular and sale prices
+            $reg_price = $product->get_regular_price();
+            $sale_price = $product->get_sale_price();
             
-            // Custom logic to modify the price (e.g., reduce by 10%)
-            $new_price = $current_price * 0.9;
+            // Get the vaping_liquid custom field
+            $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+            $vaping_liquid = (int) $vaping_liquid; // Ensure it's an integer
+            
+            // Initialize tax values
+            $ontario_tax = 0;
+            $federal_tax = 0;
+
+            // Calculate taxes if vaping_liquid is set
+            if (!empty($vaping_liquid)) {
+                $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+                $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+            }
+
+            // Determine state from the cookie
+            $state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+
+            // Set the final price based on whether the user is from Gujarat
+            if ('Gujarat' !== $state) {
+                // For non-Gujarat users, apply federal tax only
+                $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+                $final_tax = floatval($federal_tax);
+            } else {
+                // For Gujarat users, apply both Ontario and federal tax
+                $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+                $final_tax = floatval($ontario_tax) + floatval($federal_tax);
+            }
+
+            // Apply the tax to the final price
+            $price_with_tax = $final_price + $final_tax;
 
             // Update the item total and subtotal (after price modification)
-            $item->set_total($new_price * $item->get_quantity()); // Total for all quantities
-            $item->set_subtotal($new_price * $item->get_quantity()); // Subtotal for all quantities
+            $item->set_total($price_with_tax * $item->get_quantity()); // Total for all quantities
+            $item->set_subtotal($price_with_tax * $item->get_quantity()); // Subtotal for all quantities
 
             // Save changes
             $item->save();
         }
     }
 }
-
