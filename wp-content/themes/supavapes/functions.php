@@ -4601,9 +4601,9 @@ function supavapes_recalculate_order_taxes($order) {
     if (!$order || is_wp_error($order)) {
         return;
     }
-
+	debug($order);
     // Get the billing state from the order
-    $billing_state = $order->get_billing_state();
+    echo $billing_state = $order->get_billing_state();
 
     // Debug log for tracking
     error_log('Billing state: ' . $billing_state);
