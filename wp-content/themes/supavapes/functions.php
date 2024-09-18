@@ -4596,7 +4596,7 @@ function custom_modify_order_item_price_and_tax($item_id, $item) {
 
 
 
-// add_action('woocommerce_before_order_object_save', 'supavapes_recalculate_order_taxes', 10, 2);
+add_action('woocommerce_before_order_object_save', 'supavapes_recalculate_order_taxes', 10, 2);
 
 function supavapes_recalculate_order_taxes($order, $data_store) {
     // Get the billing state from the order
