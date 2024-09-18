@@ -77,11 +77,12 @@ global $product;
 				<div class="product-price">
 					<?php
 						if ($product->is_type('simple')) {
-							if ($product->get_sale_price()) {
-								echo esc_html("$" . $product->get_sale_price());
-							} else {
-								echo esc_html("$" . $product->get_regular_price());
-							}
+							echo esc_html("$" . $final_price); 
+							// if ($product->get_sale_price()) {
+							// 	echo esc_html("$" . $product->get_sale_price());
+							// } else {
+							// 	echo esc_html("$" . $product->get_regular_price());
+							// }
 						}else if($product->is_type('variable')){
 							$available_variations = $product->get_available_variations();
 							if (!empty($available_variations)) {
