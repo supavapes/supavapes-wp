@@ -4342,6 +4342,7 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 		<!-- Display product quantity and price -->
 		<span class="quantity">
 			<?php echo sprintf( '%s &times; %s', $quantity, $product_price ); ?>
+			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
 			<span class="info-icon-container">
 				<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 				<div class="price-breakup-popup" style="display: none;">
@@ -4358,13 +4359,17 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 								<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
 							</tr>
 						<?php } ?>
-						
-						<?php if ( 'Gujarat' !== $state ) { ?>
+						<?php echo $state; ?>
+						<?php if ( 'Gujarat' !== $state ) { 
+							echo "in if";
+							?>
 							<tr>
 								<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
 							</tr>
-						<?php } else { ?>
+						<?php } else { 
+							echo "in else";
+							?>
 							<tr>
 								<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
@@ -4383,7 +4388,7 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 				</div>
 			</span>
 		</span>
-
+		<?php }?>
 		<!-- Price Breakdown with info icon -->
 		
 
