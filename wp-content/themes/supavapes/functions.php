@@ -4535,23 +4535,28 @@ add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_
 
 
 
-// Hook into before saving the order item
-add_action('woocommerce_before_order_item_add', 'custom_modify_order_item_price', 10, 2);
+add_action('woocommerce_new_order_item', 'custom_modify_order_item_price', 10, 2);
 
-function custom_modify_order_item_price($item_id, $values) {
-    // Get the product object from the values
-    $product = wc_get_product($values['product_id']);
-	die('lkoo');
-    // Check if the product exists
-    if ($product) {
-        // Get the current price
-        $current_price = $product->get_price();
+function custom_modify_order_item_price($item_id, $item) {
+    // Check if it's a line item (product)
+    if ($item->get_type() === 'line_item') {
+        // Get the product object
+        $product = $item->get_product();
+        
+        if ($product) {
+            // Get the current price
+            $current_price = $product->get_price();
+            
+            // Custom logic to modify the price (e.g., reduce by 10%)
+            $new_price = $current_price * 0.9;
 
-        // Example: Apply a custom logic to modify the price (e.g., reduce by 10%)
-        $new_price = $current_price * 0.9;
+            // Update the item total and subtotal (after price modification)
+            $item->set_total($new_price * $item->get_quantity()); // Total for all quantities
+            $item->set_subtotal($new_price * $item->get_quantity()); // Subtotal for all quantities
 
-        // Update the price in the item meta
-        wc_update_order_item_meta($item_id, '_line_total', $new_price);
-        wc_update_order_item_meta($item_id, '_line_subtotal', $new_price); // Update subtotal if necessary
+            // Save changes
+            $item->save();
+        }
     }
 }
+
