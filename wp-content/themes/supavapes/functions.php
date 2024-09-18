@@ -4361,16 +4361,13 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 								<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
 							</tr>
 						<?php } ?>
-						<?php echo $state; ?>
-						<?php if ( 'Gujarat' !== $state ) { 
-							echo "in if";
+						<?php if ( 'Gujarat' !== $state ) {
 							?>
 							<tr>
 								<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
 							</tr>
 						<?php } else { 
-							echo "in else";
 							?>
 							<tr>
 								<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
