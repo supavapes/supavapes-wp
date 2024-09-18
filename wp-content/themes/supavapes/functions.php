@@ -4532,3 +4532,26 @@ if ( ! function_exists( 'supavapes_display_order_item_tax_meta' ) ) {
 }
 
 add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_tax_meta', 10, 3);
+
+
+
+// Hook into before saving the order item
+add_action('woocommerce_before_order_item_add', 'custom_modify_order_item_price', 10, 2);
+
+function custom_modify_order_item_price($item_id, $values) {
+    // Get the product object from the values
+    $product = wc_get_product($values['product_id']);
+
+    // Check if the product exists
+    if ($product) {
+        // Get the current price
+        $current_price = $product->get_price();
+
+        // Example: Apply a custom logic to modify the price (e.g., reduce by 10%)
+        $new_price = $current_price * 0.9;
+
+        // Update the price in the item meta
+        wc_update_order_item_meta($item_id, '_line_total', $new_price);
+        wc_update_order_item_meta($item_id, '_line_subtotal', $new_price); // Update subtotal if necessary
+    }
+}
