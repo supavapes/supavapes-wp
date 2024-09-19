@@ -41,7 +41,7 @@ if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 
 // Check if the product is variable
 if ( $product->is_type( 'variable' ) ) {
-    echo "innnnn";
+
         // Get all variations of the variable product
         $available_variations = $product->get_available_variations();
 
@@ -50,14 +50,14 @@ if ( $product->is_type( 'variable' ) ) {
 
         // Loop through each variation to find the minimum and maximum _vaping_liquid value
         foreach ( $available_variations as $variation ) {
-            echo "liquid value: ".$vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
+            $vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
 
             // Set minimum and maximum values
             if ( $vaping_liquid_value < $min_vaping_liquid ) {
-                $min_vaping_liquid = $vaping_liquid_value;
+                echo "Min liquid value: ".$min_vaping_liquid = $vaping_liquid_value;
             }
             if ( $vaping_liquid_value > $max_vaping_liquid ) {
-                $max_vaping_liquid = $vaping_liquid_value;
+                echo "Max liquid value: ".$max_vaping_liquid = $vaping_liquid_value;
             }
         }
 
