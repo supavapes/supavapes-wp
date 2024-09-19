@@ -204,7 +204,11 @@ if ( $product->is_type( 'variable' ) ) {
                 </div>
             <?php 
                 }
-            }else{?>
+            }else{
+                // Only display the price breakdown box if either tax is greater than zero
+                if ( $min_ontario_tax > 0 || $max_ontario_tax > 0 || $min_federal_tax > 0 || $max_federal_tax > 0 ) {
+                    // Display price breakdown for variable product
+                    ?>
                 <div class="info-icon-container">
                     <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
                     <div class="price-breakup-popup">
@@ -256,7 +260,9 @@ if ( $product->is_type( 'variable' ) ) {
                         </table>
                     </div>
                 </div>
-            <?php }?>
+            <?php }
+                }
+            ?>
             </div>
         </div>
         <?php 
