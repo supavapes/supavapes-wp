@@ -3612,9 +3612,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 			} 
 
 			if ( $min_price === $max_price ) {
-				$final_price = $final_min_price;
+				$price = wc_price( $final_min_price );
 			}else{
-				$final_price = $final_min_price.' - '.$final_max_price;
+				$price = wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price );
+
 			}
 
 			// // Set the price breakdown for the variation
@@ -3631,7 +3632,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 			// $variation_obj = wc_get_product( $variation_id );
 			// $variation_obj->set_price( $final_price );
 			// $variation_obj->set_regular_price( $final_price );
-			$price = wc_price( $final_price );
+			// $price = wc_price( $final_price );
 
         } else {
             // For simple products
