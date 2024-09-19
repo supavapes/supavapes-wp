@@ -42,7 +42,7 @@ jQuery(document).ready(function() {
 				latlng: lat + ',' + lng,
 				key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
 			}, function( response ) {
-				console.log(response);
+				// console.log(response);
 				if ( 'OK' === response.status ) {
 					var result  = response.results[0];
 					var city    = '';
@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
 
 					for ( var i = 0; i < result.address_components.length; i++ ) {
 						var component = result.address_components[i];
-						console.log(component);
+						// console.log(component);
 						if (component.types.includes('locality')) {
 							city = component.long_name;
 						}
@@ -70,7 +70,7 @@ jQuery(document).ready(function() {
 	
 					// Optional: Display the location to the user
 					jQuery('#location').val(city + ', ' + country);
-					console.log("State: " + state);
+					// console.log("State: " + state);
 					// jQuery.ajax({
 					// 	url: sv_ajax.ajax_url,
 					// 	type: 'POST',
