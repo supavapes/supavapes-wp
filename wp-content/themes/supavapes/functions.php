@@ -5149,10 +5149,10 @@ function update_sv_product_slider() {
 		echo '<p>' . esc_html__('No products found.','supavapes') . '</p>';
 	}
 
-    wp_die(); // Stop the execution of further scripts
+    wp_die();
 
 
 }
 
-add_action('wp_ajax_update_sv_product_slider', 'update_sv_product_slider'); // For logged in users
-add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider'); // For guests
+// add_action('wp_ajax_update_sv_product_slider', 'update_sv_product_slider');
+// add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider');

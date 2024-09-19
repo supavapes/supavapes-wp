@@ -68,60 +68,60 @@ jQuery(document).ready(function() {
 					// Optional: Display the location to the user
 					jQuery('#location').val(city + ', ' + country);
 					console.log("State: " + state);
-					jQuery.ajax({
-						url: sv_ajax.ajax_url,
-						type: 'POST',
-						data: {
-							action: 'update_sv_product_slider',
-							category: 'monthly-deals',          // Pass the category slug
-                			limit: 8  							// Static limit
-						},
-						success: function(response) {
-							console.log(response);
-							jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
+					// jQuery.ajax({
+					// 	url: sv_ajax.ajax_url,
+					// 	type: 'POST',
+					// 	data: {
+					// 		action: 'update_sv_product_slider',
+					// 		category: 'monthly-deals',          // Pass the category slug
+                	// 		limit: 8  							// Static limit
+					// 	},
+					// 	success: function(response) {
+					// 		console.log(response);
+					// 		jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
 
-							// Destroy Slick slider if it's already initialized
-							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
-								jQuery('.sv-product-slider').slick('unslick');
-							}
+					// 		// Destroy Slick slider if it's already initialized
+					// 		if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
+					// 			jQuery('.sv-product-slider').slick('unslick');
+					// 		}
 
-							// Re-initialize Slick slider after appending new content
-							jQuery('.sv-product-slider').slick({
-								dots: true,
-								arrows: false,
-								infinite: true,
-								autoplay: true,
-								autoplaySpeed: 5000,
-								slidesToShow: 4,
-								slidesToScroll: 4,
-								responsive: [
-									{
-										breakpoint: 1024,
-										settings: {
-											slidesToShow: 2,
-											slidesToScroll: 2
-										}
-									},
-									{
-										breakpoint: 992,
-										settings: {
-											slidesToShow: 2,
-											slidesToScroll: 2
-										}
-									},
-									{
-										breakpoint: 575,
-										settings: {
-											slidesToShow: 1,
-											slidesToScroll: 1
-										}
-									}
-								]
-							});
+					// 		// Re-initialize Slick slider after appending new content
+					// 		jQuery('.sv-product-slider').slick({
+					// 			dots: true,
+					// 			arrows: false,
+					// 			infinite: true,
+					// 			autoplay: true,
+					// 			autoplaySpeed: 5000,
+					// 			slidesToShow: 4,
+					// 			slidesToScroll: 4,
+					// 			responsive: [
+					// 				{
+					// 					breakpoint: 1024,
+					// 					settings: {
+					// 						slidesToShow: 2,
+					// 						slidesToScroll: 2
+					// 					}
+					// 				},
+					// 				{
+					// 					breakpoint: 992,
+					// 					settings: {
+					// 						slidesToShow: 2,
+					// 						slidesToScroll: 2
+					// 					}
+					// 				},
+					// 				{
+					// 					breakpoint: 575,
+					// 					settings: {
+					// 						slidesToShow: 1,
+					// 						slidesToScroll: 1
+					// 					}
+					// 				}
+					// 			]
+					// 		});
 
 
-						}
-					});
+					// 	}
+					// });
 
 					// jQuery('#location').val(city + ', ' + country);
 					// console.log("state: "+state);
