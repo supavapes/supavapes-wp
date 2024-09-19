@@ -68,7 +68,18 @@ jQuery(document).ready(function() {
 					// Optional: Display the location to the user
 					jQuery('#location').val(city + ', ' + country);
 					console.log("State: " + state);
-
+					jQuery.ajax({
+						url: sv_ajax.ajax_url,
+						type: 'POST',
+						data: {
+							action: 'update_sv_product_slider',
+							category: 'monthly-deals',          // Pass the category slug
+                			limit: 8  							// Static limit
+						},
+						success: function(data) {
+						console.log(data);
+						}
+					});
 
 					// jQuery('#location').val(city + ', ' + country);
 					// console.log("state: "+state);
