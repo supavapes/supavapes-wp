@@ -3679,7 +3679,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
             $price = wc_price( $final_price );
         }
 		
-        return $price;
+        return "testtt".$price;
     }
 }
 
