@@ -4385,7 +4385,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 								
 								<tr>
 									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $min_federal_tax ).''.wc_price( $max_federal_tax ); ?></td>
+									<td class='rightprice'><?php echo wc_price( $min_federal_tax ).' - '.wc_price( $max_federal_tax ); ?></td>
 								</tr>
 							<?php } ?>
 							<tr class="wholesaleprice">
