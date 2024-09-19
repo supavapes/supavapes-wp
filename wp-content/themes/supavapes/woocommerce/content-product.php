@@ -216,31 +216,31 @@ if ( $product->is_type( 'variable' ) ) {
                                 <td class='rightprice'><?php echo wc_price( $max_price ); ?></td>
                             </tr>
                             <?php if ( 'Gujarat' !== $state ) { ?>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $federal_tax_min ); ?></td>
-                            </tr>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $federal_tax_max ); ?></td>
-                            </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $max_federal_tax ); ?></td>
+                                </tr>
                             <?php } else { ?>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Min)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $ontario_tax_min ); ?></td>
-                            </tr>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Max)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $ontario_tax_max ); ?></td>
-                            </tr>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $federal_tax_min ); ?></td>
-                            </tr>
-                            <tr>
-                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
-                                <td class='rightprice'><?php echo wc_price( $federal_tax_max ); ?></td>
-                            </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Min)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $min_ontario_tax ); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Max)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $max_ontario_tax ); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
+                                    <td class='rightprice'><?php echo wc_price( $max_federal_tax ); ?></td>
+                                </tr>
                             <?php } ?>
                             <tr class="wholesaleprice">
                                 <td class='leftprice'><?php esc_html_e( 'Wholesale Price (Min)', 'supavapes' ); ?></td>
