@@ -59,21 +59,32 @@ jQuery(document).ready(function() {
 							state = component.long_name;
 						}
 					}
+
+					// Set location information in cookies using jQuery
+					document.cookie = "user_city=" + city + ";path=/;max-age=" + (86400 * 7);
+					document.cookie = "user_country=" + country + ";path=/;max-age=" + (86400 * 7);
+					document.cookie = "user_state=" + state + ";path=/;max-age=" + (86400 * 7);
+	
+					// Optional: Display the location to the user
 					jQuery('#location').val(city + ', ' + country);
-					console.log("state: "+state);;
-					jQuery.ajax({
-						url: sv_ajax.ajax_url,
-						type: 'POST',
-						data: {
-							action: 'woocommerce_set_dynamic_price',
-							city: city,
-							country: country,
-							state: state
-						},
-						success: function(data) {
-						console.log(data);
-						}
-					});
+					console.log("State: " + state);
+
+
+					// jQuery('#location').val(city + ', ' + country);
+					// console.log("state: "+state);
+					// jQuery.ajax({
+					// 	url: sv_ajax.ajax_url,
+					// 	type: 'POST',
+					// 	data: {
+					// 		action: 'woocommerce_set_dynamic_price',
+					// 		city: city,
+					// 		country: country,
+					// 		state: state
+					// 	},
+					// 	success: function(data) {
+					// 	console.log(data);
+					// 	}
+					// });
 					
 				} else {
 					jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
