@@ -79,7 +79,9 @@ jQuery(document).ready(function() {
 						success: function(response) {
 						console.log(response);
 							jQuery('.sv-product-slider').html(response);
-
+							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
+								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
+							}
 							jQuery('.sv-product-slider').slick({
 								dots: true,
 								arrows: false,
@@ -88,10 +90,30 @@ jQuery(document).ready(function() {
 								autoplaySpeed: 5000,
 								slidesToShow: 4,
 								slidesToScroll: 4,
-				
+								responsive: [
+									{
+										breakpoint: 1024,
+										settings: {
+											slidesToShow: 2,
+											slidesToScroll: 2
+										}
+									},
+									{
+										breakpoint: 992,
+										settings: {
+											slidesToShow: 2,
+											slidesToScroll: 2
+										}
+									},
+									{
+										breakpoint: 575,
+										settings: {
+											slidesToShow: 1,
+											slidesToScroll: 1
+										}
+									}
+								]
 							});
-
-							jQuery('.sv-product-slider').slick('refresh');
 						}
 					});
 
