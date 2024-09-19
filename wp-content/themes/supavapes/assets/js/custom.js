@@ -39,6 +39,7 @@ jQuery(document).ready(function() {
 				latlng: lat + ',' + lng,
 				key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
 			}, function( response ) {
+				console.log(response);
 				if ( 'OK' === response.status ) {
 					var result  = response.results[0];
 					var city    = '';

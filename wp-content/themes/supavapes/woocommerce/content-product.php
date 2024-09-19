@@ -126,11 +126,11 @@ if ( $product->is_type( 'variable' ) ) {
 <li <?php wc_product_class( '', $product ); ?>>
     <div class="sv-our-product-box">
         <?php 
-        debug($_COOKIE);
+        // debug($_COOKIE);
         if ( isset( $_COOKIE['user_state'] ) ) {
-			echo "State: ".$state = sanitize_text_field( $_COOKIE['user_state'] );
+			$state = sanitize_text_field( $_COOKIE['user_state'] );
 		} 
-        echo "State: ".$state
+        $state
         ?>
         <div class="shop-thumbnail-badge-wrap">
             <?php if ( 'Gujarat' == $state ) {?>
