@@ -4972,8 +4972,8 @@ function update_sv_product_slider() {
 						</li>
 					</ul>
 				</div>
-				<div class="sv-our-product-detail">
-					<h3 class="sv-our-product-title">Title: <?php echo esc_html(get_the_title()); ?></h3>
+				<div class="sv-our-product-detail" data-test="5456565">
+					<h3 class="sv-our-product-title"><?php echo esc_html(get_the_title()); ?></h3>
 					<div class="sv-our-product-price">
 					<?php echo wp_kses_post($price); ?>
 					<?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
