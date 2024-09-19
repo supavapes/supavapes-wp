@@ -6,7 +6,7 @@ $product_ids = explode(',', $atts['ids']);
 	if (empty($product_ids)) {
 		return esc_html_e('Please provide product IDs.','supavapes');
 	}
-	
+	debug($product_ids);
 	?>
 	<div class="review-slider">
 		<?php
