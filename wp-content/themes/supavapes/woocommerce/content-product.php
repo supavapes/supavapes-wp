@@ -39,49 +39,80 @@ if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 }
 
 
-if( $product_type == 'variable' ) {
-    $min_price = $product->get_variation_price( 'min' );
-    $max_price = $product->get_variation_price( 'max' );
+// Check if the product is variable
+if ( $product->is_type( 'variable' ) ) {
+        // Get all variations of the variable product
+        $available_variations = $product->get_available_variations();
 
-    // Calculate taxes for the price range
-    if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) {
-        $ontario_tax_min = supavapes_calculate_ontario_tax( $vaping_liquid );
-        $federal_tax_min = supavapes_calculate_federal_tax( $vaping_liquid);
+        $min_vaping_liquid = PHP_INT_MAX;
+        $max_vaping_liquid = PHP_INT_MIN;
 
-        $ontario_tax_max = supavapes_calculate_ontario_tax( $vaping_liquid );
-        $federal_tax_max = supavapes_calculate_federal_tax( $vaping_liquid );
-    }
+        // Loop through each variation to find the minimum and maximum _vaping_liquid value
+        foreach ( $available_variations as $variation ) {
+            $vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
 
-    // Determine final price range based on state and taxes
-    if ( 'Gujarat' !== $state ) {
-        $final_min_price = floatval( $min_price ) + floatval( $federal_tax_min );
-        $final_max_price = floatval( $max_price ) + floatval( $federal_tax_max );
-    } else {
-        $final_min_price = floatval( $min_price ) + floatval( $ontario_tax_min ) + floatval( $federal_tax_min );
-        $final_max_price = floatval( $max_price ) + floatval( $ontario_tax_max ) + floatval( $federal_tax_max );
-    }
-}else{
-    $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-    $vaping_liquid = (int) $vaping_liquid;
-    $reg_price = $product->get_regular_price();
-    $sale_price = $product->get_sale_price();
+            // Set minimum and maximum values
+            if ( $vaping_liquid_value < $min_vaping_liquid ) {
+                $min_vaping_liquid = $vaping_liquid_value;
+            }
+            if ( $vaping_liquid_value > $max_vaping_liquid ) {
+                $max_vaping_liquid = $vaping_liquid_value;
+            }
+        }
 
-    // Calculate taxes using the custom functions if vaping_liquid is set.
-    if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-        $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-        $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-    }
+        // Fallback if there are no variations
+        if ( $min_vaping_liquid == PHP_INT_MAX ) {
+            $min_vaping_liquid = 0;
+        }
+        if ( $max_vaping_liquid == PHP_INT_MIN ) {
+            $max_vaping_liquid = 0;
+        }
 
-    // Determine the final price based on the state.
-    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+        // Calculate taxes for the minimum and maximum vaping liquid values
+        $min_ontario_tax = supavapes_calculate_ontario_tax( $min_vaping_liquid );
+        $max_ontario_tax = supavapes_calculate_ontario_tax( $max_vaping_liquid );
+        $min_federal_tax = supavapes_calculate_federal_tax( $min_vaping_liquid );
+        $max_federal_tax = supavapes_calculate_federal_tax( $max_vaping_liquid );
 
-    if ( 'Gujarat' !== $state ) {
-        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-        $final_price += floatval( $federal_tax );
-    } else {
-        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-        $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
-    }
+        // Get the price range (minimum and maximum prices of the variations)
+        $min_price = $product->get_variation_price( 'min' );
+        $max_price = $product->get_variation_price( 'max' );
+
+        // Determine the state
+        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+        // Calculate final prices with tax for minimum and maximum values
+        if ( 'Gujarat' !== $state ) {
+            $final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
+            $final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
+        } else {
+            $final_min_price = floatval( $min_price ) + floatval( $min_ontario_tax ) + floatval( $min_federal_tax );
+            $final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
+        } 
+    
+    }else {
+        
+        $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+        $vaping_liquid = (int) $vaping_liquid;
+        $reg_price = $product->get_regular_price();
+        $sale_price = $product->get_sale_price();
+
+        // Calculate taxes using the custom functions if vaping_liquid is set.
+        if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+            $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+            $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+        }
+
+        // Determine the final price based on the state.
+        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+        if ( 'Gujarat' !== $state ) {
+            $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+            $final_price += floatval( $federal_tax );
+        } else {
+            $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+            $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+        }
 }
 
 
