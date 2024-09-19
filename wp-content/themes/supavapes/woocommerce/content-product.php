@@ -127,11 +127,11 @@ if ( $product->is_type( 'variable' ) ) {
     <div class="sv-our-product-box">
         <?php 
         if ( isset( $_COOKIE['user_state'] ) ) {
-			$state = sanitize_text_field( $_COOKIE['user_state'] );
+			echo "State: ".$state = sanitize_text_field( $_COOKIE['user_state'] );
 		} 
         ?>
         <div class="shop-thumbnail-badge-wrap">
-            <?php if ( 'Gujarat' === $state ) {?>
+            <?php if ( 'Gujarat' == $state ) {?>
                 <img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png"/>
             <?php }else{?>
                 <img src="/wp-content/themes/supavapes/assets/images/shop-federal.png"/>
