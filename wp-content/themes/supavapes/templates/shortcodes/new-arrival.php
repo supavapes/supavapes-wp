@@ -48,7 +48,7 @@ $category = 'new-arrivals';
 				if ( $product_type == 'variable' ) {
 
 						// Get all variations of the variable product
-						$available_variations = $product->get_available_variations();
+    					$available_variations = $product_data->get_available_variations(); // Updated from $product to $product_data
 
 						$min_vaping_liquid = PHP_INT_MAX;
 						$max_vaping_liquid = PHP_INT_MIN;
