@@ -76,8 +76,9 @@ jQuery(document).ready(function() {
 							category: 'monthly-deals',          // Pass the category slug
                 			limit: 8  							// Static limit
 						},
-						success: function(data) {
-						console.log(data);
+						success: function(response) {
+						console.log(response);
+							jQuery('.sv-product-slider').html(response);
 						}
 					});
 
