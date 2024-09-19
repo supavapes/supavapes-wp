@@ -34,33 +34,61 @@ if($rating_num == 0){
     $rating_class = '';
 }
 // echo do_shortcode( '[wpseo_breadcrumb]' );
-
-
-$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-$vaping_liquid = (int) $vaping_liquid;
-$reg_price = $product->get_regular_price();
-$sale_price = $product->get_sale_price();
-
-// Calculate taxes using the custom functions if vaping_liquid is set.
-if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-    $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-    $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
+    $product_type = $product_data->get_type();
 }
 
-// Determine the final price based on the state.
-$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-if ( 'Gujarat' !== $state ) {
-    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-    $final_price += floatval( $federal_tax );
-} else {
-    $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-    $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+if( $product_type == 'variable' ) {
+    $min_price = $product->get_variation_price( 'min' );
+    $max_price = $product->get_variation_price( 'max' );
+
+    // Calculate taxes for the price range
+    if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) {
+        $ontario_tax_min = supavapes_calculate_ontario_tax( $vaping_liquid, $min_price );
+        $federal_tax_min = supavapes_calculate_federal_tax( $vaping_liquid, $min_price );
+
+        $ontario_tax_max = supavapes_calculate_ontario_tax( $vaping_liquid, $max_price );
+        $federal_tax_max = supavapes_calculate_federal_tax( $vaping_liquid, $max_price );
+    }
+
+    // Determine final price range based on state and taxes
+    if ( 'Gujarat' !== $state ) {
+        $final_min_price = floatval( $min_price ) + floatval( $federal_tax_min );
+        $final_max_price = floatval( $max_price ) + floatval( $federal_tax_max );
+    } else {
+        $final_min_price = floatval( $min_price ) + floatval( $ontario_tax_min ) + floatval( $federal_tax_min );
+        $final_max_price = floatval( $max_price ) + floatval( $ontario_tax_max ) + floatval( $federal_tax_max );
+    }
+}else{
+    $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+    $vaping_liquid = (int) $vaping_liquid;
+    $reg_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+
+    // Calculate taxes using the custom functions if vaping_liquid is set.
+    if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+        $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+        $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+    }
+
+    // Determine the final price based on the state.
+    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+    if ( 'Gujarat' !== $state ) {
+        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+        $final_price += floatval( $federal_tax );
+    } else {
+        $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+        $final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+    }
 }
+
+
 
 ?>
 <li <?php wc_product_class( '', $product ); ?>>
-<div class="sv-our-product-box">
+    <div class="sv-our-product-box">
         <?php 
         if ( isset( $_COOKIE['user_state'] ) ) {
 			$state = sanitize_text_field( $_COOKIE['user_state'] );
@@ -140,9 +168,60 @@ if ( 'Gujarat' !== $state ) {
                 </div>
             <?php 
                 }
-            }?>
+            }else{?>
+                <div class="info-icon-container">
+                    <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+                    <div class="price-breakup-popup">
+                        <h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
+                        <table class="pricetable">
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Product Price (Min)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $min_price ); ?></td>
+                            </tr>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Product Price (Max)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $max_price ); ?></td>
+                            </tr>
+                            <?php if ( 'Gujarat' !== $state ) { ?>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $federal_tax_min ); ?></td>
+                            </tr>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $federal_tax_max ); ?></td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Min)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $ontario_tax_min ); ?></td>
+                            </tr>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax (Max)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $ontario_tax_max ); ?></td>
+                            </tr>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Min)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $federal_tax_min ); ?></td>
+                            </tr>
+                            <tr>
+                                <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax (Max)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $federal_tax_max ); ?></td>
+                            </tr>
+                            <?php } ?>
+                            <tr class="wholesaleprice">
+                                <td class='leftprice'><?php esc_html_e( 'Wholesale Price (Min)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $final_min_price ); ?></td>
+                            </tr>
+                            <tr class="wholesaleprice">
+                                <td class='leftprice'><?php esc_html_e( 'Wholesale Price (Max)', 'supavapes' ); ?></td>
+                                <td class='rightprice'><?php echo wc_price( $final_max_price ); ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            <?php }?>
             </div>
-            
         </div>
         <?php 
             if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
@@ -180,5 +259,5 @@ if ( 'Gujarat' !== $state ) {
         <div id="success-message" class="success-message">
             <?php //wc_print_notice( 'Product added to the cart.', 'notice' ); // Add your custom notice message?>
         </div>
-  </div>
+    </div>
 </li>

@@ -4535,131 +4535,163 @@ add_action('woocommerce_admin_order_item_values', 'supavapes_display_order_item_
 
 
 
-add_action('woocommerce_new_order_item', 'custom_modify_order_item_price_and_tax', 10, 2);
 
-function custom_modify_order_item_price_and_tax($item_id, $item) {
-    // Check if it's a line item (product)
-    if ($item->get_type() === 'line_item') {
-        // Get the product object
-        $product = $item->get_product();
-        $product_id = $product->get_id(); // Get the product ID
-        
-        if ($product) {
-            // Get the regular and sale prices
-            $reg_price = $product->get_regular_price();
-            $sale_price = $product->get_sale_price();
-            
-            // Get the vaping_liquid custom field
-            $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
-            $vaping_liquid = (int) $vaping_liquid; // Ensure it's an integer
-            
-            // Initialize tax values
-            $ontario_tax = 0;
-            $federal_tax = 0;
 
-            // Calculate taxes if vaping_liquid is set
-            if (!empty($vaping_liquid)) {
-                $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
-                $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
-            }
+/**
+ * If the function, `supavapes_modify_order_item_price_and_tax`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_modify_order_item_price_and_tax' ) ) {
+	/**
+	 * Apply tax while we adding items to order from the back-end.
+	 * 
+	 * @param $item contains the order item data.
+	 * @param $item_id contains the order item id.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_modify_order_item_price_and_tax($item_id, $item) {
+		// Check if it's a line item (product)
+		if ( $item->get_type() === 'line_item' ) {
+			// Get the product object
+			$product = $item->get_product();
+			$product_id = $product->get_id(); // Get the product ID
+			
+			if ( $product ) {
+				// Get the regular and sale prices
+				$reg_price = $product->get_regular_price();
+				$sale_price = $product->get_sale_price();
+				
+				// Get the vaping_liquid custom field
+				$vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true);
+				$vaping_liquid = (int) $vaping_liquid; // Ensure it's an integer
+				
+				// Initialize tax values
+				$ontario_tax = 0;
+				$federal_tax = 0;
 
-            // Determine state from the cookie
-            $state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+				// Calculate taxes if vaping_liquid is set
+				if (!empty($vaping_liquid)) {
+					$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+					$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+				}
 
-            // Set the final price based on whether the user is from Gujarat
-            if ('Gujarat' !== $state) {
-                // For non-Gujarat users, apply federal tax only
-                $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
-                $final_tax = floatval($federal_tax);
-            } else {
-                // For Gujarat users, apply both Ontario and federal tax
-                $final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
-                $final_tax = floatval($ontario_tax) + floatval($federal_tax);
-            }
+				// Determine state from the cookie
+				$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-            // Apply the tax to the final price
-            $price_with_tax = $final_price + $final_tax;
+				// Set the final price based on whether the user is from Gujarat
+				if ('Gujarat' !== $state) {
+					// For non-Gujarat users, apply federal tax only
+					$final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+					$final_tax = floatval($federal_tax);
+				} else {
+					// For Gujarat users, apply both Ontario and federal tax
+					$final_price = !empty($sale_price) ? floatval($sale_price) : floatval($reg_price);
+					$final_tax = floatval($ontario_tax) + floatval($federal_tax);
+				}
 
-            // Update the item total and subtotal (after price modification)
-            $item->set_total($price_with_tax * $item->get_quantity()); // Total for all quantities
-            $item->set_subtotal($price_with_tax * $item->get_quantity()); // Subtotal for all quantities
+				// Apply the tax to the final price
+				$price_with_tax = $final_price + $final_tax;
 
-            // Save the tax values as order item meta
-            wc_add_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
-            wc_add_order_item_meta($item_id, 'federal_tax', $federal_tax);
+				// Update the item total and subtotal (after price modification)
+				$item->set_total( $price_with_tax * $item->get_quantity() ); // Total for all quantities
+				$item->set_subtotal( $price_with_tax * $item->get_quantity() ); // Subtotal for all quantities
 
-            // Save changes
-            $item->save();
-        }
-    }
+				// Save the tax values as order item meta
+				wc_add_order_item_meta( $item_id, 'ontario_tax', $ontario_tax );
+				wc_add_order_item_meta( $item_id, 'federal_tax', $federal_tax );
+
+				// Save changes
+				$item->save();
+			}
+		}
+	}
+}
+
+
+add_action('woocommerce_new_order_item', 'supavapes_modify_order_item_price_and_tax', 10, 2);
+
+
+
+
+/**
+ * If the function, `supavapes_recalculate_order_items_based_on_state`, doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_recalculate_order_items_based_on_state' ) ) {
+	/**
+	 * Apply tax while we adding items to order from the back-end.
+	 * 
+	 * @param $order contains the order item data.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_recalculate_order_items_based_on_state($order) {
+		
+		// Get the billing state from the order
+		$billing_state = $order->get_billing_state();
+
+		// Debug log for tracking the billing state
+		error_log('Billing state: ' . $billing_state);
+
+		// Check if the billing state is empty
+		if (empty($billing_state)) {
+			error_log('No billing state found.');
+			return;
+		}
+
+		// Loop through each line item in the order
+		foreach ($order->get_items('line_item') as $item_id => $item) {
+			$product = $item->get_product(); // Get the product object
+			if (!$product) {
+				continue; // Skip if product doesn't exist
+			}
+
+			$product_id = $product->get_id(); // Get the product ID
+			$vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true); // Retrieve custom meta
+			$vaping_liquid = (int) $vaping_liquid;
+
+			// Set default tax values
+			$ontario_tax = 0;
+			$federal_tax = 0;
+
+			// Only calculate taxes if 'vaping_liquid' is set
+			if (!empty($vaping_liquid)) {
+				$ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
+				$federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+			}
+
+			// Determine price and tax based on the billing state
+			if ('ON' !== $billing_state) {
+				// If customer is outside Gujarat, apply only federal tax
+				$final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
+				$final_tax = floatval($federal_tax);
+			} else {
+				// If customer is from Gujarat, apply both Ontario and federal tax
+				$final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
+				$final_tax = floatval($ontario_tax) + floatval($federal_tax);
+			}
+
+			// Apply the final tax to the price
+			$price_with_tax = $final_price + $final_tax;
+
+			// Debug log for tracking price with tax
+			error_log('Price with tax: ' . $price_with_tax);
+
+			// Update the item total and subtotal (after tax modification)
+			$item->set_total($price_with_tax * $item->get_quantity());
+			$item->set_subtotal($price_with_tax * $item->get_quantity());
+
+			// Save the tax values as meta data for the order item
+			wc_update_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
+			wc_update_order_item_meta($item_id, 'federal_tax', $federal_tax);
+
+			// Save the item to reflect changes
+			$item->save();
+		}
+
+		// Recalculate the totals for the entire order after modifying items
+		$order->calculate_totals();
+	}
+
 }
 
 // add_action('woocommerce_before_save_order_items', 'supavapes_recalculate_order_items_based_on_state', 10, 1);
-
-function supavapes_recalculate_order_items_based_on_state($order) {
-    
-    // Get the billing state from the order
-    $billing_state = $order->get_billing_state();
-
-    // Debug log for tracking the billing state
-    error_log('Billing state: ' . $billing_state);
-
-    // Check if the billing state is empty
-    if (empty($billing_state)) {
-        error_log('No billing state found.');
-        return;
-    }
-
-    // Loop through each line item in the order
-    foreach ($order->get_items('line_item') as $item_id => $item) {
-        $product = $item->get_product(); // Get the product object
-        if (!$product) {
-            continue; // Skip if product doesn't exist
-        }
-
-        $product_id = $product->get_id(); // Get the product ID
-        $vaping_liquid = get_post_meta($product_id, '_vaping_liquid', true); // Retrieve custom meta
-        $vaping_liquid = (int) $vaping_liquid;
-
-        // Set default tax values
-        $ontario_tax = 0;
-        $federal_tax = 0;
-
-        // Only calculate taxes if 'vaping_liquid' is set
-        if (!empty($vaping_liquid)) {
-            $ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
-            $federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
-        }
-
-        // Determine price and tax based on the billing state
-        if ('ON' !== $billing_state) {
-            // If customer is outside Gujarat, apply only federal tax
-            $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
-            $final_tax = floatval($federal_tax);
-        } else {
-            // If customer is from Gujarat, apply both Ontario and federal tax
-            $final_price = $product->get_sale_price() ? floatval($product->get_sale_price()) : floatval($product->get_regular_price());
-            $final_tax = floatval($ontario_tax) + floatval($federal_tax);
-        }
-
-        // Apply the final tax to the price
-        $price_with_tax = $final_price + $final_tax;
-
-        // Debug log for tracking price with tax
-        error_log('Price with tax: ' . $price_with_tax);
-
-        // Update the item total and subtotal (after tax modification)
-        $item->set_total($price_with_tax * $item->get_quantity());
-        $item->set_subtotal($price_with_tax * $item->get_quantity());
-
-        // Save the tax values as meta data for the order item
-        wc_update_order_item_meta($item_id, 'ontario_tax', $ontario_tax);
-        wc_update_order_item_meta($item_id, 'federal_tax', $federal_tax);
-
-        // Save the item to reflect changes
-        $item->save();
-    }
-
-    // Recalculate the totals for the entire order after modifying items
-    $order->calculate_totals();
-}
