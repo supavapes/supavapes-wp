@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 						}
 					}
 					jQuery('#location').val(city + ', ' + country);
-					// console.log("state: "+state);;
+					console.log("state: "+state);;
 					jQuery.ajax({
 						url: sv_ajax.ajax_url,
 						type: 'POST',
