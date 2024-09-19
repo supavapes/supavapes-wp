@@ -4916,7 +4916,7 @@ function update_sv_product_slider() {
 					$max_price = $product_data->get_variation_price( 'max' );
 
 					// Determine the state
-					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 					
 					// Calculate final prices with tax for minimum and maximum values
 					if ( 'Gujarat' !== $state ) {
@@ -4941,7 +4941,7 @@ function update_sv_product_slider() {
 					}
 
 					// Determine the final price based on the state.
-					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 					if ( 'Gujarat' !== $state ) {
 						$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );

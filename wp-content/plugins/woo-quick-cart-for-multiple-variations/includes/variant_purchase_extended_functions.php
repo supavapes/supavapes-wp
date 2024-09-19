@@ -354,8 +354,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
 									</tr>
 									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
+									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
 									</tr>
 									<?php } ?>
 									<tr class="wholesaleprice">
