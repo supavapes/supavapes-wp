@@ -54,10 +54,10 @@ if ( $product->is_type( 'variable' ) ) {
 
             // Set minimum and maximum values
             if ( $vaping_liquid_value < $min_vaping_liquid ) {
-                echo "Min liquid value: ".$min_vaping_liquid = $vaping_liquid_value;
+                $min_vaping_liquid = $vaping_liquid_value;
             }
             if ( $vaping_liquid_value > $max_vaping_liquid ) {
-                echo "Max liquid value: ".$max_vaping_liquid = $vaping_liquid_value;
+                $max_vaping_liquid = $vaping_liquid_value;
             }
         }
 
@@ -68,7 +68,8 @@ if ( $product->is_type( 'variable' ) ) {
         if ( $max_vaping_liquid == PHP_INT_MIN ) {
             $max_vaping_liquid = 0;
         }
-
+        echo "Min Liquid: ".$min_vaping_liquid;
+        echo "Max Liquid: ".$max_vaping_liquid;
         // Calculate taxes for the minimum and maximum vaping liquid values
         $min_ontario_tax = supavapes_calculate_ontario_tax( $min_vaping_liquid );
         $max_ontario_tax = supavapes_calculate_ontario_tax( $max_vaping_liquid );
