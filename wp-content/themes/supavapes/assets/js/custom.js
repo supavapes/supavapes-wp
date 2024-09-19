@@ -31,38 +31,130 @@ jQuery(document).ready(function() {
 	});
 
 	// Ask for the customer location when the website is loaded for the first time.
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
+	if ( navigator.geolocation ) {
+		navigator.geolocation.getCurrentPosition( function( position ) {
 			var lat = position.coords.latitude;
 			var lng = position.coords.longitude;
-	
-			// Send the data to the PHP function via AJAX
-			jQuery.ajax({
-				url: sv_ajax.ajax_url,  // Use localized script to provide ajax URL
-				type: 'POST',
-				data: {
-					action: 'get_location_and_set_cookies',
-					latitude: lat,
-					longitude: lng
-				},
-				success: function(response) {
-					if (response.success) {
-						// Handle success, e.g., show the city, state, and country
-						console.log('Location:', response.data.city, response.data.state, response.data.country);
-						jQuery('#location').val(response.data.city + ', ' + response.data.country);
-					} else {
-						console.log(response.data);  // Show error if failed
-						jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+
+			console.log(lat);
+			console.log(lng);
+			jQuery.get( 'https://maps.googleapis.com/maps/api/geocode/json', {
+				latlng: lat + ',' + lng,
+				key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
+			}, function( response ) {
+				// console.log(response);
+				if ( 'OK' === response.status ) {
+					var result  = response.results[0];
+					var city    = '';
+					var country = '';
+					var state   = '';
+
+					for ( var i = 0; i < result.address_components.length; i++ ) {
+						var component = result.address_components[i];
+						// console.log(component);
+						if (component.types.includes('locality')) {
+							city = component.long_name;
+						}
+						if (component.types.includes('country')) {
+							country = component.long_name;
+						}
+						if (component.types.includes('administrative_area_level_1')) {
+							state = component.long_name;
+						}
 					}
+
+					// Set location information in cookies using jQuery
+					document.cookie = "user_city=" + city + ";path=/;max-age=" + (86400 * 7);
+					document.cookie = "user_country=" + country + ";path=/;max-age=" + (86400 * 7);
+					document.cookie = "user_state=" + state + ";path=/;max-age=" + (86400 * 7);
+	
+					// Optional: Display the location to the user
+					jQuery('#location').val(city + ', ' + country);
+					// console.log("State: " + state);
+					// jQuery.ajax({
+					// 	url: sv_ajax.ajax_url,
+					// 	type: 'POST',
+					// 	data: {
+					// 		action: 'update_sv_product_slider',
+					// 		category: 'monthly-deals',          // Pass the category slug
+                	// 		limit: 8  							// Static limit
+					// 	},
+					// 	success: function(response) {
+					// 		console.log(response);
+					// 		jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
+
+					// 		// Destroy Slick slider if it's already initialized
+					// 		if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
+					// 			jQuery('.sv-product-slider').slick('unslick');
+					// 		}
+
+					// 		// Re-initialize Slick slider after appending new content
+					// 		jQuery('.sv-product-slider').slick({
+					// 			dots: true,
+					// 			arrows: false,
+					// 			infinite: true,
+					// 			autoplay: true,
+					// 			autoplaySpeed: 5000,
+					// 			slidesToShow: 4,
+					// 			slidesToScroll: 4,
+					// 			responsive: [
+					// 				{
+					// 					breakpoint: 1024,
+					// 					settings: {
+					// 						slidesToShow: 2,
+					// 						slidesToScroll: 2
+					// 					}
+					// 				},
+					// 				{
+					// 					breakpoint: 992,
+					// 					settings: {
+					// 						slidesToShow: 2,
+					// 						slidesToScroll: 2
+					// 					}
+					// 				},
+					// 				{
+					// 					breakpoint: 575,
+					// 					settings: {
+					// 						slidesToShow: 1,
+					// 						slidesToScroll: 1
+					// 					}
+					// 				}
+					// 			]
+					// 		});
+
+
+					// 	}
+					// });
+
+					// jQuery('#location').val(city + ', ' + country);
+					// console.log("state: "+state);
+					// jQuery.ajax({
+					// 	url: sv_ajax.ajax_url,
+					// 	type: 'POST',
+					// 	data: {
+					// 		action: 'woocommerce_set_dynamic_price',
+					// 		city: city,
+					// 		country: country,
+					// 		state: state
+					// 	},
+					// 	success: function(data) {
+					// 	console.log(data);
+					// 	}
+					// });
+					
+				} else {
+					jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+					jQuery('#location-error').show();
 				}
 			});
 		}, function(error) {
 			jQuery('#location-error').text('Geolocation is not supported by this browser or permission denied.');
+			jQuery('#location-error').show();
 		});
 	} else {
 		jQuery('#location-error').text('Geolocation is not supported by this browser.');
+		jQuery('#location-error').show();
 	}
-	
 
 	
 	// Function to refresh cart fragments
