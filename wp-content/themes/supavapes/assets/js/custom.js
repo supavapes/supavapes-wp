@@ -82,10 +82,10 @@ jQuery(document).ready(function() {
 
 							// Initialize slick after appending content
 							if (jQuery('.monthly-slider').hasClass('slick-initialized')) {
-								jQuery('.monthly-slider').slick('unslick');  // Destroy previous instance if any
+								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
 							}
 							
-							jQuery('.monthly-slider').slick({
+							jQuery('.sv-product-slider').slick({
 								dots: true,
 								arrows: false,
 								infinite: true,
