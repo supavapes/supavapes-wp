@@ -78,10 +78,10 @@ jQuery(document).ready(function() {
 						},
 						success: function(response) {
 							console.log(response);
-							jQuery('.monthly-slider').append(response);  // Use append instead of html to keep existing content
+							jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
 
 							// Initialize slick after appending content
-							if (jQuery('.monthly-slider').hasClass('slick-initialized')) {
+							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
 								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
 							}
 							
