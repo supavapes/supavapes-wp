@@ -85,7 +85,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 						$max_price = $product_data->get_variation_price( 'max' );
 
 						// Determine the state
-						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 						// Calculate final prices with tax for minimum and maximum values
 						if ( 'Gujarat' !== $state ) {
@@ -110,7 +110,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 						}
 
 						// Determine the final price based on the state.
-						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 						if ( 'Gujarat' !== $state ) {
 							$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
@@ -142,7 +142,6 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 						</ul>
 					</div>
 					<div class="sv-our-product-detail">
-						<?php echo "State:  ".$state; ?>
 						<h3 class="sv-our-product-title"><?php echo esc_html(get_the_title()); ?></h3>
 						<div class="sv-our-product-price">
 						<?php echo wp_kses_post($price); ?>
