@@ -4953,7 +4953,7 @@ function update_sv_product_slider() {
 			}
 			?>
 			<div class="sv-our-product-box">
-				<?php echo "State Val: ".$state; ?>
+				<?php //echo "State Val: ".$state; ?>
 				<div class="sv-our-product-img <?php echo esc_attr($rating_class); ?>">
 					<img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="product_image"
 					class="sv-our-product-img-thumb">
@@ -4973,7 +4973,7 @@ function update_sv_product_slider() {
 						</li>
 					</ul>
 				</div>
-				<div class="sv-our-product-detail" data-test="5456565">
+				<div class="sv-our-product-detail" data-test="5456565" data-state="<?php echo $state; ?>">
 					<h3 class="sv-our-product-title"><?php echo esc_html(get_the_title()); ?></h3>
 					<div class="sv-our-product-price">
 					<?php echo wp_kses_post($price); ?>
