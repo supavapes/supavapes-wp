@@ -78,45 +78,45 @@ jQuery(document).ready(function() {
 						},
 						success: function(response) {
 						console.log(response);
-							jQuery('.sv-product-slider').html(response);
+							// jQuery('.sv-product-slider').html(response);
 
-							jQuery('.sv-product-slider').slick({
-								dots: true,
-								arrows: false,
-								infinite: true,
-								autoplay: true,
-								autoplaySpeed: 5000,
-								slidesToShow: 4,
-								slidesToScroll: 4,
-								responsive: [{
-										breakpoint: 1024,
-										settings: {
-											dots: true,
-											arrows: false,
-											slidesToShow: 2,
-											slidesToScroll: 2
-										}
-									},
-									{
-										breakpoint: 992,
-										settings: {
-											dots: true,
-											arrows: false,
-											slidesToShow: 2,
-											slidesToScroll: 2
-										}
-									},
-									{
-										breakpoint: 575,
-										settings: {
-											dots: true,
-											arrows: false,
-											slidesToShow: 1,
-											slidesToScroll: 1
-										}
-									}
-								]
-							});
+							// jQuery('.sv-product-slider').slick({
+							// 	dots: true,
+							// 	arrows: false,
+							// 	infinite: true,
+							// 	autoplay: true,
+							// 	autoplaySpeed: 5000,
+							// 	slidesToShow: 4,
+							// 	slidesToScroll: 4,
+							// 	responsive: [{
+							// 			breakpoint: 1024,
+							// 			settings: {
+							// 				dots: true,
+							// 				arrows: false,
+							// 				slidesToShow: 2,
+							// 				slidesToScroll: 2
+							// 			}
+							// 		},
+							// 		{
+							// 			breakpoint: 992,
+							// 			settings: {
+							// 				dots: true,
+							// 				arrows: false,
+							// 				slidesToShow: 2,
+							// 				slidesToScroll: 2
+							// 			}
+							// 		},
+							// 		{
+							// 			breakpoint: 575,
+							// 			settings: {
+							// 				dots: true,
+							// 				arrows: false,
+							// 				slidesToShow: 1,
+							// 				slidesToScroll: 1
+							// 			}
+							// 		}
+							// 	]
+							// });
 						}
 					});
 
