@@ -41,6 +41,7 @@ if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 
 // Check if the product is variable
 if ( $product->is_type( 'variable' ) ) {
+    echo "innnnn";
         // Get all variations of the variable product
         $available_variations = $product->get_available_variations();
 
