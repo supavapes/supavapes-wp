@@ -77,11 +77,14 @@ jQuery(document).ready(function() {
                 			limit: 8  							// Static limit
 						},
 						success: function(response) {
-						console.log(response);
-							jQuery('.sv-product-slider').html(response);
+							console.log(response);
+							jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
+
+							// Initialize slick after appending content
 							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
 								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
 							}
+							
 							jQuery('.sv-product-slider').slick({
 								dots: true,
 								arrows: false,
