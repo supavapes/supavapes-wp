@@ -142,6 +142,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 						</ul>
 					</div>
 					<div class="sv-our-product-detail">
+						<?php echo "State:  ".$state; ?>
 						<h3 class="sv-our-product-title"><?php echo esc_html(get_the_title()); ?></h3>
 						<div class="sv-our-product-price">
 						<?php echo wp_kses_post($price); ?>
