@@ -52,12 +52,15 @@ if ( $product->is_type( 'variable' ) ) {
         foreach ( $available_variations as $variation ) {
             $vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
 
-            // Set minimum and maximum values
-            if ( $vaping_liquid_value < $min_vaping_liquid ) {
-                $min_vaping_liquid = $vaping_liquid_value;
-            }
-            if ( $vaping_liquid_value > $max_vaping_liquid ) {
-                $max_vaping_liquid = $vaping_liquid_value;
+            // Skip any vaping liquid values that are zero
+            if ( $vaping_liquid_value > 0 ) {
+                // Set minimum and maximum values
+                if ( $vaping_liquid_value < $min_vaping_liquid ) {
+                    $min_vaping_liquid = $vaping_liquid_value;
+                }
+                if ( $vaping_liquid_value > $max_vaping_liquid ) {
+                    $max_vaping_liquid = $vaping_liquid_value;
+                }
             }
         }
 
