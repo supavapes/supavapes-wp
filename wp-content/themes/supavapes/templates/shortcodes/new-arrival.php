@@ -84,8 +84,8 @@ $category = 'new-arrivals';
 						$max_federal_tax = supavapes_calculate_federal_tax( $max_vaping_liquid );
 
 						// Get the price range (minimum and maximum prices of the variations)
-						$min_price = $product->get_variation_price( 'min' );
-						$max_price = $product->get_variation_price( 'max' );
+						$min_price = $product_data->get_variation_price( 'min' );
+						$max_price = $product_data->get_variation_price( 'max' );
 
 						// Determine the state
 						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
@@ -101,10 +101,10 @@ $category = 'new-arrivals';
 					
 					} else {
 
-						$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+						$vaping_liquid = get_post_meta( $product_data->get_id(), '_vaping_liquid', true );
 						$vaping_liquid = (int) $vaping_liquid;
-						$reg_price = $product->get_regular_price();
-						$sale_price = $product->get_sale_price();
+						$reg_price = $product_data->get_regular_price();
+						$sale_price = $product_data->get_sale_price();
 
 						// Calculate taxes using the custom functions if vaping_liquid is set.
 						if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
