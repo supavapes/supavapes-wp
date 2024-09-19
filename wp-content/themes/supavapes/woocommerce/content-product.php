@@ -109,7 +109,7 @@ if ( $product->is_type( 'variable' ) ) {
         }
 
         // Determine the final price based on the state.
-        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+        echo "Stattttee".$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
         if ( 'Gujarat' !== $state ) {
             $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
@@ -126,11 +126,11 @@ if ( $product->is_type( 'variable' ) ) {
 <li <?php wc_product_class( '', $product ); ?>>
     <div class="sv-our-product-box">
         <?php 
-        // debug($_COOKIE);
+        debug($_COOKIE);
         if ( isset( $_COOKIE['user_state'] ) ) {
-			$state = sanitize_text_field( $_COOKIE['user_state'] );
+			echo "State: ".$state = sanitize_text_field( $_COOKIE['user_state'] );
 		} 
-        $state
+        echo "State: ".$state
         ?>
         <div class="shop-thumbnail-badge-wrap">
             <?php if ( 'Gujarat' == $state ) {?>
