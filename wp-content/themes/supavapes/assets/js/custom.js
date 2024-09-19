@@ -35,6 +35,9 @@ jQuery(document).ready(function() {
 		navigator.geolocation.getCurrentPosition( function( position ) {
 			var lat = position.coords.latitude;
 			var lng = position.coords.longitude;
+
+			console.log(lat);
+			console.log(lng);
 			jQuery.get( 'https://maps.googleapis.com/maps/api/geocode/json', {
 				latlng: lat + ',' + lng,
 				key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'

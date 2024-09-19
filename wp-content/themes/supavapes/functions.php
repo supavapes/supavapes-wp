@@ -5156,3 +5156,4 @@ function update_sv_product_slider() {
 
 // add_action('wp_ajax_update_sv_product_slider', 'update_sv_product_slider');
 // add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider');
+
