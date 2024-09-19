@@ -81,11 +81,11 @@ jQuery(document).ready(function() {
 							jQuery('.monthly-slider').append(response);  // Use append instead of html to keep existing content
 
 							// Initialize slick after appending content
-							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
-								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
+							if (jQuery('.monthly-slider').hasClass('slick-initialized')) {
+								jQuery('.monthly-slider').slick('unslick');  // Destroy previous instance if any
 							}
 							
-							jQuery('.sv-product-slider').slick({
+							jQuery('.monthly-slider').slick({
 								dots: true,
 								arrows: false,
 								infinite: true,
