@@ -3626,10 +3626,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 			// );
 
 			// Update the variation price in WooCommerce
-			$variation_obj = wc_get_product( $variation_id );
-			$variation_obj->set_price( $final_price );
-			$variation_obj->set_regular_price( $final_price );
-           
+			// $variation_obj = wc_get_product( $variation_id );
+			// $variation_obj->set_price( $final_price );
+			// $variation_obj->set_regular_price( $final_price );
+			$price = wc_price( $final_price );
 
         } else {
             // For simple products
