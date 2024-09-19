@@ -45,11 +45,11 @@ if( $product_type == 'variable' ) {
 
     // Calculate taxes for the price range
     if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) {
-        $ontario_tax_min = supavapes_calculate_ontario_tax( $vaping_liquid, $min_price );
-        $federal_tax_min = supavapes_calculate_federal_tax( $vaping_liquid, $min_price );
+        $ontario_tax_min = supavapes_calculate_ontario_tax( $vaping_liquid );
+        $federal_tax_min = supavapes_calculate_federal_tax( $vaping_liquid);
 
-        $ontario_tax_max = supavapes_calculate_ontario_tax( $vaping_liquid, $max_price );
-        $federal_tax_max = supavapes_calculate_federal_tax( $vaping_liquid, $max_price );
+        $ontario_tax_max = supavapes_calculate_ontario_tax( $vaping_liquid );
+        $federal_tax_max = supavapes_calculate_federal_tax( $vaping_liquid );
     }
 
     // Determine final price range based on state and taxes
