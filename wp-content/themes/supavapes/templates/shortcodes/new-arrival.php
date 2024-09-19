@@ -27,7 +27,7 @@ $category = 'new-arrivals';
 	}
 
 ?>
-<div class="sv-product-slider">
+<div class="sv-product-slider new-arrival-slider">
 		<?php
 		if ($products->have_posts()) {
 			while ($products->have_posts()) {

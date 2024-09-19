@@ -4916,8 +4916,8 @@ function update_sv_product_slider() {
 					$max_price = $product_data->get_variation_price( 'max' );
 
 					// Determine the state
-					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
-
+					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
+					
 					// Calculate final prices with tax for minimum and maximum values
 					if ( 'Gujarat' !== $state ) {
 						$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
@@ -4941,7 +4941,7 @@ function update_sv_product_slider() {
 					}
 
 					// Determine the final price based on the state.
-					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : 'Gujarat';
 
 					if ( 'Gujarat' !== $state ) {
 						$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
@@ -4953,6 +4953,7 @@ function update_sv_product_slider() {
 			}
 			?>
 			<div class="sv-our-product-box">
+				<?php echo "State Val: ".$state; ?>
 				<div class="sv-our-product-img <?php echo esc_attr($rating_class); ?>">
 					<img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="product_image"
 					class="sv-our-product-img-thumb">

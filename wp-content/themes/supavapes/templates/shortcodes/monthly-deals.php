@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 		$sv_term_link = "#";
 	}
 	?>
-	<div class="sv-product-slider">
+	<div class="sv-product-slider monthly-slider">
 		<?php
 		if ($products->have_posts()) {
 			while ($products->have_posts()) {
