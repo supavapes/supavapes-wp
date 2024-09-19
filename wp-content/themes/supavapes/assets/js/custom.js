@@ -80,11 +80,12 @@ jQuery(document).ready(function() {
 							console.log(response);
 							jQuery('.sv-product-slider').append(response);  // Use append instead of html to keep existing content
 
-							// Initialize slick after appending content
+							// Destroy Slick slider if it's already initialized
 							if (jQuery('.sv-product-slider').hasClass('slick-initialized')) {
-								jQuery('.sv-product-slider').slick('unslick');  // Destroy previous instance if any
+								jQuery('.sv-product-slider').slick('unslick');
 							}
-							
+
+							// Re-initialize Slick slider after appending new content
 							jQuery('.sv-product-slider').slick({
 								dots: true,
 								arrows: false,
@@ -117,6 +118,7 @@ jQuery(document).ready(function() {
 									}
 								]
 							});
+
 
 						}
 					});
