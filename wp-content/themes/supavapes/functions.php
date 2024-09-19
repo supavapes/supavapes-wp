@@ -3613,6 +3613,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 
 			if ( $min_price === $max_price ) {
 				$final_price = $final_min_price;
+			}else{
+				$final_price = $final_min_price.' - '.$final_max_price;
 			}
 
 			// // Set the price breakdown for the variation
