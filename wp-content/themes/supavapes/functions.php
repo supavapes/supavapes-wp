@@ -4528,7 +4528,7 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 		</div>
 		<?php }?>
 		<!-- Price Breakdown with info icon -->
-		
+
 		<?php
 
 		// quantity html output.
@@ -5286,7 +5286,7 @@ function supavapes_get_ip_location_and_set_cookies() {
 	}
 	// debug($_COOKIE);
 }
-add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+// add_action('init', 'supavapes_get_ip_location_and_set_cookies');
 
 
 // Add price breakdown on the order received page
