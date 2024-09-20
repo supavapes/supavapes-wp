@@ -5293,14 +5293,14 @@ add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_r
 
 function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
     // Get the Ontario and Federal tax from the order meta
-   echo "Ontario: ".$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
-    echo "Federal: ".$federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
+   	$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+    $federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
 
     // Get product and variation details
     $product_id = $item->get_product_id(); // Parent product ID or variation ID
     $variation_id = $item->get_variation_id(); // Variation ID if it exists
     $product = wc_get_product( $product_id );
-
+	$price = $product->get_price_html();
     // Get the state or region, assuming it's stored as order meta (you may need to adjust this part)
     $state = $order->get_shipping_state(); // Adjust this based on your logic for determining the state
 
@@ -5310,6 +5310,7 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
     $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 	$final_price += floatval( $ontario_tax ) + floatval( $federal_tax ) + floatval( $product_price );
     ?>
+	<p>Product Price: <?php echo wp_kses_post($price); ?></p>
     <div class="info-icon-container">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
         <div class="price-breakup-popup">
