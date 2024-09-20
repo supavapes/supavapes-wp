@@ -1722,9 +1722,9 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
     box-shadow: 0 0 20px var(--white-light);
     display: none;
     position: absolute;
-    bottom: 20px;
-    left: initial;
-	right: 0;
+    bottom: 30px;
+    left: -160px;
+    right: 0;
     width: max-content;
 }
 .sv-product-price {
