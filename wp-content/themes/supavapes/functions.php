@@ -4628,6 +4628,31 @@ add_filter( 'woocommerce_order_item_display_meta_key', 'supavapes_hide_custom_or
 
 
 /**
+ * Hide custom tax meta from appearing on the frontend (e.g., Order Received page).
+ *
+ * @param array $formatted_meta Meta data to display.
+ * @param object $item Order item object.
+ * 
+ * @return array Filtered meta data.
+ */
+function supavapes_hide_custom_order_meta_data( $formatted_meta, $item ) {
+	// List of meta keys to hide
+	$hidden_meta_keys = array( 'ontario_tax', 'federal_tax', 'final_tax_applied' );
+
+	// Loop through the meta data and remove the hidden keys
+	foreach ( $formatted_meta as $key => $meta ) {
+		if ( in_array( $meta->key, $hidden_meta_keys ) ) {
+			unset( $formatted_meta[ $key ] );
+		}
+	}
+
+	return $formatted_meta;
+}
+
+add_filter( 'woocommerce_order_item_get_formatted_meta_data', 'supavapes_hide_custom_order_meta_data', 10, 2 );
+
+
+/**
  * If the function, `supavapes_add_custom_tax_meta_to_order_item`, doesn't exist.
  */
 if ( ! function_exists( 'supavapes_woocommerce_admin_order_item_headers' ) ) {
