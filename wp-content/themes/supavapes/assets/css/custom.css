@@ -1711,6 +1711,7 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
  }
  .price-breakup-popup .rightprice{
  text-align: right;
+ white-space: nowrap;
  }
 
  .price-breakup-popup .pricetable td,.price-breakup-popup .pricetable th{
