@@ -5310,7 +5310,7 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
     $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 	$final_price += floatval( $ontario_tax ) + floatval( $federal_tax ) + floatval( $product_price );
     ?>
-	<p>Product Price: <?php echo wp_kses_post($price); ?></p>
+	<p>Product Price: <?php echo $product_price; ?></p>
     <div class="info-icon-container">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
         <div class="price-breakup-popup">
