@@ -37,25 +37,25 @@ if (navigator.geolocation) {
 		console.log(lat);
 		console.log(lng);
         // Send the data to the PHP function via AJAX
-        jQuery.ajax({
-            url: sv_ajax.ajax_url,  // Use localized script to provide ajax URL
-            type: 'POST',
-            data: {
-                action: 'get_location_and_set_cookies',
-                latitude: lat,
-                longitude: lng
-            },
-            success: function(response) {
-                if (response.success) {
-                    // Handle success, e.g., show the city, state, and country
-                    console.log('Location:', response.data.city, response.data.state, response.data.country);
-                    jQuery('#location').val(response.data.city + ', ' + response.data.country);
-                } else {
-                    console.log(response.data);  // Show error if failed
-                    jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
-                }
-            }
-        });
+        // jQuery.ajax({
+        //     url: sv_ajax.ajax_url,  // Use localized script to provide ajax URL
+        //     type: 'POST',
+        //     data: {
+        //         action: 'get_location_and_set_cookies',
+        //         latitude: lat,
+        //         longitude: lng
+        //     },
+        //     success: function(response) {
+        //         if (response.success) {
+        //             // Handle success, e.g., show the city, state, and country
+        //             console.log('Location:', response.data.city, response.data.state, response.data.country);
+        //             jQuery('#location').val(response.data.city + ', ' + response.data.country);
+        //         } else {
+        //             console.log(response.data);  // Show error if failed
+        //             jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+        //         }
+        //     }
+        // });
     }, function(error) {
         jQuery('#location-error').text('Geolocation is not supported by this browser or permission denied.');
     });
