@@ -4529,7 +4529,6 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 		<?php }?>
 		<!-- Price Breakdown with info icon -->
 		
-
 		<?php
 
 		// quantity html output.
@@ -4795,8 +4794,6 @@ if ( ! function_exists( 'supavapes_modify_order_item_price_and_tax' ) ) {
 
 
 add_action('woocommerce_new_order_item', 'supavapes_modify_order_item_price_and_tax', 10, 2);
-
-
 
 
 /**
@@ -5290,3 +5287,23 @@ function supavapes_get_ip_location_and_set_cookies() {
 	// debug($_COOKIE);
 }
 add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+
+
+// Add price breakdown on the order received page
+add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_received', 10, 4 );
+
+function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
+    // Get item total, tax, and subtotal details
+    $product = $item->get_product();
+    $item_total = $order->get_item_total( $item, false, true ); // Total excluding tax
+    $item_tax = $order->get_item_tax( $item ); // Tax
+    $item_subtotal = $order->get_item_subtotal( $item, false, true ); // Subtotal excluding tax
+
+    // Display price breakdown
+    echo '<div class="custom-price-breakdown">';
+    echo '<strong>Price Breakdown:</strong><br>';
+    echo 'Subtotal: ' . wc_price( $item_subtotal ) . '<br>';
+    echo 'Tax: ' . wc_price( $item_tax ) . '<br>';
+    echo 'Total: ' . wc_price( $item_total ) . '<br>';
+    echo '</div>';
+}
