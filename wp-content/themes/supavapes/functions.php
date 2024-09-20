@@ -5350,4 +5350,4 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
 <?php 
 }
 
-add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_received', 10, 4 );
+add_action( 'woocommerce_order_item_meta_end', 'custom_price_breakdown_order_received', 10, 4 );
