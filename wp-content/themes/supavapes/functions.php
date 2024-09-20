@@ -5294,18 +5294,25 @@ add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_r
 
 function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
 
-	debug($item);
+			debug($item);
+			echo "Ontario: ".$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+			echo "Federal: ".$federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
+
+			// Get the product or variation details
+			$product_id = $item->get_product_id(); // This gets the parent product ID or the variation ID.
+			$variation_id = $item->get_variation_id(); // Get the variation ID if it exists.
+
     // Get item total, tax, and subtotal details
     $product = $item->get_product();
     $item_total = $order->get_item_total( $item, false, true ); // Total excluding tax
     $item_tax = $order->get_item_tax( $item ); // Tax
     $item_subtotal = $order->get_item_subtotal( $item, false, true ); // Subtotal excluding tax
 
-    // Display price breakdown
-    echo '<div class="custom-price-breakdown">';
-    echo '<strong>Price Breakdown:</strong><br>';
-    echo 'Subtotal: ' . wc_price( $item_subtotal ) . '<br>';
-    echo 'Tax: ' . wc_price( $item_tax ) . '<br>';
-    echo 'Total: ' . wc_price( $item_total ) . '<br>';
-    echo '</div>';
+    // // Display price breakdown
+    // echo '<div class="custom-price-breakdown">';
+    // echo '<strong>Price Breakdown:</strong><br>';
+    // echo 'Subtotal: ' . wc_price( $item_subtotal ) . '<br>';
+    // echo 'Tax: ' . wc_price( $item_tax ) . '<br>';
+    // echo 'Total: ' . wc_price( $item_total ) . '<br>';
+    // echo '</div>';
 }
