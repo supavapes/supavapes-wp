@@ -1715,9 +1715,12 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 .price-breakup-popup .wholesaleprice{
 	border-bottom:none
 }
-body.woocommerce-cart .price-breakup-popup {
-    width: max-content;
-}
 body.woocommerce-cart .info-icon-container {
     position: relative;
+}
+body.woocommerce-cart .price-breakup-popup {
+    width: max-content;
+    bottom: initial;
+    left: -90px;
+    top: 30px;
 }
