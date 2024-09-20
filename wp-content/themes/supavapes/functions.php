@@ -5293,6 +5293,8 @@ function supavapes_get_ip_location_and_set_cookies() {
 add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_received', 10, 4 );
 
 function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
+
+	debug($item);
     // Get item total, tax, and subtotal details
     $product = $item->get_product();
     $item_total = $order->get_item_total( $item, false, true ); // Total excluding tax
