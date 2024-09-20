@@ -1749,10 +1749,21 @@ body.single-product.variable-product .cartItem h4.priceInfo.price-breakup {
 	}
 }
 @media(max-width:768px){
-	body.single-product .price-breakup-popup, body.woocommerce-cart .price-breakup-popup {
+	body.single-product .price-breakup-popup {
 		width: max-content;
 		bottom: initial;
 		left: initial;
 		right: 0;
+	}
+	body.woocommerce-cart .price-breakup-popup {
+        width: max-content;
+        bottom: initial;
+        left: initial;
+        right: initial;
+    }
+	body.woocommerce-cart .woocommerce table.shop_table_responsive tr .price-breakup-popup tr {
+		padding: 0 !important;
+		display: flex;
+		justify-content: space-between;
 	}
 }
