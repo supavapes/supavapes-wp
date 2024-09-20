@@ -5308,7 +5308,7 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
     $reg_price = $product->get_regular_price();
     $sale_price = $product->get_sale_price();
     $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
-	$final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+	$final_price += floatval( $ontario_tax ) + floatval( $federal_tax ) + floatval( $product_price );
     ?>
     <div class="info-icon-container">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
