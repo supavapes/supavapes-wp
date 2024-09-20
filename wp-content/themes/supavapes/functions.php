@@ -5158,9 +5158,9 @@ function update_sv_product_slider() {
 // add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider');
 
 function get_location_and_set_cookies() {
-    if (isset($_POST['latitude']) && isset($_POST['longitude'])) {
-        $lat = sanitize_text_field($_POST['latitude']);
-        $lng = sanitize_text_field($_POST['longitude']);
+   
+        $lat = 23.0720749;
+        $lng = 72.5151303;
         $google_api_key = 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM';
 
         // API URL with lat/lng and key
@@ -5200,18 +5200,10 @@ function get_location_and_set_cookies() {
             setcookie('user_country', $country, time() + 86400 * 7, '/');
             setcookie('user_state', $state, time() + 86400 * 7, '/');
 
-            // Return the location data to the JavaScript for further use
-            wp_send_json_success([
-                'city'    => $city,
-                'country' => $country,
-                'state'   => $state,
-            ]);
+           
         } else {
-            wp_send_json_error('Failed to retrieve location data');
+            echo "Failled to retrive location";
         }
-    } else {
-        wp_send_json_error('Missing latitude or longitude');
-    }
+    
 }
-add_action('wp_ajax_get_location_and_set_cookies', 'get_location_and_set_cookies');
-add_action('wp_ajax_nopriv_get_location_and_set_cookies', 'get_location_and_set_cookies');
+add_action('init', 'get_location_and_set_cookies');
