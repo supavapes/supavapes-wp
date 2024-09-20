@@ -5282,5 +5282,7 @@ function get_ip_location_and_set_cookies() {
         setcookie('user_state', $region, time() + 86400 * 7, '/');
         setcookie('user_country', $country, time() + 86400 * 7, '/');
     }
+
+	debug($_COOKIE);
 }
 add_action('init', 'get_ip_location_and_set_cookies');
