@@ -1714,8 +1714,9 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
  white-space: nowrap;
  }
 
- .price-breakup-popup .pricetable td,.price-breakup-popup .pricetable th{
-	padding:4px !important;
+ .price-breakup-popup .pricetable td, .price-breakup-popup .pricetable th {
+    padding: 4px !important;
+    vertical-align: baseline;
 }
 .price-breakup-popup .wholesaleprice{
  font-weight: bold;
