@@ -20,9 +20,9 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
-	jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
-		jQuery(this).next('.price-breakup-popup').toggle();
-	});
+	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
+	// 	jQuery(this).next('.price-breakup-popup').toggle();
+	// });
 
 	jQuery(document).on('wpcf7mailsent', function(event) {
 		setTimeout(function() {
