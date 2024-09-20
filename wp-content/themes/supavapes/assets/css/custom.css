@@ -1718,7 +1718,7 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 }
 .body.single-product .info-icon-container,
 body.woocommerce-cart .info-icon-container {
-    position: relative;
+    position: relative !important;
 }
 .body.single-product .price-breakup-popup,
 body.woocommerce-cart .price-breakup-popup {
