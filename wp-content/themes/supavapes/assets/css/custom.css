@@ -1660,11 +1660,17 @@ input:focus-visible {
     z-index: 1000;
     border-radius: 10px;
     border: 1px solid #fff;
+	background-color:black;
+	color:white;
 }
 .price-breakup-popup h5.header {
     font-size: 18px;
     margin: 0 0 10px;
+	color:white;
+	display:flex;
+ justify-content: center;
 }
+
 .info-icon-container {
     position: unset;
     display: inline-block;
@@ -1681,4 +1687,31 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 }
 .price-breakup-popup .leftprice, .price-breakup-popup .rightprice,.price-breakup-popup .rightprice span bdi,.price-breakup-popup .rightprice ins span {
     font-size: 12px !important;
+}
+.price-breakup-popup table td,.price-breakup-popup table th {
+    border: none
+}
+.price-breakup-popup th,.price-breakup-popup td {
+  padding: 0px;
+}
+
+.price-breakup-popup tr{
+  border-bottom: 1px solid ;
+}
+.price-breakup-popup .leftprice{
+ text-align: left;
+ }
+ .price-breakup-popup .rightprice{
+ text-align: right;
+ }
+
+ .price-breakup-popup .pricetable td,.price-breakup-popup .pricetable th{
+	padding:4px;
+}
+.price-breakup-popup .wholesaleprice{
+ font-weight: bold;
+}
+
+.price-breakup-popup .wholesaleprice{
+	border-bottom:none
 }
