@@ -1681,7 +1681,6 @@ li.ina-timeout-active-debugger {
 	width: 15px;
 	height: 15px;
 }
-.home .info-icon-container,
 .sv-our-product-box .info-icon-container,
 .li.woocommerce-mini-cart-item.mini_cart_item  {
     position: unset;
@@ -1719,7 +1718,18 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
  text-align: right;
  white-space: nowrap;
  }
-
+ .review-slider .price-breakup-popup {
+    box-shadow: 0 0 20px var(--white-light);
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: initial;
+	right: 0;
+    width: max-content;
+}
+.sv-product-price {
+    align-items: center;
+}
  .price-breakup-popup .pricetable td, .price-breakup-popup .pricetable th {
     padding: 4px !important;
     vertical-align: baseline;
