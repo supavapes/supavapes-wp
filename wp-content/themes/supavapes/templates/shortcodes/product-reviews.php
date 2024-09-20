@@ -10,14 +10,14 @@ if (empty($product_ids)) {
 <div class="review-slider">
     <?php
     foreach ($product_ids as $product_id) {
-        $product = wc_get_product($product_id);
-		$product_data = wc_get_product(get_the_ID());
+        // $product = wc_get_product($product_id);
+		$product_data = wc_get_product($product_id);
 		$product_type = $product_data->get_type();
-        if ($product && $product->get_status() === 'publish') {
-            $p_title = $product->get_name();
-            $price = $product->get_price_html();
-            $image = $product->get_image();
-            $rating = $product->get_average_rating();
+        if ($product_data && $product_data->get_status() === 'publish') {
+            $p_title = $product_data->get_name();
+            $price = $product_data->get_price_html();
+            $image = $product_data->get_image();
+            $rating = $product_data->get_average_rating();
             $reviews = get_comments(
                 array(
                     'post_id' => $product_id,
