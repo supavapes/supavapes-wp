@@ -1706,7 +1706,7 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
  }
 
  .price-breakup-popup .pricetable td,.price-breakup-popup .pricetable th{
-	padding:4px;
+	padding:4px !important;
 }
 .price-breakup-popup .wholesaleprice{
  font-weight: bold;
@@ -1714,4 +1714,10 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 
 .price-breakup-popup .wholesaleprice{
 	border-bottom:none
+}
+body.woocommerce-cart .price-breakup-popup {
+    width: max-content;
+}
+body.woocommerce-cart .info-icon-container {
+    position: relative;
 }
