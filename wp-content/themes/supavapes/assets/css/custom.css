@@ -1727,3 +1727,6 @@ body.woocommerce-cart .price-breakup-popup {
     left: -90px;
     top: 30px;
 }
+.info-icon-container:hover .price-breakup-popup{
+	display: block !important;
+}
