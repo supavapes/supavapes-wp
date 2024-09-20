@@ -1772,4 +1772,8 @@ body.single-product.variable-product .cartItem h4.priceInfo.price-breakup {
 		right: 0 !important;
 		left: initial;
 	}
+	body.single-product .summary.entry-summary .price-breakup-popup {
+        left: -40px;
+        right: initial;
+    }
 }
