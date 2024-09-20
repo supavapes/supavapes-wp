@@ -1,3 +1,4 @@
+<?php 
 $atts = get_query_var('shortcode_atts', array(
     'ids' => ''
 ));
