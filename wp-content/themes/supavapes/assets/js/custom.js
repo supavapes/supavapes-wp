@@ -35,7 +35,7 @@ if (navigator.geolocation) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
 		console.log(lat);
-		console.log(lang);
+		console.log(lng);
         // Send the data to the PHP function via AJAX
         jQuery.ajax({
             url: sv_ajax.ajax_url,  // Use localized script to provide ajax URL
