@@ -1672,9 +1672,14 @@ input:focus-visible {
 }
 
 .info-icon-container {
-    position: unset;
+    position: relative;
     display: inline-block;
 	cursor: pointer;
+}
+.home .info-icon-container,
+.sv-our-product-box .info-icon-container,
+.li.woocommerce-mini-cart-item.mini_cart_item  {
+    position: unset;
 }
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
 	bottom: 60px !important;
