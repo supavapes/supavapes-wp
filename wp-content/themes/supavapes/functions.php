@@ -5204,53 +5204,83 @@ function update_sv_product_slider() {
 // add_action('wp_ajax_update_sv_product_slider', 'update_sv_product_slider');
 // add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider');
 
-function get_location_and_set_cookies() {
+// function get_location_and_set_cookies() {
    
-        $lat = 23.0720749;
-        $lng = 72.5151303;
-        $google_api_key = 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM';
+//         $lat = 23.0720749;
+//         $lng = 72.5151303;
+//         $google_api_key = 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM';
 
-        // API URL with lat/lng and key
-        $api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$lng}&key={$google_api_key}";
+//         // API URL with lat/lng and key
+//         $api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$lng}&key={$google_api_key}";
 
-        // Make the request
-        $response = wp_remote_get($api_url);
-		// debug($response);
-        if (is_wp_error($response)) {
-            wp_send_json_error('API request failed');
-        }
+//         // Make the request
+//         $response = wp_remote_get($api_url);
+// 		// debug($response);
+//         if (is_wp_error($response)) {
+//             wp_send_json_error('API request failed');
+//         }
 
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
+//         $body = wp_remote_retrieve_body($response);
+//         $data = json_decode($body, true);
 
-        if ($data['status'] === 'OK') {
-            $result  = $data['results'][0];
-            $city    = '';
-            $country = '';
-            $state   = '';
+//         if ($data['status'] === 'OK') {
+//             $result  = $data['results'][0];
+//             $city    = '';
+//             $country = '';
+//             $state   = '';
 
-            // Loop through address components to find city, country, and state
-            foreach ($result['address_components'] as $component) {
-                if (in_array('locality', $component['types'])) {
-                    $city = $component['long_name'];
-                }
-                if (in_array('country', $component['types'])) {
-                    $country = $component['long_name'];
-                }
-                if (in_array('administrative_area_level_1', $component['types'])) {
-                    $state = $component['long_name'];
-                }
-            }
+//             // Loop through address components to find city, country, and state
+//             foreach ($result['address_components'] as $component) {
+//                 if (in_array('locality', $component['types'])) {
+//                     $city = $component['long_name'];
+//                 }
+//                 if (in_array('country', $component['types'])) {
+//                     $country = $component['long_name'];
+//                 }
+//                 if (in_array('administrative_area_level_1', $component['types'])) {
+//                     $state = $component['long_name'];
+//                 }
+//             }
 
-            // Set cookies for city, state, and country
-            setcookie('user_city', $city, time() + 86400 * 7, '/');
-            setcookie('user_country', $country, time() + 86400 * 7, '/');
-            setcookie('user_state', $state, time() + 86400 * 7, '/');
+//             // Set cookies for city, state, and country
+//             setcookie('user_city', $city, time() + 86400 * 7, '/');
+//             setcookie('user_country', $country, time() + 86400 * 7, '/');
+//             setcookie('user_state', $state, time() + 86400 * 7, '/');
 
            
-        } else {
-            echo "Failled to retrive location";
-        }
+//         } else {
+//             echo "Failled to retrive location";
+//         }
     
+// }
+// add_action('init', 'get_location_and_set_cookies');
+
+
+function get_ip_location_and_set_cookies() {
+    $ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
+    $access_key = '8cccc64e392297'; // Get your free access key from ipinfo.io
+
+    // Fetch location data based on the user's IP address
+    $url = "https://ipinfo.io/{$ip_address}?token={$access_key}";
+    $response = wp_remote_get($url);
+
+    if (is_wp_error($response)) {
+        return; // Handle error
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    if (!empty($data)) {
+        $location = explode(",", $data['loc']); // Get lat/lng if available
+        $city = isset($data['city']) ? $data['city'] : '';
+        $region = isset($data['region']) ? $data['region'] : '';
+        $country = isset($data['country']) ? $data['country'] : '';
+
+        // Set cookies for location data
+        setcookie('user_city', $city, time() + 86400 * 7, '/');
+        setcookie('user_region', $region, time() + 86400 * 7, '/');
+        setcookie('user_country', $country, time() + 86400 * 7, '/');
+    }
 }
-add_action('init', 'get_location_and_set_cookies');
+add_action('init', 'get_ip_location_and_set_cookies');
