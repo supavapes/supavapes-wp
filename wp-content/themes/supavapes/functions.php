@@ -5307,8 +5307,8 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
     // Get product prices (regular and sale)
     $reg_price = $product->get_regular_price();
     $sale_price = $product->get_sale_price();
-    $final_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
-
+    $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+	$final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
     ?>
     <div class="info-icon-container">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
@@ -5317,22 +5317,20 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
             <table class="pricetable">
                 <tr>
                     <td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
                 </tr>
-                <?php if ( 'Gujarat' !== $state ) { ?>
+                <?php if ( isset($federal_tax) ) { ?>
                     <tr>
                         <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
                         <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
                     </tr>
-                <?php } else { ?>
+                <?php } 
+				if( isset($ontario_tax) ) { ?>
                     <tr>
                         <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
                         <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
                     </tr>
-                    <tr>
-                        <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-                        <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                    </tr>
+                   
                 <?php } ?>
                 <tr class="wholesaleprice">
                     <td class='leftprice'><?php esc_html_e( 'Wholesale Price','supavapes' ); ?></td>
