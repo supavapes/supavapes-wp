@@ -5318,7 +5318,7 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
     $final_price = floatval( $product_price ) + floatval( $ontario_tax ) + floatval( $federal_tax );
 
     ?>
-    <p>Product Price: <?php echo wc_price( $product_price ); ?></p>
+    <p>Product Price: <?php echo wc_price( $final_price ); ?></p>
     <div class="info-icon-container">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
         <div class="price-breakup-popup">
