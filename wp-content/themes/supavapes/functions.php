@@ -5157,3 +5157,61 @@ function update_sv_product_slider() {
 // add_action('wp_ajax_update_sv_product_slider', 'update_sv_product_slider');
 // add_action('wp_ajax_nopriv_update_sv_product_slider', 'update_sv_product_slider');
 
+function get_location_and_set_cookies() {
+    if (isset($_POST['latitude']) && isset($_POST['longitude'])) {
+        $lat = sanitize_text_field($_POST['latitude']);
+        $lng = sanitize_text_field($_POST['longitude']);
+        $google_api_key = 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM';
+
+        // API URL with lat/lng and key
+        $api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$lng}&key={$google_api_key}";
+
+        // Make the request
+        $response = wp_remote_get($api_url);
+
+        if (is_wp_error($response)) {
+            wp_send_json_error('API request failed');
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+
+        if ($data['status'] === 'OK') {
+            $result  = $data['results'][0];
+            $city    = '';
+            $country = '';
+            $state   = '';
+
+            // Loop through address components to find city, country, and state
+            foreach ($result['address_components'] as $component) {
+                if (in_array('locality', $component['types'])) {
+                    $city = $component['long_name'];
+                }
+                if (in_array('country', $component['types'])) {
+                    $country = $component['long_name'];
+                }
+                if (in_array('administrative_area_level_1', $component['types'])) {
+                    $state = $component['long_name'];
+                }
+            }
+
+            // Set cookies for city, state, and country
+            setcookie('user_city', $city, time() + 86400 * 7, '/');
+            setcookie('user_country', $country, time() + 86400 * 7, '/');
+            setcookie('user_state', $state, time() + 86400 * 7, '/');
+
+            // Return the location data to the JavaScript for further use
+            wp_send_json_success([
+                'city'    => $city,
+                'country' => $country,
+                'state'   => $state,
+            ]);
+        } else {
+            wp_send_json_error('Failed to retrieve location data');
+        }
+    } else {
+        wp_send_json_error('Missing latitude or longitude');
+    }
+}
+add_action('wp_ajax_get_location_and_set_cookies', 'get_location_and_set_cookies');
+add_action('wp_ajax_nopriv_get_location_and_set_cookies', 'get_location_and_set_cookies');
