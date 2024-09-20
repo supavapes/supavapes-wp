@@ -1674,6 +1674,7 @@ input:focus-visible {
 .info-icon-container {
     position: unset;
     display: inline-block;
+	cursor: pointer;
 }
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
 	bottom: 60px !important;
@@ -1715,9 +1716,11 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 .price-breakup-popup .wholesaleprice{
 	border-bottom:none
 }
+.body.single-product .info-icon-container,
 body.woocommerce-cart .info-icon-container {
     position: relative;
 }
+.body.single-product .price-breakup-popup,
 body.woocommerce-cart .price-breakup-popup {
     width: max-content;
     bottom: initial;
