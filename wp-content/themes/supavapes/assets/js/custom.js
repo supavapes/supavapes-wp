@@ -23,12 +23,21 @@ jQuery(document).ready(function() {
 	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
 	// 	jQuery(this).next('.price-breakup-popup').toggle();
 	// });
+	
+	if (jQuery('body').hasClass('single-product')) {
+		// Select the price element
+		var priceElement = jQuery('.entry-summary .price');
+		// Select the info-icon-container element
+		var infoIconContainer = jQuery('.entry-summary .info-icon-container');
+		// Append the info-icon-container inside the price element
+		infoIconContainer.appendTo(priceElement);
 
-	jQuery(document).on('wpcf7mailsent', function(event) {
-		setTimeout(function() {
-			window.location.href = '/contact-us/';
-		}, 3000); // Wait for 3 seconds to redirect.
-	});
+		jQuery(document).on('wpcf7mailsent', function(event) {
+			setTimeout(function() {
+				window.location.href = '/contact-us/';
+			}, 3000); // Wait for 3 seconds to redirect.
+		});
+	}
 
 // if (navigator.geolocation) {
 //     navigator.geolocation.getCurrentPosition(function(position) {
