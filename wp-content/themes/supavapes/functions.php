@@ -4481,10 +4481,10 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 
 		?>
 		<!-- Display product quantity and price -->
-		<span class="quantity">
+		<div class="quantity">
 			<?php echo sprintf( '%s &times; %s', $quantity, $product_price ); ?>
 			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
-			<span class="info-icon-container">
+			<div class="info-icon-container">
 				<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 				<div class="price-breakup-popup" style="display: none;">
 					<h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
@@ -4524,8 +4524,8 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 						</tr>
 					</table>
 				</div>
-			</span>
-		</span>
+			</div>
+		</div>
 		<?php }?>
 		<!-- Price Breakdown with info icon -->
 		
