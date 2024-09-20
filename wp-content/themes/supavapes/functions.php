@@ -5293,8 +5293,8 @@ add_action( 'woocommerce_order_item_meta_start', 'custom_price_breakdown_order_r
 
 function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
     // Get the Ontario and Federal tax from the order meta
-    $ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
-    $federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
+   echo "Ontario: ".$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+    echo "Federal: ".$federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
 
     // Get product and variation details
     $product_id = $item->get_product_id(); // Parent product ID or variation ID
