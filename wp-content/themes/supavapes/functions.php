@@ -5168,7 +5168,7 @@ function get_location_and_set_cookies() {
 
         // Make the request
         $response = wp_remote_get($api_url);
-
+		debug($response);
         if (is_wp_error($response)) {
             wp_send_json_error('API request failed');
         }
