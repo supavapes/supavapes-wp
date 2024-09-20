@@ -1743,6 +1743,7 @@ body.single-product.variable-product .cartItem h4.priceInfo.price-breakup {
     flex-direction: row !important;
     align-items: center;
 }
+.summary.entry-summary .info-icon-container{margin-left: 10px;}  
 @media(max-width:1024px){
 	body.woocommerce-cart #content table.cart .info-icon-container  img{
 		width: 15px !important;
