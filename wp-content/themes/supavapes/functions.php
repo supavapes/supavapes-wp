@@ -4481,10 +4481,10 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 
 		?>
 		<!-- Display product quantity and price -->
-		<span class="quantity">
+		<div class="quantity">
 			<?php echo sprintf( '%s &times; %s', $quantity, $product_price ); ?>
 			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
-			<span class="info-icon-container">
+			<div class="info-icon-container">
 				<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 				<div class="price-breakup-popup" style="display: none;">
 					<h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
@@ -4524,11 +4524,10 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 						</tr>
 					</table>
 				</div>
-			</span>
-		</span>
+			</div>
+		</div>
 		<?php }?>
 		<!-- Price Breakdown with info icon -->
-		
 
 		<?php
 
@@ -4795,8 +4794,6 @@ if ( ! function_exists( 'supavapes_modify_order_item_price_and_tax' ) ) {
 
 
 add_action('woocommerce_new_order_item', 'supavapes_modify_order_item_price_and_tax', 10, 2);
-
-
 
 
 /**
@@ -5289,4 +5286,68 @@ function supavapes_get_ip_location_and_set_cookies() {
 	}
 	// debug($_COOKIE);
 }
-add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+// add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+
+
+
+
+function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
+    // Get the Ontario and Federal tax from the order meta
+    $ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+    $federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
+
+    // Get product and variation details
+    $product_id = $item->get_product_id(); // Parent product ID
+    $variation_id = $item->get_variation_id(); // Variation ID if it exists
+
+    // Check if it's a variation or a simple product
+    if ( $variation_id ) {
+        // It's a variation, get the variation product object
+        $product = wc_get_product( $variation_id );
+    } else {
+        // It's a simple product, get the product object
+        $product = wc_get_product( $product_id );
+    }
+
+    // Get product price (regular and sale)
+    $reg_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+    $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+
+    // Calculate the final price including taxes
+    $final_price = floatval( $product_price ) + floatval( $ontario_tax ) + floatval( $federal_tax );
+
+    ?>
+    <p>Product Price: <?php echo wc_price( $final_price ); ?></p>
+    <div class="info-icon-container">
+        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+        <div class="price-breakup-popup">
+            <h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
+            <table class="pricetable">
+                <tr>
+                    <td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
+                </tr>
+                <?php if ( isset( $federal_tax ) && !empty( $federal_tax ) ) { ?>
+                    <tr>
+                        <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
+                        <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+                    </tr>
+                <?php } 
+                if ( isset( $ontario_tax ) && !empty( $ontario_tax ) ) { ?>
+                    <tr>
+                        <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
+                        <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+                    </tr>
+                <?php } ?>
+                <tr class="wholesaleprice">
+                    <td class='leftprice'><?php esc_html_e( 'Total Price with Taxes','supavapes' ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+                </tr>
+            </table>
+        </div>
+    </div
+<?php 
+}
+
+add_action( 'woocommerce_order_item_meta_end', 'custom_price_breakdown_order_received', 10, 4 );

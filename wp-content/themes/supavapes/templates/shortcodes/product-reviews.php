@@ -131,7 +131,7 @@ if (empty($product_ids)) {
                         <span class="divider"></span>
                         <div class="sv-product-detail">
                             <h4 class="sv-product-name"><?php echo esc_html($p_title, 'supavapes'); ?></h4>
-                            <div class="sv-product-price"><?php echo wp_kses_post($price); ?></div>
+                            <div class="sv-product-price"><?php echo wp_kses_post($price); ?>
 							<?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 							$product_type = $product_data->get_type();
 						}?>
@@ -255,7 +255,8 @@ if (empty($product_ids)) {
 							}
 						}
 						?>
-                        </div>
+                        	</div>
+						</div>
                     </a>
                 </div>
                 <?php
