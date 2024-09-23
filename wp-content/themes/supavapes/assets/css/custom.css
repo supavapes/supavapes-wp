@@ -381,7 +381,7 @@ button.fancybox-button { padding: 0 !important; border: none !important; backgro
 .fancybox-slide--image {padding:70px 0 60px 0 !important;}
 .fancybox-toolbar { right: 20px !important; top: 40px !important; display: flex; align-items: center; gap: 10px; }
 button.vpe_single_add_to_cart_button{ max-width: 210px !important; }
-body.single-product.variable-product .vpe_table_responsive { padding: 0; border: 1px solid var(--primary-palette-carmine-pink-light); margin: 0; }
+body.single-product.variable-product .vpe_table_responsive { padding: 0; border: 1px solid var(--primary-palette-carmine-pink-light); margin: 0; overflow: visible !important;}
 .woocommerce ul.products li.product .woocommerce-placeholder{ border: none !important; }
 .woocommerce-column.woocommerce-column--shipping-address .woocommerce-column__title{ margin: 0 0 15px !important; }
 .product-gallery { width: calc(50% - 8px) !important; }
