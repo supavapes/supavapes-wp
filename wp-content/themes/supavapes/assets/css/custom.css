@@ -1818,6 +1818,11 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     flex-flow: row wrap;
     gap: 10px;
 }
+.product-pricebreakup-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 @media(max-width:1200px){
 .sv-product-price {
     font-size: 16px !important;
@@ -1880,5 +1885,8 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     body.single-product .summary.entry-summary .price-breakup-popup {
         left: -150px;
         right: initial;
+    }
+    .woocommerce-order-details .price-breakup-popup {
+        left: -180px;
     }
 }
