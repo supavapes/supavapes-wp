@@ -5378,18 +5378,27 @@ function update_vaping_liquid_field_in_chunks_debug() {
         // Create a new WP_Query for products
         $query = new WP_Query( $args );
 
-        // Loop through all found products and update the custom field
+        // Loop through all found products and update the custom field only if it's blank or null
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
                 $product_id = get_the_ID();
 
-                // Update the custom field '_vaping_liquid' with a value of 10
-                update_post_meta( $product_id, '_vaping_liquid', 10 );
+                // Check if '_vaping_liquid' field is empty or null
+                $vaping_liquid_value = get_post_meta( $product_id, '_vaping_liquid', true );
 
-                // Echo the product title for debugging purposes
-                $product_name = get_the_title( $product_id );
-                echo 'Updated product: ' . $product_name . '<br>';
+                if ( empty( $vaping_liquid_value ) ) {
+                    // Update the custom field '_vaping_liquid' with a value of 10
+                    update_post_meta( $product_id, '_vaping_liquid', 10 );
+
+                    // Echo the product title for debugging purposes
+                    $product_name = get_the_title( $product_id );
+                    echo 'Updated product: ' . $product_name . ' (ID: ' . $product_id . ')<br>';
+                } else {
+                    // Echo the product name and skip the update
+                    $product_name = get_the_title( $product_id );
+                    echo 'Skipped product (already set): ' . $product_name . ' (ID: ' . $product_id . ')<br>';
+                }
 
                 // Clear output buffer if necessary
                 flush();
@@ -5404,3 +5413,4 @@ function update_vaping_liquid_field_in_chunks_debug() {
     }
 }
 add_action( 'template_redirect', 'update_vaping_liquid_field_in_chunks_debug' );
+
