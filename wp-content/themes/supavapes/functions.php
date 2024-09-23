@@ -220,6 +220,7 @@ if ( ! function_exists( 'supavapes_init_callback' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_init_callback() {
+		global $customer_current_location_state = 'Uttar Pradesh';
 		// Enqueue custom endpoints for customer dashboard.
 		add_rewrite_endpoint( 'notification-preference', EP_ROOT | EP_PAGES );
 		add_rewrite_endpoint( 'wishlist', EP_ROOT | EP_PAGES );
@@ -5420,6 +5421,12 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 			</div>
 		</div>
 		<?php
+
+		echo ob_get_clean();
+
+		debug( $GLOBALS );
+		
+		die;
 
 		return ob_get_clean();
 	}
