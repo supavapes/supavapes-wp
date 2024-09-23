@@ -322,6 +322,7 @@ body.single-product .cld-like-dislike-wrap {margin-bottom: 0 !important;}
 body.single-product.variable-product form.cart{max-width: 100% !important;}
 body.single-product.variable-product .cartRow{ background: transparent !important; width: 100% !important; box-shadow: none !important; margin-top: 0 !important; padding: 20px !important; align-items: center; border-bottom: 1px solid var(--primary-palette-carmine-pink-light)!important; border-radius: 0; }
 body.single-product.variable-product .cartRow:last-child{border: none !important;}
+body.single-product.variable-product .variations-count-1 .cartSection,body.single-product.variable-product .variations-count-2 .cartSection {overflow: visible !important;}
 body.single-product.variable-product .cartSection { display: flex !important; flex-direction: column !important; gap: 00px !important; height: auto !important;overflow: auto !important; }
 body.single-product.variable-product .vpn_product_title h4 { font-size: 20px; color: var(--white) !important; margin: 0; font-family: 'Montserrat'; }
 body.single-product.variable-product label.vpn_product_label{display: none;}
@@ -1738,6 +1739,18 @@ body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-br
     left: -160px;
     right: 0;
     width: max-content;
+}
+.review-slider .slider-box .price-breakup-popup {
+    box-shadow: 0 0 20px var(--white-light);
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    left: -160px;
+    right: 0;
+    width: max-content;
+}
+.review-slider .slider-box {
+    position: relative;
 }
 .sv-product-price {
     align-items: center;
