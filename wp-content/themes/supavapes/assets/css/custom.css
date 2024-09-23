@@ -1684,6 +1684,7 @@ li.ina-timeout-active-debugger {
 	width: 15px;
 	height: 15px;
 }
+.home .info-icon-container,
 .sv-our-product-box .info-icon-container,
 li.woocommerce-mini-cart-item.mini_cart_item  {
     position: unset;
@@ -1744,10 +1745,7 @@ body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-br
     box-shadow: 0 0 20px var(--white-light);
     display: none;
     position: absolute;
-    bottom: 30px;
-    left: -160px;
     right: 0;
-    width: max-content;
 }
 .review-slider .slider-box {
     position: relative;
