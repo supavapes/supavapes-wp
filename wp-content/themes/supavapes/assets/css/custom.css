@@ -525,6 +525,7 @@ span.page-numbers.current {display: flex; align-items: center; justify-content: 
 .woocommerce-pagination a.page-numbers { border: 1px solid var(--primary-palette-carmine-pink); border-radius: 50%; height: 50px !important; width: 50px !important; color: var(--white); text-align: center; padding: 0; margin: 0; font-size: 18px !important; font-weight: 800 !important; }
 ul.page-numbers li {margin-left: 11px !important;}
 span.page-numbers.dots:hover{border: transparent !important;}
+span.page-numbers.dots{display: flex;height: 100%;width: 100%;}
 .woocommerce-pagination a.page-numbers:hover { background-color: var(--primary-palette-carmine-pink) !important; color: white !important; }
 .woocommerce-pagination a.next.page-numbers, .woocommerce-pagination a.prev.page-numbers { border: 1px solid #000 !important; color: transparent !important; padding: 0px !important; background: transparent !important; }
 h3.filter-title { font-size: 26px; font-family: Montserrat; line-height: 30px; font-weight: 600; color: var(--white); }
