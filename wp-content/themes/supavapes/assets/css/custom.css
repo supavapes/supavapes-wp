@@ -348,7 +348,7 @@ body.single-product.variable-product span.woocommerce-Price-amount.amount{font-s
 .wqcmv-recommended-prod-list div.quantity a:hover, body.single-product.variable-product div.quantity a:hover { background-color: var(--primary-palette-carmine-pink) !important; border-radius: 0 !important; }
 .wqcmv-recommended-prod-list div.quantity .variant-qty-input, body.single-product.variable-product div.quantity .variant-qty-input { background: transparent; color: var(--white); padding: 0 !important; width: 40px; border-top: none; border-bottom: none; text-align: center !important; height: 100% !important; }
 .variant-qty-input::-webkit-inner-spin-button,
-.variant-qty-input::-webkit-outer-spin-button {
+.variant-qty-input::-webkit-outer-spin-button { 
     -webkit-appearance: none !important;
     margin: 0 !important;    
 }
