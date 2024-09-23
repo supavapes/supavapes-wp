@@ -5354,7 +5354,7 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 
-function supavapes_update_vaping_liquid_field_in_chunks() {
+function update_vaping_liquid_field_in_chunks_debug() {
     // Check if the URL parameters 'update_vaping_liquid' and 'chunk_size' are set
     if ( isset( $_GET['update_vaping_liquid'] ) && $_GET['update_vaping_liquid'] == 'yes' && isset( $_GET['chunk_size'] ) ) {
 
@@ -5386,13 +5386,21 @@ function supavapes_update_vaping_liquid_field_in_chunks() {
 
                 // Update the custom field '_vaping_liquid' with a value of 10
                 update_post_meta( $product_id, '_vaping_liquid', 10 );
+
+                // Echo the product title for debugging purposes
+                $product_name = get_the_title( $product_id );
+                echo 'Updated product: ' . $product_name . '<br>';
+
+                // Clear output buffer if necessary
+                flush();
             }
             wp_reset_postdata(); // Reset after the loop
+        } else {
+            echo 'No simple published products found.<br>';
         }
 
-        // Output a success message
-        echo 'Updated ' . $chunk_size . ' products with custom field _vaping_liquid set to 10.';
-        exit; // Stop further execution after message
+        // Prevent the full page from loading
+        exit;
     }
 }
-add_action( 'template_redirect', 'supavapes_update_vaping_liquid_field_in_chunks' );
+add_action( 'template_redirect', 'update_vaping_liquid_field_in_chunks_debug' );
