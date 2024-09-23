@@ -5354,84 +5354,78 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 
-function update_vaping_liquid_field_for_variable_products_with_empty_variations() {
-    // Check if the URL parameters 'update_vaping_liquid' and 'chunk_size' are set
-    if ( isset( $_GET['update_vaping_liquid'] ) && $_GET['update_vaping_liquid'] == 'yes' && isset( $_GET['chunk_size'] ) ) {
+function update_variation_stock_quantity_in_chunks() {
+    // Define chunk size
+    $chunk_size = 5; // Number of products to process per batch
 
-        // Get the chunk size from the URL, and sanitize it to prevent injection
-        $chunk_size = intval( $_GET['chunk_size'] );
+    // Get the current page of the chunk (defaults to page 1 if not set)
+    $current_page = isset($_GET['page_number']) ? intval($_GET['page_number']) : 1;
 
-        // Define the query arguments to get all published variable products in ascending order
-        $args = array(
-            'post_type'      => 'product',
-            'post_status'    => 'publish',
-            'posts_per_page' => $chunk_size, // Limit to the chunk size passed in the URL
-            'tax_query'      => array(
-                array(
-                    'taxonomy' => 'product_type',
-                    'field'    => 'slug',
-                    'terms'    => 'variable', // Only query variable products
-                ),
+    // Get variable products in chunks
+    $args = array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => $chunk_size,
+        'paged'          => $current_page,
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'product_type',
+                'field'    => 'slug',
+                'terms'    => 'variable',
             ),
-            'orderby'        => 'ID',      // Order by product ID
-            'order'          => 'ASC',     // Ascending order
-        );
+        ),
+    );
 
-        // Create a new WP_Query for variable products
-        $query = new WP_Query( $args );
+    $products = get_posts($args);
 
-        // Loop through all found products
-        if ( $query->have_posts() ) {
-            while ( $query->have_posts() ) {
-                $query->the_post();
-                $product_id = get_the_ID();
-                $product = wc_get_product( $product_id );
+    // Log the products updated
+    $updated_products_log = [];
 
-                // Make sure it's a variable product
-                if ( $product->is_type( 'variable' ) ) {
-                    // Get all variations of the variable product
-                    $available_variations = $product->get_children();
+    if (!empty($products)) {
+        foreach ($products as $product_post) {
+            $product = wc_get_product($product_post->ID);
 
-                    // Flag to determine if at least one variation needs an update
-                    $needs_update = false;
+            if ($product->is_type('variable')) {
+                // Get variations of the variable product
+                $variations = $product->get_children();
 
-                    foreach ( $available_variations as $variation_id ) {
-                        // Check if '_vaping_liquid' field for the variation is empty or null
-                        $vaping_liquid_value = get_post_meta( $variation_id, '_vaping_liquid', true );
+                foreach ($variations as $variation_id) {
+                    $variation = wc_get_product($variation_id);
 
-                        if ( empty( $vaping_liquid_value ) ) {
-                            $needs_update = true;
-                            break; // If one variation has blank metadata, we will update all
-                        }
-                    }
+                    // Check if stock quantity is not set (null)
+                    if (is_null($variation->get_stock_quantity())) {
+                        // Update the stock quantity to 10
+                        $variation->set_stock_quantity(10);
+                        $variation->save();
 
-                    // If at least one variation has blank metadata, update all variations
-                    if ( $needs_update ) {
-                        foreach ( $available_variations as $variation_id ) {
-                            // Update the custom field '_vaping_liquid' for each variation with a value of 10
-                            update_post_meta( $variation_id, '_vaping_liquid', 10 );
-
-                            // Echo the variation name for debugging purposes
-                            $variation_name = get_the_title( $variation_id );
-                            echo 'Updated variation: ' . $variation_name . ' (ID: ' . $variation_id . ')<br>';
-                        }
-                    } else {
-                        // Echo the product name and skip the update
-                        $product_name = get_the_title( $product_id );
-                        echo 'Skipped variable product (all variations already set): ' . $product_name . ' (ID: ' . $product_id . ')<br>';
+                        // Add to log for tracking
+                        $updated_products_log[] = "Updated Product: " . $product->get_name() . " (Variation ID: $variation_id)";
                     }
                 }
-
-                // Clear output buffer if necessary
-                flush();
             }
-            wp_reset_postdata(); // Reset after the loop
-        } else {
-            echo 'No variable products found.<br>';
         }
 
-        // Prevent the full page from loading
-        exit;
+        // Display the log of updated products
+        echo '<h2>Updated Variations:</h2>';
+        if (!empty($updated_products_log)) {
+            echo '<ul>';
+            foreach ($updated_products_log as $log_entry) {
+                echo '<li>' . esc_html($log_entry) . '</li>';
+            }
+            echo '</ul>';
+        } else {
+            echo 'No products were updated in this chunk.';
+        }
+
+        // Add a link to process the next chunk
+        $next_page = $current_page + 1;
+        echo '<a href="' . esc_url(add_query_arg('page_number', $next_page, admin_url('admin.php'))) . '">Process Next Chunk</a>';
+    } else {
+        echo '<p>No more products to process.</p>';
     }
 }
-add_action( 'template_redirect', 'update_vaping_liquid_field_for_variable_products_with_empty_variations' );
+
+// Hook into an admin menu item for manual execution and testing
+add_action('admin_menu', function () {
+    add_menu_page('Update Variation Stock', 'Update Stock', 'manage_options', 'update-variation-stock', 'update_variation_stock_quantity_in_chunks');
+});
