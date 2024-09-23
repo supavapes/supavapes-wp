@@ -5354,7 +5354,6 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 
-<?php
 function update_variation_stock_quantity_for_specific_product($product_id) {
     // Get the specific product
     $product = wc_get_product($product_id);
