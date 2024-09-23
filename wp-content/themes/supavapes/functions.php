@@ -5352,3 +5352,47 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 }
 
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
+
+
+function supavapes_update_vaping_liquid_field_in_chunks() {
+    // Check if the URL parameters 'update_vaping_liquid' and 'chunk_size' are set
+    if ( isset( $_GET['update_vaping_liquid'] ) && $_GET['update_vaping_liquid'] == 'yes' && isset( $_GET['chunk_size'] ) ) {
+
+        // Get the chunk size from the URL, and sanitize it to prevent injection
+        $chunk_size = intval( $_GET['chunk_size'] );
+
+        // Define the query arguments to get all published simple products
+        $args = array(
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => $chunk_size, // Limit to the chunk size passed in the URL
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'product_type',
+                    'field'    => 'slug',
+                    'terms'    => 'simple',
+                ),
+            ),
+        );
+
+        // Create a new WP_Query for products
+        $query = new WP_Query( $args );
+
+        // Loop through all found products and update the custom field
+        if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+                $query->the_post();
+                $product_id = get_the_ID();
+
+                // Update the custom field '_vaping_liquid' with a value of 10
+                update_post_meta( $product_id, '_vaping_liquid', 10 );
+            }
+            wp_reset_postdata(); // Reset after the loop
+        }
+
+        // Output a success message
+        echo 'Updated ' . $chunk_size . ' products with custom field _vaping_liquid set to 10.';
+        exit; // Stop further execution after message
+    }
+}
+add_action( 'template_redirect', 'supavapes_update_vaping_liquid_field_in_chunks' );
