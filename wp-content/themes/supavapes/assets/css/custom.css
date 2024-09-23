@@ -1682,7 +1682,7 @@ li.ina-timeout-active-debugger {
 	height: 15px;
 }
 .sv-our-product-box .info-icon-container,
-.li.woocommerce-mini-cart-item.mini_cart_item  {
+li.woocommerce-mini-cart-item.mini_cart_item  {
     position: unset;
 }
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
