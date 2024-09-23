@@ -1687,6 +1687,7 @@ li.ina-timeout-active-debugger {
 }
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
 	bottom: 60px !important;
+    width: max-content;
 }
 
 li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
