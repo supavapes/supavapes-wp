@@ -1722,8 +1722,8 @@ body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-br
   padding: 0px;
 }
 
-body.woocommerce-order-received .price-breakup-popup tr,
-.price-breakup-popup tr{
+body.woocommerce-order-received .price-breakup-popup td,
+.price-breakup-popup td{
   border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 .price-breakup-popup .leftprice{
