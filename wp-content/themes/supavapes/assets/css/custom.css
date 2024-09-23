@@ -1784,7 +1784,7 @@ body.single-product.variable-product .cartItem h4.priceInfo.price-breakup {
 .info-icon-container img{
 	width: 100% !important;
 	height: auto !important;
-	object-fit: cover !important;
+	object-fit: contain !important;
 	object-position: center !important;
 }
 .quick-view-popup-model .price-breakup-popup {
@@ -1830,10 +1830,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
 }
 }
 @media(max-width:1024px){
-	body.woocommerce-cart #content table.cart .info-icon-container  img{
-		width: 15px !important;
-		height: 15px !important;
-	}
+	
 	.quick-view-popup-model .price-breakup-popup {
 		left: -60px;
 	}
@@ -1891,4 +1888,8 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     .woocommerce-order-details .price-breakup-popup {
         left: -150px;
     }
+    body.woocommerce-cart #content table.cart .info-icon-container{
+		width: 10px !important;
+		height: 10px !important;
+	}
 }
