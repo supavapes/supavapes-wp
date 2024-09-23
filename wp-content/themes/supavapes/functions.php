@@ -5291,7 +5291,7 @@ function supavapes_get_ip_location_and_set_cookies() {
 
 
 
-function custom_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
+function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
     // Get the Ontario and Federal tax from the order meta
     $ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
     $federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
@@ -5316,38 +5316,39 @@ function custom_price_breakdown_order_received( $item_id, $item, $order, $is_vis
 
     // Calculate the final price including taxes
     $final_price = floatval( $product_price ) + floatval( $ontario_tax ) + floatval( $federal_tax );
-
     ?>
-    <p>Product Price: <?php echo wc_price( $final_price ); ?></p>
-    <div class="info-icon-container">
-        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-        <div class="price-breakup-popup">
-            <h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
-            <table class="pricetable">
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
-                </tr>
-                <?php if ( isset( $federal_tax ) && !empty( $federal_tax ) ) { ?>
-                    <tr>
-                        <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-                        <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                    </tr>
-                <?php } 
-                if ( isset( $ontario_tax ) && !empty( $ontario_tax ) ) { ?>
-                    <tr>
-                        <td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
-                        <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-                    </tr>
-                <?php } ?>
-                <tr class="wholesaleprice">
-                    <td class='leftprice'><?php esc_html_e( 'Total Price with Taxes','supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-                </tr>
-            </table>
-        </div>
-    </div
+    <div>
+		<?php esc_html_e('Product Price: ','supavapes');?><?php echo wc_price( $final_price ); ?>
+		<div class="info-icon-container">
+		<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+			<div class="price-breakup-popup">
+				<h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
+				<table class="pricetable">
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
+					</tr>
+					<?php if ( isset( $federal_tax ) && !empty( $federal_tax ) ) { ?>
+						<tr>
+							<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
+							<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+						</tr>
+					<?php } 
+					if ( isset( $ontario_tax ) && !empty( $ontario_tax ) ) { ?>
+						<tr>
+							<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
+							<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+						</tr>
+					<?php } ?>
+					<tr class="wholesaleprice">
+						<td class='leftprice'><?php esc_html_e( 'Total Price with Taxes','supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 <?php 
 }
 
-add_action( 'woocommerce_order_item_meta_end', 'custom_price_breakdown_order_received', 10, 4 );
+add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
