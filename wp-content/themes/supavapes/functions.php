@@ -5382,7 +5382,8 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		$federal_exise_tax_label   = get_field( 'federal_exise_tax_label', 'option' );
 		$total_product_price_label = get_field( 'total_product_price_label', 'option' );
 
-		var_dump( $popup_heading ); die;
+		var_dump( get_field( 'total_product_price_label_copy', 'option' ) ); die;
+		
 
 		ob_start();
 		?>
