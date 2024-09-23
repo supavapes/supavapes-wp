@@ -5356,7 +5356,7 @@ add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_
 
 function update_variation_stock_quantity_in_chunks() {
     // Define chunk size
-    $chunk_size = 5; // Number of products to process per batch
+    $chunk_size = 10; // Number of products to process per batch
 
     // Get the current page of the chunk (defaults to page 1 if not set)
     $current_page = isset($_GET['page_number']) ? intval($_GET['page_number']) : 1;
