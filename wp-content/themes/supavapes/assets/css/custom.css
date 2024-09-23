@@ -1732,21 +1732,13 @@ body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-br
  text-align: right;
  white-space: nowrap;
  }
- .review-slider .price-breakup-popup {
-    box-shadow: 0 0 20px var(--white-light);
-    display: none;
-    position: absolute;
-    bottom: 30px;
-    left: -160px;
-    right: 0;
-    width: max-content;
-}
-.review-slider .slider-box .price-breakup-popup {
+
+/* .review-slider .slider-box .price-breakup-popup {
     box-shadow: 0 0 20px var(--white-light);
     display: none;
     position: absolute;
     right: 0;
-}
+} */
 .review-slider .slider-box {
     position: relative;
 }
