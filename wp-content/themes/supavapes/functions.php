@@ -5401,4 +5401,4 @@ add_action('admin_menu', function () {
         $target_product_id = 34343; // Replace with your specific product ID
         update_variation_stock_quantity_for_specific_product($target_product_id);
     });
-})
+});
