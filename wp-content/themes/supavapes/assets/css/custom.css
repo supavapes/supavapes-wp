@@ -1841,6 +1841,10 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         left: -40px;
         right: initial;
     }
+    .ina-debugger-section ul{
+        display: flex;
+        flex-direction: column;
+    }
 }
 @media (max-width: 575px) {
     body.single-product .summary.entry-summary .price-breakup-popup {
