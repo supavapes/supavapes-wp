@@ -5421,12 +5421,6 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		</div>
 		<?php
 
-		$html = ob_get_clean();
-
-		echo $html; die;
-
 		return ob_get_clean();
 	}
 }
-
-echo supavapes_price_breakdown_html();
