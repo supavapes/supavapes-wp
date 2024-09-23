@@ -211,7 +211,7 @@ class Variant_purchase_extended_Public {
 			// $wqcmv_table_headers = wqcmv_updated_headers();
 			do_action( 'wqcmv_before_container' );
 			?>
-			<div class="vpe-variations-container reteteeete variations-count-<?php echo esc_attr( count( $variations ) ); ?>">
+			<div class="vpe-variations-container variations-count-<?php echo esc_attr( count( $variations ) ); ?>">
 				<div class="vpe_table_responsive">
 					<div class="cartSection">
 						<?php do_action( 'wqcmv_table_before' ); ?>
