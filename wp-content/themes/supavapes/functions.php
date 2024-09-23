@@ -5354,6 +5354,7 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 
+<?php
 function update_variation_stock_quantity_for_specific_product($product_id) {
     // Get the specific product
     $product = wc_get_product($product_id);
@@ -5363,11 +5364,12 @@ function update_variation_stock_quantity_for_specific_product($product_id) {
         return;
     }
 
-    // Get variations of the variable product
-    $variations = $product->get_children();
+    // Get available variations of the variable product
+    $variations = $product->get_available_variations();
     $updated_products_log = [];
 
-    foreach ($variations as $variation_id) {
+    foreach ($variations as $variation_data) {
+        $variation_id = $variation_data['variation_id'];
         $variation = wc_get_product($variation_id);
 
         // Check if stock management is enabled and stock quantity is not set (null)
@@ -5400,4 +5402,4 @@ add_action('admin_menu', function () {
         $target_product_id = 34343; // Replace with your specific product ID
         update_variation_stock_quantity_for_specific_product($target_product_id);
     });
-});
+})
