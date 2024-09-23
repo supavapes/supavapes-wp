@@ -5354,14 +5354,14 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 
-function update_vaping_liquid_field_in_chunks_debug() {
+function update_vaping_liquid_field_for_variable_products_with_empty_variations() {
     // Check if the URL parameters 'update_vaping_liquid' and 'chunk_size' are set
     if ( isset( $_GET['update_vaping_liquid'] ) && $_GET['update_vaping_liquid'] == 'yes' && isset( $_GET['chunk_size'] ) ) {
 
         // Get the chunk size from the URL, and sanitize it to prevent injection
         $chunk_size = intval( $_GET['chunk_size'] );
 
-        // Define the query arguments to get all published simple products
+        // Define the query arguments to get all published variable products
         $args = array(
             'post_type'      => 'product',
             'post_status'    => 'publish',
@@ -5370,34 +5370,54 @@ function update_vaping_liquid_field_in_chunks_debug() {
                 array(
                     'taxonomy' => 'product_type',
                     'field'    => 'slug',
-                    'terms'    => 'simple',
+                    'terms'    => 'variable', // Only query variable products
                 ),
             ),
         );
 
-        // Create a new WP_Query for products
+        // Create a new WP_Query for variable products
         $query = new WP_Query( $args );
 
-        // Loop through all found products and update the custom field only if it's blank or null
+        // Loop through all found products
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
                 $product_id = get_the_ID();
+                $product = wc_get_product( $product_id );
 
-                // Check if '_vaping_liquid' field is empty or null
-                $vaping_liquid_value = get_post_meta( $product_id, '_vaping_liquid', true );
+                // Make sure it's a variable product
+                if ( $product->is_type( 'variable' ) ) {
+                    // Get all variations of the variable product
+                    $available_variations = $product->get_children();
 
-                if ( empty( $vaping_liquid_value ) ) {
-                    // Update the custom field '_vaping_liquid' with a value of 10
-                    update_post_meta( $product_id, '_vaping_liquid', 10 );
+                    // Flag to determine if at least one variation needs an update
+                    $needs_update = false;
 
-                    // Echo the product title for debugging purposes
-                    $product_name = get_the_title( $product_id );
-                    echo 'Updated product: ' . $product_name . ' (ID: ' . $product_id . ')<br>';
-                } else {
-                    // Echo the product name and skip the update
-                    $product_name = get_the_title( $product_id );
-                    echo 'Skipped product (already set): ' . $product_name . ' (ID: ' . $product_id . ')<br>';
+                    foreach ( $available_variations as $variation_id ) {
+                        // Check if '_vaping_liquid' field for the variation is empty or null
+                        $vaping_liquid_value = get_post_meta( $variation_id, '_vaping_liquid', true );
+
+                        if ( empty( $vaping_liquid_value ) ) {
+                            $needs_update = true;
+                            break; // If one variation has blank metadata, we will update all
+                        }
+                    }
+
+                    // If at least one variation has blank metadata, update all variations
+                    if ( $needs_update ) {
+                        foreach ( $available_variations as $variation_id ) {
+                            // Update the custom field '_vaping_liquid' for each variation with a value of 10
+                            update_post_meta( $variation_id, '_vaping_liquid', 10 );
+
+                            // Echo the variation name for debugging purposes
+                            $variation_name = get_the_title( $variation_id );
+                            echo 'Updated variation: ' . $variation_name . ' (ID: ' . $variation_id . ')<br>';
+                        }
+                    } else {
+                        // Echo the product name and skip the update
+                        $product_name = get_the_title( $product_id );
+                        echo 'Skipped variable product (all variations already set): ' . $product_name . ' (ID: ' . $product_id . ')<br>';
+                    }
                 }
 
                 // Clear output buffer if necessary
@@ -5405,12 +5425,11 @@ function update_vaping_liquid_field_in_chunks_debug() {
             }
             wp_reset_postdata(); // Reset after the loop
         } else {
-            echo 'No simple published products found.<br>';
+            echo 'No variable products found.<br>';
         }
 
         // Prevent the full page from loading
         exit;
     }
 }
-add_action( 'template_redirect', 'update_vaping_liquid_field_in_chunks_debug' );
-
+add_action( 'template_redirect', 'update_vaping_liquid_field_for_variable_products_with_empty_variations' );
