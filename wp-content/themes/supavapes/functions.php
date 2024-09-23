@@ -4150,7 +4150,7 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 		$ontario_tax = 0;
 
 		// Check if vaping_liquid value is greater than 10
-		if ($vaping_liquid > 10) {
+		if ( $vaping_liquid > 10 ) {
 			// Divide the vaping_liquid value into two parts
 			$first_part  = 10;
 			$second_part = $vaping_liquid - $first_part;
@@ -4202,17 +4202,19 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 		$federal_tax = 0;
 
 		// Check if vaping_liquid value is greater than 10
-		if ($vaping_liquid > 10) {
+		if ( $vaping_liquid > 10 ) {
 			// Divide the vaping_liquid value into two parts
-			$first_part = 10;
+			$first_part  = 10;
 			$second_part = $vaping_liquid - $first_part;
 
 			// Calculate tax for the first part (10 ml)
-			$federal_tax += (10 / 2) * $federal_duty_per_2ml;
+			$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
 
 			// Calculate tax for the second part (if any)
-			if ($second_part > 0) {
-				$federal_tax += floor($second_part / 10) * $federal_duty_per_10ml;
+			if ( $second_part > 0 ) {
+				$second_part_remainder = (float) $second_part % 10;
+				$second_part           = ( 0.00 < $second_part_remainder ) ? ( $second_part + 1 ) : $second_part;
+				$ontario_tax          += $second_part * $ontario_duty_per_10ml;
 			}
 		}
 
