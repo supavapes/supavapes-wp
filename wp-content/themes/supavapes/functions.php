@@ -5255,7 +5255,13 @@ function update_sv_product_slider() {
 
 function supavapes_get_ip_location_and_set_cookies() {
 
-	debug($_SERVER);
+	$REAL_IP = getenv('HTTP_X_REAL_IP');
+	$FORWARDED_CONTINENT = getenv('HTTP_X_FORWARDED_CONTINENT');
+	$FORWARDED_COUNTRY = getenv('HTTP_X_FORWARDED_COUNTRY');
+
+	echo 'Real IP  : '.$REAL_IP.'<br>';
+	echo 'Source IP Continent : '.$FORWARDED_CONTINENT.'<br>';
+	echo 'Source IP Country : '.$FORWARDED_COUNTRY.'<br>';
 	if (!isset($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) || !isset($_COOKIE['user_country'])) {
 
 		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
