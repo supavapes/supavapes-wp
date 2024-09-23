@@ -5356,3 +5356,69 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 }
 
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
+
+/**
+ * If the function, `supavapes_price_breakdown_html` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
+	/**
+	 * Return the html for price breakdown popup.
+	 *
+	 * @param float $price Product price.
+	 * @param float $federal_tax Federal exise duty value.
+	 * @param float $ontario_tax Ontario exise duty value.
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_price_breakdown_html( $price = 0, $federal_tax = 0, $ontario_tax = 0 ) {
+		$popup_heading             = get_field( 'popup_heading', 'option' );
+		// $popup_heading             = ( ! empty )
+		$product_price_label       = get_field( 'product_price_label', 'option' );
+		$ontario_exise_tax_label   = get_field( 'ontario_exise_tax_label', 'option' );
+		$federal_exise_tax_label   = get_field( 'federal_exise_tax_label', 'option' );
+		$total_product_price_label = get_field( 'total_product_price_label', 'option' );
+
+		var_dump( $popup_heading ); die;
+
+		ob_start();
+		?>
+		<div class="info-icon-container">
+			<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+			<div class="price-breakup-popup">
+				<h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
+				<table class="pricetable">
+					<tr>
+						<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $price ); ?></td>
+					</tr>
+					<?php if ( 'Ontario' !== $state ) { ?>
+						<tr>
+							<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
+							<td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
+						</tr>
+					<?php } else { ?>
+						<tr>
+							<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
+							<td class='rightprice'><?php echo wc_price( $min_ontario_tax ); ?></td>
+						</tr>
+						<tr>
+							<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
+							<td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
+						</tr>
+					<?php } ?>
+					<tr class="wholesaleprice">
+						<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $final_min_price ); ?></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<?php
+
+		return ob_get_clean();
+	}
+}
+
+supavapes_price_breakdown_html();
