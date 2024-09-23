@@ -1698,7 +1698,14 @@ li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
 .price-breakup-popup table.pricetable {
     margin: 0;
 }
-.price-breakup-popup .leftprice, .price-breakup-popup .rightprice,.price-breakup-popup .rightprice span bdi,.price-breakup-popup .rightprice ins span {
+body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-breakup-popup .leftprice,
+body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-breakup-popup .rightprice,
+body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-breakup-popup .rightprice span bdi,
+body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-breakup-popup .rightprice ins span,
+.price-breakup-popup .leftprice, 
+.price-breakup-popup .rightprice,
+.price-breakup-popup .rightprice span bdi,
+.price-breakup-popup .rightprice ins span {
     font-size: 14px !important;
 }
 .price-breakup-popup table td,.price-breakup-popup table th {
