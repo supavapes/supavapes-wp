@@ -5255,6 +5255,7 @@ function update_sv_product_slider() {
 
 function supavapes_get_ip_location_and_set_cookies() {
 
+	debug($_SERVER);
 	if (!isset($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) || !isset($_COOKIE['user_country'])) {
 
 		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
@@ -5286,7 +5287,7 @@ function supavapes_get_ip_location_and_set_cookies() {
 	}
 	// debug($_COOKIE);
 }
-// add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+add_action('init', 'supavapes_get_ip_location_and_set_cookies');
 
 
 
@@ -5352,53 +5353,3 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 }
 
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
-
-
-function update_variation_stock_quantity_for_specific_product($product_id) {
-    // Get the specific product
-    $product = wc_get_product($product_id);
-
-    if (!$product || !$product->is_type('variable')) {
-        echo 'The specified product is not a variable product or does not exist.';
-        return;
-    }
-
-    // Get available variations of the variable product
-    $variations = $product->get_available_variations();
-    $updated_products_log = [];
-
-    foreach ($variations as $variation_data) {
-        $variation_id = $variation_data['variation_id'];
-        $variation = wc_get_product($variation_id);
-
-        // Check if stock management is enabled and stock quantity is not set (null)
-        if ($variation->get_manage_stock() && is_null($variation->get_stock_quantity())) {
-            // Update the stock quantity to 10
-            $variation->set_stock_quantity(10);
-            $variation->save();
-
-            // Add to log for tracking
-            $updated_products_log[] = "Updated Variation ID: $variation_id for Product: " . $product->get_name();
-        }
-    }
-
-    // Display the log of updated products
-    if (!empty($updated_products_log)) {
-        echo '<h2>Updated Variations:</h2><ul>';
-        foreach ($updated_products_log as $log_entry) {
-            echo '<li>' . esc_html($log_entry) . '</li>';
-        }
-        echo '</ul>';
-    } else {
-        echo '<p>No variations were updated for this product.</p>';
-    }
-}
-
-// Hook into an admin menu item for manual execution and testing
-add_action('admin_menu', function () {
-    add_menu_page('Update Specific Product Variations', 'Update Variations', 'manage_options', 'update-specific-product-variations', function() {
-        // Change this ID to the product you want to target
-        $target_product_id = 34343; // Replace with your specific product ID
-        update_variation_stock_quantity_for_specific_product($target_product_id);
-    });
-});
