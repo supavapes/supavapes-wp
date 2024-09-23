@@ -1467,7 +1467,7 @@ a.sv-blog-title:hover{color: var(--primary-palette-carmine-pink);}
 .blog-view-count-box{font-size: 16px;color: #fff;line-height: 26px;background-color: rgba(236, 78, 52, 0.9);height: 35px;display: flex;align-items: center;justify-content: center;min-width: 90px;gap: 5px;border-radius: 10px;}
 ul.sv-blog-page-numbers-list {padding: 0;display: flex;align-items: center; justify-content: center; list-style-type: none; gap: 20px; width: 100%;}
 a.page-numbers {border: 1px solid var(--primary-palette-carmine-pink);border-radius: 50%;height: 50px;width: 50px;color: var(--white);text-align: center;padding: 0;margin: 0;font-size: 18px;font-weight: 800;display: flex;align-items: center;justify-content: center;border: 1px solid var(--primary-palette-carmine-pink);text-decoration: none !important;}
-.page-numbers:hover,.page-numbers.current {font-weight: 600;color: white;height: 50px;text-align: center;border: 1px solid var(--primary-palette-carmine-pink);border-radius: 50%;font-size: 18px;margin: 0px;}
+a.page-numbers:hover,.page-numbers.current {font-weight: 600;color: white;height: 50px;text-align: center;border: 1px solid var(--primary-palette-carmine-pink);border-radius: 50%;font-size: 18px;margin: 0px;}
 a.prev.page-numbers,a.next.page-numbers{position: relative;border-color: transparent;color: transparent;}
 a.prev.page-numbers:hover, a.next.page-numbers:hover{background-color: transparent;border-color: var(--primary-palette-carmine-pink);}
 a.next.page-numbers::before {content: "";background-image: url(/wp-content/uploads/2024/05/next-2.png);height: 20px;width: 20px;background-repeat: no-repeat;position: absolute;background-size: 10px;background-position: center;}
