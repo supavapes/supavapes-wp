@@ -1823,6 +1823,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     align-items: center;
     gap: 5px;
 }
+
 @media(max-width:1200px){
 .sv-product-price {
     font-size: 16px !important;
@@ -1880,6 +1881,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     .woocommerce-order-details .price-breakup-popup {
         left: -90px;
     }
+    .product-pricebreakup-wrap bdi{font-size: 16px !important;}
 }
 @media (max-width: 575px) {
     body.single-product .summary.entry-summary .price-breakup-popup {
@@ -1887,6 +1889,6 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         right: initial;
     }
     .woocommerce-order-details .price-breakup-popup {
-        left: -180px;
+        left: -150px;
     }
 }
