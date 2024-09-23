@@ -5367,6 +5367,8 @@ function update_variation_stock_quantity_in_chunks() {
         'post_status'    => 'publish',
         'posts_per_page' => $chunk_size,
         'paged'          => $current_page,
+		'orderby'        => 'ID',
+        'order'          => 'ASC',
         'tax_query'      => array(
             array(
                 'taxonomy' => 'product_type',
