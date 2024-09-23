@@ -1688,6 +1688,8 @@ li.woocommerce-mini-cart-item.mini_cart_item  {
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
 	bottom: 60px !important;
     width: max-content;
+    right: 0;
+    left: -170px;
 }
 
 li.woocommerce-mini-cart-item.mini_cart_item:first-child .price-breakup-popup {
