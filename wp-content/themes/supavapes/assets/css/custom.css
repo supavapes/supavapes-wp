@@ -1686,7 +1686,7 @@ li.ina-timeout-active-debugger {
 }
 .home .info-icon-container,
 .sv-our-product-box .info-icon-container,
-li.woocommerce-mini-cart-item.mini_cart_item  {
+li.woocommerce-mini-cart-item.mini_cart_item .info-icon-container {
     position: unset !important;
 }
 li.woocommerce-mini-cart-item.mini_cart_item .price-breakup-popup {
