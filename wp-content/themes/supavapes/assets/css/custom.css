@@ -1892,4 +1892,10 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
 		width: 10px !important;
 		height: 10px !important;
 	}
+    body.woocommerce-account .product-name a {
+        font-size: 14px !important;
+    }
+    body.woocommerce-account tr.woocommerce-table__line-item.order_item td {
+        font-size: 14px !important;
+    }
 }
