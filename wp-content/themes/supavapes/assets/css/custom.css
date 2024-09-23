@@ -1786,6 +1786,12 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     left: -90px;
     top: initial;
 }
+.woocommerce-order-details .price-breakup-popup{
+    bottom: initial;
+    width: max-content;
+    top: 20px;
+    left: -50px;
+}
 @media(max-width:1024px){
 	body.woocommerce-cart #content table.cart .info-icon-container  img{
 		width: 15px !important;
