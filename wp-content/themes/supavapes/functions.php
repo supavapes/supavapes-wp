@@ -5255,9 +5255,6 @@ function update_sv_product_slider() {
 
 function supavapes_get_ip_location_and_set_cookies() {
 
-	// $geoip_record = geoip_record_by_name($_SERVER['REMOTE_ADDR']);
-	// $state_code  = $geoip_record['region']; // returns region numerical code
-	debug($_SERVER);
 	if (!isset($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) || !isset($_COOKIE['user_country'])) {
 
 		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
