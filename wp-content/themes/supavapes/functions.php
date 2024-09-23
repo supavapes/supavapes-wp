@@ -5421,4 +5421,4 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 	}
 }
 
-supavapes_price_breakdown_html();
+echo supavapes_price_breakdown_html();
