@@ -196,7 +196,7 @@ if ( $product->is_type( 'variable' ) ) {
 							</tr>
 						<?php } ?>
 							<tr class="wholesaleprice">
-								<td class='leftprice'><?php esc_html_e( 'Wholesale Price','supavapes' ); ?></td>
+								<td class='leftprice'><?php esc_html_e( 'Total Price','supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
 							</tr>
 						</table>
@@ -238,7 +238,7 @@ if ( $product->is_type( 'variable' ) ) {
 								</tr>
 							<?php } ?>
 							<tr class="wholesaleprice">
-								<td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
+								<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $final_min_price ); ?></td>
 							</tr>
 						</table>
@@ -271,7 +271,7 @@ if ( $product->is_type( 'variable' ) ) {
 									</tr>
 								<?php } ?>
 								<tr class="wholesaleprice">
-									<td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
+									<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
 									<td class='rightprice'><?php echo wc_price( $final_min_price ).' - '.wc_price( $final_max_price ); ?></td>
 								</tr>
 							</table>
