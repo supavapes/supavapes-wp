@@ -5373,6 +5373,8 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_price_breakdown_html( $price = 0, $federal_tax = 0, $ontario_tax = 0 ) {
+		if ( is_admin() ) return;
+
 		$popup_heading             = get_field( 'popup_heading', 'option' );
 		// $popup_heading             = ( ! empty )
 		$product_price_label       = get_field( 'product_price_label', 'option' );
