@@ -220,7 +220,6 @@ if ( ! function_exists( 'supavapes_init_callback' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_init_callback() {
-		global $customer_current_location_state = 'Uttar Pradesh';
 		// Enqueue custom endpoints for customer dashboard.
 		add_rewrite_endpoint( 'notification-preference', EP_ROOT | EP_PAGES );
 		add_rewrite_endpoint( 'wishlist', EP_ROOT | EP_PAGES );
@@ -5359,6 +5358,62 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 /**
+ * If the function, `supavapes_get_customer_current_location` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_get_customer_current_location' ) ) {
+	/**
+	 * Get the customer's current location.
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_get_customer_current_location() {
+
+		return ( empty( $_COOKIE['user_state'] ) || is_null( $_COOKIE['user_state'] ) || false === $_COOKIE['user_state'] ) ? false : $_COOKIE['user_state'];
+	}
+}
+
+/**
+ * If the function, `supavapes_get_product_tax` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_get_product_tax' ) ) {
+	/**
+	 * Get the product's tax based on the location.
+	 *
+	 * @param float|int $vape_qty Vape product quantity in ml.
+	 * @param string    $customer_location Customer current city.
+	 *
+	 * @return float
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_get_product_tax( $vape_qty, $customer_location ) {
+		var_dump( $vape_qty, $customer_location );
+		$location             = ( ! empty( $customer_location ) && 'Ontario' === $customer_location ) ? 'ontario' : 'federal';
+		$excise_value_2_ml    = get_field( "{$location}_excise_value_2_ml", 'option' );
+		$excise_value_10_ml   = get_field( "{$location}_excise_value_10_ml", 'option' );
+		$vape_qty_modulous_10 = $vape_qty % 10;
+		$vape_qty_division_10 = floor( $vape_qty / 10 );
+
+		// Check to see if the quantity is lesser than 10.
+		if ( 0.0 === $vape_qty_division_10 ) {
+			if ( 0 < $vape_qty_modulous_10 ) {
+				$vape_qty_modulous_2 = $vape_qty % 2;
+				$vape_qty_division_2 = floor( $vape_qty / 2 );
+				$vape_qty_division_2 = ( 0.0 < $vape_qty_modulous_2 ) ? ( $vape_qty_division_2 + 1 ) : $vape_qty_division_2;
+				$tax                 = $vape_qty_division_2 * 2;
+
+				var_dump( $tax );
+				die("poool");
+			}
+		}
+
+		die("lkoo");
+	}
+}
+
+/**
  * If the function, `supavapes_price_breakdown_html` doesn't exist.
  */
 if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
@@ -5373,7 +5428,7 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	function supavapes_price_breakdown_html( $price = 0, $federal_tax = 0, $ontario_tax = 0 ) {
+	function supavapes_price_breakdown_html( $vape_qty = 0, $price = 0, $federal_tax = 0, $ontario_tax = 0 ) {
 		if ( is_admin() ) return;
 
 		$popup_heading             = get_field( 'popup_heading', 'option' );
@@ -5386,6 +5441,9 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		$federal_exise_tax_label   = ( empty( $federal_exise_tax_label ) || is_null( $federal_exise_tax_label ) || false === $federal_exise_tax_label ) ? __( 'Federal Tax:', 'supavapes' ) : $federal_exise_tax_label;
 		$total_product_price_label = get_field( 'total_product_price_label', 'option' );
 		$total_product_price_label = ( empty( $total_product_price_label ) || is_null( $total_product_price_label ) || false === $total_product_price_label ) ? __( 'Total Product Price:', 'supavapes' ) : $total_product_price_label;
+		$customer_location         = supavapes_get_customer_current_location();
+		$vape_qty                  = 9; // In ml.
+		$vape_tax                  = supavapes_get_product_tax( $vape_qty, $customer_location );
 
 		ob_start();
 		?>
@@ -5398,21 +5456,16 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 						<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
 						<td class='rightprice'><?php echo wc_price( $price ); ?></td>
 					</tr>
-					<?php if ( 'Ontario' !== $state ) { ?>
-						<tr>
-							<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-							<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-						</tr>
-					<?php } else { ?>
+					<?php if ( 'Ontario' === $customer_location ) { ?>
 						<tr>
 							<td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
 							<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
 						</tr>
-						<tr>
-							<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-							<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-						</tr>
 					<?php } ?>
+					<tr>
+						<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+						<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+					</tr>
 					<tr class="wholesaleprice">
 						<td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
 						<td class='rightprice'><?php echo wc_price( 0 ); ?></td>
@@ -5422,12 +5475,11 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		</div>
 		<?php
 
-		echo ob_get_clean();
-
-		debug( $GLOBALS );
-		
+		echo ob_get_clean();		
 		die("poll");
 
 		return ob_get_clean();
 	}
 }
+
+supavapes_price_breakdown_html();
