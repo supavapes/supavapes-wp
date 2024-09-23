@@ -5426,7 +5426,7 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 
 		debug( $GLOBALS );
 		
-		die;
+		die("poll");
 
 		return ob_get_clean();
 	}
