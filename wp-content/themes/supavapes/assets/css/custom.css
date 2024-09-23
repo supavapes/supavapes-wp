@@ -1733,12 +1733,11 @@ body.woocommerce-account tr.woocommerce-table__line-item.order_item td .price-br
  white-space: nowrap;
  }
 
-/* .review-slider .slider-box .price-breakup-popup {
-    box-shadow: 0 0 20px var(--white-light);
-    display: none;
+.review-slider .slider-box .price-breakup-popup {
     position: absolute;
-    right: 0;
-} */
+    max-width: 250px;
+    right: 10px;
+}
 .review-slider .slider-box {
     position: relative;
 }
