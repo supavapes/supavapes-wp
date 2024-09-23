@@ -5361,7 +5361,7 @@ function update_vaping_liquid_field_for_variable_products_with_empty_variations(
         // Get the chunk size from the URL, and sanitize it to prevent injection
         $chunk_size = intval( $_GET['chunk_size'] );
 
-        // Define the query arguments to get all published variable products
+        // Define the query arguments to get all published variable products in ascending order
         $args = array(
             'post_type'      => 'product',
             'post_status'    => 'publish',
@@ -5373,6 +5373,8 @@ function update_vaping_liquid_field_for_variable_products_with_empty_variations(
                     'terms'    => 'variable', // Only query variable products
                 ),
             ),
+            'orderby'        => 'ID',      // Order by product ID
+            'order'          => 'ASC',     // Ascending order
         );
 
         // Create a new WP_Query for variable products
