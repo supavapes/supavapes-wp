@@ -23,7 +23,7 @@ include 'includes/classes/class-mailchimp-subscribers-table.php';
 // include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
 include 'includes/shortcodes.php';
 
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 /**
@@ -4446,7 +4446,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 }
 
 // Add the price with the icon in place of the default one
-add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
+// add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
 
 
 
