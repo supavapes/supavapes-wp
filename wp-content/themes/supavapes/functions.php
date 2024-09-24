@@ -4236,7 +4236,11 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	}
 }
 
-supavapes_calculate_federal_tax( 32 );
+
+function test_func(){
+	supavapes_calculate_federal_tax( 32 );
+}
+add_action( 'init', 'test_func' );
 
 /**
  * If the function, `supavapes_detail_page_price_breakdown_callback`, doesn't exist.
