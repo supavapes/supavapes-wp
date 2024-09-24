@@ -4195,7 +4195,9 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_calculate_federal_tax( $vaping_liquid ) {
-		die('lkooooooo');
+		echo '<pre>vaping_liquid';
+		print_r($vaping_liquid);
+		echo '</pre>';
 		// Fetch duty rates from ACF fields or replace with static values
 		$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
 		$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
