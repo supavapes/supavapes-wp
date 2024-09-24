@@ -202,6 +202,9 @@ class ManageDiscount extends Base
      */
     function getProductRegularPrice($value, $product)
     {
+        echo "<pre>";
+        print_r($product);
+        echo "</pre>";
         $prices = self::calculateInitialAndDiscountedPrice($product, 1);
         if (!empty($prices['initial_price_with_tax']))
             $value = $prices['initial_price_with_tax'];
@@ -209,6 +212,9 @@ class ManageDiscount extends Base
     }
 
     function doProcessStrikeOut($price_html, $product, $quantity = 1, $ajax_price = false){
+        echo "<pre>";
+        print_r($product);
+        echo "</pre>";
         if(isset($_REQUEST['action'])){
             $blocked_actions = array('inline-save');
             if(in_array($_REQUEST['action'], $blocked_actions)){
