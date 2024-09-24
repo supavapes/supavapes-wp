@@ -5514,3 +5514,5 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 }
 
 add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calculate_fees_callback' );
+
+// last code at 5518
