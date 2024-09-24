@@ -2518,7 +2518,7 @@ add_action('wp_ajax_nopriv_get_sales_data', 'get_woocommerce_sales_data');
 
 add_filter('woocommerce_cart_item_name', 'add_quantity_rule_message_to_cart_item_name', 20, 3);
 
-function add_quantity_rule_message_to_cart_item_name($product_name, $cart_item, $cart_item_key) {
+function add_quantity_rule_message_to_cart_item_name( $product_name, $cart_item, $cart_item_key ) {
 
 	global $wp_current_filter;
 	if( in_array('wp_ajax_render_minicart_data', $wp_current_filter, true)) {
@@ -4208,7 +4208,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 		// debug($product);
 		
 		$product_data = wc_get_product( $product->get_id() );
-debug($product_data);
+		debug($product_data);
 		if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 			$product_type = $product_data->get_type();
 		}
@@ -4217,6 +4217,12 @@ debug($product_data);
 		if ( $product_type == 'simple' ) {
 			$reg_price  = $product->get_regular_price();
 			$sale_price = $product->get_sale_price();
+
+			// Format regular and sale prices using the filter
+			echo $formatted_reg_price = apply_filters( 'formatted_woocommerce_price', wc_price( $reg_price ), $reg_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+			echo $formatted_sale_price = apply_filters( 'formatted_woocommerce_price', wc_price( $sale_price ), $sale_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+
+
 			$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 			$vaping_liquid = (int) $vaping_liquid;
