@@ -5580,7 +5580,7 @@ add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calcu
 // last code at 5518
 
 
-add_filter( 'formatted_woocommerce_price', 'custom_format_woocommerce_price', 10, 5 );
+// add_filter( 'formatted_woocommerce_price', 'custom_format_woocommerce_price', 10, 5 );
 
 function custom_format_woocommerce_price( $formatted_price, $price, $decimal_places, $decimal_separator, $thousand_separator ) {
 	
