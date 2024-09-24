@@ -23,7 +23,6 @@ jQuery(document).ready(function() {
 	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
 	// 	jQuery(this).next('.price-breakup-popup').toggle();
 	// });
-	
 	if (jQuery('body').hasClass('single-product')) {
 		// Select the price element
 		var priceElement = jQuery('.entry-summary .price');
