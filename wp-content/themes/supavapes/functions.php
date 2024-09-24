@@ -4194,6 +4194,7 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_calculate_federal_tax( $vaping_liquid ) {
+		die('lkoooo3232');
 		echo '<pre>vaping_liquid';
 		print_r($vaping_liquid);
 		echo '</pre>';
