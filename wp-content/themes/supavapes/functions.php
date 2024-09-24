@@ -4312,7 +4312,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 							</tr>
 							<?php } ?>
 							<tr class="wholesaleprice">
-								<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
+								<td class='leftprice'><?php esc_html_e( 'Total cvcv Price', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
 							</tr>
 						</table>
