@@ -5526,16 +5526,19 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 				// Calculate Ontario and Federal taxes using the provided functions.
 				$ontario_tax_total += supavapes_calculate_ontario_tax( $total_vaping_liquid );
 				$federal_tax_total += supavapes_calculate_federal_tax( $total_vaping_liquid );
+
+				$cart_ontario_tax_total = $ontario_tax_total * $cart_item['quantity'];
+				$cart_federal_tax_total = $federal_tax_total * $cart_item['quantity'];
 			}
 		}
  
 		// Add fees to the cart.
 		if ( $ontario_tax_total > 0 ) {
-			$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $ontario_tax_total, false );
+			$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $cart_ontario_tax_total, false );
 		}
 
 		if ( $federal_tax_total > 0 ) {
-			$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $federal_tax_total, false );
+			$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $cart_federal_tax_total, false );
 		}
 	}
 }
