@@ -119,7 +119,7 @@ if ( $product->is_type( 'variable' ) ) {
 		}
 }
 
-
+echo "innnnnnnnnnn";
 
 ?>
 <li <?php wc_product_class( '', $product ); ?>>
