@@ -4218,9 +4218,14 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			$reg_price  = $product->get_regular_price();
 			$sale_price = $product->get_sale_price();
 
-			// Format regular and sale prices using the filter
-			echo $formatted_reg_price = apply_filters( 'formatted_woocommerce_price', wc_price( $reg_price ), $reg_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
-			echo $formatted_sale_price = apply_filters( 'formatted_woocommerce_price', wc_price( $sale_price ), $sale_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+
+			// Apply the custom formatting filter
+			$price = apply_filters( 'formatted_woocommerce_price', number_format( $reg_price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] ), $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'], $original_price );
+			echo "jhkj".$price;
+
+			// // Format regular and sale prices using the filter
+			// echo "formatted reg price: ".$formatted_reg_price = apply_filters( 'formatted_woocommerce_price', wc_price( $reg_price ), $reg_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+			// echo "formatted sale price: ".$formatted_sale_price = apply_filters( 'formatted_woocommerce_price', wc_price( $sale_price ), $sale_price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
 
 
 			$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
