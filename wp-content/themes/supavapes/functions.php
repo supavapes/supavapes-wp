@@ -5503,7 +5503,8 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 		}
 
 		// Determine the final price based on the state.
-		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+		// $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+		$state = 'Ontario';
 
 		$ontario_tax_total = 0;
 		$federal_tax_total = 0;
