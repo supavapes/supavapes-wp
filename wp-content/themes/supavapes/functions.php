@@ -3688,19 +3688,19 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 						wc_price( $final_price )
 					);
 
-					// Add the info icon with tooltip
-					$info_icon_html = '<span class="supavapes-price-info">ℹ️
-						<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-					</span>';
+					// // Add the info icon with tooltip
+					// $info_icon_html = '<span class="supavapes-price-info">ℹ️
+					// 	<div class="supavapes-tooltip">' . $price_breakdown . '</div>
+					// </span>';
 			
-					// Combine the price and info icon
-					$price .= $info_icon_html;
+					// // Combine the price and info icon
+					// $price .= $info_icon_html;
 				}	
             // Update the price display
             $price = wc_price( $final_price );
         }
 		
-        return $price;
+        return "test: ".$price;
     }
 }
 
@@ -4446,7 +4446,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 }
 
 // Add the price with the icon in place of the default one
-// add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
+add_action( 'woocommerce_single_product_summary', 'supavapes_detail_page_price_breakdown_callback', 10 );
 
 
 
