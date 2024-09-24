@@ -20,11 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
-// die('lkoooooo');
+die('lkoooooo');
 ?>
 <div class="price-wrap">
 <p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?> price-test">
-<?php echo "ddddd".$product->get_price_html(); ?>
+<?php //$product->get_price_html(); ?>
 
 
 <?php
