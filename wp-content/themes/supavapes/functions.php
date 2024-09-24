@@ -5516,7 +5516,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			if ( $product->is_type( 'variation' ) ) {
 				$vaping_liquid = get_post_meta( $cart_item['variation_id'], '_vaping_liquid', true );
 			}
-
+			echo "Liquid Value: ".$vaping_liquid;
 			// Ensure $vaping_liquid is numeric and valid
 			if ( is_numeric( $vaping_liquid ) && $vaping_liquid > 0 ) {
 				// Calculate Ontario and Federal taxes using the provided functions.
