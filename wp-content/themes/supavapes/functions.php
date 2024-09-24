@@ -5476,13 +5476,14 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		<?php
 
 		echo ob_get_clean();		
-		die("poll");
+		// die("poll");
 
 		return ob_get_clean();
 	}
 }
 
-// supavapes_price_breakdown_html();
+supavapes_price_breakdown_html();
+
 
 if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) ) {
 	/**
@@ -5493,6 +5494,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 	 * @since 1.0.0
 	 */
 	function supavapes_woocommerce_cart_calculate_fees_callback( $cart ) {
+
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 			return;
 		}
@@ -5552,6 +5554,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			}
 		}
 	}
+
 }
 
 add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calculate_fees_callback' );
