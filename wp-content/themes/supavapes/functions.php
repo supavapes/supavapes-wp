@@ -5520,12 +5520,12 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			// Ensure $vaping_liquid is numeric and valid.
 			if ( is_numeric( $vaping_liquid ) && $vaping_liquid > 0 ) {
 				// Calculate the total vaping liquid based on product quantity.
-				$total_vaping_liquid = $vaping_liquid * $cart_item['quantity'];
-				echo "Total vaping liquid: ".$total_vaping_liquid;
+				// $total_vaping_liquid = $vaping_liquid * $cart_item['quantity'];
+				// echo "Total vaping liquid: ".$total_vaping_liquid;
 
 				// Calculate Ontario and Federal taxes using the provided functions.
-				$ontario_tax_total += supavapes_calculate_ontario_tax( $total_vaping_liquid );
-				$federal_tax_total += supavapes_calculate_federal_tax( $total_vaping_liquid );
+				$ontario_tax_total += supavapes_calculate_ontario_tax( $vaping_liquid );
+				$federal_tax_total += supavapes_calculate_federal_tax( $vaping_liquid );
 
 				$cart_ontario_tax_total = $ontario_tax_total * $cart_item['quantity'];
 				$cart_federal_tax_total = $federal_tax_total * $cart_item['quantity'];
