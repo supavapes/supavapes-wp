@@ -4217,7 +4217,7 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 			if ( $second_part > 0 ) {
 				$full_tens = floor($second_part / 10); // Get full 10ml parts
 				$remainder = $second_part % 10; // Get the remainder
-
+				echo "reminder: ".$remainder;
 				// Add tax for the full 10ml increments
 				$federal_tax += $full_tens * $federal_duty_per_10ml;
 
