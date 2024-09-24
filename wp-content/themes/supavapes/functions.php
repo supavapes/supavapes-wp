@@ -5499,7 +5499,7 @@ function supavapes_price_breakdown_custom_html( $product_price = null, $federal_
 					<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
 					<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
 				</tr>
-                <?php if ( 'Gujarat' !== $state ) { ?>
+                <?php if ( 'Ontario' !== $state ) { ?>
                 <tr>
                     <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
                     <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
