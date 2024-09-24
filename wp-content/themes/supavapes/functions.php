@@ -5502,6 +5502,9 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			return;
 		}
 
+		// Determine the final price based on the state.
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
 		$ontario_tax_total = 0;
 		$federal_tax_total = 0;
 
@@ -5531,14 +5534,21 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 				$cart_federal_tax_total = $federal_tax_total * $cart_item['quantity'];
 			}
 		}
- 
-		// Add fees to the cart.
-		if ( $ontario_tax_total > 0 ) {
-			$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $cart_ontario_tax_total, false );
-		}
+		
+		echo "State: ".$state;
+		if ( 'Ontario' == $state ) {
+			// Add fees to the cart.
+			if ( $ontario_tax_total > 0 ) {
+				$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $cart_ontario_tax_total, false );
+			}
 
-		if ( $federal_tax_total > 0 ) {
-			$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $cart_federal_tax_total, false );
+			if ( $federal_tax_total > 0 ) {
+				$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $cart_federal_tax_total, false );
+			}
+		} else {
+			if ( $federal_tax_total > 0 ) {
+				$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $cart_federal_tax_total, false );
+			}
 		}
 	}
 }
