@@ -3653,10 +3653,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
             }
 
 
-			echo $final_price;
+			// echo $final_price;
             // Update the price display
             $price = wc_price( $final_price );
-			echo $price;
+			// echo $price;
         }
 		
         return $price;
