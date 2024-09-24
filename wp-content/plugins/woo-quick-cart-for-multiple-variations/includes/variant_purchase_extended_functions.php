@@ -376,7 +376,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 									</tr>
 									<?php } ?>
 									<tr class="wholesaleprice">
-									<td class='leftprice'><?php esc_html_e( 'Wholesale Price','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
+									<td class='leftprice'><?php esc_html_e( 'Total Price','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
 									<td class='rightprice'><?php echo wc_price($final_price); ?></td>
 									</tr>
 									</table>
@@ -392,7 +392,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 										<!-- <p><?php //esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($ontario_tax); ?></p> -->
 										<!-- <p><?php //esc_html_e('Federal Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($federal_tax); ?></p> -->
 									<?php //}?>
-										<!-- <p><?php //esc_html_e('Wholesale Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
+										<!-- <p><?php //esc_html_e('Total Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
 								</div>
 							</div>
 						
