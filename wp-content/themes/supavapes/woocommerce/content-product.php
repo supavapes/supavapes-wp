@@ -103,10 +103,8 @@ if ( $product->is_type( 'variable' ) ) {
         $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 		// Calculate taxes using the custom functions if vaping_liquid is set.
 		if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-            echo "Hereee";
 			$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 			$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-            echo "123";
 		}
 
 		// Determine the final price based on the state.
