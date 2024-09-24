@@ -50,7 +50,7 @@ global $product;
 			}
 			
 			// Determine the final price based on state
-			if ( 'Gujarat' !== $state ) {
+			if ( 'Ontario' !== $state ) {
 				$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
 				$final_price += $federal_tax;
 			} else {
