@@ -4180,6 +4180,7 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 
 
 if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
+	die('lkoocc');
 	/**
 	 * Calculate Federal Tax based on vaping liquid volume.
 	 *
