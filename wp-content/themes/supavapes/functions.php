@@ -4298,7 +4298,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 							</tr>
 							<?php } ?>
 							<tr class="wholesaleprice">
-								<td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
+								<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
 								<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
 							</tr>
 						</table>
@@ -5345,7 +5345,7 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 						</tr>
 					<?php } ?>
 					<tr class="wholesaleprice">
-						<td class='leftprice'><?php esc_html_e( 'Total Price with Taxes','supavapes' ); ?></td>
+						<td class='leftprice'><?php esc_html_e( 'Total Price','supavapes' ); ?></td>
 						<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
 					</tr>
 				</table>
@@ -5487,7 +5487,7 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 
 
 
-function supavapes_price_breakdown_custom_html( $sale_price = null, $reg_price = null, $federal_tax = null, $ontario_tax = null, $final_price = null, $state = '' ) {
+function supavapes_price_breakdown_custom_html( $product_price = null, $federal_tax = null, $ontario_tax = null, $final_price = null, $state = '' ) {
     ob_start(); // Start output buffering
     ?>
     <div class="info-icon-container">
@@ -5495,17 +5495,10 @@ function supavapes_price_breakdown_custom_html( $sale_price = null, $reg_price =
         <div class="price-breakup-popup">
             <h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
             <table class="pricetable">
-                <?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-                </tr>
-                <?php } else { ?>
-                <tr>
-                    <td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-                </tr>
-                <?php } ?>
+				<tr>
+					<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
+				</tr>
                 <?php if ( 'Gujarat' !== $state ) { ?>
                 <tr>
                     <td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
@@ -5522,7 +5515,7 @@ function supavapes_price_breakdown_custom_html( $sale_price = null, $reg_price =
                 </tr>
                 <?php } ?>
                 <tr class="wholesaleprice">
-                    <td class='leftprice'><?php esc_html_e( 'Total ddd Price', 'supavapes' ); ?></td>
+                    <td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
                     <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
                 </tr>
             </table>
