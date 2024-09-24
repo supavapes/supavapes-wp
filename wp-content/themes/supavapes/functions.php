@@ -5522,7 +5522,7 @@ function supavapes_price_breakdown_custom_html( $sale_price = null, $reg_price =
                 </tr>
                 <?php } ?>
                 <tr class="wholesaleprice">
-                    <td class='leftprice'><?php esc_html_e( 'Wholesale Price', 'supavapes' ); ?></td>
+                    <td class='leftprice'><?php esc_html_e( 'Total ddd Price', 'supavapes' ); ?></td>
                     <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
                 </tr>
             </table>
