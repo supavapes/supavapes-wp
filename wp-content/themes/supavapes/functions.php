@@ -3688,16 +3688,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 						wc_price( $final_price )
 					);
 
-					// Add the info icon with tooltip
-					$info_icon_html = '<span class="supavapes-price-info">ℹ️
-						<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-					</span>';
-			
-					// Combine the price and info icon
-					$price .= $info_icon_html;
+					
 				}	
             // Update the price display
-            $price = wc_price( $final_price );
+            $price = wc_price( $price );
         }
 		
         return $price;
