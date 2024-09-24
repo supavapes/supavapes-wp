@@ -5536,7 +5536,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			}
 		}
 		
-		echo "State: ".$state;
+		// echo "State: ".$state;
 		if ( 'Ontario' == $state ) {
 			// Add fees to the cart.
 			if ( $ontario_tax_total > 0 ) {
