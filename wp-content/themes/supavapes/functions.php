@@ -5522,7 +5522,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 				$total_vaping_liquid += $vaping_liquid * $cart_item['quantity'];
 			}
 		}
-
+		echo "Total vaping liquid: ".$total_vaping_liquid;
 		// If the total vaping liquid is greater than 0, calculate and apply taxes.
 		if ( $total_vaping_liquid > 0 ) {
 			// Calculate Ontario and Federal taxes based on the total vaping liquid.
