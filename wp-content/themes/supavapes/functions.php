@@ -5483,3 +5483,34 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 }
 
 // supavapes_price_breakdown_html();
+
+/**
+ * If the function, `supavapes_woocommerce_cart_calculate_fees_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) ) {
+	/**
+	 * Add custom fees to cart and checkout.
+	 *
+	 * @param WC_Cart $cart WooCommerce cart object.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_woocommerce_cart_calculate_fees_callback( $cart ) {
+		if ( is_admin() && ! defined('DOING_AJAX') ) {
+			return;
+		}
+
+		// Only for Canada country (if not we exit).
+		if ( 'CA' != WC()->customer->get_shipping_country() ) {
+			return;
+		}
+
+		$ontario_tax = 5.76;
+		$federal_tax = 8.76;
+
+		$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $ontario_tax, false );
+		$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $federal_tax, false );
+	}
+}
+
+add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calculate_fees_callback' );
