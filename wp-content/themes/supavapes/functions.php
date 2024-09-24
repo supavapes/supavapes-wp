@@ -4244,7 +4244,7 @@ function test_func(){
 	echo "1333311111";
 	exit;
 }
-add_action( 'init', 'test_func' );
+// add_action( 'init', 'test_func' );
 
 /**
  * If the function, `supavapes_detail_page_price_breakdown_callback`, doesn't exist.
