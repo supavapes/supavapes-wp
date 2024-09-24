@@ -4239,6 +4239,8 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 
 function test_func(){
 	supavapes_calculate_federal_tax( 32 );
+	echo "111111";
+	exit;
 }
 add_action( 'init', 'test_func' );
 
