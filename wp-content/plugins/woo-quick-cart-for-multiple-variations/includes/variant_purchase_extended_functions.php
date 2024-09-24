@@ -44,7 +44,7 @@ function wqcmv_updated_headers() {
 }
 
 
-function supavapes_calculate_ontario_tax( $vaping_liquid ) {
+function wqcmv_calculate_ontario_tax( $vaping_liquid ) {
 	// Fetch duty rates from ACF fields or replace with static values
 	$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
 	$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
@@ -74,7 +74,7 @@ function supavapes_calculate_ontario_tax( $vaping_liquid ) {
 	return $ontario_tax;
 }
 
-function supavapes_calculate_federal_tax( $vaping_liquid ) {
+function wqcmv_calculate_federal_tax( $vaping_liquid ) {
 	// Fetch duty rates from ACF fields or replace with static values
 	$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
 	$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
@@ -194,11 +194,11 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 	if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
 
 		// Calculate Ontario and Federal taxes using the defined functions
-		$ontario_tax = supavapes_calculate_ontario_tax($vaping_liquid);
-		$federal_tax = supavapes_calculate_federal_tax($vaping_liquid);
+		$ontario_tax = wqcmv_calculate_ontario_tax($vaping_liquid);
+		$federal_tax = wqcmv_calculate_federal_tax($vaping_liquid);
 		
 		// Determine final price based on state
-		if ('Gujarat' !== $state) {
+		if ('Ontario' !== $state) {
 			// Use only Ontario tax for other states.
 			$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
 			$final_price += $ontario_tax;
