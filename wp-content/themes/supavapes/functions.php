@@ -4229,6 +4229,7 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 				}
 			}
 		}
+		
 		return $federal_tax;
 	}
 }

@@ -57,17 +57,26 @@ function wqcmv_calculate_ontario_tax( $vaping_liquid ) {
 	$ontario_tax = 0;
 
 	// Check if vaping_liquid value is greater than 10
-	if ($vaping_liquid >= 10) {
+	if ( $vaping_liquid > 10 ) {
 		// Divide the vaping_liquid value into two parts
-		$first_part = 10;
+		$first_part  = 10;
 		$second_part = $vaping_liquid - $first_part;
 
 		// Calculate tax for the first part (10 ml)
 		$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
 
 		// Calculate tax for the second part (if any)
-		if ($second_part > 0) {
-			$ontario_tax += floor($second_part / 10) * $ontario_duty_per_10ml;
+		if ( $second_part > 0 ) {
+			$full_tens = floor($second_part / 10); // Get full 10ml parts
+			$remainder = $second_part % 10; // Get the remainder
+
+			// Add tax for the full 10ml increments
+			$ontario_tax += $full_tens * $ontario_duty_per_10ml;
+
+			// Add $1 if there's any remainder (partial 10ml)
+			if ( $remainder > 0 ) {
+				$ontario_tax += 1; // Add $1 for the remainder
+			}
 		}
 	}
 
@@ -87,20 +96,29 @@ function wqcmv_calculate_federal_tax( $vaping_liquid ) {
 	$federal_tax = 0;
 
 	// Check if vaping_liquid value is greater than 10
-	if ($vaping_liquid >= 10) {
+	if ( $vaping_liquid > 10 ) {
 		// Divide the vaping_liquid value into two parts
-		$first_part = 10;
+		$first_part  = 10;
 		$second_part = $vaping_liquid - $first_part;
 
 		// Calculate tax for the first part (10 ml)
 		$federal_tax += (10 / 2) * $federal_duty_per_2ml;
 
 		// Calculate tax for the second part (if any)
-		if ($second_part > 0) {
-			$federal_tax += floor($second_part / 10) * $federal_duty_per_10ml;
+		if ( $second_part > 0 ) {
+			$full_tens = floor($second_part / 10); // Get full 10ml parts
+			$remainder = $second_part % 10; // Get the remainder
+	
+			// Add tax for the full 10ml increments
+			$federal_tax += $full_tens * $federal_duty_per_10ml;
+
+			// Add $1 if there's any remainder (partial 10ml)
+			if ( $remainder > 0 ) {
+				$federal_tax += 1; // Add $1 for the remainder
+			}
 		}
 	}
-
+	
 	return $federal_tax;
 }
 
