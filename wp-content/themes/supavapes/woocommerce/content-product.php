@@ -159,7 +159,7 @@ if ( $product->is_type( 'variable' ) ) {
 		<div class="sv-our-product-detail">
 			<h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'supavapes');?></h3>
 			<div class="sv-our-product-price">
-			<?php echo wp_kses_post($price); ?>
+			<?php echo wp_kses_post($final_price); ?>
 			<?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 				$product_type = $product_data->get_type();
 			}?>
