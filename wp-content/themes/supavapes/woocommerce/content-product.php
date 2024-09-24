@@ -106,6 +106,7 @@ if ( $product->is_type( 'variable' ) ) {
             echo "Hereee";
 			// $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 			$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+            echo "123";
 		}
 
 		// Determine the final price based on the state.
