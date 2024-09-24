@@ -23,7 +23,7 @@ include 'includes/classes/class-mailchimp-subscribers-table.php';
 // include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
 include 'includes/shortcodes.php';
 
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 /**
