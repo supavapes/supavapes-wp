@@ -5369,7 +5369,7 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 <?php 
 }
 
-add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
+// add_action( 'woocommerce_order_item_meta_end', 'supavapes_price_breakdown_order_received', 10, 4 );
 
 /**
  * If the function, `supavapes_get_customer_current_location` doesn't exist.

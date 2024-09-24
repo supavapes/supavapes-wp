@@ -160,8 +160,8 @@ if ( $product->is_type( 'variable' ) ) {
 			<h3 class="sv-our-product-title"><?php echo esc_html($product->get_name(),'supavapes');?></h3>
 			<div class="sv-our-product-price">
             <?php if( $product_type == 'simple' ){ ?>
-			<?php echo wp_kses_post($final_price); ?>
-            <?php }else{
+			    <?php echo wp_kses_post($final_price); ?>
+            <?php } else {
                 echo wp_kses_post($price);
              }?>
 			<?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
