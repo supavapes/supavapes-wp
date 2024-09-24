@@ -1899,3 +1899,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         font-size: 14px !important;
     }
 }
+
+/* 24-09-2024 */
+
+.woocommerce-cart .info-icon-container{display: none;}
