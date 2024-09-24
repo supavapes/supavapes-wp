@@ -107,41 +107,6 @@ if ( $product->is_type( 'variable' ) ) {
 			$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 			$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
             // die('dfunc end');
-
-
-            $federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
-            $federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
-    
-            // Initialize duty rates
-            $federal_duty_per_2ml = $federal_excise_value_2_ml; // Duty per 2 ml (first 10ml)
-            $federal_duty_per_10ml = $federal_excise_value_10_ml; // Duty per 10 ml (remaining after 10ml)
-    
-            // Initialize tax variable
-            $federal_tax = 0;
-    
-            // Check if vaping_liquid value is greater than 10
-            if ( $vaping_liquid > 10 ) {
-                // Divide the vaping_liquid value into two parts
-                $first_part  = 10;
-                $second_part = $vaping_liquid - $first_part;
-    
-                // Calculate tax for the first part (10 ml)
-                $federal_tax += (10 / 2) * $federal_duty_per_2ml;
-    
-                // Calculate tax for the second part (if any)
-                if ( $second_part > 0 ) {
-                    $full_tens = floor($second_part / 10); // Get full 10ml parts
-                    $remainder = $second_part % 10; // Get the remainder
-                    echo "remainder: ".$remainder;
-                    // Add tax for the full 10ml increments
-                    $federal_tax += $full_tens * $federal_duty_per_10ml;
-    
-                    // Add $1 if there's any remainder (partial 10ml)
-                    if ( $remainder > 0 ) {
-                        $federal_tax += 1; // Add $1 for the remainder
-                    }
-                }
-            }
 		}
 
 		// Determine the final price based on the state.

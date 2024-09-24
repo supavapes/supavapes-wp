@@ -4194,10 +4194,7 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_calculate_federal_tax( $vaping_liquid ) {
-		die('lkoooo3232');
-		echo '<pre>vaping_liquid';
-		print_r($vaping_liquid);
-		echo '</pre>';
+		
 		// Fetch duty rates from ACF fields or replace with static values
 		$federal_excise_value_2_ml = get_field('federal_excise_value_2_ml', 'option');
 		$federal_excise_value_10_ml = get_field('federal_excise_value_10_ml', 'option');
@@ -4222,8 +4219,7 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 			if ( $second_part > 0 ) {
 				$full_tens = floor($second_part / 10); // Get full 10ml parts
 				$remainder = $second_part % 10; // Get the remainder
-				echo "remainder: ".$remainder;
-				die('lkoo');
+		
 				// Add tax for the full 10ml increments
 				$federal_tax += $full_tens * $federal_duty_per_10ml;
 
@@ -4233,7 +4229,6 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 				}
 			}
 		}
-		$federal_tax = 10;
 		return $federal_tax;
 	}
 }
