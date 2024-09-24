@@ -3639,20 +3639,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 
             // Calculate taxes if vaping_liquid is greater than or equal to 10
             if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                $first_part = 10;
-                $second_part = $vaping_liquid - $first_part;
-
-                // Ontario tax calculation
-                $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-                }
-
-                // Federal tax calculation
-                $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-                }
+                $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+				$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
             }
 
             // Determine the final price based on state
@@ -3664,25 +3652,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 $final_price += $ontario_tax + $federal_tax;
             }
 
-			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-					// Set the price breakdown for the simple product
-					// $price_breakdown = sprintf(
-					// 	__( 'Regular Price: %s<br>Ontario Tax: %s<br>Federal Tax: %s<br>Final Price: %s', 'woocommerce' ),
-					// 	wc_price( $reg_price ),
-					// 	wc_price( $ontario_tax ),
-					// 	wc_price( $federal_tax ),
-					// 	wc_price( $final_price )
-					// );
 
-					// // Add the info icon with tooltip
-					// $info_icon_html = '<span class="supavapes-price-info">ℹ️
-					// 	<div class="supavapes-tooltip">' . $price_breakdown . '</div>
-					// </span>';
-			
-					// // Combine the price and info icon
-					// $price .= $info_icon_html;
-				}	
-				echo $final_price;
+			echo $final_price;
             // Update the price display
             $price = wc_price( $final_price );
 			echo $price;
