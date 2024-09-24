@@ -5404,12 +5404,13 @@ if ( ! function_exists( 'supavapes_get_product_tax' ) ) {
 				$vape_qty_division_2 = ( 0.0 < $vape_qty_modulous_2 ) ? ( $vape_qty_division_2 + 1 ) : $vape_qty_division_2;
 				$tax                 = $vape_qty_division_2 * 2;
 
-				var_dump( $tax );
-				die("poool");
+				// var_dump( $tax );
+				// die("poool");
 			}
 		}
 
-		die("lkoo");
+		return $tax;
+		// die("lkoo");
 	}
 }
 
