@@ -3697,7 +3697,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 					// $price .= $info_icon_html;
 				}	
             // Update the price display
-            $price = wc_price( $final_price );
+            $price = wc_price( $reg_price );
         }
 		
         return "test: ".$price;
