@@ -3301,38 +3301,38 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 	 */
 	function supavapes_woocommerce_variation_options_pricing_callback( $loop, $variation_data, $variation ) {
 		// Add a field for the Ontario prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'            => "_ontario_price_{$loop}",
-				'name'          => "_ontario_price[{$loop}]",
-				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_ontario_price', true ) ),
-				'label'         => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Ontario price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'     => 'price',
-				'wrapper_class' => 'form-row form-row-first',
-				'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
-			)
-		);
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'            => "_ontario_price_{$loop}",
+		// 		'name'          => "_ontario_price[{$loop}]",
+		// 		'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_ontario_price', true ) ),
+		// 		'label'         => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Ontario price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'     => 'price',
+		// 		'wrapper_class' => 'form-row form-row-first',
+		// 		'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
+		// 	)
+		// );
 
-		// Add a field for the Federal prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'            => "_federal_price_{$loop}",
-				'name'          => "_federal_price[{$loop}]",
-				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_federal_price', true ) ),
-				'label'         => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Federal price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'     => 'price',
-				'wrapper_class' => 'form-row form-row-last',
-				'placeholder'   => __( 'Federal price (required)', 'supavapes' ),
-			)
-		);
+		// // Add a field for the Federal prices.
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'            => "_federal_price_{$loop}",
+		// 		'name'          => "_federal_price[{$loop}]",
+		// 		'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_federal_price', true ) ),
+		// 		'label'         => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Federal price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'     => 'price',
+		// 		'wrapper_class' => 'form-row form-row-last',
+		// 		'placeholder'   => __( 'Federal price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 		// Add a field for the Federal prices.
 		woocommerce_wp_text_input(
@@ -3353,7 +3353,7 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 	}
 }
 
-// add_action( 'woocommerce_variation_options_pricing', 'supavapes_woocommerce_variation_options_pricing_callback', 10, 3 );
+add_action( 'woocommerce_variation_options_pricing', 'supavapes_woocommerce_variation_options_pricing_callback', 10, 3 );
 
 /**
  * If the function `supavapes_woocommerce_save_product_variation_callback` doesn't exist.
@@ -3372,7 +3372,7 @@ if ( ! function_exists( 'supavapes_woocommerce_save_product_variation_callback' 
 	}
 }
 
-// add_action( 'woocommerce_save_product_variation', 'supavapes_woocommerce_save_product_variation_callback', 10, 2 );
+add_action( 'woocommerce_save_product_variation', 'supavapes_woocommerce_save_product_variation_callback', 10, 2 );
 
 /**
  * If the function `supavapes_update_product_meta` doesn't exist.
@@ -3440,7 +3440,7 @@ if ( ! function_exists( 'supavapes_woocommerce_process_product_meta_callback' ) 
 	}
 }
 
-// add_action( 'woocommerce_process_product_meta', 'supavapes_woocommerce_process_product_meta_callback' );
+add_action( 'woocommerce_process_product_meta', 'supavapes_woocommerce_process_product_meta_callback' );
 
 /**
  * If the function `supavapes_woocommerce_product_options_pricing_callback` doesn't exist.
@@ -3454,40 +3454,40 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 	function supavapes_woocommerce_product_options_pricing_callback() {
 		global $post;
 
-		// Add a field for the Ontario prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_ontario_price',
-				'name'        => '_ontario_price',
-				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_ontario_price', true ) ),
-				'label'       => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Ontario price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'   => 'price',
-				'placeholder' => __( 'Ontario price (required)', 'supavapes' ),
-			)
-		);
+		// // Add a field for the Ontario prices.
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'          => '_ontario_price',
+		// 		'name'        => '_ontario_price',
+		// 		'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_ontario_price', true ) ),
+		// 		'label'       => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Ontario price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'   => 'price',
+		// 		'placeholder' => __( 'Ontario price (required)', 'supavapes' ),
+		// 	)
+		// );
 
-		// Add a field for the Federal prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_federal_price',
-				'name'        => '_federal_price',
-				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_federal_price', true ) ),
-				'label'       => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Federal price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'   => 'price',
-				'placeholder' => __( 'Federal price (required)', 'supavapes' ),
-			)
-		);
+		// // Add a field for the Federal prices.
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'          => '_federal_price',
+		// 		'name'        => '_federal_price',
+		// 		'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_federal_price', true ) ),
+		// 		'label'       => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Federal price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'   => 'price',
+		// 		'placeholder' => __( 'Federal price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 
-		// Add a field for the Federal prices.
+		// Add a field for the Vaping liquid.
 		woocommerce_wp_text_input(
 			array(
 				'id'          => '_vaping_liquid',
@@ -3505,7 +3505,7 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 	}
 }
 
-// add_action( 'woocommerce_product_options_pricing', 'supavapes_woocommerce_product_options_pricing_callback' );
+add_action( 'woocommerce_product_options_pricing', 'supavapes_woocommerce_product_options_pricing_callback' );
 
 
 /**
@@ -4139,8 +4139,8 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 	 */
 	function supavapes_calculate_ontario_tax( $vaping_liquid ) {
 		// Fetch duty rates from ACF fields or replace with static values
-		$ontario_excise_value_2_ml = get_field( 'ontario_excise_value_2_ml', 'option' );
-		$ontario_excise_value_10_ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
+		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');
 
 		// Initialize duty rates
 		$ontario_duty_per_2ml = $ontario_excise_value_2_ml; // Duty per 2 ml (first 10ml)
@@ -4160,7 +4160,7 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 
 			// Calculate tax for the second part (if any)
 			if ( $second_part > 0 ) {
-				$ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+				$ontario_tax += floor( $second_part / 10) * $ontario_duty_per_10ml;
 			}
 		}
 
