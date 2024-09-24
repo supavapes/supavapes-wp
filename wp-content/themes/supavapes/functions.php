@@ -4132,8 +4132,8 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 	 * 
 	 * Ontario tax calculated with the formula.
 	 * 
-	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be change from the back-end settings.
-	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be change from the back-end settings.
+	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be changed from the back-end settings.
+	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be changed from the back-end settings.
  	 * 
 	 * @since 1.0.0
 	 */
@@ -4160,9 +4160,16 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 
 			// Calculate tax for the second part (if any)
 			if ( $second_part > 0 ) {
-				$second_part_remainder = (float) $second_part % 10;
-				$second_part           = ( 0.00 < $second_part_remainder ) ? ( $second_part + 1 ) : $second_part;
-				$ontario_tax          += $second_part * $ontario_duty_per_10ml;
+				$full_tens = floor($second_part / 10); // Get full 10ml parts
+				$remainder = $second_part % 10; // Get the remainder
+
+				// Add tax for the full 10ml increments
+				$ontario_tax += $full_tens * $ontario_duty_per_10ml;
+
+				// Add $1 if there's any remainder (partial 10ml)
+				if ( $remainder > 0 ) {
+					$ontario_tax += 1; // Add $1 for the remainder
+				}
 			}
 		}
 
@@ -4171,10 +4178,6 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 }
 
 
-
-/**
- * If the function, `supavapes_calculate_federal_tax`, doesn't exist.
- */
 if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	/**
 	 * Calculate Federal Tax based on vaping liquid volume.
@@ -4184,8 +4187,8 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	 * 
 	 * Federal tax calculated with the formula.
 	 * 
-	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be change from the back-end settings.
-	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be change from the back-end settings.
+	 * Tax applied on First 10ml liquid will be $1.12 * 5 = $5.6 ($1.12 per 2ml) // $1.12 will be dynamic. Can be changed from the back-end settings.
+	 * Tax applied on Further value of liquid will be $1.12 * 10 = $11.2 ($1.12 per 10ml) // $1.12 will be dynamic. Can be changed from the back-end settings.
 	 * 
 	 * @since 1.0.0
 	 */
@@ -4208,20 +4211,27 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 			$second_part = $vaping_liquid - $first_part;
 
 			// Calculate tax for the first part (10 ml)
-			$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
+			$federal_tax += (10 / 2) * $federal_duty_per_2ml;
 
 			// Calculate tax for the second part (if any)
 			if ( $second_part > 0 ) {
-				$second_part_remainder = (float) $second_part % 10;
-				$second_part           = ( 0.00 < $second_part_remainder ) ? ( $second_part + 1 ) : $second_part;
-				$ontario_tax          += $second_part * $ontario_duty_per_10ml;
+				$full_tens = floor($second_part / 10); // Get full 10ml parts
+				$remainder = $second_part % 10; // Get the remainder
+
+				// Add tax for the full 10ml increments
+				$federal_tax += $full_tens * $federal_duty_per_10ml;
+
+				// Add $1 if there's any remainder (partial 10ml)
+				if ( $remainder > 0 ) {
+					$federal_tax += 1; // Add $1 for the remainder
+				}
 			}
 		}
 
 		return $federal_tax;
 	}
-
 }
+
 
 
 /**
