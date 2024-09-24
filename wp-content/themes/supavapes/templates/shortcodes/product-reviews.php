@@ -76,7 +76,7 @@ if (empty($product_ids)) {
 				$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 				// Calculate final prices with tax for minimum and maximum values
-				if ( 'Gujarat' !== $state ) {
+				if ( 'Ontario' !== $state ) {
 					$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
 					$final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
 				} else {

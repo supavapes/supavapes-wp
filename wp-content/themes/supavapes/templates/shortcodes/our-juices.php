@@ -108,7 +108,7 @@ $term_ids = explode(',', $atts['term_ids']);
 									$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 									// Calculate final prices with tax for minimum and maximum values
-									if ( 'Gujarat' !== $state ) {
+									if ( 'Ontario' !== $state ) {
 										$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
 										$final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
 									} else {
@@ -132,7 +132,7 @@ $term_ids = explode(',', $atts['term_ids']);
 									// Determine the final price based on the state.
 									$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-									if ( 'Gujarat' !== $state ) {
+									if ( 'Ontario' !== $state ) {
 										$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
 										$final_price += floatval( $federal_tax );
 									} else {
@@ -192,7 +192,7 @@ $term_ids = explode(',', $atts['term_ids']);
 													<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
 													</tr>
 													<?php }?>
-													<?php if ( 'Gujarat' !== $state ) { ?>
+													<?php if ( 'Ontario' !== $state ) { ?>
 													<tr>
 													<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
 													<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
@@ -234,7 +234,7 @@ $term_ids = explode(',', $atts['term_ids']);
 															<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
 															<td class='rightprice'><?php echo wc_price( $min_price ); ?></td>
 														</tr>
-														<?php if ( 'Gujarat' !== $state ) { ?>
+														<?php if ( 'Ontario' !== $state ) { ?>
 															<tr>
 																<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
 																<td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
@@ -267,7 +267,7 @@ $term_ids = explode(',', $atts['term_ids']);
 																<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
 																<td class='rightprice'><?php echo wc_price( $min_price ).' - '.wc_price( $max_price ); ?></td>
 															</tr>
-															<?php if ( 'Gujarat' !== $state ) { ?>
+															<?php if ( 'Ontario' !== $state ) { ?>
 																<tr>
 																	<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
 																	<td class='rightprice'><?php echo wc_price( $min_federal_tax ).' - '.wc_price( $max_federal_tax ); ?></td>
