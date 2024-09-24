@@ -4138,6 +4138,7 @@ if ( ! function_exists( 'supavapes_calculate_ontario_tax' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_calculate_ontario_tax( $vaping_liquid ) {
+		die('herreeeeeeeeeeee');
 		// Fetch duty rates from ACF fields or replace with static values
 		$ontario_excise_value_2_ml = get_field('ontario_excise_value_2_ml', 'option');
 		$ontario_excise_value_10_ml = get_field('ontario_excise_value_10_ml', 'option');

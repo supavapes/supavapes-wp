@@ -104,7 +104,7 @@ if ( $product->is_type( 'variable' ) ) {
 		// Calculate taxes using the custom functions if vaping_liquid is set.
 		if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
             echo "Hereee";
-			// $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+			$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 			$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
             echo "123";
 		}
