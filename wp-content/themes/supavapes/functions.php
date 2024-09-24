@@ -5581,6 +5581,7 @@ add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calcu
 add_filter( 'formatted_woocommerce_price', 'custom_format_woocommerce_price', 10, 5 );
 
 function custom_format_woocommerce_price( $formatted_price, $price, $decimal_places, $decimal_separator, $thousand_separator ) {
+	echo "Original price: ".$price;
 	echo "Formatted: ".$formatted_price;
     // Example: Add a custom text before the formatted price
     $formatted_price = '<span class="custom-price-prefix">Discounted: </span>' . $formatted_price;
