@@ -164,7 +164,7 @@ if ( $product->is_type( 'variable' ) ) {
 			}?>
 			<?php if( $product_type == 'simple' ){ ?>
 				<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-                    echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price );
+                    echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
                     ?>
 			<?php 
 				}
