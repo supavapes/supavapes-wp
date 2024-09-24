@@ -5524,7 +5524,7 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 				$federal_tax_total += supavapes_calculate_federal_tax( $vaping_liquid );
 			}
 		}
-
+ 
 		// Add fees to the cart.
 		if ( $ontario_tax_total > 0 ) {
 			$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $ontario_tax_total, false );
