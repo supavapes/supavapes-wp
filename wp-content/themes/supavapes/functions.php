@@ -4206,6 +4206,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 	function supavapes_detail_page_price_breakdown_callback() {
 		global $product;
 		// debug($product);
+		
 		$product_data = wc_get_product( $product->get_id() );
 
 		if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
@@ -5575,3 +5576,13 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calculate_fees_callback' );
 
 // last code at 5518
+
+
+add_filter( 'formatted_woocommerce_price', 'custom_format_woocommerce_price', 10, 5 );
+
+function custom_format_woocommerce_price( $formatted_price, $price, $decimal_places, $decimal_separator, $thousand_separator ) {
+    // Example: Add a custom text before the formatted price
+    $formatted_price = '<span class="custom-price-prefix">Discounted: </span>' . $formatted_price;
+    
+    return "wewe: ".$formatted_price;
+}
