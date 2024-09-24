@@ -4208,7 +4208,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 		// debug($product);
 		
 		$product_data = wc_get_product( $product->get_id() );
-		debug($product_data);
+		// debug($product_data);
 		if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 			$product_type = $product_data->get_type();
 		}
