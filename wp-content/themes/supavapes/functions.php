@@ -3553,7 +3553,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 	 * @since 1.0.0
 	 */
     function supavapes_custom_price_html( $price, $product ) {
-		echo $price;
+		
         // Get user state dynamically
         $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
@@ -3682,8 +3682,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 					// // Combine the price and info icon
 					// $price .= $info_icon_html;
 				}	
+				echo $final_price;
             // Update the price display
             $price = wc_price( $final_price );
+			echo $price;
         }
 		
         return $price;
