@@ -5484,19 +5484,16 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 
 // supavapes_price_breakdown_html();
 
-/**
- * If the function, `supavapes_woocommerce_cart_calculate_fees_callback` doesn't exist.
- */
 if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) ) {
 	/**
-	 * Add custom fees to cart and checkout.
+	 * Add custom fees to cart and checkout based on the _vaping_liquid meta.
 	 *
 	 * @param WC_Cart $cart WooCommerce cart object.
 	 *
 	 * @since 1.0.0
 	 */
 	function supavapes_woocommerce_cart_calculate_fees_callback( $cart ) {
-		if ( is_admin() && ! defined('DOING_AJAX') ) {
+		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 			return;
 		}
 
@@ -5505,11 +5502,37 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 			return;
 		}
 
-		$ontario_tax = 5.76;
-		$federal_tax = 8.76;
+		$ontario_tax_total = 0;
+		$federal_tax_total = 0;
 
-		$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $ontario_tax, false );
-		$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $federal_tax, false );
+		// Loop through cart items.
+		foreach ( $cart->get_cart() as $cart_item ) {
+			$product = $cart_item['data'];
+
+			// Get _vaping_liquid meta value. 
+			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+
+			// If it's a variable product, get the variation meta.
+			if ( $product->is_type( 'variation' ) ) {
+				$vaping_liquid = get_post_meta( $cart_item['variation_id'], '_vaping_liquid', true );
+			}
+
+			// Ensure $vaping_liquid is numeric and valid
+			if ( is_numeric( $vaping_liquid ) && $vaping_liquid > 0 ) {
+				// Calculate Ontario and Federal taxes using the provided functions.
+				$ontario_tax_total += supavapes_calculate_ontario_tax( $vaping_liquid );
+				$federal_tax_total += supavapes_calculate_federal_tax( $vaping_liquid );
+			}
+		}
+
+		// Add fees to the cart.
+		if ( $ontario_tax_total > 0 ) {
+			$cart->add_fee( __( 'ONTARIO TAX', 'supavapes' ), $ontario_tax_total, false );
+		}
+
+		if ( $federal_tax_total > 0 ) {
+			$cart->add_fee( __( 'FEDERAL TAX', 'supavapes' ), $federal_tax_total, false );
+		}
 	}
 }
 
