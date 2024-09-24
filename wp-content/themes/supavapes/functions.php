@@ -5528,8 +5528,8 @@ if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) )
 				// echo "Total vaping liquid: ".$total_vaping_liquid;
 
 				// Calculate Ontario and Federal taxes using the provided functions.
-				echo "Ontario single: ".$ontario_tax_single += supavapes_calculate_ontario_tax( $vaping_liquid );
-				echo "Federal single: ".$federal_tax_single += supavapes_calculate_federal_tax( $vaping_liquid );
+				echo "Ontario single: ".$ontario_tax_single = supavapes_calculate_ontario_tax( $vaping_liquid );
+				echo "Federal single: ".$federal_tax_single = supavapes_calculate_federal_tax( $vaping_liquid );
 				
 				$ontario_tax_total += $ontario_tax_single * $cart_item['quantity'];
 				$federal_tax_total += $federal_tax_single * $cart_item['quantity'];
