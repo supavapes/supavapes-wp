@@ -4229,17 +4229,10 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 				}
 			}
 		}
-		return 15;
+		return $federal_tax;
 	}
 }
 
-
-function test_func(){
-	supavapes_calculate_federal_tax( 32 );
-	echo "1333311111";
-	exit;
-}
-// add_action( 'init', 'test_func' );
 
 /**
  * If the function, `supavapes_detail_page_price_breakdown_callback`, doesn't exist.
