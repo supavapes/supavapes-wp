@@ -176,41 +176,11 @@ if ( $product->is_type( 'variable' ) ) {
 					// Check if min and max prices are the same to avoid showing price ranges
 					if ( $min_price === $max_price ) {
 					// Display simple price breakdown for variable product
-					
+					echo supavapes_price_breakdown_custom_html( $min_price, $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
 					?>
-				<div class="info-icon-container">
-					<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-					<div class="price-breakup-popup">
-						<h5 class="header"><?php esc_html_e( 'Price Breakdown', 'supavapes' ); ?></h5>
-						<table class="pricetable">
-							<tr>
-								<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-								<td class='rightprice'><?php echo wc_price( $min_price ); ?></td>
-							</tr>
-							<?php if ( 'Ontario' !== $state ) { ?>
-								<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
-								</tr>
-							<?php } else { ?>
-								<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax', 'supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $min_ontario_tax ); ?></td>
-								</tr>
-								<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax', 'supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $min_federal_tax ); ?></td>
-								</tr>
-							<?php } ?>
-							<tr class="wholesaleprice">
-								<td class='leftprice'><?php esc_html_e( 'Total Price', 'supavapes' ); ?></td>
-								<td class='rightprice'><?php echo wc_price( $final_min_price ); ?></td>
-							</tr>
-						</table>
-					</div>
-				</div>
 				<?php 
-					}else{ ?>
+					}else{ 
+                        ?>
 					<div class="info-icon-container">
 						<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 						<div class="price-breakup-popup">
