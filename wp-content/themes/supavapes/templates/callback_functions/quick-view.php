@@ -21,7 +21,7 @@ global $product;
 		// Determine the final price based on the state.
 		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-		if ( 'Gujarat' !== $state ) {
+		if ( 'Ontario' !== $state ) {
 			$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
 			$final_price += floatval( $federal_tax );
 		} else {
@@ -114,7 +114,7 @@ global $product;
 									<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
 									</tr>
 									<?php }?>
-									<?php if ( 'Gujarat' !== $state ) { ?>
+									<?php if ( 'Ontario' !== $state ) { ?>
 									<tr>
 									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
 									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
