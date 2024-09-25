@@ -102,7 +102,10 @@ global $product;
 						?>
 					<?php
 						 } 
-					}?>
+					}
+					if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
+						<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
+					<?php } ?>
 				</div>
 				
 				<?php
