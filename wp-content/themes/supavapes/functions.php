@@ -5629,6 +5629,8 @@ function redirect_wp_login_register_to_my_account() {
 
 function supavapes_single_location_badge() {
     // Define your custom image URL
+	$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
 	ob_start(); 
 	?>
 	<div class="single-location-badge" style="display:none;">
