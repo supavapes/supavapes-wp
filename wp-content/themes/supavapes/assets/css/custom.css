@@ -1929,12 +1929,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     width: 100%;
     gap: 10px;
 }
-.custom-location-input-box {
-    /* display: flex; */
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-}
+
 
 input.type-address {
     background: transparent;
@@ -1959,11 +1954,12 @@ input.type-address {
     width: 1001%;
 }
 
-.button {
+.custom-location-buttons .button {
     align-items: center;
     display: flex;
     width: fit-content;
     gap: 10px;
+    margin: 0 !important;
 }
 
 .custom-location-buttons {
