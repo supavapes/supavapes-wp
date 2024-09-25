@@ -5651,17 +5651,19 @@ add_action( 'woocommerce_before_single_product_summary', 'supavapes_single_locat
 
 
 
-add_filter( 'wqcmv_variation_title', 'add_vaping_liquid_to_variation_title', 10, 2 );
+add_filter( 'wqcmv_variation_title', 'supavapes_add_vaping_liquid_below_variation_title', 10, 2 );
 
-function add_vaping_liquid_to_variation_title( $variation_title, $variation_id ) {
+function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $variation_id ) {
     // Get the custom field value for '_vaping_liquid'
     $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
 
-    // Check if the custom field exists and is not empty
+    // Output the title as it is
+    $output = '<h4>' . wp_kses_post( $variation_title ) . '</h4>';
+
+    // If the vaping liquid custom field is set, display it below the title
     if ( ! empty( $vaping_liquid ) ) {
-        // Append the vaping liquid value to the variation title
-        $variation_title .= ' - Vaping Liquid: ' . esc_html( $vaping_liquid );
+        $output .= '<p><strong>Vaping Liquid:</strong> ' . esc_html( $vaping_liquid ) . '</p>';
     }
 
-    return $variation_title;
+    return $output;
 }
