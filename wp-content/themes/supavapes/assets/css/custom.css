@@ -2073,6 +2073,3 @@ form.menual-location {
     bottom: 0;
     right: 0;
 }
-.location-popup-form.show {
-    transform: none;
-}

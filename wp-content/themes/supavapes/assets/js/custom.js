@@ -1879,9 +1879,10 @@ jQuery(document).ready(function() {
 		}
 
 		jQuery('.enter-menual-btn').on('click', function() {
-			// Add CSS display: flex to .location-popup
-			jQuery('.location-popup-form').addClass('show');
-			jQuery('.location-popup-form').css('display', 'flex');
+			jQuery('.location-popup-form').css('display', 'flex'); // Ensure it's visible
+			setTimeout(function() {
+				jQuery('.location-popup-form').addClass('show'); // Apply the sliding effect
+			}, 10); // Small timeout to allow the display to be applied before sliding
 		});
 	
 		// Close popup on close button click
@@ -1890,14 +1891,16 @@ jQuery(document).ready(function() {
 		});
 	
 		// Close popup on overlay click
-		jQuery(document).on("click", ".location-popup-form .location-popup-form-overlay", function() {
+		jQuery(document).on("click", ".location-popup-form-overlay", function() {
 			closeLocationForm();
 		});
 	
 		// Function to handle popup closing
 		function closeLocationForm() {
-			jQuery(".location-popup-form").hide();
-			 jQuery(".location-popup-form").removeClass('show');
+			jQuery('.location-popup-form').removeClass('show'); // Remove the sliding effect
+			setTimeout(function() {
+				jQuery('.location-popup-form').css('display', 'none'); // Hide the element after the transition
+			}, 500); // Match the duration of the CSS transition (0.5s)
 		}
 	
 	
