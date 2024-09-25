@@ -2028,7 +2028,9 @@ form.menual-location {
     align-items: center;
     gap: 5px;
     position: fixed;
-    transform: rotate(90deg);
+    padding: 15px;
+    right: 0;
+    bottom: 150px;
 }
 
 .location-btn-wrap button {
@@ -2036,7 +2038,6 @@ form.menual-location {
     margin: 0;
     border: none;
     display: flex;
-    position: fixed;
     bottom: 0;
     right: 0;
 }
