@@ -1930,13 +1930,12 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     gap: 10px;
 }
 
-
 input.type-address {
     background: transparent;
     border: none;
-    border: 1px solid var(--primary-palette-carmine-pink) !important;
+    border-bottom: 1px solid var(--primary-palette-carmine-pink) !important;
     color: var(--white) !important;
-    padding: 15px;
+    padding: 10px 0 30px;
     font-family: 'Montserrat' !important;
     width: 100%;
     display: flex;
