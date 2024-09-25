@@ -5631,7 +5631,7 @@ function supavapes_single_location_badge() {
     // Define your custom image URL
 	ob_start(); 
 	?>
-	<div class="single-location-badge">
+	<div class="single-location-badge" style="display:none;">
 		<?php
 			if ( 'Ontario' == $state ) {
 				?>
