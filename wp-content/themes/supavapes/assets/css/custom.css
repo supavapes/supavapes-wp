@@ -1922,3 +1922,52 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     color: var(--white);
     margin: 0 0 20px !important;
 }
+
+.custom-location-input-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.custom-location-input-box {
+    /* display: flex; */
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+input.type-address {
+    background: transparent;
+    border: none;
+    border: 1px solid var(--primary-palette-carmine-pink) !important;
+    color: var(--white) !important;
+    padding: 15px;
+    font-family: 'Montserrat' !important;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    vertical-align: top;
+}
+
+.custom-location-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.location-popup-content-main {
+    width: 1001%;
+}
+
+.button {
+    align-items: center;
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+}
+
+.custom-location-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
