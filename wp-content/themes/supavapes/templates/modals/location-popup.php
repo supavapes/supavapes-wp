@@ -32,6 +32,7 @@
                         </div>
                     </div>
                     <div id="location-map" style="width: 100%; height: 500px;"></div>
+                    <button type="submit" class="button submit-location">Update my location</button>
 				</div>
 			</div>
 		</div>
