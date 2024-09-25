@@ -274,8 +274,8 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 			} else {
 				$prod_stock = intval( $prod_stock - $avalilable_quantity );
 				if ( 0 < $prod_stock ) {
-					$stock_available_str = sprintf( esc_html__( '%1$d Available', 'woocommerce-quick-cart-for-multiple-variations' ), $prod_stock );
-					$span                = '<span class="vpe_small_stock dd">(' . $stock_available_str . ')</span>';
+					$stock_available_str = sprintf( esc_html__( '%1$d', 'woocommerce-quick-cart-for-multiple-variations' ), $prod_stock );
+					$span                = '<span class="vpe_small_stock">(' . $stock_available_str . ')</span>';
 				}
 			}
 		}
