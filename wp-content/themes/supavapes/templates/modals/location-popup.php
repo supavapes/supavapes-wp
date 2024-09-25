@@ -67,6 +67,8 @@
                             <option value="SK">Saskatchewan</option>
                         </select>
                     </div>
+
+                    <button type="submit" class="button submit-location-form">Update my location</button>
                 </form>
 
 			</div>
