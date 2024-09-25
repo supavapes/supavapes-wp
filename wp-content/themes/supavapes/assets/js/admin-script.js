@@ -144,7 +144,7 @@ jQuery( document ).ready( function( $ ) {
 		setTimeout( function() {
 			var order_id   = $( '#post_ID' ).val();
 			var order_note = $( '#add_order_note' ).val();
-
+			console.log( order_note );
 			// Return, if the order id is empty or invalid.
 			if ( -1 === is_valid_number( order_id ) ) {
 				console.warn( 'Order ID not found or is invalid. Aborting...' );
