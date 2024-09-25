@@ -311,6 +311,8 @@ if ( ! function_exists( 'supavapes_wp_footer_callback' ) ) {
 		// Verify age modal when website opens.
 		require_once get_stylesheet_directory() . '/templates/modals/verify-age-modal.php';
 
+		require_once get_stylesheet_directory() . '/templates/modals/location-popup.php';
+
 		// Show the store availability data.
 		if ( is_product() ) {
 			require_once get_stylesheet_directory() . '/templates/modals/store-data-popup.php';
