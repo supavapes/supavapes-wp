@@ -172,6 +172,7 @@ jQuery( document ).ready( function( $ ) {
 						$( '.order-notes-attachments-container .gallery-images' ).html('');
 						note_attachments = [];
 						console.log( 'note attachments updated successfully' );
+						$( '#add_order_note' ).val(' ');
 						refresh_order_notes( order_id );
 					}
 				},

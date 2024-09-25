@@ -5599,7 +5599,7 @@ function custom_format_woocommerce_price( $formatted_price, $price, $decimal_pla
 /** Remove categories from shop and other pages
  * in Woocommerce
  */
-function wc_hide_selected_terms( $terms, $taxonomies, $args ) {
+function supavapes_hide_selected_terms( $terms, $taxonomies, $args ) {
     $new_terms = array();
     if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
         foreach ( $terms as $key => $term ) {
@@ -5611,4 +5611,17 @@ function wc_hide_selected_terms( $terms, $taxonomies, $args ) {
     }
     return $terms;
 }
-add_filter( 'get_terms', 'wc_hide_selected_terms', 10, 3 );
+add_filter( 'get_terms', 'supavapes_hide_selected_terms', 10, 3 );
+
+
+
+add_action( 'template_redirect', 'supavapes_redirect_registration_to_my_account' );
+
+function supavapes_redirect_registration_to_my_account() {
+    // Check if it's the wp-login.php?action=register page
+    if ( isset( $_GET['action'] ) && $_GET['action'] == 'register' ) {
+        // Perform the redirection
+        wp_redirect( home_url( '/my-account/' ) );
+        exit;
+    }
+}
