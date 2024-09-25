@@ -1876,7 +1876,6 @@ jQuery(document).ready(function() {
 		function closeLocationPopup() {
 			jQuery('body').removeClass('sv-popup-open');
 			jQuery(".location-popup").hide();
-			jQuery(".location-popup .overlay").hide();
 		}
 
 		jQuery('.enter-menual-btn').on('click', function() {
@@ -1897,7 +1896,6 @@ jQuery(document).ready(function() {
 		// Function to handle popup closing
 		function closeLocationForm() {
 			jQuery(".location-popup-form").hide();
-			jQuery(".location-popup-form .overlay").hide();
 		}
 	
 	
