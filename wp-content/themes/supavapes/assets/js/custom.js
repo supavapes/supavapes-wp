@@ -1889,7 +1889,7 @@ jQuery(document).ready(function() {
 		});
 	
 		// Close popup on overlay click
-		jQuery(document).on("click", ".location-popup-form .overlay", function() {
+		jQuery(document).on("click", ".location-popup-form .location-popup-form-overlay", function() {
 			closeLocationForm();
 		});
 	

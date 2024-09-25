@@ -35,7 +35,7 @@
                     <button type="submit" class="button submit-location">Update my location</button>
 				</div>
                 <div class="location-popup-form">
-	<div class="overlay"></div>
+	<div class="location-popup-form-overlay"></div>
 	<div class="location-popup-form-content">
 		<span class="location-popup-form-close">
 			<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
