@@ -1430,6 +1430,7 @@ jQuery(document).ready(function() {
 		jQuery("#quickViewPopup").hide();
 		jQuery(".overlay").hide();
 	});
+
 	jQuery(document).on("click", ".close-notification", function() {
 		jQuery(".ersrv-notification").fadeOut();
 	});
@@ -1852,6 +1853,33 @@ jQuery(document).ready(function() {
 			window.location.href = sv_ajax.verify_age_disagree_btn;
 		}
 	});
+	
+		jQuery('.edit-location-btn').on('click', function() {
+			// Add CSS display: flex to .location-popup
+			jQuery('.location-popup').css('display', 'flex');
+			
+			// Add class 'sv-popup-open' to the body
+			jQuery('body').addClass('sv-popup-open');
+		});
+	
+		// Close popup on close button click
+		jQuery(document).on("click", ".location-popup-close", function() {
+			closeLocationPopup();
+		});
+	
+		// Close popup on overlay click
+		jQuery(document).on("click", ".location-popup .overlay", function() {
+			closeLocationPopup();
+		});
+	
+		// Function to handle popup closing
+		function closeLocationPopup() {
+			jQuery('body').removeClass('sv-popup-open');
+			jQuery(".location-popup").hide();
+			jQuery(".location-popup .overlay").hide();
+		}
+	
+	
 });
 
 function getCookie(name) {
