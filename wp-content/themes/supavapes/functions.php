@@ -4246,7 +4246,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 				echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 				?>
 				
-				<?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) {?>
+				<?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
 					<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
 				<?php } ?>
 			<?php } ?>
@@ -5252,7 +5252,7 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
     // If the vaping liquid custom field is set, display it below the title
     if ( ! empty( $vaping_liquid ) ) {
-        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . '</span>';
+        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . ' ml</span>';
     }
 
     return $output;
