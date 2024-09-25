@@ -7,7 +7,7 @@ global $product;
 		$rating = $product->get_average_rating();
 		$sale_price = $product->get_sale_price();
 		$reg_price = $product->get_regular_price();
-
+		$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 		$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
 		$vaping_liquid = (int) $vaping_liquid;
 
@@ -97,45 +97,9 @@ global $product;
 					if ($product->is_type('simple')) 
 					{ 
 						if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) 
-						{ ?>
-							<div class="info-icon-container">
-								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-								<div class="price-breakup-popup">
-								<h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
-									<table class="pricetable">
-									<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice' ><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-									</tr>
-									<?php }?>
-									<?php if ( 'Ontario' !== $state ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-									</tr>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php } ?>
-									<tr class="wholesaleprice">
-									<td class='leftprice'><?php esc_html_e( 'Wholesale Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-									</tr>
-									</table>
-								</div>
-							</div>
+						{ 
+							echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+						?>
 					<?php
 						 } 
 					}?>
