@@ -48,9 +48,27 @@
                 <form class="menual-location">
                     <div class="menual-location-form-group">
                         <label>Country/Region</label>
-                        <input>
+                        <input type="text" value="Canada" readonly>
+                    </div>
+
+                    <div class="menual-location-form-group">
+                        <label>State/Province</label>
+                        <select>
+                            <option value="" disabled selected>Select State/Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                        </select>
                     </div>
                 </form>
+
 			</div>
 		</div>
 	</div>
