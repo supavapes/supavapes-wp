@@ -3344,7 +3344,7 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_vaping_liquid', true ) ),
 				'label'         => sprintf(
 					/* translators: %s: currency symbol */
-					__( 'Vaping Liquid (in ml)', 'woocommerce' ),
+					__( 'Vaping Liquid (ml)', 'woocommerce' ),
 					get_woocommerce_currency_symbol()
 				),
 				'data_type'     => 'text',
@@ -3497,7 +3497,7 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 				'value'       => get_post_meta( $post->ID, '_vaping_liquid', true ),
 				'label'       => sprintf(
 					/* translators: %s: currency symbol */
-					__( 'Vaping Liquid (in ml)', 'woocommerce' ),
+					__( 'Vaping Liquid (ml)', 'woocommerce' ),
 					get_woocommerce_currency_symbol()
 				),
 				'data_type'   => 'text',
@@ -5591,3 +5591,21 @@ function custom_format_woocommerce_price( $formatted_price, $price, $decimal_pla
    }
     
 }
+
+
+/** Remove categories from shop and other pages
+ * in Woocommerce
+ */
+function wc_hide_selected_terms( $terms, $taxonomies, $args ) {
+    $new_terms = array();
+    if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
+        foreach ( $terms as $key => $term ) {
+              if ( ! in_array( $term->slug, array( 'uncategorized' ) ) ) {
+                $new_terms[] = $term;
+              }
+        }
+        $terms = $new_terms;
+    }
+    return $terms;
+}
+add_filter( 'get_terms', 'wc_hide_selected_terms', 10, 3 );
