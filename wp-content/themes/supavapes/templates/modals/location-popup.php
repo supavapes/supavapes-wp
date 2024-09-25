@@ -31,6 +31,7 @@
                             <a href="#" class="button">Enter Manually</a>
                         </div>
                     </div>
+                    <div id="mapCanvas" style="width: 100%; height: 500px;"></div>
 							
 				</div>
 			</div>
