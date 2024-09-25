@@ -35,7 +35,9 @@ $announcement_bar_button = get_field('announcement_bar_button','option');
             </a>
 			<?php }?>
 		</div>
-		<div class="location-btn-wrap">
+		
+	</div>
+	<div class="location-btn-wrap">
 			<label>Location :</label>
 			<span class="location-country">Gujrat</span>
 			<span class="location-country">India </span>
@@ -47,4 +49,3 @@ $announcement_bar_button = get_field('announcement_bar_button','option');
 			</button>
 			
 		</div>
-	</div>

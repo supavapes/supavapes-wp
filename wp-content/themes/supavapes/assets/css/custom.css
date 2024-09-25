@@ -2023,3 +2023,17 @@ form.menual-location {
     font-size: 16px !important;
     font-weight: 300 !important;
 }
+.location-btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: fixed;
+    transform: rotate(90deg);
+}
+
+.location-btn-wrap button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: flex;
+}
