@@ -3303,38 +3303,38 @@ if ( ! function_exists( 'supavapes_woocommerce_variation_options_pricing_callbac
 	 */
 	function supavapes_woocommerce_variation_options_pricing_callback( $loop, $variation_data, $variation ) {
 		// Add a field for the Ontario prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'            => "_ontario_price_{$loop}",
-				'name'          => "_ontario_price[{$loop}]",
-				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_ontario_price', true ) ),
-				'label'         => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Ontario price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'     => 'price',
-				'wrapper_class' => 'form-row form-row-first',
-				'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
-			)
-		);
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'            => "_ontario_price_{$loop}",
+		// 		'name'          => "_ontario_price[{$loop}]",
+		// 		'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_ontario_price', true ) ),
+		// 		'label'         => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Ontario price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'     => 'price',
+		// 		'wrapper_class' => 'form-row form-row-first',
+		// 		'placeholder'   => __( 'Ontario price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 		// Add a field for the Federal prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'            => "_federal_price_{$loop}",
-				'name'          => "_federal_price[{$loop}]",
-				'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_federal_price', true ) ),
-				'label'         => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Federal price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'     => 'price',
-				'wrapper_class' => 'form-row form-row-last',
-				'placeholder'   => __( 'Federal price (required)', 'supavapes' ),
-			)
-		);
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'            => "_federal_price_{$loop}",
+		// 		'name'          => "_federal_price[{$loop}]",
+		// 		'value'         => wc_format_localized_price( get_post_meta( $variation->ID, '_federal_price', true ) ),
+		// 		'label'         => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Federal price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'     => 'price',
+		// 		'wrapper_class' => 'form-row form-row-last',
+		// 		'placeholder'   => __( 'Federal price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 		// Add a field for the Federal prices.
 		woocommerce_wp_text_input(
@@ -3457,36 +3457,36 @@ if ( ! function_exists( 'supavapes_woocommerce_product_options_pricing_callback'
 		global $post;
 
 		// Add a field for the Ontario prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_ontario_price',
-				'name'        => '_ontario_price',
-				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_ontario_price', true ) ),
-				'label'       => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Ontario price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'   => 'price',
-				'placeholder' => __( 'Ontario price (required)', 'supavapes' ),
-			)
-		);
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'          => '_ontario_price',
+		// 		'name'        => '_ontario_price',
+		// 		'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_ontario_price', true ) ),
+		// 		'label'       => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Ontario price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'   => 'price',
+		// 		'placeholder' => __( 'Ontario price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 		// Add a field for the Federal prices.
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_federal_price',
-				'name'        => '_federal_price',
-				'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_federal_price', true ) ),
-				'label'       => sprintf(
-					/* translators: %s: currency symbol */
-					__( 'Federal price (%s)', 'woocommerce' ),
-					get_woocommerce_currency_symbol()
-				),
-				'data_type'   => 'price',
-				'placeholder' => __( 'Federal price (required)', 'supavapes' ),
-			)
-		);
+		// woocommerce_wp_text_input(
+		// 	array(
+		// 		'id'          => '_federal_price',
+		// 		'name'        => '_federal_price',
+		// 		'value'       => wc_format_localized_price( get_post_meta( $post->ID, '_federal_price', true ) ),
+		// 		'label'       => sprintf(
+		// 			/* translators: %s: currency symbol */
+		// 			__( 'Federal price (%s)', 'woocommerce' ),
+		// 			get_woocommerce_currency_symbol()
+		// 		),
+		// 		'data_type'   => 'price',
+		// 		'placeholder' => __( 'Federal price (required)', 'supavapes' ),
+		// 	)
+		// );
 
 
 		// Add a field for the Federal prices.
