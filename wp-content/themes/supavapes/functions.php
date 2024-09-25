@@ -4282,7 +4282,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 						</table>
 					</div>
 				</div>
-				<p><?php echo $vaping_liquid; ?></p>
+				<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: (ml)','supavapes' ); ?> <?php echo $vaping_liquid; ?></p>
 			<?php } ?>
 			<?php 
 			echo ob_get_clean();
