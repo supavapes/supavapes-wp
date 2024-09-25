@@ -1947,12 +1947,16 @@ input.type-address {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 20px;
 }
 
 .location-popup-content-main {
     width: 1001%;
 }
-
+.gm-style-mtc {
+    margin-left: 10px !important;
+}
+div#location-map{border-radius: 20px;}
 .custom-location-buttons .button {
     align-items: center;
     display: flex;
