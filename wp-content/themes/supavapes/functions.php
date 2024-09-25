@@ -5627,13 +5627,24 @@ function redirect_wp_login_register_to_my_account() {
 }
 
 
-function custom_image_above_featured() {
+function supavapes_single_location_badge() {
     // Define your custom image URL
-
-    
-    // Output the custom image
-    echo '<div class="custom-image-above-featured">';
-    echo '<img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png" alt="Custom Image" />';
-    echo '</div>';
+	ob_start(); 
+	?>
+	<div class="single-location-badge">
+		<?php
+			if ( 'Ontario' == $state ) {
+				?>
+					<img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png" alt="Custom Image" />
+				<?php
+			} else {
+				?>
+					<img src="/wp-content/themes/supavapes/assets/images/shop-federal.png" alt="Custom Image" />
+				<?php
+			}
+		?>
+	</div>
+	<?php
+	echo ob_get_clean();
 }
-add_action( 'woocommerce_before_single_product_summary', 'custom_image_above_featured', 5 );
+add_action( 'woocommerce_before_single_product_summary', 'supavapes_single_location_badge', 5 );
