@@ -28,7 +28,7 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.34333 7.875C2.81754 5.04843 5.04843 2.81754 7.875 2.34333V0H10.125V2.34333C12.9516 2.81754 15.1824 5.04843 15.6566 7.875H18V10.125H15.6566C15.1824 12.9516 12.9516 15.1824 10.125 15.6566V18H7.875V15.6566C5.04843 15.1824 2.81754 12.9516 2.34333 10.125H0V7.875H2.34333ZM4.5 9C4.5 6.51472 6.51472 4.5 9 4.5C11.4852 4.5 13.5 6.51472 13.5 9C13.5 11.4852 11.4852 13.5 9 13.5C6.51472 13.5 4.5 11.4852 4.5 9Z" fill="white"/>
                                 </svg>
                             </a>
-                            <a href="#" class="button">Enter Manually</a>
+                            <button class="button enter-menual-btn">Enter Manually</button>
                         </div>
                     </div>
                     <div id="location-map" style="width: 100%; height: 500px;"></div>
