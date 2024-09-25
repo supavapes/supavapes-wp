@@ -31,27 +31,73 @@
                             <a href="#" class="button">Enter Manually</a>
                         </div>
                     </div>
-                    <div id="mapCanvas" style="width: 100%; height: 500px;"></div>
+                    <div id="location-map" style="width: 100%; height: 500px;"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div> 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
+    <script>
+        function initMap() {
+            var map;
+            var bounds = new google.maps.LatLngBounds();
+            var mapOptions = {
+                mapTypeId: 'roadmap'
+            };
 
-<script>
-  function initMap() {
-    var mapOptions = {
-      center: new google.maps.LatLng(40.7128, -74.0060), // Coordinates of New York
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+            map = new google.maps.Map(document.getElementById("location-map"), mapOptions);
+            map.setTilt(50);
 
-    var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
-  }
+            var markers = [
+                ['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
+                ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749]
+            ];
 
-  // Initialize map when the page is fully loaded
-  window.onload = function() {
-    initMap();
-  };
-</script>
+            var infoWindowContent = [
+                ['<div class="info_content">' +
+                '<h2>Supa Vapes Hawkesbury</h2>' +
+                '<h3>1502 Main St E, Hawkesbury, ON K6A 1C7, Canada</h3>' +
+                '</div>'],
+                ['<div class="info_content">' +
+                '<h2>Supa Vapes 729 Walkley Rd</h2>' +
+                '<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
+                '</div>']
+            ];
+
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+            for (i = 0; i < markers.length; i++) {
+                var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                bounds.extend(position);
+                marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: markers[i][0]
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infoWindow.setContent(infoWindowContent[i][0]);
+                        infoWindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+            map.fitBounds(bounds);
+
+            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                // Adjust the zoom based on the screen width
+                var zoomLevel = 10;
+                if (window.innerWidth < 768) { // For devices with width < 768px (like phones)
+                    zoomLevel = 8;
+                } else if (window.innerWidth < 1024) { // For devices with width < 1024px (like tablets)
+                    zoomLevel = 9;
+                }
+                this.setZoom(zoomLevel);
+                google.maps.event.removeListener(boundsListener);
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
