@@ -5615,12 +5615,12 @@ add_filter( 'get_terms', 'supavapes_hide_selected_terms', 10, 3 );
 
 
 
-add_action( 'template_redirect', 'supavapes_redirect_registration_to_my_account' );
+add_action( 'login_init', 'redirect_wp_login_register_to_my_account' );
 
-function supavapes_redirect_registration_to_my_account() {
-    // Check if it's the wp-login.php?action=register page
+function redirect_wp_login_register_to_my_account() {
+    // Check if the action is register
     if ( isset( $_GET['action'] ) && $_GET['action'] == 'register' ) {
-        // Perform the redirection
+        // Redirect to the WooCommerce My Account page
         wp_redirect( home_url( '/my-account/' ) );
         exit;
     }
