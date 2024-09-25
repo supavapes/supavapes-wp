@@ -37,7 +37,7 @@
 		</div>
 	</div>
 </div> 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
 <script>
   function initMap() {
     var mapOptions = {
