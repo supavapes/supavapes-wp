@@ -36,6 +36,6 @@ $announcement_bar_button = get_field('announcement_bar_button','option');
 			<?php }?>
 		</div>
 		<div class="location-btn-wrap">
-			
+			<label></label>
 		</div>
 	</div>
