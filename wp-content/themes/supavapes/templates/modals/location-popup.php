@@ -45,6 +45,12 @@
 		<div class="location-popup-form-content-box">
 			<div class="location-popup-form-content-detail">
                 <h2>Please fill the form</h2>
+                <form class="menual-location">
+                    <div class="menual-location-form-group">
+                        <label>Country/Region</label>
+                        <input>
+                    </div>
+                </form>
 			</div>
 		</div>
 	</div>
@@ -53,7 +59,7 @@
 		</div>
 	</div>
 </div> 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
     <script>
         function initMap() {
             var map;
@@ -116,4 +122,4 @@
         }
 
         window.initMap = initMap;
-    </script>
+    </script> -->
