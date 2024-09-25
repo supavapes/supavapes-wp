@@ -141,7 +141,7 @@ jQuery( document ).ready( function( $ ) {
 		 * Timeout is set so that the latest note is added in the database and then the attachments are added to the note.
 		 * If we don't add the timeout, then the attachments are added to the 2nd last order note.
 		 */
-		setTimeout( function() {
+		// setTimeout( function() {
 			var order_id   = $( '#post_ID' ).val();
 			var order_note = $( '#add_order_note' ).val();
 			console.log( order_note );
@@ -176,7 +176,7 @@ jQuery( document ).ready( function( $ ) {
 					}
 				},
 			} );
-		}, 1000 );
+		// }, 1000 );
 	} );
 
 	/**
