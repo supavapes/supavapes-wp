@@ -32,9 +32,26 @@
                         </div>
                     </div>
                     <div id="mapCanvas" style="width: 100%; height: 500px;"></div>
-							
 				</div>
 			</div>
 		</div>
 	</div>
 </div> 
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+<script>
+  function initMap() {
+    var mapOptions = {
+      center: new google.maps.LatLng(40.7128, -74.0060), // Coordinates of New York
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+  }
+
+  // Initialize map when the page is fully loaded
+  window.onload = function() {
+    initMap();
+  };
+</script>
