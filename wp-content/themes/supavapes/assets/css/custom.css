@@ -2036,4 +2036,7 @@ form.menual-location {
     margin: 0;
     border: none;
     display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
