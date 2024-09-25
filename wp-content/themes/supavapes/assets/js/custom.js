@@ -1880,6 +1880,7 @@ jQuery(document).ready(function() {
 
 		jQuery('.enter-menual-btn').on('click', function() {
 			// Add CSS display: flex to .location-popup
+			jQuery('.location-popup-form').addClass('show');
 			jQuery('.location-popup-form').css('display', 'flex');
 		});
 	
@@ -1896,6 +1897,7 @@ jQuery(document).ready(function() {
 		// Function to handle popup closing
 		function closeLocationForm() {
 			jQuery(".location-popup-form").hide();
+			jQuery(".location-popup-form").removeClass('show');
 		}
 	
 	
