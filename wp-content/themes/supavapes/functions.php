@@ -5625,3 +5625,15 @@ function redirect_wp_login_register_to_my_account() {
         exit;
     }
 }
+
+
+function custom_image_above_featured() {
+    // Define your custom image URL
+    $custom_image_url = 'https://dev.supavapes.com/wp-content/uploads/2024/09/BerryDrop_60f91281-7a6a-4673-97f4-fd71289578f4.png';
+    
+    // Output the custom image
+    echo '<div class="custom-image-above-featured">';
+    echo '<img src="' . esc_url($custom_image_url) . '" alt="Custom Image" />';
+    echo '</div>';
+}
+add_action( 'woocommerce_before_single_product_summary', 'custom_image_above_featured', 5 );
