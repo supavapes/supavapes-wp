@@ -4282,6 +4282,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 						</table>
 					</div>
 				</div>
+				<p><?php echo $vaping_liquid; ?></p>
 			<?php } ?>
 			<?php 
 			echo ob_get_clean();
@@ -5309,7 +5310,7 @@ function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_
 					<tr>
 						<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
 						<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
-					</tr>
+					</tr>					
 					<?php if ( isset( $federal_tax ) && !empty( $federal_tax ) ) { ?>
 						<tr>
 							<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
