@@ -5664,7 +5664,7 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
     // If the vaping liquid custom field is set, display it below the title
     if ( ! empty( $vaping_liquid ) ) {
-        $output .= '<p><strong>Vaping Liquid:</strong> ' . esc_html( $vaping_liquid ) . '</p>';
+        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . '</span>';
     }
 
     return $output;
