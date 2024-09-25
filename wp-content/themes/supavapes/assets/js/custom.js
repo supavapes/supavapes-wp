@@ -1880,29 +1880,25 @@ jQuery(document).ready(function() {
 		}
 
 		jQuery('.enter-menual-btn').on('click', function() {
-			// Show the location-popup-form with slide-in animation
-			jQuery('.location-popup-form').addClass('show');
+			// Add CSS display: flex to .location-popup
+			jQuery('.location-popup-form').css('display', 'flex');
 		});
-		
+	
 		// Close popup on close button click
 		jQuery(document).on("click", ".location-popup-form-close", function() {
 			closeLocationForm();
 		});
-		
+	
 		// Close popup on overlay click
 		jQuery(document).on("click", ".location-popup-form .overlay", function() {
 			closeLocationForm();
 		});
-		
+	
 		// Function to handle popup closing
 		function closeLocationForm() {
-			// Use timeout to wait for the animation to finish before hiding
-			jQuery(".location-popup-form").removeClass('show');
-			setTimeout(function() {
-				jQuery(".location-popup-form").hide();
-			}, 500); // Match this duration with the CSS transition duration
+			jQuery(".location-popup-form").hide();
+			jQuery(".location-popup-form .overlay").hide();
 		}
-		
 	
 	
 });
