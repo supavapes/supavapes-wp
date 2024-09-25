@@ -5653,7 +5653,7 @@ add_action( 'woocommerce_before_single_product_summary', 'supavapes_single_locat
 
 
 
-// add_filter( 'wqcmv_variation_title', 'supavapes_add_vaping_liquid_below_variation_title', 10, 2 );
+add_filter( 'wqcmv_variation_title', 'supavapes_add_vaping_liquid_below_variation_title', 10, 2 );
 
 function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $variation_id ) {
     // Get the custom field value for '_vaping_liquid'
