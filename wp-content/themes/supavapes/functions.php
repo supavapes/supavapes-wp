@@ -4307,7 +4307,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 					?>
 					
 				<?php } else { 
-					echo supavapes_price_breakdown_custom_html( 
+					echo supavapes_price_breakdown_in_range_custom_html( 
 						$min_price,    // Minimum product price
 						$max_price,    // Maximum product price
 						$min_federal_tax, // Minimum federal tax
