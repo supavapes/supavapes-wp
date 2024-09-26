@@ -90,7 +90,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				}
 				var_dump( $product_price );
 				// Determine the final price based on state
-				$final_price = $product_price;
+				$final_price = $product_modified_price;
 				// Initialize tax variables
 				$ontario_tax = 0;
 				$federal_tax = 0;
