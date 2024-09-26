@@ -154,7 +154,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
 							<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-								echo supavapes_price_breakdown_custom_html( $product_modified_price, $federal_tax, $ontario_tax, $final_price, $state );
+								echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 							}?>
 						</td>
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'supavapes' ); ?>">
