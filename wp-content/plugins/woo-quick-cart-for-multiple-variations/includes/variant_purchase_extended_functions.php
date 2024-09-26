@@ -362,12 +362,10 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 								<div class="price-breakup-popup">
 									<h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
 									<table class="pricetable">
-										<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
 										<tr>
 											<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
 											<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
 										</tr>
-										<?php } ?>
 										<?php if ( 'Ontario' !== $state ) { ?>
 										<tr>
 											<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
