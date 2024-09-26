@@ -443,9 +443,16 @@ body.variable-product .vpn_product_title {   flex: 1;
     border-right: 1px solid var(--primary-palette-carmine-pink-light);
     height: 100px;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-items: flex-start;}
+    align-items: center;}
+    .variation-title-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .variation-title-wrap h4{width: 100% !important;}
+    .variation-title-wrap span {
+        font-size: 16px;
+    }
 body.variable-product .vpn_product_price { width: 100px; padding-right: 15px; border-right: 1px solid var(--primary-palette-carmine-pink-light); height: 100px; display: flex; text-align: center; justify-content: center; }
 body.variable-product .variable-table-wrap .quantity { width: 130px; padding-right: 15px; height: 100px; display: flex; justify-content: center; align-items: center; border-right: 1px solid var(--primary-palette-carmine-pink-light); }
 body.variable-product .variable-table .vpn_stock_status label { width: 100px; text-align: center; }
@@ -1888,6 +1895,11 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         left: -90px;
     }
     .product-pricebreakup-wrap bdi{font-size: 16px !important;}
+    .variation-title-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 }
 @media (max-width: 575px) {
     body.single-product .summary.entry-summary .price-breakup-popup {
