@@ -64,14 +64,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$variation = wc_get_product( $variation_id );
 					$reg_price = $variation->get_regular_price();
 					$sale_price = $variation->get_sale_price();
+					$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 
 				} else {
 					// Fallback for simple products or when no variation ID is present.
 					$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
 					$reg_price = $_product->get_regular_price();
 					$sale_price = $_product->get_sale_price();
+					$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 				}
-				$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+				
 				
 				// If there is a discount, apply it
 				if ( $applied_discount ) {

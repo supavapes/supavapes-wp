@@ -4215,7 +4215,6 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 
         // Retrieve active offers
         $active_offers = supa_active_offers_from_discount();
-		debug( $active_offers );
         $applied_discount = 0;
 
         // Check if the current product is eligible for any discount
@@ -4298,24 +4297,19 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 					}
 				}
 			}
-
 			if ( $min_vaping_liquid == PHP_INT_MAX ) {
 				$min_vaping_liquid = 0;
 			}
 			if ( $max_vaping_liquid == PHP_INT_MIN ) {
 				$max_vaping_liquid = 0;
 			}
-
 			$min_price = $product->get_variation_price( 'min' );
 			$max_price = $product->get_variation_price( 'max' );
-
 			$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
-
 			$min_ontario_tax = supavapes_calculate_ontario_tax( $min_vaping_liquid );
 			$max_ontario_tax = supavapes_calculate_ontario_tax( $max_vaping_liquid );
 			$min_federal_tax = supavapes_calculate_federal_tax( $min_vaping_liquid );
 			$max_federal_tax = supavapes_calculate_federal_tax( $max_vaping_liquid );
-
 			if ( 'Ontario' !== $state ) {
 				$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
 				$final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
@@ -4323,9 +4317,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 				$final_min_price = floatval( $min_price ) + floatval( $min_ontario_tax ) + floatval( $min_federal_tax );
 				$final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
 			}
-
-			ob_start(); ?>
-			<?php 
+			ob_start();
 			if ( $min_ontario_tax > 0 || $max_ontario_tax > 0 || $min_federal_tax > 0 || $max_federal_tax > 0 ) {
 				if ( $min_price === $max_price ) { 
 					echo supavapes_price_breakdown_custom_html( $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
