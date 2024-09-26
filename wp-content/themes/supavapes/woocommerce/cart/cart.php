@@ -88,7 +88,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					// Apply the discount to the price
 					$product_price = max( 0, $product_price - $discount_amount );
 				}
-
+				var_dump( $product_price );
 				// Determine the final price based on state
 				$final_price = $product_price;
 				// Initialize tax variables
