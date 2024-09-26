@@ -43,7 +43,20 @@ do_action( 'woocommerce_before_cart' ); ?>
 				// Fetch the variation ID if it's a variable product.
 				$variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
 				$vaping_liquid = '';
-			
+				// Retrieve active offers
+				$active_offers = supa_active_offers_from_discount();
+				// debug( $active_offers );
+				$applied_discount = 0;
+
+				// Check if the current product is eligible for any discount
+				if ( ! empty( $active_offers ) ) {
+					foreach ( $active_offers as $offer ) {
+						if ( isset( $offer['products'] ) && in_array( $product_id, $offer['products'] ) ) {
+							$applied_discount = $offer['discount_value']; // Apply the discount
+							break;
+						}
+					}
+				}
 				// Check if the product is a variation and fetch _vaping_liquid value from the variation ID.
 				if ( $variation_id ) {
 					$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
@@ -58,6 +71,24 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$sale_price = $_product->get_sale_price();
 				}
 				$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+
+				// If there is a discount, apply it
+				if ( $applied_discount ) {
+					if ( strpos( $applied_discount, '%' ) !== false ) {
+						// Percentage-based discount
+						$discount_value = str_replace( '%', '', $applied_discount );
+						$discount_amount = ( $product_price * $discount_value ) / 100;
+					} else {
+						// Fixed discount (assumed to be a numeric value like "$5 OFF")
+						$discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
+					}
+	
+					// Apply the discount to the price
+					$product_price = max( 0, $product_price - $discount_amount );
+				}
+
+				// Determine the final price based on state
+				$final_price = $product_price;
 				// Initialize tax variables
 				$ontario_tax = 0;
 				$federal_tax = 0;
