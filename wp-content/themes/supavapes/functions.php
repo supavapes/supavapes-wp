@@ -2528,7 +2528,7 @@ function add_quantity_rule_message_to_cart_item_name( $product_name, $cart_item,
 	}
 	$discount_message = '';
 	if (isset($cart_item['discounted_price']) && $cart_item['discounted_price'] > 0) {
-		$discount_amount = wc_price($cart_item['discounted_price']);
+		echo "Discount amount: ".$discount_amount = wc_price($cart_item['discounted_price']);
 		$discount_message = sprintf(__('Discounted price %s for this item.', 'supavapes'), $discount_amount);
 		$discount_message = '<div class="discount_message" style="color: green;">' . $discount_message . '</div>';
 	}
@@ -4216,7 +4216,6 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 		if ( $product_type == 'simple' ) {
 			$reg_price  = $product->get_regular_price();
 			$sale_price = $product->get_sale_price();
-			echo $product->get_id();
 			debug( get_woo_discount_rules_msg( $product->get_id(), 1 ) );
 			$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
