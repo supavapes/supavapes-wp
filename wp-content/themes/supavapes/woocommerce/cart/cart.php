@@ -50,13 +50,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$variation = wc_get_product( $variation_id );
 					$reg_price = $variation->get_regular_price();
 					$sale_price = $variation->get_sale_price();
+
 				} else {
 					// Fallback for simple products or when no variation ID is present.
 					$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
 					$reg_price = $_product->get_regular_price();
 					$sale_price = $_product->get_sale_price();
 				}
-			
+				$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 				// Initialize tax variables
 				$ontario_tax = 0;
 				$federal_tax = 0;
@@ -119,46 +120,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
-							<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { ?>
-							<span class="info-icon-container cart">
-								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-								<div class="price-breakup-popup">
-								<h5 class="header"><?php esc_html_e( 'Price Breakdown','supavapes' ); ?></h5>
-									<table class="pricetable">
-									<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice' ><?php esc_html_e( 'Product Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-									</tr>
-									<?php }?>
-									<?php if ( 'Ontario' !== $state ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-									</tr>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php } ?>
-									<tr class="wholesaleprice">
-									<td class='leftprice'><?php esc_html_e( 'Wholesale Price','supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-									</tr>
-									</table>
-								</div>
-							</span>
-							<?php }?>
+							<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
+								echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+							}?>
 						</td>
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'supavapes' ); ?>">
 						<?php
