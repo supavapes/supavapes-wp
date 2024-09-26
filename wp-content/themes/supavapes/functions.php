@@ -5226,11 +5226,11 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
     $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
 
     // Output the title as it is
-    $output = '<h4>' . wp_kses_post( $variation_title ) . '</h4>';
+    $output = '<div class="variation-title-wrap"><h4>' . wp_kses_post( $variation_title ) . '</h4>';
 
     // If the vaping liquid custom field is set, display it below the title
     if ( ! empty( $vaping_liquid ) ) {
-        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . ' ml</span>';
+        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . ' ml</span></div>';
     }
 
     return $output;
