@@ -1989,7 +1989,7 @@ input.type-address {
 div#location-map{border-radius: 20px;margin-bottom: 20px;}
 .custom-location-buttons .button {
     align-items: center;
-    display: flex;
+    display: flex !important;
     width: fit-content;
     gap: 10px;
     margin: 0 !important;
@@ -2101,7 +2101,12 @@ form.menual-location {
     padding: 50px 20px 20px;
     max-width: 350px;
 }
+.location-popup-content-box h2 {
+    font-size: 22px;
+    line-height: 30px;
+}
 .location-popup .location-popup-content{ padding: 50px 20px 20px;}
+.custom-location-buttons{align-items: center;justify-content: center;}
 }
 @media (max-width: 430px) {
     .location-popup-content .button{display: flex !important;align-items: center;justify-content: center;width: 100%;}
