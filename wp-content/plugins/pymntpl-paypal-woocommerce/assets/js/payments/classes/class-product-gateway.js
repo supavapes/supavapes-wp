@@ -21,8 +21,12 @@ class ProductGateway extends BaseGateway {
     onInit(...params) {
         super.onInit(...params);
         this.cart.trigger('productButtonOnInit');
-        if (this.product.isVariableProduct() && !this.product.isVariationSelected()) {
-            this.disableButtons();
+        if (this.product.isVariableProduct()) {
+            if (!this.product.isVariationSelected() || !this.product?.variation?.is_in_stock) {
+                this.disableButtons();
+            } else {
+                this.enableButtons();
+            }
         }
     }
 
@@ -109,11 +113,15 @@ class ProductGateway extends BaseGateway {
     }
 
     onFoundVariation(hasChanged, product) {
-        if (this.hasChanged) {
+        if (hasChanged) {
             this.destroyButtons();
             this.createButton();
         } else {
-            this.enableButtons();
+            if (!product.variation.is_in_stock) {
+                this.disableButtons();
+            } else {
+                this.enableButtons();
+            }
         }
     }
 

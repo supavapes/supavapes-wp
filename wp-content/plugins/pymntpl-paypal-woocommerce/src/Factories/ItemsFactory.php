@@ -79,6 +79,7 @@ class ItemsFactory extends AbstractFactory {
 	 */
 	public function get_cart_item( $total, $name, $qty, $cart_item = null ) {
 		$product = $cart_item ? $cart_item['data'] : null;
+		$qty     = round( $qty, 0, PHP_ROUND_HALF_UP );
 		$item    = ( new Item() )->setName( $this->get_product_name( $name, $product ) )
 		                         ->setQuantity( $qty )
 		                         ->setUnitAmount( ( new Money() )->setCurrencyCode( $this->currency )
@@ -99,7 +100,7 @@ class ItemsFactory extends AbstractFactory {
 	public function get_order_item( $order_item ) {
 		$product = $order_item->get_product();
 		$item    = ( new Item() )->setName( $this->get_product_name( $order_item->get_name(), $order_item ) )
-		                         ->setQuantity( $order_item->get_quantity() )
+		                         ->setQuantity( round( $order_item->get_quantity(), 0, PHP_ROUND_HALF_UP ) )
 		                         ->setSku( $this->get_product_sku( $product, $order_item ) )
 		                         ->setDescription( $this->get_product_description( $product, $order_item ) )
 		                         ->setUnitAmount( ( new Money() )->setCurrencyCode( $this->currency )

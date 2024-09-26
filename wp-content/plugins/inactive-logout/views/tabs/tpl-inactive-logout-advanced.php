@@ -16,23 +16,18 @@ if ( $ina_multiuser_timeout_enabled ) {
         <table class="ina-form-tbl form-table">
             <tbody>
             <tr>
-                <th scope="row"><label
-                            for="ina_enable_different_role_timeout"><?php esc_html_e( 'Multi-Role Timeout', 'inactive-logout' ); ?></label>
+                <th scope="row"><label for="ina_enable_different_role_timeout"><?php esc_html_e( 'Multi-Role Timeout', 'inactive-logout' ); ?></label>
                 </th>
                 <td>
-                    <input name="ina_enable_different_role_timeout" type="checkbox"
-                           id="ina_enable_different_role_timeout" <?php echo ! empty( $ina_multiuser_timeout_enabled ) ? 'checked' : false; ?>
-                           value="1">
+                    <input name="ina_enable_different_role_timeout" type="checkbox" id="ina_enable_different_role_timeout" <?php echo ! empty( $ina_multiuser_timeout_enabled ) ? 'checked' : false; ?> value="1">
                     <p class="description"><?php esc_html_e( 'This will enable multi-user role timeout functionality.', 'inactive-logout' ); ?></p>
                 </td>
             </tr>
             <tr class="ina-multi-role-table" <?php echo ! empty( $ina_multiuser_timeout_enabled ) && (int) $ina_multiuser_timeout_enabled === 1 ? 'style="display:table-row;"' : 'style="display:none;"'; ?>>
-                <th scope="row"><label
-                            for="idle_timeout"><?php esc_html_e( 'Enable Multi-User Feature', 'inactive-logout' ); ?></label>
+                <th scope="row"><label for="idle_timeout"><?php esc_html_e( 'Enable Multi-User Feature', 'inactive-logout' ); ?></label>
                 </th>
                 <td>
-                    <select class="ina-hacking-multi-select" id="ina_definetime_specific_userroles" multiple="multiple"
-                            name="ina_multiuser_roles[]">
+                    <select class="ina-hacking-multi-select" id="ina_definetime_specific_userroles" multiple="multiple" name="ina_multiuser_roles[]">
 						<?php
 						foreach ( $result_roles as $k => $role ) {
 							$selected = \Codemanas\InactiveLogout\Helpers::CheckRoleForMultiUser( $k );
@@ -58,25 +53,25 @@ if ( $ina_multiuser_timeout_enabled ) {
                 <th class="manage-column" style="width:5%;">
 					<?php esc_html_e( 'Timeout', 'inactive-logout' ); ?>
                     <div class="tooltip"><span class="dashicons dashicons-info"></span>
-                        <span class="tooltiptext"><?php _e( 'Set different timeout duration for each user roles. Defined in minutes.', 'inactive-logout' ); ?></span>
+                        <span class="tooltiptext"><?php esc_html_e( 'Set different timeout duration for each user roles. Defined in minutes.', 'inactive-logout' ); ?></span>
                     </div>
                 </th>
                 <th class="manage-column" style="width:20%;">
 					<?php esc_html_e( 'Logout Redirect', 'inactive-logout' ); ?>
                     <div class="tooltip"><span class="dashicons dashicons-info"></span>
-                        <span class="tooltiptext"><?php _e( 'Set different redirect page url for each user roles. This is affected when a user is logged out.', 'inactive-logout' ); ?></span>
+                        <span class="tooltiptext"><?php esc_html_e( 'Set different redirect page url for each user roles. This is affected when a user is logged out.', 'inactive-logout' ); ?></span>
                     </div>
                 </th>
                 <th class="manage-column" style="width:6%;">
 					<?php esc_html_e( 'Disable', 'inactive-logout' ); ?>
                     <div class="tooltip"><span class="dashicons dashicons-info"></span>
-                        <span class="tooltiptext"><?php _e( 'Checking below will disable inactive logout functionality for selected user role.', 'inactive-logout' ); ?></span>
+                        <span class="tooltiptext"><?php esc_html_e( 'Checking below will disable inactive logout functionality for selected user role.', 'inactive-logout' ); ?></span>
                     </div>
                 </th>
                 <th class="manage-column" style="width:10%;">
 					<?php esc_html_e( 'Multiple Logins', 'inactive-logout' ); ?>
                     <div class="tooltip"><span class="dashicons dashicons-info"></span>
-                        <span class="tooltiptext tooltiptext-left"><?php _e( 'Checking below will prevent the selected user role from logging in at multiple locations.', 'inactive-logout' ); ?></span>
+                        <span class="tooltiptext tooltiptext-left"><?php esc_html_e( 'Checking below will prevent the selected user role from logging in at multiple locations.', 'inactive-logout' ); ?></span>
                     </div>
                 </th>
 				<?php do_action( 'ina__addon_role_based_elements_table_head' ); ?>
@@ -94,11 +89,10 @@ if ( $ina_multiuser_timeout_enabled ) {
                     <tr>
                         <td><?php echo esc_html( $result_roles[ $role ] ); ?></td>
                         <td>
-                            <input type="number" min="1" max="1440"
-                                   value="<?php echo ( ! empty( $ina_multiuser_setting['timeout'] ) ) ? esc_attr( $ina_multiuser_setting['timeout'] ) : 15; ?>" name="ina_individual_user_timeout[]">
+                            <input type="number" min="1" max="1440" value="<?php echo ( ! empty( $ina_multiuser_setting['timeout'] ) ) ? esc_attr( $ina_multiuser_setting['timeout'] ) : 15; ?>" name="ina_individual_user_timeout[]">
                         </td>
                         <td>
-                            <select name="ina_redirect_page_individual_user[<?php echo esc_attr( $role ); ?>]" data-validation="<?php _e( 'Valid URL is required for this field.', 'inactive-logout' ); ?>" class="regular-text ina-select2-container-with-tags">
+                            <select name="ina_redirect_page_individual_user[<?php echo esc_attr( $role ); ?>]" data-validation="<?php esc_attr_e( 'Valid URL is required for this field.', 'inactive-logout' ); ?>" class="regular-text ina-select2-container-with-tags">
 								<?php
 								if ( ! empty( $ina_multiuser_setting['redirect_page'] ) ) {
 									if ( ! empty( $legacy_url ) ) {
@@ -111,14 +105,10 @@ if ( $ina_multiuser_timeout_enabled ) {
                             </select>
                         </td>
                         <td>
-                            <input type="checkbox"
-                                   name="ina_disable_inactive_logout[<?php echo esc_attr( $role ); ?>]" <?php echo ( ! empty( $ina_multiuser_setting['disabled_feature'] ) ) ? esc_attr( 'checked' ) : false; ?>
-                                   value="1">
+                            <input type="checkbox" name="ina_disable_inactive_logout[<?php echo esc_attr( $role ); ?>]" <?php echo ( ! empty( $ina_multiuser_setting['disabled_feature'] ) ) ? esc_attr( 'checked' ) : false; ?> value="1">
                         </td>
                         <td>
-                            <input type="checkbox"
-                                   name="ina_disable_inactive_concurrent_login[<?php echo esc_attr( $role ); ?>]" <?php echo ( ! empty( $ina_multiuser_setting['disabled_concurrent_login'] ) ) ? esc_attr( 'checked' ) : false; ?>
-                                   value="1">
+                            <input type="checkbox" name="ina_disable_inactive_concurrent_login[<?php echo esc_attr( $role ); ?>]" <?php echo ( ! empty( $ina_multiuser_setting['disabled_concurrent_login'] ) ) ? esc_attr( 'checked' ) : false; ?> value="1">
                         </td>
 
 						<?php do_action( 'ina__addon_role_based_elements_table_body', $role, $ina_multiuser_setting ); ?>

@@ -4,7 +4,7 @@ Tags: paypal, paylater, venmo, credit cards
 Requires at least: 4.7
 Tested up to: 6.6
 Requires PHP: 7.1
-Stable tag: 1.0.51
+Stable tag: 1.0.52
 Copyright: Payment Plugins
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,8 @@ Our documentation has a step-by-step guide on how to connect the plugin to your 
 Payment Plugins is the team behind several of the highest reviewed and installed Payment integrations for WooCommerce.
 
 == Changelog ==
+= 1.0.52 - 09/10/24 =
+* Added - If product variation is not in stock, disable the PayPal buttons on the product page.
 = 1.0.51 - 08/07/24 =
 * Fixed - Error on support page caused by deprecated WooCommerce API.
 = 1.0.50 - 07/16/24 =

@@ -47,7 +47,7 @@ if ( 'custom-page-redirect' === $ina_redirect_page_link ) {
                             <input class="regular-text ina-idle-timeout-input" name="idle_timeout" min="1" max="1440" type="number" id="idle_timeout" value="<?php echo ! empty( $time ) ? esc_attr( $time / 60 ) : 15; ?>">
                             <i><?php esc_html_e( 'Minute(s)', 'inactive-logout' ); ?></i>
                             <p class="description"><?php esc_html_e( 'Note: When multi-role is activated, the modal will be displayed based on the idle timeout selected for each individual user role.', 'inactive-logout' ); ?></p>
-                            <p class="description"><?php esc_html_e( 'Limited to 24 hours i.e 1440 minutes.', 'inactive-logout' ); ?> If these timeouts are not working for you then, <a target="_blank" href="https://inactive-logout.com/blog/how-to-troubleshoot-idle-timeout-problems">read this post.</a></p>
+                            <p class="description"><?php esc_html_e( 'Limited to 24 hours i.e 1440 minutes.', 'inactive-logout' ); ?><?php printf( esc_html__( ' If these timeouts are not working for you then, %1$sread this post%2$s.', 'inactive-logout' ), '<a target="_blank" href="https://inactive-logout.com/blog/how-to-troubleshoot-idle-timeout-problems">', '</a>' ); ?></p>
                         </td>
                     </tr>
                     <tr class="ina-hide-section" <?php echo ! empty( $ina_warn_message_enabled ) ? 'style="display:none;"' : 'style="display:table-row;"'; ?>>
@@ -108,8 +108,8 @@ if ( 'custom-page-redirect' === $ina_redirect_page_link ) {
                         <th scope="row"><label for="ina_popup_behaviour"><?php esc_html_e( 'Show Popup Behaviour', 'inactive-logout' ); ?></label></th>
                         <td>
                             <select name="ina_popup_behaviour">
-                                <option value="1" <?php echo ! empty( $ina_popup_up_behaviour ) && $ina_popup_up_behaviour == "1" ? 'selected' : ''; ?>>Only to Authenticated Users</option>
-                                <option value="2" <?php echo ! empty( $ina_popup_up_behaviour ) && $ina_popup_up_behaviour == "2" ? 'selected' : ''; ?>>To all Users (Non Authenticated users as well)</option>
+                                <option value="1" <?php echo ! empty( $ina_popup_up_behaviour ) && $ina_popup_up_behaviour == "1" ? 'selected' : ''; ?>><?php esc_html_e( 'Only to Authenticated Users', 'inactive-logout' ); ?></option>
+                                <option value="2" <?php echo ! empty( $ina_popup_up_behaviour ) && $ina_popup_up_behaviour == "2" ? 'selected' : ''; ?>><?php esc_html_e( 'To all Users (Non Authenticated users as well)', 'inactive-logout' ); ?></option>
                             </select>
                             <p class="description"><?php esc_html_e( 'You can choose to show this popup for all users or only authenticated users. You can mix this with a bit of redirection from redirection settings.', 'inactive-logout' ); ?></p>
                         </td>
@@ -124,7 +124,7 @@ if ( 'custom-page-redirect' === $ina_redirect_page_link ) {
 								'textarea_rows' => 15,
 							);
 							$__ina_warn_message   = \Codemanas\InactiveLogout\Helpers::get_option( '__ina_warn_message' );
-							$content_warn_message = $__ina_warn_message ? $__ina_warn_message : '<h3>Wakeup !</h3><p>You have been inactive for {wakup_timout}. Press continue to continue browsing.</p>';
+							$content_warn_message = ! empty( $__ina_warn_message ) ? $__ina_warn_message : '<h3>' . esc_html__( 'Wakeup !', 'inactive-logout' ) . '</h3><p>' . esc_html__( 'You have been inactive for {wakup_timout}. Press continue to continue browsing.', 'inactive-logout' ) . '</p>';
 							wp_editor( $content_warn_message, 'ina_show_warn_message', $settings_warn );
 							?>
                             <p class="description"><?php esc_html_e( 'Use {wakup_timout} to show minutes. This is message that will be shown when inactive.', 'inactive-logout' ); ?></p>
@@ -216,51 +216,51 @@ if ( 'custom-page-redirect' === $ina_redirect_page_link ) {
                     <tr>
                         <th scope="row"><label for="popup_modal_text_popup_heading"><?php esc_html_e( 'Header Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="popup_modal_text_popup_heading" type="text" id="popup_modal_text_popup_heading" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['popup_heading_text'] ) ? esc_html( $ina_popup_modal['popup_heading_text'] ) : 'Session Timeout'; ?>">
-                            <span><a href="https://tinyurl.com/2n3zwpds" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="popup_modal_text_popup_heading" type="text" id="popup_modal_text_popup_heading" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['popup_heading_text'] ) ? esc_html( $ina_popup_modal['popup_heading_text'] ) : esc_html__( 'Session Timeout', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2n3zwpds" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="popup_modal_text_close"><?php esc_html_e( 'Close Modal Button Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="popup_modal_text_close" type="text" id="popup_modal_text_close" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['text_close'] ) ? esc_html( $ina_popup_modal['text_close'] ) : 'Close without Reloading'; ?>">
-                            <span><a href="https://tinyurl.com/2erfvk4v" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
-                            <span style="margin-left:20px;"><input type="checkbox" name="popup_modal_close_without_reload_hide" <?php echo ! empty( $ina_close_without_reload ) ? 'checked' : false; ?> value="1"><?php _e( "Check this to hide this button", "inactive-logout" ); ?></span>
+                            <input class="regular-text" name="popup_modal_text_close" type="text" id="popup_modal_text_close" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['text_close'] ) ? esc_html( $ina_popup_modal['text_close'] ) : esc_html__( 'Close without Reloading', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2erfvk4v" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <span style="margin-left:20px;"><input type="checkbox" name="popup_modal_close_without_reload_hide" <?php echo ! empty( $ina_close_without_reload ) ? 'checked' : false; ?> value="1"><?php esc_html_e( "Check this to hide this button", "inactive-logout" ); ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="popup_modal_text_ok"><?php esc_html_e( 'After Logout Button Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="popup_modal_text_ok" type="text" id="popup_modal_text_ok" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['text_ok'] ) ? esc_html( $ina_popup_modal['text_ok'] ) : 'OK'; ?>">
-                            <span><a href="https://tinyurl.com/2pu9ghuf" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="popup_modal_text_ok" type="text" id="popup_modal_text_ok" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['text_ok'] ) ? esc_html( $ina_popup_modal['text_ok'] ) : esc_html__( 'OK', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2pu9ghuf" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="popup_modal_text_continue_browsing"><?php esc_html_e( 'Continue Button Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="popup_modal_text_continue_browsing" type="text" id="popup_modal_text_continue_browsing" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['continue_browsing_text'] ) ? esc_html( $ina_popup_modal['continue_browsing_text'] ) : 'Continue Browsing'; ?>">
-                            <span><a href="https://tinyurl.com/2gx4zvsd" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="popup_modal_text_continue_browsing" type="text" id="popup_modal_text_continue_browsing" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['continue_browsing_text'] ) ? esc_html( $ina_popup_modal['continue_browsing_text'] ) : esc_html__( 'Continue Browsing', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2gx4zvsd" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="popup_modal_wakeup_continue_btn"><?php esc_html_e( 'Wakeup Button Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="popup_modal_wakeup_continue_btn" type="text" id="popup_modal_wakeup_continue_btn" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['wakeup_cta'] ) ? esc_html( $ina_popup_modal['wakeup_cta'] ) : 'Ok'; ?>">
-                            <span><a href="https://tinyurl.com/2zw4edys" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="popup_modal_wakeup_continue_btn" type="text" id="popup_modal_wakeup_continue_btn" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['wakeup_cta'] ) ? esc_html( $ina_popup_modal['wakeup_cta'] ) : esc_html__( 'Ok', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2zw4edys" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="bottom_countdown_logout_text"><?php esc_html_e( 'Bottom Bar Countdown Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="bottom_countdown_logout_text" type="text" id="bottom_countdown_logout_text" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['bottom_countdown_logout_text'] ) ? esc_html( $ina_popup_modal['bottom_countdown_logout_text'] ) : 'You will be logged out in'; ?>">
-                            <span><a href="https://tinyurl.com/2o25stu2" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="bottom_countdown_logout_text" type="text" id="bottom_countdown_logout_text" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['bottom_countdown_logout_text'] ) ? esc_html( $ina_popup_modal['bottom_countdown_logout_text'] ) : esc_html__( 'You will be logged out in', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2o25stu2" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="bottom_countdown_last_active_text"><?php esc_html_e( 'Bottom Bar Last Active Text', 'inactive-logout' ); ?></label></th>
                         <td>
-                            <input class="regular-text" name="bottom_countdown_last_active_text" type="text" id="bottom_countdown_last_active_text" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['bottom_countdown_last_active_text'] ) ? esc_html( $ina_popup_modal['bottom_countdown_last_active_text'] ) : 'You were last active on'; ?>">
-                            <span><a href="https://tinyurl.com/2o25stu2" target="_blank"><i><?php _e( "Example", "inactive-logout" ); ?></i></a></span>
+                            <input class="regular-text" name="bottom_countdown_last_active_text" type="text" id="bottom_countdown_last_active_text" value="<?php echo ! empty( $ina_popup_modal ) && ! empty( $ina_popup_modal['bottom_countdown_last_active_text'] ) ? esc_html( $ina_popup_modal['bottom_countdown_last_active_text'] ) : esc_html__( 'You were last active on', 'inactive-logout' ); ?>">
+                            <span><a href="https://tinyurl.com/2o25stu2" target="_blank"><i><?php esc_html_e( "Example", "inactive-logout" ); ?></i></a></span>
                         </td>
                     </tr>
                     </tbody>

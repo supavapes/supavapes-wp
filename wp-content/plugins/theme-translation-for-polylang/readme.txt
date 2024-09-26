@@ -4,7 +4,7 @@ Tags: polylang, translate, translation, languages, multilanguage
 Requires at least: 5.7
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 3.4.6
+Stable tag: 3.4.7
 License: GPL2
 
 Theme and plugin translation using Polylang for WordPress.
@@ -190,9 +190,13 @@ Then you can use in twig templates polylang functions like this (in templates/ho
 
 1. Screen show "Polylang" strings translations with "Theme and plugin translation for Polylang".
 2. Export/import translations as CSV file with "Theme and plugin translation for Polylang".
-3. Settings - Select area to be scanned in Strigs translations polylang tab.
+3. Settings - Select area to be scanned in Strings translations polylang tab.
 
 == Changelog ==
+= 3.4.7 - 2024/09/01 =
+
+* Load current language for "Multilingual Contact Form 7 with Polylang" plugin in translate_cf7_messages.
+
 = 3.4.6 - 2024/08/07 =
 
 * Requires Plugins - by problems with the pro version of Polylang.

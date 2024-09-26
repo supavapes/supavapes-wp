@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-06 07:44+0000\n"
 "POT-Revision-Date: Sun Jan 29 2017 16:00:11 GMT+0545 (NPT)\n"
-"PO-Revision-Date: 2024-08-11 14:18+0000\n"
+"PO-Revision-Date: 2024-08-29 05:16+0000\n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -24,32 +24,62 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Loco-Version: 2.3.1; wp-5.3.2"
 
-#: views/tabs/tpl-inactive-logout-basic.php:232
-msgid "After Logout Button Text"
+#: views/tabs/tpl-inactive-logout-basic.php:50
+#, php-format
+msgid ""
+" If these timeouts are not working for you then, %1$sread this post%2$s."
 msgstr ""
 
-#: views/tabs/tpl-inactive-logout-advanced.php:137
-#| msgid ""
-#| "Are you sure you want to erase all advanced settings. This cannot be "
-#| "undone !"
+#: views/tabs/tpl-inactive-logout-support.php:19
+#, php-format
+msgid ""
+"%1$sTrack Visitors%2$s based on %3$s(Login time, logout time, browser, "
+"online status, session duration, role, os, IP)%4$s"
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-basic.php:232
+msgid "After Logout Button Text"
+msgstr "Testo del pulsante dopo il logout"
+
+#: views/tabs/tpl-inactive-logout-support.php:15
+msgid ""
+"Among many other features/enhancements, inactive logout pro comes with a "
+"additional features if you feel like you need it. "
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:35
+msgid "and more.."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-advanced.php:127
 msgid ""
 "Are you sure you want to erase all advanced settings? This cannot be undone."
 msgstr ""
 "Sei sicuro di voler cancellare tutte le impostazioni avanzate? Questa "
 "operazione non può essere annullata!"
 
+#: views/tabs/tpl-inactive-logout-support.php:17
+msgid "Auto browser close logout."
+msgstr ""
+
 #. Description of the plugin
 msgid ""
 "Automatically logout idle user sessions, even if they are on the front end! "
 "Fully configurable & easy to use."
 msgstr ""
+"Disconnette automaticamente le sessioni utente inattive, anche se sono sul "
+"front-end! Completamente configurabile e facile da usare."
 
 #: views/tabs/tpl-inactive-logout-basic.php:253
 msgid "Bottom Bar Countdown Text"
-msgstr ""
+msgstr "Testo del conto alla rovescia nella barra inferiore"
 
 #: views/tabs/tpl-inactive-logout-basic.php:260
 msgid "Bottom Bar Last Active Text"
+msgstr "Testo dell'ultima attività nella barra inferiore"
+
+#: views/tabs/tpl-inactive-logout-support.php:15
+msgid "Check out the pro version here"
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:97
@@ -57,6 +87,8 @@ msgid ""
 "Check this box to immediately logout the user after the idle timeout minute "
 "without any timeout grace."
 msgstr ""
+"Seleziona questa casella per disconnettere immediatamente l'utente dopo il "
+"minuto di timeout di inattività senza alcun periodo di grazia."
 
 #: views/tabs/tpl-inactive-logout-basic.php:191
 msgid ""
@@ -64,51 +96,85 @@ msgid ""
 "instead, the user will be redirected to a defined page upon clicking the "
 "\"OK\" button."
 msgstr ""
+"Seleziona questa opzione per disabilitare il reindirizzamento automatico "
+"dopo il popup di inattività; invece, l'utente sarà reindirizzato a una "
+"pagina definita dopo aver cliccato il pulsante \"OK\"."
 
 #: views/tabs/tpl-inactive-logout-basic.php:228
 msgid "Check this to hide this button"
-msgstr ""
+msgstr "Seleziona questo per nascondere questo pulsante"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:73
+#: views/tabs/tpl-inactive-logout-advanced.php:68
 msgid ""
 "Checking below will disable inactive logout functionality for selected user "
 "role."
 msgstr ""
+"Selezionando qui sotto si disabiliterà la funzionalità di logout per "
+"inattività per il ruolo utente selezionato."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:79
+#: views/tabs/tpl-inactive-logout-advanced.php:74
 msgid ""
 "Checking below will prevent the selected user role from logging in at "
 "multiple locations."
 msgstr ""
+"Selezionando qui sotto si impedirà al ruolo utente selezionato di effettuare "
+"l'accesso da più posizioni."
 
 #: views/tabs/tpl-inactive-logout-basic.php:224
 msgid "Close Modal Button Text"
-msgstr ""
+msgstr "Testo del pulsante per chiudere la finestra modale"
 
-#: core/Base.php:197
+#: core/Base.php:197 views/tabs/tpl-inactive-logout-basic.php:226
 msgid "Close without Reloading"
+msgstr "Chiudi senza ricaricare"
+
+#: views/tabs/tpl-inactive-logout-support.php:33
+msgid ""
+"Compatibility with OpenID Connect Generic Client WordPress plugin (Kinde "
+"supported)."
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:197
 msgid "Concurrent Login Settings"
-msgstr ""
+msgstr "Impostazioni di accesso concorrente"
 
-#: core/Base.php:199
+#: core/Base.php:199 views/tabs/tpl-inactive-logout-basic.php:241
 msgid "Continue Browsing"
-msgstr ""
+msgstr "Continua la navigazione"
 
 #: views/tabs/tpl-inactive-logout-basic.php:239
 msgid "Continue Button Text"
-msgstr ""
+msgstr "Testo del pulsante Continua"
 
 #: views/tabs/tpl-inactive-logout-basic.php:90
 msgid ""
 "Countdown before the actual logout to the user in a pop-up. If you set this "
 "to 0, the countdown will be set to 10 seconds."
 msgstr ""
+"Conto alla rovescia prima dell'effettivo logout dell'utente in un pop-up. Se "
+"lo imposti a 0, il conto alla rovescia sarà impostato a 10 secondi."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:71
+#: views/tabs/tpl-inactive-logout-support.php:44
+#, php-format
+msgid ""
+"Create a ticket from %1$s %2$sSupport forum%3$s. Check %1$s %4$ssite%3$s for "
+"recent change logs and updates."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:59
+msgid "Developer"
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-advanced.php:66
 msgid "Disable"
+msgstr "Disabilita"
+
+#: views/tabs/tpl-inactive-logout-support.php:28
+msgid "Disable inactive logout for specified pages according to your need."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:32
+msgid "Disable native wordpress login popup after logout."
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:94
@@ -117,15 +183,15 @@ msgstr "Disattiva il conto alla rovescia del timeout"
 
 #: views/tabs/tpl-inactive-logout-basic.php:134
 msgid "Enable Countdown?"
-msgstr ""
+msgstr "Abilitare il conto alla rovescia?"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:31
+#: views/tabs/tpl-inactive-logout-advanced.php:27
 msgid "Enable Multi-User Feature"
 msgstr "Abilita funzione multiutente"
 
 #: views/tabs/tpl-inactive-logout-basic.php:148
 msgid "Enable Redirection"
-msgstr ""
+msgstr "Abilita reindirizzamento"
 
 #: views/tabs/tpl-inactive-logout-basic.php:220
 #: views/tabs/tpl-inactive-logout-basic.php:227
@@ -135,31 +201,42 @@ msgstr ""
 #: views/tabs/tpl-inactive-logout-basic.php:256
 #: views/tabs/tpl-inactive-logout-basic.php:263
 msgid "Example"
-msgstr ""
+msgstr "Esempio"
 
 #: views/tabs/tpl-inactive-logout-basic.php:158
 msgid "External Page Redirect"
 msgstr "Reindirizzamento a pagina esterna"
 
+#: views/tabs/tpl-inactive-logout-support.php:60
+#, php-format
+msgid ""
+"Feel free to reach me from %1$s %2$sHere%3$s, if you have any questions or "
+"queries."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:27
+msgid "Force logout by admin on any users."
+msgstr ""
+
 #: views/tpl-inactive-logout-settings.php:43
 msgid "General Settings"
-msgstr ""
+msgstr "Impostazioni generali"
 
 #: core/Controllers/Admin/StoreController.php:60
 msgid "General Settings saved."
-msgstr ""
+msgstr "Impostazioni generali salvate."
 
 #: views/tpl-inactive-logout-settings.php:51
 msgid "Go Pro"
-msgstr ""
+msgstr "Passa a Pro"
 
 #: views/tabs/tpl-inactive-logout-basic.php:217
 msgid "Header Text"
-msgstr ""
+msgstr "Testo dell'intestazione"
 
 #: core/Base.php:70
 msgid "Heads up, Please backup before upgrade!"
-msgstr ""
+msgstr "Attenzione, effettua un backup prima di aggiornare!"
 
 #: views/tabs/tpl-inactive-logout-basic.php:54
 msgid "Idle Message Content"
@@ -169,10 +246,19 @@ msgstr "Contenuto del messaggio di inattività"
 msgid "Idle Timeout"
 msgstr "Timeout inattività"
 
+#: views/tabs/tpl-inactive-logout-support.php:39
+#, php-format
+msgid ""
+"If you encounter any issues or have any queries please use the %1$s "
+"%2$ssupport forums%3$s or %1$s %4$ssend a support mail%3$s. I will reply to "
+"you at the earliest possible."
+msgstr ""
+
 #. Name of the plugin
+#. Author of the plugin
 #: core/Base.php:27 core/Backend/Menu.php:26
 msgid "Inactive Logout"
-msgstr "Disconnessione per inattività"
+msgstr ""
 
 #: core/Backend/Menu.php:25
 msgid "Inactive User Logout Settings"
@@ -183,17 +269,44 @@ msgid ""
 "Is inactive logout or few functionalities not working for you ? Might be "
 "because you have added this user role in Role Based tab ?"
 msgstr ""
+"Il logout per inattività o alcune funzionalità non funzionano per te? "
+"Potrebbe essere perché hai aggiunto questo ruolo utente nella scheda Basata "
+"sui ruoli?"
+
+#: views/tabs/tpl-inactive-logout-support.php:25
+msgid "Last Active Timestamp - When was user last active."
+msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:50
 msgid "Limited to 24 hours i.e 1440 minutes."
-msgstr ""
+msgstr "Limitato a 24 ore, cioè 1440 minuti."
 
 #: core/Base.php:198
 msgid "Logging in. Please wait"
+msgstr "Accesso in corso. Attendere prego"
+
+#: views/tabs/tpl-inactive-logout-support.php:22
+msgid "Login Redirections - Redirect on login."
 msgstr ""
 
-#: views/tabs/tpl-inactive-logout-advanced.php:65
+#: views/tabs/tpl-inactive-logout-support.php:24
+msgid "Login/Logout time - Last login and logout time."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:31
+msgid "Logout modal popup customizations."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:30
+msgid "Logout popups for manually revoked user sessions."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-advanced.php:60
 msgid "Logout Redirect"
+msgstr "Reindirizzamento dopo il logout"
+
+#: views/tabs/tpl-inactive-logout-support.php:23
+msgid "Logout Redirections - Redirect on Logout."
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:66
@@ -210,19 +323,28 @@ msgstr "Minuto(i)"
 
 #: views/tabs/tpl-inactive-logout-basic.php:212
 msgid "Modal (Pop-Up) Settings"
+msgstr "Impostazioni della finestra modale (Pop-Up)"
+
+#: views/tabs/tpl-inactive-logout-support.php:20
+msgid "More options to role based settings."
 msgstr ""
 
-#: views/tabs/tpl-inactive-logout-advanced.php:20
+#: views/tabs/tpl-inactive-logout-advanced.php:19
 msgid "Multi-Role Timeout"
 msgstr "Timeout per utenti multi-ruolo"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:77
+#: views/tabs/tpl-inactive-logout-advanced.php:72
 msgid "Multiple Logins"
+msgstr "Accessi multipli"
+
+#: views/tabs/tpl-inactive-logout-support.php:18
+msgid "Multiple tab sync."
 msgstr ""
 
 #: legacy/class-inactive-logout-helpers.php:217
+#: views/tabs/tpl-inactive-logout-support.php:14
 msgid "Need more features ?"
-msgstr ""
+msgstr "Hai bisogno di più funzionalità?"
 
 #: views/tabs/tpl-inactive-logout-basic.php:176
 msgid "No Posts Found."
@@ -230,21 +352,41 @@ msgstr "Nessun Post trovato."
 
 #: core/Controllers/AdminController.php:36
 msgid "Not allowed"
-msgstr ""
+msgstr "Non consentito"
 
 #: views/tabs/tpl-inactive-logout-basic.php:49
 msgid ""
 "Note: When multi-role is activated, the modal will be displayed based on the "
 "idle timeout selected for each individual user role."
 msgstr ""
+"Nota: Quando il multi-ruolo è attivato, la finestra modale verrà "
+"visualizzata in base al timeout di inattività selezionato per ciascun ruolo "
+"utente individuale."
+
+#: views/tabs/tpl-inactive-logout-basic.php:234
+msgid "OK"
+msgstr ""
 
 #: core/Base.php:196 core/Base.php:200
+#: views/tabs/tpl-inactive-logout-basic.php:248
 msgid "Ok"
+msgstr "Ok"
+
+#: views/tabs/tpl-inactive-logout-support.php:26
+msgid "Online Status - Is user currently active or inactive."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-basic.php:111
+msgid "Only to Authenticated Users"
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:37
 msgid "Override for all sites"
 msgstr "Sostituisci per tutti i siti"
+
+#: views/tabs/tpl-inactive-logout-support.php:21
+msgid "Override multiple login priority."
+msgstr ""
 
 #: core/Base.php:25
 #, php-format
@@ -252,9 +394,19 @@ msgid ""
 "PHP version %1$s or greater is required for %2$s. Please update your PHP "
 "version in order to use the plugin."
 msgstr ""
+"È richiesta la versione PHP %1$s o superiore per %2$s. Aggiorna la tua "
+"versione PHP per utilizzare il plugin."
+
+#: views/tabs/tpl-inactive-logout-support.php:43
+msgid "Premium Support Ticket"
+msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:202
 msgid "Prevent Multiple Logins"
+msgstr "Impedisci accessi multipli"
+
+#: views/tabs/tpl-inactive-logout-support.php:54
+msgid "Rate Inactive Logout"
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:151
@@ -262,6 +414,8 @@ msgid ""
 "Redirect a user to specific page after session logout or on logout button "
 "click."
 msgstr ""
+"Reindirizza un utente a una pagina specifica dopo il logout della sessione o "
+"al clic sul pulsante di logout."
 
 #: views/tabs/tpl-inactive-logout-basic.php:155
 msgid "Redirect Page"
@@ -269,40 +423,40 @@ msgstr "Pagina di reindirizzamento"
 
 #: views/tabs/tpl-inactive-logout-basic.php:144
 msgid "Redirection Settings"
-msgstr ""
+msgstr "Impostazioni di reindirizzamento"
 
 #: core/Controllers/Admin/StoreController.php:131
 msgid "Reset advanced settings successful."
 msgstr "Ripristino delle impostazioni avanzate effettuato."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:137
+#: views/tabs/tpl-inactive-logout-advanced.php:127
 msgid "Reset Role Based Settings"
-msgstr ""
+msgstr "Reimposta impostazioni basate sui ruoli"
 
 #: views/tpl-inactive-logout-settings.php:46
 msgid "Role Based Settings"
-msgstr ""
+msgstr "Impostazioni basate sui ruoli"
 
 #: core/Controllers/Admin/StoreController.php:127
 msgid "Role based settings reset."
-msgstr ""
+msgstr "Impostazioni basate sui ruoli reimpostate."
 
 #: core/Controllers/Admin/StoreController.php:107
 msgid "Role based settings saved."
-msgstr ""
+msgstr "Impostazioni basate sui ruoli salvate."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:135
+#: views/tabs/tpl-inactive-logout-advanced.php:125
 #: views/tabs/tpl-inactive-logout-basic.php:272
 msgid "Save Changes"
 msgstr "Salva cambiamenti"
 
 #: views/tabs/tpl-inactive-logout-basic.php:272
 msgid "Saving.. Please wait"
-msgstr ""
+msgstr "Salvataggio in corso... Attendere prego"
 
 #: views/tabs/tpl-inactive-logout-basic.php:89
 msgid "Second(s)"
-msgstr ""
+msgstr "Secondo(i)"
 
 #: views/tabs/tpl-inactive-logout-basic.php:184
 msgid "Select a page to redirect to after session timeout and clicking OK."
@@ -312,33 +466,37 @@ msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:70
 msgid "Session Logout Message"
-msgstr ""
+msgstr "Messaggio di logout sessione"
 
-#: core/Base.php:201
+#: core/Base.php:201 views/tabs/tpl-inactive-logout-basic.php:219
 msgid "Session Timeout"
 msgstr "Scadenza sessione (timeout)"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:67
+#: views/tabs/tpl-inactive-logout-advanced.php:62
 msgid ""
 "Set different redirect page url for each user roles. This is affected when a "
 "user is logged out."
 msgstr ""
+"Imposta un URL di reindirizzamento diverso per ciascun ruolo utente. Questo "
+"ha effetto quando un utente viene disconnesso."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:61
+#: views/tabs/tpl-inactive-logout-advanced.php:56
 msgid "Set different timeout duration for each user roles. Defined in minutes."
 msgstr ""
+"Imposta una durata di timeout diversa per ciascun ruolo utente. Definita in "
+"minuti."
 
 #: core/Base.php:256 views/tpl-inactive-logout-settings.php:21
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: views/tabs/tpl-inactive-logout-basic.php:108
 msgid "Show Popup Behaviour"
-msgstr ""
+msgstr "Mostra comportamento del popup"
 
 #: views/tabs/tpl-inactive-logout-basic.php:101
 msgid "Show Popup Message Only"
-msgstr ""
+msgstr "Mostra solo il messaggio popup"
 
 #: views/tpl-inactive-logout-settings.php:49
 msgid "Support"
@@ -350,8 +508,12 @@ msgid ""
 "of the plugin. We highly recommend you backup your site before upgrading, "
 "and make sure you first update in a staging environment"
 msgstr ""
+"L'ultimo aggiornamento include alcune modifiche sostanziali in diverse aree "
+"del plugin. Ti consigliamo vivamente di eseguire un backup del tuo sito "
+"prima di aggiornare e di assicurarti di aggiornare prima in un ambiente di "
+"staging"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:46
+#: views/tabs/tpl-inactive-logout-advanced.php:41
 msgid ""
 "This will allow you to define different timeout constraint according to "
 "different selected user roles."
@@ -359,7 +521,7 @@ msgstr ""
 "Questa impostazione ti consentirà di definire diversi vincoli di timeout in "
 "base ai diversi ruoli utente selezionati."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:26
+#: views/tabs/tpl-inactive-logout-advanced.php:23
 msgid "This will enable multi-user role timeout functionality."
 msgstr ""
 "Questa impostazione abiliterà la funzionalità di timeout per i ruoli "
@@ -367,91 +529,128 @@ msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:205
 msgid "This will prevent the same user from logging in at multiple locations."
-msgstr ""
+msgstr "Questo impedirà allo stesso utente di accedere da più posizioni."
 
 #: views/tabs/tpl-inactive-logout-basic.php:137
 msgid ""
 "This will show a countdown at the bottom of the screen indicating that user "
 "will be logged out in a defined period."
 msgstr ""
+"Questo mostrerà un conto alla rovescia nella parte inferiore dello schermo "
+"che indica che l'utente verrà disconnesso in un periodo definito."
 
 #: views/tabs/tpl-inactive-logout-basic.php:104
-#| msgid ""
-#| "This will show the warning message in a popup, but the user will not be "
-#| "logged out."
 msgid ""
 "This will show the warning message in a pop-up, but the user will not be "
 "logged out."
 msgstr ""
-"Questo mostrerà solo il messaggio di avviso, ma l'utente non verrà "
+"Questo mostrerà il messaggio di avviso in un pop-up, ma l'utente non verrà "
 "disconnesso."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:59
+#: views/tabs/tpl-inactive-logout-advanced.php:54
 msgid "Timeout"
-msgstr ""
+msgstr "Timeout"
 
 #: views/tabs/tpl-inactive-logout-basic.php:86
 msgid "Timeout Countdown Period"
+msgstr "Periodo di conto alla rovescia del timeout"
+
+#: views/tabs/tpl-inactive-logout-basic.php:112
+msgid "To all Users (Non Authenticated users as well)"
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:29
+msgid "Track User Session and Logout individually."
 msgstr ""
 
 #: core/Base.php:223
 msgid "Tracking activity!"
-msgstr ""
+msgstr "Tracciamento dell'attività!"
 
 #: views/tabs/tpl-inactive-logout-basic.php:188
 msgid "Turn off Automatic Redirect"
-msgstr ""
+msgstr "Disattiva reindirizzamento automatico"
 
 #: views/tabs/tpl-inactive-logout-basic.php:130
 msgid ""
 "Use {wakup_timout} to show minutes. This is message that will be shown when "
 "inactive."
 msgstr ""
-"Usare {wakup_timout} per mostrare i minuti. Questo messaggio verrà "
-"visualizzato in caso di inattività."
+"Usa {wakup_timout} per mostrare i minuti. Questo è il messaggio che verrà "
+"mostrato in caso di inattività."
 
-#: views/tabs/tpl-inactive-logout-advanced.php:57
+#: views/tabs/tpl-inactive-logout-advanced.php:52
 msgid "User Role"
 msgstr "Ruolo dell'utente"
 
-#: views/tabs/tpl-inactive-logout-advanced.php:101
+#: views/tabs/tpl-inactive-logout-advanced.php:95
 msgid "Valid URL is required for this field."
+msgstr "È richiesto un URL valido per questo campo."
+
+#: views/tabs/tpl-inactive-logout-basic.php:127
+msgid "Wakeup !"
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:246
 msgid "Wakeup Button Text"
+msgstr "Testo del pulsante di riattivazione"
+
+#: views/tabs/tpl-inactive-logout-support.php:49
+msgid "Want to Contribute with Translations?"
 msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:118
-#| msgid "Warn Message Content"
 msgid "Warning Message Content"
 msgstr "Contenuto del messaggio di avviso"
+
+#: views/tabs/tpl-inactive-logout-support.php:50
+#, php-format
+msgid ""
+"We really appreciate and welcome translation contributions. Please send us "
+"an email at %s with translation file if you want to contribute."
+msgstr ""
+
+#: views/tabs/tpl-inactive-logout-support.php:55
+#, php-format
+msgid ""
+"We really appreciate if you can spare a minute to %1$s %2$srate the "
+"plugin%3$s."
+msgstr ""
 
 #: views/tabs/tpl-inactive-logout-basic.php:40
 msgid ""
 "When checked below settings will be effective and used for all sites in the "
 "network."
 msgstr ""
-"Se selezionata, le impostazioni saranno effettive per tutti i siti della "
-"rete."
+"Quando selezionato, le impostazioni sottostanti saranno effettive e "
+"utilizzate per tutti i siti nella rete."
 
 #: views/tabs/tpl-inactive-logout-basic.php:114
 msgid ""
 "You can choose to show this popup for all users or only authenticated users. "
 "You can mix this with a bit of redirection from redirection settings."
 msgstr ""
+"Puoi scegliere di mostrare questo popup per tutti gli utenti o solo per gli "
+"utenti autenticati. Puoi combinarlo con un po' di reindirizzamento dalle "
+"impostazioni di reindirizzamento."
+
+#: views/tabs/tpl-inactive-logout-basic.php:127
+msgid ""
+"You have been inactive for {wakup_timout}. Press continue to continue "
+"browsing."
+msgstr ""
 
 #: core/Base.php:203
 msgid "You have been logged out because of inactivity."
 msgstr "Sei stato disconnesso a causa di inattività."
 
-#: core/Base.php:222
+#: core/Base.php:222 views/tabs/tpl-inactive-logout-basic.php:262
 msgid "You were last active on"
-msgstr ""
+msgstr "La tua ultima attività è stata il"
 
-#: core/Base.php:221
+#: core/Base.php:221 views/tabs/tpl-inactive-logout-basic.php:255
 msgid "You will be logged out in"
-msgstr ""
+msgstr "Verrai disconnesso tra"
 
 #: views/tpl-inactive-logout-settings.php:10
 #, php-format
@@ -459,3 +658,5 @@ msgid ""
 "You're using Inactive Logout Free. To unlock more features, consider "
 "%1$sUpgrading to Pro%2$s"
 msgstr ""
+"Stai utilizzando Inactive Logout Free. Per sbloccare più funzionalità, "
+"considera di %1$spassare alla versione Pro%2$s"

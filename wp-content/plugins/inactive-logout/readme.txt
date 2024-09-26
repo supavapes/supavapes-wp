@@ -4,7 +4,7 @@ Tags: security, idle logout, logout, protection, inactive user
 Donate link: https://www.paypal.com/donate?hosted_button_id=2UCQKR868M9WE
 Requires at least: 5.8
 Tested up to: 6.6
-Stable tag: 3.4.3
+Stable tag: 3.4.4
 License: GPLv2 or later
 Requires PHP: 7.4
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,11 +13,11 @@ Logs out users within defined time when inactive. Modify to show only wake up me
 
 == Description ==
 
-Protect your WordPress users' sessions from shoulder surfers and snoopers!
+Protect your WordPress users’ sessions from prying eyes and snoopers!
 
-Use the Inactive Logout plugin to automatically terminate idle user sessions, thus protecting the site if the users leave unattended sessions.
+The Inactive Logout plugin automatically terminates idle user sessions, safeguarding your site if users leave their sessions unattended.
 
-The plugin is very easy to configure and use. Once you install and activate the plugin simply configure the idle timeout from the plugin settings. So now any unattended idle WordPress user sessions will be terminated automatically. You can also display a custom message to idle user sessions, alerting them that the session is about to end.
+A simple plugin which is easy to configure and use. After installing and activating it, just set the idle timeout from the plugin settings. From then on, any unattended idle WordPress sessions will be automatically terminated. You can also display a custom message to users, warning them that their session is about to end.
 
 **Try it out ==> [Demo](https://tastewp.org/plugins/inactive-logout/ "Demo Link")**
 
@@ -98,6 +98,10 @@ Slim Stat Analytics: Users using "Slimstat Analytics" plugin version upto 4.6.2 
 4. Multi User Role Screen
 
 == Changelog ==
+
+= 3.4.4 - September 1st, 2024 =
+* Localizations updated for French, German and Spannish.
+* Updated localization issues contributed by https://wordpress.org/support/topic/improve-i18n-issue-based-on-3-4-2/
 
 = 3.4.3 - August 27th, 2024 =
 * Added hook that can be triggered after concurrent logout.
