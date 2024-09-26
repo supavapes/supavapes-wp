@@ -1665,7 +1665,7 @@ li.ina-timeout-active-debugger {
     box-shadow: 0 0 20px var(--white-light);
     display: none;
     position: absolute;
-    bottom: 90px;
+    bottom: 86px;
     left: 15px;
     padding: 10px;
     width: calc(100% - 30px);
@@ -1750,6 +1750,7 @@ body.woocommerce-order-received .price-breakup-popup tr:last-child td,
     position: absolute;
     max-width: 250px;
     right: 10px;
+    bottom: 35px;
 }
 .review-slider .slider-box {
     position: relative;
