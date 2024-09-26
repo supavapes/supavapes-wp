@@ -4217,7 +4217,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			$reg_price  = $product->get_regular_price();
 			$sale_price = $product->get_sale_price();
 
-			get_woo_discount_rules_msg( $product->get_id(), 1 );
+			echo get_woo_discount_rules_msg( $product->get_id(), 1 );
 			$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 			$vaping_liquid = (int) $vaping_liquid;
