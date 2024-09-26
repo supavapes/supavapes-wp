@@ -4487,7 +4487,7 @@ if ( ! function_exists( 'supavapes_mini_cart_item_quantity_with_breakdown_callba
 	}
 }
 
-// add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_quantity_with_breakdown_callback', 10, 3 );
+add_filter( 'woocommerce_widget_cart_item_quantity', 'supavapes_mini_cart_item_quantity_with_breakdown_callback', 10, 3 );
 
 
 /**
