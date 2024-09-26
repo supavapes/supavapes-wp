@@ -73,7 +73,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				}
 				$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 				$product_modified_price = WC()->cart->get_product_price( $_product );
-
+				var_dump( $product_modified_price );
 				// If there is a discount, apply it
 				if ( $applied_discount ) {
 					if ( strpos( $applied_discount, '%' ) !== false ) {
