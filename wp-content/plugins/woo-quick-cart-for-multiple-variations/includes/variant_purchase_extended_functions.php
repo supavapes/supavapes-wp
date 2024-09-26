@@ -129,6 +129,19 @@ function wqcmv_calculate_federal_tax( $vaping_liquid ) {
  * @return false|string
  */
 function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations = array() ) {
+
+	$popup_heading             = get_field( 'popup_heading', 'option' );
+	$popup_heading             = ( empty( $popup_heading ) || is_null( $popup_heading ) || false === $popup_heading ) ? __( 'Price Breakdown', 'woocommerce-quick-cart-for-multiple-variations' ) : $popup_heading;
+	$product_price_label       = get_field( 'product_price_label', 'option' );
+	$product_price_label       = ( empty( $product_price_label ) || is_null( $product_price_label ) || false === $product_price_label ) ? __( 'Price:', 'woocommerce-quick-cart-for-multiple-variations' ) : $product_price_label;
+	$ontario_exise_tax_label   = get_field( 'ontario_exise_tax_label', 'option' );
+	$ontario_exise_tax_label   = ( empty( $ontario_exise_tax_label ) || is_null( $ontario_exise_tax_label ) || false === $ontario_exise_tax_label ) ? __( 'Ontario Tax:', 'woocommerce-quick-cart-for-multiple-variations' ) : $ontario_exise_tax_label;
+	$federal_exise_tax_label   = get_field( 'federal_exise_tax_label', 'option' );
+	$federal_exise_tax_label   = ( empty( $federal_exise_tax_label ) || is_null( $federal_exise_tax_label ) || false === $federal_exise_tax_label ) ? __( 'Federal Tax:', 'woocommerce-quick-cart-for-multiple-variations' ) : $federal_exise_tax_label;
+	$total_product_price_label = get_field( 'total_product_price_label', 'option' );
+	$total_product_price_label = ( empty( $total_product_price_label ) || is_null( $total_product_price_label ) || false === $total_product_price_label ) ? __( 'Total Product Price:', 'woocommerce-quick-cart-for-multiple-variations' ) : $total_product_price_label;
+
+
     if ( 0 === $variation_id ) {
         return '';
     }
@@ -203,7 +216,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
     // Fetch regular and sale prices
     $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
     $sale_price = get_post_meta( $variation_id, '_sale_price', true );
-
+	$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 	// Fetch vaping_liquid value
 	$vaping_liquid = get_post_meta($variation_id, '_vaping_liquid', true);
 	$vaping_liquid = (int)$vaping_liquid;
@@ -340,68 +353,50 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				</div>
 				<div class="vpn_product_price">
 					<label class="vpn_product_label"><?php echo esc_html__("Price", 'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-					<?php if (isset($vaping_liquid) && !empty($vaping_liquid) && $vaping_liquid >= 10) {
+					<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
 							?>
 					<h4 class="priceInfo price-breakup">
 						<?php echo wp_kses_post($price); ?>
 							<div class="info-icon-container">
 								<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 								<div class="price-breakup-popup">
-								<h5 class="header"><?php esc_html_e( 'Price Breakdown','woocommerce-quick-cart-for-multiple-variations' ); ?></h5>
-								<table class="pricetable">
-									<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Product Price','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $sale_price ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice' ><?php esc_html_e( 'Product Price','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $reg_price ); ?></td>
-									</tr>
-									<?php }?>
-									<?php if ( 'Ontario' !== $state ) { ?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php }else{?>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Ontario Excise Tax','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-									</tr>
-									<tr>
-									<td class='leftprice'><?php esc_html_e( 'Federal Excise Tax','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-									</tr>
-									<?php } ?>
-									<tr class="wholesaleprice">
-									<td class='leftprice'><?php esc_html_e( 'Total Price','woocommerce-quick-cart-for-multiple-variations' ); ?></td>
-									<td class='rightprice'><?php echo wc_price($final_price); ?></td>
-									</tr>
+									<h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
+									<table class="pricetable">
+										<?php if ( isset( $sale_price ) && !empty( $sale_price ) ) { ?>
+										<tr>
+											<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
+											<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
+										</tr>
+										<?php } ?>
+										<?php if ( 'Ontario' !== $state ) { ?>
+										<tr>
+											<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+											<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+										</tr>
+										<?php } else {?>
+										<tr>
+											<td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
+											<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+										</tr>
+										<tr>
+											<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+											<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+										</tr>
+										<?php } ?>
+										<tr class="wholesaleprice">
+											<td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
+											<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+										</tr>
 									</table>
-									<!-- <p>Regular Price: <?php //echo wc_price($reg_price); ?></p> -->
-									<?php //if (isset($sale_price) && !empty($sale_price)) { ?>
-										<!-- <p><?php //esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($sale_price); ?></p> -->
-									<?php //}else {?>
-										<!-- <p><?php //esc_html_e('Product Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($reg_price); ?></p> -->
-									<?php //}?>
-									<?php //if ( 'Ontario' == $state ) { ?>
-										<!-- <p><?php //esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($ontario_tax); ?></p> -->
-									<?php //}else{?>
-										<!-- <p><?php //esc_html_e('Ontario Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($ontario_tax); ?></p> -->
-										<!-- <p><?php //esc_html_e('Federal Excise Tax:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wc_price($federal_tax); ?></p> -->
-									<?php //}?>
-										<!-- <p><?php //esc_html_e('Total Price:','woocommerce-quick-cart-for-multiple-variations'); ?><?php //echo wp_kses_post($price); ?></p> -->
 								</div>
 							</div>
 						
 					</h4>
-					<?php }else{?>
+					<?php } else {?>
 						<h4 class="priceInfo">
-						<?php echo wp_kses_post($price); ?>
+						<?php echo wp_kses_post( $price ); ?>
 					</h4>
-					<?php }?>
+					<?php } ?>
 				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__( 'Quantity','woocommerce-quick-cart-for-multiple-variations' ); ?></label>
