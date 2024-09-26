@@ -3555,7 +3555,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 	 * @since 1.0.0
 	 */
     function supavapes_custom_price_html( $price, $product ) {
-		
+		debug($product);
         // Get user state dynamically
         $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
