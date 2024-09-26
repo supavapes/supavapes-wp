@@ -1641,11 +1641,11 @@ function sv_mailchimp_subscribers_page() {
 	$table->prepare_items();
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e('Mailchimp Subscribers', 'supavapes'); ?></h1>
+		<h1><?php esc_html_e( 'Mailchimp Subscribers', 'supavapes' ); ?></h1>
 		<form method="get">
 			<input type="hidden" name="page" value="<?php echo esc_attr($_REQUEST['page']); ?>" />
 			<?php
-			$table->search_box(__('Search Subscribers', 'supavapes'), 'search_id');
+			$table->search_box(__( 'Search Subscribers', 'supavapes'), 'search_id' );
 			?>
 		</form>
 		<?php $table->display(); ?>
@@ -4242,10 +4242,8 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			// Add the info icon and price breakdown popup
 			ob_start(); ?>
 			<?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-				//  echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 				echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 				?>
-				
 				<?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
 					<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
 				<?php } ?>
@@ -4304,26 +4302,11 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 			if ( $min_ontario_tax > 0 || $max_ontario_tax > 0 || $min_federal_tax > 0 || $max_federal_tax > 0 ) {
 				if ( $min_price === $max_price ) { 
 					echo supavapes_price_breakdown_custom_html( $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
-					?>
-					
-				<?php } else { 
-					echo supavapes_price_breakdown_in_range_custom_html( 
-						$min_price,    // Minimum product price
-						$max_price,    // Maximum product price
-						$min_federal_tax, // Minimum federal tax
-						$max_federal_tax, // Maximum federal tax
-						$min_ontario_tax, // Minimum Ontario tax (if applicable)
-						$max_ontario_tax, // Maximum Ontario tax (if applicable)
-						$final_min_price, // Final minimum price
-						$final_max_price, // Final maximum price
-						$state // User state for tax logic );
-					);
-					?>
-					
-				<?php } 
-				}
-			?>
-			<?php 
+				} else { 
+					echo supavapes_price_breakdown_in_range_custom_html( $min_price, $max_price, $min_federal_tax, $max_federal_tax, $min_ontario_tax, $max_ontario_tax, $final_min_price, $final_max_price, $state );
+				} 
+			}
+
 			echo ob_get_clean();
 		}
 	}
