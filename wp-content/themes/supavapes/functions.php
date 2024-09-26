@@ -4307,13 +4307,15 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 					?>
 					
 				<?php } else { 
-					$range_product_price  =  wc_price( $min_price ).' - '.wc_price( $max_price );
-					$range_federal_tax    =  wc_price( $min_federal_tax ).' - '.wc_price( $max_federal_tax );
-					$range_ontario_tax    =  wc_price( $min_ontario_tax ).' - '.wc_price( $max_ontario_tax );
-					$range_final_price    =  wc_price( $final_min_price ).' - '.wc_price( $final_max_price );
-
-					echo supavapes_price_breakdown_custom_html( $range_product_price, $range_federal_tax, $range_ontario_tax, $range_final_price, $state );
+					echo supavapes_price_breakdown_custom_html(
+						$min_price . ' - ' . $max_price,    // Product price
+						$min_federal_tax . ' - ' . $max_federal_tax, // Federal tax
+						$min_ontario_tax . ' - ' . $max_ontario_tax, // Ontario tax (if applicable)
+						$final_min_price . ' - ' . $final_max_price, // Final price
+						$state // User state for tax logic
+					);
 					?>
+					
 				<?php } 
 				}
 			?>
