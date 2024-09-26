@@ -1682,6 +1682,7 @@ li.ina-timeout-active-debugger {
 	color:white;
 	display:flex;
  justify-content: center;
+ font-family: "Montserrat"s;
 }
 
 .info-icon-container {
