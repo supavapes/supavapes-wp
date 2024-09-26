@@ -46,7 +46,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				$vaping_liquid = '';
 				// Retrieve active offers
 				$active_offers = supa_active_offers_from_discount();
-				debug( $active_offers );
+				// debug( $active_offers );
 				$applied_discount = 0;
 
 				// Check if the current product is eligible for any discount
