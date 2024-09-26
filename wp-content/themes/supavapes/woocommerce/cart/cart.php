@@ -42,8 +42,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			
 				// Fetch the variation ID if it's a variable product.
 				$variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
-				echo "cartttt";
-				debug( $cart_item['data'] );
+				
 				$vaping_liquid = '';
 				// Retrieve active offers
 				$active_offers = supa_active_offers_from_discount();
@@ -73,6 +72,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$sale_price = $_product->get_sale_price();
 				}
 				$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+				$product_modified_price = WC()->cart->get_product_price( $_product );
 
 				// If there is a discount, apply it
 				if ( $applied_discount ) {
@@ -154,7 +154,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
 							<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-								echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+								echo supavapes_price_breakdown_custom_html( WC()->cart->get_product_price( $_product ), $federal_tax, $ontario_tax, $final_price, $state );
 							}?>
 						</td>
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'supavapes' ); ?>">
