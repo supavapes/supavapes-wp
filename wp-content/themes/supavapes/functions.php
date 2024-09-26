@@ -4307,12 +4307,16 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 					?>
 					
 				<?php } else { 
-					echo supavapes_price_breakdown_custom_html(
-						$min_price . ' - ' . $max_price,    // Product price
-						$min_federal_tax . ' - ' . $max_federal_tax, // Federal tax
-						$min_ontario_tax . ' - ' . $max_ontario_tax, // Ontario tax (if applicable)
-						$final_min_price . ' - ' . $final_max_price, // Final price
-						$state // User state for tax logic
+					echo supavapes_price_breakdown_custom_html( 
+						$min_price,    // Minimum product price
+						$max_price,    // Maximum product price
+						$min_federal_tax, // Minimum federal tax
+						$max_federal_tax, // Maximum federal tax
+						$min_ontario_tax, // Minimum Ontario tax (if applicable)
+						$max_ontario_tax, // Maximum Ontario tax (if applicable)
+						$final_min_price, // Final minimum price
+						$final_max_price, // Final maximum price
+						$state // User state for tax logic );
 					);
 					?>
 					
@@ -5014,6 +5018,57 @@ function supavapes_price_breakdown_custom_html( $product_price = null, $federal_
     <?php
     return ob_get_clean(); // Return the buffered output
 }
+
+function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max_price = null, $min_federal_tax = null, $max_federal_tax = null, $min_ontario_tax = null, $max_ontario_tax = null, $final_min_price = null, $final_max_price = null, $state = '' ) {
+    
+	$popup_heading             = get_field( 'popup_heading', 'option' );
+	$popup_heading             = ( empty( $popup_heading ) || is_null( $popup_heading ) || false === $popup_heading ) ? __( 'Price Breakdown', 'supavapes' ) : $popup_heading;
+	$product_price_label       = get_field( 'product_price_label', 'option' );
+	$product_price_label       = ( empty( $product_price_label ) || is_null( $product_price_label ) || false === $product_price_label ) ? __( 'Price:', 'supavapes' ) : $product_price_label;
+	$ontario_exise_tax_label   = get_field( 'ontario_exise_tax_label', 'option' );
+	$ontario_exise_tax_label   = ( empty( $ontario_exise_tax_label ) || is_null( $ontario_exise_tax_label ) || false === $ontario_exise_tax_label ) ? __( 'Ontario Tax:', 'supavapes' ) : $ontario_exise_tax_label;
+	$federal_exise_tax_label   = get_field( 'federal_exise_tax_label', 'option' );
+	$federal_exise_tax_label   = ( empty( $federal_exise_tax_label ) || is_null( $federal_exise_tax_label ) || false === $federal_exise_tax_label ) ? __( 'Federal Tax:', 'supavapes' ) : $federal_exise_tax_label;
+	$total_product_price_label = get_field( 'total_product_price_label', 'option' );
+	$total_product_price_label = ( empty( $total_product_price_label ) || is_null( $total_product_price_label ) || false === $total_product_price_label ) ? __( 'Total Product Price:', 'supavapes' ) : $total_product_price_label;
+
+	ob_start(); // Start output buffering
+	?>
+    <div class="info-icon-container">
+        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+        <div class="price-breakup-popup">
+            <h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
+            <table class="pricetable">
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $min_price ) . ' - ' . wc_price( $max_price ); ?></td>
+				</tr>
+                <?php if ( 'Ontario' !== $state ) { ?>
+                <tr>
+                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
+                </tr>
+                <?php } else { ?>
+                <tr>
+                    <td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $min_ontario_tax ) . ' - ' . wc_price( $max_ontario_tax ); ?></td>
+                </tr>
+                <tr>
+                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
+                </tr>
+                <?php } ?>
+                <tr class="wholesaleprice">
+                    <td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
+                    <td class='rightprice'><?php echo wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price ); ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean(); // Return the buffered output
+}
+
 
 
 
