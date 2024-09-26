@@ -1906,7 +1906,18 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         font-size: 14px !important;
     }
 }
-
+li.ina-timeout-active-debugger,
+li.ina-timeout-remaining-debugger {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.ina-debugger-section ul {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-flow: row wrap;
+}
 
 
 /* Location popup */
