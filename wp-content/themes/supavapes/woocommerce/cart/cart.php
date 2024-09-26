@@ -43,7 +43,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				// Fetch the variation ID if it's a variable product.
 				$variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
 				echo "cartttt";
-				debug( $cart_item );
+				debug( $cart_item['data'] );
 				$vaping_liquid = '';
 				// Retrieve active offers
 				$active_offers = supa_active_offers_from_discount();
