@@ -4306,7 +4306,9 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 					echo supavapes_price_breakdown_custom_html( $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
 					?>
 					
-				<?php } else { ?>
+				<?php } else { 
+					$range_product_price = wc_price( $min_price ).' - '.wc_price( $max_price );
+					?>
 					<div class="info-icon-container">
 						<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
 						<div class="price-breakup-popup">
@@ -4314,7 +4316,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 							<table class="pricetable">
 								<tr>
 									<td class='leftprice'><?php esc_html_e( 'Product Price', 'supavapes' ); ?></td>
-									<td class='rightprice'><?php echo wc_price( $min_price ).' - '.wc_price( $max_price ); ?></td>
+									<td class='rightprice'><?php echo $range_product_price; ?></td>
 								</tr>
 								<?php if ( 'Ontario' !== $state ) { ?>
 									<tr>
