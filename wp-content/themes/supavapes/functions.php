@@ -4193,42 +4193,6 @@ if ( ! function_exists( 'supavapes_calculate_federal_tax' ) ) {
 	}
 }
 
-/**
- * Get discounted price for a product if applicable.
- *
- * @param int    $product_id   The product ID.
- * @param float  $original_price The original price of the product (regular or sale price).
- * @return float The discounted price (or original price if no discount).
- */
-function supavapes_get_discounted_price( $product_id, $original_price ) {
-    // Retrieve active offers
-    $active_offers = supa_active_offers_from_discount();
-    $discounted_price = $original_price;
-
-    if ( ! empty( $active_offers ) ) {
-        foreach ( $active_offers as $offer ) {
-            if ( isset( $offer['products'] ) && in_array( $product_id, $offer['products'] ) ) {
-                $applied_discount = $offer['discount_value'];
-
-                // Apply percentage-based discount
-                if ( strpos( $applied_discount, '%' ) !== false ) {
-                    $discount_value = str_replace( '%', '', $applied_discount );
-                    $discount_amount = ( $original_price * $discount_value ) / 100;
-                } 
-                // Apply fixed discount (e.g., "$5 OFF")
-                else {
-                    $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
-                }
-
-                // Adjust the discounted price
-                $discounted_price = max( 0, $original_price - $discount_amount );
-                break;
-            }
-        }
-    }
-
-    return $discounted_price;
-}
 
 
 /**
@@ -4269,8 +4233,20 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
             $sale_price = $product->get_sale_price();
             $product_price = $sale_price ? $sale_price : $reg_price;
 
-            // Call the function to get the discounted price
-		    $discounted_price = supavapes_get_discounted_price( $product_id, $product_price );
+            // If there is a discount, apply it
+            if ( $applied_discount ) {
+                if ( strpos( $applied_discount, '%' ) !== false ) {
+                    // Percentage-based discount
+                    $discount_value = str_replace( '%', '', $applied_discount );
+                    $discount_amount = ( $product_price * $discount_value ) / 100;
+                } else {
+                    // Fixed discount (assumed to be a numeric value like "$5 OFF")
+                    $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
+                }
+
+                // Apply the discount to the price
+                $product_price = max( 0, $product_price - $discount_amount );
+            }
 
             $vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
             $vaping_liquid = (int) $vaping_liquid;
@@ -4281,13 +4257,8 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
                 $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
             }
 
-			if( $discounted_price ){
-				// Determine the product price based on state
-				$product_price = $discounted_price;
-			} else {
-				$product_price  = $product_price;
-			}
-           
+            // Determine the final price based on state
+            $final_price = $product_price;
             if ( 'Ontario' !== $state ) {
                 $final_price += $federal_tax;
             } else {
