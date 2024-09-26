@@ -2526,11 +2526,11 @@ function add_quantity_rule_message_to_cart_item_name( $product_name, $cart_item,
 	if( in_array('wp_ajax_render_minicart_data', $wp_current_filter, true)) {
 		return $product_name;
 	}
-	echo "innn";
-	debug($cart_item);
+	// echo "innn";
+	// debug($cart_item);
 	$discount_message = '';
 	if (isset($cart_item['discounted_price']) && $cart_item['discounted_price'] > 0) {
-		echo "Discount amount: ".$discount_amount = wc_price($cart_item['discounted_price']);
+		$discount_amount = wc_price($cart_item['discounted_price']);
 		$discount_message = sprintf(__('Discounted price %s for this item.', 'supavapes'), $discount_amount);
 		$discount_message = '<div class="discount_message" style="color: green;">' . $discount_message . '</div>';
 	}
