@@ -4206,50 +4206,77 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 	 */
 	function supavapes_detail_page_price_breakdown_callback() {
 		global $product;
-		// debug($product);
-		echo supa_active_offers_from_discount();
-		debug(supa_active_offers_from_discount());
-		$product_data = wc_get_product( $product->get_id() );
-		// debug($product_data);
-		if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
-			$product_type = $product_data->get_type();
-		}
+		$product_id = $product->get_id();
+        $product_data = wc_get_product( $product_id );
 
-		// Logic for Simple Products
-		if ( $product_type == 'simple' ) {
-			$reg_price  = $product->get_regular_price();
-			$sale_price = $product->get_sale_price();
-			debug( get_woo_discount_rules_msg( $product->get_id(), 1 ) );
-			$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
-			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
-			$vaping_liquid = (int) $vaping_liquid;
-			$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+        if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
+            $product_type = $product_data->get_type();
+        }
 
-			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-				$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-				$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-			}
+        // Retrieve active offers
+        $active_offers = supa_active_offers_from_discount();
+        $applied_discount = 0;
 
-			// Determine the final price based on state
-			$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-			if ( 'Ontario' !== $state ) {
-				$final_price += $federal_tax;
-			} else {
-				$final_price += $ontario_tax + $federal_tax;
-			}
+        // Check if the current product is eligible for any discount
+        if ( ! empty( $active_offers ) ) {
+            foreach ( $active_offers as $offer ) {
+                if ( isset( $offer['products'] ) && in_array( $product_id, $offer['products'] ) ) {
+                    $applied_discount = $offer['discount_value']; // Apply the discount
+                    break;
+                }
+            }
+        }
 
-			// Add the info icon and price breakdown popup
-			ob_start(); ?>
-			<?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-				echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
-				?>
-				<?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
-					<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
-				<?php } ?>
-			<?php } ?>
-			<?php 
-			echo ob_get_clean();
-		}
+        // Logic for Simple Products
+        if ( $product_type == 'simple' ) {
+            $reg_price  = $product->get_regular_price();
+            $sale_price = $product->get_sale_price();
+            $product_price = $sale_price ? $sale_price : $reg_price;
+
+            // If there is a discount, apply it
+            if ( $applied_discount ) {
+                if ( strpos( $applied_discount, '%' ) !== false ) {
+                    // Percentage-based discount
+                    $discount_value = str_replace( '%', '', $applied_discount );
+                    $discount_amount = ( $product_price * $discount_value ) / 100;
+                } else {
+                    // Fixed discount (assumed to be a numeric value like "$5 OFF")
+                    $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
+                }
+
+                // Apply the discount to the price
+                $product_price = max( 0, $product_price - $discount_amount );
+            }
+
+            $vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
+            $vaping_liquid = (int) $vaping_liquid;
+            $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+
+            if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+                $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+                $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+            }
+
+            // Determine the final price based on state
+            $final_price = $product_price;
+            if ( 'Ontario' !== $state ) {
+                $final_price += $federal_tax;
+            } else {
+                $final_price += $ontario_tax + $federal_tax;
+            }
+
+            // Add the info icon and price breakdown popup
+            ob_start(); ?>
+            <?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
+                echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+                ?>
+                <?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
+                    <p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
+                <?php } ?>
+            <?php } ?>
+            <?php 
+            echo ob_get_clean();
+        }
 
 		// Logic for Variable Products
 		if ( $product_type == 'variable' ) {
