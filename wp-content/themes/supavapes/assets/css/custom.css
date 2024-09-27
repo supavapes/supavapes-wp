@@ -2148,8 +2148,12 @@ form.menual-location {
     .location-popup-header h2{width: 100%;}
     .location-popup-header, .custom-location-wrap {
         padding: 0 20px;
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 10px;
         align-items: flex-end;
+        margin-bottom: 20px;
+    }
+    .custom-location-wrap{
+        gap: 20px;
     }
 }
