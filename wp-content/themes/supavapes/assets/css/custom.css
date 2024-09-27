@@ -2078,14 +2078,20 @@ form.menual-location {
     font-weight: 300 !important;
 }
 .location-btn-wrap {
-    display: flex;
-    align-items: center;
-    gap: 5px;
     position: fixed;
-    padding: 15px;
     right: 0;
     bottom: 150px;
     z-index: 99;
+    width: 50px;
+}
+.location-btn-wrap-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--primary-palette-carmine-pink);
+    padding: 15px;
+    transform: rotate(90deg);
+    height: 50px;
 }
 
 .location-btn-wrap button {
