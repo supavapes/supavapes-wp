@@ -2141,13 +2141,15 @@ form.menual-location {
 .custom-location-buttons{right: 20px;top: -5px;}
 }
 @media (max-width: 430px) {
-    .custom-location-wrap {
-        flex-direction: column-reverse;
-        gap: 10px;
-        align-items: flex-end;
-    }
     .custom-location-buttons {
         position: relative;
         justify-content: flex-end;
+    }
+    .location-popup-header h2{width: 100%;}
+    .location-popup-header, .custom-location-wrap {
+        padding: 0 20px;
+        flex-direction: column-reverse;
+        gap: 10px;
+        align-items: flex-end;
     }
 }
