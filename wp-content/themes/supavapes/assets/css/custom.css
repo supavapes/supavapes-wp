@@ -2001,6 +2001,7 @@ input.type-address {
     gap: 10px;
     position: absolute;
     right: 50px;
+    bottom: 10px;
 }
 .location-popup-header {
     display: flex;
@@ -2124,6 +2125,10 @@ form.menual-location {
     display: flex;
     bottom: 0;
     right: 0;
+}
+
+button.button.submit-location {
+    height: 50px;
 }
 @media (max-width: 768px) {
 .location-popup-form-content {
