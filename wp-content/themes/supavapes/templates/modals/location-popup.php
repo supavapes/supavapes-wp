@@ -24,7 +24,7 @@
                             <input type="text" placeholder="Enter Your Address" class="type-address" required="" value="">
                         </div>
                         <div class="custom-location-buttons">
-                            <a href="" class="button">Detect Me</a>
+                            <a href="">Detect Me</a>
                             <button class="enter-menual-btn">Enter Manually</button>
                         </div>
                     </div>
