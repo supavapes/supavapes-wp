@@ -2144,6 +2144,7 @@ form.menual-location {
     .custom-location-buttons {
         position: relative;
         justify-content: flex-end;
+        right: 0;
     }
     .location-popup-header h2{width: 100%;}
     .location-popup-header, .custom-location-wrap {
