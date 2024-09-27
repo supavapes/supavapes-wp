@@ -2098,7 +2098,7 @@ form.menual-location {
 .location-btn-wrap {
     position: fixed;
     right: 0;
-    bottom: 150px;
+    top: calc(50% - 25px);
     z-index: 99;
     width: 50px;
     align-items: center;
