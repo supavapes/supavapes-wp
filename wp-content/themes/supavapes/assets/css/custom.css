@@ -2127,8 +2127,12 @@ form.menual-location {
     right: 0;
 }
 
+
 button.button.submit-location {
     height: 50px;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
 }
 @media (max-width: 768px) {
 .location-popup-form-content {
