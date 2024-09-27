@@ -40,7 +40,7 @@ $announcement_bar_button = get_field('announcement_bar_button','option');
 	<div class="location-btn-wrap">
 		<div class="location-btn-wrap-content">
 			<span class="location-country">Gujarat,</span>
-			<span class="location-country">India </span>
+			<span class="location-country">IN</span>
 			<button class="edit-location-btn">
 				<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<circle cx="13" cy="13" r="13" fill="white"/>

@@ -2096,6 +2096,8 @@ form.menual-location {
     padding: 15px;
     transform: rotate(-90deg);
     justify-content: center;
+    font-weight: 500;
+    border-radius: 10px 10px 0 0;
 }
 
 .location-btn-wrap button {
