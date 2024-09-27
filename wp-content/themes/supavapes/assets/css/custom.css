@@ -1937,7 +1937,7 @@ li.ina-timeout-remaining-debugger {
 /* Location popup */
 .location-popup { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; padding: 20px; display: none; align-items: center; justify-content: center; box-sizing: border-box; z-index: 9999; }
 .location-popup .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--overlay); display: flex; z-index: 99; }
-.location-popup .location-popup-content { background-color: var(--black); margin: 0; padding: 85px 55px; width: 100%; position: relative; max-width: 1100px; z-index: 9999; border-radius: 12px; max-height: calc(100vh - 150px); height: fit-content; box-shadow: 0 0 20px var(--white-light); display: flex; overflow: hidden;}
+.location-popup .location-popup-content { background-color: var(--black); margin: 0; padding: 85px 0 0px; width: 100%; position: relative; max-width: 1100px; z-index: 9999; border-radius: 12px; max-height: calc(100vh - 150px); height: fit-content; box-shadow: 0 0 20px var(--white-light); display: flex; overflow: hidden;}
 .location-popup .location-popup-close { position: absolute; right: 30px; top: 30px; cursor: pointer; }
 .location-popup-content-detail { width: 100%; display: flex; flex-direction: row; gap: 50px; color: var(--white); height: auto; }
 .location-popup-content-box { height: auto; overflow: auto; max-height: calc(100vh - 120px); width: 100%; }
@@ -1978,6 +1978,7 @@ input.type-address {
     flex-direction: column;
     gap: 20px;
     margin-bottom: 20px;
+    padding: 0 50px;
     position: relative;
 }
 
@@ -1987,7 +1988,6 @@ input.type-address {
 .gm-style-mtc {
     margin-left: 10px !important;
 }
-div#location-map{border-radius: 20px;margin-bottom: 20px;}
 .custom-location-buttons a {
     font-size: 18px;
     font-weight: 500;
@@ -2000,7 +2000,13 @@ div#location-map{border-radius: 20px;margin-bottom: 20px;}
     flex-flow: row wrap;
     gap: 10px;
     position: absolute;
-    right: 0;
+    right: 50px;
+}
+.location-popup-header {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    padding: 0 50px;
 }
 button.enter-menual-btn {
     margin: 0 !important;
@@ -2128,8 +2134,10 @@ form.menual-location {
     font-size: 22px;
     line-height: 30px;
 }
-.location-popup .location-popup-content{ padding: 50px 20px 20px;}
+.location-popup .location-popup-content{ padding: 50px 0px 0px;}
 .custom-location-buttons{align-items: center;justify-content: center;}
+.custom-location-buttons a,button.enter-menual-btn,button.button.submit-location{font-size: 16px !important;}
+.location-popup-header,.custom-location-wrap{padding: 0 20px;}
 }
 @media (max-width: 430px) {
     .location-popup-content .button{display: flex !important;align-items: center;justify-content: center;width: 100%;}
