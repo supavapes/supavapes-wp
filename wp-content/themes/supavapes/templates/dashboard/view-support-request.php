@@ -1,31 +1,33 @@
-<?php 
+<?php
+// This file is used for support request details.
+
 defined('ABSPATH') || exit;
-$request_id = get_query_var('view-request');
-$support_request = get_post($request_id);
-if (!$support_request || $support_request->post_type !== 'support_request') {
-    wp_redirect(home_url('/my-account/'));
+$request_id         =   get_query_var( 'view-request' );
+$support_request    =   get_post( $request_id );
+if ( !$support_request || $support_request->post_type !== 'support_request' ) {
+    wp_redirect( home_url( '/my-account/' ) );
     exit;
 }
 
-$order_id = get_post_meta($request_id, '_order_id', true);
-$new_order_id = get_post_meta($request_id, '_support_request_new_order_id', true);
-$new_order = wc_get_order($new_order_id);
-$order = wc_get_order($order_id);
-if (!$order) {
-    wp_redirect(home_url('/my-account/'));
+$order_id       =   get_post_meta( $request_id, '_order_id', true );
+$new_order_id   =   get_post_meta( $request_id, '_support_request_new_order_id', true );
+$new_order      =   wc_get_order( $new_order_id );
+$order          =   wc_get_order( $order_id );
+if ( !$order ) {
+    wp_redirect( home_url( '/my-account/' ) );
     exit;
 }
 // Calculate the number of days since the support request was submitted
-$request_date = new DateTime($support_request->post_date);
-$today = new DateTime();
-$interval = $today->diff($request_date);
-$days_since_submitted = $interval->days;
+$request_date               =   new DateTime($support_request->post_date);
+$today                      =   new DateTime();
+$interval                   =   $today->diff($request_date);
+$days_since_submitted       =   $interval->days;
 ?>
 <div class="woocommerce-support-request-content">
-    <h2><?php esc_html_e('Support Request','supavapes'); ?> #<?php echo esc_html($request_id); ?></h2>
-    <p><strong><?php esc_html_e('Request Status:','supavapes'); ?></strong> <?php
-    $approved = get_post_meta($request_id, '_support_request_approved', true);
-    $declined = get_post_meta($request_id, '_support_request_declined', true);
+    <h2><?php esc_html_e( 'Support Request','supavapes' ); ?> #<?php echo esc_html( $request_id ); ?></h2>
+    <p><strong><?php esc_html_e( 'Request Status:','supavapes' ); ?></strong> <?php
+    $approved = get_post_meta( $request_id, '_support_request_approved', true );
+    $declined = get_post_meta( $request_id, '_support_request_declined', true );
     $sr_status = 'Pending';
     if ($approved) {
         $sr_status = 'Approved';
@@ -69,18 +71,18 @@ $days_since_submitted = $interval->days;
                 if (!empty($selected_product_ids)) :
                     foreach ($selected_product_ids as $product_id) :
                         foreach ($order->get_items() as $item_id => $item) :
-                            $order_item_id = $item->get_product_id();
-                            $order_variation_id = $item->get_variation_id();
+                            $order_item_id          =   $item->get_product_id();
+                            $order_variation_id     =   $item->get_variation_id();
                             if ($order_item_id == $product_id || $order_variation_id == $product_id) :
-                                $product = $item->get_product();
-                                $product_name = $item->get_name();
-                                $quantity = $item->get_quantity();
-                                $total = $item->get_total();
-                                $subtotal += $total;
+                                $product            =   $item->get_product();
+                                $product_name       =   $item->get_name();
+                                $quantity           =   $item->get_quantity();
+                                $total              =   $item->get_total();
+                                $subtotal           +=  $total;
                 ?>
                 <tr class="woocommerce-table__line-item order_item">
                     <td class="woocommerce-table__product-name product-name">
-                        <?php echo esc_html($product_name); ?> <strong class="product-quantity">×&nbsp;<?php echo esc_html($quantity); ?></strong>
+                        <?php echo esc_html( $product_name ); ?> <strong class="product-quantity">×&nbsp;<?php echo esc_html( $quantity ); ?></strong>
                     </td>
                     <td class="woocommerce-table__product-total product-total">
                         <span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($total)); ?></span>
@@ -94,19 +96,19 @@ $days_since_submitted = $interval->days;
                 ?>
                 <tr class="woocommerce-table__line-item order_item">
                     <td class="woocommerce-table__product-name product-name" colspan="2">
-                    <?php esc_html_e('No products found for this request.','supavapes'); ?>
+                    <?php esc_html_e( 'No products found for this request.', 'supavapes' ); ?>
                     </td>
                 </tr>
                 <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <th scope="row"><?php esc_html_e('Subtotal:','supavapes'); ?></th>
-                    <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($subtotal)); ?></span></td>
+                    <th scope="row"><?php esc_html_e( 'Subtotal:', 'supavapes' ); ?></th>
+                    <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post( wc_price( $subtotal ) ); ?></span></td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php esc_html_e('Total:','supavapes'); ?></th>
-                    <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($subtotal)); ?></span></td>
+                    <th scope="row"><?php esc_html_e( 'Total:', 'supavapes' ); ?></th>
+                    <td><span class="woocommerce-Price-amount amount"><?php echo wp_kses_post( wc_price( $subtotal ) ); ?></span></td>
                 </tr>
             </tfoot>
         </table>

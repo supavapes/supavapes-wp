@@ -2,10 +2,10 @@
 $user_id = get_current_user_id();
 // Query the support_request posts
 $args = array(
-    'post_type'      => 'support_request',
-    'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'author' => $user_id,
+    'post_type'         =>  'support_request',
+    'posts_per_page'    =>  -1,
+    'post_status'       =>  'publish',
+    'author'            =>  $user_id,
 );
 $support_requests = new WP_Query($args);
 if ( $support_requests->have_posts() ) {
@@ -49,6 +49,6 @@ if ( $support_requests->have_posts() ) {
     echo '</tbody>';
     echo '</table>';
 } else {
-    wc_print_notice('No support requests found.', 'notice');
+    wc_print_notice( 'No support requests found.', 'notice' );
 }
 wp_reset_postdata();

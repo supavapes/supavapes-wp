@@ -1,43 +1,62 @@
 <?php
+// This file contains dashboard tab data on customer dashboard.
+
 $user_id = get_current_user_id();
-if ($user_id === 0) {
+if ( $user_id === 0 ) {
 	return 'User not logged in.';
 }
-$customer_orders = wc_get_orders(array(
-	'customer' => $user_id,
-	'limit' => 1,
-	'orderby' => 'date',
-	'order' => 'DESC',
-	'status' => array('pending', 'processing', 'on-hold', 'completed', 'cancelled', 'refunded', 'failed') // Exclude 'draft' status
-));
-if(!empty($customer_orders)){
-	$order_data = $customer_orders[0];
-	$order_id = $order_data->get_id();
-	$order_date = $order_data->get_date_created()->date('Y-m-d H:i:s');
-	$order_total = $order_data->get_total();
-	$order_items = $order_data->get_items();
-	$order_items = $order_data->get_items();
-	$product_names = array();
-	if(isset($order_items) && !empty($order_items)){
-		foreach ($order_items as $item) {
-			$product_name = $item->get_name();
-			$product_names[] = $product_name;
+$customer_orders = wc_get_orders(
+	array(
+		'customer' 	=> 	$user_id,
+		'limit' 	=> 	1,
+		'orderby' 	=> 	'date',
+		'order' 	=> 	'DESC',
+		'status' 	=> 	array(
+			'pending', 
+			'processing', 
+			'on-hold', 
+			'completed', 
+			'cancelled', 
+			'refunded', 
+			'failed'
+		) // Exclude 'draft' status
+	)
+);
+
+if( !empty( $customer_orders ) ) {
+	$order_data 	= 	$customer_orders[0];
+	$order_id 		= 	$order_data->get_id();
+	$order_date 	= 	$order_data->get_date_created()->date('Y-m-d H:i:s');
+	$order_total 	= 	$order_data->get_total();
+	$order_items 	= 	$order_data->get_items();
+	$order_items 	= 	$order_data->get_items();
+	$product_names 	= 	array();
+	if( isset( $order_items ) && !empty( $order_items ) ) {
+		foreach ( $order_items as $item ) {
+			$product_name 	 = 	$item->get_name();
+			$product_names[] = 	$product_name;
 		}
 	}
 }
 ?>
-	<h2 class="dashboard-main-title"><?php esc_html_e('Customer ','supavapes'); ?><span><?php esc_html_e('saved money ','supavapes'); ?></span><?php esc_html_e(' when not consuming','supavapes'); ?><span><?php esc_html_e(' cigar','supavapes'); ?></span></h2>
+	<h2 class="dashboard-main-title"><?php esc_html_e( 'Customer ', 'supavapes' ); ?>
+		<span>
+			<?php esc_html_e( 'saved money', 'supavapes' ); ?>
+		</span>
+			<?php esc_html_e( 'when not consuming', 'supavapes' ); ?><span><?php esc_html_e(' cigar', 'supavapes' ); ?>
+		</span>
+	</h2>
 	<div class="chart-container">
 		<div class="chart-header">
-		<div class="year-dropdown">
-			<label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In','supavapes'); ?></label>
-			<select id="purchase-year">
-				<option value="2024"><?php esc_html_e('2024','supavapes'); ?></option>
-				<option value="2023"><?php esc_html_e('2023','supavapes'); ?></option>
-				<option value="2022"><?php esc_html_e('2022','supavapes'); ?></option>
-				<option value="2021"><?php esc_html_e('2021','supavapes'); ?></option>
-			</select>
-		</div>
+			<div class="year-dropdown">
+				<label for="purchase-year" class="dashboard-box-title"><?php esc_html_e('Purchase Summary In','supavapes'); ?></label>
+				<select id="purchase-year">
+					<option value="2024"><?php esc_html_e('2024','supavapes'); ?></option>
+					<option value="2023"><?php esc_html_e('2023','supavapes'); ?></option>
+					<option value="2022"><?php esc_html_e('2022','supavapes'); ?></option>
+					<option value="2021"><?php esc_html_e('2021','supavapes'); ?></option>
+				</select>
+			</div>
 			<div class="tabs">
 				<div class="tab" data-tab="day"><?php esc_html_e('Daily','supavapes'); ?></div>
 				<div class="tab" data-tab="month"><?php esc_html_e('Monthly','supavapes'); ?></div>
