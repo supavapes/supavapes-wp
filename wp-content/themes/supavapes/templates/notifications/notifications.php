@@ -1,6 +1,5 @@
 <?php
 ?>
-
 <div class="position-fixed ersrv-notification-wrapper p-3" style="z-index: 5; right: 0; bottom: 0;">
 	<!-- 
 		classes for Bg color
