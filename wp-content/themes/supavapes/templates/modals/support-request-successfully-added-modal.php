@@ -17,8 +17,8 @@
             </div>
             <div class="sv-email-modal__body">
                 <div class="sv-email-modal__heading-info">
-                    <h2 class="sv-email-modal__title"><?php esc_html_e('Thank you for your request.','supavapes'); ?></h2>
-                    <p class="sv-email-modal__description"><?php esc_html_e('Our team will look into the request and get back to you soon.','supavapes'); ?></p>
+                    <h2 class="sv-email-modal__title"><?php esc_html_e( 'Thank you for your request.', 'supavapes' ); ?></h2>
+                    <p class="sv-email-modal__description"><?php esc_html_e( 'Our team will look into the request and get back to you soon.', 'supavapes' ); ?></p>
                 </div>
             </div>
         </div>

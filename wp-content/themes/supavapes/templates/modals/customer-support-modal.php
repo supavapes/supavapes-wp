@@ -1,19 +1,14 @@
 <?php
-$url = 'https://woocommerce-401163-4488997.cloudwaysapps.com/my-account/view-order/32788/';
 
- // Parse the URL
-$path = parse_url($url, PHP_URL_PATH);
-
-// Explode the path by '/'
-$parts = explode('/', $path);
-
-// Get the order ID from the URL
-$order_id = end($parts);
+$url = '/my-account/view-order/32788/';
+$path     = parse_url($url, PHP_URL_PATH);  // Parse the URL
+$parts    = explode('/', $path); // Explode the path by '/'
+$order_id = end($parts); // Get the order ID from the URL
 
 // echo "Order ID: " . $order_id;
 ?>
 
-<div class="deal-popup customer-support-modal" style="display: none;" data-order-id="<?php echo esc_attr($order_id); ?>">
+<div class="deal-popup customer-support-modal" style="display: none;" data-order-id="<?php echo esc_attr( $order_id ); ?>">
     <div class="overlay"></div>
     <div class="deal-popup-content">
 	<span class="deal-popup-close"><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">

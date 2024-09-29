@@ -25,55 +25,63 @@ $days_since_submitted       =   $interval->days;
 ?>
 <div class="woocommerce-support-request-content">
     <h2><?php esc_html_e( 'Support Request','supavapes' ); ?> #<?php echo esc_html( $request_id ); ?></h2>
-    <p><strong><?php esc_html_e( 'Request Status:','supavapes' ); ?></strong> <?php
-    $approved = get_post_meta( $request_id, '_support_request_approved', true );
-    $declined = get_post_meta( $request_id, '_support_request_declined', true );
-    $sr_status = 'Pending';
-    if ($approved) {
-        $sr_status = 'Approved';
-    } elseif ($declined) {
-        $sr_status = 'Declined';
-    }
-    echo esc_html($sr_status);
-    ?></p>
-    <p><strong><?php esc_html_e('Request Details:','supavapes'); ?></strong> <?php echo nl2br(esc_html($support_request->post_content)); ?></p>
+    <p>
+        <strong><?php esc_html_e( 'Request Status:','supavapes' ); ?></strong>
+        <?php
+        $approved = get_post_meta( $request_id, '_support_request_approved', true );
+        $declined = get_post_meta( $request_id, '_support_request_declined', true );
+        $sr_status = 'Pending';
+        if ($approved) {
+            $sr_status = 'Approved';
+        } elseif ($declined) {
+            $sr_status = 'Declined';
+        }
+        echo esc_html($sr_status);
+        ?>
+    </p>
+    <p><strong><?php esc_html_e( 'Request Details:', 'supavapes' ); ?></strong><?php echo nl2br( esc_html($support_request->post_content ) ); ?></p>
     <?php if ($sr_status === 'Approved'): ?>
-        <p><?php esc_html_e('Your request is approved and a new order has been generated.'); ?><a href="<?php echo esc_url($new_order->get_view_order_url()); ?>"> <?php  esc_html_e('View Order','supavapes'); ?></a></p>
-    <?php elseif ($sr_status === 'Declined'): ?>
-        <p><?php esc_html_e('Your request has been declined.','supavapes'); ?></p>
-        <p><?php esc_html_e('Reason: ','supavapes'); ?><?php echo esc_html(get_post_meta($request_id, '_support_request_decline_reason', true)); ?></p>
-    <?php elseif ($sr_status === 'Pending' && $days_since_submitted > 0): ?>
-        <p><?php esc_html_e('It has been ','supavapes'); ?><?php echo esc_html($days_since_submitted); ?><?php esc_html_e(' days since you submitted the request. Still did not get a response. Do you want to follow up?','supavapes') ?></p>
+        <p>
+            <?php esc_html_e( 'Your request is approved and a new order has been generated.', 'supavapes' ); ?>
+            <a href="<?php echo esc_url( $new_order->get_view_order_url() ); ?>">
+                <?php  esc_html_e( 'View Order', 'supavapes' ); ?>
+            </a>
+        </p>
+    <?php elseif ( $sr_status === 'Declined' ): ?>
+        <p><?php esc_html_e( 'Your request has been declined.', 'supavapes' ); ?></p>
+        <p><?php esc_html_e( 'Reason: ', 'supavapes' ); ?><?php echo esc_html( get_post_meta( $request_id, '_support_request_decline_reason', true ) ); ?></p>
+    <?php elseif ( $sr_status === 'Pending' && $days_since_submitted > 0 ): ?>
+        <p><?php esc_html_e( 'It has been ', 'supavapes' ); ?><?php echo esc_html( $days_since_submitted ); ?><?php esc_html_e( ' days since you submitted the request. Still did not get a response. Do you want to follow up?', 'supavapes' ); ?></p>
         <div class="follow-up-wrapper">
-            <button id="follow-up-button" class="button"><?php esc_html_e('Follow Up','supavapes'); ?></button>
+            <button id="follow-up-button" class="button"><?php esc_html_e( 'Follow Up', 'supavapes' ); ?></button>
             <div id="follow-up-form" style="display: none;">
                 <textarea id="follow-up-text" rows="4" cols="50"></textarea>
                 <div id="follow-up-message"></div>
-                <button id="follow-up-submit" class="button" data-request_id="<?php echo esc_attr($request_id); ?>"><?php esc_html_e('Submit','supavapes'); ?></button>
+                <button id="follow-up-submit" class="button" data-request_id="<?php echo esc_attr( $request_id ); ?>"><?php esc_html_e( 'Submit', 'supavapes' ); ?></button>
             </div>
         </div>
     <?php endif; ?>
     <section class="woocommerce-order-details">
-        <h2 class="woocommerce-order-details__title"><?php esc_html_e('Support Request Details','supavapes'); ?></h2>
+        <h2 class="woocommerce-order-details__title"><?php esc_html_e( 'Support Request Details', 'supavapes' ); ?></h2>
         <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
             <thead>
                 <tr>
-                    <th class="woocommerce-table__product-name product-name"><?php esc_html_e('Product','supavapes'); ?></th>
-                    <th class="woocommerce-table__product-total product-total"><?php esc_html_e('Total','supavapes'); ?></th>
+                    <th class="woocommerce-table__product-name product-name"><?php esc_html_e( 'Product', 'supavapes' ); ?></th>
+                    <th class="woocommerce-table__product-total product-total"><?php esc_html_e( 'Total', 'supavapes' ); ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // Retrieve the selected product IDs from the support request meta
-                $selected_product_ids = get_post_meta($request_id, 'support_request_selected_product_ids', true);
-                $selected_product_ids = explode(', ', $selected_product_ids);
+                $selected_product_ids = get_post_meta( $request_id, 'support_request_selected_product_ids', true );
+                $selected_product_ids = explode( ', ', $selected_product_ids );
                 $subtotal = 0;
-                if (!empty($selected_product_ids)) :
-                    foreach ($selected_product_ids as $product_id) :
-                        foreach ($order->get_items() as $item_id => $item) :
+                if ( !empty( $selected_product_ids ) ) :
+                    foreach ( $selected_product_ids as $product_id ) :
+                        foreach ( $order->get_items() as $item_id => $item ) :
                             $order_item_id          =   $item->get_product_id();
                             $order_variation_id     =   $item->get_variation_id();
-                            if ($order_item_id == $product_id || $order_variation_id == $product_id) :
+                            if ( $order_item_id == $product_id || $order_variation_id == $product_id ) :
                                 $product            =   $item->get_product();
                                 $product_name       =   $item->get_name();
                                 $quantity           =   $item->get_quantity();
@@ -85,7 +93,7 @@ $days_since_submitted       =   $interval->days;
                         <?php echo esc_html( $product_name ); ?> <strong class="product-quantity">×&nbsp;<?php echo esc_html( $quantity ); ?></strong>
                     </td>
                     <td class="woocommerce-table__product-total product-total">
-                        <span class="woocommerce-Price-amount amount"><?php echo wp_kses_post(wc_price($total)); ?></span>
+                        <span class="woocommerce-Price-amount amount"><?php echo wp_kses_post( wc_price( $total ) ); ?></span>
                     </td>
                 </tr>
                 <?php
