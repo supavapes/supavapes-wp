@@ -1,11 +1,11 @@
 <?php
-if(is_shop() || is_product_category()){
+if ( is_shop() || is_product_category( )) {
 	?>
 	<div class="product-filters">
 		<div class="product-cat-listing">
 			<?php
-				if(is_active_sidebar('product-cat-widgets')){
-					dynamic_sidebar('product-cat-widgets');
+				if ( is_active_sidebar( 'product-cat-widgets' ) ) {
+					dynamic_sidebar( 'product-cat-widgets' );
 				}
 			?>
 		</div>
@@ -17,12 +17,12 @@ if(is_shop() || is_product_category()){
 			</div>
 			<div class="product-cat-filters">
 				<?php
-					if(is_active_sidebar('product-cat-filters')){
-						dynamic_sidebar('product-cat-filters');
+					if ( is_active_sidebar( 'product-cat-filters' ) ) {
+						dynamic_sidebar( 'product-cat-filters' );
 					}
 				?>
 			</div>
 		</div>
 	</div>
-	<?php
-	}
+<?php
+}

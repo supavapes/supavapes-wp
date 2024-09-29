@@ -1,4 +1,5 @@
 <?php
+// This file is used to get content for quick view modal.
 ?>
 <div id="overlay" class="overlay"></div>
     <div class="loader_page" id="loader" style="display:none;">
