@@ -90,7 +90,7 @@
     const autocompleteInput = document.getElementById("pac-input");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
       fields: ["formatted_address", "geometry", "name"],
-      strictBounds: false,
+      strictBounds: true,
     });
 
     // Bias the autocomplete predictions towards current map's viewport.
