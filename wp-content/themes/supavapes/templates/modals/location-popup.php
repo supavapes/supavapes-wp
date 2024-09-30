@@ -162,12 +162,12 @@
     });
   }
 
-  setupClickListener("changetype-all", []);
-  setupClickListener("changetype-address", ["address"]);
-  setupClickListener("changetype-establishment", ["establishment"]);
-  setupClickListener("changetype-geocode", ["geocode"]);
-  setupClickListener("changetype-cities", ["(cities)"]);
-  setupClickListener("changetype-regions", ["(regions)"]);
+//   setupClickListener("changetype-all", []);
+//   setupClickListener("changetype-address", ["address"]);
+//   setupClickListener("changetype-establishment", ["establishment"]);
+//   setupClickListener("changetype-geocode", ["geocode"]);
+//   setupClickListener("changetype-cities", ["(cities)"]);
+//   setupClickListener("changetype-regions", ["(regions)"]);
   biasInputElement.addEventListener("change", () => {
     if (biasInputElement.checked) {
       autocomplete.bindTo("bounds", map);
