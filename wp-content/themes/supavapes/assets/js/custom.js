@@ -1918,8 +1918,12 @@ jQuery(document).ready(function() {
 		// Add class 'sv-popup-open' to the body
 		jQuery('body').addClass('sv-popup-open');
 
-		// Initialize the map and autocomplete after showing the popup
-		initMap();
+		
+
+		setTimeout(function() {
+			// Initialize the map and autocomplete after showing the popup
+			initMap();
+		}, 1000); // Match the duration of the CSS transition (0.5s)
 	});
 
 	// Close popup on close button click
