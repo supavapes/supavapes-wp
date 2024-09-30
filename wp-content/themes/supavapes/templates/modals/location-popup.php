@@ -29,13 +29,10 @@
                      <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
                   </div> -->
                     <div class="pac-card" id="pac-card">
-                      
                         <div id="pac-container">
                             <input id="pac-input" type="text" placeholder="Enter a location" />
                         </div>
                     </div>
-
-                
                   <div id="map" style="width: 100%; height: 500px;"></div>
                </div>
                
@@ -151,23 +148,26 @@
     infowindow.open(map, marker);
   });
 
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
   function setupClickListener(id, types) {
-    const radioButton = document.getElementById(id);
-
+  const radioButton = document.getElementById(id);
+  if (radioButton) {
     radioButton.addEventListener("click", () => {
       autocomplete.setTypes(types);
       input.value = "";
     });
+  } else {
+    console.warn(`Element with id ${id} not found`);
   }
+}
 
-//   setupClickListener("changetype-all", []);
-//   setupClickListener("changetype-address", ["address"]);
-//   setupClickListener("changetype-establishment", ["establishment"]);
-//   setupClickListener("changetype-geocode", ["geocode"]);
-//   setupClickListener("changetype-cities", ["(cities)"]);
-//   setupClickListener("changetype-regions", ["(regions)"]);
+// Continue with your setupClickListener calls
+setupClickListener("changetype-all", []);
+setupClickListener("changetype-address", ["address"]);
+setupClickListener("changetype-establishment", ["establishment"]);
+setupClickListener("changetype-geocode", ["geocode"]);
+setupClickListener("changetype-cities", ["(cities)"]);
+setupClickListener("changetype-regions", ["(regions)"]);
+
   biasInputElement.addEventListener("change", () => {
     if (biasInputElement.checked) {
       autocomplete.bindTo("bounds", map);
