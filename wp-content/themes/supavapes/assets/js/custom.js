@@ -1860,6 +1860,10 @@ jQuery(document).ready(function() {
 		
 		// Add class 'sv-popup-open' to the body
 		jQuery('body').addClass('sv-popup-open');
+		// Initialize the map and autocomplete after showing the popup
+		if (typeof initMap === "function") {
+			initMap();
+		}
 	});
 
 	// Close popup on close button click
