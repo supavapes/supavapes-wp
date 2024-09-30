@@ -81,7 +81,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
   let map; // Declare map variable outside of the function
-  
+
   function initMap() {
     const map = new google.maps.Map(document.getElementById("location-map"), {
         center: { lat: 50.000000, lng: -85.000000 }, // Default map center
@@ -133,11 +133,9 @@
             'Address: ' + place.formatted_address + '</div>'
         );
         infowindow.open(map, marker);
-
         // Extract the state or province from address components
         const addressComponents = place.address_components;
         let state = '';
-
         for (let i = 0; i < addressComponents.length; i++) {
             const component = addressComponents[i];
             if (component.types.includes("administrative_area_level_1")) {
@@ -145,7 +143,6 @@
                 break;
             }
         }
-
         console.log("Selected State/Province:", state); // Log or use the state as needed
     });
 }
@@ -157,14 +154,12 @@ stateProvinceSelect.addEventListener("change", (event) => {
     const selectedOption = event.target.selectedOptions[0];
     const lat = parseFloat(selectedOption.getAttribute("data-lat"));
     const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-
     if (!isNaN(lat) && !isNaN(lng)) {
         // Update the map center to the selected state's coordinates
-        map.setCenter({ lat: lat, lng: lng });
+        map.setCenter({ lat: 46.5653, lng: -66.4619 });
         map.setZoom(6); // Optional: Set a zoom level that works for the selected area
     }
 });
-
 
 window.initMap = initMap;
 </script>
