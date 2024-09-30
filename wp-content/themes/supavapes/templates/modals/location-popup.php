@@ -77,10 +77,11 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initAutocomplete" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initAutocomplete" async defer></script>
 <script>
         // Initialize the map and the autocomplete feature
         function initAutocomplete() {
+            alert('in');
             // Initialize the map
             var map = new google.maps.Map(document.getElementById("location-map"), {
                 center: { lat: 45.4215, lng: -75.6903 }, // Default center (Ottawa)
@@ -132,12 +133,5 @@
         }
 
         // Load the initAutocomplete function when the page loads
-        window.addEventListener('load', function () {
-            // Ensure that the script is loaded and then initialize the map and autocomplete
-            if (typeof google !== 'undefined') {
-                initAutocomplete();
-            } else {
-                console.error('Google Maps script failed to load.');
-            }
-        });
+        window.initAutocomplete = initAutocomplete;
     </script>
