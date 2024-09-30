@@ -5072,8 +5072,6 @@ function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max
 }
 
 
-
-
 if ( ! function_exists( 'supavapes_woocommerce_cart_calculate_fees_callback' ) ) {
 	/**
 	 * Add custom fees to cart and checkout based on the total _vaping_liquid meta across all items.

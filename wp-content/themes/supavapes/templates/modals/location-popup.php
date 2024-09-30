@@ -80,6 +80,8 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
+  let map; // Declare map variable outside of the function
+  
   function initMap() {
     const map = new google.maps.Map(document.getElementById("location-map"), {
         center: { lat: 50.000000, lng: -85.000000 }, // Default map center
