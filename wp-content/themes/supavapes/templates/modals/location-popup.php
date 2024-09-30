@@ -149,20 +149,20 @@
 
 // Listen for changes on the state/province select
 const stateProvinceSelect = document.getElementById("state-province-select");
-
-stateProvinceSelect.addEventListener("change", (event) => {
-    const selectedOption = event.target.selectedOptions[0];
-    const lat = parseFloat(selectedOption.getAttribute("data-lat"));
-    const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-    if (!isNaN(lat) && !isNaN(lng)) {
-        const map = new google.maps.Map(document.getElementById("location-map"), {
-        center: { lat: lat, lng: lng }, // Default map center
-        zoom: 5,
-        mapTypeControl: false,
+if( stateProvinceSelect ){
+    stateProvinceSelect.addEventListener("change", (event) => {
+        const selectedOption = event.target.selectedOptions[0];
+        const lat = parseFloat(selectedOption.getAttribute("data-lat"));
+        const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+        if (!isNaN(lat) && !isNaN(lng)) {
+            const map = new google.maps.Map(document.getElementById("location-map"), {
+            center: { lat: lat, lng: lng }, // Default map center
+            zoom: 5,
+            mapTypeControl: false,
+        });
+        }
     });
-    }
-});
-
+}
 window.initMap = initMap;
 </script>
 <style>
