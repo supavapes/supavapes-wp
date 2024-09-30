@@ -28,7 +28,6 @@
                      <label><?php //esc_html_e( 'Address', 'supavapes' ); ?></label>
                      <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
                   </div> -->
-
                     <div class="pac-card" id="pac-card">
                         <div>
                             <div id="title">Autocomplete search</div>
@@ -89,11 +88,11 @@
    </div>
 </div>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
-<script
+<!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly"
       defer
-    ></script>
-<script>
+    ></script> -->
+<!-- <script>
        function initMap() {
   const map = new google.maps.Map(document.getElementById("location-map"), {
     center: { lat: 40.749933, lng: -73.98633 },
@@ -203,4 +202,4 @@
 }
 
 window.initMap = initMap;
-    </script>
+    </script> -->
