@@ -155,9 +155,11 @@ stateProvinceSelect.addEventListener("change", (event) => {
     const lat = parseFloat(selectedOption.getAttribute("data-lat"));
     const lng = parseFloat(selectedOption.getAttribute("data-lng"));
     if (!isNaN(lat) && !isNaN(lng)) {
-        // Update the map center to the selected state's coordinates
-        map.setCenter({ lat: lat, lng: lng });
-        map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+        const map = new google.maps.Map(document.getElementById("location-map"), {
+        center: { lat: lat, lng: lng }, // Default map center
+        zoom: 5,
+        mapTypeControl: false,
+    });
     }
 });
 
