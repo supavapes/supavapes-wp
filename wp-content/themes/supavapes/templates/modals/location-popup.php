@@ -82,15 +82,15 @@
 <script>
   function initMap() {
     const map = new google.maps.Map(document.getElementById("location-map"), {
-      center: { lat: 50.000000, lng: -85.000000 }, // Default map center
-      zoom: 5,
-      mapTypeControl: false,
+        center: { lat: 50.000000, lng: -85.000000 }, // Default map center
+        zoom: 5,
+        mapTypeControl: false,
     });
 
     const autocompleteInput = document.getElementById("pac-input");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-      fields: ["formatted_address", "geometry", "name"],
-      strictBounds: true,
+        fields: ["formatted_address", "geometry", "name", "address_components"], // Include address_components
+        strictBounds: true,
     });
 
     // Bias the autocomplete predictions towards current map's viewport.
@@ -99,42 +99,56 @@
     // InfoWindow for displaying the place information
     const infowindow = new google.maps.InfoWindow();
     const marker = new google.maps.Marker({
-      map,
-      anchorPoint: new google.maps.Point(0, -29),
+        map,
+        anchorPoint: new google.maps.Point(0, -29),
     });
 
     // Handle place selection from autocomplete suggestions
     autocomplete.addListener("place_changed", () => {
-      infowindow.close();
-      marker.setVisible(false);
+        infowindow.close();
+        marker.setVisible(false);
 
-      const place = autocomplete.getPlace();
-      if (!place.geometry || !place.geometry.location) {
-        window.alert("No details available for input: '" + place.name + "'");
-        return;
-      }
-      console.log(place);
-      // Adjust the map viewport and set marker position
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
-      }
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
 
-      marker.setPosition(place.geometry.location);
-      marker.setVisible(true);
+        // Adjust the map viewport and set marker position
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
 
-      // Display place info in the InfoWindow
-      infowindow.setContent(
-        '<div><strong>' + place.name + '</strong><br>' +
-        'Address: ' + place.formatted_address + '</div>'
-      );
-      infowindow.open(map, marker);
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        // Display place info in the InfoWindow
+        infowindow.setContent(
+            '<div><strong>' + place.name + '</strong><br>' +
+            'Address: ' + place.formatted_address + '</div>'
+        );
+        infowindow.open(map, marker);
+
+        // Extract the state or province from address components
+        const addressComponents = place.address_components;
+        let state = '';
+
+        for (let i = 0; i < addressComponents.length; i++) {
+            const component = addressComponents[i];
+            if (component.types.includes("administrative_area_level_1")) {
+                state = component.long_name; // Get the state name
+                break;
+            }
+        }
+
+        console.log("Selected State/Province:", state); // Log or use the state as needed
     });
-  }
+}
 
-  window.initMap = initMap;
+window.initMap = initMap;
 </script>
 <style>
 .pac-container.pac-logo {
