@@ -77,7 +77,7 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initAutocomplete" defer></script>
 <script>
         // Initialize the map and the autocomplete feature
         function initAutocomplete() {
