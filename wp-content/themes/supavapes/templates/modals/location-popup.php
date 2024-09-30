@@ -147,21 +147,27 @@
     });
 }
 
-// Listen for changes on the state/province select
-const stateProvinceSelect = document.getElementById("state-province-select");
+// Wait until the map has been initialized to add event listeners
+window.initMap = function () {
+    initMap();
 
-stateProvinceSelect.addEventListener("change", (event) => {
-    const selectedOption = event.target.selectedOptions[0];
-    const lat = parseFloat(selectedOption.getAttribute("data-lat"));
-    const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-    if (!isNaN(lat) && !isNaN(lng)) {
-        // Update the map center to the selected state's coordinates
-        map.setCenter({ lat: 46.5653, lng: -66.4619 });
-        map.setZoom(6); // Optional: Set a zoom level that works for the selected area
-    }
-});
+    // Listen for changes on the state/province select
+    const stateProvinceSelect = document.getElementById("state-province-select");
 
-window.initMap = initMap;
+    stateProvinceSelect.addEventListener("change", (event) => {
+        const selectedOption = event.target.selectedOptions[0];
+        const lat = parseFloat(selectedOption.getAttribute("data-lat"));
+        const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+
+        // Ensure that map is initialized before setting center
+        if (map && !isNaN(lat) && !isNaN(lng)) {
+            map.setCenter({ lat: lat, lng: lng });
+            map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+        } else {
+            console.error("Map is not initialized or invalid coordinates.");
+        }
+    });
+};
 </script>
 <style>
 .pac-container.pac-logo {
