@@ -82,7 +82,7 @@
 <script>
   function initMap() {
     const map = new google.maps.Map(document.getElementById("location-map"), {
-      center: { lat: 57.82801991528961, lng: -101.46799739581921 }, // Default map center
+      center: { lat: 50.000000, lng: -85.000000 }, // Default map center
       zoom: 10,
       mapTypeControl: false,
     });
