@@ -51,22 +51,22 @@
                               <label><?php esc_html_e( 'Country/Region', 'supavapes' ); ?></label>
                               <input type="text" value="Canada" readonly>
                            </div>
-                           <div class="menual-location-form-group">
-                              <label><?php esc_html_e( 'State/Province', 'supavapes' ); ?></label>
-                              <select>
-                                 <option value="" disabled selected><?php esc_html_e( 'Select State/Province', 'supavapes' ); ?></option>
-                                 <option value="AB"><?php esc_html_e( 'Alberta', 'supavapes' ); ?></option>
-                                 <option value="BC"><?php esc_html_e( 'British Columbia', 'supavapes' ); ?></option>
-                                 <option value="MB"><?php esc_html_e( 'Manitoba', 'supavapes' ); ?></option>
-                                 <option value="NB"><?php esc_html_e( 'New Brunswick', 'supavapes' ); ?></option>
-                                 <option value="NL"><?php esc_html_e( 'Newfoundland and Labrador', 'supavapes' ); ?></option>
-                                 <option value="NS"><?php esc_html_e( 'Nova Scotia', 'supavapes' ); ?></option>
-                                 <option value="ON"><?php esc_html_e( 'Ontario', 'supavapes' ); ?></option>
-                                 <option value="PE"><?php esc_html_e( 'Prince Edward Island', 'supavapes' ); ?></option>
-                                 <option value="QC"><?php esc_html_e( 'Quebec', 'supavapes' ); ?></option>
-                                 <option value="SK"><?php esc_html_e( 'Saskatchewan', 'supavapes' ); ?></option>
-                              </select>
-                           </div>
+                            <div class="menual-location-form-group">
+                                <label><?php esc_html_e( 'State/Province', 'supavapes' ); ?></label>
+                                <select id="state-province-select">
+                                    <option value="" disabled selected><?php esc_html_e( 'Select State/Province', 'supavapes' ); ?></option>
+                                    <option value="AB" data-lat="53.7267" data-lng="-113.3100"><?php esc_html_e( 'Alberta', 'supavapes' ); ?></option>
+                                    <option value="BC" data-lat="53.7267" data-lng="-127.6476"><?php esc_html_e( 'British Columbia', 'supavapes' ); ?></option>
+                                    <option value="MB" data-lat="49.8951" data-lng="-97.1384"><?php esc_html_e( 'Manitoba', 'supavapes' ); ?></option>
+                                    <option value="NB" data-lat="46.5653" data-lng="-66.4619"><?php esc_html_e( 'New Brunswick', 'supavapes' ); ?></option>
+                                    <option value="NL" data-lat="53.1355" data-lng="-57.6604"><?php esc_html_e( 'Newfoundland and Labrador', 'supavapes' ); ?></option>
+                                    <option value="NS" data-lat="44.6820" data-lng="-63.7443"><?php esc_html_e( 'Nova Scotia', 'supavapes' ); ?></option>
+                                    <option value="ON" data-lat="43.6532" data-lng="-79.3832"><?php esc_html_e( 'Ontario', 'supavapes' ); ?></option>
+                                    <option value="PE" data-lat="46.5107" data-lng="-63.4168"><?php esc_html_e( 'Prince Edward Island', 'supavapes' ); ?></option>
+                                    <option value="QC" data-lat="46.8139" data-lng="-71.2082"><?php esc_html_e( 'Quebec', 'supavapes' ); ?></option>
+                                    <option value="SK" data-lat="52.9399" data-lng="-106.4509"><?php esc_html_e( 'Saskatchewan', 'supavapes' ); ?></option>
+                                </select>
+                            </div>
                            <button type="submit" class="button submit-location-form"><?php esc_html_e( 'Update my location', 'supavapes' ); ?></button>
                         </form>
                      </div>
@@ -147,6 +147,22 @@
         console.log("Selected State/Province:", state); // Log or use the state as needed
     });
 }
+
+// Listen for changes on the state/province select
+const stateProvinceSelect = document.getElementById("state-province-select");
+
+stateProvinceSelect.addEventListener("change", (event) => {
+    const selectedOption = event.target.selectedOptions[0];
+    const lat = parseFloat(selectedOption.getAttribute("data-lat"));
+    const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+        // Update the map center to the selected state's coordinates
+        map.setCenter({ lat: lat, lng: lng });
+        map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+    }
+});
+
 
 window.initMap = initMap;
 </script>
