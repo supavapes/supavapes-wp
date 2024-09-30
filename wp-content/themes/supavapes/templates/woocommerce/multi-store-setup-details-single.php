@@ -23,7 +23,7 @@ if ( isset( $terms ) && !empty( $terms ) ) {
             <small class="surface-pick-up-embed__location-pick-up-time"><?php esc_html_e( 'Usually ready in 24 hours', 'supavapes' ); ?></small>
         </div>
         <a href="javascript:void(0);" class="surface-pick-up-embed__modal-btn check-available-stores" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>">
-            <?php esc_html_e('Check availability at other stores', 'supavapes' ); ?>
+            <?php esc_html_e( 'Check availability at other stores', 'supavapes' ); ?>
         </a>
     </div>
 </div>

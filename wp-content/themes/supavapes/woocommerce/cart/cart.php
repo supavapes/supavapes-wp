@@ -79,7 +79,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				if ( $applied_discount ) {
 					if ( strpos( $applied_discount, '%' ) !== false ) {
 						// Percentage-based discount
-						$discount_value = str_replace( '%', '', $applied_discount );
+						$discount_value  = str_replace( '%', '', $applied_discount );
 						$discount_amount = ( $product_price * $discount_value ) / 100;
 					} else {
 						// Fixed discount (assumed to be a numeric value like "$5 OFF")

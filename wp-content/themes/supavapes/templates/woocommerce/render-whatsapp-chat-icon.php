@@ -4,13 +4,13 @@ $whatsup_number     = '15819938781'; // your whatapp number
 $whatsup_message    = 'Hello👋 %0D%0A I have a question about your product on supavapes.com.';  // use %0D%0A for line break
 ?>
 <div class="whatsapp-footer">	
-<?php if ($bubble_text) { ?> 
+<?php if ( $bubble_text ) { ?> 
     <div class="whatsappallmessage">
     <!-- <div class="whatsappclose" ><button class="whatsappclose-button" onclick="whatsapp(this)"> &times; </button></div> -->
-    <a href="<?php echo esc_url("https://api.whatsapp.com/send?phone=".$whatsup_number."&text=".$whatsup_message ); ?>" class="whatsapp-icon"><p class="whatsapptext"><?php echo wp_kses_post($bubble_text); ?></p>	</a>
+    <a href="<?php echo esc_url( "https://api.whatsapp.com/send?phone=".$whatsup_number."&text=".$whatsup_message ); ?>" class="whatsapp-icon"><p class="whatsapptext"><?php echo wp_kses_post($bubble_text); ?></p>	</a>
     </div>	
 <?php }	 ?>
-<a href="<?php echo esc_url("https://api.whatsapp.com/send?phone=".esc_attr($whatsup_number)."&text=".esc_attr($whatsup_message)); ?>" class="whatsapp-icon">
+<a href="<?php echo esc_url( "https://api.whatsapp.com/send?phone=".esc_attr($whatsup_number)."&text=".esc_attr( $whatsup_message ) ); ?>" class="whatsapp-icon">
 <svg width="513" height="513" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M465.065 0.429688H48.0758C21.8392 0.429688 0.570312 21.6986 0.570312 47.9351V464.924C0.570312 491.161 21.8392 512.43 48.0758 512.43H465.065C491.301 512.43 512.57 491.161 512.57 464.924V47.9351C512.57 21.6986 491.301 0.429688 465.065 0.429688Z" fill="url(#paint0_linear_734_29)"/>
     <path d="M369.444 143.555C342.81 116.655 307.439 100.158 269.712 97.0397C231.985 93.9215 194.386 104.388 163.696 126.55C133.007 148.713 111.247 181.112 102.342 217.906C93.4367 254.699 97.9728 293.463 115.132 327.206L98.2881 408.981C98.1133 409.795 98.1084 410.636 98.2736 411.452C98.4387 412.268 98.7705 413.041 99.2481 413.723C99.9477 414.757 100.946 415.554 102.111 416.006C103.275 416.459 104.55 416.545 105.764 416.254L185.91 397.257C219.558 413.982 258.049 418.226 294.533 409.235C331.017 400.244 363.128 378.601 385.152 348.157C407.176 317.712 417.685 280.442 414.809 242.976C411.933 205.511 395.858 170.281 369.444 143.555ZM344.455 343.003C326.027 361.379 302.297 373.51 276.608 377.685C250.92 381.86 224.57 377.87 201.27 366.275L190.099 360.748L140.964 372.385L141.11 371.774L151.292 322.319L145.823 311.526C133.917 288.145 129.718 261.596 133.825 235.682C137.933 209.768 150.136 185.818 168.688 167.265C191.999 143.961 223.611 130.87 256.572 130.87C289.533 130.87 321.145 143.961 344.455 167.265C344.654 167.492 344.868 167.706 345.095 167.905C368.117 191.268 380.969 222.785 380.849 255.585C380.729 288.385 367.647 319.808 344.455 343.003Z" fill="white"/>

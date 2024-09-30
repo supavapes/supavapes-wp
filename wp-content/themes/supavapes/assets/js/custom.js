@@ -1854,55 +1854,54 @@ jQuery(document).ready(function() {
 		}
 	});
 	
-		jQuery('.edit-location-btn').on('click', function() {
-			// Add CSS display: flex to .location-popup
-			jQuery('.location-popup').css('display', 'flex');
-			
-			// Add class 'sv-popup-open' to the body
-			jQuery('body').addClass('sv-popup-open');
-		});
-	
-		// Close popup on close button click
-		jQuery(document).on("click", ".location-popup-close", function() {
-			closeLocationPopup();
-		});
-	
-		// Close popup on overlay click
-		jQuery(document).on("click", ".location-popup .overlay", function() {
-			closeLocationPopup();
-		});
-	
-		// Function to handle popup closing
-		function closeLocationPopup() {
-			jQuery('body').removeClass('sv-popup-open');
-			jQuery(".location-popup").hide();
-		}
+	jQuery('.edit-location-btn').on('click', function() {
+		// Add CSS display: flex to .location-popup
+		jQuery('.location-popup').css('display', 'flex');
+		
+		// Add class 'sv-popup-open' to the body
+		jQuery('body').addClass('sv-popup-open');
+	});
 
-		jQuery('.enter-menual-btn').on('click', function() {
-			jQuery('.location-popup-form').css('display', 'flex'); // Ensure it's visible
-			setTimeout(function() {
-				jQuery('.location-popup-form').addClass('show'); // Apply the sliding effect
-			}, 10); // Small timeout to allow the display to be applied before sliding
-		});
-	
-		// Close popup on close button click
-		jQuery(document).on("click", ".location-popup-form-close", function() {
-			closeLocationForm();
-		});
-	
-		// Close popup on overlay click
-		jQuery(document).on("click", ".location-popup-form-overlay", function() {
-			closeLocationForm();
-		});
-	
-		// Function to handle popup closing
-		function closeLocationForm() {
-			jQuery('.location-popup-form').removeClass('show'); // Remove the sliding effect
-			setTimeout(function() {
-				jQuery('.location-popup-form').css('display', 'none'); // Hide the element after the transition
-			}, 500); // Match the duration of the CSS transition (0.5s)
-		}
-	
+	// Close popup on close button click
+	jQuery(document).on("click", ".location-popup-close", function() {
+		closeLocationPopup();
+	});
+
+	// Close popup on overlay click
+	jQuery(document).on("click", ".location-popup .overlay", function() {
+		closeLocationPopup();
+	});
+
+	// Function to handle popup closing
+	function closeLocationPopup() {
+		jQuery('body').removeClass('sv-popup-open');
+		jQuery(".location-popup").hide();
+	}
+
+	jQuery('.enter-menual-btn').on('click', function() {
+		jQuery('.location-popup-form').css('display', 'flex'); // Ensure it's visible
+		setTimeout(function() {
+			jQuery('.location-popup-form').addClass('show'); // Apply the sliding effect
+		}, 10); // Small timeout to allow the display to be applied before sliding
+	});
+
+	// Close popup on close button click
+	jQuery(document).on("click", ".location-popup-form-close", function() {
+		closeLocationForm();
+	});
+
+	// Close popup on overlay click
+	jQuery(document).on("click", ".location-popup-form-overlay", function() {
+		closeLocationForm();
+	});
+
+	// Function to handle popup closing
+	function closeLocationForm() {
+		jQuery('.location-popup-form').removeClass('show'); // Remove the sliding effect
+		setTimeout(function() {
+			jQuery('.location-popup-form').css('display', 'none'); // Hide the element after the transition
+		}, 500); // Match the duration of the CSS transition (0.5s)
+	}
 	
 });
 
