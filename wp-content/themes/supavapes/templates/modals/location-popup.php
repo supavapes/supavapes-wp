@@ -77,8 +77,8 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initMap" defer></script>
-<script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initMap" defer></script> -->
+<!-- <script>
         // Initialize the map and the autocomplete feature
         function initAutocomplete() {
             // Initialize the map
@@ -140,4 +140,4 @@
                 console.error('Google Maps script failed to load.');
             }
         });
-    </script>
+    </script> -->
