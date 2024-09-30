@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
             <?php /* translators: Filter: verb "to filter" */ ?>
             <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html__( 'Filter', 'woocommerce' ); ?></button>
             <div class="price_label" style="display:none;">
-                <?php echo esc_html__( 'Price:', 'woocommerce' ); ?> <span class="from"></span> &mdash; <span class="to"></span>
+                <?php esc_html_e( 'Price:', 'woocommerce' ); ?> <span class="from"></span> &mdash; <span class="to"></span>
             </div>
             <?php echo wc_query_string_form_fields( null, array( 'min_price', 'max_price', 'paged' ), '', true ); ?>
             <div class="clear"></div>

@@ -1,7 +1,7 @@
 <?php
-$bubble_text = 'Hello 👋<br>Chat now via Whatsapp';	// use <br> for line break
-$whatsup_number = '15819938781'; // your whatapp number
-$whatsup_message='Hello👋 %0D%0A I have a question about your product on supavapes.com.';  // use %0D%0A for line break
+$bubble_text        = 'Hello 👋<br>Chat now via Whatsapp';	// use <br> for line break
+$whatsup_number     = '15819938781'; // your whatapp number
+$whatsup_message    = 'Hello👋 %0D%0A I have a question about your product on supavapes.com.';  // use %0D%0A for line break
 ?>
 <div class="whatsapp-footer">	
 <?php if ($bubble_text) { ?> 

@@ -660,5 +660,4 @@ if ( ! defined( 'YITH_WCWL' ) ) {
 		</tr>
 	<?php endif ?>
 	</tbody>
-
 </table>

@@ -19,53 +19,53 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 
-$archive_banner_text = get_field('archive_banner_text','option');
-$cate = get_queried_object();
-$cateName = $cate->name;
-if(is_shop()){
+$archive_banner_text 	= get_field('archive_banner_text','option');
+$cate 					= get_queried_object();
+$cateName 				= $cate->name;
+if ( is_shop() ) {
 ?>
 <div class="page-banner">
 	<div class="page-banner-slider">
-		<?php if( have_rows('archive_banner_images','option') ):
-				while( have_rows('archive_banner_images','option') ) : the_row(); 
-					$banner_image = get_sub_field('banner_image'); 
+		<?php if( have_rows( 'archive_banner_images', 'option' ) ):
+				while( have_rows( 'archive_banner_images', 'option' ) ) : the_row(); 
+					$banner_image = get_sub_field( 'banner_image' ); 
 					?>
-				<?php if(isset($banner_image) && !empty($banner_image)){?>
+				<?php if( isset( $banner_image ) && !empty( $banner_image ) ) { ?>
 					<div class="slider-img">
-						<img src="<?php echo esc_url($banner_image['url']); ?>">
+						<img src="<?php echo esc_url( $banner_image['url'] ); ?>">
 					</div>
-				<?php }?>
+				<?php } ?>
 			<?php 
 			endwhile;
 		endif;
 		?>
 	</div>
-	<?php if(!empty($archive_banner_text)){?>
-		<h1 class="page-main-title"><?php echo esc_html($archive_banner_text,'supavapes'); ?></h1>
-	<?php }?>
+	<?php if( !empty( $archive_banner_text ) ) { ?>
+		<h1 class="page-main-title"><?php echo esc_html( $archive_banner_text ); ?></h1>
+	<?php } ?>
 </div>
-<?php }else{?>
+<?php } else { ?>
 	<div class="page-banner">
 		<div class="page-banner-slider">
-			<?php if( have_rows('archive_banner_images','option') ):
-					while( have_rows('archive_banner_images','option') ) : the_row(); 
-						$banner_image = get_sub_field('banner_image'); 
+			<?php if ( have_rows( 'archive_banner_images', 'option' ) ):
+					while ( have_rows( 'archive_banner_images', 'option' ) ) : the_row(); 
+						$banner_image = get_sub_field( 'banner_image' ); 
 						?>
-					<?php if(isset($banner_image) && !empty($banner_image)){?>
+					<?php if ( isset( $banner_image ) && !empty( $banner_image ) ) { ?>
 						<div class="slider-img">
-							<img src="<?php echo esc_url($banner_image['url']); ?>">
+							<img src="<?php echo esc_url( $banner_image['url'] ); ?>">
 						</div>
-					<?php }?>
+					<?php } ?>
 				<?php 
 				endwhile;
 			endif;
 			?>
 		</div>
-		<?php if(!empty($cateName)){?>
-			<h1 class="page-main-title"><?php echo esc_html($cateName,'supavapes'); ?></h1>
-		<?php }?>
+		<?php if( !empty( $cateName ) ) { ?>
+			<h1 class="page-main-title"><?php echo esc_html( $cateName, 'supavapes' ); ?></h1>
+		<?php } ?>
 	</div>
-<?php }?>
+<?php } ?>
 <?php
 /**
  * Hook: woocommerce_before_main_content.
