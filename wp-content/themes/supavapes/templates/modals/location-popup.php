@@ -26,7 +26,7 @@
                <div class="custom-location-wrap">
                   <div class="custom-location-input-box">
                      <label><?php esc_html_e( 'Address', 'supavapes' ); ?></label>
-                     <input type="text" placeholder="Enter Your Address" class="type-address" id="address" required="" value="">
+                     <input type="text" placeholder="Enter Your Address" class="type-address" id="autocomplete" required="" value="">
                   </div>
                   <div class="custom-location-buttons">
                      <a href=""><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
@@ -77,175 +77,67 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&callback=initMap" defer></script>
 <script>
-    // function initMap() {
-    //     var map;
-    //     var bounds = new google.maps.LatLngBounds();
-    //     var mapOptions = {
-    //         mapTypeId: 'roadmap'
-    //     };
-    //     map = new google.maps.Map(document.getElementById("location-map"), mapOptions);
-    //     map.setTilt(50);
+        // Initialize the map and the autocomplete feature
+        function initAutocomplete() {
+            // Initialize the map
+            var map = new google.maps.Map(document.getElementById("location-map"), {
+                center: { lat: 45.4215, lng: -75.6903 }, // Default center (Ottawa)
+                zoom: 10,
+                mapTypeId: "roadmap"
+            });
 
-    //     var markers = [
-    //         ['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
-    //         ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749]
-    //     ];
+            // Get the input field for autocomplete
+            var input = document.getElementById('autocomplete');
+            var autocomplete = new google.maps.places.Autocomplete(input);
 
-    //     var infoWindowContent = [
-    //         ['<div class="info_content">' +
-    //         '<h2>Supa Vapes Hawkesbury</h2>' +
-    //         '<h3>1502 Main St E, Hawkesbury, ON K6A 1C7, Canada</h3>' +
-    //         '</div>'],
-    //         ['<div class="info_content">' +
-    //         '<h2>Supa Vapes 729 Walkley Rd</h2>' +
-    //         '<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
-    //         '</div>']
-    //     ];
+            // Bind the map's bounds to the autocomplete object
+            autocomplete.bindTo('bounds', map);
 
-    //     var infoWindow = new google.maps.InfoWindow(), marker, i;
-    //     for (i = 0; i < markers.length; i++) {
-    //         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-    //         bounds.extend(position);
-    //         marker = new google.maps.Marker({
-    //             position: position,
-    //             map: map,
-    //             title: markers[i][0]
-    //         });
+            // Create an info window
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
 
-    //         google.maps.event.addListener(marker, 'click', (function (marker, i) {
-    //             return function () {
-    //                 infoWindow.setContent(infoWindowContent[i][0]);
-    //                 infoWindow.open(map, marker);
-    //             }
-    //         })(marker, i));
-    //     }
+            // Add listener for place selection from autocomplete
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                
+                // If the place doesn't have geometry, do nothing
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
 
-    //     map.fitBounds(bounds);
+                // If the place has geometry, center the map and update the marker
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
 
-    //     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
-    //         var zoomLevel = 10;
-    //         if (window.innerWidth < 768) {
-    //             zoomLevel = 8;
-    //         } else if (window.innerWidth < 1024) {
-    //             zoomLevel = 9;
-    //         }
-    //         this.setZoom(zoomLevel);
-    //         google.maps.event.removeListener(boundsListener);
-    //     });
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
 
-    //     // Initialize Places Autocomplete
-    //     var input = document.querySelector('.type-address');
-    //     var autocomplete = new google.maps.places.Autocomplete(input);
-
-    //     autocomplete.addListener('place_changed', function () {
-    //         var place = autocomplete.getPlace();
-    //         if (!place.geometry) {
-    //             return;
-    //         }
-    //         map.setCenter(place.geometry.location);
-    //         map.setZoom(14);
-
-    //         var newMarker = new google.maps.Marker({
-    //             position: place.geometry.location,
-    //             map: map
-    //         });
-
-    //         // Optionally, you can fill the address components in relevant fields if needed
-    //     });
-    // }
-
-    // window.initMap = initMap;
-
-
-    // Prepare location info object.
-var locationInfo = {
-  geo: null,
-  country: null,
-  state: null,
-  city: null,
-  postalCode: null,
-  street: null,
-  streetNumber: null,
-  reset: function() {
-    this.geo = null;
-    this.country = null;
-    this.state = null;
-    this.city = null;
-    this.postalCode = null;
-    this.street = null;
-    this.streetNumber = null;
-  }
-};
-
-googleAutocomplete = {
-  autocompleteField: function(fieldId) {
-    (autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById(fieldId)
-    )),
-      { types: ["geocode"] };
-    google.maps.event.addListener(autocomplete, "place_changed", function() {
-      // Segment results into usable parts.
-      var place = autocomplete.getPlace(),
-        address = place.address_components,
-        lat = place.geometry.location.lat(),
-        lng = place.geometry.location.lng();
-
-      // Reset location object.
-      locationInfo.reset();
-
-      // Save the individual address components.
-      locationInfo.geo = [lat, lng];
-      for (var i = 0; i < address.length; i++) {
-        var component = address[i].types[0];
-        switch (component) {
-          case "country":
-            locationInfo.country = address[i]["long_name"];
-            break;
-          case "administrative_area_level_1":
-            locationInfo.state = address[i]["long_name"];
-            break;
-          case "locality":
-            locationInfo.city = address[i]["long_name"];
-            break;
-          case "postal_code":
-            locationInfo.postalCode = address[i]["long_name"];
-            break;
-          case "route":
-            locationInfo.street = address[i]["long_name"];
-            break;
-          case "street_number":
-            locationInfo.streetNumber = address[i]["long_name"];
-            break;
-          default:
-            break;
+                // Fill the info window with place details
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + place.formatted_address);
+                infowindow.open(map, marker);
+            });
         }
-      }
 
-      // Preview map.
-      var src =
-          "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&center=" +
-          lat +
-          "," +
-          lng +
-          "&zoom=14&size=480x125&maptype=roadmap&sensor=false",
-        img = document.createElement("img");
-
-      img.src = src;
-      img.className = "absolute top-0 left-0 z-20";
-      document.getElementById("js-preview-map").appendChild(img);
-
-      // Preview JSON output.
-      document.getElementById("js-preview-json").innerHTML = JSON.stringify(
-        locationInfo,
-        null,
-        4
-      );
-    });
-  }
-};
-
-// Attach listener to address input field.
-googleAutocomplete.autocompleteField("address");
-</script>
+        // Load the initAutocomplete function when the page loads
+        window.addEventListener('load', function () {
+            // Ensure that the script is loaded and then initialize the map and autocomplete
+            if (typeof google !== 'undefined') {
+                initAutocomplete();
+            } else {
+                console.error('Google Maps script failed to load.');
+            }
+        });
+    </script>
