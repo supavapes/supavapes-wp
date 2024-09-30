@@ -26,8 +26,19 @@
                <div class="custom-location-wrap">
                   <div class="custom-location-input-box">
                      <label><?php esc_html_e( 'Address', 'supavapes' ); ?></label>
-                     <input type="text" placeholder="Enter Your Address" class="type-address" id="autocomplete" required="" value="">
+                     <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
                   </div>
+
+                    <div class="pac-card" id="pac-card">
+                        <div>
+                            <div id="title">Autocomplete search</div>
+                            <br />
+                        </div>
+                        <div id="pac-container">
+                            <input id="pac-input" type="text" placeholder="Enter a location" />
+                        </div>
+                    </div>
+
                   <div class="custom-location-buttons">
                      <a href=""><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
                      <button class="enter-menual-btn"><?php esc_html_e( 'Enter Manually', 'supavapes' ); ?></button>
@@ -77,10 +88,14 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
 <script>
        function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("location-map"), {
     center: { lat: 40.749933, lng: -73.98633 },
     zoom: 13,
     mapTypeControl: false,
