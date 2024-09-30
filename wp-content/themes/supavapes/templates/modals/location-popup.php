@@ -24,18 +24,10 @@
                   </button>
                </div>
                <div class="custom-location-wrap">
-                  
-
-                    <div class="pac-card" id="pac-card">
-                        <div>
-                            <div id="title">Autocomplete search</div>
-                            <br />
-                        </div>
-                        <div id="pac-container">
-                            <input id="pac-input" type="text" placeholder="Enter a location" />
-                        </div>
-                    </div>
-
+                    <div class="custom-location-input-box">
+                     <label><?php esc_html_e( 'Address', 'supavapes' ); ?></label>
+                     <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
+                  </div>
                   <div class="custom-location-buttons">
                      <a href=""><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
                      <button class="enter-menual-btn"><?php esc_html_e( 'Enter Manually', 'supavapes' ); ?></button>
