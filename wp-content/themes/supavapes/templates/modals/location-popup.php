@@ -24,10 +24,7 @@
                   </button>
                </div>
                <div class="custom-location-wrap">
-                  <!-- <div class="custom-location-input-box">
-                     <label><?php //esc_html_e( 'Address', 'supavapes' ); ?></label>
-                     <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
-                  </div> -->
+                  
 
                     <div class="pac-card" id="pac-card">
                         <div>
