@@ -3,7 +3,7 @@
  * Location popup. Where user can change/update their location.
  */
 ?>
-<div class="location-popup" style="display:block;">
+<div class="location-popup">
    <div class="overlay"></div>
    <div class="location-popup-content">
       <span class="location-popup-close">
