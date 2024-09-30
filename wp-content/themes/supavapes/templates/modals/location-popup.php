@@ -113,7 +113,7 @@
         window.alert("No details available for input: '" + place.name + "'");
         return;
       }
-
+      console.log(place);
       // Adjust the map viewport and set marker position
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
