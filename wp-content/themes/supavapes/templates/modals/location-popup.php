@@ -45,7 +45,7 @@
 <script>
   function initMap() {
     const map = new google.maps.Map(document.getElementById("location-map"), {
-      center: { lat: 40.749933, lng: -73.98633 }, // Default map center
+      center: { lat: 55.585901, lng: -105.750596 }, // Default map center
       zoom: 13,
       mapTypeControl: false,
     });
@@ -53,7 +53,7 @@
     const autocompleteInput = document.getElementById("pac-input");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
       fields: ["formatted_address", "geometry", "name"],
-      strictBounds: false,
+      strictBounds: true,
     });
 
     // Bias the autocomplete predictions towards current map's viewport.
