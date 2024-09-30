@@ -81,7 +81,7 @@
 <script>
         // Initialize the map and the autocomplete feature
         function initAutocomplete() {
-            alert('in');
+            // alert('in');
             // Initialize the map
             var map = new google.maps.Map(document.getElementById("location-map"), {
                 center: { lat: 45.4215, lng: -75.6903 }, // Default center (Ottawa)
