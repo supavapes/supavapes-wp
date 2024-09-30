@@ -35,7 +35,44 @@
                </div>
                <div id="location-map" style="width: 100%; height: 500px;"></div>
             </div>
-            
+            <div class="location-popup-form">
+               <div class="location-popup-form-overlay"></div>
+               <div class="location-popup-form-content">
+                  <span class="location-popup-form-close">
+                     <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.715756 20.4308L20.1773 0.969284L22.2927 3.08467L2.83114 22.5462L0.715756 20.4308ZM0.480713 2.80262L2.50208 0.78125L22.4807 20.7599L20.4593 22.7812L0.480713 2.80262Z" fill="white"></path>
+                     </svg>
+                  </span>
+                  <div class="location-popup-form-content-box">
+                     <div class="location-popup-form-content-detail">
+                        <h2><?php esc_html_e( 'Please fill the form', 'supavapes' ); ?></h2>
+                        <form class="menual-location">
+                           <div class="menual-location-form-group">
+                              <label><?php esc_html_e( 'Country/Region', 'supavapes' ); ?></label>
+                              <input type="text" value="Canada" readonly>
+                           </div>
+                           <div class="menual-location-form-group">
+                              <label><?php esc_html_e( 'State/Province', 'supavapes' ); ?></label>
+                              <select>
+                                 <option value="" disabled selected><?php esc_html_e( 'Select State/Province', 'supavapes' ); ?></option>
+                                 <option value="AB"><?php esc_html_e( 'Alberta', 'supavapes' ); ?></option>
+                                 <option value="BC"><?php esc_html_e( 'British Columbia', 'supavapes' ); ?></option>
+                                 <option value="MB"><?php esc_html_e( 'Manitoba', 'supavapes' ); ?></option>
+                                 <option value="NB"><?php esc_html_e( 'New Brunswick', 'supavapes' ); ?></option>
+                                 <option value="NL"><?php esc_html_e( 'Newfoundland and Labrador', 'supavapes' ); ?></option>
+                                 <option value="NS"><?php esc_html_e( 'Nova Scotia', 'supavapes' ); ?></option>
+                                 <option value="ON"><?php esc_html_e( 'Ontario', 'supavapes' ); ?></option>
+                                 <option value="PE"><?php esc_html_e( 'Prince Edward Island', 'supavapes' ); ?></option>
+                                 <option value="QC"><?php esc_html_e( 'Quebec', 'supavapes' ); ?></option>
+                                 <option value="SK"><?php esc_html_e( 'Saskatchewan', 'supavapes' ); ?></option>
+                              </select>
+                           </div>
+                           <button type="submit" class="button submit-location-form"><?php esc_html_e( 'Update my location', 'supavapes' ); ?></button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
    </div>
@@ -53,7 +90,7 @@
     const autocompleteInput = document.getElementById("pac-input");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
       fields: ["formatted_address", "geometry", "name"],
-      strictBounds: true,
+      strictBounds: false,
     });
 
     // Bias the autocomplete predictions towards current map's viewport.
