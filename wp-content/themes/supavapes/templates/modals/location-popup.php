@@ -100,7 +100,7 @@
   window.initMap = initMap;
 </script>
 <style>
-    .pac-container.pac-logo {
+.pac-container.pac-logo {
     z-index: 99999;
 }
 </style>
