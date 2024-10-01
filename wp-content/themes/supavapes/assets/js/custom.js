@@ -1895,6 +1895,10 @@ jQuery(document).ready(function() {
 		closeLocationForm();
 	});
 
+	jQuery(document).on("click", ".submit-location-form", function() {
+		closeLocationForm();
+	});
+
 	// Close the manual location form on overlay click
 	jQuery(document).on("click", ".location-popup-form-overlay", function() {
 		closeLocationForm();

@@ -71,7 +71,7 @@
                                     <option value="SK" data-lat="52.9399" data-lng="-106.4509"><?php esc_html_e( 'Saskatchewan', 'supavapes' ); ?></option>
                                 </select>
                             </div>
-                           <button type="submit" class="button submit-location-form"><?php esc_html_e( 'Update my location', 'supavapes' ); ?></button>
+                           <button type="button" id="submit-location-form" class="button submit-location-form"><?php esc_html_e( 'Update my location', 'supavapes' ); ?></button>
                         </form>
                      </div>
                   </div>
@@ -84,111 +84,114 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
-let map; // Declare map variable outside of the function
-let marker; // Declare marker outside to reuse it
-let infowindow; // Declare infowindow outside to reuse it
+    let map; // Declare map variable outside of the function
+    let marker; // Declare marker outside to reuse it
+    let infowindow; // Declare infowindow outside to reuse it
 
-function initMap() {
-    // Initialize the map
-    map = new google.maps.Map(document.getElementById("location-map"), {
-        center: { lat: 50.000000, lng: -85.000000 }, // Default map center
-        zoom: 5,
-        mapTypeControl: false,
-    });
+    function initMap() {
+        // Initialize the map
+        map = new google.maps.Map(document.getElementById("location-map"), {
+            center: { lat: 50.000000, lng: -85.000000 }, // Default map center
+            zoom: 5,
+            mapTypeControl: false,
+        });
 
-    const autocompleteInput = document.getElementById("pac-input");
-    const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-        fields: ["formatted_address", "geometry", "name", "address_components"],
-        strictBounds: true,
-    });
+        const autocompleteInput = document.getElementById("pac-input");
+        const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+            fields: ["formatted_address", "geometry", "name", "address_components"],
+            strictBounds: true,
+        });
 
-    // Bias the autocomplete predictions towards current map's viewport
-    autocomplete.bindTo("bounds", map);
+        // Bias the autocomplete predictions towards current map's viewport
+        autocomplete.bindTo("bounds", map);
 
-    // Initialize the infowindow and marker
-    infowindow = new google.maps.InfoWindow();
-    marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29),
-    });
+        // Initialize the infowindow and marker
+        infowindow = new google.maps.InfoWindow();
+        marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29),
+        });
 
-    // Handle place selection from autocomplete suggestions
-    autocomplete.addListener("place_changed", () => {
-        infowindow.close();
-        marker.setVisible(false);
+        // Handle place selection from autocomplete suggestions
+        autocomplete.addListener("place_changed", () => {
+            infowindow.close();
+            marker.setVisible(false);
 
-        const place = autocomplete.getPlace();
-        if (!place.geometry || !place.geometry.location) {
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-        }
-
-        // Adjust the map viewport and set marker position
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-        }
-
-        marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
-
-        infowindow.setContent(
-            '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
-            'Address: ' + place.formatted_address + '</div>'
-        );
-        infowindow.open(map, marker);
-
-        // Extract the state or province from address components
-        const addressComponents = place.address_components;
-        let state = '';
-        for (let i = 0; i < addressComponents.length; i++) {
-            const component = addressComponents[i];
-            if (component.types.includes("administrative_area_level_1")) {
-                state = component.long_name; // Get the state name
-                break;
+            const place = autocomplete.getPlace();
+            if (!place.geometry || !place.geometry.location) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
             }
-        }
 
-        console.log("Selected State/Province:", state); // Log or use the state as needed
-    });
-}
+            // Adjust the map viewport and set marker position
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
 
-// Listen for changes on the state/province select
-const stateProvinceSelect = document.getElementById("state-province-select");
-if (stateProvinceSelect) {
-    stateProvinceSelect.addEventListener("change", (event) => {
-        const selectedOption = event.target.selectedOptions[0];
-        const lat = parseFloat(selectedOption.getAttribute("data-lat"));
-        const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-        const selectedState = selectedOption.text; // Get the state name
-
-        if (!isNaN(lat) && !isNaN(lng)) {
-            // Update the map center to the selected state's coordinates
-            map.setCenter({ lat: lat, lng: lng });
-            map.setZoom(6); // Optional: Set a zoom level that works for the selected area
-
-            // Reposition the marker and show it on the map
-            marker.setPosition({ lat: lat, lng: lng });
+            marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
-            // Set content for the infowindow and open it at the new marker position
             infowindow.setContent(
-                '<div class="location-info-content"><strong>' + selectedOption.text + '</strong><br></div>'
+                '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
+                'Address: ' + place.formatted_address + '</div>'
             );
             infowindow.open(map, marker);
 
-            // Autofill the selected state/province into the pac-input textbox
-            const autocompleteInput = document.getElementById("pac-input");
-            if (autocompleteInput) {
-                autocompleteInput.value = selectedState; // Autofill the state name
+            // Extract the state or province from address components
+            const addressComponents = place.address_components;
+            let state = '';
+            for (let i = 0; i < addressComponents.length; i++) {
+                const component = addressComponents[i];
+                if (component.types.includes("administrative_area_level_1")) {
+                    state = component.long_name; // Get the state name
+                    break;
+                }
             }
-        }
-    });
-}
 
-window.initMap = initMap;
+            console.log("Selected State/Province:", state); // Log or use the state as needed
+        });
+    }
+
+    // Listen for clicks on the submit button to update the map
+    const submitButton = document.getElementById("submit-location-form");
+    if (submitButton) {
+        submitButton.addEventListener("click", (event) => {
+            const stateProvinceSelect = document.getElementById("state-province-select");
+            if (stateProvinceSelect) {
+                const selectedOption = stateProvinceSelect.selectedOptions[0];
+                const lat = parseFloat(selectedOption.getAttribute("data-lat"));
+                const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+                const selectedState = selectedOption.text; // Get the state name
+
+                if (!isNaN(lat) && !isNaN(lng)) {
+                    // Update the map center to the selected state's coordinates
+                    map.setCenter({ lat: lat, lng: lng });
+                    map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+
+                    // Reposition the marker and show it on the map
+                    marker.setPosition({ lat: lat, lng: lng });
+                    marker.setVisible(true);
+
+                    // Set content for the infowindow and open it at the new marker position
+                    infowindow.setContent(
+                        '<div class="location-info-content"><strong>' + selectedOption.text + '</strong><br></div>'
+                    );
+                    infowindow.open(map, marker);
+
+                    // Autofill the selected state/province into the pac-input textbox
+                    const autocompleteInput = document.getElementById("pac-input");
+                    if (autocompleteInput) {
+                        autocompleteInput.value = selectedState; // Autofill the state name
+                    }
+                }
+            }
+        });
+    }
+
+    window.initMap = initMap;
 
 </script>
 <style>
