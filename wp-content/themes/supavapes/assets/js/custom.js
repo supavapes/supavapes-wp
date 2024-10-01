@@ -32,6 +32,19 @@ jQuery(document).ready(function() {
         });
     }
 
+
+	jQuery(document).on('click', '#update-user-location', function(e) {
+		e.preventDefault(); // Prevent default action if necessary
+
+		const selectedState = jQuery(this).data('userselectedstate');
+
+		// Set the cookie for user_state
+        if (selectedState) {
+            document.cookie = "user_state=" + selectedState + "; path=/"; // Sets cookie
+            console.log("Cookie set for user_state:", selectedState); // Debugging log
+        }
+	});
+
 	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
 	// 	jQuery(this).next('.price-breakup-popup').toggle();
 	// });
