@@ -27,7 +27,7 @@
                     <div class="custom-location-input-box">
                      <label><?php esc_html_e( 'Address', 'supavapes' ); ?></label>
                      <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
-                     <span class="address-error-msg">This location is not allowed</span>
+                     <span class="address-error-msg"></span>
                   </div>
                   <div class="custom-location-buttons">
                      <a href="javascript:void(0);" id="detect-me-button"><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
@@ -145,6 +145,7 @@
 
             // Extract the state or province from address components
             const addressComponents = place.address_components;
+            console.log(addressComponents);
             let state = '';
             for (let i = 0; i < addressComponents.length; i++) {
                 const component = addressComponents[i];

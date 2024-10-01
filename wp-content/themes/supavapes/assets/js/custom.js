@@ -612,7 +612,7 @@ jQuery(document).ready(function() {
 							}
 						}
 						if ( country !== 'Canada' ) {
-							jQuery( '#pac-input' ).insertAfter("<p>Not Allowed</p>");
+							jQuery( '.address-error-msg' ).text('This location is not allowed.');
 						}
 						jQuery('#pac-input').val(city + ', ' + country);
 					} else {
