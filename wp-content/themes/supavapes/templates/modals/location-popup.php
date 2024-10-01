@@ -174,10 +174,15 @@ if (stateProvinceSelect) {
 
             // Set content for the infowindow and open it at the new marker position
             infowindow.setContent(
-                '<div><strong>' + selectedOption.text + '</strong><br>' +
-                'Coordinates: ' + lat + ', ' + lng + '</div>'
+                '<div><strong>' + selectedOption.text + '</strong><br></div>'
             );
             infowindow.open(map, marker);
+
+            // Autofill the selected state/province into the pac-input textbox
+            const autocompleteInput = document.getElementById("pac-input");
+            if (autocompleteInput) {
+                autocompleteInput.value = selectedState; // Autofill the state name
+            }
         }
     });
 }
