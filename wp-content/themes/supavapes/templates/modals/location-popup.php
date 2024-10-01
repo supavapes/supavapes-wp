@@ -138,7 +138,7 @@
                 map.setCenter(place.geometry.location);
                 map.setZoom(17);
             }
-
+            console.log(place.geometry.location);
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
