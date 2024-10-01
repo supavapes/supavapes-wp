@@ -40,7 +40,7 @@ jQuery(document).ready(function() {
 
 		// Set the cookie for user_state
         if (selectedState) {
-            document.cookie = "user_state=" + selectedState + "; path=/"; // Sets cookie
+			document.cookie = "user_state=" + selectedState + "; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT"; // Set expiration date far in the future
             console.log("Cookie set for user_state:", selectedState); // Debugging log
         }
 	});
