@@ -130,7 +130,7 @@ function initializeMap(lat, lng) {
     autocompleteInput = document.getElementById("pac-input");
     const updateButton = document.getElementById("update-user-location");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-        fields: ["formatted_address", "geometry", "name", "address_components"],
+        fields: [ "geometry", "name"],
         strictBounds: true,
     });
 
