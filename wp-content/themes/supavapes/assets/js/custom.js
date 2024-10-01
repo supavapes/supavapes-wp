@@ -47,6 +47,8 @@ jQuery(document).ready(function() {
 			},
 			success: function(response) {
 				console.log('State updated.');
+				closeLocationPopup();
+				location.reload();
 			}
 		});
 	});
