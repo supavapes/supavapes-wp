@@ -117,6 +117,8 @@ if ( ! function_exists( 'supavapes_wp_enqueue_scripts_callback' ) ) {
 		// Enqueue the jQuery UI dialog script.
 		wp_enqueue_script( 'jquery-ui-dialog' );
 
+		wp_enqueue_script('google-maps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&v=weekly', array(), null, true);
+
 		// Enqueue the custom script file.
 		wp_enqueue_script(
 			'sv-custom-js',
@@ -134,6 +136,9 @@ if ( ! function_exists( 'supavapes_wp_enqueue_scripts_callback' ) ) {
 			filemtime( get_stylesheet_directory() . '/assets/js/frontend.js' ),
 			true
 		);
+
+		
+
 
 		// Localize the custom script variables.
 		wp_localize_script(

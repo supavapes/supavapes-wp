@@ -82,11 +82,11 @@
    </div>
 </div>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
 
 
-</script>
+</script> -->
 <style>
 .pac-container.pac-logo {
     z-index: 99999;
