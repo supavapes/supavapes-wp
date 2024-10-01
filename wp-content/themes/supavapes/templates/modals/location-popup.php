@@ -153,9 +153,14 @@
                     state = component.long_name; // Get the state name
                     break;
                 }
+                if (component.types.includes("country")) {
+                    country = component.long_name; // Get the state name
+                    break;
+                }
             }
 
             console.log("Selected State/Province:", state); // Log or use the state as needed
+            console.log("Selected Country:", country); // Log or use the state as needed
             if (updateButton) {
                 updateButton.setAttribute("data-userselectedstate", state); // Update the data attribute
                 console.log('data-userselectedstate updated to: ' + state); // Debugging log
