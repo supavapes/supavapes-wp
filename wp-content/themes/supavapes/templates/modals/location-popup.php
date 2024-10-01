@@ -104,6 +104,8 @@
 
     // InfoWindow for displaying the place information
     const infowindow = new google.maps.InfoWindow();
+    const infowindowContent = document.getElementById("infowindow-content");
+    infowindow.setContent(infowindowContent);
     const marker = new google.maps.Marker({
         map,
         anchorPoint: new google.maps.Point(0, -29),
