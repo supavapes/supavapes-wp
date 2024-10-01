@@ -204,7 +204,7 @@
                 // Autofill the selected state/province into the pac-input textbox
                 const autocompleteInput = document.getElementById("pac-input");
                 if (autocompleteInput) {
-                    autocompleteInput.value = selectedState; // Autofill the state name
+                    autocompleteInput.value = selectedState + ', Canada'; // Autofill the state name
                 }
 
                 if (updateButton) {
