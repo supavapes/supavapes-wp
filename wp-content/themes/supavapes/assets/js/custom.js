@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 				console.log('State updated.');
 				// closeLocationPopup();
 				location.reload();
-				jQuery('.location-popup-content-box .pre-loader_page').hide();
+				// jQuery('.location-popup-content-box .pre-loader_page').hide();
 			}
 		});
 	});
