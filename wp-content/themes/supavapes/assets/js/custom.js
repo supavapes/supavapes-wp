@@ -591,6 +591,10 @@ jQuery(document).ready(function() {
 								country = component.long_name;
 							}
 						}
+						if ( country !== 'Canada' ) {
+							alert( 'Location is not allowed outside canada.' );
+							return false;
+						}
 						jQuery('#pac-input').val(city + ', ' + country);
 					} else {
 						// jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
