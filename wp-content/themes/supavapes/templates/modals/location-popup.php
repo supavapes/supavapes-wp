@@ -35,8 +35,8 @@
                </div>
                <div id="location-map" style="width: 100%; height: 500px;"></div>
                 <div id="infowindow-content">
-                    <span id="place-name" class="title"></span><br />
-                    <span id="place-address"></span>
+                    <span id="place-name" class="title" style="color: #000;"></span><br />
+                    <span id="place-address" style="color: #000;"></span>
                 </div>
             </div>
             <div class="location-popup-form">
