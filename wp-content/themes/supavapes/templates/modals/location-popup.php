@@ -193,6 +193,7 @@
     const submitButton = document.getElementById("submit-location-form");
     if (submitButton) {
         submitButton.addEventListener("click", (event) => {
+            alert('clicked');
             event.preventDefault(); // Prevent default form submission
             updateLocation(); // Call the function to update the map
         });
