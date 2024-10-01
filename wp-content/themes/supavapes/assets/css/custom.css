@@ -2175,3 +2175,15 @@ button.button.submit-location {
 .location-info-content{
     color: #000;
 }
+
+.location-popup-content-box .pre-loader_page {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #000000c9;
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+}
