@@ -34,6 +34,10 @@
                   </div>
                </div>
                <div id="location-map" style="width: 100%; height: 500px;"></div>
+                <div id="infowindow-content">
+                    <span id="place-name" class="title"></span><br />
+                    <span id="place-address"></span>
+                </div>
             </div>
             <div class="location-popup-form">
                <div class="location-popup-form-overlay"></div>
@@ -126,13 +130,16 @@
 
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
-
-        // Display place info in the InfoWindow
-        infowindow.setContent(
-            '<div><strong>' + place.name + '</strong><br>' +
-            'Address: ' + place.formatted_address + '</div>'
-        );
+        infowindowContent.children["place-name"].textContent = place.name;
+        infowindowContent.children["place-address"].textContent =
+        place.formatted_address;
         infowindow.open(map, marker);
+        // // Display place info in the InfoWindow
+        // infowindow.setContent(
+        //     '<div><strong>' + place.name + '</strong><br>' +
+        //     'Address: ' + place.formatted_address + '</div>'
+        // );
+        // infowindow.open(map, marker);
         // Extract the state or province from address components
         const addressComponents = place.address_components;
         let state = '';
