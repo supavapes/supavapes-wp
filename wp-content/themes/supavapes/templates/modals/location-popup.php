@@ -29,7 +29,7 @@
                      <input type="text" placeholder="Enter Your Address" class="type-address" id="pac-input" required="" value="">
                   </div>
                   <div class="custom-location-buttons">
-                     <a href=""><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
+                     <a href="javascript:void(0);" id="detect-me-button"><?php esc_html_e( 'Detect Me', 'supavapes' ); ?></a>
                      <button class="enter-menual-btn"><?php esc_html_e( 'Enter Manually', 'supavapes' ); ?></button>
                   </div>
                </div>

@@ -568,6 +568,46 @@ jQuery(document).ready(function() {
 			jQuery('#location-error').show();
 		}
 	});
+
+	jQuery(document).on("click", '#detect-me-button', function(e) {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				jQuery.get('https://maps.googleapis.com/maps/api/geocode/json', {
+					latlng: lat + ',' + lng,
+					key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
+				}, function(response) {
+					if (response.status === 'OK') {
+						var result = response.results[0];
+						var city = '';
+						var country = '';
+						for (var i = 0; i < result.address_components.length; i++) {
+							var component = result.address_components[i];
+							if (component.types.includes('locality')) {
+								city = component.long_name;
+							}
+							if (component.types.includes('country')) {
+								country = component.long_name;
+							}
+						}
+						jQuery('#pac-input').val(city + ', ' + country);
+					} else {
+						// jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+						// jQuery('#location-error').show();
+					}
+				});
+			}, function(error) {
+				// jQuery('#location-error').text('Geolocation is not supported by this browser or permission denied.');
+				// jQuery('#location-error').show();
+			});
+		} else {
+			// jQuery('#location-error').text('Geolocation is not supported by this browser.');
+			// jQuery('#location-error').show();
+		}
+	});
+
+
 	jQuery('.error-message').hide();
 	jQuery('#first-name, #last-name, #email-address, #phone-number, #message').on('keyup', function() {
 		jQuery(this).next('.error-message').text('');
