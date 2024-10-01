@@ -187,6 +187,11 @@ function initializeMap(lat, lng) {
             }
         }
 
+        // Update the autocomplete input field with only state and country
+        if (autocompleteInput) {
+            autocompleteInput.value = `${state}, ${country}`; // Show only state and country
+        }
+
         // Update data attributes and store the selected location
         if (updateButton) {
             updateButton.setAttribute("data-userselectedstate", state);
