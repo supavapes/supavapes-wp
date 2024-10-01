@@ -176,8 +176,11 @@ function initMap() {
         }
     });
 
-    // Function to load previously stored location on popup open
-    function loadStoredLocation() {
+    
+}
+
+// Function to load previously stored location on popup open
+function loadStoredLocation() {
         const storedState = localStorage.getItem('selectedState');
         const storedCountry = localStorage.getItem('selectedCountry');
         const storedLat = parseFloat(localStorage.getItem('selectedLat'));
@@ -200,8 +203,6 @@ function initMap() {
             console.log('Loaded stored location:', storedState, storedCountry);
         }
     }
-}
-
 // Function to update the map and marker based on selected state
 function updateLocation() {
     const stateProvinceSelect = document.getElementById("state-province-select");
