@@ -135,7 +135,7 @@ function initMap() {
         marker.setVisible(true);
 
         infowindow.setContent(
-            '<div><strong>' + place.name + '</strong><br>' +
+            '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
             'Address: ' + place.formatted_address + '</div>'
         );
         infowindow.open(map, marker);
@@ -163,7 +163,7 @@ if (stateProvinceSelect) {
         const lat = parseFloat(selectedOption.getAttribute("data-lat"));
         const lng = parseFloat(selectedOption.getAttribute("data-lng"));
         const selectedState = selectedOption.text; // Get the state name
-        
+
         if (!isNaN(lat) && !isNaN(lng)) {
             // Update the map center to the selected state's coordinates
             map.setCenter({ lat: lat, lng: lng });
@@ -175,7 +175,7 @@ if (stateProvinceSelect) {
 
             // Set content for the infowindow and open it at the new marker position
             infowindow.setContent(
-                '<div><strong>' + selectedOption.text + '</strong><br></div>'
+                '<div class="location-info-content"><strong>' + selectedOption.text + '</strong><br></div>'
             );
             infowindow.open(map, marker);
 
@@ -194,5 +194,8 @@ window.initMap = initMap;
 <style>
 .pac-container.pac-logo {
     z-index: 99999;
+}
+.location-info-content{
+    color: #000;
 }
 </style>
