@@ -20,6 +20,19 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
+
+	// Ensure the DOM is fully loaded before attaching the event
+    const submitButton = jQuery('#submit-location-form');
+	console.log(submitButton);
+    if (submitButton.length) {
+        submitButton.on('click', function (event) {
+            alert('clicked'); // Debugging alert
+            event.preventDefault(); // Prevent default form submission
+            updateLocation(); // Call the function to update the map
+        });
+    }
+
+
 	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {
 	// 	jQuery(this).next('.price-breakup-popup').toggle();
 	// });
