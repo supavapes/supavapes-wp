@@ -23,10 +23,10 @@ jQuery(document).ready(function() {
 
 	// Ensure the DOM is fully loaded before attaching the event
     const submitButton = jQuery('#submit-location-form');
-	console.log(submitButton);
+	// console.log(submitButton);
     if (submitButton.length) {
         submitButton.on('click', function (event) {
-            alert('clicked'); // Debugging alert
+            // alert('clicked'); // Debugging alert
             event.preventDefault(); // Prevent default form submission
             updateLocation(); // Call the function to update the map
         });
