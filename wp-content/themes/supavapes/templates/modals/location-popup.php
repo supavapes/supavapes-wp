@@ -12,6 +12,11 @@
          </svg>
       </span>
       <div class="location-popup-content-box">
+        <div class="pre-loader_page" id="loader">
+			<div class="loader_row">
+				<span class="sv-loader"></span>
+			</div>
+		</div>
          <div class="location-popup-content-detail">
             <div class="location-popup-content-main">
                <div class="location-popup-header">
