@@ -85,9 +85,12 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
   let map; // Declare map variable outside of the function
+let marker; // Declare marker outside to reuse it
+let infowindow; // Declare infowindow outside to reuse it
 
-  function initMap() {
-    const map = new google.maps.Map(document.getElementById("location-map"), {
+function initMap() {
+    // Initialize the map
+    map = new google.maps.Map(document.getElementById("location-map"), {
         center: { lat: 50.000000, lng: -85.000000 }, // Default map center
         zoom: 5,
         mapTypeControl: false,
@@ -95,19 +98,17 @@
 
     const autocompleteInput = document.getElementById("pac-input");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-        fields: ["formatted_address", "geometry", "name", "address_components"], // Include address_components
+        fields: ["formatted_address", "geometry", "name", "address_components"],
         strictBounds: true,
     });
 
-    // Bias the autocomplete predictions towards current map's viewport.
+    // Bias the autocomplete predictions towards current map's viewport
     autocomplete.bindTo("bounds", map);
 
-    // InfoWindow for displaying the place information
-    const infowindow = new google.maps.InfoWindow();
-    const infowindowContent = document.getElementById("infowindow-content");
-    infowindow.setContent(infowindowContent);
-    const marker = new google.maps.Marker({
-        map,
+    // Initialize the infowindow and marker
+    infowindow = new google.maps.InfoWindow();
+    marker = new google.maps.Marker({
+        map: map,
         anchorPoint: new google.maps.Point(0, -29),
     });
 
@@ -132,16 +133,13 @@
 
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
-        infowindowContent.children["place-name"].textContent = place.name;
-        infowindowContent.children["place-address"].textContent =
-        place.formatted_address;
+
+        infowindow.setContent(
+            '<div><strong>' + place.name + '</strong><br>' +
+            'Address: ' + place.formatted_address + '</div>'
+        );
         infowindow.open(map, marker);
-        // // Display place info in the InfoWindow
-        // infowindow.setContent(
-        //     '<div><strong>' + place.name + '</strong><br>' +
-        //     'Address: ' + place.formatted_address + '</div>'
-        // );
-        // infowindow.open(map, marker);
+
         // Extract the state or province from address components
         const addressComponents = place.address_components;
         let state = '';
@@ -152,27 +150,40 @@
                 break;
             }
         }
+
         console.log("Selected State/Province:", state); // Log or use the state as needed
     });
 }
 
 // Listen for changes on the state/province select
 const stateProvinceSelect = document.getElementById("state-province-select");
-if( stateProvinceSelect ){
+if (stateProvinceSelect) {
     stateProvinceSelect.addEventListener("change", (event) => {
         const selectedOption = event.target.selectedOptions[0];
         const lat = parseFloat(selectedOption.getAttribute("data-lat"));
         const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+
         if (!isNaN(lat) && !isNaN(lng)) {
-            const map = new google.maps.Map(document.getElementById("location-map"), {
-            center: { lat: lat, lng: lng }, // Default map center
-            zoom: 5,
-            mapTypeControl: false,
-        });
+            // Update the map center to the selected state's coordinates
+            map.setCenter({ lat: lat, lng: lng });
+            map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+
+            // Reposition the marker and show it on the map
+            marker.setPosition({ lat: lat, lng: lng });
+            marker.setVisible(true);
+
+            // Set content for the infowindow and open it at the new marker position
+            infowindow.setContent(
+                '<div><strong>' + selectedOption.text + '</strong><br>' +
+                'Coordinates: ' + lat + ', ' + lng + '</div>'
+            );
+            infowindow.open(map, marker);
         }
     });
 }
+
 window.initMap = initMap;
+
 </script>
 <style>
 .pac-container.pac-logo {
