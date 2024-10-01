@@ -36,6 +36,7 @@ jQuery(document).ready(function() {
 	jQuery(document).on('click', '#update-user-location', function(e) {
 		e.preventDefault(); // Prevent default action if necessary
 		var userselectedstate = jQuery(this).data('userselectedstate');
+		var userselectedcountry = jQuery(this).data('userselectedcountry');
 		jQuery.ajax({
 			url: sv_ajax.ajax_url,
 			type: 'POST',
@@ -43,6 +44,7 @@ jQuery(document).ready(function() {
 			data: {
 				action: 'update_user_location',
 				userselectedstate: userselectedstate,
+				userselectedcountry: userselectedcountry
 				
 			},
 			success: function(response) {
