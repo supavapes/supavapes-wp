@@ -37,6 +37,7 @@ jQuery(document).ready(function() {
 		e.preventDefault(); // Prevent default action if necessary
 		var userselectedstate = jQuery(this).data('userselectedstate');
 		var userselectedcountry = jQuery(this).data('userselectedcountry');
+		jQuery('.location-popup-content-box .pre-loader_page').show();
 		jQuery.ajax({
 			url: sv_ajax.ajax_url,
 			type: 'POST',
@@ -51,6 +52,7 @@ jQuery(document).ready(function() {
 				console.log('State updated.');
 				// closeLocationPopup();
 				location.reload();
+				jQuery('.location-popup-content-box .pre-loader_page').hide();
 			}
 		});
 	});
