@@ -189,7 +189,7 @@
             if (!isNaN(lat) && !isNaN(lng)) {
                 // Update the map center to the selected state's coordinates
                 map.setCenter({ lat: lat, lng: lng });
-                map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+                map.setZoom(17); // Optional: Set a zoom level that works for the selected area
 
                 // Reposition the marker and show it on the map
                 marker.setPosition({ lat: lat, lng: lng });

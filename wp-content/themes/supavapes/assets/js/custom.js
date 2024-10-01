@@ -50,9 +50,7 @@ jQuery(document).ready(function() {
 			},
 			success: function(response) {
 				console.log('State updated.');
-				// closeLocationPopup();
 				location.reload();
-				// jQuery('.location-popup-content-box .pre-loader_page').hide();
 			}
 		});
 	});

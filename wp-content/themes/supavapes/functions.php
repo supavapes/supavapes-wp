@@ -4806,9 +4806,9 @@ if ( ! function_exists( 'supavapes_update_user_location_callback' ) ) {
             // setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
 			setcookie( 'user_state', $userselectedstate, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
 			setcookie( 'user_country', $userselectedcountry, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
-            wp_send_json_success( array( 'message' => 'State value has been set in the cookie.' ) );
+            wp_send_json_success( array( 'message' => 'State & country value has been updated in the cookie.' ) );
         } else {
-            wp_send_json_error( array( 'message' => 'State value is not provided.' ) );
+            wp_send_json_error( array( 'message' => 'State & country value is not provided.' ) );
         }
 
         wp_die();
