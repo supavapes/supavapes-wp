@@ -147,6 +147,7 @@
             const addressComponents = place.address_components;
             console.log(addressComponents);
             let state = '';
+            let country = '';
             for (let i = 0; i < addressComponents.length; i++) {
                 const component = addressComponents[i];
                 if (component.types.includes("administrative_area_level_1")) {
