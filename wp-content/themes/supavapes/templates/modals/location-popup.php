@@ -145,18 +145,19 @@
 
             // Extract the state or province from address components
             const addressComponents = place.address_components;
-            console.log(addressComponents);
+
             let state = '';
             let country = '';
+
+            console.log("Address Components:", addressComponents); // Log the entire addressComponents for debugging
+
             for (let i = 0; i < addressComponents.length; i++) {
                 const component = addressComponents[i];
                 if (component.types.includes("administrative_area_level_1")) {
                     state = component.long_name; // Get the state name
-                    break;
                 }
                 if (component.types.includes("country")) {
                     country = component.short_name; // Get the state name
-                    break;
                 }
             }
 
