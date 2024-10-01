@@ -162,7 +162,8 @@ if (stateProvinceSelect) {
         const selectedOption = event.target.selectedOptions[0];
         const lat = parseFloat(selectedOption.getAttribute("data-lat"));
         const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-
+        const selectedState = selectedOption.text; // Get the state name
+        
         if (!isNaN(lat) && !isNaN(lng)) {
             // Update the map center to the selected state's coordinates
             map.setCenter({ lat: lat, lng: lng });
