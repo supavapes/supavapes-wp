@@ -155,7 +155,7 @@
                     break;
                 }
                 if (component.types.includes("country")) {
-                    country = component.long_name; // Get the state name
+                    country = component.short_name; // Get the state name
                     break;
                 }
             }
