@@ -35,14 +35,20 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
 		e.preventDefault(); // Prevent default action if necessary
-
-		const selectedState = jQuery(this).data('userselectedstate');
-
-		// Set the cookie for user_state
-        if (selectedState) {
-			document.cookie = "user_state=" + selectedState + "; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT"; // Set expiration date far in the future
-            console.log("Cookie set for user_state:", selectedState); // Debugging log
-        }
+		var userselectedstate = jQuery(this).data('userselectedstate');
+		jQuery.ajax({
+			url: sv_ajax.ajax_url,
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				action: 'update_user_location',
+				userselectedstate: userselectedstate,
+				
+			},
+			success: function(response) {
+				console.log('State updated.');
+			}
+		});
 	});
 
 	// jQuery(document).on('click', '.info-icon-container .info-icon', function(e) {

@@ -4787,6 +4787,36 @@ add_action('init', 'supavapes_get_ip_location_and_set_cookies');
 
 
 
+/**
+ * If the function `supavapes_update_user_location_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_update_user_location_callback' ) ) {
+	/**
+	 * Ajax callback function to update user location.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_update_user_location_callback() {
+
+		$userselectedstate = isset( $_POST['userselectedstate'] ) ? sanitize_text_field( $_POST['userselectedstate'] ) : '';
+		
+		if ( ! empty( $userselectedstate ) ) {
+            // Set the state value in a cookie that expires in 7 days
+            // setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
+			setcookie( 'user_state', $userselectedstate, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
+            wp_send_json_success( array( 'message' => 'State value has been set in the cookie.' ) );
+        } else {
+            wp_send_json_error( array( 'message' => 'State value is not provided.' ) );
+        }
+
+        wp_die();
+	}
+}
+
+add_action( 'wp_ajax_update_user_location', 'supavapes_update_user_location_callback' );
+add_action( 'wp_ajax_nopriv_update_user_location', 'supavapes_update_user_location_callback' );
+
+
 function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
     // Get the Ontario and Federal tax from the order meta
     $ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
