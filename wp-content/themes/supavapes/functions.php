@@ -4750,9 +4750,10 @@ if ( ! function_exists( 'supavapes_recalculate_order_items_based_on_state' ) ) {
 
 
 function supavapes_get_ip_location_and_set_cookies() {
-	debug($_COOKIE);
+	// debug($_COOKIE);
 	if ( !isset($_COOKIE['user_city']) && !empty($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) && !empty($_COOKIE['user_state']) || !isset($_COOKIE['user_country']) && !empty($_COOKIE['user_country']) ) {
 		// die('lkoooo');
+		echo "innnnnn";
 		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
 		$access_key = '8cccc64e392297'; // Get your free access key from ipinfo.io
 
