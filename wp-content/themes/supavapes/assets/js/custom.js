@@ -35,6 +35,17 @@ jQuery(document).ready(function() {
         });
     }
 
+	const editButton = jQuery('.edit-location-btn');
+	// console.log(submitButton);
+    if (editButton.length) {
+        editButton.on('click', function (event) {
+            
+            event.preventDefault(); // Prevent default form submission
+			
+            loadStoredLocation(); // Call the function to update the map
+        });
+    }
+
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
 		e.preventDefault(); // Prevent default action if necessary
@@ -1949,7 +1960,6 @@ jQuery(document).ready(function() {
 
 		// Add class 'sv-popup-open' to the body
 		jQuery('body').addClass('sv-popup-open');
-		loadStoredLocation();
 		
 	});
 
