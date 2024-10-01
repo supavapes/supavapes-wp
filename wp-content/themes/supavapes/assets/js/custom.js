@@ -636,6 +636,7 @@ jQuery(document).ready(function() {
 							jQuery( "#update-user-location" ).prop("disabled",true);
 						}
 						jQuery('#pac-input').val(city + ', ' + country);
+						updateLocation(); // Call the function to update the map
 					} else {
 						// jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
 						// jQuery('#location-error').show();
