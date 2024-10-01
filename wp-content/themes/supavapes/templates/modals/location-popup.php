@@ -93,6 +93,7 @@
 let map; // Declare map variable outside of the function
 let marker; // Declare marker outside to reuse it
 let infowindow; // Declare infowindow outside to reuse it
+let autocompleteInput; // Move autocompleteInput to a higher scope
 
 function initMap() {
     // Initialize the map
@@ -102,7 +103,7 @@ function initMap() {
         mapTypeControl: false,
     });
 
-    const autocompleteInput = document.getElementById("pac-input");
+    autocompleteInput = document.getElementById("pac-input");
     const updateButton = document.getElementById("update-user-location");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
         fields: ["formatted_address", "geometry", "name", "address_components"],
