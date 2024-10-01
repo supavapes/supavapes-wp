@@ -143,7 +143,7 @@
             marker.setVisible(true);
 
             infowindow.setContent(
-                '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
+                '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
                 'Address: ' + place.formatted_address + '</div>'
             );
             infowindow.open(map, marker);
@@ -197,7 +197,7 @@
 
                 // Set content for the infowindow and open it at the new marker position
                 infowindow.setContent(
-                    '<div class="location-info-content"><strong>' + selectedOption.text + '</strong><br></div>'
+                    '<div class="location-info-content"><strong>' + selectedOption.text + ', Canada</strong><br></div>'
                 );
                 infowindow.open(map, marker);
 
