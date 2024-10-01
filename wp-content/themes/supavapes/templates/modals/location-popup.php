@@ -162,7 +162,7 @@
                     state = component.long_name; // Get the state name
                 }
                 if (component.types.includes("country")) {
-                    country = component.short_name; // Get the state name
+                    country = component.long_name; // Get the state name
                 }
             }
 
@@ -209,7 +209,7 @@
 
                 if (updateButton) {
                     updateButton.setAttribute("data-userselectedstate", selectedState); // Update the data attribute
-                    updateButton.setAttribute("data-userselectedcountry", "CA"); // Update the data attribute
+                    updateButton.setAttribute("data-userselectedcountry", "Canada"); // Update the data attribute
                     console.log('data-userselectedstate updated to: ' + selectedState); // Debugging log
                 }
             }

@@ -27,6 +27,8 @@ jQuery(document).ready(function() {
     if (submitButton.length) {
         submitButton.on('click', function (event) {
             // alert('clicked'); // Debugging alert
+			jQuery('.address-error-msg').text('');
+			jQuery( "#update-user-location" ).prop("disabled",false);
             event.preventDefault(); // Prevent default form submission
             updateLocation(); // Call the function to update the map
         });
