@@ -1949,6 +1949,7 @@ jQuery(document).ready(function() {
 
 		// Add class 'sv-popup-open' to the body
 		jQuery('body').addClass('sv-popup-open');
+		loadStoredLocation();
 		
 	});
 

@@ -90,132 +90,164 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
-    let map; // Declare map variable outside of the function
-    let marker; // Declare marker outside to reuse it
-    let infowindow; // Declare infowindow outside to reuse it
+let map; // Declare map variable outside of the function
+let marker; // Declare marker outside to reuse it
+let infowindow; // Declare infowindow outside to reuse it
 
-    function initMap() {
-        // Initialize the map
-        map = new google.maps.Map(document.getElementById("location-map"), {
-            center: { lat: 50.000000, lng: -85.000000 }, // Default map center
-            zoom: 5,
-            mapTypeControl: false,
-        });
+function initMap() {
+    // Initialize the map
+    map = new google.maps.Map(document.getElementById("location-map"), {
+        center: { lat: 50.000000, lng: -85.000000 }, // Default map center
+        zoom: 5,
+        mapTypeControl: false,
+    });
 
-        const autocompleteInput = document.getElementById("pac-input");
-        const updateButton = document.getElementById("update-user-location");
-        const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-            fields: ["formatted_address", "geometry", "name", "address_components"],
-            strictBounds: true,
-        });
+    const autocompleteInput = document.getElementById("pac-input");
+    const updateButton = document.getElementById("update-user-location");
+    const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+        fields: ["formatted_address", "geometry", "name", "address_components"],
+        strictBounds: true,
+    });
 
-        // Bias the autocomplete predictions towards current map's viewport
-        autocomplete.bindTo("bounds", map);
+    // Bias the autocomplete predictions towards current map's viewport
+    autocomplete.bindTo("bounds", map);
 
-        // Initialize the infowindow and marker
-        infowindow = new google.maps.InfoWindow();
-        marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29),
-            visible: false, // Initially hide the marker
-        });
+    // Initialize the infowindow and marker
+    infowindow = new google.maps.InfoWindow();
+    marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+        visible: false, // Initially hide the marker
+    });
 
-        // Handle place selection from autocomplete suggestions
-        autocomplete.addListener("place_changed", () => {
-            infowindow.close();
-            marker.setVisible(false);
+    // Handle place selection from autocomplete suggestions
+    autocomplete.addListener("place_changed", () => {
+        infowindow.close();
+        marker.setVisible(false);
 
-            const place = autocomplete.getPlace();
-            if (!place.geometry || !place.geometry.location) {
-                window.alert("No details available for input: '" + place.name + "'");
-                return;
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+
+        // Adjust the map viewport and set marker position
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        infowindow.setContent(
+            '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
+            'Address: ' + place.formatted_address + '</div>'
+        );
+        infowindow.open(map, marker);
+
+        // Extract the state or province and country
+        const addressComponents = place.address_components;
+        let state = '';
+        let country = '';
+
+        for (let i = 0; i < addressComponents.length; i++) {
+            const component = addressComponents[i];
+            if (component.types.includes("administrative_area_level_1")) {
+                state = component.long_name; // Get the state name
             }
-
-            // Adjust the map viewport and set marker position
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
+            if (component.types.includes("country")) {
+                country = component.long_name; // Get the country name
             }
-            console.log(place.geometry.location);
-            marker.setPosition(place.geometry.location);
+        }
+
+        // Update data attributes and store the selected location
+        if (updateButton) {
+            updateButton.setAttribute("data-userselectedstate", state);
+            updateButton.setAttribute("data-userselectedcountry", country);
+            console.log('data-userselectedstate updated to: ' + state);
+
+            // Store the updated location in local storage or session storage
+            localStorage.setItem('selectedState', state);
+            localStorage.setItem('selectedCountry', country);
+            localStorage.setItem('selectedLat', place.geometry.location.lat());
+            localStorage.setItem('selectedLng', place.geometry.location.lng());
+        }
+    });
+
+    // Function to load previously stored location on popup open
+    function loadStoredLocation() {
+        const storedState = localStorage.getItem('selectedState');
+        const storedCountry = localStorage.getItem('selectedCountry');
+        const storedLat = parseFloat(localStorage.getItem('selectedLat'));
+        const storedLng = parseFloat(localStorage.getItem('selectedLng'));
+
+        if (storedState && storedCountry && !isNaN(storedLat) && !isNaN(storedLng)) {
+            // Pre-fill the autocomplete input
+            autocompleteInput.value = storedState + ', ' + storedCountry;
+
+            // Update map center and marker position
+            map.setCenter({ lat: storedLat, lng: storedLng });
+            marker.setPosition({ lat: storedLat, lng: storedLng });
             marker.setVisible(true);
 
             infowindow.setContent(
-                '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
-                'Address: ' + place.formatted_address + '</div>'
+                '<div class="location-info-content"><strong>' + storedState + ', ' + storedCountry + '</strong><br></div>'
             );
             infowindow.open(map, marker);
 
-            // Extract the state or province from address components
-            const addressComponents = place.address_components;
-
-            let state = '';
-            let country = '';
-
-            console.log("Address Components:", addressComponents); // Log the entire addressComponents for debugging
-
-            for (let i = 0; i < addressComponents.length; i++) {
-                const component = addressComponents[i];
-                if (component.types.includes("administrative_area_level_1")) {
-                    state = component.long_name; // Get the state name
-                }
-                if (component.types.includes("country")) {
-                    country = component.long_name; // Get the state name
-                }
-            }
-
-            console.log("Selected State/Province:", state); // Log or use the state as needed
-            console.log("Selected Country:", country); // Log or use the state as needed
-            if (updateButton) {
-                updateButton.setAttribute("data-userselectedstate", state); // Update the data attribute
-                updateButton.setAttribute("data-userselectedcountry", country); // Update the data attribute
-                console.log('data-userselectedstate updated to: ' + state); // Debugging log
-            }
-        });
+            console.log('Loaded stored location:', storedState, storedCountry);
+        }
     }
+}
 
-    // Function to update the map and marker based on selected state
-    function updateLocation() {
-        const stateProvinceSelect = document.getElementById("state-province-select");
-        const updateButton = document.getElementById("update-user-location");
-        if (stateProvinceSelect) {
-            const selectedOption = stateProvinceSelect.selectedOptions[0];
-            const lat = parseFloat(selectedOption.getAttribute("data-lat"));
-            const lng = parseFloat(selectedOption.getAttribute("data-lng"));
-            const selectedState = selectedOption.text; // Get the state name
+// Function to update the map and marker based on selected state
+function updateLocation() {
+    const stateProvinceSelect = document.getElementById("state-province-select");
+    const updateButton = document.getElementById("update-user-location");
+    if (stateProvinceSelect) {
+        const selectedOption = stateProvinceSelect.selectedOptions[0];
+        const lat = parseFloat(selectedOption.getAttribute("data-lat"));
+        const lng = parseFloat(selectedOption.getAttribute("data-lng"));
+        const selectedState = selectedOption.text; // Get the state name
 
-            if (!isNaN(lat) && !isNaN(lng)) {
-                // Update the map center to the selected state's coordinates
-                map.setCenter({ lat: lat, lng: lng });
-                map.setZoom(6); // Optional: Set a zoom level that works for the selected area
+        if (!isNaN(lat) && !isNaN(lng)) {
+            // Update the map center to the selected state's coordinates
+            map.setCenter({ lat: lat, lng: lng });
+            map.setZoom(6); // Optional: Set a zoom level that works for the selected area
 
-                // Reposition the marker and show it on the map
-                marker.setPosition({ lat: lat, lng: lng });
-                marker.setVisible(true);
+            // Reposition the marker and show it on the map
+            marker.setPosition({ lat: lat, lng: lng });
+            marker.setVisible(true);
 
-                // Set content for the infowindow and open it at the new marker position
-                infowindow.setContent(
-                    '<div class="location-info-content"><strong>' + selectedOption.text + ', Canada</strong><br></div>'
-                );
-                infowindow.open(map, marker);
+            infowindow.setContent(
+                '<div class="location-info-content"><strong>' + selectedState + ', Canada</strong><br></div>'
+            );
+            infowindow.open(map, marker);
 
-                // Autofill the selected state/province into the pac-input textbox
-                const autocompleteInput = document.getElementById("pac-input");
-                if (autocompleteInput) {
-                    autocompleteInput.value = selectedState + ', Canada'; // Autofill the state name
-                }
+            // Autofill the selected state/province into the pac-input textbox
+            const autocompleteInput = document.getElementById("pac-input");
+            if (autocompleteInput) {
+                autocompleteInput.value = selectedState + ', Canada'; // Autofill the state name
+            }
 
-                if (updateButton) {
-                    updateButton.setAttribute("data-userselectedstate", selectedState); // Update the data attribute
-                    updateButton.setAttribute("data-userselectedcountry", "Canada"); // Update the data attribute
-                    console.log('data-userselectedstate updated to: ' + selectedState); // Debugging log
-                }
+            // Store the updated location in local storage
+            localStorage.setItem('selectedState', selectedState);
+            localStorage.setItem('selectedCountry', 'Canada');
+            localStorage.setItem('selectedLat', lat);
+            localStorage.setItem('selectedLng', lng);
+
+            if (updateButton) {
+                updateButton.setAttribute("data-userselectedstate", selectedState);
+                updateButton.setAttribute("data-userselectedcountry", "Canada");
+                console.log('data-userselectedstate updated to: ' + selectedState);
             }
         }
     }
+}
 
-    window.initMap = initMap;
+window.initMap = initMap;
+
 
 </script>
