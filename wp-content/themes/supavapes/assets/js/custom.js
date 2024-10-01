@@ -591,6 +591,10 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery(document).on("keyup", '#pac-input', function(e) {
+		jQuery('.address-error-msg').text('');
+		jQuery( "#update-user-location" ).prop("disabled",false);
+	});
 	jQuery(document).on("click", '#detect-me-button', function(e) {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -615,6 +619,7 @@ jQuery(document).ready(function() {
 						}
 						if ( country !== 'Canada' ) {
 							jQuery( '.address-error-msg' ).text('This location is not allowed.');
+							jQuery( "#update-user-location" ).prop("disabled",true);
 						}
 						jQuery('#pac-input').val(city + ', ' + country);
 					} else {
