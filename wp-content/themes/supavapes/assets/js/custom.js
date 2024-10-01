@@ -612,8 +612,7 @@ jQuery(document).ready(function() {
 							}
 						}
 						if ( country !== 'Canada' ) {
-							alert( 'Location is not allowed outside canada.' );
-							return false;
+							jQuery( '#pac-input' ).insertAfter("<p>Not Allowed</p>");
 						}
 						jQuery('#pac-input').val(city + ', ' + country);
 					} else {
