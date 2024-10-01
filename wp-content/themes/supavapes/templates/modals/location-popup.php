@@ -89,77 +89,75 @@
     let infowindow; // Declare infowindow outside to reuse it
 
     function initMap() {
-    // Initialize the map
-    map = new google.maps.Map(document.getElementById("location-map"), {
-        center: { lat: 50.000000, lng: -85.000000 }, // Default map center
-        zoom: 5,
-        mapTypeControl: false,
-    });
+        // Initialize the map
+        map = new google.maps.Map(document.getElementById("location-map"), {
+            center: { lat: 50.000000, lng: -85.000000 }, // Default map center
+            zoom: 5,
+            mapTypeControl: false,
+        });
 
-    const autocompleteInput = document.getElementById("pac-input");
-    const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-        fields: ["formatted_address", "geometry", "name", "address_components"],
-        strictBounds: true,
-    });
+        const autocompleteInput = document.getElementById("pac-input");
+        const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+            fields: ["formatted_address", "geometry", "name", "address_components"],
+            strictBounds: true,
+        });
 
-    // Bias the autocomplete predictions towards current map's viewport
-    autocomplete.bindTo("bounds", map);
+        // Bias the autocomplete predictions towards current map's viewport
+        autocomplete.bindTo("bounds", map);
 
-    // Initialize the infowindow and marker
-    infowindow = new google.maps.InfoWindow();
-    marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29),
-        visible: false, // Initially hide the marker
-    });
+        // Initialize the infowindow and marker
+        infowindow = new google.maps.InfoWindow();
+        marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29),
+            visible: false, // Initially hide the marker
+        });
 
-    // Handle place selection from autocomplete suggestions
-    autocomplete.addListener("place_changed", () => {
-        infowindow.close();
-        marker.setVisible(false);
+        // Handle place selection from autocomplete suggestions
+        autocomplete.addListener("place_changed", () => {
+            infowindow.close();
+            marker.setVisible(false);
 
-        const place = autocomplete.getPlace();
-        if (!place.geometry || !place.geometry.location) {
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-        }
-
-        // Adjust the map viewport and set marker position
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-        }
-
-        marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
-
-        infowindow.setContent(
-            '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
-            'Address: ' + place.formatted_address + '</div>'
-        );
-        infowindow.open(map, marker);
-
-        // Extract the state or province from address components
-        const addressComponents = place.address_components;
-        let state = '';
-        for (let i = 0; i < addressComponents.length; i++) {
-            const component = addressComponents[i];
-            if (component.types.includes("administrative_area_level_1")) {
-                state = component.long_name; // Get the state name
-                break;
+            const place = autocomplete.getPlace();
+            if (!place.geometry || !place.geometry.location) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
             }
-        }
 
-        console.log("Selected State/Province:", state); // Log or use the state as needed
-    });
+            // Adjust the map viewport and set marker position
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            infowindow.setContent(
+                '<div class="location-info-content"><strong>' + place.name + '</strong><br>' +
+                'Address: ' + place.formatted_address + '</div>'
+            );
+            infowindow.open(map, marker);
+
+            // Extract the state or province from address components
+            const addressComponents = place.address_components;
+            let state = '';
+            for (let i = 0; i < addressComponents.length; i++) {
+                const component = addressComponents[i];
+                if (component.types.includes("administrative_area_level_1")) {
+                    state = component.long_name; // Get the state name
+                    break;
+                }
+            }
+
+            console.log("Selected State/Province:", state); // Log or use the state as needed
+        });
     }
 
-    // Listen for clicks on the submit button to update the map
-    const submitButton = document.getElementById("submit-location-form");
-    if (submitButton) {
-    submitButton.addEventListener("click", (event) => {
+    // Function to update the map and marker based on selected state
+    function updateLocation() {
         const stateProvinceSelect = document.getElementById("state-province-select");
         if (stateProvinceSelect) {
             const selectedOption = stateProvinceSelect.selectedOptions[0];
@@ -189,10 +187,19 @@
                 }
             }
         }
-    });
+    }
+
+    // Listen for clicks on the submit button to update the map
+    const submitButton = document.getElementById("submit-location-form");
+    if (submitButton) {
+        submitButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default form submission
+            updateLocation(); // Call the function to update the map
+        });
     }
 
     window.initMap = initMap;
+
 
 </script>
 <style>
