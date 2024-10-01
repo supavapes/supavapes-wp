@@ -95,10 +95,34 @@ let marker; // Declare marker outside to reuse it
 let infowindow; // Declare infowindow outside to reuse it
 let autocompleteInput; // Move autocompleteInput to a higher scope
 
+
 function initMap() {
+    // Try to get the user's current location using the Geolocation API
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+
+                // Initialize the map using the user's current location
+                initializeMap(userLat, userLng);
+            },
+            () => {
+                // If user denies geolocation or it's not available, use a default location
+                initializeMap(50.000000, -85.000000); // Default lat/lng
+            }
+        );
+    } else {
+        // Geolocation is not supported by the browser, fall back to default location
+        initializeMap(50.000000, -85.000000); // Default lat/lng
+    }
+}
+
+
+function initializeMap(lat, lng) {
     // Initialize the map
     map = new google.maps.Map(document.getElementById("location-map"), {
-        center: { lat: 50.000000, lng: -85.000000 }, // Default map center
+        center: { lat: lat, lng: lng }, // Use the provided coordinates
         zoom: 5,
         mapTypeControl: false,
     });
@@ -250,6 +274,5 @@ function updateLocation() {
 }
 
 window.initMap = initMap;
-
 
 </script>
