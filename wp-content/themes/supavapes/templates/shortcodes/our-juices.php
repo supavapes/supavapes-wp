@@ -27,6 +27,7 @@ $term_ids = explode( ',', $atts['term_ids'] );
 	</div>
 	<?php
 	$first_iteration_tab = true;
+	$product_type = '';
 	foreach ( $term_ids as $term_id ) {
 		$terms 		= 	get_term_by( 'id', $term_id, 'product_cat' );
 		$term_link 	= 	get_term_link( $terms, 'product_cat' );
