@@ -200,26 +200,6 @@
         }
     }
 
-
-    // // Listen for clicks on the submit button to update the map
-    // const submitButton = document.getElementById("submit-location-form");
-    // if (submitButton) {
-    //     submitButton.addEventListener("click", (event) => {
-    //         alert('clicked');
-    //         event.preventDefault(); // Prevent default form submission
-    //         updateLocation(); // Call the function to update the map
-    //     });
-    // }
-
     window.initMap = initMap;
 
-
 </script>
-<style>
-.pac-container.pac-logo {
-    z-index: 99999;
-}
-.location-info-content{
-    color: #000;
-}
-</style>

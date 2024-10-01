@@ -2167,3 +2167,10 @@ button.button.submit-location {
         gap: 20px;
     }
 }
+
+.pac-container.pac-logo {
+    z-index: 99999;
+}
+.location-info-content{
+    color: #000;
+}
