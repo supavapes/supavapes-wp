@@ -101,25 +101,36 @@ document.getElementById("edit-user-location-btn").addEventListener("click", func
 });
 
 function initMap() {
-    // Try to get the user's current location using the Geolocation API
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const userLat = position.coords.latitude;
-                const userLng = position.coords.longitude;
-                console.log(userLat);
-                console.log(userLng);
-                // Initialize the map using the user's current location
-                initializeMap(userLat, userLng);
-            },
-            () => {
-                // If user denies geolocation or it's not available, use a default location
-                initializeMap(50.000000, -85.000000); // Default lat/lng
-            }
-        );
+
+    // Check if stored location exists
+    const storedLat = parseFloat(localStorage.getItem('selectedLat'));
+    const storedLng = parseFloat(localStorage.getItem('selectedLng'));
+
+    // Use stored location if available; otherwise, try to get the user's current location
+    if (!isNaN(storedLat) && !isNaN(storedLng)) {
+        // If stored coordinates are valid, initialize the map with them
+        initializeMap(storedLat, storedLng);
     } else {
-        // Geolocation is not supported by the browser, fall back to default location
-        initializeMap(50.000000, -85.000000); // Default lat/lng
+        // Try to get the user's current location using the Geolocation API
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+                    console.log(userLat);
+                    console.log(userLng);
+                    // Initialize the map using the user's current location
+                    initializeMap(userLat, userLng);
+                },
+                () => {
+                    // If user denies geolocation or it's not available, use a default location
+                    initializeMap(50.000000, -85.000000); // Default lat/lng
+                }
+            );
+        } else {
+            // Geolocation is not supported by the browser, fall back to default location
+            initializeMap(50.000000, -85.000000); // Default lat/lng
+        }
     }
 }
 
