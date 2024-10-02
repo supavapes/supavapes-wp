@@ -37,13 +37,39 @@ $announcement_bar_button 	= 	get_field( 'announcement_bar_button', 'option' );
 	</div>
 </div>
 <?php 
-$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
-$country = isset( $_COOKIE['user_country'] ) ? sanitize_text_field( $_COOKIE['user_country'] ) : '';
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+		$country = isset( $_COOKIE['user_country'] ) ? sanitize_text_field( $_COOKIE['user_country'] ) : '';
+
+
+		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
+		$access_key = '8cccc64e392297'; // Get your free access key from ipinfo.io
+
+		// Fetch location data based on the user's IP address
+		$url = "https://ipinfo.io/{$ip_address}?token={$access_key}";
+		$response = wp_remote_get($url);
+
+		if (is_wp_error($response)) {
+			return; // Handle error
+		}
+
+		$body = wp_remote_retrieve_body($response);
+		$data = json_decode($body, true);
+
+		if (!empty($data)) {
+			$ipinfo_region = isset($data['region']) ? $data['region'] : '';
+			$ipinfo_country = isset($data['country']) ? $data['country'] : '';
+		}
+
 ?>
 <div class="location-btn-wrap">
 	<div class="location-btn-wrap-content">
-		<span class="location-country"><?php echo $state;?>,</span>
-		<span class="location-country"><?php echo $country;?></span>
+		<?php if ( !isset($_COOKIE['user_city']) && empty($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) && empty($_COOKIE['user_state']) || !isset($_COOKIE['user_country']) && empty($_COOKIE['user_country']) ) {?>
+			<span class="location-country"><?php echo $ipinfo_region;?>,</span>
+			<span class="location-country"><?php echo $ipinfo_country;?></span>
+		<?php } else { ?>
+			<span class="location-country"><?php echo $state;?>,</span>
+			<span class="location-country"><?php echo $country;?></span>
+		<?php } ?>
 		<button class="edit-location-btn" id="edit-user-location-btn">
 			<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx="13" cy="13" r="13" fill="white"/>
