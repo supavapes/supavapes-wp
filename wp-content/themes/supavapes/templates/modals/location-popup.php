@@ -149,10 +149,10 @@ function initMap() {
                             }
                             console.log("Countryyyy: "+country);
                             if(country !== 'Canada'){
-                                jQuery( '.address-error-msg' ).show();
+                                jQuery('.address-error-msg').text('This location is not allowed.');
                                 jQuery("#update-user-location").prop("disabled", true);
                             } else {
-                                jQuery( '.address-error-msg' ).hide();
+                                jQuery( '.address-error-msg' ).text('');
                                 jQuery("#update-user-location").prop("disabled", false);
                             }
                             // Set state and country values in #pac-input input box
