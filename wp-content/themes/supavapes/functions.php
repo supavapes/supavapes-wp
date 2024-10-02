@@ -4784,9 +4784,9 @@ function supavapes_get_ip_location_and_set_cookies() {
 			$country = isset($data['country']) ? $data['country'] : '';
 
 			// Set cookies for location data
-			setcookie('user_city', $city, time() + 86400 * 7, '/','',true, true);
-			setcookie('user_state', $region, time() + 86400 * 7, '/','',true, true);
-			setcookie('user_country', $country, time() + 86400 * 7, '/','',true, true);
+			setcookie('user_city', $city, time() + 86400 * 7, '/','');
+			setcookie('user_state', $region, time() + 86400 * 7, '/','');
+			setcookie('user_country', $country, time() + 86400 * 7, '/','');
 		}
 
 	}
