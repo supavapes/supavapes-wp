@@ -5268,3 +5268,28 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
     return $output;
 }
+
+
+
+add_action( 'woocommerce_checkout_order_processed', 'get_shipping_address_on_order', 10, 1 );
+function get_shipping_address_on_order( $order_id ) {
+    // Get the order object
+    $order = wc_get_order( $order_id );
+	debug($order);
+	die('lkoo');
+    // Get shipping address fields
+    $shipping_address = array(
+        'shipping_first_name' => $order->get_shipping_first_name(),
+        'shipping_last_name'  => $order->get_shipping_last_name(),
+        'shipping_company'    => $order->get_shipping_company(),
+        'shipping_address_1'  => $order->get_shipping_address_1(),
+        'shipping_address_2'  => $order->get_shipping_address_2(),
+        'shipping_city'       => $order->get_shipping_city(),
+        'shipping_state'      => $order->get_shipping_state(),
+        'shipping_postcode'   => $order->get_shipping_postcode(),
+        'shipping_country'    => $order->get_shipping_country(),
+    );
+
+    // Do something with the shipping address, e.g., log it
+    error_log( print_r( $shipping_address, true ) );
+}
