@@ -248,6 +248,13 @@ function initializeMap(lat, lng) {
             if (component.types.includes("country")) {
                 country = component.long_name; // Get the country name
             }
+            if(country !== 'Canada'){
+                jQuery('.address-error-msg').text('This location is not allowed.');
+                jQuery("#update-user-location").prop("disabled", true);
+            } else {
+                jQuery( '.address-error-msg' ).text('');
+                jQuery("#update-user-location").prop("disabled", false);
+            }
         }
 
         // Update the autocomplete input field with only state and country
