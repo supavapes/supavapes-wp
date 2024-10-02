@@ -5271,25 +5271,23 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
 
 
-add_action( 'woocommerce_checkout_order_processed', 'get_shipping_address_on_order', 10, 1 );
-function get_shipping_address_on_order( $order_id ) {
-    // Get the order object
-    $order = wc_get_order( $order_id );
-	debug($order);
+add_action( 'woocommerce_after_checkout_validation', 'custom_address_validation', 10, 2 );
+function custom_address_validation( $data, $errors ) {
+	debug( $data );
 	die('lkoo');
-    // Get shipping address fields
-    $shipping_address = array(
-        'shipping_first_name' => $order->get_shipping_first_name(),
-        'shipping_last_name'  => $order->get_shipping_last_name(),
-        'shipping_company'    => $order->get_shipping_company(),
-        'shipping_address_1'  => $order->get_shipping_address_1(),
-        'shipping_address_2'  => $order->get_shipping_address_2(),
-        'shipping_city'       => $order->get_shipping_city(),
-        'shipping_state'      => $order->get_shipping_state(),
-        'shipping_postcode'   => $order->get_shipping_postcode(),
-        'shipping_country'    => $order->get_shipping_country(),
-    );
+    // Access shipping address fields
+    $shipping_address_1 = isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : '';
+    $shipping_postcode = isset( $data['shipping_postcode'] ) ? $data['shipping_postcode'] : '';
 
-    // Do something with the shipping address, e.g., log it
-    error_log( print_r( $shipping_address, true ) );
+    // Custom validation: ensure address is not empty
+    if ( empty( $shipping_address_1 ) ) {
+        $errors->add( 'validation', 'Please enter your shipping address.' );
+    }
+
+    // Custom validation: ensure postcode format is valid
+    if ( ! preg_match( '/^[0-9]{5}(-[0-9]{4})?$/', $shipping_postcode ) ) {
+        $errors->add( 'validation', 'Please enter a valid 5-digit postal code.' );
+    }
+
+    // You can add more custom checks based on country or other specific needs
 }
