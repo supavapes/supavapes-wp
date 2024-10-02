@@ -5311,20 +5311,16 @@ function supavapes_match_location_callback() {
 
 	// Check if both states match
     if ($shipping_state && $user_state && $shipping_state === $user_state) {
-        wp_send_json_success();
+        wp_send_json_success(array('match_location' => 'match'));
     } else {
         // Add a WooCommerce error notice
         wc_add_notice(__('Shipping state and user state do not match.', 'woocommerce'), 'error');
-        
-        // Return JSON response with the error
-        wp_send_json_error(array(
-			'message' => __('Shipping state and user state do not match.', 'woocommerce'),
-			'match_location' => 'not match'
-		));
-    }
+		wp_send_json_success(array('match_location' => 'not match'));
+	}
 }
-// add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
-// add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+
+add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
+add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
 
 
 
