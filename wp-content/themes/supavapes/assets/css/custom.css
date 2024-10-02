@@ -2213,3 +2213,45 @@ button.gm-ui-hover-effect {
 .woocommerce-message {
     display: none;
 }
+body.woocommerce-checkout .wc-blocks-components-select__container {
+    display: flex;
+    flex-direction: column;
+}
+
+body.woocommerce-checkout label.wc-blocks-components-select__label {
+    color: var(--white) !important;
+    font-family: Montserrat !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    left: 0 !important;
+    max-width: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    transform: none !important;
+    margin: 0 0 20px !important;
+    order: 0;
+    position: relative;
+    line-height: 1 !important;
+}
+
+body.woocommerce-checkout  .wc-blocks-components-select__select {
+    margin: 0;
+    border: 1px solid var(--primary-palette-carmine-pink-light) !important;
+    background: url(/wp-content/uploads/2024/05/select.png) 95% / 15% no-repeat !important;
+    /* background-position: center !important; */
+    background-size: 11px !important;
+    color: var(--white) !important;
+    padding: 10px 18px !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 500 !important;
+    -webkit-appearance: none !important;
+    border-radius: 60px !important;
+}
+
+body.woocommerce-checkout  .wc-blocks-components-select__container {
+    background: transparent !important;
+    border: none !important;
+    height: auto !important;
+    margin: 0 !important;
+}
