@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
 			// alert('clicked'); // Debugging alert
 			jQuery('.address-error-msg').text('');
 			jQuery( "#update-user-location" ).prop("disabled",false);
-            updateLocation(); // Call the function to update the map
+            // updateLocation(); // Call the function to update the map
         });
     }
 
