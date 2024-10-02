@@ -5331,8 +5331,8 @@ add_shortcode('checkout_notice', 'sl_checkout_notice_shortcode');
 function sl_checkout_notice_shortcode() {
     ob_start();
     wc_print_notice(sprintf(
-        __("%s *REPLACE WITH YOUR DESIRED TEXT*", "woocommerce"),
-        '<strong>' . __("Order Instructions:", "woocommerce") . '</strong>'
+        __("%s *Location does not match*", "woocommerce"),
+        '<strong>' . __("Notice:", "woocommerce") . '</strong>'
     ), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
     return ob_get_clean();
 }

@@ -2187,3 +2187,7 @@ button.button.submit-location {
     width: 100%;
     height: 100%;
 }
+/* 2-10-2024 */
+.custom-checkout-notice{
+    display: none;
+}

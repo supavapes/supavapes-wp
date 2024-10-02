@@ -747,11 +747,16 @@ jQuery(document).ready(function() {
 				success: function(response) {
 					jQuery('.pre-loader_page').hide();
 					console.log(response.data.match_location);
-					// jQuery('.wc-block-components-checkout-place-order-button').click();
-					// jQuery('.pre-loader_page').show();
-					// setTimeout(function() {
-					// 	jQuery('.pre-loader_page').hide();
-					// }, 7000);
+					if(response.data.match_location == 'not match'){
+						jQuery('.custom-checkout-notice').show();
+					}else{
+						jQuery('.wc-block-components-checkout-place-order-button').click();
+						jQuery('.pre-loader_page').show();
+						setTimeout(function() {
+							jQuery('.pre-loader_page').hide();
+						}, 7000);
+					}
+					
 				},
 				error: function() {
 					jQuery('.pre-loader_page').hide();
