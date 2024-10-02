@@ -309,6 +309,7 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                     var country = '';
                     for (var i = 0; i < result.address_components.length; i++) {
                         var component = result.address_components[i];
+                        console.log(component);
                         if (component.types.includes('locality')) {
                             city = component.long_name;
                         }
