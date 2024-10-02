@@ -5325,8 +5325,8 @@ function supavapes_match_location_callback() {
 		));
     }
 }
-add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
-add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+// add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
+// add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
 
 
 
