@@ -1965,7 +1965,7 @@ input.type-address {
     border: none;
     border-bottom: 1px solid var(--primary-palette-carmine-pink) !important;
     color: var(--white) !important;
-    padding: 10px 0 30px;
+    padding: 10px 0;
     font-family: 'Montserrat' !important;
     width: 100%;
     display: flex;
@@ -2001,7 +2001,8 @@ input.type-address {
     gap: 10px;
     position: absolute;
     right: 50px;
-    bottom: 10px;
+    bottom: initial;
+    top: 30px;
 }
 .location-popup-header {
     display: flex;
@@ -2154,6 +2155,7 @@ button.button.submit-location {
         position: relative;
         justify-content: flex-end;
         right: 0;
+        top:0 ;
     }
     .location-popup-header h2{width: 100%;}
     .location-popup-header, .custom-location-wrap {
