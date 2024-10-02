@@ -326,8 +326,10 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                     } else {
                         jQuery("#update-user-location").prop("disabled", false);
                     }
-                    jQuery("#update-user-location").data('userselectedstate', state);
-                    jQuery("#update-user-location").data('userselectedcountry', country);
+
+                    jQuery("#update-user-location").attr("data-userselectedstate",state);
+                    jQuery("#update-user-location").attr('data-userselectedcountry', country);
+                   
                     // Update the input field with city and country
                     jQuery('#pac-input').val(state + ', ' + country);
 
