@@ -121,6 +121,10 @@ function initMap() {
                     console.log(userLng);
                     // Initialize the map using the user's current location
                     initializeMap(userLat, userLng);
+
+                    // Set the marker position and make it visible
+                    marker.setPosition({ lat: userLat, lng: userLng });
+                    marker.setVisible(true);
                 },
                 () => {
                     // If user denies geolocation or it's not available, use a default location
