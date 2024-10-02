@@ -103,7 +103,8 @@ function initMap() {
             (position) => {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-
+                console.log(userLat);
+                console.log(userLng);
                 // Initialize the map using the user's current location
                 initializeMap(userLat, userLng);
             },
