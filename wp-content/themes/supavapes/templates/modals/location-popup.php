@@ -126,6 +126,32 @@ function initMap() {
                     marker.setPosition({ lat: userLat, lng: userLng });
                     marker.setVisible(true);
                     map.setZoom(17); // Set zoom level
+
+                    jQuery.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                        latlng: lat + ',' + lng,
+                        key: 'AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM'
+                    }, function(response) {
+                        if (response.status === 'OK') {
+                            var result = response.results[0];
+                            var city = '';
+                            var country = '';
+                            var state = '';
+                            for (var i = 0; i < result.address_components.length; i++) {
+                                var component = result.address_components[i];
+                                if (component.types.includes('administrative_area_level_1')) {
+                                    state = component.long_name;
+                                }
+                                if (component.types.includes('country')) {
+                                    country = component.long_name;
+                                }
+                            }
+                            // Update the input field with city and country
+	    					jQuery('#pac-input').val(state + ', ' + country);
+                        } else {
+                            jQuery('#location-error').text('Unable to retrieve your location. Please try again.');
+                            jQuery('#location-error').show();
+                        }
+                    });
                 },
                 () => {
                     // If user denies geolocation or it's not available, use a default location
