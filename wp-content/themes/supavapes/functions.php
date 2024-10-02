@@ -5320,10 +5320,17 @@ if ( ! function_exists( 'supavapes_checkout_notice_shortcode' ) ) {
 	 */
 	function supavapes_checkout_notice_shortcode() {
 		ob_start();
-		wc_print_notice(sprintf(
-			__("%s *Your selected current location and shipping address do not match. Please update one of them to proceed.*", "woocommerce"),
-			'<strong>' . __("Location mismatch:", "woocommerce") . '</strong>'
-		), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
+		?>
+		<div class="sv-woocommerce-notice-wrap">
+			<?php
+			wc_print_notice(sprintf(
+				__("%s *Your selected current location and shipping address do not match. Please update one of them to proceed.*", "woocommerce"),
+				'<strong>' . __("Location mismatch:", "woocommerce") . '</strong>'
+			), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
+
+			?>
+		</div>
+		<?php
 		return ob_get_clean();
 	}
 }
