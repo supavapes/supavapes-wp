@@ -741,6 +741,7 @@ jQuery(document).ready(function() {
 			jQuery.ajax({
 				url: sv_ajax.ajax_url,
 				type: 'POST',
+				dataType: 'json',
 				data: {
 					action: 'match_location'
 				},
@@ -760,7 +761,8 @@ jQuery(document).ready(function() {
 				},
 				error: function() {
 					jQuery('.pre-loader_page').hide();
-					alert('An error occurred. Please try again.');
+					jQuery('.woocommerce-message').show();
+					// alert('An error occurred. Please try again.');
 				}
 			});
 
