@@ -4758,6 +4758,9 @@ if ( ! function_exists( 'supavapes_recalculate_order_items_based_on_state' ) ) {
 
 
 function supavapes_get_ip_location_and_set_cookies() {
+
+	$user = wp_get_current_user();
+	echo $country = $user->billing_country;
 	// debug($_COOKIE);
 	if ( !isset($_COOKIE['user_city']) && empty($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) && empty($_COOKIE['user_state']) || !isset($_COOKIE['user_country']) && empty($_COOKIE['user_country']) ) {
 		// die('lkoooo');
@@ -5306,7 +5309,7 @@ function supavapes_match_location_callback() {
     
     // Retrieve the user state from the cookie
     echo "User state name: ".$user_state_name = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-
+	echo WC()->countries->get_states( $country )[$shipping_state_code];
 	// Get the full name of the shipping state
     $states = WC()->countries->get_states();
     echo "State Name: ".$shipping_state_name = isset($states[$shipping_state_code]) ? $states[$shipping_state_code] : '';
