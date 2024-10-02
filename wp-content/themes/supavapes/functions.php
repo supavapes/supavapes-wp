@@ -136,7 +136,7 @@ if ( ! function_exists( 'supavapes_wp_enqueue_scripts_callback' ) ) {
 		);
 
 		
-		if ( is_cart() || is_checkout() ) {
+		if ( function_exists( 'is_cart' ) && is_cart() || function_exists( 'is_checkout' ) && is_checkout() ) {
 			wp_enqueue_script(
 				'custom-block-notices',
 				get_stylesheet_directory_uri() . '/assets/js/custom-block-notices.js',
