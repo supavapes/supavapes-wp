@@ -318,7 +318,7 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                             country = component.long_name;
                         }
                     }
-
+                    
                     // Check if the detected location is in Canada
                     if (country !== 'Canada') {
                         jQuery('.address-error-msg').text('This location is not allowed.');
@@ -326,13 +326,14 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                     } else {
                         jQuery("#update-user-location").prop("disabled", false);
                     }
-
+                    jQuery("#update-user-location").data('userselectedstate', state);
+                    jQuery("#update-user-location").data('userselectedcountry', country);
                     // Update the input field with city and country
                     jQuery('#pac-input').val(state + ', ' + country);
 
                     // Update the infowindow content with the city and country
                     infowindow.setContent(
-                        '<div class="location-info-content"><strong>' + city + ', ' + country + '</strong><br></div>'
+                        '<div class="location-info-content"><strong>' + state + ', ' + country + '</strong><br></div>'
                     );
                     infowindow.open(map, marker);
                 } else {
