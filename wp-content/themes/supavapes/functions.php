@@ -5279,43 +5279,27 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 }
 
 
+/**
+ * If the function, `supavapes_match_location_callback` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_match_location_callback' ) ) {
+	/**
+	 * Callback function to match location with shipping location on checkout page.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_match_location_callback() {
 
-// add_action( 'woocommerce_after_checkout_validation', 'custom_address_validation', 10, 2 );
-// function custom_address_validation( $data, $errors ) {
-// 	debug( $data );
-// 	die('lkoo');
-//     // Access shipping address fields
-//     $shipping_address_1 = isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : '';
-//     $shipping_postcode = isset( $data['shipping_postcode'] ) ? $data['shipping_postcode'] : '';
+		$shipping_state_code = WC()->customer->get_shipping_state();
+		$user_state 		 = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : ''; // Retrieve the user state from the cookie
+		$shipping_state  	 = WC()->countries->get_states( 'CA' )[$shipping_state_code];
 
-//     // Custom validation: ensure address is not empty
-//     if ( empty( $shipping_address_1 ) ) {
-//         $errors->add( 'validation', 'Please enter your shipping address.' );
-//     }
-
-//     // Custom validation: ensure postcode format is valid
-//     if ( ! preg_match( '/^[0-9]{5}(-[0-9]{4})?$/', $shipping_postcode ) ) {
-//         $errors->add( 'validation', 'Please enter a valid 5-digit postal code.' );
-//     }
-
-//     // You can add more custom checks based on country or other specific needs
-// }
-
-function supavapes_match_location_callback() {
-
-    $shipping_state_code = WC()->customer->get_shipping_state();
-    
-    // Retrieve the user state from the cookie
-   	$user_state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-	$shipping_state  = WC()->countries->get_states( 'CA' )[$shipping_state_code];
-
-	// Check if both states match
-    if ($shipping_state && $user_state && $shipping_state === $user_state) {
-        wp_send_json_success(array('match_location' => 'match'));
-    } else {
-        // Add a WooCommerce error notice
-        wc_add_notice(__('Shipping state and user state do not match.', 'woocommerce'), 'error');
-		wp_send_json_success(array('match_location' => 'not match'));
+		// Check if both states match
+		if ( $shipping_state && $user_state && $shipping_state === $user_state ) {
+			wp_send_json_success( array( 'match_location' => 'match' ) );
+		} else {
+			wp_send_json_success( array( 'match_location' => 'not match' ) );
+		}
 	}
 }
 
@@ -5324,13 +5308,23 @@ add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback')
 
 
 
-// Create the shortcode for the checkout notice
-add_shortcode('checkout_notice', 'sl_checkout_notice_shortcode');
-function sl_checkout_notice_shortcode() {
-    ob_start();
-    wc_print_notice(sprintf(
-        __("%s *Location does not match*", "woocommerce"),
-        '<strong>' . __("Notice:", "woocommerce") . '</strong>'
-    ), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
-    return ob_get_clean();
+/**
+ * If the function, `supavapes_checkout_notice_shortcode` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_checkout_notice_shortcode' ) ) {
+	/**
+	 * Create the shortcode for the checkout notice
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_checkout_notice_shortcode() {
+		ob_start();
+		wc_print_notice(sprintf(
+			__("%s *Your selected current location and shipping address do not match. Please update one of them to proceed.*", "woocommerce"),
+			'<strong>' . __("Location mismatch:", "woocommerce") . '</strong>'
+		), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
+		return ob_get_clean();
+	}
 }
+
+add_shortcode('checkout_notice', 'supavapes_checkout_notice_shortcode');
