@@ -136,7 +136,15 @@ if ( ! function_exists( 'supavapes_wp_enqueue_scripts_callback' ) ) {
 		);
 
 		
-
+		if ( is_cart() || is_checkout() ) {
+			wp_enqueue_script(
+				'custom-block-notices',
+				get_stylesheet_directory_uri() . '/assets/js/custom-block-notices.js',
+				array( 'wp-element', 'wp-data', 'wc-blocks-checkout' ), // Ensure dependencies for WooCommerce Blocks
+				'1.0',
+				true
+			);
+		}
 
 		// Localize the custom script variables.
 		wp_localize_script(
@@ -5310,5 +5318,5 @@ function supavapes_match_location_callback() {
         wp_send_json_error(array('message' => __('Shipping state and user state do not match.', 'woocommerce')));
     }
 }
-add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
-add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+// add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
+// add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
