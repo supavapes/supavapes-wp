@@ -721,11 +721,12 @@ jQuery(document).ready(function() {
 					action: 'match_location'
 				},
 				success: function(response) {
-					jQuery('.wc-block-components-checkout-place-order-button').click();
-					jQuery('.pre-loader_page').show();
-					setTimeout(function() {
-						jQuery('.pre-loader_page').hide();
-					}, 7000);
+					console.log();
+					// jQuery('.wc-block-components-checkout-place-order-button').click();
+					// jQuery('.pre-loader_page').show();
+					// setTimeout(function() {
+					// 	jQuery('.pre-loader_page').hide();
+					// }, 7000);
 				},
 				error: function() {
 					jQuery('.pre-loader_page').hide();

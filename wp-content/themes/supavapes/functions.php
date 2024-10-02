@@ -5294,11 +5294,11 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
 function supavapes_match_location_callback() {
 
-    echo "Shipping state: ".$shipping_state = WC()->customer->get_shipping_state();
+    $shipping_state = WC()->customer->get_shipping_state();
     
     // Retrieve the user state from the cookie
-    echo "User State: ".$user_state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-	die('lkoooo');
+  	$user_state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+	
     // Check if both states match
     if ($shipping_state && $user_state && $shipping_state === $user_state) {
         wp_send_json_success();
