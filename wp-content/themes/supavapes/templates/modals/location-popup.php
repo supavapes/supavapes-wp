@@ -94,6 +94,10 @@ let marker; // Declare marker outside to reuse it
 let infowindow; // Declare infowindow outside to reuse it
 let autocompleteInput; // Move autocompleteInput to a higher scope
 
+document.getElementById("edit-user-location-btn").addEventListener("click", function () {
+    // Trigger the initMap function only when the button is clicked
+    initMap();
+});
 
 function initMap() {
     // Try to get the user's current location using the Geolocation API
