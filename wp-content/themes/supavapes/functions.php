@@ -4787,6 +4787,10 @@ function supavapes_get_ip_location_and_set_cookies() {
 			setcookie('user_city', $city, time() + 86400 * 7, '/');
 			setcookie('user_state', $region, time() + 86400 * 7, '/');
 			setcookie('user_country', $country, time() + 86400 * 7, '/');
+
+			// Redirect to the same page to reload the cookies
+            wp_redirect( home_url( $_SERVER['REQUEST_URI'] ) );
+            exit();
 		}
 
 	}
