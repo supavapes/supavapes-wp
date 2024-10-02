@@ -2177,7 +2177,25 @@ button.button.submit-location {
 .location-info-content{
     color: #000;
 }
+.gm-style-iw-chr {
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    display: flex;
+}
 
+button.gm-ui-hover-effect {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.gm-style-iw-d {
+    padding: 10px 12px 0px 0px;
+}
+
+.gm-ui-hover-effect>span {
+    margin: 0 !important;
+}
 .location-popup-content-box .pre-loader_page {
     position: absolute;
     left: 0;
