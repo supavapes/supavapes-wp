@@ -1959,7 +1959,7 @@ li.ina-timeout-remaining-debugger {
     width: 100%;
     gap: 10px;
 }
-
+body.woocommerce-checkout input.type-address,
 input.type-address {
     background: transparent;
     border: none;
@@ -2166,7 +2166,7 @@ button.button.submit-location {
         margin-bottom: 20px;
     }
     .custom-location-wrap{
-        gap: 20px;
+        gap: 10px;
     }
 }
 
