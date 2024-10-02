@@ -238,6 +238,8 @@ function loadStoredLocation() {
 function updateLocation() {
     const stateProvinceSelect = document.getElementById("state-province-select");
     const updateButton = document.getElementById("update-user-location");
+    console.log("state: "+stateProvinceSelect);
+    console.log("updateButton: "+updateButton);
     if (stateProvinceSelect) {
         const selectedOption = stateProvinceSelect.selectedOptions[0];
         const lat = parseFloat(selectedOption.getAttribute("data-lat"));
