@@ -89,7 +89,6 @@
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&v=weekly" defer></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
 
     let map; // Declare map variable outside of the function
     let marker; // Declare marker outside to reuse it
@@ -149,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Loaded stored location:', storedState, storedCountry);
             }
         }
-        
+
     function initializeMap(lat, lng) {
         // Initialize the map
         map = new google.maps.Map(document.getElementById("location-map"), {
@@ -290,7 +289,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.initMap = initMap;
 
-
+    // Open the location popup and initialize the map
+	jQuery('.edit-location-btn').on('click', function() {
+		// Add CSS display: flex to .location-popup
+		jQuery('.location-popup').css('display', 'flex');
+	
+		// Add class 'sv-popup-open' to the body
+		jQuery('body').addClass('sv-popup-open');
+		
+		// Get values from localStorage
+		var savedState = localStorage.getItem('selectedState') || '';
+		var savedCountry = localStorage.getItem('selectedCountry') || '';
+		console.log(savedState);
+		console.log(savedCountry);
+		// Set the values in the data attributes of the #update-user-location button
+		jQuery('#update-user-location').attr('data-userselectedstate', savedState);
+		jQuery('#update-user-location').attr('data-userselectedcountry', savedCountry);
+	});
+    
     jQuery(document).on("click", '#detect-me-button', function(e) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -361,5 +377,4 @@ document.addEventListener('DOMContentLoaded', function() {
             jQuery('.address-error-msg').text('Geolocation is not supported by this browser.');
         }
     });
-});
 </script>
