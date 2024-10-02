@@ -31,20 +31,20 @@ jQuery(document).ready(function() {
 			// alert('clicked'); // Debugging alert
 			jQuery('.address-error-msg').text('');
 			jQuery( "#update-user-location" ).prop("disabled",false);
-            // updateLocation(); // Call the function to update the map
+            updateLocation(); // Call the function to update the map
         });
     }
 
-	// const editButton = jQuery('.edit-location-btn');
-	// // console.log(submitButton);
-    // if (editButton.length) {
-    //     editButton.on('click', function (event) {
+	const editButton = jQuery('.edit-location-btn');
+	// console.log(submitButton);
+    if (editButton.length) {
+        editButton.on('click', function (event) {
             
-    //         event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); // Prevent default form submission
 			
-    //         loadStoredLocation(); // Call the function to update the map
-    //     });
-    // }
+            loadStoredLocation(); // Call the function to update the map
+        });
+    }
 
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
