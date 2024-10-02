@@ -2009,11 +2009,19 @@ jQuery(document).ready(function() {
 	jQuery('.edit-location-btn').on('click', function() {
 		// Add CSS display: flex to .location-popup
 		jQuery('.location-popup').css('display', 'flex');
-
+	
 		// Add class 'sv-popup-open' to the body
 		jQuery('body').addClass('sv-popup-open');
 		
+		// Get values from localStorage
+		var savedState = localStorage.getItem('state') || '';
+		var savedCountry = localStorage.getItem('country') || '';
+	
+		// Set the values in the data attributes of the #update-user-location button
+		jQuery('#update-user-location').attr('data-userselectedstate', savedState);
+		jQuery('#update-user-location').attr('data-userselectedcountry', savedCountry);
 	});
+	
 
 	// Close popup on close button click
 	jQuery(document).on("click", ".location-popup-close", function() {
