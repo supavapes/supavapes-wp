@@ -97,6 +97,7 @@ let autocompleteInput; // Move autocompleteInput to a higher scope
 document.getElementById("edit-user-location-btn").addEventListener("click", function () {
     // Trigger the initMap function only when the button is clicked
     initMap();
+    loadStoredLocation();
 });
 
 function initMap() {
