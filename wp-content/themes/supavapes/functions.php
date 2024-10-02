@@ -5315,8 +5315,24 @@ function supavapes_match_location_callback() {
         wc_add_notice(__('Shipping state and user state do not match.', 'woocommerce'), 'error');
         
         // Return JSON response with the error
-        wp_send_json_error(array('message' => __('Shipping state and user state do not match.', 'woocommerce')));
+        wp_send_json_error(array(
+			'message' => __('Shipping state and user state do not match.', 'woocommerce'),
+			'match_location' => 'not match'
+		));
     }
 }
-// add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
-// add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
+add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+
+
+
+// Create the shortcode for the checkout notice
+add_shortcode('checkout_notice', 'sl_checkout_notice_shortcode');
+function sl_checkout_notice_shortcode() {
+    ob_start();
+    wc_print_notice(sprintf(
+        __("%s *REPLACE WITH YOUR DESIRED TEXT*", "woocommerce"),
+        '<strong>' . __("Order Instructions:", "woocommerce") . '</strong>'
+    ), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
+    return ob_get_clean();
+}

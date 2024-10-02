@@ -745,7 +745,7 @@ jQuery(document).ready(function() {
 					action: 'match_location'
 				},
 				success: function(response) {
-					console.log();
+					console.log(response);
 					// jQuery('.wc-block-components-checkout-place-order-button').click();
 					// jQuery('.pre-loader_page').show();
 					// setTimeout(function() {
