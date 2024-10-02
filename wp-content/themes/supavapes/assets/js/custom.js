@@ -35,16 +35,16 @@ jQuery(document).ready(function() {
         });
     }
 
-	const editButton = jQuery('.edit-location-btn');
-	// console.log(submitButton);
-    if (editButton.length) {
-        editButton.on('click', function (event) {
+	// const editButton = jQuery('.edit-location-btn');
+	// // console.log(submitButton);
+    // if (editButton.length) {
+    //     editButton.on('click', function (event) {
             
-            event.preventDefault(); // Prevent default form submission
+    //         event.preventDefault(); // Prevent default form submission
 			
-            loadStoredLocation(); // Call the function to update the map
-        });
-    }
+    //         loadStoredLocation(); // Call the function to update the map
+    //     });
+    // }
 
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
