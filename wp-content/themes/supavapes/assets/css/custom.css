@@ -2255,3 +2255,9 @@ body.woocommerce-checkout  .wc-blocks-components-select__container {
     height: auto !important;
     margin: 0 !important;
 }
+.sv-woocommerce-notice-wrap {
+    margin: 40px auto 0;
+    max-width: 1240px;
+    padding: 0 20px;
+}
+.sv-woocommerce-notice-wrap .woocommerce-message{margin: 0 !important;}
