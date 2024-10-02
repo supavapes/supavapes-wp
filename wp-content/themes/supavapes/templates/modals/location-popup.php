@@ -151,7 +151,7 @@ function initializeMap(lat, lng) {
     const updateButton = document.getElementById("update-user-location");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
         fields: ["formatted_address", "geometry", "name", "address_components"],
-        strictBounds: false,
+        strictBounds: true,
     });
 
     // Bias the autocomplete predictions towards current map's viewport
