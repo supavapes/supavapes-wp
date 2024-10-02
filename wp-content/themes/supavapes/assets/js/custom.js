@@ -2014,9 +2014,10 @@ jQuery(document).ready(function() {
 		jQuery('body').addClass('sv-popup-open');
 		
 		// Get values from localStorage
-		var savedState = localStorage.getItem('state') || '';
-		var savedCountry = localStorage.getItem('country') || '';
-	
+		var savedState = localStorage.getItem('selectedState') || '';
+		var savedCountry = localStorage.getItem('selectedCountry') || '';
+		console.log(savedState);
+		console.log(savedCountry);
 		// Set the values in the data attributes of the #update-user-location button
 		jQuery('#update-user-location').attr('data-userselectedstate', savedState);
 		jQuery('#update-user-location').attr('data-userselectedcountry', savedCountry);
