@@ -5293,9 +5293,13 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 // }
 
 function supavapes_match_location_callback() {
-    $shipping_state = isset($_POST['shipping_state']) ? sanitize_text_field($_POST['shipping_state']) : '';
-    $user_state = isset($_POST['user_state']) ? sanitize_text_field($_POST['user_state']) : '';
 
+    echo "Shipping state: ".$shipping_state = WC()->customer->get_shipping_state();
+    
+    // Retrieve the user state from the cookie
+    echo "User State: ".$user_state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+	die('lkoooo');
+    // Check if both states match
     if ($shipping_state && $user_state && $shipping_state === $user_state) {
         wp_send_json_success();
     } else {

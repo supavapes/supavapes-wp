@@ -714,12 +714,24 @@ jQuery(document).ready(function() {
 		} else {
 			// alert('innnnnnn');
 
-			// Get shipping state and user_state from the cookie
-			var shippingState = jQuery('#shipping_state').val(); // Assuming there's a field with ID 'shipping_state'
-			var userState = getCookie('user_state');
-			console.log(shippingState);
-			console.log(userState);
-			return false;
+			jQuery.ajax({
+				url: sv_ajax.ajax_url,
+				type: 'POST',
+				data: {
+					action: 'match_location'
+				},
+				success: function(response) {
+					jQuery('.wc-block-components-checkout-place-order-button').click();
+					jQuery('.pre-loader_page').show();
+					setTimeout(function() {
+						jQuery('.pre-loader_page').hide();
+					}, 7000);
+				},
+				error: function() {
+					jQuery('.pre-loader_page').hide();
+					alert('An error occurred. Please try again.');
+				}
+			});
 
 			
 		}
