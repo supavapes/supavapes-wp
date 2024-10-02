@@ -306,12 +306,13 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                 if (response.status === 'OK') {
                     var result = response.results[0];
                     var city = '';
+                    var state = '';
                     var country = '';
                     for (var i = 0; i < result.address_components.length; i++) {
                         var component = result.address_components[i];
                         console.log(component);
-                        if (component.types.includes('locality')) {
-                            city = component.long_name;
+                        if (component.types.includes('administrative_area_level_1')) {
+                            state = component.long_name;
                         }
                         if (component.types.includes('country')) {
                             country = component.long_name;
@@ -327,7 +328,7 @@ jQuery(document).on("click", '#detect-me-button', function(e) {
                     }
 
                     // Update the input field with city and country
-                    jQuery('#pac-input').val(city + ', ' + country);
+                    jQuery('#pac-input').val(state + ', ' + country);
 
                     // Update the infowindow content with the city and country
                     infowindow.setContent(
