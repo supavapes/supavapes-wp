@@ -1972,6 +1972,7 @@ input.type-address {
     align-items: flex-start;
     border-radius: 0 !important;
     vertical-align: top;
+    order: 0;
 }
 
 .custom-location-wrap {
