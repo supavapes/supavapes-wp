@@ -5309,10 +5309,8 @@ function supavapes_match_location_callback() {
     
     // Retrieve the user state from the cookie
     echo "User state name: ".$user_state_name = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-	echo WC()->countries->get_states( $country )[$shipping_state_code];
+	echo WC()->countries->get_states( 'CA' )[$shipping_state_code];
 	// Get the full name of the shipping state
-    $states = WC()->countries->get_states();
-    echo "State Name: ".$shipping_state_name = isset($states[$shipping_state_code]) ? $states[$shipping_state_code] : '';
 
     // Get the full name of the user state if it's a valid state code
 	die('lkooooooo');
