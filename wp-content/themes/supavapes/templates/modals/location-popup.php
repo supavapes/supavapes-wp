@@ -89,145 +89,125 @@
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
+let map; // Declare map variable outside of the function
+let marker; // Declare marker outside to reuse it
+let infowindow; // Declare infowindow outside to reuse it
+let autocompleteInput; // Move autocompleteInput to a higher scope
 
 
-
-    // Open the location popup and initialize the map
-    jQuery('.edit-location-btn').on('click', function() {
-		// Add CSS display: flex to .location-popup
-		jQuery('.location-popup').css('display', 'flex');
-	
-		// Add class 'sv-popup-open' to the body
-		jQuery('body').addClass('sv-popup-open');
-
-        function initMap() {
-            // Try to get the user's current location using the Geolocation API
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const userLat = position.coords.latitude;
-                        const userLng = position.coords.longitude;
-                        console.log(userLat);
-                        console.log(userLng);
-                        // Initialize the map using the user's current location
-                        initializeMap(userLat, userLng);
-                    },
-                    () => {
-                        // If user denies geolocation or it's not available, use a default location
-                        initializeMap(50.000000, -85.000000); // Default lat/lng
-                    }
-                );
-            } else {
-                // Geolocation is not supported by the browser, fall back to default location
+function initMap() {
+    // Try to get the user's current location using the Geolocation API
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                console.log(userLat);
+                console.log(userLng);
+                // Initialize the map using the user's current location
+                initializeMap(userLat, userLng);
+            },
+            () => {
+                // If user denies geolocation or it's not available, use a default location
                 initializeMap(50.000000, -85.000000); // Default lat/lng
+            }
+        );
+    } else {
+        // Geolocation is not supported by the browser, fall back to default location
+        initializeMap(50.000000, -85.000000); // Default lat/lng
+    }
+}
+
+
+function initializeMap(lat, lng) {
+    // Initialize the map
+    map = new google.maps.Map(document.getElementById("location-map"), {
+        center: { lat: lat, lng: lng }, // Use the provided coordinates
+        zoom: 5,
+        mapTypeControl: false,
+    });
+
+    autocompleteInput = document.getElementById("pac-input");
+    const updateButton = document.getElementById("update-user-location");
+    const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+        fields: ["formatted_address", "geometry", "name", "address_components"],
+        strictBounds: false,
+    });
+
+    // Bias the autocomplete predictions towards current map's viewport
+    autocomplete.bindTo("bounds", map);
+
+    // Initialize the infowindow and marker
+    infowindow = new google.maps.InfoWindow();
+    marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+        visible: false, // Initially hide the marker
+    });
+
+    // Handle place selection from autocomplete suggestions
+    autocomplete.addListener("place_changed", () => {
+        infowindow.close();
+        marker.setVisible(false);
+
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+
+        // Adjust the map viewport and set marker position
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        infowindow.setContent(
+            '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
+            'Address: ' + place.formatted_address + '</div>'
+        );
+        infowindow.open(map, marker);
+
+        // Extract the state or province and country
+        const addressComponents = place.address_components;
+        let state = '';
+        let country = '';
+
+        for (let i = 0; i < addressComponents.length; i++) {
+            const component = addressComponents[i];
+            if (component.types.includes("administrative_area_level_1")) {
+                state = component.long_name; // Get the state name
+            }
+            if (component.types.includes("country")) {
+                country = component.long_name; // Get the country name
             }
         }
 
-		
-		// Get values from localStorage
-		var savedState = localStorage.getItem('selectedState') || '';
-		var savedCountry = localStorage.getItem('selectedCountry') || '';
-		console.log(savedState);
-		console.log(savedCountry);
-		// Set the values in the data attributes of the #update-user-location button
-		jQuery('#update-user-location').attr('data-userselectedstate', savedState);
-		jQuery('#update-user-location').attr('data-userselectedcountry', savedCountry);
-	});
-    let map; // Declare map variable outside of the function
-    let marker; // Declare marker outside to reuse it
-    let infowindow; // Declare infowindow outside to reuse it
-    let autocompleteInput; // Move autocompleteInput to a higher scope
+        // Update the autocomplete input field with only state and country
+        if (autocompleteInput) {
+            autocompleteInput.value = `${state}, ${country}`; // Show only state and country
+        }
 
+        // Update data attributes and store the selected location
+        if (updateButton) {
+            updateButton.setAttribute("data-userselectedstate", state);
+            updateButton.setAttribute("data-userselectedcountry", country);
+            console.log('data-userselectedstate updated to: ' + state);
 
-    function initializeMap(lat, lng) {
-        // Initialize the map
-        map = new google.maps.Map(document.getElementById("location-map"), {
-            center: { lat: lat, lng: lng }, // Use the provided coordinates
-            zoom: 5,
-            mapTypeControl: false,
-        });
+            // Store the updated location in local storage or session storage
+            localStorage.setItem('selectedState', state);
+            localStorage.setItem('selectedCountry', country);
+            localStorage.setItem('selectedLat', place.geometry.location.lat());
+            localStorage.setItem('selectedLng', place.geometry.location.lng());
+        }
+    });
 
-        autocompleteInput = document.getElementById("pac-input");
-        const updateButton = document.getElementById("update-user-location");
-        const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-            fields: ["formatted_address", "geometry", "name", "address_components"],
-            strictBounds: false,
-        });
-
-        // Bias the autocomplete predictions towards current map's viewport
-        autocomplete.bindTo("bounds", map);
-
-        // Initialize the infowindow and marker
-        infowindow = new google.maps.InfoWindow();
-        marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29),
-            visible: false, // Initially hide the marker
-        });
-
-        // Handle place selection from autocomplete suggestions
-        autocomplete.addListener("place_changed", () => {
-            infowindow.close();
-            marker.setVisible(false);
-
-            const place = autocomplete.getPlace();
-            if (!place.geometry || !place.geometry.location) {
-                window.alert("No details available for input: '" + place.name + "'");
-                return;
-            }
-
-            // Adjust the map viewport and set marker position
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-            }
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
-
-            infowindow.setContent(
-                '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
-                'Address: ' + place.formatted_address + '</div>'
-            );
-            infowindow.open(map, marker);
-
-            // Extract the state or province and country
-            const addressComponents = place.address_components;
-            let state = '';
-            let country = '';
-
-            for (let i = 0; i < addressComponents.length; i++) {
-                const component = addressComponents[i];
-                if (component.types.includes("administrative_area_level_1")) {
-                    state = component.long_name; // Get the state name
-                }
-                if (component.types.includes("country")) {
-                    country = component.long_name; // Get the country name
-                }
-            }
-
-            // Update the autocomplete input field with only state and country
-            if (autocompleteInput) {
-                autocompleteInput.value = `${state}, ${country}`; // Show only state and country
-            }
-
-            // Update data attributes and store the selected location
-            if (updateButton) {
-                updateButton.setAttribute("data-userselectedstate", state);
-                updateButton.setAttribute("data-userselectedcountry", country);
-                console.log('data-userselectedstate updated to: ' + state);
-
-                // Store the updated location in local storage or session storage
-                localStorage.setItem('selectedState', state);
-                localStorage.setItem('selectedCountry', country);
-                localStorage.setItem('selectedLat', place.geometry.location.lat());
-                localStorage.setItem('selectedLng', place.geometry.location.lng());
-            }
-        });
-
-        
-    }
+    
+}
 
 // Function to load previously stored location on popup open
 function loadStoredLocation() {

@@ -2003,6 +2003,26 @@ jQuery(document).ready(function() {
 		}
 	});
 	
+	
+
+	// Open the location popup and initialize the map
+	jQuery('.edit-location-btn').on('click', function() {
+		// Add CSS display: flex to .location-popup
+		jQuery('.location-popup').css('display', 'flex');
+	
+		// Add class 'sv-popup-open' to the body
+		jQuery('body').addClass('sv-popup-open');
+		
+		// Get values from localStorage
+		var savedState = localStorage.getItem('selectedState') || '';
+		var savedCountry = localStorage.getItem('selectedCountry') || '';
+		console.log(savedState);
+		console.log(savedCountry);
+		// Set the values in the data attributes of the #update-user-location button
+		jQuery('#update-user-location').attr('data-userselectedstate', savedState);
+		jQuery('#update-user-location').attr('data-userselectedcountry', savedCountry);
+	});
+	
 
 	// Close popup on close button click
 	jQuery(document).on("click", ".location-popup-close", function() {
