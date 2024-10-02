@@ -5271,23 +5271,40 @@ function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $v
 
 
 
-add_action( 'woocommerce_after_checkout_validation', 'custom_address_validation', 10, 2 );
-function custom_address_validation( $data, $errors ) {
-	debug( $data );
-	die('lkoo');
-    // Access shipping address fields
-    $shipping_address_1 = isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : '';
-    $shipping_postcode = isset( $data['shipping_postcode'] ) ? $data['shipping_postcode'] : '';
+// add_action( 'woocommerce_after_checkout_validation', 'custom_address_validation', 10, 2 );
+// function custom_address_validation( $data, $errors ) {
+// 	debug( $data );
+// 	die('lkoo');
+//     // Access shipping address fields
+//     $shipping_address_1 = isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : '';
+//     $shipping_postcode = isset( $data['shipping_postcode'] ) ? $data['shipping_postcode'] : '';
 
-    // Custom validation: ensure address is not empty
-    if ( empty( $shipping_address_1 ) ) {
-        $errors->add( 'validation', 'Please enter your shipping address.' );
+//     // Custom validation: ensure address is not empty
+//     if ( empty( $shipping_address_1 ) ) {
+//         $errors->add( 'validation', 'Please enter your shipping address.' );
+//     }
+
+//     // Custom validation: ensure postcode format is valid
+//     if ( ! preg_match( '/^[0-9]{5}(-[0-9]{4})?$/', $shipping_postcode ) ) {
+//         $errors->add( 'validation', 'Please enter a valid 5-digit postal code.' );
+//     }
+
+//     // You can add more custom checks based on country or other specific needs
+// }
+
+function supavapes_match_location_callback() {
+    $shipping_state = isset($_POST['shipping_state']) ? sanitize_text_field($_POST['shipping_state']) : '';
+    $user_state = isset($_POST['user_state']) ? sanitize_text_field($_POST['user_state']) : '';
+
+    if ($shipping_state && $user_state && $shipping_state === $user_state) {
+        wp_send_json_success();
+    } else {
+        // Add a WooCommerce error notice
+        wc_add_notice(__('Shipping state and user state do not match.', 'woocommerce'), 'error');
+        
+        // Return JSON response with the error
+        wp_send_json_error(array('message' => __('Shipping state and user state do not match.', 'woocommerce')));
     }
-
-    // Custom validation: ensure postcode format is valid
-    if ( ! preg_match( '/^[0-9]{5}(-[0-9]{4})?$/', $shipping_postcode ) ) {
-        $errors->add( 'validation', 'Please enter a valid 5-digit postal code.' );
-    }
-
-    // You can add more custom checks based on country or other specific needs
 }
+add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
+add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');

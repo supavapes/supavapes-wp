@@ -713,13 +713,18 @@ jQuery(document).ready(function() {
 			jQuery('.checkout-prevent-popup').css('display', 'flex');
 		} else {
 			// alert('innnnnnn');
-			jQuery('.wc-block-components-checkout-place-order-button').click();
-			jQuery('.pre-loader_page').show();
-			setTimeout(function() {
-				jQuery('.pre-loader_page').hide();
-			}, 7000);
+
+			// Get shipping state and user_state from the cookie
+			var shippingState = jQuery('#shipping_state').val(); // Assuming there's a field with ID 'shipping_state'
+			var userState = getCookie('user_state');
+			console.log(shippingState);
+			console.log(userState);
+			return false;
+
+			
 		}
 	});
+
 	jQuery(document).on("click", '.check-available-stores', function(e) {
 		jQuery('.pre-loader_page').show();
 		jQuery('body').addClass('sv-popup-open');
