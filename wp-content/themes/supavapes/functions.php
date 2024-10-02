@@ -4758,43 +4758,54 @@ if ( ! function_exists( 'supavapes_recalculate_order_items_based_on_state' ) ) {
 
 
 function supavapes_get_ip_location_and_set_cookies() {
+    // Check if cookies are set or not
+    if ( empty($_COOKIE['user_city']) || empty($_COOKIE['user_state']) || empty($_COOKIE['user_country']) ) {
 
-	debug($_COOKIE);
-	if ( !isset($_COOKIE['user_city']) && empty($_COOKIE['user_city']) || !isset($_COOKIE['user_state']) && empty($_COOKIE['user_state']) || !isset($_COOKIE['user_country']) && empty($_COOKIE['user_country']) ) {
-		// die('lkoooo');
-		// echo "innnnnn";
-		$ip_address = $_SERVER['REMOTE_ADDR']; // Get user IP address
-		$access_key = '8cccc64e392297'; // Get your free access key from ipinfo.io
+        // Get the user's IP address
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $access_key = '8cccc64e392297'; // Your access key for ipinfo.io
 
-		// Fetch location data based on the user's IP address
-		$url = "https://ipinfo.io/{$ip_address}?token={$access_key}";
-		$response = wp_remote_get($url);
+        // Fetch location data based on the user's IP address
+        $url = "https://ipinfo.io/{$ip_address}?token={$access_key}";
+        $response = wp_remote_get($url);
 
-		if (is_wp_error($response)) {
-			return; // Handle error
-		}
+        if (is_wp_error($response)) {
+            error_log("IP Info API Error: " . $response->get_error_message()); // Log error
+            return;
+        }
 
-		$body = wp_remote_retrieve_body($response);
-		$data = json_decode($body, true);
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
 
-		if (!empty($data)) {
-			$location = explode(",", $data['loc']); // Get lat/lng if available
-			$city = isset($data['city']) ? $data['city'] : '';
-			$region = isset($data['region']) ? $data['region'] : '';
-			$country = isset($data['country']) ? $data['country'] : '';
+        if (!empty($data)) {
+            $city = isset($data['city']) ? $data['city'] : '';
+            $region = isset($data['region']) ? $data['region'] : '';
+            $country = isset($data['country']) ? $data['country'] : '';
 
-			// Set cookies for location data
-			setcookie('user_city', $city, time() + 86400 * 7, '/');
-			setcookie('user_state', $region, time() + 86400 * 7, '/');
-			setcookie('user_country', $country, time() + 86400 * 7, '/');
-			
-		}
+            // Set cookies for location data and log the process
+            if (empty($_COOKIE['user_city'])) {
+                setcookie('user_city', $city, time() + 86400 * 7, '/');
+                error_log("Set cookie: user_city = " . $city);
+            }
+            if (empty($_COOKIE['user_state'])) {
+                setcookie('user_state', $region, time() + 86400 * 7, '/');
+                error_log("Set cookie: user_state = " . $region);
+            }
+            if (empty($_COOKIE['user_country'])) {
+                setcookie('user_country', $country, time() + 86400 * 7, '/');
+                error_log("Set cookie: user_country = " . $country);
+            }
 
-	}
-	
+            // Log the cookie values after setting
+            error_log("Cookie values after setting: " . print_r($_COOKIE, true));
+        }
+    } else {
+        error_log("Cookies already set: " . print_r($_COOKIE, true));
+    }
 }
 
-add_action('init', 'supavapes_get_ip_location_and_set_cookies', 10);
+add_action('init', 'supavapes_get_ip_location_and_set_cookies');
+
 
 
 /**
