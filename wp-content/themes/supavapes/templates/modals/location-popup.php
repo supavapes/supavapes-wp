@@ -97,7 +97,7 @@ let autocompleteInput; // Move autocompleteInput to a higher scope
 document.getElementById("edit-user-location-btn").addEventListener("click", function () {
     // Trigger the initMap function only when the button is clicked
     initMap();
-    loadStoredLocation();
+    
 });
 
 function initMap() {
@@ -131,7 +131,7 @@ function initializeMap(lat, lng) {
         zoom: 5,
         mapTypeControl: false,
     });
-
+    loadStoredLocation(); // Call this here to set the map based on stored location
     autocompleteInput = document.getElementById("pac-input");
     const updateButton = document.getElementById("update-user-location");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
