@@ -748,7 +748,7 @@ jQuery(document).ready(function() {
 					jQuery('.pre-loader_page').hide();
 					console.log(response.data.match_location);
 					if(response.data.match_location == 'not match'){
-						jQuery('.custom-checkout-notice').show();
+						jQuery('.woocommerce-message').show();
 					}else{
 						jQuery('.wc-block-components-checkout-place-order-button').click();
 						jQuery('.pre-loader_page').show();

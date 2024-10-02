@@ -2188,6 +2188,6 @@ button.button.submit-location {
     height: 100%;
 }
 /* 2-10-2024 */
-.custom-checkout-notice{
+.woocommerce-message {
     display: none;
 }
