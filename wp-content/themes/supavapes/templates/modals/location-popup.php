@@ -125,6 +125,7 @@ function initMap() {
                     // Set the marker position and make it visible
                     marker.setPosition({ lat: userLat, lng: userLng });
                     marker.setVisible(true);
+                    map.setZoom(17); // Set zoom level
                 },
                 () => {
                     // If user denies geolocation or it's not available, use a default location
