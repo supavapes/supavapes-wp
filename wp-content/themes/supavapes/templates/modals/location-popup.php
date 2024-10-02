@@ -125,7 +125,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+  // Function to load previously stored location on popup open
+  function loadStoredLocation() {
+            const storedState = localStorage.getItem('selectedState');
+            const storedCountry = localStorage.getItem('selectedCountry');
+            const storedLat = parseFloat(localStorage.getItem('selectedLat'));
+            const storedLng = parseFloat(localStorage.getItem('selectedLng'));
 
+            if (storedState && storedCountry && !isNaN(storedLat) && !isNaN(storedLng)) {
+                // Pre-fill the autocomplete input
+                autocompleteInput.value = storedState + ', ' + storedCountry;
+
+                // Update map center and marker position
+                map.setCenter({ lat: storedLat, lng: storedLng });
+                marker.setPosition({ lat: storedLat, lng: storedLng });
+                marker.setVisible(true);
+
+                infowindow.setContent(
+                    '<div class="location-info-content"><strong>' + storedState + ', ' + storedCountry + '</strong><br></div>'
+                );
+                infowindow.open(map, marker);
+
+                console.log('Loaded stored location:', storedState, storedCountry);
+            }
+        }
+        
     function initializeMap(lat, lng) {
         // Initialize the map
         map = new google.maps.Map(document.getElementById("location-map"), {
@@ -216,30 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
     }
 
-    // Function to load previously stored location on popup open
-    function loadStoredLocation() {
-            const storedState = localStorage.getItem('selectedState');
-            const storedCountry = localStorage.getItem('selectedCountry');
-            const storedLat = parseFloat(localStorage.getItem('selectedLat'));
-            const storedLng = parseFloat(localStorage.getItem('selectedLng'));
-
-            if (storedState && storedCountry && !isNaN(storedLat) && !isNaN(storedLng)) {
-                // Pre-fill the autocomplete input
-                autocompleteInput.value = storedState + ', ' + storedCountry;
-
-                // Update map center and marker position
-                map.setCenter({ lat: storedLat, lng: storedLng });
-                marker.setPosition({ lat: storedLat, lng: storedLng });
-                marker.setVisible(true);
-
-                infowindow.setContent(
-                    '<div class="location-info-content"><strong>' + storedState + ', ' + storedCountry + '</strong><br></div>'
-                );
-                infowindow.open(map, marker);
-
-                console.log('Loaded stored location:', storedState, storedCountry);
-            }
-        }
+  
     // Function to update the map and marker based on selected state
     function updateLocation() {
         const stateProvinceSelect = document.getElementById("state-province-select");
