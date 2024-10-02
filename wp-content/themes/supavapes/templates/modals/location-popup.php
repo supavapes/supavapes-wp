@@ -147,7 +147,13 @@ function initMap() {
                                     country = component.long_name; // Get the country name
                                 }
                             }
-
+                            if(country !== 'Canada'){
+                                jQuery( '.address-error-msg' ).show();
+                                jQuery("#update-user-location").prop("disabled", true);
+                            } else {
+                                jQuery( '.address-error-msg' ).hide();
+                                jQuery("#update-user-location").prop("disabled", false);
+                            }
                             // Set state and country values in #pac-input input box
                             const autocompleteInput = document.getElementById("pac-input");
                             if (autocompleteInput) {
