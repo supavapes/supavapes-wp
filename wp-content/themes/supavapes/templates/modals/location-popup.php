@@ -87,18 +87,18 @@
       </div>
    </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap&libraries=places&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&libraries=places&v=weekly" defer></script>
 <script>
 let map; // Declare map variable outside of the function
 let marker; // Declare marker outside to reuse it
 let infowindow; // Declare infowindow outside to reuse it
 let autocompleteInput; // Move autocompleteInput to a higher scope
 
-// document.getElementById("edit-user-location-btn").addEventListener("click", function () {
-//     // Trigger the initMap function only when the button is clicked
-//     initMap();
+document.getElementById("edit-user-location-btn").addEventListener("click", function () {
+    // Trigger the initMap function only when the button is clicked
+    initMap();
     
-// });
+});
 
 function initMap() {
     // Try to get the user's current location using the Geolocation API
