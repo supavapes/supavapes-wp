@@ -131,7 +131,7 @@ function initializeMap(lat, lng) {
         zoom: 5,
         mapTypeControl: false,
     });
-    
+    loadStoredLocation();
     autocompleteInput = document.getElementById("pac-input");
     const updateButton = document.getElementById("update-user-location");
     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
