@@ -147,6 +147,7 @@ function initMap() {
                                     country = component.long_name; // Get the country name
                                 }
                             }
+                            console.log("Countryyyy: "+country);
                             if(country !== 'Canada'){
                                 jQuery( '.address-error-msg' ).show();
                                 jQuery("#update-user-location").prop("disabled", true);
