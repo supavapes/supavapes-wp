@@ -5308,14 +5308,10 @@ function supavapes_match_location_callback() {
     $shipping_state_code = WC()->customer->get_shipping_state();
     
     // Retrieve the user state from the cookie
-    echo "User state name: ".$user_state_name = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
-	echo WC()->countries->get_states( 'CA' )[$shipping_state_code];
-	// Get the full name of the shipping state
+   	$user_state = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : '';
+	$shipping_state  = WC()->countries->get_states( 'CA' )[$shipping_state_code];
 
-    // Get the full name of the user state if it's a valid state code
-	die('lkooooooo');
-	exit;
-    // Check if both states match
+	// Check if both states match
     if ($shipping_state && $user_state && $shipping_state === $user_state) {
         wp_send_json_success();
     } else {
