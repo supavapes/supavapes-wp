@@ -478,6 +478,11 @@ if ( ! function_exists( 'supavapes_acf_init_callback' ) ) {
 					'menu_title'  => __( 'Vaping Duty', 'supavapes' ),
 					'parent_slug' => 'supavapes-settings',
 				),
+				array(
+					'page_title'  => __( 'Location Popup', 'supavapes' ),
+					'menu_title'  => __( 'Location Popup', 'supavapes' ),
+					'parent_slug' => 'supavapes-settings',
+				),
 			);
 
 			if ( ! empty( $acf_subpages ) && is_array( $acf_subpages ) ) {
