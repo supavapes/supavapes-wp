@@ -5327,7 +5327,7 @@ if ( ! function_exists( 'supavapes_checkout_notice_shortcode' ) ) {
 			wc_print_notice(sprintf(
 				__("%s *Your selected current location and shipping address do not match. Please update one of them to proceed.*", "woocommerce"),
 				'<strong>' . __("Location mismatch:", "woocommerce") . '</strong>'
-			), 'success', array('class' => 'custom-checkout-notice')); // Adding custom class here
+			), 'notice', array('class' => 'custom-checkout-notice')); // Adding custom class here
 
 			?>
 		</div>
