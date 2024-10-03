@@ -2274,3 +2274,6 @@ body.woocommerce-checkout  .wc-blocks-components-select__container {
     padding: 0 20px;
 }
 .sv-woocommerce-notice-wrap .woocommerce-message{margin: 0 !important;}
+span.location-country {
+    white-space: nowrap;
+}
