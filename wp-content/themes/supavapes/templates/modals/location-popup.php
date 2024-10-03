@@ -2,6 +2,8 @@
 /**
  * Location popup. Where user can change/update their location.
  */
+
+ $location_popup_heading  = get_field( 'location_popup_heading', 'option' );
 ?>
 <div class="location-popup">
    <div class="overlay"></div>
@@ -20,7 +22,7 @@
          <div class="location-popup-content-detail">
             <div class="location-popup-content-main">
                <div class="location-popup-header">
-                  <h2><?php esc_html_e( 'Location', 'supavapes' ); ?></h2>
+                  <h2><?php echo esc_html( $location_popup_heading ); ?></h2>
                   <button type="button" id="update-user-location" class="button submit-location" data-userselectedstate="" data-userselectedcountry="">
                      <?php esc_html_e( 'Update my location', 'supavapes' ); ?> 
                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
