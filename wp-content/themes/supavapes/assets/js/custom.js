@@ -752,6 +752,7 @@ jQuery(document).ready(function() {
 						jQuery('.woocommerce-message').show();
 						return false;
 					} else {
+						jQuery('.woocommerce-message').hide();
 						jQuery('.wc-block-components-checkout-place-order-button').click();
 						jQuery('.pre-loader_page').show();
 						setTimeout(function() {
