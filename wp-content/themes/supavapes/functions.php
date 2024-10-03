@@ -5228,23 +5228,33 @@ function supavapes_hide_selected_terms( $terms, $taxonomies, $args ) {
 add_filter( 'get_terms', 'supavapes_hide_selected_terms', 10, 3 );
 
 
+/**
+ * If the function, `supavapes_redirect_wp_login_register_to_my_account` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_redirect_wp_login_register_to_my_account' ) ) {
+	/**
+	 * Redirect wordpress urls to my account page based on actions.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_redirect_wp_login_register_to_my_account() {
+		// Check if the action is register
+		if ( isset( $_GET['action'] ) && $_GET['action'] == 'register' ) {
+			// Redirect to the WooCommerce My Account page
+			wp_redirect( home_url( '/my-account/' ) );
+			exit;
+		}
+		// Check if the action is lostpassword
+		if ( isset( $_GET['action'] ) && $_GET['action'] == 'lostpassword' ) {
+			// Redirect to the WooCommerce My Account page
+			wp_redirect( home_url( '/my-account/lost-password/' ) );
+			exit;
+		}
+	}
+
+}
 
 add_action( 'login_init', 'supavapes_redirect_wp_login_register_to_my_account' );
-
-function supavapes_redirect_wp_login_register_to_my_account() {
-    // Check if the action is register
-    if ( isset( $_GET['action'] ) && $_GET['action'] == 'register' ) {
-        // Redirect to the WooCommerce My Account page
-        wp_redirect( home_url( '/my-account/' ) );
-        exit;
-    }
-	// Check if the action is lostpassword
-    if ( isset( $_GET['action'] ) && $_GET['action'] == 'lostpassword' ) {
-        // Redirect to the WooCommerce My Account page
-        wp_redirect( home_url( '/my-account/lost-password/' ) );
-        exit;
-    }
-}
 
 
 function supavapes_single_location_badge() {
