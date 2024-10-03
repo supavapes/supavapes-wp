@@ -2186,18 +2186,31 @@ button.button.submit-location {
     display: flex;
 }
 
+.gm-ui-hover-effect>span {
+    margin: 0 !important;
+    width: 16px !important;
+     background-repeat: no-repeat;
+    height: 16px !important;
+ }
+
 button.gm-ui-hover-effect {
-    width: 20px !important;
-    height: 20px !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+button.button.submit-location:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+span.address-error-msg {
+    color: #ff0000;
 }
 
 .gm-style-iw-d {
     padding: 10px 12px 0px 0px;
 }
 
-.gm-ui-hover-effect>span {
-    margin: 0 !important;
-}
 .location-popup-content-box .pre-loader_page {
     position: absolute;
     left: 0;
