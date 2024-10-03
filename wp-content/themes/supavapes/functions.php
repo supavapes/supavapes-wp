@@ -5291,9 +5291,10 @@ if ( ! function_exists( 'supavapes_match_location_callback' ) ) {
 	 */
 	function supavapes_match_location_callback() {
 
-		$shipping_state_code = WC()->customer->get_shipping_state();
-		$user_state 		 = isset($_COOKIE['user_state']) ? sanitize_text_field($_COOKIE['user_state']) : ''; // Retrieve the user state from the cookie
-		$shipping_state  	 = WC()->countries->get_states( 'CA' )[$shipping_state_code];
+		$shipping_state_code  =  WC()->customer->get_shipping_state();
+		$shipping_country     =  WC()->customer->get_shipping_country(); // Get the shipping country dynamically
+		$user_state 		  =  isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : ''; // Retrieve the user state from the cookie
+		$shipping_state       =  WC()->countries->get_states( $shipping_country )[$shipping_state_code]; // Use the dynamic country code
 
 		// Check if both states match
 		if ( $shipping_state && $user_state && $shipping_state === $user_state ) {
