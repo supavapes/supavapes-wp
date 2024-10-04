@@ -5076,6 +5076,8 @@ function supavapes_price_breakdown_custom_html( $product_price = null, $federal_
     return ob_get_clean(); // Return the buffered output
 }
 
+
+
 function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max_price = null, $min_federal_tax = null, $max_federal_tax = null, $min_ontario_tax = null, $max_ontario_tax = null, $final_min_price = null, $final_max_price = null, $state = '' ) {
     
 	$popup_heading             = get_field( 'popup_heading', 'option' );
@@ -5204,32 +5206,33 @@ add_action( 'woocommerce_cart_calculate_fees', 'supavapes_woocommerce_cart_calcu
 // last code at 5518
 
 
-// add_filter( 'formatted_woocommerce_price', 'custom_format_woocommerce_price', 10, 5 );
-
-function custom_format_woocommerce_price( $formatted_price, $price, $decimal_places, $decimal_separator, $thousand_separator ) {
-	
-   if($formatted_price < $price){
-		return $formatted_price;
-   }
-    
-}
-
-
-/** Remove categories from shop and other pages
- * in Woocommerce
+/**
+ * If the function, `supavapes_hide_selected_terms` doesn't exist.
  */
-function supavapes_hide_selected_terms( $terms, $taxonomies, $args ) {
-    $new_terms = array();
-    if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
-        foreach ( $terms as $key => $term ) {
-              if ( ! in_array( $term->slug, array( 'uncategorized' ) ) ) {
-                $new_terms[] = $term;
-              }
-        }
-        $terms = $new_terms;
-    }
-    return $terms;
+if ( ! function_exists( 'supavapes_hide_selected_terms' ) ) {
+	/**
+	 * Remove categories from shop and other pages
+	 * 
+	 * @param array $terms contains variation product title for variable product.
+	 * @param array $taxonomies contains taxonomied details.
+	 * @param array $args contains terms arguments.
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_hide_selected_terms( $terms, $taxonomies, $args ) {
+		$new_terms = array();
+		if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
+			foreach ( $terms as $key => $term ) {
+				if ( ! in_array( $term->slug, array( 'uncategorized' ) ) ) {
+					$new_terms[] = $term;
+				}
+			}
+			$terms = $new_terms;
+		}
+		return $terms;
+	}
 }
+
 add_filter( 'get_terms', 'supavapes_hide_selected_terms', 10, 3 );
 
 
@@ -5262,49 +5265,73 @@ if ( ! function_exists( 'supavapes_redirect_wp_login_register_to_my_account' ) )
 add_action( 'login_init', 'supavapes_redirect_wp_login_register_to_my_account' );
 
 
-function supavapes_single_location_badge() {
-    // Define your custom image URL
-	$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+/**
+ * If the function, `supavapes_single_location_badge` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_single_location_badge' ) ) {
+	/**
+	 * Add badge on product detail page on featured image
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_single_location_badge() {
+		// Define your custom image URL
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-	ob_start(); 
-	?>
-	<div class="single-location-badge" style="display:none;">
-		<?php
-			if ( 'Ontario' == $state ) {
-				?>
-					<img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png" alt="Custom Image" />
-				<?php
-			} else {
-				?>
-					<img src="/wp-content/themes/supavapes/assets/images/shop-federal.png" alt="Custom Image" />
-				<?php
-			}
+		ob_start(); 
 		?>
-	</div>
-	<?php
-	echo ob_get_clean();
+		<div class="single-location-badge" style="display:none;">
+			<?php
+				if ( 'Ontario' == $state ) {
+					?>
+						<img src="/wp-content/themes/supavapes/assets/images/shop-ontario.png" alt="Custom Image" />
+					<?php
+				} else {
+					?>
+						<img src="/wp-content/themes/supavapes/assets/images/shop-federal.png" alt="Custom Image" />
+					<?php
+				}
+			?>
+		</div>
+		<?php
+		echo ob_get_clean();
+	}
 }
+
 add_action( 'woocommerce_before_single_product_summary', 'supavapes_single_location_badge', 5 );
 
 
 
-add_filter( 'wqcmv_variation_title', 'supavapes_add_vaping_liquid_below_variation_title', 10, 2 );
 
-function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $variation_id ) {
-    // Get the custom field value for '_vaping_liquid'
-    $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+/**
+ * If the function, `supavapes_add_vaping_liquid_below_variation_title` doesn't exist.
+ */
+if ( ! function_exists( 'supavapes_add_vaping_liquid_below_variation_title' ) ) {
+	/**
+	 * Add badge on product detail page on featured image
+	 * 
+	 * @param string $variation_title contains variation product title for variable product
+	 * @param int $variation_id contains variation id for variable product
+	 *
+	 * @since 1.0.0
+	 */
+	function supavapes_add_vaping_liquid_below_variation_title( $variation_title, $variation_id ) {
+		// Get the custom field value for '_vaping_liquid'
+		$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
 
-    // Output the title as it is
-    $output = '<div class="variation-title-wrap"><h4>' . wp_kses_post( $variation_title ) . '</h4>';
+		// Output the title as it is
+		$output = '<div class="variation-title-wrap"><h4>' . wp_kses_post( $variation_title ) . '</h4>';
 
-    // If the vaping liquid custom field is set, display it below the title
-    if ( ! empty( $vaping_liquid ) ) {
-        $output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . ' ml</span></div>';
-    }
+		// If the vaping liquid custom field is set, display it below the title
+		if ( ! empty( $vaping_liquid ) ) {
+			$output .= '<span><b>Vaping Liquid:</b> ' . esc_html( $vaping_liquid ) . ' ml</span></div>';
+		}
 
-    return $output;
+		return $output;
+	}
 }
 
+add_filter( 'wqcmv_variation_title', 'supavapes_add_vaping_liquid_below_variation_title', 10, 2 );
 
 /**
  * If the function, `supavapes_match_location_callback` doesn't exist.
@@ -5331,8 +5358,8 @@ if ( ! function_exists( 'supavapes_match_location_callback' ) ) {
 	}
 }
 
-add_action('wp_ajax_match_location', 'supavapes_match_location_callback');
-add_action('wp_ajax_nopriv_match_location', 'supavapes_match_location_callback');
+add_action( 'wp_ajax_match_location', 'supavapes_match_location_callback' );
+add_action( 'wp_ajax_nopriv_match_location', 'supavapes_match_location_callback' );
 
 
 
@@ -5362,4 +5389,4 @@ if ( ! function_exists( 'supavapes_checkout_notice_shortcode' ) ) {
 	}
 }
 
-add_shortcode('checkout_notice', 'supavapes_checkout_notice_shortcode');
+add_shortcode( 'checkout_notice', 'supavapes_checkout_notice_shortcode' );
