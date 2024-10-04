@@ -4251,19 +4251,19 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
             echo "Price: ".$product_price = $sale_price ? $sale_price : $reg_price;
 
             // If there is a discount, apply it
-            // if ( $applied_discount ) {
-            //     if ( strpos( $applied_discount, '%' ) !== false ) {
-            //         // Percentage-based discount
-            //         $discount_value = str_replace( '%', '', $applied_discount );
-            //         $discount_amount = ( $product_price * $discount_value ) / 100;
-            //     } else {
-            //         // Fixed discount (assumed to be a numeric value like "$5 OFF")
-            //         $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
-            //     }
+            if ( $applied_discount ) {
+                if ( strpos( $applied_discount, '%' ) !== false ) {
+                    // Percentage-based discount
+                    $discount_value = str_replace( '%', '', $applied_discount );
+                    $discount_amount = ( $product_price * $discount_value ) / 100;
+                } else {
+                    // Fixed discount (assumed to be a numeric value like "$5 OFF")
+                    $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
+                }
 
-            //     // Apply the discount to the price
-            //     $product_price = max( 0, $product_price - $discount_amount );
-            // }
+                // Apply the discount to the price
+                $product_price = max( 0, $product_price - $discount_amount );
+            }
 
             $vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
             $vaping_liquid = (int) $vaping_liquid;
