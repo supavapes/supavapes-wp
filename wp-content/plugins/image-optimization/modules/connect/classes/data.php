@@ -183,11 +183,19 @@ class Data {
 	}
 
 	public static function get_home_url() {
-		return self::get_connect_mode_data( self::HOME_URL, false );
+		$raw = self::get_connect_mode_data( self::HOME_URL, false );
+		$is_base64 = base64_encode( base64_decode( $raw, true ) ) === $raw;
+		return $is_base64 ? base64_decode( $raw ) : $raw;
 	}
 
+	/**
+	 * set_home_url
+	 *
+	 * Stores home URL as a base64 string to avoid migration/stg tools from overriding value
+	 */
 	public static function set_home_url( ?string $home_url = null ): bool {
-		return self::set_connect_mode_data( self::HOME_URL, $home_url ?? home_url() );
+		$home_url = $home_url ?? home_url();
+		return self::set_connect_mode_data( self::HOME_URL, base64_encode( $home_url ) );
 	}
 
 	/**

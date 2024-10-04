@@ -204,6 +204,8 @@ class Module extends Module_Base {
 		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
 		$is_connect_on_fly = $module->connect_instance->get_is_connect_on_fly();
 		$connect_email = $module->connect_instance->get_connect_data()['user']['email'] ?? null;
+		$show_reset = ! $module->connect_instance->is_connected()
+							&& ( $module->connect_instance->get_client_id() || $module->connect_instance->get_client_secret() );
 
 		wp_localize_script(
 			'image-optimization-admin',
@@ -218,6 +220,7 @@ class Module extends Module_Base {
 				'imagesLeft' => $module->connect_instance->is_activated() ? $module->connect_instance->images_left() : null,
 				'isOwner' => $module->connect_instance->is_connected() ? $module->connect_instance->user_is_subscription_owner() : null,
 				'subscriptionEmail' => $connect_email ? $connect_email : null,
+				'showResetButton' => $show_reset,
 
 				'wpRestNonce' => wp_create_nonce( 'wp_rest' ),
 				'disconnect' => wp_create_nonce( 'wp_rest' ),

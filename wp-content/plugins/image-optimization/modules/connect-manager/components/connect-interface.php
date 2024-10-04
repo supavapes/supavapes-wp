@@ -25,6 +25,8 @@ interface Connect_Interface {
 
 	public function get_client_id(): string;
 
+	public function get_client_secret(): string;
+
 	public function images_left(): int;
 
 	public function user_is_subscription_owner(): bool;
@@ -46,5 +48,4 @@ interface Connect_Interface {
 	public function get_is_connect_on_fly(): bool;
 
 	public function refresh_token(): void;
-
 }

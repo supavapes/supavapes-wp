@@ -17,7 +17,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_clients_url(): string {
-		return Config::BASE_URL . '/api/v1/clients';
+		return self::get_base_url() . '/api/v1/clients';
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Utils {
 	}
 
 	public static function get_auth_url(): string {
-		return Config::BASE_URL . '/v1/oauth2/auth';
+		return self::get_base_url() . '/v1/oauth2/auth';
 	}
 
 	/**
@@ -70,11 +70,11 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_deactivation_url( string $client_id ): string {
-		return Config::BASE_URL . "/api/v1/clients/{$client_id}/activation";
+		return self::get_base_url() . "/api/v1/clients/{$client_id}/activation";
 	}
 
 	public static function get_jwks_url(): string {
-		return Config::BASE_URL . '/v1/.well-known/jwks.json';
+		return self::get_base_url() . '/v1/.well-known/jwks.json';
 	}
 
 	/**
@@ -82,11 +82,11 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_sessions_url(): string {
-		return Config::BASE_URL . '/api/v1/session';
+		return self::get_base_url() . '/api/v1/session';
 	}
 
 	public static function get_token_url(): string {
-		return Config::BASE_URL . '/api/v1/oauth2/token';
+		return self::get_base_url() . '/api/v1/oauth2/token';
 	}
 
 	/**

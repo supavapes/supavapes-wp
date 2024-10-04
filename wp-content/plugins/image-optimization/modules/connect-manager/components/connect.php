@@ -135,6 +135,10 @@ class Connect implements Connect_Interface {
 		return Data::get_client_id();
 	}
 
+	public function get_client_secret(): string {
+		return Data::get_client_secret();
+	}
+
 	public function images_left(): int {
 		$plan_data = $this->get_connect_status();
 

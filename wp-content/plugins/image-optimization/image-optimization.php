@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Image Optimizer by Elementor – Compress, Resize and Optimize Images
- * Description: Automatically compress and enhance your images, boosting your website speed, appearance, and SEO. Get Image Optimizer and optimize your images in seconds.
+ * Plugin Name: Image Optimizer - Compress, Resize and Optimize Images
+ * Description: Automatically resize, optimize, and convert images to WebP and AVIF. Compress images in bulk or on upload to boost your WordPress site performance.
  * Plugin URI: https://go.elementor.com/wp-repo-description-tab-io-product-page/
- * Version: 1.5.2
+ * Version: 1.5.4
  * Author: Elementor.com
  * Author URI: https://go.elementor.com/author-uri-io/
  * Text Domain: image-optimization
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'IMAGE_OPTIMIZATION_VERSION', '1.5.2' );
+define( 'IMAGE_OPTIMIZATION_VERSION', '1.5.4' );
 define( 'IMAGE_OPTIMIZATION_PATH', plugin_dir_path( __FILE__ ) );
 define( 'IMAGE_OPTIMIZATION_URL', plugins_url( '/', __FILE__ ) );
 define( 'IMAGE_OPTIMIZATION_ASSETS_PATH', IMAGE_OPTIMIZATION_PATH . 'assets/' );

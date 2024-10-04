@@ -53,6 +53,14 @@ class Data {
 	}
 
 	/**
+	 * get_client_secret
+	 * @return string
+	 */
+	public static function get_client_secret(): string {
+		return self::get_client_data()['auth_secret'] ?? '';
+	}
+
+	/**
 	 * get_connect_data
 	 *
 	 * @param bool $force

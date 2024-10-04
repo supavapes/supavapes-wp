@@ -11,6 +11,7 @@ use ImageOptimization\Classes\Async_Operation\{
 
 use ImageOptimization\Classes\Logger;
 use ImageOptimization\Classes\Migration\Handlers\{
+	Fix_Avif_With_Zero_Dimensions,
 	Fix_Mime_Type,
 	Fix_Optimized_Size_Keys,
 };
@@ -24,6 +25,7 @@ class Migration_Manager {
 		return [
 			Fix_Optimized_Size_Keys::class,
 			Fix_Mime_Type::class,
+			Fix_Avif_With_Zero_Dimensions::class,
 		];
 	}
 

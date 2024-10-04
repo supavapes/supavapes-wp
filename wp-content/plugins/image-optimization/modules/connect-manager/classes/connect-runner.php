@@ -50,6 +50,10 @@ class Connect_Runner {
 		return $this->connect->get_client_id();
 	}
 
+	public function get_client_secret(): string {
+		return $this->connect->get_client_secret();
+	}
+
 	public function images_left(): int {
 		return $this->connect->images_left();
 	}
