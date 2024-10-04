@@ -4245,9 +4245,10 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 
         // Logic for Simple Products
         if ( $product_type == 'simple' ) {
+			echo "innnnn";
             $reg_price  = $product->get_regular_price();
             $sale_price = $product->get_sale_price();
-            $product_price = $sale_price ? $sale_price : $reg_price;
+            echo "Price: ".$product_price = $sale_price ? $sale_price : $reg_price;
 
             // If there is a discount, apply it
             // if ( $applied_discount ) {
