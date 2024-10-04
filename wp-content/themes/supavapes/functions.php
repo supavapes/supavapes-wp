@@ -5091,7 +5091,7 @@ function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max
 
 	ob_start(); // Start output buffering
 	?>
-    <div class="info-icon-container">
+    <div class="info-icon-container test">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
         <div class="price-breakup-popup">
             <h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
