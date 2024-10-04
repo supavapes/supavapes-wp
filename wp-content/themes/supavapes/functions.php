@@ -5041,7 +5041,7 @@ function supavapes_price_breakdown_custom_html( $product_price = null, $federal_
 	$total_product_price_label = ( empty( $total_product_price_label ) || is_null( $total_product_price_label ) || false === $total_product_price_label ) ? __( 'Total Product Price:', 'supavapes' ) : $total_product_price_label;
 	ob_start(); // Start output buffering
 	?>
-    <div class="info-icon-container">
+    <div class="info-icon-container test">
         <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
         <div class="price-breakup-popup">
             <h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
