@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'flycart/woo_discount_rules_v2',
-        'pretty_version' => 'dev-2.6.2_usage_limit_per_user',
-        'version' => 'dev-2.6.2_usage_limit_per_user',
-        'reference' => '6a222f8746bf325f3b679538bda1def06ab8b995',
+        'pretty_version' => '2.6.6.x-dev',
+        'version' => '2.6.6.9999999-dev',
+        'reference' => 'b33cc178b8b02773201984f17d126edc7a6ae1c9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'flycart/woo_discount_rules_v2' => array(
-            'pretty_version' => 'dev-2.6.2_usage_limit_per_user',
-            'version' => 'dev-2.6.2_usage_limit_per_user',
-            'reference' => '6a222f8746bf325f3b679538bda1def06ab8b995',
+            'pretty_version' => '2.6.6.x-dev',
+            'version' => '2.6.6.9999999-dev',
+            'reference' => 'b33cc178b8b02773201984f17d126edc7a6ae1c9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

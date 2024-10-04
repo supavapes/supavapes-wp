@@ -2,120 +2,132 @@
 Contributors: flycart
 Donate link: https://flycart.org/
 Tags: woocommerce, coupons, discounts, dynamic pricing, bulk discount
-Requires at least: 4.4.1
+Requires at least: 4.6.1
 Tested up to: 6.6
-Stable tag: 2.6.5
+Stable tag: 2.6.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Create advanced WooCommerce discounts, dynamic pricing discounts, bulk discounts and more. A powerful WooCommerce discount & WooCommerce coupon plugin
+Best WooCommerce discount plugin for bulk discount, quantity discount, storewide sale, dynamic pricing discount. Grow with a WooCommerce coupon plugin
 
 == Description ==
 
-[Discount Rules for WooCommerce](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) helps you to create any type of bulk discounts, dynamic pricing, advanced discounts, percentage discounts, product based discounts, tiered discounts for your products. Offer Product quantity based discounts, cart based discounts at a percentage or fixed amount or discount based on total order. Create Buy One and Get one free (BOGO) deals and increase your sales multifold by offering dynamic pricing and discounts based on categories, products, user roles, cart items, purchase history and much more in the pro version.
+Grow sales with the best WooCommerce discount plugin. [Discount Rules for WooCommerce](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) is a WooCommerce Dynamic Pricing and Discounts plugin that helps you create any type of bulk discounts, quantity discounts, product specific discounts, dynamic pricing, advanced discounts, percentage discounts, tiered discounts in WooCommerce. Easily create and offer WooCommerce quantity based discounts, volume discounts, cart based discounts, discount based on total order and more.
 
-You can set discounts for products and product variations. You can also set discounts based on categories, attributes, customers, user roles in the pro version.
+With the [PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules), you can offer advanced coupons and discounts in WooCommerce such as **buy one and get one free (BOGO) deals, [smart coupons](https://www.flycart.org/woocommerce-smart-coupons), auto-apply coupons, product quantity based discounts, user role based discounts, customer specific discounts, bundle discounts, free shipping discounts** to increase your sales multifold.
 
-Discounts will be visible in product page, product details page, cart, checkout and in email notifications.
+The PRO version also helps you offer [dynamic pricing and discounts](https://www.flycart.org/woocommerce-dynamic-pricing) in WooCommerce based on products, categories, attributes, tags, SKUs, user roles, cart items, purchase history and much more.
 
-Display the pricing discount table beautifully on the product page. Start selling more and retain customers by running promotions with the best dynamic pricing and discount plugin for WooCommerce.
+[youtube https://www.youtube.com/watch?v=Ni0JjeyHyzM]
 
-[View Demo](https://demo.flycart.net/woo-discount-rules) | [Documentation with real examples](https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules) | [Ask Questions](https://www.flycart.org/support) | [PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) | [Examples](https://www.flycart.org/woocommerce-discount-rules-examples)
+The plugin offers a number of features that make it easy for customers to discover discounts and offers in your store:
+
+* Show a bulk discount table on your WooCommerce product pages
+* Show the discounted price on product, cart & checkout pages with the original price crossed-out (with a line-through)
+* Display "You saved" message on the cart & checkout pages
+* Show a discount bar with your offers on the product pages
+* Display a Sale badge on your shop & product pages
+
+[View Demo](https://demo.flycart.net/woo-discount-rules) | [Documentation with real examples](https://docs.flycart.org/en/collections/806883-discount-rules-for-woocommerce) | [Ask Questions](https://www.flycart.org/support) | [PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) | [Examples](https://www.flycart.org/woocommerce-discount-rules-examples)
 
 == DISCOUNT TYPES AND FEATURES ==
 
 = Free version features =
 
-* Percentage based discounts in WooCommerce
-* [Store-wide global discount](https://docs.flycart.org/en/articles/3788550-product-adjustment-discount-rules-2-0)
-* Quantity range based tiered pricing percentage discount (Example: Buy 3 to 7 quantities, get 10%, Buy 8 to 12 quantities, get 20%)
-* Cart based percentage discount (Example: Spend more than $1000, get 10% discount)
-* Order total based discount
-* Number of line items (count) based discount (Example: Purchase 4 different products or variants and get 10% discount)
-* Exclude selected products from discount rules (product price based rules)
-* Date based discount (validity)
-* Show discount table on product pages
+* Create [WooCommerce percentage discounts](https://www.flycart.org/blog/wordpress/how-to-create-percentage-discounts-in-woocommerce).
+* Offer a [WooCommerce storewide sale](https://www.flycart.org/blog/wordpress/how-to-add-a-storewide-discount-in-woocommerce) Example: A storewide 10% discount on all products
+* Create [WooCommerce Bulk Discount](https://docs.flycart.org/en/articles/3807208-bulk-discounts-or-tiered-pricing). Also called as volume discounts, quantity based discounts
+* Order total based discounts (Example: Spend more than $1000, get 10% discount)
+* Set product percentage discounts in WooCommerce (Example: Product A gets 10%, Product B gets 20%)
+* Cart based discounts in WooCommerce using the line items (Example: Purchase 4 different products or variants and get 10% discount)
+* Exclude selected products from discount rules (product pricing discounts)
+* Run special offers / sale for specific periods - Example: 10% discount only on BlackFriday
+* Show bulk discount table on product pages
 
-[PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules)
+[Get the PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) to create advanced discounts and grow sales
 
 = PRO features =
+All features of the free version, plus:
 
-* All features of the free version, plus)
-* Fixed price discounts ( Get $9 discount for purchasing over 6 items)
-* Category specific discount conditions ( Get 25 % off on all items under Summer Collection )
-* Buy One Get One Free discounts in WooCommerce (BOGO Deals) [Example: Buy 2 get 1 cheapest product free](https://docs.flycart.org/en/articles/3810570-buy-x-get-y-discount-rules-2-0)
+* Percentage discounts in WooCommerce
+* Fixed product discounts in WooCommerce. Example: Get $9 discount for purchasing over 6 items
+* [Category discounts in WooCommerce](https://www.flycart.org/blog/wordpress/how-to-create-woocommmerce-category-discounts) - Get 25 % off on all items under Summer Collection
+* [WooCommerce Buy One Get One free](https://www.flycart.org/blog/woocommerce/how-to-create-buy-one-get-one-bogo-offers-in-woocommerce) - Buy a cap and get another cap for free
+* [Buy 2 and get 1 free in WooCommerce](https://docs.flycart.org/en/articles/3953967-buy-x-and-get-y-product-for-free-or-at-50-discount) - Buy 2 get 1 cheapest product free or Buy 2 and get 1 at 50% discount
+* [Buy one get one half off in WooCommerce](https://www.flycart.org/blog/woocommerce/how-to-create-buy-one-get-one-bogo-offers-in-woocommerce) - Buy 2 get 1 at 50% off or buy one get the second product free or at 50% discount
+* [BOGO deals based on categories](https://docs.flycart.org/en/articles/3946511-buy-any-items-from-category-a-and-get-20-discount-on-category-b). Examples: Buy any product from Category A and get a product free from Category B. Buy Product A and Product B from Category Electronics and get a free product from category Accessories. Buy any product from Category Mobile and choose a free product from Category Hard Cases
+* [Volume discounts & tiered quantity discounts](https://www.flycart.org/blog/woocommerce/how-to-create-bulk-discounts-in-woocommerce) - Buy 6, get 10%, Buy 12, get 15%
+* [User role based dynamic pricing and discounts in WooCommerce](https://docs.flycart.org/en/articles/4203313-discount-based-on-user-role) - Discounts for wholesale customers
+* [First order discounts in WooCommerce](https://docs.flycart.org/en/articles/4206683-discount-based-on-first-order)
 * Dynamic pricing and discounts for WooCommerce
-* [Specific product based discounts (Buy Product A and get 10% discount)](https://docs.flycart.org/en/articles/4217898-discounts-on-specific-product-simple-and-variable-products-from-version-2-0)
-* [User role based dynamic pricing and discounts for your WooCommerce store (Example: Wholesale customers get a discounted price)](https://docs.flycart.org/en/articles/4203313-user-role-based-discount-rules-discount-rules-2-0)
-* Dependant product based discounts (Buy Product A and get discount on Product B)
-* Bundle / package deal (Buy 3 items for $10. 4th item will be charge full price)
-* Offer one or more free products (Multiple products could be offered free using a rule)
-* [Coupon code activated discount rules - The discount will apply after a coupon is entered.](https://docs.flycart.org/en/articles/4268595-activate-discount-rule-using-a-coupon-code-in-woocommerce-2-0)
-* Option to set discount for each product variant.
-* Attribute specific discount (Buy Small size T-shirts and get 10% discount)
-* Option to set Discount for All Products or Global Discount
-* Discount for customers with specific domains (10% discount for all emails ending with @acme.com)
-* Customer specific discount (10% discount for selected customers)
-* [Shipping / Delivery location based discount (Example: If shipping destination is California, get 15% discount)](https://docs.flycart.org/en/articles/4214869-customer-shipping-address-based-discount-2-0)
-* Purchase history based discount (Customers who spent $100 in previously get 10% discount)
+* [Product based discounts](https://docs.flycart.org/en/articles/4217898-discounts-on-specific-product-simple-and-variable-products-from-version-2-0) - Buy Product A and get 10% discount
+* [Bundle discounts in WooCommerce](https://docs.flycart.org/en/articles/3809899-bundle-set-discount) -  Buy 3 for $10, 6 for $20
+* Conditional discounts - Buy Product A and get discount on Product B
+* Offer one or more free products. Multiple products could be offered free using a rule
+* [Apply discounts for multiple items with a WooCommerce coupon](https://docs.flycart.org/en/articles/4268595-activate-discount-rule-using-a-coupon-code-in-woocommerce)
+* Discount for product variants in WooCommerce
+* Attributes based discounts in WooCommerce - Buy green color T-shirts and get 10% discount
+* [Apply discounts for all products in WooCommerce](https://www.flycart.org/blog/wordpress/how-to-add-a-storewide-discount-in-woocommerce)
+* Discount for customers with specific domains - 10% discount for all emails ending with @acme.com
+* Customer specific pricing and discounts in WooCommerce - 10% discount for selected customers
+* [WooCommerce shipping discount - Free shipping discount](https://docs.flycart.org/en/articles/3807036-free-shipping)
+* [Shipping / Delivery location based discount](https://docs.flycart.org/en/articles/4214869-customer-shipping-address-based-discount-2-0) Example: If shipping destination is California, get 15% discount
+* [Purchase history based discounts](https://docs.flycart.org/en/articles/4774928-discount-based-on-purchase-history)  Example: Customers who spent at least $100 in previous purchases get 10% discount
 * Discount based on the number of orders placed earlier (Example: 10% discount for customers with 5 or more orders)
-* If customer purchased selected products previously, he can get a discount (Example: Customers who purchased Shoes get 10% discount)
-* Applying multiple discount rules in a purchase (Get 5% for order above $500 and 10 % for buying more than 6 items)
-* Cart discounts by sum of item quantities in cart (Order more than 10 items from any category and get 15 % discount)
-* Cart discounts by selected customers (John gets 25% life time discount. Ellen gets 10 % limited period offer)
-* Cart discounts by fixed price discounts (Flat $50 discount for all orders today)
+* Discount based on previously purchased products. Example: Customers who previously purchased Shoes get 10% discount
+* Apply multiple discounts for a purchase (Get 5% for order above $500 and 10 % for buying more than 6 items)
+* Discounts based on sum of item quantities in cart (Order more than 10 items from any category and get 15 % discount)
+* Order discounts for selected customers (John gets 25% lifetime discount. Ellen gets 10 % limited period offer)
+* Fixed cart discounts - Flat $50 discount for all orders today
 * Buy 3 units of Product A and get flat $25 discount
 * Add 3 products to the cart and get the Cheapest Item free
-* [Buy any 10 products from Specific category and get a Product Free from Category B](https://docs.flycart.org/en/articles/3946511-buy-any-items-from-category-a-and-get-20-discount-on-category-b)
-* Buy Product A and Product B from Category Electronics and get a free product from category Accessories
-* Buy any Product from Category Mobile and choose a free product from Category Hard Cases
 * Option to offer free products only from certain category
 * Exclude products on SALE from discount rules
-* SALE Badge for discounted products (When the rules match)
+* SALE Badge for discounted products
 * Option to show or hide the discounted price
-* Priority support for PRO version
+* Priority support
 
-== Examples ==
+== WooCommerce Discount Examples using PRO Features ==
 
-= Category Discount Rules: =
+== WooCommerce Category Discount ==
+The WooCommerce category discount feature helps you offer discounts on all products in a specific category. Simply choose a category, set your discount rules, and the plugin will apply them automatically to every product in that category. Here are some examples:
 
 * Buy T-shirts from Category Apparel and save 10%
 * Get 30% off on Category A & Category B
-* Purchase any 6 items from Category A and get 25% discount on total cart value.
+* Purchase any 6 items from Category A and get a 25% discount on total cart value.
 * Purchase 3 products from Category A or B or C or from all of them and get 20% discount valid from dd/mm/yyyy to dd/mm/yyyy
 
-= Quantity range based tiered pricing discounts =
+== WooCommerce Bulk Discount / Quantity Discount / Tiered Pricing Discounts ==
+WooCommerce Bulk Discount, also known as Quantity discounts, tiered pricing discounts or volume discounts, allows you to reward customers for buying in bulk. As customers purchase more, they receive better pricing, encouraging bulk purchases. Here are some examples of bulk purchase discount:
+
+* [Buy 5 to 10 quantities, get 5% discount, 11-20 quantities, get 10% discount, 21-30, get 20% discount](https://docs.flycart.org/en/articles/3807208-bulk-discounts-or-tiered-pricing)
 * Buy 1 to 5 quantities, get $2 discount, Buy 6 or more, get $3 discount
-* [Buy 2 to 3 quantities, get 10% discount, 4-5 quantities, get 20%, 6-8, get 30%](https://docs.flycart.org/en/articles/3914904-bulk-discounts-tiered-pricing-discounts-discount-rules-2-0)
 
-= Product Variant Discounts: =
+== WooCommerce Storewide Sale Discount ==
+A WooCommerce Storewide Sale Discount allows you to apply discounts on all products across your store, offering a simple yet powerful way to drive sales. Whether you're running a seasonal sale, clearing out inventory, or rewarding loyal customers, a storewide discount makes it easy for shoppers to save on everything in your store.
 
-* Get 50% off on Nike T-shirts Small and Large Sizes
-* Buy a Small Size Tee and get a small Size shorts free
-* You can customise the Variants discounts in several combinations
+* 20% discount on all products in the store on Black Friday or Christmas
+* Auto apply coupon of 10% for all products
+* 10% discount on all products for specific user role like Wholesale customers
 
-= Product Dependant rule: =
+== WooCommerce Buy One Get One Free Discount ==
 
-* [Buy Product A at full price and get 20% discount in Product B](https://docs.flycart.org/en/articles/3953967-buy-x-and-get-y-product-for-free-or-at-50-discount-discount-rules-2-0)
-* Buy 2 quantities of Product A, 2 quantities of Product and get 30% discount in Product C
-* Buy 3 quantities of Product A and get flat $10 off in product B
-* Buy a Mobile and get 20% off on headphone
+The WooCommerce BOGO coupon feature allows you to create offers like buy one get one free, buy 2 get 1 free, buy one get one at half price, buy x and get y product free and more. Here are some examples:
 
-= BOGO deals: =
-
-* Buy one and get one free of the same product
-* Buy 2 get one cheapest free offer (repeat)
+* [Buy one and get one free of the same product](https://docs.flycart.org/en/articles/3810071-buy-one-get-one-free-buy-x-get-x)
+* [Buy 2 get one cheapest free offer](https://docs.flycart.org/en/articles/3810570-buy-x-get-y)
 * Buy X get Y product free  Eg: Buy 3 product and get a pendrive free (or with 50% discount)
 * Buy Any 2 items from Category X, and get a Product free from Category B
 * Buy X products and get X number of products free
 * Buy 3 products from any category, get 1 free. Buy 6 products, get 2 products free....
 * Buy 12 products (any or category specific), get X number of cheapest among them free
 * Free products can be a few selected products, cheapest products in the entire store or from selected categories.
-* Products can be offered either free (100% discount) or a limited percentage discount (50%)
+* Products can be offered either free (100% discount) or at a percentage discount (50%)
 
-= Cart Discount Rules: =
+== WooCommerce Cart Discount ==
+Boost sales with WooCommerce Cart Discount, offering automatic discounts at checkout to encourage higher cart values and enhance customer satisfaction. Here are some examples:
 
-* [All Orders above $500 will get 15% discount](https://docs.flycart.org/en/articles/3894861-subtotal-based-tiered-discounts-discount-rules-2-0)
+* [Spend $500 or more and get 15% discount, spend $1000, get 20% discount](https://docs.flycart.org/en/articles/3894861-subtotal-based-tiered-discounts)
 * Add two to six products in cart and get flat $30 discount.
 * 10% discount for all retailers (User Role specific discount)
 * All orders above $500 will get 15% discount
@@ -125,114 +137,92 @@ Display the pricing discount table beautifully on the product page. Start sellin
 * Coupon code activated cart discount rules
 * Discount based on total order
 
-= Product Specific Discount =
+== WooCommerce Bundle Discount ==
+
+Offer Buy more save more discounts in WooCommerce encouraging customers to buy multiple items together. For example, you can create deals like "Buy 3 for $10" or "Buy 6 for $20," providing clear savings for bulk purchases.
+
+* Create offers like Buy 3 items for $10. 4th item will be charged full price.
+* Buy more, save more offers. Example: Buy 3 for $10, 6 for $20
+
+== Product Specific Discounts ==
 
 * Shoes get 20% discount, T-Shirts get 5% discount
-* Adidas Special Edition Shoe (A specific product) gets 15% discount for 10 days
+* Special Edition Shoe (A specific product) gets 15% discount for 10 days
 * Buy 10 mugs are more and get 5% off
 * Buy 3 for $10, Buy 6 for $20
 
-= Fixed Price Per Unit =
+== Fixed Pricing Discounts in WooCommerce ==
 
-* Set a fixed price per unit (Product A cost is $20. Buy 5 to 10 quantity for $15 per unit, 11 and above for $10 each)
-* Price can be set for a specific product or variant.
-* If your entire category of products have the same price, you can use this to set a reduced price
+* Offer fixed product discount to promote sales - $5 off on all products in Category A
+* Set a fixed price per unit for bulk quantity purchases (Product A cost is $20. Buy 5 to 10 quantity for $15 per unit, 11 and above for $10 each)
 
-= User Role based Discount =
+== User Role based Discounts in WooCommerce ==
 
 * Bulk discount based on user role for specific product or product categories.
 * Members of Wholesale customers group gets 40% discount, while Retail customers get 5% discount
 
-= Bundle / Package deal =
+== Discount for Product Variants in WooCommerce ==
 
-* Create offers like Buy 3 items for $10. 4th item will be charged full price.
-* Repeat the discount easily. Example: Buy 3 for $10, 6 for $20
+* Get 50% off on T-shirts Small and Large Sizes
+* Buy a Small Size Tee and get a small Size shorts free
+* You can customize the Variants discounts in several combinations
 
-= Discount rules activated by coupon =
+== Conditional Discounts in WooCommerce ==
 
-* Activate / Trigger a discount rule upon entering a coupon code (useful when you want to provide discount to a target group of users)
+* [Buy Product A at full price and get 20% discount in Product B](https://docs.flycart.org/en/articles/3953967-buy-x-and-get-y-product-for-free-or-at-50-discount-discount-rules-2-0)
+* Buy 2 quantities of Product A, 2 quantities of Product and get 30% discount in Product C
+* Buy 3 quantities of Product A and get flat $10 off in product B
+* Buy a Mobile and get 20% off on headphone
 
-= Global Discount Storewide =
-
-* 20% discount on all items in the store till December 25
-* All Products get 10% discount
-
-= Attributes specific discount =
+== Attribute specific discount ==
 
 * Discount based on the product attributes (NOTE: The attributes should be defined at Product -> Attributes)
 * Example: 10% discount for purchase of T-Shirt with Small sizes.
 
-= Shipping Address Based Discount =
+== Shipping Address Based Discount ==
 
 * Flat 25% discount at Cart for Customers from New York
 * Customers from California get 10% discount while those from Texas get 5%
 
-= Purchase history based discount =
+== Purchase history based discount ==
 
-* Discount based on the total amount spent by the customer in previous orders
+* [Discount based on the total amount spent by the customer in previous orders](https://docs.flycart.org/en/articles/4774928-discount-based-on-purchase-history)
 * Discount based on the total number of orders placed by the customer
 * Based on purchase history (Example: Provide 10% discount to all customers who purchased Shoes earlier)
 * Purchase history for a specific period (10% discount for those who spent $500 in the last 3 months)
 
-= Adjustment rules =
-
-*   Category specific discount on product price
-*   Date and Time based discount on product price
-*   Item Quantity based discount on product price
-*   Cart subtotal range based discount on cart total
-*   Number of Items in cart
-*   Total Sum of Item quantities
-*   Shipping address based discount rule
-*   Discount based on First Product
-
-= Conditions based on =
-Conditions can be based products, categories, customers, customer roles, shipping location, coupons, purchase history, order total amount, items in cart and more.
-
-*  All products
-*  Customer purchase history
-*  Specific products / Selected products
-*  All categories
-*  Selected categories
-*  All customers
-*  Selected customers
-*  All customer roles
-*  Selected customer roles
-*  All Shipping locations
-*  Selected shipping locations
-
-= Rules apply based on =
+= Discount Conditions =
+Conditions help you offer discounts only when certain criteria is met.  Conditions can be based products, categories, customers, customer roles, shipping location, coupons, purchase history, order total amount, items in cart and more.
 
 * Products
-* Line items in cart
-* Cart subtotal
-* Line item quantity
-* Total cart quantity
-* Purchase history
-* Category
-* User roles
+* Categories
 * Attributes
+* SKU
+* Tags
+* Cart Line Items & Properties
+* Customers
+* User Roles
+* Shipping locations - ZipCode, City, State/Region, Country
+* Subtotal
+* Coupons
+* Date & Time
+* Purchase History - Last Order, First Order, Orders with X Items, Number of Orders
 
-= Need assistance with the discount set up? Reach out to us =
 
-Though we have made the rule creation so simple with just 3 steps, you might still be having a few doubts. Or simply you might want to re-check if your setup is correct or you might be having a unique discount promo to run in your website. Don't worry.
-Feel free to reach out to us via the Live Chat in our website or via the [support request form](https://www.flycart.org/support).
-We are happy to help you and guide you with the set up.
+= Need help? Reach out to us =
 
-= Website =
+Whether you want to double-check your setup or need help with a unique discount promo, we’re here to assist you. Feel free to reach out via the Live Chat on our website or through our [support request form](https://www.flycart.org/support). We’re happy to guide you through the setup and ensure everything is running smoothly. Don’t worry—we’re here to help!
 
-[https://www.flycart.org/products/wordpress/woocommerce-discount-rules](https://www.flycart.org/products/wordpress/woocommerce-discount-rules)
+Quick Links:
 
-= Documentation =
 
-[https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules](https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules)
-
-= Got questions? =
-
-Just reach out to us and we will get back to you. You can either contact us via the Live Chat or via the [support request form](https://www.flycart.org/support)
+* [PRO Version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules)
+* [Documentation](https://docs.flycart.org/en/collections/806883-discount-rules-for-woocommerce)
+* [Helpdesk & Support](https://www.flycart.org/support)
 
 == Installation ==
 
-Just use the WordPress installer or upload to the /wp-content/plugins folder. Then Activate the Woo Discount Rules plugin.
+Just use the WordPress installer or upload to the /wp-content/plugins folder. Then Activate the Discount Rules plugin.
 More information could be found in the documentation
 
 = Minimum Requirements =
@@ -246,15 +236,42 @@ More information could be found in the documentation
 
 = Are multiple discounts possible ? =
 
-Yes. It is possible to create multiple discounts.
+Yes. It is possible to create multiple discounts. You can let them apply based on conditions
+
+= How to create a bulk discount in WooCommerce =
+After installing the Discount Rules plugin for WooCommerce, navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Bulk Discount". Add quantity tiers and discount for each tier before going live
+
+= How to create a quantity discount in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Bulk Discount". Click on the Add range button to create quantity ranges and set a discount for each range. Once done, publish the discount
+
+= How to create a volume discount in WooCommerce =
+Volume discounts are similar to creating the bulk discounts. Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Bulk Discount". Click on the Add range button to create quantity ranges and set a discount for each range. Once done, publish the discount
+
+= How to create a category discount in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Product Adjustment". In the Filters section, choose the categories that you would like to discount. Set the discount either as a percentage or a fixed. Publish the rule.
+
+= How to create a percentage discount in WooCommerce =
+Creating a percentage discount is quite easy. Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Product Adjustment". In the Filters section, choose either All Products or select the products that you would like to discount. In the discount section, enter the percentage value. Example: A 10% discount. Once done, save and publish
+
+= How to create a buy one get one free in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Buy X and Get X". In the Filters section, choose either All Products or select the products that you would like to be part of the offer. In the ranges, set the minimum quantity to 1 and click on the "Apply recursively" option. Save and publish the rule.
+
+= How to create a buy 2 get 1 free offer in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Buy X and Get Y". In the Filters section, choose the products that you would like to be part of the offer. In the discount section, choose the free product and publish the rule
+
+= How to create a store-wide sale in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Product adjustment". In the Filters section, choose All Products. In the discount section, choose the percentage option and enter a value. Example: 10%. Save and publish the rule.
+
+= How to set a user role based discount in WooCommerce =
+Navigate to your WordPress dashboard -> WooCommerce -> Discount Rules -> Create a new rule and choose the discount type as "Product adjustment". In the Filters section, choose products or categories that you wanted to discount. In the discount section, set the percentage or fixed value as discount. In the conditions, choose the user role condition and choose a role to limit the discount.
 
 = Are the discounts visible in Product page ? =
 
-Yes. The discount will be displayed in Product page, product details page, cart striking out the Original price.
+Yes. The discount can be shown in the product, cart and checkout pages with the original price crossed-out.
 
 = Is it possible to exclude products on SALE? =
 
-Yes. You can exclude the products on sale from the discount rules.
+Yes. You can exclude the products on sale from the discount rules. There is a filter available
 
 = Can I offer a discount based on the purchase history of the customer? =
 
@@ -315,11 +332,10 @@ We do have a 14-day money back guarantee. If our plugin doesn’t meet your requ
 
 Yes. It is possible to set discount rule based on the Customer city. Eg:Customers from Texas gets 15% discount. The discount will be applied at the cart level.
 
-= How to setup BOGO (Buy ONE get ONE) deals ? =
+= How to setup BOGO (Buy one get one free) deals ? =
 
-Navigate to WooCommerce -> Woo Discount Rules -> Add New Rule.
-Choose the discount type as Buy X get X. Then choose the filter and quantity ranges.
-Note : Enable recursive checkbox if the discounts should be applied in sequential ranges.
+Navigate to WooCommerce -> Discount Rules -> Add New Rule.
+Choose the discount type as Buy X get X. Then choose the filter and quantity ranges. Enable recursive checkbox if the discounts should be applied automatically depending on the purchase quantity.
 
 == Screenshots ==
 
@@ -335,6 +351,9 @@ Note : Enable recursive checkbox if the discounts should be applied in sequentia
 * Dutch Translation - [@mvdburg1971](https://profiles.wordpress.org/mvdburg1971) - Michael van der Burg
 
 == Changelog ==
+= 2.6.6 -10/09/24 =
+* Fix - Minor XSS issue in the review request notice [Core].
+
 = 2.6.5 - 14/08/24 =
 * Improved: Enhanced product search functionality.
 * Improved: label changes.
