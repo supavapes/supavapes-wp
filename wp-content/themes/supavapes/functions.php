@@ -3700,10 +3700,10 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
             $product_id = $cart_item['product_id'];
             $tax = 0;
 
-            $ontario_duty_per_2ml = get_field('ontario_excise_value_2_ml', 'option');
-            $ontario_duty_per_10ml = get_field('ontario_excise_value_10_ml', 'option');
-            $federal_duty_per_2ml = get_field('federal_excise_value_2_ml', 'option');
-            $federal_duty_per_10ml = get_field('federal_excise_value_10_ml', 'option');
+            $ontario_duty_per_2ml 	= get_field('ontario_excise_value_2_ml', 'option');
+            $ontario_duty_per_10ml 	= get_field('ontario_excise_value_10_ml', 'option');
+            $federal_duty_per_2ml 	= get_field('federal_excise_value_2_ml', 'option');
+            $federal_duty_per_10ml 	= get_field('federal_excise_value_10_ml', 'option');
 
             $ontario_tax = 0;
             $federal_tax = 0;
@@ -4284,7 +4284,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 
             // Add the info icon and price breakdown popup
             ob_start(); ?>
-			<?php echo $product->get_price_html(); ?>
+			<?php echo wc_price( $product_price ); ?>
             <?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
                 echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
                 ?>
