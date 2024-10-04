@@ -4336,6 +4336,9 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 				$final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
 			}
 			ob_start();
+			?>
+			<?php echo $product->get_price_html(); ?>
+			<?php
 			if ( $min_ontario_tax > 0 || $max_ontario_tax > 0 || $min_federal_tax > 0 || $max_federal_tax > 0 ) {
 				if ( $min_price === $max_price ) { 
 					echo supavapes_price_breakdown_custom_html( $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
