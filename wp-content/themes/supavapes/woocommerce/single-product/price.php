@@ -24,7 +24,7 @@ global $product;
 ?>
 <div class="price-wrap my-test-class">
 <p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?>">
-<?php echo $product->get_price_html(); ?>
+<?php //echo $product->get_price_html(); ?>
 
 
 <?php
@@ -60,7 +60,7 @@ global $product;
 
 			?>
 			<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-				 echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+				//  echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 				?>
 			<?php }?>
 			<?php 
