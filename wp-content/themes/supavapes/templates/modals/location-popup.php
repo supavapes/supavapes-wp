@@ -250,11 +250,7 @@ function initializeMap(lat, lng) {
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
 
-        infowindow.setContent(
-            '<div class="location-info-content"><strong>' + place.name + ', Canada</strong><br>' +
-            'Address: ' + place.formatted_address + '</div>'
-        );
-        infowindow.open(map, marker);
+        
 
         // Extract the state or province and country
         const addressComponents = place.address_components;
@@ -277,6 +273,12 @@ function initializeMap(lat, lng) {
                 jQuery("#update-user-location").prop("disabled", false);
             }
         }
+
+        infowindow.setContent(
+            '<div class="location-info-content"><strong>' + place.name + ',' + country +'</strong><br>' +
+            'Address: ' + place.formatted_address + '</div>'
+        );
+        infowindow.open(map, marker);
 
         // Update the autocomplete input field with only state and country
         if (autocompleteInput) {
