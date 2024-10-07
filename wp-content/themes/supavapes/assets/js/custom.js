@@ -823,10 +823,10 @@ jQuery(document).ready(function() {
 					jQuery('.pre-loader_page').hide();
 					console.log(response.data.match_location);
 					if (response.data.match_location === 'not match') {
-						jQuery('.woocommerce-message').show();
+						jQuery('.sv-woocommerce-notice-wrap').show();
 						return false;
 					} else {
-						jQuery('.woocommerce-message').hide();
+						jQuery('.sv-woocommerce-notice-wrap').hide();
 						jQuery('.wc-block-components-checkout-place-order-button').click();
 						jQuery('.pre-loader_page').show();
 						setTimeout(function() {
@@ -837,7 +837,7 @@ jQuery(document).ready(function() {
 				},
 				error: function() {
 					jQuery('.pre-loader_page').hide();
-					jQuery('.woocommerce-message').show();
+					jQuery('.sv-woocommerce-notice-wrap').show();
 					// alert('An error occurred. Please try again.');
 				}
 			});
