@@ -4284,7 +4284,7 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 
             // Add the info icon and price breakdown popup
             ob_start(); ?>
-			<?php echo wc_price( $product_price ); ?>
+			<?php //echo wc_price( $product_price ); ?>
             <?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
                 echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
                 ?>
