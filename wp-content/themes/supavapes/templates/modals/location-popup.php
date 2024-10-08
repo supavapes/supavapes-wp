@@ -235,8 +235,10 @@ function initializeMap(lat, lng) {
         marker.setVisible(false);
 
         const place = autocomplete.getPlace();
+        // If the input is cleared or no place is selected, show error and disable the button
         if (!place.geometry || !place.geometry.location) {
-            window.alert("No details available for input: '" + place.name + "'");
+            jQuery('.address-error-msg').text('Please select a valid place.');
+            jQuery("#update-user-location").prop("disabled", true);
             return;
         }
 
@@ -289,7 +291,6 @@ function initializeMap(lat, lng) {
         if (updateButton) {
             updateButton.setAttribute("data-userselectedstate", state);
             updateButton.setAttribute("data-userselectedcountry", country);
-            console.log('data-userselectedstate updated to: ' + state);
 
             // Store the updated location in local storage or session storage
             localStorage.setItem('selectedState', state);
@@ -299,14 +300,14 @@ function initializeMap(lat, lng) {
         }
     });
 
-     // Add input event listener to handle blank pac-input field
-     autocompleteInput.addEventListener('input', function () {
+    // Add input event listener to handle blank pac-input field
+    autocompleteInput.addEventListener('input', function () {
         if (autocompleteInput.value === "") {
             jQuery('.address-error-msg').text('Please enter a place.');
-            jQuery("#update-user-location").prop("disabled", true);
+            jQuery("#update-user-location").prop("disabled", true); // Keep button disabled until valid input
         } else {
-            jQuery('.address-error-msg').text('');
-            jQuery("#update-user-location").prop("disabled", false);
+            jQuery('.address-error-msg').text(''); // Clear the error message
+            jQuery("#update-user-location").prop("disabled", false); // Enable button if there's any input
         }
     });
     
