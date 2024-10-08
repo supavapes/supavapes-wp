@@ -98,7 +98,7 @@
                                 </select>
                             </div>
                         <?php if ( !empty( $enter_manually_form_submit_button_label ) ) { ?>
-                           <button type="button" id="submit-location-form" class="button submit-location-form"><?php echo esc_html( $enter_manually_form_submit_button_label ); ?></button>
+                           <button type="button" id="submit-location-form" class="button submit-location-form" disabled><?php echo esc_html( $enter_manually_form_submit_button_label ); ?></button>
                         <?php } ?>
                         </form>
                      </div>

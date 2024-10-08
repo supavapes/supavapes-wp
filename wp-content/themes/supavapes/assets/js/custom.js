@@ -46,6 +46,14 @@ jQuery(document).ready(function() {
         });
     }
 
+	jQuery(document).on('change', '#state-province-select', function(e) {
+		if (jQuery(this).val() !== "") {
+			jQuery('#submit-location-form').prop('disabled', false);
+		} else {
+			jQuery('#submit-location-form').prop('disabled', true);
+		}
+	});
+
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
 		e.preventDefault(); // Prevent default action if necessary
