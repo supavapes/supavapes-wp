@@ -299,6 +299,16 @@ function initializeMap(lat, lng) {
         }
     });
 
+     // Add input event listener to handle blank pac-input field
+     autocompleteInput.addEventListener('input', function () {
+        if (autocompleteInput.value === "") {
+            jQuery('.address-error-msg').text('Please enter a place.');
+            jQuery("#update-user-location").prop("disabled", true);
+        } else {
+            jQuery('.address-error-msg').text('');
+            jQuery("#update-user-location").prop("disabled", false);
+        }
+    });
     
 }
 
