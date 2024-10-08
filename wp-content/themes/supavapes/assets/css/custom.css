@@ -1959,6 +1959,7 @@ li.ina-timeout-remaining-debugger {
     width: 100%;
     gap: 10px;
 }
+body.woocommerce-account input.type-address ,
 body.woocommerce-checkout input.type-address,
 input.type-address {
     background: transparent;
@@ -2276,4 +2277,7 @@ body.woocommerce-checkout  .wc-blocks-components-select__container {
 .sv-woocommerce-notice-wrap .woocommerce-message{margin: 0 !important;}
 span.location-country {
     white-space: nowrap;
+}
+.sv-woocommerce-notice-wrap{
+	display: none;
 }
