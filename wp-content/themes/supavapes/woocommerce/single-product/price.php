@@ -24,7 +24,7 @@ global $product;
 ?>
 <div class="price-wrap my-test-class">
 <div class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?>">
-<?php //echo $product->get_price_html(); ?>
+<?php echo $product->get_price_html(); ?>
 
 
 <?php

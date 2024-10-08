@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
 	// Keyup event for the pac-input field
 	jQuery(document).on('keyup', '#pac-input', function(e) {
         var inputVal = jQuery(this).val(); // Get the value of the input field
-
+		console.log(inputVal);
         if (inputVal.trim() === "") {
             // If input is empty or blank, show error message and disable button
             jQuery('.address-error-msg').text('Please enter a valid address.');
