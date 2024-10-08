@@ -2247,7 +2247,7 @@ body.woocommerce-checkout label.wc-blocks-components-select__label {
     position: relative;
     line-height: 1 !important;
 }
-
+body.woocommerce-checkout  .wc-blocks-components-select__container  svg.wc-blocks-components-select__expand{display: none !important;}
 body.woocommerce-checkout  .wc-blocks-components-select__select {
     margin: 0;
     border: 1px solid var(--primary-palette-carmine-pink-light) !important;
