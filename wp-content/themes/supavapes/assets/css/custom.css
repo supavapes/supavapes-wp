@@ -1907,6 +1907,9 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
         right: initial;
         max-width: 225px;
     }
+    body.single-product.variable-product .summary.entry-summary  .price-breakup-popup .rightprice{
+        white-space: nowrap !important;
+    }
     .woocommerce-order-details .price-breakup-popup {
         left: -150px;
     }
