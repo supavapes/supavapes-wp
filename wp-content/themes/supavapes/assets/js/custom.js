@@ -54,6 +54,21 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	// Keyup event for the pac-input field
+	jQuery(document).on('keyup', '#pac-input', function(e) {
+        var inputVal = jQuery(this).val(); // Get the value of the input field
+
+        if (inputVal.trim() === "") {
+            // If input is empty or blank, show error message and disable button
+            jQuery('.address-error-msg').text('Please enter a valid address.');
+            jQuery('#update-user-location').prop('disabled', true);
+        } else {
+            // If input is not empty, clear error message and enable button
+            jQuery('.address-error-msg').text(''); // Clear any previous error message
+            jQuery('#update-user-location').prop('disabled', false); // Enable the button
+        }
+    });
+
 
 	jQuery(document).on('click', '#update-user-location', function(e) {
 		e.preventDefault(); // Prevent default action if necessary
