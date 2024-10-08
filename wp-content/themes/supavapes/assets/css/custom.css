@@ -1902,7 +1902,7 @@ body.single-product.variable-product .cartRow:last-child  .price-breakup-popup{
     }
 }
 @media (max-width: 575px) {
-    body.single-product.variable-product .summary.entry-summary .price-breakup-popup {
+    body.single-product .summary.entry-summary .price-breakup-popup {
         left: -80px;
         right: initial;
         max-width: 225px;
