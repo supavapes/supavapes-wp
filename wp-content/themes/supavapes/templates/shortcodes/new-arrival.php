@@ -5,24 +5,27 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 
 global $product;
-$atts = get_query_var('shortcode_atts', array(
-    'limit' => 8
-));
-$category 	= 	'new-arrivals';
-$limit 		= 	$atts['limit'];
-$products 	= 	new WP_Query(
+$atts      = get_query_var(
+	'shortcode_atts',
 	array(
-		'post_type' 		=> 	'product',
-		'posts_per_page' 	=> 	$limit,
-		'product_cat' 		=> 	$category
+		'limit' => 8,
 	)
 );
-$term_slug 	= 	get_term_by( 'slug', 'new-arrivals', 'product_cat' );
-$term_link 	= 	get_term_link($term_slug, 'product_cat');
-if ( ! is_wp_error( $term_link ) && $term_link ) { 
+$category  = 'new-arrivals';
+$limit     = $atts['limit'];
+$products  = new WP_Query(
+	array(
+		'post_type'      => 'product',
+		'posts_per_page' => $limit,
+		'product_cat'    => $category,
+	)
+);
+$term_slug = get_term_by( 'slug', 'new-arrivals', 'product_cat' );
+$term_link = get_term_link( $term_slug, 'product_cat' );
+if ( ! is_wp_error( $term_link ) && $term_link ) {
 	$sv_term_link = $term_link;
 } else {
-	$sv_term_link = "#";
+	$sv_term_link = '#';
 }
 ?>
 <div class="sv-product-slider new-arrival-slider">
@@ -30,50 +33,49 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 		if ( $products->have_posts() ) {
 			while ( $products->have_posts() ) {
 				$products->the_post();
-				$product_data 		= 	wc_get_product(get_the_ID());
-				$rating 			= 	$product_data->get_average_rating();
-				$price 				= 	$product_data->get_price_html();
-				$product_type 		= 	$product_data->get_type();
-				$rating_num 		= 	intval($rating);
-				if ( $rating_num === 0 ){
-					$rating_class = "no-ratting";
+				$product_data = wc_get_product( get_the_ID() );
+				$rating       = $product_data->get_average_rating();
+				$price        = $product_data->get_price_html();
+				$product_type = $product_data->get_type();
+				$rating_num   = intval( $rating );
+				if ( 0 === $rating_num ) {
+					$rating_class = 'no-ratting';
 				} else {
 					$rating_class = '';
 				}
 
-
 				// Check if the product is variable
-				if ( $product_type == 'variable' ) {
+				if ( 'variable' === $product_type ) {
 
 						// Get all variations of the variable product
-    					$available_variations 	= 	$product_data->get_available_variations(); // Updated from $product to $product_data
-						$min_vaping_liquid 		= 	PHP_INT_MAX;
-						$max_vaping_liquid 		= 	PHP_INT_MIN;
+						$available_variations = $product_data->get_available_variations(); // Updated from $product to $product_data
+						$min_vaping_liquid    = PHP_INT_MAX;
+						$max_vaping_liquid    = PHP_INT_MIN;
 
 						// Loop through each variation to find the minimum and maximum _vaping_liquid value
-						foreach ( $available_variations as $variation ) {
-							$vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
+					foreach ( $available_variations as $variation ) {
+						$vaping_liquid_value = (int) get_post_meta( $variation['variation_id'], '_vaping_liquid', true );
 
-							// Skip any vaping liquid values that are zero
-							if ( $vaping_liquid_value > 0 ) {
-								// Set minimum and maximum values
-								if ( $vaping_liquid_value < $min_vaping_liquid ) {
-									$min_vaping_liquid = $vaping_liquid_value;
-								}
-								if ( $vaping_liquid_value > $max_vaping_liquid ) {
-									$max_vaping_liquid = $vaping_liquid_value;
-								}
+						// Skip any vaping liquid values that are zero
+						if ( $vaping_liquid_value > 0 ) {
+							// Set minimum and maximum values
+							if ( $vaping_liquid_value < $min_vaping_liquid ) {
+								$min_vaping_liquid = $vaping_liquid_value;
+							}
+							if ( $vaping_liquid_value > $max_vaping_liquid ) {
+								$max_vaping_liquid = $vaping_liquid_value;
 							}
 						}
+					}
 
 						// Fallback if there are no variations
-						if ( $min_vaping_liquid == PHP_INT_MAX ) {
-							$min_vaping_liquid = 0;
-						}
-						if ( $max_vaping_liquid == PHP_INT_MIN ) {
-							$max_vaping_liquid = 0;
-						}
-						
+					if ( PHP_INT_MAX === $min_vaping_liquid ) {
+						$min_vaping_liquid = 0;
+					}
+					if ( PHP_INT_MIN === $max_vaping_liquid ) {
+						$max_vaping_liquid = 0;
+					}
+
 						// Calculate taxes for the minimum and maximum vaping liquid values
 						$min_ontario_tax = supavapes_calculate_ontario_tax( $min_vaping_liquid );
 						$max_ontario_tax = supavapes_calculate_ontario_tax( $max_vaping_liquid );
@@ -88,38 +90,37 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
 						// Calculate final prices with tax for minimum and maximum values
-						if ( 'Ontario' !== $state ) {
-							$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
-							$final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
-						} else {
-							$final_min_price = floatval( $min_price ) + floatval( $min_ontario_tax ) + floatval( $min_federal_tax );
-							$final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
-						} 
-					
+					if ( 'Ontario' !== $state ) {
+						$final_min_price = floatval( $min_price ) + floatval( $min_federal_tax );
+						$final_max_price = floatval( $max_price ) + floatval( $max_federal_tax );
 					} else {
+						$final_min_price = floatval( $min_price ) + floatval( $min_ontario_tax ) + floatval( $min_federal_tax );
+						$final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
+					}
+				} else {
 
-						$vaping_liquid 		= 	get_post_meta( $product_data->get_id(), '_vaping_liquid', true );
-						$vaping_liquid 		= 	(int) $vaping_liquid;
-						$reg_price 			= 	$product_data->get_regular_price();
-						$sale_price 		= 	$product_data->get_sale_price();
-						$product_price		= 	$sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+					$vaping_liquid = get_post_meta( $product_data->get_id(), '_vaping_liquid', true );
+					$vaping_liquid = (int) $vaping_liquid;
+					$reg_price     = $product_data->get_regular_price();
+					$sale_price    = $product_data->get_sale_price();
+					$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 
-						// Calculate taxes using the custom functions if vaping_liquid is set.
-						if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-							$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-							$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-						}
+					// Calculate taxes using the custom functions if vaping_liquid is set.
+					if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+						$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+						$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+					}
 
-						// Determine the final price based on the state.
-						$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+					// Determine the final price based on the state.
+					$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-						if ( 'Ontario' !== $state ) {
-							$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-							$final_price += floatval( $federal_tax );
-						} else {
-							$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
-							$final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
-						}
+					if ( 'Ontario' !== $state ) {
+						$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+						$final_price += floatval( $federal_tax );
+					} else {
+						$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? floatval( $sale_price ) : floatval( $reg_price );
+						$final_price += floatval( $ontario_tax ) + floatval( $federal_tax );
+					}
 				}
 				?>
 				<div class="sv-our-product-box">
@@ -128,15 +129,15 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 						class="sv-our-product-img-thumb">
 						<ul class="sv-stars">
 							<li>
-								<?php if ( $rating_num === 1 ) { ?>
+								<?php if ( 1 === $rating_num ) { ?>
 									<img src="<?php echo esc_url( get_site_url() ); ?>/wp-content/uploads/2024/04/1-star.png" />
-								<?php } else if ( $rating_num === 2 ) { ?>
+								<?php } elseif ( 2 === $rating_num ) { ?>
 									<img src="<?php echo esc_url( get_site_url() ); ?>/wp-content/uploads/2024/04/2-star.png" />
-								<?php } else if ( $rating_num === 3 ) { ?>
+								<?php } elseif ( 3 === $rating_num ) { ?>
 									<img src="<?php echo esc_url( get_site_url() ); ?>/wp-content/uploads/2024/04/3-star.png" />
-								<?php } else if ( $rating_num === 4 ) { ?>
+								<?php } elseif ( 4 === $rating_num ) { ?>
 									<img src="<?php echo esc_url( get_site_url() ); ?>/wp-content/uploads/2024/04/4-star.png" />
-								<?php } else if ( $rating_num === 5 ) { ?>
+								<?php } elseif ( 5 === $rating_num ) { ?>
 									<img src="<?php echo esc_url( get_site_url() ); ?>/wp-content/uploads/2024/04/5-star.png" />
 								<?php } ?>
 							</li>
@@ -146,11 +147,14 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 						<h3 class="sv-our-product-title"><?php echo esc_html( get_the_title() ); ?></h3>
 						<div class="sv-our-product-price">
 						<?php echo wp_kses_post( $price ); ?>
-						<?php if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
+						<?php
+						if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 							$product_type = $product_data->get_type();
-						}?>
-						<?php if ( $product_type == 'simple' ){ ?>
-							<?php if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+						}
+						?>
+						<?php if ( 'simple' === $product_type ) { ?>
+							<?php
+							if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
 								echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
 							}
 						} else {
@@ -160,38 +164,38 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 								if ( $min_price === $max_price ) {
 									// Display simple price breakdown for variable product
 									echo supavapes_price_breakdown_custom_html( $min_price, $min_federal_tax, $min_ontario_tax, $final_min_price, $state );
-								} else { 
+								} else {
 									echo supavapes_price_breakdown_in_range_custom_html( $min_price, $max_price, $min_federal_tax, $max_federal_tax, $min_ontario_tax, $max_ontario_tax, $final_min_price, $final_max_price, $state );
-								 }
+								}
 							}
 						}
 						?>
 						</div>
-        			</div>
-					<?php 
+					</div>
+					<?php
 					// Check if the product exists and get its type
 					if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 						$product_type = $product_data->get_type();
-						if ( $product_type === 'variable' ){?>
-							<a href="<?php echo esc_url( get_permalink() ); ?>" class="sv-shop-btn"><?php esc_html_e('Select Options','supavapes'); ?></a>
+						if ( 'variable' === $product_type ) {
+							?>
+							<a href="<?php echo esc_url( get_permalink() ); ?>" class="sv-shop-btn"><?php esc_html_e( 'Select Options', 'supavapes' ); ?></a>
 						<?php } else { ?>
-							<a href="<?php echo esc_url( get_permalink() ); ?>" class="sv-shop-btn"><?php esc_html_e('Shop Now','supavapes'); ?></a>
+							<a href="<?php echo esc_url( get_permalink() ); ?>" class="sv-shop-btn"><?php esc_html_e( 'Shop Now', 'supavapes' ); ?></a>
 						<?php } ?>
-					<?php }?>
+					<?php } ?>
 					<div class="sv-product-reactions">
-					<?php //echo do_shortcode('[yith_wcwl_add_to_wishlist]');?>
-					<?php if ( $product && $product_type === 'simple' ) {?>
-						<button class="sv-product-reaction quick-view-popup quick-view-btn open-popup" data-id="popup_2" data-animation="scale" data-product_id="<?php echo esc_attr(get_the_ID());?>">
+					<?php if ( $product && 'simple' === $product_type ) { ?>
+						<button class="sv-product-reaction quick-view-popup quick-view-btn open-popup" data-id="popup_2" data-animation="scale" data-product_id="<?php echo esc_attr( get_the_ID() ); ?>">
 							<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M19.8904 6.2291C19.8459 6.16695 18.7806 4.69039 17.0511 3.19715C15.0734 1.48949 12.642 0.125 10.0391 0.125C7.43086 0.125 4.98188 1.49508 2.99047 3.19496C1.24215 4.68734 0.157929 6.16285 0.112617 6.22492C0.039435 6.32521 0 6.44615 0 6.57029C0 6.69444 0.039435 6.81538 0.112617 6.91567C0.157929 6.97774 1.24215 8.45328 2.99047 9.94563C4.9675 11.6332 7.41863 13.0156 10.0391 13.0156C12.6546 13.0156 15.088 11.6385 17.0511 9.94352C18.7806 8.45028 19.8459 6.97367 19.8904 6.91156C19.9617 6.81205 20 6.69272 20 6.57033C20 6.44793 19.9617 6.32861 19.8904 6.2291ZM3.77082 9.07102C2.60859 8.08184 1.74312 7.08063 1.32961 6.57051C1.79086 6.00238 2.81484 4.82418 4.19164 3.72524C3.74957 4.60113 3.51563 5.5691 3.51563 6.57031C3.51563 7.5727 3.75012 8.5418 4.19316 9.41852C4.05048 9.30501 3.90968 9.18916 3.77082 9.07102ZM9.85547 11.8403C6.9893 11.7446 4.6875 9.41754 4.6875 6.57031C4.6875 3.64777 7.12906 1.21145 10.2175 1.30023C13.043 1.39465 15.3125 3.72227 15.3125 6.57031C15.3125 9.47789 12.9231 11.9308 9.85547 11.8403ZM15.8005 9.45715C16.2377 8.58817 16.4844 7.60758 16.4844 6.57031C16.4844 5.53199 16.2372 4.55047 15.7993 3.68086C16.8489 4.51793 17.8723 5.56227 18.6753 6.57012C18.2181 7.14317 17.19 8.3452 15.8005 9.45715Z" fill="white"/>
 								<path d="M10.0273 3.64062C8.44656 3.64062 7.01953 4.92035 7.01953 6.57031C7.01953 8.22043 8.44676 9.5 10.0273 9.5C11.6428 9.5 12.957 8.18574 12.957 6.57031C12.957 4.95488 11.6428 3.64062 10.0273 3.64062ZM10.0273 8.32813C9.03215 8.32813 8.19141 7.52316 8.19141 6.57031C8.19141 5.61746 9.03215 4.8125 10.0273 4.8125C10.9966 4.8125 11.7852 5.60105 11.7852 6.57031C11.7852 7.53957 10.9966 8.32813 10.0273 8.32813Z" fill="white"/>
 							</svg>
 						</button>
-					<?php }?>
-						<?php 
+					<?php } ?>
+						<?php
 						if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
 								$product_type = $product_data->get_type();
-							if ( $product && $product_type === 'simple' ) {
+							if ( $product && 'simple' === $product_type ) {
 								?>
 								<button class="sv-product-reaction quick-cart" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -202,9 +206,9 @@ if ( ! is_wp_error( $term_link ) && $term_link ) {
 								</button>
 								<?php $nonce = wp_create_nonce( 'quick_cart_nonce' ); ?>
 								<input type="hidden" name="quick_cart_nonce" id="quick_cart_nonce" value="<?php echo esc_attr( $nonce ); ?>">
-								<?php			
-							}   
-						}   
+								<?php
+							}
+						}
 						?>
 					</div>
 				</div>
