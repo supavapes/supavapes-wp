@@ -3606,11 +3606,11 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 			if ( $min_vaping_liquid == PHP_INT_MAX ) {
 				$min_vaping_liquid = 0;
 			}
+
 			if ( $max_vaping_liquid == PHP_INT_MIN ) {
 				$max_vaping_liquid = 0;
 			}
-			// echo "Min Liquid: ".$min_vaping_liquid;
-			// echo "Max Liquid: ".$max_vaping_liquid;
+
 			// Calculate taxes for the minimum and maximum vaping liquid values
 			$min_ontario_tax = supavapes_calculate_ontario_tax( $min_vaping_liquid );
 			$max_ontario_tax = supavapes_calculate_ontario_tax( $max_vaping_liquid );
@@ -3633,14 +3633,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 				$final_max_price = floatval( $max_price ) + floatval( $max_ontario_tax ) + floatval( $max_federal_tax );
 			} 
 
-			if ( $min_price === $max_price ) {
-				$price = wc_price( $final_min_price );
-			}else{
-				$price = wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price );
-
-			}
-
-
+			$price = ( $min_price === $max_price ) ? wc_price( $final_min_price ) : ( wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price ) );
 		} else {
 			// For simple products
 			$reg_price     = (float) $product->get_regular_price();
@@ -3665,12 +3658,10 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 
 			// Determine the final price based on state
 			if ( 'Ontario' !== $state ) {
-				$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+				$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
 				$final_price += $federal_tax;
 			} else {
-				$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-				debug( '----' );
-				var_dump( 'final values', $final_price, $ontario_tax, $federal_tax );
+				$final_price  = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
 				$final_price += $ontario_tax + $federal_tax;
 			}
 
@@ -4935,7 +4926,6 @@ if ( ! function_exists( 'supavapes_get_product_tax' ) ) {
 	 * @since 1.0.0
 	 */
 	function supavapes_get_product_tax( $vape_qty, $customer_location ) {
-		var_dump( $vape_qty, $customer_location );
 		$location             = ( ! empty( $customer_location ) && 'Ontario' === $customer_location ) ? 'ontario' : 'federal';
 		$excise_value_2_ml    = get_field( "{$location}_excise_value_2_ml", 'option' );
 		$excise_value_10_ml   = get_field( "{$location}_excise_value_10_ml", 'option' );
@@ -5018,8 +5008,7 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 		</div>
 		<?php
 
-		echo ob_get_clean();		
-		// die("poll");
+		echo ob_get_clean();
 
 		return ob_get_clean();
 	}
