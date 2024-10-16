@@ -3669,7 +3669,7 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
                 $final_price += $federal_tax;
             } else {
                 $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-				var_dump( $ontario_tax, $federal_tax );
+				var_dump( $final_price, $ontario_tax, $federal_tax );
                 $final_price += $ontario_tax + $federal_tax;
             }
 
