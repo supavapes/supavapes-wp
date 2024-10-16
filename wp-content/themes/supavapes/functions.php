@@ -3223,85 +3223,85 @@ function sv_disable_credit_card_woocommerce_payments($available_gateways) {
 add_filter( 'woocommerce_payment_gateway_supports', 'filter_payment_gateway_supports', 10, 3 );
 function filter_payment_gateway_supports( $supports, $feature, $payment_gateway ) {
 	// debug($payment_gateway);
-    // Here in the array, set the allowed payment method IDs (slugs)
-    $allowed_payment_method_ids = array('moneris', 'cod');
+	// Here in the array, set the allowed payment method IDs (slugs)
+	$allowed_payment_method_ids = array('moneris', 'cod');
 
-    if ( in_array($payment_gateway->id, $allowed_payment_method_ids ) && $feature === 'add_payment_method' ) {
-        $supports = true;
-    }
-    return $supports;
+	if ( in_array($payment_gateway->id, $allowed_payment_method_ids ) && $feature === 'add_payment_method' ) {
+		$supports = true;
+	}
+	return $supports;
 }
 
 
 function display_google_map() {
-    ob_start(); ?>
-    <div id="mapCanvas" style="width: 100%; height: 500px;"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
-    <script>
-        function initMap() {
-            var map;
-            var bounds = new google.maps.LatLngBounds();
-            var mapOptions = {
-                mapTypeId: 'roadmap'
-            };
+	ob_start(); ?>
+	<div id="mapCanvas" style="width: 100%; height: 500px;"></div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRfDT-5iAbIjrIqVORmmeXwAjDgLJudiM&callback=initMap" defer></script>
+	<script>
+		function initMap() {
+			var map;
+			var bounds = new google.maps.LatLngBounds();
+			var mapOptions = {
+				mapTypeId: 'roadmap'
+			};
 
-            map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
-            map.setTilt(50);
+			map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+			map.setTilt(50);
 
-            var markers = [
-                ['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
-                ['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749]
-            ];
+			var markers = [
+				['Supa Vapes Hawkesbury', 45.60773945746124, -74.58492574601854],
+				['Supa Vapes 729 Walkley Rd', 45.362812274369, -75.68263443001749]
+			];
 
-            var infoWindowContent = [
-                ['<div class="info_content">' +
-                '<h2>Supa Vapes Hawkesbury</h2>' +
-                '<h3>1502 Main St E, Hawkesbury, ON K6A 1C7, Canada</h3>' +
-                '</div>'],
-                ['<div class="info_content">' +
-                '<h2>Supa Vapes 729 Walkley Rd</h2>' +
-                '<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
-                '</div>']
-            ];
+			var infoWindowContent = [
+				['<div class="info_content">' +
+				'<h2>Supa Vapes Hawkesbury</h2>' +
+				'<h3>1502 Main St E, Hawkesbury, ON K6A 1C7, Canada</h3>' +
+				'</div>'],
+				['<div class="info_content">' +
+				'<h2>Supa Vapes 729 Walkley Rd</h2>' +
+				'<h3>729 Walkley Rd, Ottawa, ON K1V 6R6, Canada</h3>' +
+				'</div>']
+			];
 
-            var infoWindow = new google.maps.InfoWindow(), marker, i;
+			var infoWindow = new google.maps.InfoWindow(), marker, i;
 
-            for (i = 0; i < markers.length; i++) {
-                var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                bounds.extend(position);
-                marker = new google.maps.Marker({
-                    position: position,
-                    map: map,
-                    title: markers[i][0]
-                });
+			for (i = 0; i < markers.length; i++) {
+				var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+				bounds.extend(position);
+				marker = new google.maps.Marker({
+					position: position,
+					map: map,
+					title: markers[i][0]
+				});
 
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        infoWindow.setContent(infoWindowContent[i][0]);
-                        infoWindow.open(map, marker);
-                    }
-                })(marker, i));
-            }
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infoWindow.setContent(infoWindowContent[i][0]);
+						infoWindow.open(map, marker);
+					}
+				})(marker, i));
+			}
 
-            map.fitBounds(bounds);
+			map.fitBounds(bounds);
 
-            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                // Adjust the zoom based on the screen width
-                var zoomLevel = 10;
-                if (window.innerWidth < 768) { // For devices with width < 768px (like phones)
-                    zoomLevel = 8;
-                } else if (window.innerWidth < 1024) { // For devices with width < 1024px (like tablets)
-                    zoomLevel = 9;
-                }
-                this.setZoom(zoomLevel);
-                google.maps.event.removeListener(boundsListener);
-            });
-        }
+			var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+				// Adjust the zoom based on the screen width
+				var zoomLevel = 10;
+				if (window.innerWidth < 768) { // For devices with width < 768px (like phones)
+					zoomLevel = 8;
+				} else if (window.innerWidth < 1024) { // For devices with width < 1024px (like tablets)
+					zoomLevel = 9;
+				}
+				this.setZoom(zoomLevel);
+				google.maps.event.removeListener(boundsListener);
+			});
+		}
 
-        window.initMap = initMap;
-    </script>
-    <?php
-    return ob_get_clean();
+		window.initMap = initMap;
+	</script>
+	<?php
+	return ob_get_clean();
 }
 // Register the shortcode
 add_shortcode('google_map_shortcode', 'display_google_map');
@@ -3543,15 +3543,15 @@ if ( ! function_exists( 'supavapes_woocommerce_set_dynamic_price_callback' ) ) {
 		$state = isset( $_POST['state'] ) ? sanitize_text_field( $_POST['state'] ) : '';
 		
 		if ( ! empty( $state ) ) {
-            // Set the state value in a cookie that expires in 7 days
-            // setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
+			// Set the state value in a cookie that expires in 7 days
+			// setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
 			setcookie( 'user_state', $state, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
-            wp_send_json_success( array( 'message' => 'State value has been set in the cookie.' ) );
-        } else {
-            wp_send_json_error( array( 'message' => 'State value is not provided.' ) );
-        }
+			wp_send_json_success( array( 'message' => 'State value has been set in the cookie.' ) );
+		} else {
+			wp_send_json_error( array( 'message' => 'State value is not provided.' ) );
+		}
 
-        wp_die();
+		wp_die();
 	}
 }
 
@@ -3572,17 +3572,17 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 	 * 
 	 * @since 1.0.0
 	 */
-    function supavapes_custom_price_html( $price, $product ) {
+	function supavapes_custom_price_html( $price, $product ) {
 
-        // Get user state dynamically
-        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+		// Get user state dynamically
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-        // Initialize the price breakdown string
-        $price_breakdown = '';
+		// Initialize the price breakdown string
+		$price_breakdown = '';
 
-        if ( $product->is_type( 'variable' ) ) {
-            // For variable products
-            $available_variations = $product->get_available_variations();
+		if ( $product->is_type( 'variable' ) ) {
+			// For variable products
+			$available_variations = $product->get_available_variations();
 			$min_vaping_liquid = PHP_INT_MAX;
 			$max_vaping_liquid = PHP_INT_MIN;
 	
@@ -3641,44 +3641,48 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 			}
 
 
-        } else {
-            // For simple products
-            $reg_price  = $product->get_regular_price();
-            $sale_price = $product->get_sale_price();
-            $vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
+		} else {
+			// For simple products
+			$reg_price     = $product->get_regular_price();
+			$sale_price    = $product->get_sale_price();
 
-            // Initialize tax variables
-            $ontario_tax = 0;
-            $federal_tax = 0;
+			var_dump( 'sale price', $sale_price );
 
-            // Fetch dynamic duty rates from ACF fields
-            $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
-            $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
-            $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
-            $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
+			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 
-            // Calculate taxes if vaping_liquid is greater than or equal to 10
-            if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+			// Initialize tax variables
+			$ontario_tax = 0;
+			$federal_tax = 0;
+
+			// Fetch dynamic duty rates from ACF fields
+			$ontario_duty_per_2ml  = get_field( 'ontario_excise_value_2_ml', 'option' );
+			$ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+			$federal_duty_per_2ml  = get_field( 'federal_excise_value_2_ml', 'option' );
+			$federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
+
+			// Calculate taxes if vaping_liquid is greater than or equal to 10
+			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+				$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
 				$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-            }
+			}
 
-            // Determine the final price based on state
-            if ( 'Ontario' !== $state ) {
-                $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-                $final_price += $federal_tax;
-            } else {
-                $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
-				var_dump( $final_price, $ontario_tax, $federal_tax );
-                $final_price += $ontario_tax + $federal_tax;
-            }
+			// Determine the final price based on state
+			if ( 'Ontario' !== $state ) {
+				$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+				$final_price += $federal_tax;
+			} else {
+				$final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+				debug( '----' );
+				var_dump( 'final values', $final_price, $ontario_tax, $federal_tax );
+				$final_price += $ontario_tax + $federal_tax;
+			}
 
-            // Update the price display
-            $price = wc_price( $final_price );
-        }
+			// Update the price display
+			$price = wc_price( $final_price );
+		}
 		
-        return $price;
-    }
+		return $price;
+	}
 }
 
 add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 );
@@ -3690,88 +3694,88 @@ add_filter( 'woocommerce_get_price_html', 'supavapes_custom_price_html', 10, 2 )
  * If the function `supavapes_set_custom_price_in_cart` doesn't exist.
  */
 if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
-    function supavapes_set_custom_price_in_cart( $cart ) {
-        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-            return;
-        }
+	function supavapes_set_custom_price_in_cart( $cart ) {
+		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+			return;
+		}
 
-        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-        foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
-            $product_id = $cart_item['product_id'];
-            $tax = 0;
+		foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+			$product_id = $cart_item['product_id'];
+			$tax = 0;
 
-            $ontario_duty_per_2ml 	= get_field('ontario_excise_value_2_ml', 'option');
-            $ontario_duty_per_10ml 	= get_field('ontario_excise_value_10_ml', 'option');
-            $federal_duty_per_2ml 	= get_field('federal_excise_value_2_ml', 'option');
-            $federal_duty_per_10ml 	= get_field('federal_excise_value_10_ml', 'option');
+			$ontario_duty_per_2ml 	= get_field('ontario_excise_value_2_ml', 'option');
+			$ontario_duty_per_10ml 	= get_field('ontario_excise_value_10_ml', 'option');
+			$federal_duty_per_2ml 	= get_field('federal_excise_value_2_ml', 'option');
+			$federal_duty_per_10ml 	= get_field('federal_excise_value_10_ml', 'option');
 
-            $ontario_tax = 0;
-            $federal_tax = 0;
+			$ontario_tax = 0;
+			$federal_tax = 0;
 
-            if ( $cart_item['data']->is_type( 'variation' ) ) {
-                $variation_id = $cart_item['variation_id'];
-                $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
-                $sale_price = get_post_meta( $variation_id, '_sale_price', true );
-                $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+			if ( $cart_item['data']->is_type( 'variation' ) ) {
+				$variation_id = $cart_item['variation_id'];
+				$reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+				$sale_price = get_post_meta( $variation_id, '_sale_price', true );
+				$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
 
-                if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                    $first_part = 10;
-                    $second_part = $vaping_liquid - $first_part;
+				if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+					$first_part = 10;
+					$second_part = $vaping_liquid - $first_part;
 
-                    $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-                    }
+					$ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
+					if ($second_part > 0) {
+						$ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+					}
 
-                    $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-                    }
-                }
+					$federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
+					if ($second_part > 0) {
+						$federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
+					}
+				}
 
-                if ( 'Ontario' !== $state ) {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $federal_tax;
-                } else {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax + $federal_tax;
-                }
+				if ( 'Ontario' !== $state ) {
+					$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+					$final_price += $federal_tax;
+				} else {
+					$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+					$final_price += $ontario_tax + $federal_tax;
+				}
 
-                $cart_item['data']->set_price( $final_price );
+				$cart_item['data']->set_price( $final_price );
 
-            } else {
-                $reg_price  = $cart_item['data']->get_regular_price();
-                $sale_price = $cart_item['data']->get_sale_price();
-                $vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
+			} else {
+				$reg_price  = $cart_item['data']->get_regular_price();
+				$sale_price = $cart_item['data']->get_sale_price();
+				$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
 
-                if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                    $first_part = 10;
-                    $second_part = $vaping_liquid - $first_part;
+				if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+					$first_part = 10;
+					$second_part = $vaping_liquid - $first_part;
 
-                    $ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-                    }
+					$ontario_tax += ( 10 / 2 ) * $ontario_duty_per_2ml;
+					if ($second_part > 0) {
+						$ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+					}
 
-                    $federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
-                    if ($second_part > 0) {
-                        $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-                    }
-                }
+					$federal_tax += ( 10 / 2 ) * $federal_duty_per_2ml;
+					if ($second_part > 0) {
+						$federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
+					}
+				}
 
-                if ( 'Ontario' !== $state ) {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $federal_tax;
-                } else {
-                    $final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
-                    $final_price += $ontario_tax + $federal_tax;
-                }
+				if ( 'Ontario' !== $state ) {
+					$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+					$final_price += $federal_tax;
+				} else {
+					$final_price = isset($sale_price) && !empty($sale_price) ? $sale_price : $reg_price;
+					$final_price += $ontario_tax + $federal_tax;
+				}
 
-                $cart_item['data']->set_price( $final_price );
-            }
-        }
-    }
+				$cart_item['data']->set_price( $final_price );
+			}
+		}
+	}
 }
 
 // add_action( 'woocommerce_before_calculate_totals', 'supavapes_set_custom_price_in_cart', 10, 1 );
@@ -3781,61 +3785,61 @@ if ( ! function_exists( 'supavapes_set_custom_price_in_cart' ) ) {
  * If the function `supavapes_cart_item_custom_price` doesn't exist.
  */
 if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
-    /**
-     * Override cart item price display for variable products.
-     * 
-     * @param float $price Holds price of cart item.
-     * @param array $cart_item Holds cart item array.
-     * @param string $cart_item_key Holds cart item key.
-     * 
-     * @since 1.0.0
-     */
-    function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
-        $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+	/**
+	 * Override cart item price display for variable products.
+	 * 
+	 * @param float $price Holds price of cart item.
+	 * @param array $cart_item Holds cart item array.
+	 * @param string $cart_item_key Holds cart item key.
+	 * 
+	 * @since 1.0.0
+	 */
+	function supavapes_cart_item_custom_price( $price, $cart_item, $cart_item_key ) {
+		$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-        // Fetch dynamic duty rates from ACF fields
-        $ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
-        $ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
-        $federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
-        $federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
+		// Fetch dynamic duty rates from ACF fields
+		$ontario_duty_per_2ml = get_field( 'ontario_excise_value_2_ml', 'option' );
+		$ontario_duty_per_10ml = get_field( 'ontario_excise_value_10_ml', 'option' );
+		$federal_duty_per_2ml = get_field( 'federal_excise_value_2_ml', 'option' );
+		$federal_duty_per_10ml = get_field( 'federal_excise_value_10_ml', 'option' );
 
-        $ontario_tax = 0;
-        $federal_tax = 0;
+		$ontario_tax = 0;
+		$federal_tax = 0;
 
-        if ( $cart_item['data']->is_type( 'variation' ) ) {
-            $variation_id = $cart_item['variation_id'];
+		if ( $cart_item['data']->is_type( 'variation' ) ) {
+			$variation_id = $cart_item['variation_id'];
 
-            // Fetch regular and sale prices
-            $reg_price  = get_post_meta( $variation_id, '_regular_price', true );
-            $sale_price = get_post_meta( $variation_id, '_sale_price', true );
+			// Fetch regular and sale prices
+			$reg_price  = get_post_meta( $variation_id, '_regular_price', true );
+			$sale_price = get_post_meta( $variation_id, '_sale_price', true );
 
-            // Fetch vaping_liquid value
-            $vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
+			// Fetch vaping_liquid value
+			$vaping_liquid = get_post_meta( $variation_id, '_vaping_liquid', true );
 
-            // Calculate taxes if vaping_liquid is greater than or equal to 10
-            if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                $first_part = 10;
-                $second_part = $vaping_liquid - $first_part;
+			// Calculate taxes if vaping_liquid is greater than or equal to 10
+			if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+				$first_part = 10;
+				$second_part = $vaping_liquid - $first_part;
 
-                // Ontario tax calculation
-                $ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-                }
+				// Ontario tax calculation
+				$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
+				if ( $second_part > 0 ) {
+					$ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+				}
 
-                // Federal tax calculation
-                $federal_tax += (10 / 2) * $federal_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-                }
-            }
+				// Federal tax calculation
+				$federal_tax += (10 / 2) * $federal_duty_per_2ml;
+				if ( $second_part > 0 ) {
+					$federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
+				}
+			}
 
-            // Determine the final price based on state
-            if ( 'Ontario' !== $state ) {
-                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax : $reg_price + $ontario_tax;
-            } else {
-                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
-            }
+			// Determine the final price based on state
+			if ( 'Ontario' !== $state ) {
+				$final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax : $reg_price + $ontario_tax;
+			} else {
+				$final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
+			}
 
 			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
 				// Set the price breakdown for the variation
@@ -3854,40 +3858,40 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 				// </span>';
 			}
 
-            $price = wc_price( $final_price );
+			$price = wc_price( $final_price );
 
-        } else {
-            // For simple products
-            $reg_price  = $cart_item['data']->get_regular_price();
-            $sale_price = $cart_item['data']->get_sale_price();
+		} else {
+			// For simple products
+			$reg_price  = $cart_item['data']->get_regular_price();
+			$sale_price = $cart_item['data']->get_sale_price();
 
-            // Fetch vaping_liquid value for simple product
-            $vaping_liquid = get_post_meta( $cart_item['product_id'], '_vaping_liquid', true );
+			// Fetch vaping_liquid value for simple product
+			$vaping_liquid = get_post_meta( $cart_item['product_id'], '_vaping_liquid', true );
 
-            // Calculate taxes if vaping_liquid is greater than or equal to 10
-            if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
-                $first_part = 10;
-                $second_part = $vaping_liquid - $first_part;
+			// Calculate taxes if vaping_liquid is greater than or equal to 10
+			if ( isset( $vaping_liquid ) && !empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
+				$first_part = 10;
+				$second_part = $vaping_liquid - $first_part;
 
-                // Ontario tax calculation
-                $ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
-                }
+				// Ontario tax calculation
+				$ontario_tax += (10 / 2) * $ontario_duty_per_2ml;
+				if ( $second_part > 0 ) {
+					$ontario_tax += floor( $second_part / 10 ) * $ontario_duty_per_10ml;
+				}
 
-                // Federal tax calculation
-                $federal_tax += (10 / 2) * $federal_duty_per_2ml;
-                if ( $second_part > 0 ) {
-                    $federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
-                }
-            }
+				// Federal tax calculation
+				$federal_tax += (10 / 2) * $federal_duty_per_2ml;
+				if ( $second_part > 0 ) {
+					$federal_tax += floor( $second_part / 10 ) * $federal_duty_per_10ml;
+				}
+			}
 
-            // Determine the final price based on state
-            if ( 'Ontario' !== $state ) {
-                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $federal_tax : $reg_price + $federal_tax;
-            } else {
-                $final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
-            }
+			// Determine the final price based on state
+			if ( 'Ontario' !== $state ) {
+				$final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $federal_tax : $reg_price + $federal_tax;
+			} else {
+				$final_price = isset( $sale_price ) && !empty( $sale_price ) ? $sale_price + $ontario_tax + $federal_tax : $reg_price + $ontario_tax + $federal_tax;
+			}
 
 			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) {
 				// Prepare the price breakdown details
@@ -3903,11 +3907,11 @@ if ( ! function_exists( 'supavapes_cart_item_custom_price' ) ) {
 				// 	<div class="supavapes-tooltip">' . $price_breakdown . '</div>
 				// </span>';
 			}
-            $price = wc_price( $final_price ) . $info_icon_html;
-        }
+			$price = wc_price( $final_price ) . $info_icon_html;
+		}
 
-        return $price;
-    }
+		return $price;
+	}
 }
 
 // add_filter( 'woocommerce_cart_item_price', 'supavapes_cart_item_custom_price', 10, 3 );
@@ -4061,35 +4065,35 @@ add_action( 'wp_ajax_refresh_order_notes', 'supavapes_refresh_order_notes_callba
 
 // Function to display the correct price based on the user state
 function display_price_based_on_state() {
-    global $product;
+	global $product;
 
-    // Get the product ID
-    $product_id = $product->get_id();
+	// Get the product ID
+	$product_id = $product->get_id();
 
-    // Check for Ontario price
-    $ontario_price = get_post_meta( $product_id, '_ontario_price', true );
+	// Check for Ontario price
+	$ontario_price = get_post_meta( $product_id, '_ontario_price', true );
 
-    // Check for Federal price
-    $federal_price = get_post_meta( $product_id, '_federal_price', true );
+	// Check for Federal price
+	$federal_price = get_post_meta( $product_id, '_federal_price', true );
 
-    // Get the user's state from the cookie
-    $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+	// Get the user's state from the cookie
+	$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-    // Determine which price to show
-    if ( 'ontario' === strtolower( $state ) && $ontario_price ) {
-        // Display Ontario price
-        echo '<span class="product-price">' . wc_price( $ontario_price ) . ' (Ontario Price)</span>';
-    } elseif ( 'federal' === strtolower( $state ) && $federal_price ) {
-        // Display Federal price
-        echo '<span class="product-price">' . wc_price( $federal_price ) . ' (Federal Price)</span>';
-    } else {
-        // Display regular or sale price
-        if ( $product->is_on_sale() ) {
-            echo '<span class="product-price">' . $product->get_sale_price() . ' (Sale Price)</span>';
-        } else {
-            echo '<span class="product-price">' . wc_price( $product->get_regular_price() ) . '</span>';
-        }
-    }
+	// Determine which price to show
+	if ( 'ontario' === strtolower( $state ) && $ontario_price ) {
+		// Display Ontario price
+		echo '<span class="product-price">' . wc_price( $ontario_price ) . ' (Ontario Price)</span>';
+	} elseif ( 'federal' === strtolower( $state ) && $federal_price ) {
+		// Display Federal price
+		echo '<span class="product-price">' . wc_price( $federal_price ) . ' (Federal Price)</span>';
+	} else {
+		// Display regular or sale price
+		if ( $product->is_on_sale() ) {
+			echo '<span class="product-price">' . $product->get_sale_price() . ' (Sale Price)</span>';
+		} else {
+			echo '<span class="product-price">' . wc_price( $product->get_regular_price() ) . '</span>';
+		}
+	}
 }
 
 // Hook the function to display the price before the product summary
@@ -4224,78 +4228,78 @@ if ( ! function_exists( 'supavapes_detail_page_price_breakdown_callback' ) ) {
 	function supavapes_detail_page_price_breakdown_callback() {
 		global $product;
 		$product_id = $product->get_id();
-        $product_data = wc_get_product( $product_id );
+		$product_data = wc_get_product( $product_id );
 
-        if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
-            $product_type = $product_data->get_type();
-        }
+		if ( $product_data && method_exists( $product_data, 'get_type' ) ) {
+			$product_type = $product_data->get_type();
+		}
 
-        // Retrieve active offers
-        $active_offers = supa_active_offers_from_discount();
-        $applied_discount = 0;
+		// Retrieve active offers
+		$active_offers = supa_active_offers_from_discount();
+		$applied_discount = 0;
 
-        // Check if the current product is eligible for any discount
-        if ( ! empty( $active_offers ) ) {
-            foreach ( $active_offers as $offer ) {
-                if ( isset( $offer['products'] ) && in_array( $product_id, $offer['products'] ) ) {
-                    $applied_discount = $offer['discount_value']; // Apply the discount
-                    break;
-                }
-            }
-        }
+		// Check if the current product is eligible for any discount
+		if ( ! empty( $active_offers ) ) {
+			foreach ( $active_offers as $offer ) {
+				if ( isset( $offer['products'] ) && in_array( $product_id, $offer['products'] ) ) {
+					$applied_discount = $offer['discount_value']; // Apply the discount
+					break;
+				}
+			}
+		}
 
-        // Logic for Simple Products
-        if ( $product_type == 'simple' ) {
+		// Logic for Simple Products
+		if ( $product_type == 'simple' ) {
 			// echo "innnnn";
-            $reg_price  = $product->get_regular_price();
-            $sale_price = $product->get_sale_price();
-            $product_price = $sale_price ? $sale_price : $reg_price;
+			$reg_price  = $product->get_regular_price();
+			$sale_price = $product->get_sale_price();
+			$product_price = $sale_price ? $sale_price : $reg_price;
 
-            // If there is a discount, apply it
-            if ( $applied_discount ) {
-                if ( strpos( $applied_discount, '%' ) !== false ) {
-                    // Percentage-based discount
-                    $discount_value = str_replace( '%', '', $applied_discount );
-                    $discount_amount = ( $product_price * $discount_value ) / 100;
-                } else {
-                    // Fixed discount (assumed to be a numeric value like "$5 OFF")
-                    $discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
-                }
+			// If there is a discount, apply it
+			if ( $applied_discount ) {
+				if ( strpos( $applied_discount, '%' ) !== false ) {
+					// Percentage-based discount
+					$discount_value = str_replace( '%', '', $applied_discount );
+					$discount_amount = ( $product_price * $discount_value ) / 100;
+				} else {
+					// Fixed discount (assumed to be a numeric value like "$5 OFF")
+					$discount_amount = floatval( str_replace( array('$', ' OFF'), '', $applied_discount ) );
+				}
 
-                // Apply the discount to the price
-                $product_price = max( 0, $product_price - $discount_amount );
-            }
+				// Apply the discount to the price
+				$product_price = max( 0, $product_price - $discount_amount );
+			}
 
-            $vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
-            $vaping_liquid = (int) $vaping_liquid;
-            $state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
+			$vaping_liquid = get_post_meta( $product_id, '_vaping_liquid', true );
+			$vaping_liquid = (int) $vaping_liquid;
+			$state = isset( $_COOKIE['user_state'] ) ? sanitize_text_field( $_COOKIE['user_state'] ) : '';
 
-            if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
-                $ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
-                $federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
-            }
+			if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) ) {
+				$ontario_tax = supavapes_calculate_ontario_tax( $vaping_liquid );
+				$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
+			}
 
-            // Determine the final price based on state
-            $final_price = $product_price;
-            if ( 'Ontario' !== $state ) {
-                $final_price += $federal_tax;
-            } else {
-                $final_price += $ontario_tax + $federal_tax;
-            }
+			// Determine the final price based on state
+			$final_price = $product_price;
+			if ( 'Ontario' !== $state ) {
+				$final_price += $federal_tax;
+			} else {
+				$final_price += $ontario_tax + $federal_tax;
+			}
 
-            // Add the info icon and price breakdown popup
-            ob_start(); ?>
+			// Add the info icon and price breakdown popup
+			ob_start(); ?>
 			<?php //echo wc_price( $product_price ); ?>
-            <?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
-                echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
-                ?>
-                <?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
-                    <p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
-                <?php } ?>
-            <?php } ?>
-            <?php 
-            echo ob_get_clean();
-        }
+			<?php if ( isset( $vaping_liquid ) && ! empty( $vaping_liquid ) && $vaping_liquid >= 10 ) { 
+				echo supavapes_price_breakdown_custom_html( $product_price, $federal_tax, $ontario_tax, $final_price, $state );
+				?>
+				<?php if( isset( $vaping_liquid ) && !empty( $vaping_liquid ) ) { ?>
+					<p class="vaping-liquid-value"><?php esc_html_e( 'Vaping Liquid: ','supavapes' ); ?><?php echo $vaping_liquid.' ml'; ?></p>
+				<?php } ?>
+			<?php } ?>
+			<?php 
+			echo ob_get_clean();
+		}
 
 		// Logic for Variable Products
 		if ( $product_type == 'variable' ) {
@@ -4823,16 +4827,16 @@ if ( ! function_exists( 'supavapes_update_user_location_callback' ) ) {
 		$userselectedcountry = isset( $_POST['userselectedcountry'] ) ? sanitize_text_field( $_POST['userselectedcountry'] ) : '';
 		
 		if ( ! empty( $userselectedstate ) && ! empty( $userselectedcountry )) {
-            // Set the state value in a cookie that expires in 7 days
-            // setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
+			// Set the state value in a cookie that expires in 7 days
+			// setcookie( 'user_state', $state, time() + (86400 * 30), "/" );
 			setcookie( 'user_state', $userselectedstate, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
 			setcookie( 'user_country', $userselectedcountry, time() + (86400 * 7), COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
-            wp_send_json_success( array( 'message' => 'State & country value has been updated in the cookie.' ) );
-        } else {
-            wp_send_json_error( array( 'message' => 'State & country value is not provided.' ) );
-        }
+			wp_send_json_success( array( 'message' => 'State & country value has been updated in the cookie.' ) );
+		} else {
+			wp_send_json_error( array( 'message' => 'State & country value is not provided.' ) );
+		}
 
-        wp_die();
+		wp_die();
 	}
 }
 
@@ -4841,32 +4845,32 @@ add_action( 'wp_ajax_nopriv_update_user_location', 'supavapes_update_user_locati
 
 
 function supavapes_price_breakdown_order_received( $item_id, $item, $order, $is_visible ) {
-    // Get the Ontario and Federal tax from the order meta
-    $ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
-    $federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
+	// Get the Ontario and Federal tax from the order meta
+	$ontario_tax = wc_get_order_item_meta( $item_id, 'ontario_tax', true );
+	$federal_tax = wc_get_order_item_meta( $item_id, 'federal_tax', true );
 
-    // Get product and variation details
-    $product_id = $item->get_product_id(); // Parent product ID
-    $variation_id = $item->get_variation_id(); // Variation ID if it exists
+	// Get product and variation details
+	$product_id = $item->get_product_id(); // Parent product ID
+	$variation_id = $item->get_variation_id(); // Variation ID if it exists
 
-    // Check if it's a variation or a simple product
-    if ( $variation_id ) {
-        // It's a variation, get the variation product object
-        $product = wc_get_product( $variation_id );
-    } else {
-        // It's a simple product, get the product object
-        $product = wc_get_product( $product_id );
-    }
+	// Check if it's a variation or a simple product
+	if ( $variation_id ) {
+		// It's a variation, get the variation product object
+		$product = wc_get_product( $variation_id );
+	} else {
+		// It's a simple product, get the product object
+		$product = wc_get_product( $product_id );
+	}
 
-    // Get product price (regular and sale)
-    $reg_price = $product->get_regular_price();
-    $sale_price = $product->get_sale_price();
-    $product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
+	// Get product price (regular and sale)
+	$reg_price = $product->get_regular_price();
+	$sale_price = $product->get_sale_price();
+	$product_price = $sale_price ? $sale_price : $reg_price; // Use sale price if available, otherwise regular price
 
-    // Calculate the final price including taxes
-    $final_price = floatval( $product_price ) + floatval( $ontario_tax ) + floatval( $federal_tax );
-    ?>
-    <div class="product-pricebreakup-wrap">
+	// Calculate the final price including taxes
+	$final_price = floatval( $product_price ) + floatval( $ontario_tax ) + floatval( $federal_tax );
+	?>
+	<div class="product-pricebreakup-wrap">
 		<?php esc_html_e('Product Price: ','supavapes');?><?php echo wc_price( $final_price ); ?>
 		<div class="info-icon-container">
 		<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
@@ -5029,7 +5033,7 @@ if ( ! function_exists( 'supavapes_price_breakdown_html' ) ) {
 
 
 function supavapes_price_breakdown_custom_html( $product_price = null, $federal_tax = null, $ontario_tax = null, $final_price = null, $state = '' ) {
-    
+	
 	$popup_heading             = get_field( 'popup_heading', 'option' );
 	$popup_heading             = ( empty( $popup_heading ) || is_null( $popup_heading ) || false === $popup_heading ) ? __( 'Price Breakdown', 'supavapes' ) : $popup_heading;
 	$product_price_label       = get_field( 'product_price_label', 'option' );
@@ -5042,45 +5046,45 @@ function supavapes_price_breakdown_custom_html( $product_price = null, $federal_
 	$total_product_price_label = ( empty( $total_product_price_label ) || is_null( $total_product_price_label ) || false === $total_product_price_label ) ? __( 'Total Product Price:', 'supavapes' ) : $total_product_price_label;
 	ob_start(); // Start output buffering
 	?>
-    <div class="info-icon-container test">
-        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-        <div class="price-breakup-popup">
-            <h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
-            <table class="pricetable">
+	<div class="info-icon-container test">
+		<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+		<div class="price-breakup-popup">
+			<h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
+			<table class="pricetable">
 				<tr>
 					<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
 					<td class='rightprice'><?php echo wc_price( $product_price ); ?></td>
 				</tr>
-                <?php if ( 'Ontario' !== $state ) { ?>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                </tr>
-                <?php } else { ?>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
-                </tr>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
-                </tr>
-                <?php } ?>
-                <tr class="wholesaleprice">
-                    <td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <?php
-    return ob_get_clean(); // Return the buffered output
+				<?php if ( 'Ontario' !== $state ) { ?>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+				</tr>
+				<?php } else { ?>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $ontario_tax ); ?></td>
+				</tr>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $federal_tax ); ?></td>
+				</tr>
+				<?php } ?>
+				<tr class="wholesaleprice">
+					<td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $final_price ); ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean(); // Return the buffered output
 }
 
 
 
 function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max_price = null, $min_federal_tax = null, $max_federal_tax = null, $min_ontario_tax = null, $max_ontario_tax = null, $final_min_price = null, $final_max_price = null, $state = '' ) {
-    
+	
 	$popup_heading             = get_field( 'popup_heading', 'option' );
 	$popup_heading             = ( empty( $popup_heading ) || is_null( $popup_heading ) || false === $popup_heading ) ? __( 'Price Breakdown', 'supavapes' ) : $popup_heading;
 	$product_price_label       = get_field( 'product_price_label', 'option' );
@@ -5094,39 +5098,39 @@ function supavapes_price_breakdown_in_range_custom_html( $min_price = null, $max
 
 	ob_start(); // Start output buffering
 	?>
-    <div class="info-icon-container test">
-        <img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
-        <div class="price-breakup-popup">
-            <h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
-            <table class="pricetable">
+	<div class="info-icon-container test">
+		<img src="/wp-content/uploads/2024/09/info-icon.svg" class="info-icon" alt="Info Icon" style="height: 15px; width: 15px; position: relative;">
+		<div class="price-breakup-popup">
+			<h5 class="header"><?php echo wp_kses_post( $popup_heading ); ?></h5>
+			<table class="pricetable">
 				<tr>
 					<td class='leftprice'><?php echo wp_kses_post( $product_price_label ); ?></td>
 					<td class='rightprice'><?php echo wc_price( $min_price ) . ' - ' . wc_price( $max_price ); ?></td>
 				</tr>
-                <?php if ( 'Ontario' !== $state ) { ?>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
-                </tr>
-                <?php } else { ?>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $min_ontario_tax ) . ' - ' . wc_price( $max_ontario_tax ); ?></td>
-                </tr>
-                <tr>
-                    <td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
-                </tr>
-                <?php } ?>
-                <tr class="wholesaleprice">
-                    <td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
-                    <td class='rightprice'><?php echo wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price ); ?></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <?php
-    return ob_get_clean(); // Return the buffered output
+				<?php if ( 'Ontario' !== $state ) { ?>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
+				</tr>
+				<?php } else { ?>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $ontario_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $min_ontario_tax ) . ' - ' . wc_price( $max_ontario_tax ); ?></td>
+				</tr>
+				<tr>
+					<td class='leftprice'><?php echo wp_kses_post( $federal_exise_tax_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $min_federal_tax ) . ' - ' . wc_price( $max_federal_tax ); ?></td>
+				</tr>
+				<?php } ?>
+				<tr class="wholesaleprice">
+					<td class='leftprice'><?php echo wp_kses_post( $total_product_price_label ); ?></td>
+					<td class='rightprice'><?php echo wc_price( $final_min_price ) . ' - ' . wc_price( $final_max_price ); ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean(); // Return the buffered output
 }
 
 
