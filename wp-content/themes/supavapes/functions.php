@@ -3643,11 +3643,8 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 
 		} else {
 			// For simple products
-			$reg_price     = $product->get_regular_price();
-			$sale_price    = $product->get_sale_price();
-
-			var_dump( 'sale price', $sale_price );
-
+			$reg_price     = (float) $product->get_regular_price();
+			$sale_price    = (float) $product->get_sale_price();
 			$vaping_liquid = get_post_meta( $product->get_id(), '_vaping_liquid', true );
 
 			// Initialize tax variables
