@@ -3663,15 +3663,13 @@ if ( ! function_exists( 'supavapes_custom_price_html' ) ) {
 				$federal_tax = supavapes_calculate_federal_tax( $vaping_liquid );
             }
 
-			var_dump( $ontario_tax, $federal_tax );
-			die("pool");
-
             // Determine the final price based on state
             if ( 'Ontario' !== $state ) {
                 $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
                 $final_price += $federal_tax;
             } else {
                 $final_price = isset( $sale_price ) && ! empty( $sale_price ) ? $sale_price : $reg_price;
+				var_dump( $ontario_tax, $federal_tax );
                 $final_price += $ontario_tax + $federal_tax;
             }
 
