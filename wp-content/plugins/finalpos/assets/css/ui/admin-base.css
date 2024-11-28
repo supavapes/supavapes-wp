@@ -1,0 +1,45 @@
+:root {
+    --uxlabs-primary-color: #3D4C66;
+    --uxlabs-base-color: #2797e8;
+    --uxlabs-secondary-color: #EAF5FF;
+    --uxlabs-text-color: #4d4d4d;
+    --uxlabs-text-light-color:#959595;
+    --uxlabs-white-color: #fff;
+    --uxlabs-warning-color: #ea9d4f;
+    --uxlabs-warning-color-light: #ce751b1b;
+    --uxlabs-error-color: #9f0f0f;
+    --uxlabs-error-bg-color: #FF525F33;
+    --uxlabs-success-color: #2797e8;
+    --uxlabs-hover-bg-color: #ffffff00;
+    --uxlabs-link-color: #005177;
+    --uxlabs-bg-color: #fcfcfc;
+    --uxlabs-highlight-bg-color: #fcfcfcf5;
+    --uxlabs-border-radius: 8px;
+    --uxlabs-border-color: #e7e7e7;
+    --uxlabs-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --uxlabs-input-bg-color: #f5f5f5;
+    --uxlabs-input-border-color: #f5f5f5;
+    --uxlabs-button-bg-color: #2797e8;
+    --uxlabs-button-bg-color-hover: #3D4C66;
+    --uxlabs-button-border-color: #2797e8;
+    --uxlabs-button-text-color: #ffffff;
+    --uxlabs-button-sec-bg-color: #EFF4F6;
+    --uxlabs-button-sec-bg-color-hover: #3D4C66;
+    --uxlabs-button-sec-border-color: #EFF4F6;
+    --uxlabs-button-sec-text-color: #758696;
+    --uxlabs-delete-bg-color: #b72c2d8a;
+    --uxlabs-delete-text-color: #ffffff;
+    --uxlabs-search-box-bg-color: #3d4c66;
+
+    --wp-admin-theme-color: var(--uxlabs-primary-color)!important;
+    --wc-primary: var(--uxlabs-primary-color)!important;
+    --woocommerce: var(--uxlabs-primary-color)!important;
+}
+
+
+
+
+#toplevel_page_final-admin-dashboard > a > div.wp-menu-image.dashicons-before > img{
+    width: 20px;
+    margin-top: -2px;
+}

@@ -1,0 +1,296 @@
+/* Allgemeine Stile für Admin-Leisten-Icons */
+#wpadminbar .ab-item .ab-icon {
+    font-family: "Material Symbols Outlined" !important;
+    font-size: 16px !important;
+}
+
+#wpadminbar #wp-admin-bar-frontend-logo.frontend-logo-container .ab-item img{
+    display: block!important;
+}
+
+
+/* Versteckt alle Icons, Bilder und SVGs in der Admin-Leiste */
+#wpadminbar .ab-icon,
+#wpadminbar .ab-item img,
+#wpadminbar .ab-item svg,
+#wpadminbar .ab-item:before {
+    display: none !important;
+}
+
+/* Entfernt Hintergrundbilder aus allen Elementen in der Admin-Leiste */
+#wpadminbar .ab-item,
+#wpadminbar .ab-icon,
+#wpadminbar .quicklinks .ab-item {
+    background-image: none !important;
+}
+#wp-admin-bar-new-content > a > span.ab-icon,
+#wp-admin-bar-quick-action > a > span.ab-icon{
+    display: block !important;
+}
+
+
+#wp-admin-bar-user-initials{
+    padding: 0 10px 0 0!important;
+    margin-left: -10px!important;
+}
+
+/* New Content Fix */
+#wp-admin-bar-new-content > a > span.ab-icon{
+    padding-top: 0px!important;
+    padding-bottom: 7px!important;
+}
+/* Icon padding Fix*/
+#wpadminbar .quicklinks>ul>li>a {
+    padding: 0 6px 0 10px!important;
+}
+
+#wpadminbar .custom-toolbar-icon .custom-icon {
+    color: #757575 !important; /* Icon color */
+}
+
+/* Spezifische Icons */
+#wpadminbar #wp-admin-bar-new-content .ab-icon:before {
+    content: "add_circle";
+}
+#wpadminbar #wp-admin-bar-fullscreen-mode .ab-icon:before {
+    content: "fullscreen";
+}
+#wpadminbar #wp-admin-bar-quick-action .ab-icon:before {
+    content: "bolt";
+}
+#wpadminbar #wp-admin-bar-search .ab-icon:before {
+    content: "search";
+}
+#wpadminbar #wp-admin-bar-plugins .ab-icon:before {
+    content: "extension";
+}
+#wpadminbar #wp-admin-bar-dashboard .ab-icon:before {
+    content: "storefront";
+}
+
+body:not(.wp-admin) #wpadminbar #wp-admin-bar-dashboard .ab-icon:before {
+    content: "dashboard";
+}
+
+/* Gemeinsame Stile für alle relevanten Elemente */
+#wpadminbar .ab-item {
+    border-radius: var(--uxlabs-border-radius) !important;
+    margin-left: 5px !important;
+    max-height: 35px;
+    align-content: center;
+    padding: 0px;
+    min-height: 35px;
+    padding: 0px 6px 0px 10px;
+}
+
+/* Spezifische Hintergrundfarben */
+#wpadminbar #wp-admin-bar-search .ab-item,
+#wpadminbar #wp-admin-bar-plugins .ab-item,
+#wpadminbar #wp-admin-bar-dashboard .ab-item {
+    background-color: var(--uxlabs-input-bg-color) !important; /* Hintergrundfarbe für Standard-Elemente */
+}
+#wp-admin-bar-search > a > span.ab-icon.custom-icon,
+#wp-admin-bar-plugins > a > span.ab-icon.custom-icon,
+#wp-admin-bar-dashboard > a > span.ab-icon.custom-icon{
+    display: block!important;
+}
+
+#wpadminbar #wp-admin-bar-aichat .ab-item,
+#wpadminbar .final-pos-class {
+    background-color: var(--uxlabs-secondary-color) !important; /* Hintergrundfarbe für AI Chat und Final POS */
+    border-radius: var(--uxlabs-border-radius);
+    color: var(--uxlabs-base-color);
+}
+#wpadminbar #wp-admin-bar-aichat .ab-icon:before{
+    color: var(--uxlabs-base-color);
+}
+
+/* Spezielle Stile für Final POS */
+#wpadminbar .final-pos-class {
+    padding: 0px 15px;
+    min-height: 35px;
+}
+
+
+#wpadminbar .ab-top-secondary {
+    right: 0 !important;
+    left: auto !important;
+}
+
+
+
+/* Stile für Benutzerinitialen */
+#wpadminbar .user-initials-class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--uxlabs-primary-color);
+    color: white;
+    border-radius: var(--uxlabs-border-radius);
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+}
+
+
+
+#wpadminbar {
+    border-bottom: 1px dotted var(--uxlabs-border-color);
+    height: 50px;
+    align-content: center;
+}
+
+#wp-admin-bar-my-account,
+#wp-admin-bar-new-content > a > span.ab-label,
+#wp-admin-bar-site-name {
+    display: none;
+}
+
+#wp-admin-bar-new-content{
+    padding-left: 15px!important;
+}
+
+
+.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before,
+#wp-admin-bar-wp-logo {
+    display: none;
+}
+
+#wpadminbar #wp-admin-bar-comments .ab-icon:before {
+    content: "comment"; /* Material Icon Name */
+    font-family: 'Material Symbols Outlined';
+}
+
+#wpadminbar #wp-admin-bar-new-content .ab-icon:before {
+    content: "add_circle"; /* Material Icon Name */
+    font-family: 'Material Symbols Outlined';
+}
+
+#wpadminbar #wp-admin-bar-my-account.with-avatar>.ab-empty-item img,
+#wpadminbar #wp-admin-bar-my-account.with-avatar>a img {
+    height: 28px!important;
+    border-radius: 100%;
+    border: none !important;
+    margin-right: 12px;
+}
+
+.woocommerce-layout__header {
+    top: 50px!important;
+}
+
+/* Am Ende der Datei hinzufügen */
+#wpadminbar .custom-toolbar-icon .update-plugins {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    display: inline-block;
+    background-color: var(--uxlabs-primary-color);
+    color: #fff;
+    line-height: 14px;
+    font-weight: 600;
+    border-radius: 7px;
+    z-index: 26;
+    min-width: 14px;
+    height: 14px;
+    text-align: center;
+}
+
+#wpadminbar .custom-toolbar-icon .update-plugins .update-count {
+    display: block;
+    padding: 0 4px;
+    font-size: 6px;
+}
+
+#wpadminbar .custom-toolbar-icon {
+    position: relative;
+}
+
+
+/* Am Ende der Datei hinzufügen */
+body.uxlabs-hide-admin-toolbar #wpadminbar .ab-top-menu > li:not(.custom-toolbar-icon):not(#wp-admin-bar-user-initials):not(#wp-admin-bar-new-content):not(#wp-admin-bar-site-name):not(#wp-admin-bar-customize):not(#wp-admin-bar-updates):not(#wp-admin-bar-comments):not(#wp-admin-bar-wp-logo) {
+    display: none !important;
+}
+
+body.uxlabs-hide-admin-toolbar #wpadminbar .ab-top-secondary > li:not(.custom-toolbar-icon):not(#wp-admin-bar-user-initials) {
+    display: none !important;
+}
+
+/* Stile für das Frontend-Logo */
+#wpadminbar #wp-admin-bar-frontend-logo {
+    padding: 0;
+    margin: 0;
+}
+
+#wpadminbar #wp-admin-bar-frontend-logo .ab-item {
+    padding: 0;
+    background: none !important;
+}
+
+#wpadminbar .frontend-toolbar-logo {
+    height: 30px;
+    padding-left: 15px;
+    padding-top: 1px;
+    width: auto;
+    vertical-align: top;
+}
+
+/* Entfernen Sie den linken Abstand für das erste Element nach dem Logo */
+#wpadminbar #wp-admin-bar-root-default > li:nth-child(2) {
+    margin-left: 0 !important;
+}
+
+#wpadminbar #wp-admin-bar-fullscreen-mode .ab-item {
+    background-color: var(--uxlabs-input-bg-color) !important;
+}
+
+/* Ensure the fullscreen icon is displayed */
+#wp-admin-bar-fullscreen-mode > a > span.ab-icon.custom-icon {
+    display: block !important;
+}
+
+/* Fullscreen mode styles */
+body.uxlabs-fullscreen-mode #adminmenumain,
+body.uxlabs-fullscreen-mode #wpadminbar {
+    display: none !important;
+}
+
+body.uxlabs-fullscreen-mode #wpcontent,
+body.uxlabs-fullscreen-mode #wpfooter {
+    margin-left: 0 !important;
+}
+
+body.uxlabs-fullscreen-mode #wpbody-content {
+    padding-top: 0 !important;
+}
+
+body.uxlabs-fullscreen-mode #wpcontent {
+    margin-top: -50px; /* Kompensiert die Höhe der Admin-Leiste */
+}
+
+/* Fullscreen close button */
+.uxlabs-fullscreen-close {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    z-index: 9999;
+    background-color: var(--uxlabs-input-bg-color);
+    color: #757575;
+    border: none;
+    border-radius: var(--uxlabs-border-radius);
+    padding: 8px;
+    cursor: pointer;
+    display: none;
+}
+
+body.uxlabs-fullscreen-mode #custom-logo{
+    display: none;
+}
+
+body.uxlabs-fullscreen-mode .uxlabs-fullscreen-close {
+    display: block;
+}
+
+.uxlabs-fullscreen-close .material-icons {
+    font-size: 24px;
+}
+

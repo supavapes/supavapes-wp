@@ -1,0 +1,45 @@
+/* 
+/* Germanized Plugin Compatibility 
+*/
+
+
+    .post-type-shop_order .wp-list-table .shipping_status .order-shipping-status, .woocommerce_page_wc-orders .wp-list-table .shipping_status .order-shipping-status {
+        font-size: 12px !important;
+        display: block !important;
+        align-content: center;
+        border-radius: var(--uxlabs-border-radius);
+        max-width: 85px!important;
+        padding: 3px 8px!important;
+    }
+
+
+    .order-return-status.status-delivered, .order-return-status.status-returned, .order-return-status.status-shipped, .order-shipping-status.status-delivered, .order-shipping-status.status-returned, .order-shipping-status.status-shipped, .shipment-status.status-delivered, .shipment-status.status-returned, .shipment-status.status-shipped {
+        background: var(--uxlabs-secondary-color)!important;
+        color: var(--uxlabs-base-color)!important;
+    }
+
+    .order-return-status.status-no-shipping-needed, .order-shipping-status.status-no-shipping-needed, .shipment-status.status-no-shipping-needed{
+        background: var(--uxlabs-input-bg-color)!important;
+        color: var(--uxlabs-text-color)!important;
+    }
+
+    .order-return-status.status-not-shipped, .order-shipping-status.status-not-shipped, .shipment-status.status-not-shipped {
+        background: var(--uxlabs-error-bg-color)!important;
+        color: var(--uxlabs-error-color)!important;
+    }
+
+
+
+
+
+   /*STOCK */ 
+
+   #stock_management_trigger.button,
+   .button.variation_manage_stock{
+    background: var(--uxlabs-secondary-color)!important;
+    color: var(--uxlabs-base-color)!important;
+}
+.show_if_variation_manage_stock .form-field[class*="variable_stock"],
+.show_if_variation_manage_stock .form-field[class*="variable_backorders"] {
+    display: none !important;
+}

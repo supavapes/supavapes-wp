@@ -1,0 +1,148 @@
+/* Stock Management Popup Styling */
+#variation-management-popup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#variation-management-popup input[type="number"],
+#variation-management-popup select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+}
+
+#variation-management-popup input[readonly] {
+    background-color: #f5f5f5;
+}
+
+#variations-container {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.variation {
+    border: 1px solid var(--uxlabs-border-color);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Generisches Popup Styling */
+/* Overlay für den Hintergrund */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.generic-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid var(--uxlabs-border-color);
+    box-shadow: var(--uxlabs-box-shadow);
+    z-index: 1000;
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 8px;
+}
+
+.generic-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.generic-popup-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.generic-popup-close {
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--uxlabs-text-color);
+    background-color: var(--uxlabs-input-bg-color);
+    padding: 3px;
+    border-radius: var(--uxlabs-border-radius);
+}
+
+.generic-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#stock-popup > div.generic-popup-content{
+    max-height: unset;
+    overflow-y: visible;
+}
+
+.generic-popup-content input,
+.generic-popup-content select,
+.generic-popup-content textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.generic-popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.generic-popup-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.generic-popup-actions .save-button {
+    background-color: var(--uxlabs-base-color);
+    color: white;
+}
+
+.generic-popup-actions .cancel-button {
+    background-color: var(--uxlabs-border-color);
+    color: white;
+}
+
+.stock-value-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-value {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: var(--uxlabs-border-radius);
+    background-color: #f5f5f5;
+}
+
+.stock-value.new {
+    background-color: var(--uxlabs-secondary-color);
+}

@@ -1,0 +1,521 @@
+:root {
+    --uxlabs-primary-color: #3D4C66;
+    --uxlabs-base-color: #2797e8;
+    --uxlabs-secondary-color: #EAF5FF;
+    --uxlabs-text-color: #4d4d4d;
+    --uxlabs-text-light-color:#959595;
+    --uxlabs-white-color: #fff;
+    --uxlabs-warning-color: #ea9d4f;
+    --uxlabs-warning-color-light: #ce751b1b;
+    --uxlabs-error-color: #9f0f0f;
+    --uxlabs-error-bg-color: #FF525F33;
+    --uxlabs-success-color: #2797e8;
+    --uxlabs-hover-bg-color: #ffffff00;
+    --uxlabs-link-color: #005177;
+    --uxlabs-bg-color: #fcfcfc;
+    --uxlabs-highlight-bg-color: #fcfcfcf5;
+    --uxlabs-border-radius: 8px;
+    --uxlabs-border-color: #e7e7e7;
+    --uxlabs-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --uxlabs-input-bg-color: #f5f5f5;
+    --uxlabs-input-border-color: #f5f5f5;
+    --uxlabs-button-bg-color: #2797e8;
+    --uxlabs-button-bg-color-hover: #3D4C66;
+    --uxlabs-button-border-color: #2797e8;
+    --uxlabs-button-text-color: #ffffff;
+    --uxlabs-button-sec-bg-color: #EFF4F6;
+    --uxlabs-button-sec-bg-color-hover: #3D4C66;
+    --uxlabs-button-sec-border-color: #EFF4F6;
+    --uxlabs-button-sec-text-color: #758696;
+    --uxlabs-delete-bg-color: #b72c2d8a;
+    --uxlabs-delete-text-color: #ffffff;
+    --uxlabs-search-box-bg-color: #3d4c66;
+
+    --wp-admin-theme-color: var(--uxlabs-primary-color)!important;
+    --wc-primary: var(--uxlabs-primary-color)!important;
+    --woocommerce: var(--uxlabs-primary-color)!important;
+}
+
+body.uxlabs-dark-mode {
+    --uxlabs-primary-color: #54698e;
+    --uxlabs-secondary-color: #b6cee789;
+    --uxlabs-text-color: #f7f7f7;
+    --uxlabs-white-color: #191919;
+    --uxlabs-error-color: #ff6b6b;
+    --uxlabs-success-color: #4caf50;
+    --uxlabs-hover-bg-color: #92adde66;
+    --uxlabs-link-color: #bbdefb;
+    --uxlabs-bg-color: #1d1d1d;
+    --uxlabs-highlight-bg-color: #212121;
+    --uxlabs-border-color: #616161;
+    --uxlabs-input-bg-color: #5e5e5e66;
+    --uxlabs-input-border-color: #616161;
+    --uxlabs-button-bg-color: #5e5e5e66;
+    --uxlabs-delete-bg-color: #e57373;
+    --uxlabs-delete-text-color: #ffffff;
+    --uxlabs-search-box-bg-color: #616161;
+}
+
+.final-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.final-card {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin: 20px 0px;
+    flex: 1;
+    max-width: 350px;
+}
+
+.final-card-icon {
+    background-color: #2c3e50;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.latest-posts-card .material-symbols-outlined,
+.latest-pages-card .material-symbols-outlined {
+    color: var(--uxlabs-base-color);
+    font-size: 16px;
+}
+
+.final-card-icon span.material-symbols-outlined {
+    color: var(--uxlabs-white-color);
+    font-size: 32px;
+}
+
+.final-card-text {
+    color: var(--uxlabs-text-color);
+    flex: 1;
+}
+
+.final-card-text h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--uxlabs-text-color);
+}
+.toplevel_page_final-admin-dashboard div.wrap h1{
+    display: none;
+}
+
+
+/* Widgets */
+.final-widgets {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.final-widgets .revenue-card,
+.final-widgets .orders-card,
+.final-widgets .products-card,
+.final-widgets .quicklinks-card
+ {
+    background-color: var(--uxlabs-white-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 48%;
+    border: 1px solid var(--uxlabs-border-color);
+    position: relative;
+    border-radius:  var(--uxlabs-border-radius);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+.final-widgets .quicklinks-card
+ {
+    width: 100%;
+}
+
+.final-widgets .revenue-card .card-header,
+.final-widgets .orders-card .card-header,
+.final-widgets .products-card .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.final-widgets .revenue-card .card-header h3,
+.final-widgets .orders-card .card-header h3,
+.final-widgets .products-card .card-header h3,
+.final-widgets.new-row > div > div.card-header > h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.final-widgets .revenue-card .total-value,
+.final-widgets .orders-card .total-value,
+.final-widgets .products-card .total-value {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-bottom: 5px !important;
+}
+
+.final-widgets .revenue-card .period-comparison,
+.final-widgets .orders-card .period-comparison,
+.final-widgets .products-card .period-comparison {
+    font-size: 12px;
+    color: #777;
+    margin-top: 0; /* Reduce margin for closer spacing */
+}
+
+.final-widgets .revenue-card .change-tag,
+.final-widgets .orders-card .change-tag,
+.final-widgets .products-card .change-tag {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute; /* Positioning the tag to the top right corner */
+    top: 20px;
+    right: 30px;
+}
+
+.final-widgets .change-tag.negative {
+    background-color: var(--uxlabs-warning-color-light);
+    color: var(--uxlabs-warning-color);
+}
+
+.final-widgets .chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.final-widgets .chart-legend span {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 12px;
+    color: #777;
+}
+
+.final-widgets .chart-legend .last-14-days::before,
+.final-widgets .chart-legend .previous-14-days::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.final-widgets .chart-legend .last-14-days::before {
+    background-color: var(--uxlabs-primary-color);
+}
+
+.final-widgets .chart-legend .previous-14-days::before {
+    background-color: var(--uxlabs-secondary-color);
+}
+
+.products-card #products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.products-card #products-table th,
+.products-card #products-table td {
+    padding: 8px 5px;
+    text-align: left;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+
+.products-card #products-table th {
+    font-size: 12px;
+    color: #777;
+    font-weight: normal;
+}
+
+.products-card #products-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.quantity-comparison {
+    padding: 0px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.quantity-comparison.positive {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+}
+
+.quantity-comparison.negative {
+    background-color: var(--uxlabs-warning-color-light);
+    color: var(--uxlabs-warning-color);
+}
+
+.latest-pages-card,
+.latest-posts-card {
+    background-color: var(--uxlabs-white-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 48%; /* Gleiche Breite wie andere Karten */
+    border: 1px solid var(--uxlabs-border-color);
+    position: relative;
+    margin-top: 20px;
+    flex: 1; /* Ermöglicht flexibles Layout mit anderen Karten */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.latest-pages-card .card-header,
+.latest-posts-card .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.latest-pages-card .card-header h3,
+.latest-posts-card .card-header h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 0px;
+    color: var(--uxlabs-text-color);
+}
+
+.latest-pages-card table,
+.latest-posts-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.latest-pages-card th,
+.latest-posts-card th,
+.latest-pages-card td,
+.latest-posts-card td {
+    padding: 8px 5px;
+    text-align: left;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+
+.final-widgets td{
+    font-size: 12px;
+}
+
+.latest-pages-card th,
+.latest-posts-card th {
+    font-size: 12px;
+    color: #777;
+    font-weight: normal;
+}
+
+
+.latest-pages-card td a,
+.latest-posts-card td a {
+    text-decoration: none;
+    color: #0073aa;
+    font-size: 12px;
+}
+
+.latest-pages-card td a:hover,
+.latest-posts-card td a:hover {
+    text-decoration: underline;
+}
+
+.latest-pages-card tbody tr:last-child td,
+.latest-posts-card tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* New styles for action icons */
+.action-icons {
+    border-collapse: separate;
+    border-spacing: 5px 0;
+}
+
+.action-icons td {
+    padding: 0;
+    border: none;
+}
+
+
+
+
+/* Add these styles at the end of the file */
+
+.woocommerce-orders-card {
+    background-color: var(--uxlabs-white-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid var(--uxlabs-border-color);
+    position: relative;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.woocommerce-orders-card .card-header h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 0px;
+    color: var(--uxlabs-text-color);
+}
+
+#woocommerce-orders-kanban {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#woocommerce-orders-kanban .kanban-column {
+    flex: 1;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border: none;
+}
+
+#woocommerce-orders-kanban .kanban-column h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--uxlabs-text-color);
+    display: flex;
+    align-items: center;
+}
+
+#woocommerce-orders-kanban .kanban-column h4 .status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+#woocommerce-orders-kanban .kanban-items {
+    min-height: 200px;
+}
+
+#woocommerce-orders-kanban .kanban-item {
+    background-color: var(--uxlabs-white-color);
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: move;
+}
+
+.kanban-item:last-child {
+    margin-bottom: 0;
+}
+
+.kanban-item .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.kanban-item .order-number {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.kanban-item .order-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #777;
+}
+
+.kanban-item .order-total {
+    font-weight: bold;
+}
+
+.kanban-item.dragging {
+    opacity: 0.5;
+}
+
+.kanban-column.drag-over {
+    background-color: #e0e0e0;
+}
+
+/* Product List Improvements */
+.products-card #products-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.products-card #products-table th,
+.products-card #products-table td {
+    padding: 8px 5px;
+    vertical-align: middle;
+}
+
+.products-card #products-table .product-name {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.products-card #products-table .product-sold {
+    width: 25%;
+    text-align: right;
+}
+
+.products-card #products-table .product-sold .quantity-comparison {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.products-card #products-table .product-revenue {
+    width: 25%;
+    text-align: right;
+}
+
+/* Latest Posts and Pages Improvements */
+.latest-pages-card table,
+.latest-posts-card table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.latest-pages-card th,
+.latest-posts-card th,
+.latest-pages-card td,
+.latest-posts-card td {
+    vertical-align: middle;
+}
+
+.latest-pages-card .content-title,
+.latest-posts-card .content-title {
+    width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.latest-pages-card .content-author,
+.latest-posts-card .content-author {
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.latest-pages-card .content-date,
+.latest-posts-card .content-date {
+    width: 20%;
+}
+
+.latest-pages-card .content-actions,
+.latest-posts-card .content-actions {
+    width: 20%;
+}

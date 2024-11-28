@@ -1,0 +1,1294 @@
+:root {
+    --uxlabs-primary-color: #3D4C66;
+    --uxlabs-base-color: #2797e8;
+    --uxlabs-secondary-color: #EAF5FF;
+    --uxlabs-text-color: #4d4d4d;
+    --uxlabs-text-light-color:#959595;
+    --uxlabs-white-color: #fff;
+    --uxlabs-warning-color: #ea9d4f;
+    --uxlabs-warning-color-light: #ce751b1b;
+    --uxlabs-error-color: #9f0f0f;
+    --uxlabs-error-bg-color: #FF525F33;
+    --uxlabs-success-color: #2797e8;
+    --uxlabs-hover-bg-color: #ffffff00;
+    --uxlabs-link-color: #005177;
+    --uxlabs-bg-color: #fcfcfc;
+    --uxlabs-highlight-bg-color: #fcfcfcf5;
+    --uxlabs-border-radius: 8px;
+    --uxlabs-border-color: #e7e7e7;
+    --uxlabs-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --uxlabs-input-bg-color: #f5f5f5;
+    --uxlabs-input-border-color: #f5f5f5;
+    --uxlabs-button-bg-color: #2797e8;
+    --uxlabs-button-bg-color-hover: #3D4C66;
+    --uxlabs-button-border-color: #2797e8;
+    --uxlabs-button-text-color: #ffffff;
+    --uxlabs-button-sec-bg-color: #EFF4F6;
+    --uxlabs-button-sec-bg-color-hover: #3D4C66;
+    --uxlabs-button-sec-border-color: #EFF4F6;
+    --uxlabs-button-sec-text-color: #758696;
+    --uxlabs-delete-bg-color: #b72c2d8a;
+    --uxlabs-delete-text-color: #ffffff;
+    --uxlabs-search-box-bg-color: #3d4c66;
+
+    --wp-admin-theme-color: var(--uxlabs-primary-color)!important;
+    --wc-primary: var(--uxlabs-primary-color)!important;
+    --woocommerce: var(--uxlabs-primary-color)!important;
+}
+
+body.uxlabs-dark-mode {
+    --uxlabs-primary-color: #54698e;
+    --uxlabs-secondary-color: #b6cee789;
+    --uxlabs-text-color: #f7f7f7;
+    --uxlabs-white-color: #191919;
+    --uxlabs-error-color: #ff6b6b;
+    --uxlabs-success-color: #4caf50;
+    --uxlabs-hover-bg-color: #92adde66;
+    --uxlabs-link-color: #bbdefb;
+    --uxlabs-bg-color: #1d1d1d;
+    --uxlabs-highlight-bg-color: #212121;
+    --uxlabs-border-color: #616161;
+    --uxlabs-input-bg-color: #5e5e5e66;
+    --uxlabs-input-border-color: #616161;
+    --uxlabs-button-bg-color: #5e5e5e66;
+    --uxlabs-delete-bg-color: #e57373;
+    --uxlabs-delete-text-color: #ffffff;
+    --uxlabs-search-box-bg-color: #616161;
+}
+
+
+body.final-woo-optimizations-enabled a[href="http://final-pos.local/wp-admin/admin.php?page=wc-settings&tab=site-visibility"] {
+    display: none !important;
+}
+
+
+#screen-meta-links{
+    display: none;
+}
+
+.widgets-php #screen-meta-links, .nav-menus-php #screen-meta-links, .post-type-shop_order #screen-meta-links {
+    display: block;
+    position: absolute;
+    top: -88px;
+    right: 0px;
+}
+
+
+#wp-admin-bar-user-initials .user-initials-class:hover {
+    background-color: #1a242f; /* Hover-Hintergrund */
+}
+#wpadminbar > #wp-toolbar > #wp-admin-bar-top-secondary > #wp-admin-bar-search #adminbarsearch input.adminbar-input:focus {
+    background: var(--uxlabs-input-bg-color) !important;
+    margin-top: -8px;
+}
+
+
+.wp-admin-bar-search a.ab-item{
+    padding-left: 3px !important;
+}
+
+
+.post-type-shop_order .wp-list-table .column-order_total, .woocommerce_page_wc-orders .wp-list-table .column-order_total {
+    width: 11ch!important;
+}
+
+
+td.shipping_address.column-shipping_address > span,
+td.billing_address.column-billing_address > span{
+    font-size: 10px;
+}
+
+
+.select2-container .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__placeholder,
+input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{
+    color: #000!important;
+    font-size: 12px!;
+    vertical-align: -webkit-baseline-middle;
+}
+
+
+
+
+/* Blendet das Eingabefeld für den Lagerbestand und das Dropdown für Backorders aus */
+.woocommerce_variation .form-field.variable_stock_field,
+.woocommerce_variation .form-field.variable_backorders_field,
+.woocommerce-marketing-coupons .components-card {
+    display: none !important;
+}
+/* Blende das "Stock Quantity"- und "Allow Backorders"-Feld im Variations-Backend für alle Variationen aus */
+.show_if_variation_manage_stock .form-field[id^="variable_stock"],
+.show_if_variation_manage_stock .form-field[id^="variable_backorders"] {
+    display: none !important;
+}
+
+
+.wc-wp-version-gte-53 .select2-container .select2-selection--single .select2-selection__rendered {
+    font-size: 12px;
+}
+.post-type-shop_order .tablenav #order-query-submit, .woocommerce_page_wc-orders .tablenav #order-query-submit,
+#post-query-submit {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+}
+
+
+/* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0; 
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; 
+    transition: .4s; 
+    border-radius: 4px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 4px;
+}
+
+/* Wenn der Switch aktiviert ist */
+input:checked + .slider {
+    background-color: var(--uxlabs-base-color); 
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px); 
+}
+
+
+
+
+.final-pos_page_final-plugin-settings input[type="radio"],
+.final-pos_page_final-pos-setup input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+
+  
+ .final-pos_page_final-plugin-settings input[type="radio"]:checked::after,
+ .final-pos_page_final-pos-setup input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background-color: var(--uxlabs-base-color); 
+    border-radius: 4px;
+  }
+
+
+
+
+  .wp-person a:focus .gravatar, a:focus, a:focus .media-icon img, a:focus .plugin-icon {
+    box-shadow: none!important;
+    outline: 1px solid transparent!important;
+}
+
+
+#save_menu_footer.button{
+    background-color: var(--uxlabs-button-bg-color-hover);
+    color: #fff;
+}
+
+
+
+/* Material Icons */
+.material-symbols-outlined.uxlabs-boxed-icon{
+    font-size: 18px;
+    padding: 4px;
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+    border-radius: var(--uxlabs-border-radius);
+}
+.uxlabs-boxed-icon {
+    align-self: flex-start;
+}
+.material-symbols-outlined.finalicons {
+    font-size: 13px;
+}
+
+
+/* Primary Buttons */
+.uxlabs-buttons {
+    display: flex;
+    gap: 10px;
+}
+.uxlabs-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-primary-color);
+    padding: 5px 10px;
+    border-radius: var(--uxlabs-border-radius);
+    text-decoration: none;
+}
+.uxlabs-button:hover {
+    background-color: var(--uxlabs-button-hover-bg-color);
+}
+
+
+/* Standard Tab */
+.nav-tab-wrapper .nav-tab,
+#uxlabs-tabs a {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: #2d2d2d;
+    margin-right: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: normal;
+}
+
+/* Hover Tab */
+.nav-tab-wrapper .nav-tab:hover,
+#uxlabs-tabs a:hover {
+    background-color: #f6f8fb;
+    border: 1px solid #e0e0e0;
+    color: #2d2d2d;
+    cursor: pointer;
+}
+
+/* Active Tab */
+.nav-tab-wrapper .nav-tab-active,
+#uxlabs-tabs a.active {
+    background-color: #eaf3ff;
+    border: 1px solid #007cba;
+    color: #007cba;
+}
+
+/* Disabled Tab */
+.nav-tab-wrapper .nav-tab-disabled {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    color: #bcbcbc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Ensure Tabs Align Properly */
+.nav-tab-wrapper {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    list-style: none;
+    border-bottom: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#wpbody-content thead th {
+    background-color: var(--uxlabs-white-color);
+}
+
+
+
+
+
+
+
+#insert-ai-description, 
+#insert-ai-short-description {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.product_short_description .wp-editor-tools {
+    display: flex;
+    align-items: center;
+}
+
+.product_short_description .wp-editor-tools #insert-ai-short-description {
+    margin-left: 5px;
+}
+
+
+#final-sidebar-content > div{
+    margin: 10px;
+}
+
+
+.woocommerce-layout__header .woocommerce-layout__header-wrapper {
+    border-bottom: 1px dotted var(--uxlabs-border-color);
+}
+#woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items {
+    width: 100%;
+    background: var(--uxlabs-white-color)!important;
+}
+
+/*
+#final-sidebar,
+#final-sidebar-overlay{
+    display: none!important;
+}*/
+
+
+
+
+ul.order_notes li .note_content {
+    border-radius: var(--uxlabs-border-radius);
+}
+ul.order_notes li.system-note .note_content{ 
+    background-color: var(--uxlabs-secondary-color)!important; 
+    color: var(--uxlabs-base-color);
+}
+ul.order_notes li.system-note .note_content::after{
+    border-color: var(--uxlabs-secondary-color) transparent!important;
+}
+#wp-admin-bar-media > a:focus{ 
+    color: var(--uxlabs-text-color);
+}
+
+/* Custom CSS for WooCommerce Order Status Dropdown */
+td.order_status {
+    position: relative;
+    padding: 0; /* Entfernt das Padding, um das Dropdown richtig zu platzieren */
+}
+
+.wc-order-status-change {
+    margin: 0; /* Entfernt den äußeren Abstand */
+    padding: 2px; /* Fügt einen kleinen Innenabstand hinzu */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%); /* Zentriert das Dropdown vertikal in der Zelle */
+    max-width: 120px !important;
+}
+
+.spinner {
+    position: absolute;
+    right: 17px; /* Setzt den Spinner etwas weiter rechts, damit er nicht mit dem Dropdown überlappt */
+    top: 45%;
+    transform: translateY(-50%); /* Zentriert den Spinner vertikal in der Zelle */
+    z-index: 999999;
+}
+
+.checkmark {
+    position: absolute;
+    right: 30px;
+    top: 55%;
+    transform: translateY(-50%);
+}
+
+.dot {
+    margin-right: 5px; /* Fügt einen kleinen Abstand zwischen der Dot und dem Dropdown hinzu */
+}
+.checkmark > span {
+    background-color: var(--uxlabs-input-bg-color) !important;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+#wpfooter {
+    display: none !important;
+}
+
+
+
+
+
+.post-type-shop_order .wp-list-table .column-wc_actions a.button, .woocommerce_page_wc-orders .wp-list-table .column-wc_actions a.button {
+    min-width: 35px;
+    border: none;
+}
+.woocommerce-layout__header-tasks-reminder-bar {
+    background-color: var(--uxlabs-primary-color)!important;
+}
+.wc-wp-version-gte-53 .widefat .column-wc_actions a.button::after {
+    margin-top: 5px!important;
+}
+
+
+td.origin.column-origin,
+#origin,
+tr > th.manage-column.column-origin
+{
+    padding-left: 10px !important;
+}
+
+/* Admin-Styles */
+.postbox {
+    background: var(--uxlabs-white-color);
+    border: 1px solid var(--uxlabs-border-color);
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    padding: 5px;
+    border-radius:  var(--uxlabs-border-radius);
+}
+
+.postbox .inside {
+    padding: 15px;
+}
+.postbox .form-field {
+    margin-bottom: 15px;
+}
+.postbox .form-field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#wp-content-editor-tools,
+div.mce-toolbar-grp,
+#post-status-info,
+#postcustomstuff table,
+#postcustomstuff thead th {
+    background-color: var(--uxlabs-white-color)!important;
+}
+
+
+
+
+
+.order_actions li#actions select {
+    width: 210px!important;
+}
+#woocommerce-order-items{
+    padding: 20px;
+}
+
+
+#bulk-action-selector-top{
+    max-width: 120px;
+}
+.post-type-shop_order select#order-search-filter, .woocommerce_page_wc-orders select#order-search-filter {
+    max-width: 75px;
+}
+
+#wp-admin-bar-top-secondary .custom-toolbar-icon{
+    margin-left: 5px!important;
+}
+
+
+#wp-admin-bar-offline-bolt > div.ab-item.ab-empty-item > span{
+    margin-top: 4px;
+}
+
+
+.post-state{
+    background-color: var(--uxlabs-secondary-color);
+    font-size: 10px;
+    padding: 4px;
+    border-radius:  var(--uxlabs-border-radius);
+    margin-right: 5px;
+}
+
+td.final.column-final > span{
+    min-width: 35px;
+    min-height: 35px;
+    text-align: center;
+    place-content: center;
+    background-color:var(--uxlabs-primary-color);
+    color: var(--uxlabs-white-color);
+    border-radius:  var(--uxlabs-border-radius);
+}
+td.title.column-title.has-row-actions.column-primary,
+td.name.column-name.has-row-actions.column-primary,
+td.date.column-date{
+    padding-left: 10px!important;
+}
+
+
+
+
+
+
+.widefat tfoot tr th, .widefat thead tr th {
+    color: #2c3338;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: normal;
+}
+
+.tablenav .tablenav-pages .button, .tablenav .tablenav-pages .tablenav-pages-navspan{
+    min-width: 35px;
+    min-height: 35px;
+    text-align: center;
+    border: 1px #f6f7f7;
+    place-content: center;
+}
+table.wp-list-table .column-price {
+    width: 15ch!important;
+}
+
+
+
+.wp-core-ui select,
+.order_actions li#actions select,
+.post-type-shop_order select#order-search-filter, .woocommerce_page_wc-orders select#order-search-filter,
+.wc-wp-version-gte-53 .select2-container .select2-selection--single .select2-selection__rendered {
+    background-color: var(--uxlabs-input-bg-color);
+    border-color: var(--uxlabs-input-bg-color);
+    border-radius:  var(--uxlabs-border-radius);
+    min-height: 35px;
+    border-radius:  var(--uxlabs-border-radius);
+}
+.wp-admin.wc-wp-version-gte-53 .select2-container.select2-container--focus .select2-selection--single, .wp-admin.wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--multiple, .wp-admin.wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--single,
+.wc-wp-version-gte-53 .select2-container .select2-selection--single {
+    box-shadow: none!important;
+    border: none!important;
+}
+.post-type-product .tablenav .select2-container, .post-type-shop_order .tablenav .select2-container, .woocommerce_page_wc-orders .tablenav .select2-container {
+    margin: 0px 10px 0px 0px!important;
+}
+
+/*
+#doaction, #doaction2, #post-query-submit, #changeit, #changeit2{
+    border: 1px solid var(--uxlabs-primary-color);
+    color: var(--uxlabs-white-color);
+    background: var(--uxlabs-primary-color);
+    min-height: 35px;
+    border-radius:  var(--uxlabs-border-radius);
+}*/
+button.button.action.postfilter-toggle,
+.wp-core-ui .button, .wp-core-ui .button-secondary,
+.post-type-shop_order .tablenav #order-query-submit, .woocommerce_page_wc-orders .tablenav #order-query-submit{
+    border: 1px solid var(--uxlabs-input-bg-color);
+    color: var(--uxlabs-primary-color);
+    background: var(--uxlabs-input-bg-color);
+    min-height: 35px;
+    border-radius:  var(--uxlabs-border-radius);
+}
+
+
+
+
+.add_note #add_order_note,
+.wc-wp-version-gte-53 .select2-container .select2-selection--multiple,
+.form-field input[type=email], .form-field input[type=number], .form-field input[type=password], .form-field input[type=search], .form-field input[type=tel], .form-field input[type=text], .form-field input[type=url], .form-field textarea,
+.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag,
+#postcustomstuff table input, #postcustomstuff table select, #postcustomstuff table textarea {
+    background-color: var(--uxlabs-input-bg-color);
+    border-color: var(--uxlabs-input-bg-color);
+    min-height: 36px;
+    border-radius:  var(--uxlabs-border-radius);
+    border: none;
+}
+#postcustomstuff table input, #postcustomstuff table select, #postcustomstuff table textarea{
+    min-height: 50px!important;
+}
+#woocommerce-order-items .wc-order-data-row,
+#woocommerce-order-items .inside,
+#woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items thead th {
+    background: var(--uxlabs-highlight-bg-color)!important;
+}
+
+
+div.tablenav.top > div.tablenav-pages{
+    display: none;
+}
+.woocommerce_page_wc-orders p.search-box {
+    top: 51px;
+}
+#adminmenu .awaiting-mod, #adminmenu .menu-counter, #adminmenu .update-plugins {
+    height: 13px!important;
+    font-size: 8px!important;
+}
+/* Container für die Page Actions */
+
+.wrap .page-title-action {
+    float: right;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 2px 15px;
+    border-radius:  var(--uxlabs-border-radius);
+}
+
+/* Sicherstellen, dass die Überschrift korrekt ausgerichtet ist */
+.wrap h1.wp-heading-inline {
+    display: inline-block;
+    margin-right: auto;
+}
+
+
+#search-submit.button{
+    background: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+    padding: 2px 15px;
+    border-radius:  var(--uxlabs-border-radius);
+    border: none;
+}
+p.search-box {
+    top: 45px;
+}
+
+.subsubsub {
+    font-weight: 600;
+}
+.woocommerce-layout__activity-panel-tabs {
+    margin-left: -100px;
+}
+#wpbody-content > div.wrap > a:nth-child(2)
+{
+    margin-left: 3px;
+}
+
+
+
+/* Modernisiere die Tabelle */
+
+/* Container for the table to provide padding and background */
+.wp-list-table-container {
+    background-color: var(--uxlabs-white-color);
+    border-radius:  var(--uxlabs-border-radius);
+    padding: 15px;
+    padding-top: 0px;
+    margin: 20px 0; /* Added margin for spacing */
+}
+
+
+/* Set the table to have a more modern look with padding and white background */
+.wp-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--uxlabs-white-color);
+    border-radius:  var(--uxlabs-border-radius);
+    overflow: hidden;
+    margin: 20px 0; /* Added margin for spacing */
+}
+table.widefat {
+    box-shadow: none;
+}
+
+/* Style the table headers */
+.wp-list-table thead th {
+    background-color: var(--uxlabs-white-color);
+    color: var(--uxlabs-text-color);
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+.widefat tfoot td.check-column, .widefat thead td.check-column {
+    background-color: var(--uxlabs-white-color);
+}
+
+/* Style the table rows */
+.wp-list-table tbody tr {
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+.wp-list-table tbody tr:nth-child(odd),
+.wp-list-table tbody tr:nth-child(even),
+.wp-list-table tbody tr:hover,
+#major-publishing-actions {
+    background-color: var(--uxlabs-white-color); /* Highlighting on hover */
+}
+
+/* Style the table cells */
+.wp-list-table tbody td,
+.wp-list-table thead th,
+.wp-list-table tfoot th {
+    padding: 16px 0px!important;
+    color: #555;
+}
+
+#final.manage-column.column-final{
+    width: 4ch;
+}
+
+td.date.column-date{
+    font-size: 10px;
+}
+
+.column-author img, .column-comment .comment-author img, .column-username img {
+    border-radius: 100%;
+}
+
+
+.wp-list-table tbody td a:hover {
+    color: #005177;
+    text-decoration: underline;
+}
+
+/* Style the checkboxes */
+.wp-list-table tbody td .check-column input[type="checkbox"] {
+    margin: 0;
+}
+
+/* Adjust the table footer */
+.wp-list-table tfoot th {
+    background-color: var(--uxlabs-white-color);
+    color: var(--uxlabs-text-color);
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 24px;
+    border-top: 1px solid #e0e4e8;
+    border-bottom: none;
+}
+
+/* Style the search box */
+.tablenav .search-box input[type="search"]{
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: border-color 0.2s;
+    margin: 10px 0; /* Added margin for spacing */
+}
+
+.tablenav .search-box input[type="search"]:focus {
+    border-color: #0073aa;
+    outline: none;
+}
+#uxlabs-search-input {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: border-color 0.2s;
+    margin-bottom: 20px;
+    background-color: var(--uxlabs-input-bg-color);
+    width: 100%;
+}
+
+
+
+
+
+
+/* FOOTER FIX */
+div.wp-list-table-container > table > tfoot{
+    display: none;
+}
+
+#toplevel_page_final-admin-dashboard > a > div.wp-menu-image.dashicons-before > img{
+    width: 20px;
+    margin-top: -2px;
+}
+
+
+
+
+/*
+*
+* SORTED FROM HERE
+*
+*/
+
+
+/* ADMIN NOTIFICATIONS */
+
+.notice, div.error, div.updated {
+    border-radius: var(--uxlabs-border-radius);
+    border-color: var(--uxlabs-border-color);
+}
+.notice-success, div.updated,
+#wpbody .woocommerce-message.updated {
+    border-left-color: var(--uxlabs-primary-color) !important;
+}
+.notice-error, div.error {
+    border-left-color: var(--uxlabs-error-color);
+}
+
+.custom-notifications-bar {
+    background-color: var(--uxlabs-input-bg-color);
+    padding: 10px;
+    cursor: pointer;
+    width: 99%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+#woocommerce-embedded-root + #custom-notifications-bar {
+    margin-left: 20px;
+    width: 97%;
+}
+.woocommerce-layout__header,
+#woocommerce-activity-panel,
+.woocommerce-layout__footer {
+    display: none !important;
+}
+
+.custom-notifications-bar .material-symbols-outlined {
+    font-size: 16px;
+    position: relative;
+}
+.custom-notifications-bar .material-symbols-outlined.badgeicon{
+    font-size: 12px;
+}
+
+.notification-bubble {
+    background-color: var(--uxlabs-input-bg-color);
+    color: var(--uxlabs-white-color);
+    border-radius: 50%;
+    font-size: 8px;
+    min-width: 12px;
+    min-height: 10px;
+    position: absolute;
+    top: -5px;
+    left: 8px;
+    max-height: 15px;
+    line-height: normal;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+.notification-bubble.error-bubble {
+    background-color: var(--uxlabs-error-color);
+}
+.notification-bubble.success-bubble {
+    background-color: var(--uxlabs-primary-color);
+}
+.notification-bubble.no-notifications {
+    background-color: var(--uxlabs-secondary-color);
+}
+.custom-notifications-container {
+    display: none;
+}
+#custom-notification-text {
+    padding-left: 10px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    
+    #custom-notification-text.show {
+        opacity: 1;
+    }
+.left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.right {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 12px;
+}
+.site-title {
+    margin-right: 10px;
+}
+.wp-admin .notice:not(.notice-success),
+div.error {
+    display: none; /* Alle Notices außer Success-Notices standardmäßig ausblenden */
+}
+.badge {
+    padding: 4px 8px;
+    border-radius: var(--uxlabs-border-radius);
+    margin-left: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+.badge-live {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+}
+.badge-hidden,
+.badge-coming-soon {
+    background-color: var(--uxlabs-error-bg-color);
+    color: var(--uxlabs-error-color);
+}
+
+
+
+
+
+
+
+
+
+/* SIDEBAR STYLE */
+#final-sidebar {
+    position: fixed;
+    top: 0px;
+    right: -100%; /* Start off-screen */
+    width: 30%;
+    height: calc(100% - 32px);
+    background-color: var(--uxlabs-white-color);
+    padding: 20px;
+    box-shadow: -2px 0 5px rgb(0 0 0 / 4%);
+    overflow-y: auto;
+    z-index: 99999;
+    transition: right 0.3s ease; /* Animation for sliding in */
+}
+#final-sidebar.show {
+    right: 0; /* Slide in */
+}
+#final-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 99998;
+    opacity: 0; /* Start transparent */
+    transition: opacity 0.3s ease; /* Animation for fading in */
+}
+#final-sidebar-overlay.show {
+    opacity: 1; /* Fade in */
+}
+
+
+/* Post Types Filter */
+.tablenav .actions:not(.bulkactions),
+#filter-by-type,
+#filter-by-location,
+#wpcode-filter-submit {
+    display: none;
+}
+
+div.tablenav.top > button.button.action.sort-toggle,
+div.tablenav.top > button.button.action.postfilter-toggle,
+div.tablenav.top > button.button.action.screen-options-toggle {
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+    box-shadow: unset!important;
+    border: none;
+}
+div.tablenav.top > button.button.action.sort-toggle,
+div.tablenav.bottom > button.button.action.postfilter-toggle,
+div.tablenav.bottom > button.button.action.sort-toggle,
+div.tablenav.bottom > button.button.action.screen-options-toggle{
+    margin-left: 5px;
+    display: none;
+}
+
+
+button.button.action.postfilter-toggle > span,
+button.button.action.screen-options-toggle > span{
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+
+/* Originale Sortierindikatoren ausblenden */
+th.sorted a .sorting-indicator, th.sortable a .sorting-indicator {
+    display: none;
+}
+
+th.sorted.asc a:after, th.sorted.desc a:after {
+    font-family: "Material Symbols Outlined";
+    margin-left: 5px;
+}
+
+th.sorted.asc a:after {
+    content: "arrow_drop_up";
+    color: var(--uxlabs-primary-color);
+}
+
+th.sorted.desc a:after {
+    content: "arrow_drop_down";
+    color: var(--uxlabs-primary-color);
+}
+
+th.sortable a:after {
+    font-family: "Material Symbols Outlined";
+    content: "arrow_drop_up";
+    opacity: 0.3;
+    margin-left: 5px;
+}
+
+th.sorted a:after {
+    opacity: 1;
+}
+
+
+
+
+/*
+/* SIDEBAR CONTENT 
+*/
+
+/* SIDEBAR CONTENT */
+
+/* Common Styles */
+
+#final-sidebar b, #final-sidebar strong {
+    font-weight: 500;
+}
+
+#uxlabs-results a {
+    text-decoration: none;
+}
+
+.uxlabs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.uxlabs-header h2 {
+    font-size: 1.6em;
+    font-weight: 400;
+}
+
+.uxlabs-buttons .uxlabs-button {
+    text-decoration: none;
+    color: var(--uxlabs-link-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Plugin and Settings List Styles */
+
+.uxlabs-plugin-status ul,
+.uxlabs-site-status ul,
+.uxlabs-settings-status ul,
+#uxlabs-results {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.uxlabs-plugin-status li,
+.uxlabs-site-status li,
+.uxlabs-settings-status li,
+.uxlabs-result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+
+.uxlabs-plugin-status li:last-child,
+.uxlabs-site-status li:last-child,
+.uxlabs-settings-status li:last-child,
+.uxlabs-result-item:last-child {
+    border-bottom: none;
+}
+
+.uxlabs-plugin-status .plugin-title,
+.uxlabs-site-status .site-info-title,
+.uxlabs-settings-status .setting-title,
+.uxlabs-result-item .result-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1;
+}
+
+#uxlabs-plugin .site-info-title > div > p,
+.plugin-description,
+.setting-description,
+.result-excerpt {
+    display: block;
+    font-size: 12px;
+    color: var(--uxlabs-text-light-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+}
+
+.plugin-meta,
+.site-info-meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.comparison-text {
+    font-size: 12px;
+    color: var(--uxlabs-text-color);
+    margin-top: 0px;
+}
+
+.uxlabs-success-text {
+    color: var(--uxlabs-success-color);
+}
+
+.uxlabs-warning-text {
+    color: var(--uxlabs-warning-color);
+}
+
+.uxlabs-error-text {
+    color: var(--uxlabs-error-color);
+}
+
+.plugin-actions,
+.result-actions {
+    margin-top: 4px;
+    font-size: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.plugin-actions a,
+.result-actions a {
+    text-decoration: none;
+    color: var(--uxlabs-link-color);
+}
+
+.plugin-new-version {
+    font-size: 12px;
+    color: var(--uxlabs-warning-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#uxlabs-search-container {
+    margin: 20px 0;
+}
+/*
+#uxlabs-tabs {
+    margin-bottom: 20px;
+}
+
+#uxlabs-tabs a {
+    text-decoration: none;
+    margin-right: 10px;
+    color: var(--uxlabs-link-color);
+}*/
+
+
+#uxlabs-load-more-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#uxlabs-load-more {
+    text-decoration: none;
+    color: var(--uxlabs-link-color);
+    cursor: pointer;
+}
+
+.uxlabs-category-title {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* User Profile Section Styles */
+#uxlabs-user-container {
+    margin: 20px 0;
+}
+
+.uxlabs-user-initials {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-initials-class {
+    width: 50px;
+    height: 50px;
+    background-color: var(--uxlabs-primary-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--uxlabs-border-radius);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#user-profile-links a {
+    display: block;
+    padding: 10px 15px;
+    background-color: var(--uxlabs-input-bg-color);
+    border-radius: var(--uxlabs-border-radius);
+    text-decoration: none;
+    color: var(--uxlabs-link-color);
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+
+#uxlabs-user-container > div.uxlabs-header > div > div.uxlabs-user-info > h2{
+    margin-bottom: -5px;
+}
+
+
+
+
+
+
+
+
+
+/* 
+/* WOOOCOMMERCE RELATED
+*/
+  
+
+/* Dynamic Dropdown Order Status */
+.dot {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px; 
+    margin-left: -15px;
+    margin-top: -3px;
+}
+.dot{
+    position: absolute;
+}
+
+.dot.orange { background-color: #ff9191; }
+.dot.main { background-color: var(--uxlabs-primary-color); }
+.dot.grey { background-color: #d4d4d45c; }
+.dot.red { background-color: var(--uxlabs-error-color); }
+.dot.lightred { background-color: var(--uxlabs-error-color); }
+.dot.purple { background-color: purple; }
+.dot.yellow { background-color:#ffa000; }
+.dot.brown { background-color: brown; }
+.dot.pink { background-color: var(--uxlabs-error-color); }
+.dot.cyan { background-color: cyan; }
+

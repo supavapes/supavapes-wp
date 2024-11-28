@@ -1,0 +1,748 @@
+.price-input {
+    max-width: 105px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-notifications-bar {
+    display: none;
+}
+
+.divider {
+    width: 100%;
+}
+
+.info-message,
+.info-message .material-symbols-outlined {
+    font-size: 11px;
+}
+
+.custom-column-field {
+    margin: 20px 0;
+}
+
+.variation-attribute .select2-selection__rendered {
+    min-height: auto !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding-top: 4px !important;
+    background-color: var(--uxlabs-secondary-color) !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    background-color: var(--uxlabs-secondary-color);
+    border-color: var(--uxlabs-base-color);
+    color: var(--uxlabs-base-color);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: var(--uxlabs-base-color) !important;
+}
+
+input.search-box {
+    border-radius: var(--uxlabs-border-radius);
+    background-color: var(--uxlabs-input-bg-color);
+    border-color: var(--uxlabs-input-bg-color);
+}
+
+button.add-custom-column {
+    background-color: var(--uxlabs-secondary-color);
+    border: none;
+    min-height: 35px;
+    border-radius: var(--uxlabs-border-radius);
+    margin-right: 8px;
+    font-size: 12px;
+    padding: 4px 12px;
+}
+
+.stock-management-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-column {
+    width: 20px;
+    text-align: center;
+}
+
+#mass-action-selector {
+    margin-right: 10px;
+}
+
+.toggle-container.space {
+    margin: 5px 0;
+}
+
+.name-column {
+    vertical-align: middle;
+}
+
+.name-column-content {
+    display: flex;
+    align-items: center;
+}
+
+.edit-image {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.title-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.title-display,
+.title-input {
+    margin: 0;
+}
+
+.plus-button {
+    margin-left: auto;
+}
+
+/* Material Icons Font */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+/* Material Symbols Outlined Styling */
+.material-symbols-outlined {
+    font-size: 16px;
+    color: #b0b0b0;
+    vertical-align: middle;
+}
+
+input.title-input {
+    width: 210px;
+}
+
+input.description-input,
+input.short_description-input {
+    min-width: 85%;
+}
+
+/* Filter Bar Styling */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.filter-bar .filters,
+.toggle-container {
+    display: flex;
+    gap: 10px;
+}
+
+.toggle-container {
+    margin-left: auto;
+}
+
+.edit-all-label {
+    font-weight: 600;
+    color: var(--uxlabs-text-light-color);
+}
+
+.edit-all-toggle {
+    cursor: pointer;
+}
+
+/* Search Box mit Icon und Platzhalter */
+.search-container {
+    position: relative;
+    margin-left: 10px;
+}
+
+.search-box {
+    padding-left: 40px;
+    height: 36px;
+    box-sizing: border-box;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+}
+
+.search-placeholder {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--uxlabs-text-light-color);
+    pointer-events: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    margin-right: 5px;
+    color: var(--uxlabs-text-light-color);
+    pointer-events: none;
+}
+
+.search-box:focus + .search-placeholder,
+.search-box:not(:placeholder-shown) + .search-placeholder {
+    visibility: hidden;
+}
+
+/* Produktbild */
+.product-image {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Product List Styling */
+.product-list table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: var(--uxlabs-box-shadow);
+    border-top: 2px solid var(--uxlabs-border-color);
+}
+
+/* Table Header Styling mit Sortierung */
+.product-list th {
+    background-color: var(--uxlabs-bg-color);
+    color: var(--uxlabs-text-light-color);
+    font-weight: 400;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+    cursor: pointer;
+    position: relative;
+    border-top: 2px solid var(--uxlabs-border-color);
+    border-bottom: 2px solid var(--uxlabs-border-color);
+}
+
+.product-list th .sort-icon {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+    visibility: hidden;
+}
+
+.product-list th:hover .sort-icon {
+    visibility: visible;
+}
+
+/* Sortierung: Aufsteigend / Absteigend */
+.product-list th.sort-asc .sort-icon::before {
+    content: "expand_less";
+}
+
+.product-list th.sort-desc .sort-icon::before {
+    content: "expand_more";
+}
+
+.product-list td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+
+.product-list .status-publish {
+    color: var(--uxlabs-base-color);
+}
+
+.product-list .status-draft {
+    color: var(--uxlabs-warning-color);
+}
+
+.product-list .variant-row.hidden {
+    display: none;
+}
+
+/* Verstecke die Dropdowns und Eingabefelder */
+.hidden {
+    display: none;
+}
+
+.category-select,
+.status-select,
+.price-input {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.category-column,
+.status-column,
+.price-column {
+    cursor: pointer;
+}
+
+.product-row:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+/* Select2 Custom Styling */
+.select2-container .select2-selection--multiple {
+    max-height: 30px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--uxlabs-bg-color);
+    color: var(--uxlabs-text-color);
+    border: 1px solid var(--uxlabs-border-color);
+    padding: 3px;
+    margin: 2px 0 2px 5px;
+    border-radius: 4px;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+/* Actions Column Styling */
+.actions-column {
+    position: relative;
+}
+
+.more-options {
+    cursor: pointer;
+    color: var(--uxlabs-link-color);
+}
+
+.actions-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid var(--uxlabs-border-color);
+    box-shadow: var(--uxlabs-box-shadow);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.actions-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--uxlabs-text-color);
+    display: flex;
+    align-items: center;
+}
+
+.actions-menu a:hover {
+    background-color: var(--uxlabs-bg-color);
+}
+
+.actions-menu a .material-symbols-outlined {
+    margin-right: 5px;
+}
+
+/* Maximale Breite für die Tags- und Kategorienanzeige */
+td.tags-column,
+td.category-column {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Maximale Breite für die Select-Elemente */
+.category-select,
+.tags-select {
+    max-width: 100px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    overflow-y: auto !important;
+    max-height: 45px !important;
+}
+
+/* Icon für Lagerbestandsverwaltung */
+.stock-settings-icon {
+    margin-right: 10px;
+    float: inline-end;
+}
+
+input#manage-stock {
+    width: auto;
+}
+
+.inventory-display {
+    cursor: pointer;
+    color: var(--uxlabs-base-color);
+}
+
+.sku-input {
+    max-width: 105px;
+}
+
+.plus-button.material-symbols-outlined,
+.variant-row .material-symbols-outlined {
+    float: inline-end;
+}
+
+.material-symbols-outlined.delete-variation,
+.material-symbols-outlined.add-attribute,
+.material-symbols-outlined.add-new-variation,
+.material-symbols-outlined.delete-custom-column {
+    float: inline-end;
+    color: var(--uxlabs-base-color);
+    font-size: 20px;
+    margin-top: -5px;
+}
+
+.material-symbols-outlined.delete-custom-column,
+.material-symbols-outlined.delete-variation {
+    color: var(--uxlabs-error-color);
+}
+
+/* Maximale Breite für die Beschreibung und kurze Beschreibung */
+td.description-column,
+td.short_description-column {
+    max-width: 25ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+td.yoast-focus-keyword-column,
+td.yoast-seo-title-column,
+td.yoast-meta-description-column {
+    min-width: 160px;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+select.view-select {
+    background-color: var(--uxlabs-secondary-color);
+    margin-right: 10px;
+}
+
+th.name-column,
+td.name-column {
+    max-width: 280px;
+    width: 280px;
+    min-width: 280px;
+}
+
+.product-list {
+    overflow-x: auto;
+}
+
+.product-list th,
+.product-list td {
+    white-space: nowrap;
+}
+
+.product-list th.sticky,
+.product-list td.sticky {
+    position: sticky;
+    background: var(--uxlabs-white-color);
+    z-index: 1;
+}
+
+.product-list th.sticky {
+    z-index: 2;
+}
+
+.product-list th.name-column.sticky,
+.product-list td.name-column.sticky,
+.product-list th.actions-column.sticky,
+.product-list td.actions-column.sticky {
+    position: sticky;
+    background: var(--uxlabs-white-color);
+    z-index: 1;
+}
+
+.product-list th.name-column.sticky {
+    z-index: 2;
+}
+
+.product-list th.name-column.sticky,
+.product-list td.name-column.sticky {
+    left: 0;
+}
+
+.product-list th.actions-column.sticky,
+.product-list td.actions-column.sticky {
+    right: 0;
+}
+
+/* Stock Management Popup Styling */
+#variation-management-popup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#variation-management-popup input[type="number"],
+#variation-management-popup select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+}
+
+#variation-management-popup input[readonly] {
+    background-color: #f5f5f5;
+}
+
+#variations-container {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.variation {
+    border: 1px solid var(--uxlabs-border-color);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.name-column {
+    vertical-align: middle;
+}
+
+.name-column-content {
+    display: flex;
+    align-items: center;
+}
+
+.edit-image {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.title-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.title-display,
+.title-input {
+    margin: 0;
+}
+
+.plus-button {
+    margin-left: auto;
+}
+
+/* Generisches Popup Styling */
+/* Overlay für den Hintergrund */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.generic-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid var(--uxlabs-border-color);
+    box-shadow: var(--uxlabs-box-shadow);
+    z-index: 1000;
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 8px;
+}
+
+/* Rest des CSS bleibt unverändert */
+.generic-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.generic-popup-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.generic-popup-close {
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--uxlabs-text-color);
+    background-color: var(--uxlabs-input-bg-color);
+    padding: 3px;
+    border-radius: var(--uxlabs-border-radius);
+}
+
+.generic-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#stock-popup > div.generic-popup-content{
+    max-height: unset;
+    overflow-y: visible;
+}
+
+.generic-popup-content input,
+.generic-popup-content select,
+.generic-popup-content textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.generic-popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.generic-popup-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.generic-popup-actions .save-button {
+    background-color: var(--uxlabs-base-color);
+    color: white;
+}
+
+.generic-popup-actions .cancel-button {
+    background-color: var(--uxlabs-border-color);
+    color: white;
+}
+
+input.attribute-visibility,
+input.attribute-variation {
+    width: auto;
+}
+
+.stock-value-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-value {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: var(--uxlabs-border-radius);
+    background-color: #f5f5f5;
+}
+
+.stock-value.new {
+    background-color: var(--uxlabs-secondary-color);
+}
+
+.name-column .variation-attributes,
+.name-column .title-display {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+/* Bestehende CSS-Regeln */
+
+/* Neue Styles für die Footer-Navigation */
+.footer-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 10px 0;
+    border-top: 2px solid var(--uxlabs-border-color);
+}
+
+.footer-navigation .tablenav-pages {
+    display: flex;
+    align-items: center;
+}
+
+.footer-navigation .tablenav-pages a,
+.footer-navigation .tablenav-pages span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid var(--uxlabs-border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--uxlabs-text-color);
+}
+
+.footer-navigation .tablenav-pages a:hover {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+}
+
+.footer-navigation .tablenav-pages .current {
+    background-color: var(--uxlabs-secondary-color);
+    color: var(--uxlabs-base-color);
+}
+
+.footer-navigation .products-per-page {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.footer-navigation .products-per-page label {
+    margin-right: 5px;
+}
+
+.footer-navigation .products-per-page select {
+    border-radius: var(--uxlabs-border-radius);
+    background-color: var(--uxlabs-input-bg-color);
+    min-width: 50px;
+}
+
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-gallery {
+    display: none; /* Standardmäßig versteckt */
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.product-row[data-edited="true"] .edit-gallery,
+#edit-all-toggle:checked ~ .product-list .edit-gallery {
+    display: block;
+}
+

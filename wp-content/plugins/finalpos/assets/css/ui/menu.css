@@ -1,0 +1,411 @@
+/* General admin menu adjustments */
+#adminmenuwrap, #adminmenu {
+    width: 220px;
+    z-index: 999;
+    box-sizing: border-box;
+}
+
+#adminmenu, #adminmenuback, #adminmenuwrap {
+    width: 220px;
+}
+#adminmenuwrap {
+    padding: 0 15px;
+}
+#adminmenu {
+    max-width: 190px;
+}
+
+#adminmenu .wp-submenu {
+    z-index: 10028!important;
+}
+
+#adminmenu li.wp-menu-separator {
+    display: none;
+}
+
+/* FINAL ICON */
+#adminmenu .toplevel_page_final-admin-dashboard .wp-menu-image img {
+    width: 20px;
+    height: 20px;
+    padding: 7px 0 0;
+}
+
+
+/* Admin bar adjustments */
+body.admin-bar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+#wpadminbar {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    z-index: 999;
+}
+
+#wpcontent, #wpfooter {
+    margin-left: 220px;
+}
+
+/* Ensure no gap on the dashboard */
+body.admin-bar #wpcontent {
+    padding-top: 50px;
+}
+
+
+/* Mobile adjustments */
+@media screen and (max-width: 782px) {
+    #wpadminbar {
+        left: 0;
+        width: 100%;
+    }
+
+    #adminmenuwrap, #adminmenu {
+        position: fixed;
+        top: 32px;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    #wpcontent, #wpfooter {
+        margin-left: 0;
+    }
+}
+
+/* Remove hover indicator on the left side */
+#adminmenu li.menu-top:hover,
+#adminmenu li.wp-has-current-submenu {
+    border-left: none !important;
+}
+
+/* Remove menu arrow */
+#adminmenu .wp-submenu-head:after,
+#adminmenu .wp-has-submenu:after,
+.woocommerce-admin-page .wp-has-current-submenu:after,
+ul#adminmenu a.wp-has-current-submenu:after,
+ul#adminmenu > li.current > a.current:after {
+    display: none !important;
+}
+
+
+/* Separator styles */
+#separator-store .wp-menu-name,
+#separator-content .wp-menu-name,
+#separator-appearance .wp-menu-name,
+#separator-plugins .wp-menu-name,
+#separator-custom .wp-menu-name{
+    font-size: 12px;
+    border-bottom: 1px solid var(--uxlabs-border-color);
+}
+
+#separator-custom .wp-menu-name,
+#separator-content .wp-menu-name,
+#separator-appearance .wp-menu-name,
+#separator-plugins .wp-menu-name {
+    margin-top: 20px;
+}
+
+#separator-plugins .wp-menu-name {
+    margin-bottom: 50px;
+}
+
+#separator-store,
+#separator-content,
+#separator-appearance,
+#separator-plugins,
+#separator-custom {
+    pointer-events: none !important;
+}
+
+/* Admin menu hover and focus styles */
+#adminmenu a:focus, #adminmenu a:hover, .folded #adminmenu .wp-submenu-head:hover {
+    box-shadow: none;
+    transition: none;
+}
+
+/* Vertical line in the main menu */
+#adminmenu .wp-has-current-submenu.wp-menu-open > ul.wp-submenu {
+    position: relative;
+    margin-left: 25px !important;
+}
+
+#adminmenu .wp-has-current-submenu ul>li>a,
+.folded #adminmenu li.menu-top .wp-submenu>li>a {
+    padding-left: 0px;
+    margin-left: -4px;
+}
+
+#adminmenu .wp-has-current-submenu.wp-menu-open > ul.wp-submenu:before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e7e7e7;
+    z-index: 1;
+}
+
+/* Circles for all menu items */
+#adminmenu .wp-has-current-submenu.wp-menu-open ul.wp-submenu > li {
+    position: relative;
+    padding-left: 15px;
+}
+
+#adminmenu .wp-has-current-submenu.wp-menu-open ul.wp-submenu > li:before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #e7e7e7;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Highlight the active menu item */
+#adminmenu .wp-has-current-submenu.wp-menu-open ul.wp-submenu > li.current:before {
+    background-color: var(--uxlabs-base-color);
+}
+
+/* Admin menu caret style */
+#adminmenu .wp-has-submenu > a > .wp-menu-name {
+    position: relative;
+    padding-right: 24px;
+}
+
+#adminmenu .wp-has-submenu > a > .wp-menu-name:after {
+    content: "keyboard_arrow_down";
+    font-family: 'Material Symbols Outlined';
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when the menu is open */
+#adminmenu .wp-has-submenu.opensub > a > .wp-menu-name:after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+/* Admin menu hover background color */
+#adminmenu li.menu-top:hover {
+    background-color: #fff0 !important;
+}
+
+/* Submenu adjustments */
+#adminmenu a.menu-top:focus + .wp-submenu,
+.js #adminmenu .opensub .wp-submenu,
+.js #adminmenu .sub-open,
+.no-js li.wp-has-submenu:hover .wp-submenu {
+    z-index: 10099 !important;
+    border-radius: var(--uxlabs-border-radius);
+    margin-left: 30px !important;
+}
+
+
+
+body.hide-menu-icons #adminmenu .wp-menu-image,
+body.hide-menu-icons #adminmenu .wp-menu-image.svg,
+body.hide-menu-icons #adminmenu .wp-menu-image::before,
+body.hide-menu-icons #adminmenu .wp-menu-image::after {
+    display: none !important;
+}
+body.hide-menu-icons #adminmenu .wp-menu-name {
+    padding-left: 8px !important;
+}
+body.hide-menu-icons #adminmenu li.menu-top {
+    min-height: 34px !important;
+}
+
+
+
+
+/* Custom logo area */
+#custom-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 50px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    z-index: 999;
+    max-width: 220px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: var(--uxlabs-bg-color);
+}
+
+#custom-logo img {
+    padding: 10px 0 10px 30px;
+    max-width: 220px;
+    width: auto;
+    height: 30px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+#custom-logo span {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--uxlabs-text-color);
+}
+
+
+.folded #custom-logo.shrinked {
+    width: 52px!important;
+    text-align: center!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+img.shrinked-logo{
+    padding: 0px!important;
+}
+.folded #adminmenu, .folded #adminmenu li.menu-top, .folded #adminmenuback, .folded #adminmenuwrap {
+    margin-left: -2px;
+}
+.folded #wpcontent, .folded #wpfooter {
+    margin-left: 50px!important;
+}
+
+.folded #adminmenuback{
+    width: 60px!important;
+}
+.folded #adminmenuwrap {
+    width: 45px!important;
+}
+.folded #wpadminbar {
+    left: 59px;
+    width: calc(100% - 59px);
+}
+
+
+#admin-menu-search-wrapper {
+    padding: 0px;
+    position: relative;
+    margin-top: 52px;
+    z-index: 9999;
+}
+
+#admin-menu-search-wrapper div {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: var(--uxlabs-border-radius);
+    min-height: 35px;
+}
+
+#admin-menu-search-wrapper .material-symbols-outlined {
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    color: #888;
+}
+
+#admin-menu-search {
+    width: 100%;
+    padding-left: 35px;
+    font-size: 12px;
+    border: none;
+    min-height: 35px;
+    background-color: #f5f5f5;
+    border-radius: var(--uxlabs-border-radius);
+}
+
+
+
+/* Collapse  */
+#collapse-button .collapse-button-icon:after{
+    display: none;
+}
+#collapse-button .material-symbols-outlined{
+    margin-top: 9px;
+    font-size: 16px;
+}
+#collapse-button {
+    margin-top: 20px;
+}
+
+div.wp-menu-image:before {
+    margin-top: 1px;
+}
+
+
+/* Logo Fixes (THEME ISSUES) */
+
+#custom-logo,
+#custom-logo a,
+#custom-logo img,
+#toplevel_page_final-main-menu > a > div.wp-menu-image.dashicons-before,
+#toplevel_page_final-main-menu > a > div.wp-menu-image.dashicons-before > img {
+    box-sizing: content-box !important;
+}
+
+#adminmenu div.wp-menu-image.svg {
+    background-size: 16px auto!important;
+}
+
+
+
+/* Woodmart*/
+#menu-posts-woodmart_sidebar .menu-top .wp-menu-image:before {
+    font-family: 'Material Symbols Outlined'!important;
+    content: "dock_to_left"!important; /* Das Symbol, das du verwenden möchtest */
+}
+
+#menu-posts-woodmart_slide .menu-top .wp-menu-image:before {
+    font-family: 'Material Symbols Outlined';
+    content: "transition_push"!important; /* Das Symbol, das du verwenden möchtest */
+}
+#menu-posts-woodmart_layout .menu-top .wp-menu-image:before {
+    font-family: 'Material Symbols Outlined';
+    content: "space_dashboard"!important; /* Das Symbol, das du verwenden möchtest */
+}
+#menu-posts-portfolio .menu-top .wp-menu-image:before {
+    font-family: 'Material Symbols Outlined';
+    content: "view_day"!important; /* Das Symbol, das du verwenden möchtest */
+}
+
+#toplevel_page_xts_theme_settings .menu-top .wp-menu-image:before {
+    font-family: 'Material Symbols Outlined';
+    content: "tune"!important; /* Das Symbol, das du verwenden möchtest */
+}
+
+#toplevel_page_xts_dashboard .menu-top .wp-menu-image:before{
+    font-family: 'Material Symbols Outlined';
+    content: "inbox_customize"!important; /* Das Symbol, das du verwenden möchtest */
+}
+
+/* Hide menu icons when the class is applied */
+#adminmenu.uxlabs-hide-menu-icons .wp-menu-image,
+#adminmenu.uxlabs-hide-menu-icons .wp-menu-image:before,
+#adminmenu.uxlabs-hide-menu-icons .wp-menu-image.svg,
+#adminmenu.uxlabs-hide-menu-icons div.wp-menu-image:before {
+    display: none !important;
+    width: 0 !important;
+    padding: 0 !important;
+}
+
+#adminmenu.uxlabs-hide-menu-icons .wp-menu-name {
+    padding-left: 8px !important;
+}
+
+#adminmenu.uxlabs-hide-menu-icons li.menu-top {
+    min-height: 34px;
+}
+
+/* Ensure no space is taken by hidden icons */
+#adminmenu.uxlabs-hide-menu-icons li.menu-top > a {
+    padding-left: 8px !important;
+}

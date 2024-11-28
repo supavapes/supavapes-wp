@@ -1,0 +1,1363 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Final POS - Drag & Drop Point of Sale Builder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-28 12:53+0000\n"
+"PO-Revision-Date: 2024-10-28 12:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.11; wp-6.6.2\n"
+"X-Domain: final-pos"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:74
+msgid " Enable stock management"
+msgstr "Activer la gestion des stocks"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:391
+msgid "&laquo; Previous"
+msgstr "&quot; Précédent"
+
+#: includes/admin/ui/dashboard.php:219
+msgid "Actions"
+msgstr "Actes"
+
+#: includes/admin/ui/final-sidebar.php:394
+msgid "Activate"
+msgstr "Activer"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:438
+msgid "Add Column"
+msgstr "Ajouter une colonne"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:103
+msgid "Add Custom Column"
+msgstr "Ajouter une colonne personnalisée"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:433
+msgid "Add Custom Columns"
+msgstr "Ajouter des colonnes personnalisées"
+
+#: includes/admin/ui/final-sidebar.php:326
+msgid "Add New"
+msgstr "Ajouter un nouveau"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:718
+msgid "Add New Attribute"
+msgstr "Ajouter un nouvel attribut"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:720
+msgid "Add New Variation"
+msgstr "Ajouter une nouvelle variante"
+
+#: includes/admin/other/settings.php:81
+msgid "Advanced"
+msgstr "Avancé"
+
+#: includes/admin/finalwizard.php:272
+msgid "Advanced Search"
+msgstr "Recherche avancée"
+
+#: includes/admin/other/settings.php:168
+msgid "Advanced Settings"
+msgstr "Paramètres avancés"
+
+#: includes/admin/ui/final-sidebar.php:106
+msgid "All"
+msgstr "Tous"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:119
+msgid "All Categories"
+msgstr "Toutes les catégories"
+
+#: includes/admin/finalwizard.php:312 includes/admin/other/settings.php:293
+msgid "All categories"
+msgstr "Toutes les catégories"
+
+#: includes/admin/ui/final-sidebar.php:322
+msgid "All Plugins"
+msgstr "Tous les plugins"
+
+#: includes/admin/ui/final-sidebar.php:485
+msgid "All Settings"
+msgstr "Tous les paramètres"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:126
+msgid "All Statuses"
+msgstr "Tous les statuts"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:131
+msgid "All Stock"
+msgstr "Tous les stocks"
+
+#: includes/admin/ui/ui.php:226
+msgid "All systems are go! You're all caught up."
+msgstr "Tous les systèmes sont opérationnels ! Vous êtes à jour."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:67
+msgid "Allow"
+msgstr "Permettre"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:63
+msgid "Allow backorders?"
+msgstr "Autoriser les commandes en souffrance ?"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:66
+msgid "Allow, but notify customers"
+msgstr "Autoriser, mais avertir les clients"
+
+#: includes/admin/finalwizard.php:191
+msgid "Always in sync with your online store"
+msgstr "Toujours en phase avec votre boutique en ligne"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:73
+msgid "An error occurred. Please try again. Error: "
+msgstr "Une erreur s'est produite. Veuillez réessayer. Erreur :"
+
+#: integrations/woo/woo/final-woo.php:12
+msgid "and make sure it is installed and active."
+msgstr "et assurez-vous qu'il est installé et actif."
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:82
+msgid "Any"
+msgstr "N'importe lequel"
+
+#: includes/admin/ui/dashboard.php:217
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/admin/finalwizard.php:288 includes/admin/finalwizard.php:444
+msgid "Authorize"
+msgstr "Autoriser"
+
+#: includes/admin/finalwizard.php:221 includes/admin/finalwizard.php:261
+msgid "Back"
+msgstr "Dos"
+
+#: includes/admin/ui/menu.php:194
+msgid "Blocks"
+msgstr "Blocs"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:115
+msgid "Bulk Actions"
+msgstr "Actions en masse"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:26
+#: integrations/woo/bulkeditor/bulkeditor-main.php:27
+#: integrations/woo/bulkeditor/bulkeditor-main.php:97
+msgid "Bulk Editor"
+msgstr "Éditeur en masse"
+
+#: includes/admin/finalwizard.php:167
+msgid "By syncing your store, these items will be synced:"
+msgstr "En synchronisant votre boutique, ces éléments seront synchronisés :"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:78
+#: integrations/woo/bulkeditor/bulkeditor-main.php:425
+#: integrations/woo/bulkeditor/bulkeditor-main.php:442
+msgid "Cancel"
+msgstr "Annuler"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:154
+msgid "Category"
+msgstr "Catégorie"
+
+#: includes/admin/finalwizard.php:304 includes/admin/other/settings.php:285
+msgid "Category list"
+msgstr "Liste des catégories"
+
+#: includes/admin/finalwizard.php:224 includes/admin/other/settings.php:89
+msgid ""
+"Choose the types you want to sync from your WooCommerce store to Final POS:"
+msgstr ""
+"Choisissez les types que vous souhaitez synchroniser depuis votre boutique "
+"WooCommerce vers Final POS :"
+
+#: includes/admin/finalwizard.php:263
+msgid "Choose your Dashboard UI!"
+msgstr "Choisissez votre interface utilisateur de tableau de bord !"
+
+#: includes/admin/finalwizard.php:160
+msgid "Choose your subscription Plan"
+msgstr "Choisissez votre formule d'abonnement"
+
+#: includes/admin/ui/final-sidebar.php:486
+msgid "Classic WP"
+msgstr "WP classique"
+
+#: includes/admin/other/settings.php:229
+msgid "Color Settings"
+msgstr "Paramètres de couleur"
+
+#. Parent slug
+#. Page title
+#: includes/admin/ui/menu.php:258 includes/admin/ui/menu.php:259
+msgid "Comments"
+msgstr "Commentaires"
+
+#: includes/admin/ui/dashboard.php:251
+msgid "Completed"
+msgstr "Complété"
+
+#: includes/admin/other/settings.php:169
+msgid "Configure advanced performance, optimization and expert settings:"
+msgstr ""
+"Configurer les paramètres avancés de performances, d'optimisation et "
+"experts :"
+
+#: includes/admin/finalwizard.php:236 includes/admin/other/settings.php:106
+msgid "Configure your sync terms"
+msgstr "Configurez vos conditions de synchronisation"
+
+#: includes/admin/finalwizard.php:222
+msgid "Connection ready!"
+msgstr "Connexion prête !"
+
+#: includes/admin/save-wc-token.php:24
+msgid "Consumer key and secret cannot be empty."
+msgstr "La clé et le secret du consommateur ne peuvent pas être vides."
+
+#: includes/admin/save-wc-token.php:39
+msgid "Consumer key and secret saved successfully."
+msgstr "La clé et le secret du consommateur ont été enregistrés avec succès."
+
+#: includes/admin/ui/menu.php:149
+#: integrations/woo/bulkeditor/bulkeditor-main.php:109
+msgid "Content"
+msgstr "Contenu"
+
+#: includes/admin/finalwizard.php:249
+msgid "Continue"
+msgstr "Continuer"
+
+#: includes/admin/save-wc-token.php:41
+msgid "Could not connect to WooCommerce store. Please try again."
+msgstr ""
+"Impossible de se connecter à la boutique WooCommerce. Veuillez réessayer."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:99
+msgid "Create Product"
+msgstr "Créer un produit"
+
+#: integrations/woo/woo/final-woo.php:50
+msgid "Currency"
+msgstr "Devise"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:947
+msgid "Custom columns saved successfully."
+msgstr "Colonnes personnalisées enregistrées avec succès."
+
+#: includes/admin/finalwizard.php:170
+msgid "Customers"
+msgstr "Clients"
+
+#: includes/admin/finalwizard.php:201
+msgid "Customizable and flexible"
+msgstr "Personnalisable et flexible"
+
+#: includes/admin/other/settings.php:212
+msgid "Customize the main colors of your admin interface and upload your logo:"
+msgstr ""
+"Personnalisez les couleurs principales de votre interface d'administration "
+"et téléchargez votre logo :"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:46
+msgid "Damage (Remove Stock)"
+msgstr "Dommage (Retirer le stock)"
+
+#: includes/admin/other/settings.php:248
+msgid "Dark Mode"
+msgstr "Mode sombre"
+
+#: includes/admin/ui/dashboard.php:22 includes/admin/ui/dashboard.php:23
+#: includes/admin/ui/dashboard.php:327
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: includes/admin/ui/dashboard.php:218
+msgid "Date"
+msgstr "Date"
+
+#: includes/admin/ui/final-sidebar.php:392
+msgid "Deactivate"
+msgstr "Désactiver"
+
+#: integrations/woo/woo/final-woo.php:60
+msgid "Default Timezone"
+msgstr "Fuseau horaire par défaut"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:307
+#: integrations/woo/bulkeditor/bulkeditor-main.php:367
+msgid "Delete"
+msgstr "Supprimer"
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:72
+msgid "Delete Variation"
+msgstr "Supprimer la variante"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:156
+msgid "Description"
+msgstr "Description"
+
+#: includes/admin/ui/menu.php:150
+msgid "Design"
+msgstr "Conception"
+
+#: includes/admin/finalwizard.php:197
+msgid ""
+"Design your POS interface for any device, from desktop to mobile, and bring "
+"your custom build to life with the Final POS app."
+msgstr ""
+"Concevez votre interface POS pour n'importe quel appareil, de l'ordinateur "
+"de bureau au mobile, et donnez vie à votre version personnalisée avec "
+"l'application Final POS."
+
+#: includes/admin/finalwizard.php:196
+msgid "Desktop, mobile, kiosk and everything else."
+msgstr "Ordinateur de bureau, mobile, kiosque et tout le reste."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:65
+msgid "Do not allow"
+msgstr "Ne permettez pas"
+
+#: includes/admin/finalwizard.php:179
+msgid "Don't have an account yet? "
+msgstr "Vous n'avez pas encore de compte ?"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:128
+#: integrations/woo/bulkeditor/bulkeditor-main.php:267
+#: integrations/woo/bulkeditor/bulkeditor-main.php:271
+msgid "Draft"
+msgstr "Brouillon"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:116
+msgid "Dummy Action"
+msgstr "Action factice"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:306
+#: integrations/woo/bulkeditor/bulkeditor-main.php:366
+msgid "Edit"
+msgstr "Modifier"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:138
+msgid "Edit all"
+msgstr "Tout modifier"
+
+#: includes/admin/ui/final-sidebar.php:473
+msgid "Edit Profile"
+msgstr "Modifier le profil"
+
+#: includes/admin/finalwizard.php:278
+msgid "Embrace the New Look (recommended)"
+msgstr "Adoptez le nouveau look (recommandé)"
+
+#: includes/admin/ui/final-sidebar.php:492
+msgid "Enable Dark Mode"
+msgstr "Activer le mode sombre"
+
+#: includes/admin/ui/final-sidebar.php:492
+msgid "Enable dark mode in the Backend."
+msgstr "Activer le mode sombre dans le backend."
+
+#: includes/admin/finalwizard.php:202
+msgid ""
+"Enjoy extreme control over your checkout process with dynamic fields, "
+"automation, and conditional logic."
+msgstr ""
+"Bénéficiez d'un contrôle extrême sur votre processus de paiement avec des "
+"champs dynamiques, l'automatisation et la logique conditionnelle."
+
+#: includes/admin/other/settings.php:223
+msgid "Enter logo URL or use upload button"
+msgstr "Entrez l'URL du logo ou utilisez le bouton de téléchargement"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:55
+msgid "Enter Quantity of selected action"
+msgstr "Entrez la quantité d'action sélectionnée"
+
+#: includes/admin/finalwizard.php:159
+msgid "Enter your and your business's information"
+msgstr "Entrez vos informations et celles de votre entreprise"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:72
+msgid "Error loading variation data: "
+msgstr "Erreur lors du chargement des données de variation :"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:71
+msgid "Error saving variation data: "
+msgstr "Erreur lors de l'enregistrement des données de variation :"
+
+#: includes/admin/ui/menu.php:171
+msgid "Extensions"
+msgstr "Extensions"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:615
+#: integrations/woo/bulkeditor/bulkeditor-main.php:625
+msgid "Failed to delete product."
+msgstr "Échec de la suppression du produit."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:591
+#: integrations/woo/bulkeditor/bulkeditor-main.php:602
+msgid "Failed to update image."
+msgstr "Échec de la mise à jour de l'image."
+
+#: includes/admin/ui/dashboard.php:10
+msgid "Final Dashboard"
+msgstr "Tableau de bord final"
+
+#: includes/admin/finalwizard.php:187
+msgid ""
+"Final is the world's first point of sale builder. Make a unique and "
+"customized POS experience matching your needs."
+msgstr ""
+"Final est le premier constructeur de points de vente au monde. Créez une "
+"expérience POS unique et personnalisée en fonction de vos besoins."
+
+#: includes/admin/finalwizard.php:138
+msgid "Final Logo"
+msgstr "Logo final"
+
+#: includes/admin/ui/dashboard.php:11
+msgid "Final POS"
+msgstr "POS final"
+
+#. Name of the plugin
+msgid "Final POS - Drag & Drop Point of Sale Builder"
+msgstr "Final POS - Générateur de points de vente par glisser-déposer"
+
+#: integrations/woo/woo/final-woo.php:22
+msgid "Final POS requires the following fields to be filled out:"
+msgstr "Le POS final nécessite que les champs suivants soient remplis :"
+
+#: integrations/woo/woo/final-woo.php:12
+msgid "Final POS requires WooCommerce, please go to your"
+msgstr "Le POS final nécessite WooCommerce, veuillez accéder à votre"
+
+#: final-pos.php:138
+msgid "Final Scheme"
+msgstr "Schéma final"
+
+#: includes/admin/other/settings.php:73
+msgid "Final Settings"
+msgstr "Réglages finaux"
+
+#. Parent slug
+#: includes/admin/finalwizard.php:6
+msgid "Final Setup Wizard"
+msgstr "Assistant de configuration finale"
+
+#. Author of the plugin
+msgid "FinalPOS"
+msgstr "FinalPOS"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:439
+msgid "Get custom fields"
+msgstr "Obtenir des champs personnalisés"
+
+#: includes/admin/ui/final-sidebar.php:465
+#, php-format
+msgid "Hello %s!"
+msgstr "Bonjour %s!"
+
+#: includes/admin/finalwizard.php:223
+msgid "Help us to set up your Dashboard!"
+msgstr "Aidez-nous à configurer votre tableau de bord !"
+
+#: includes/admin/ui/ui.php:223
+msgid "Hey"
+msgstr "Hé"
+
+#. %s: user's first name
+#: includes/admin/ui/ui.php:178
+#, php-format
+msgid "Hey %s!"
+msgstr "Hé %s!"
+
+#: includes/admin/ui/final-sidebar.php:495
+msgid "Hide Admin Toolbar"
+msgstr "Masquer la barre d'outils d'administration"
+
+#: includes/admin/ui/final-sidebar.php:494
+msgid "Hide Menu Icons"
+msgstr "Masquer les icônes du menu"
+
+#: includes/admin/ui/final-sidebar.php:495
+msgid "Hide the dynamic Toolbar elements."
+msgstr "Masquer les éléments dynamiques de la barre d’outils."
+
+#: includes/admin/ui/final-sidebar.php:494
+msgid "Hide the icons in the Admin Menu."
+msgstr "Masquer les icônes dans le menu administrateur."
+
+#: includes/admin/finalwizard.php:267
+msgid "Highlighted Improvements:"
+msgstr "Améliorations mises en évidence :"
+
+#. Author URI of the plugin
+msgid "https://finalpos.com"
+msgstr "https://finalpos.com"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:600
+msgid "Image updated successfully."
+msgstr "Image mise à jour avec succès."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:132
+msgid "In Stock"
+msgstr "En stock"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:278
+#: integrations/woo/bulkeditor/bulkeditor-main.php:352
+msgid "in stock"
+msgstr "en stock"
+
+#: integrations/woo/woo.php:58
+msgid "Insufficient permissions."
+msgstr "Autorisations insuffisantes."
+
+#: includes/admin/save-wc-token.php:25
+msgid "Invalid consumer key or secret."
+msgstr "Clé consommateur ou secret non valide."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:932
+msgid "Invalid data format"
+msgstr "Format de données non valide"
+
+#: includes/admin/save-wc-token.php:42
+msgid "Invalid JSON payload."
+msgstr "Charge utile JSON non valide."
+
+#: includes/admin/ui/final-sidebar.php:19
+#: includes/admin/ui/final-sidebar.php:137
+msgid "Invalid nonce"
+msgstr "Nonce non valide"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:829
+msgid "Invalid parent product."
+msgstr "Produit parent non valide."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:503
+msgid "Invalid product ID."
+msgstr "ID de produit non valide."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:709
+msgid "Invalid product or not a variable product."
+msgstr "Produit invalide ou produit non variable."
+
+#: includes/admin/save-wc-token.php:11
+msgid "Invalid request method."
+msgstr "Méthode de demande non valide."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:87
+msgid "Invalid security token"
+msgstr "Jeton de sécurité non valide"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:818
+msgid "Invalid variation ID."
+msgstr "ID de variation non valide."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:823
+msgid "Invalid variation."
+msgstr "Variation invalide."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:50
+msgid "Inventory Re-count (Stock on Hand)"
+msgstr "Recomptage des stocks (stock disponible)"
+
+#: integrations/woo/woo/final-woo.php:55
+msgid "Language"
+msgstr "Langue"
+
+#: includes/admin/ui/dashboard.php:183
+msgid "Last 14 Days"
+msgstr "Les 14 derniers jours"
+
+#: includes/admin/ui/dashboard.php:274
+msgid "Latest Orders"
+msgstr "Dernières commandes"
+
+#: includes/admin/ui/dashboard.php:343
+msgid "Latest Pages"
+msgstr "Dernières pages"
+
+#: includes/admin/ui/dashboard.php:344
+msgid "Latest Posts"
+msgstr "Articles récents"
+
+#: includes/admin/ui/final-sidebar.php:125
+msgid "Load more"
+msgstr "Charger plus"
+
+#: includes/admin/other/settings.php:219
+msgid "Logo Preview"
+msgstr "Aperçu du logo"
+
+#: includes/admin/other/settings.php:214
+msgid "Logo Upload"
+msgstr "Téléchargement du logo"
+
+#: includes/admin/ui/final-sidebar.php:475
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:48
+msgid "Loss (Remove Stock)"
+msgstr "Perte (Supprimer le stock)"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:108
+msgid "Main View"
+msgstr "Vue principale"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:25
+#: integrations/woo/woo/stockmanagement-single.php:35
+#: integrations/woo/woo/stockmanagement-single.php:71
+msgid "Manage Stock"
+msgstr "Gérer les stocks"
+
+#: integrations/woo/woo.php:63
+msgid "Missing data."
+msgstr "Données manquantes."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:115
+msgid "Missing required fields"
+msgstr "Champs obligatoires manquants"
+
+#: includes/admin/finalwizard.php:269
+msgid "Modernized Backend UI"
+msgstr "Interface utilisateur backend modernisée"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:294
+msgid "N/A"
+msgstr "N / A"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:153
+msgid "Name"
+msgstr "Nom"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:59
+msgid "New stock on hand"
+msgstr "Nouveau stock disponible"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:392
+msgid "Next &raquo;"
+msgstr "Suivant &quot;"
+
+#: includes/admin/other/settings.php:219
+msgid "No logo uploaded"
+msgstr "Aucun logo téléchargé"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:788
+#: integrations/woo/bulkeditor/bulkeditor-main.php:814
+#: integrations/woo/bulkeditor/bulkeditor-main.php:923
+msgid "No permission."
+msgstr "Aucune permission."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:375
+msgid "No products found"
+msgstr "Aucun produit trouvé"
+
+#: includes/admin/ui/final-sidebar.php:273
+msgid "No results found"
+msgstr "Aucun résultat trouvé"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:226
+msgid "No Tags"
+msgstr "Pas de balises"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:703
+msgid "No valid product ID provided."
+msgstr "Aucun ID de produit valide fourni."
+
+#: includes/admin/finalwizard.php:284
+msgid "No, I prefer the traditional design."
+msgstr "Non, je préfère le design traditionnel."
+
+#: includes/admin/ui/final-sidebar.php:416
+msgid "Not Installed"
+msgstr "Non installé"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:134
+msgid "On Backorder"
+msgstr "En rupture de stock"
+
+#: includes/admin/ui/dashboard.php:249
+msgid "On Hold"
+msgstr "En attente"
+
+#: includes/admin/finalwizard.php:262
+msgid "One more step!"
+msgstr "Encore une étape !"
+
+#: includes/admin/ui/final-sidebar.php:197
+#, php-format
+msgid "Order #%s - %s"
+msgstr "Commande n°%s - %s"
+
+#: integrations/woo/woo.php:74
+msgid "Order not found."
+msgstr "Commande non trouvée."
+
+#: includes/admin/finalwizard.php:357 includes/admin/other/settings.php:337
+msgid "Order timeframe"
+msgstr "Délai de commande"
+
+#: includes/admin/finalwizard.php:171 includes/admin/ui/dashboard.php:332
+#: includes/admin/ui/menu.php:189 includes/admin/ui/final-sidebar.php:110
+msgid "Orders"
+msgstr "Ordres"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:133
+msgid "Out of Stock"
+msgstr "En rupture de stock"
+
+#: includes/admin/finalwizard.php:270
+msgid "Overview Dashboard"
+msgstr "Tableau de bord d'aperçu"
+
+#: includes/admin/finalwizard.php:182
+msgid "Overview:"
+msgstr "Aperçu:"
+
+#: includes/admin/ui/final-sidebar.php:108
+msgid "Pages"
+msgstr "Pages"
+
+#. Description of the plugin
+msgid "Pair your WooCommerce store with FinalPOS"
+msgstr "Associez votre boutique WooCommerce à FinalPOS"
+
+#: includes/admin/ui/dashboard.php:248
+msgid "Payment Pending"
+msgstr "Paiement en attente"
+
+#: includes/admin/finalwizard.php:443
+msgid "Please authorize FinalPOS to access your WooCommerce data."
+msgstr "Veuillez autoriser FinalPOS à accéder à vos données WooCommerce."
+
+#. %s: WooCommerce settings URL
+#: integrations/woo/woo/final-woo.php:32
+#, php-format
+msgid "Please go to your %sWooCommerce settings%s and fill out these fields."
+msgstr ""
+"Veuillez accéder à vos %sparamètres WooCommerce%s et remplir ces champs."
+
+#: includes/admin/finalwizard.php:359 includes/admin/other/settings.php:339
+msgid ""
+"Please note that extending the timeframe might affect your device's "
+"performance."
+msgstr ""
+"Veuillez noter que l'extension du délai peut affecter les performances de "
+"votre appareil."
+
+#: includes/admin/ui/final-sidebar.php:318
+msgid "Plugin Status"
+msgstr "Statut du plugin"
+
+#: includes/admin/ui/menu.php:151 integrations/woo/woo/final-woo.php:12
+msgid "Plugins"
+msgstr "Plugins"
+
+#: includes/admin/ui/final-sidebar.php:107
+msgid "Posts"
+msgstr "Articles"
+
+#: includes/admin/ui/dashboard.php:184
+msgid "Previous 14 Days"
+msgstr "14 jours précédents"
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:92
+#: integrations/woo/bulkeditor/bulkeditor-main.php:173
+msgid "Price"
+msgstr "Prix"
+
+#: includes/admin/ui/dashboard.php:250
+msgid "Processing"
+msgstr "Traitement"
+
+#: includes/admin/ui/dashboard.php:192
+msgid "Product"
+msgstr "Produit"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:718
+msgid "Product Attributes"
+msgstr "Attributs du produit"
+
+#: includes/admin/finalwizard.php:300 includes/admin/other/settings.php:281
+msgid "Product Categories"
+msgstr "Catégories de produits"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:623
+msgid "Product deleted successfully."
+msgstr "Produit supprimé avec succès."
+
+#: includes/api/sync.php:110
+msgid "Product ID:"
+msgstr "ID du produit :"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:122
+msgid "Product not found"
+msgstr "Produit non trouvé"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:509
+msgid "Product not found."
+msgstr "Produit non trouvé."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:579
+msgid "Product updated successfully."
+msgstr "Produit mis à jour avec succès."
+
+#: includes/admin/finalwizard.php:169 includes/admin/ui/dashboard.php:333
+#: includes/admin/ui/final-sidebar.php:109
+msgid "Products"
+msgstr "Produits"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:401
+msgid "Products per page:"
+msgstr "Produits par page :"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:127
+#: integrations/woo/bulkeditor/bulkeditor-main.php:267
+#: integrations/woo/bulkeditor/bulkeditor-main.php:270
+msgid "Published"
+msgstr "Publié"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:54
+msgid "Quantity"
+msgstr "Quantité"
+
+#: includes/api/sync.php:116
+msgid "Quantity:"
+msgstr "Quantité:"
+
+#: includes/admin/ui/final-sidebar.php:94
+msgid "Quick Search"
+msgstr "Recherche rapide"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:49
+msgid "Refund Damage (Remove Stock)"
+msgstr "Remboursement des dommages (retirer le stock)"
+
+#: includes/admin/other/settings.php:225
+msgid "Remove Logo"
+msgstr "Supprimer le logo"
+
+#: includes/admin/ui/final-sidebar.php:444
+msgid "Required:"
+msgstr "Requis:"
+
+#: includes/admin/other/settings.php:269
+msgid "Reset to Default Colors"
+msgstr "Réinitialiser les couleurs par défaut"
+
+#: includes/admin/other/settings.php:208
+msgid "Reset Wizard Status"
+msgstr "Réinitialiser le statut de l'assistant"
+
+#: includes/api/sync.php:449
+msgid "Response Code:"
+msgstr "Code de réponse :"
+
+#: includes/api/sync.php:450
+msgid "Response:"
+msgstr "Réponse:"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:44
+msgid "Restock Return (Add Stock)"
+msgstr "Retour de réapprovisionnement (ajout de stock)"
+
+#: includes/admin/ui/dashboard.php:194 includes/admin/ui/dashboard.php:331
+msgid "Revenue"
+msgstr "Revenu"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:45
+msgid "Sale (Remove Stock)"
+msgstr "Vente (Retirer le stock)"
+
+#: includes/admin/finalwizard.php:350 includes/admin/finalwizard.php:373
+#: includes/admin/other/settings.php:330 includes/admin/other/settings.php:353
+#: integrations/woo/bulkeditor/stockmanagement.php:79
+#: integrations/woo/bulkeditor/bulkeditor-main.php:426
+#: integrations/woo/bulkeditor/bulkeditor-main.php:443
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:98
+msgid "Save All"
+msgstr "Enregistrer tout"
+
+#: includes/admin/other/settings.php:268
+msgid "Save UI Pro Settings"
+msgstr "Enregistrer les paramètres de l'interface utilisateur Pro"
+
+#: includes/admin/finalwizard.php:192
+msgid ""
+"Seamlessly integrate your brick-and-mortar store with your online presence, "
+"ensuring real-time synchronization of inventory and data."
+msgstr ""
+"Intégrez de manière transparente votre magasin physique à votre présence en "
+"ligne, garantissant une synchronisation en temps réel de l'inventaire et des "
+"données."
+
+#: includes/admin/ui/ui.php:229
+msgid "Search"
+msgstr "Recherche"
+
+#: includes/admin/ui/ui.php:228
+#, php-format
+msgid "Search %s..."
+msgstr "Rechercher %s..."
+
+#: includes/admin/ui/final-sidebar.php:102
+msgid "Search by name or order #"
+msgstr "Rechercher par nom ou numéro de commande"
+
+#: includes/admin/finalwizard.php:306 includes/admin/other/settings.php:287
+msgid "Search for category"
+msgstr "Rechercher une catégorie"
+
+#: includes/admin/ui/ui.php:96 includes/admin/ui/ui.php:227
+msgid "Search menu..."
+msgstr "Rechercher dans le menu..."
+
+#: includes/admin/ui/final-sidebar.php:98
+msgid "Search Parameters (Soon)"
+msgstr "Paramètres de recherche (bientôt)"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:145
+msgid "Search products..."
+msgstr "Rechercher des produits..."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:12
+#: integrations/woo/bulkeditor/bulkeditor-main.php:18
+#: integrations/woo/bulkeditor/bulkeditor-main.php:459
+#: integrations/woo/bulkeditor/bulkeditor-main.php:586
+#: integrations/woo/bulkeditor/bulkeditor-main.php:610
+#: integrations/woo/bulkeditor/bulkeditor-main.php:633
+#: integrations/woo/bulkeditor/bulkeditor-main.php:656
+#: integrations/woo/bulkeditor/bulkeditor-main.php:670
+#: integrations/woo/bulkeditor/bulkeditor-main.php:686
+#: integrations/woo/bulkeditor/bulkeditor-main.php:698
+#: integrations/woo/bulkeditor/bulkeditor-main.php:783
+#: integrations/woo/bulkeditor/bulkeditor-main.php:809
+#: integrations/woo/bulkeditor/bulkeditor-main.php:843
+#: integrations/woo/bulkeditor/bulkeditor-main.php:890
+#: integrations/woo/bulkeditor/bulkeditor-main.php:918
+msgid "Security check failed."
+msgstr "Le contrôle de sécurité a échoué."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:42
+msgid "Select Action"
+msgstr "Sélectionner une action"
+
+#: includes/admin/other/settings.php:126
+msgid ""
+"Select your preferred style. Precedence over individual user preferences:"
+msgstr ""
+"Sélectionnez votre style préféré. Priorité sur les préférences individuelles "
+"des utilisateurs :"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:160
+msgid "SEO Keyword"
+msgstr "Mot-clé SEO"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:162
+msgid "SEO Meta"
+msgstr "Méta SEO"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:161
+msgid "SEO Title"
+msgstr "Titre SEO"
+
+#: includes/api/sync.php:79
+msgid "Setup"
+msgstr "Installation"
+
+#: includes/api/sync.php:448
+msgid "Setup Status:"
+msgstr "État de l'installation :"
+
+#: includes/api/sync.php:81
+msgid "Setup Sync"
+msgstr "Synchronisation des paramètres"
+
+#. Page title
+#: includes/admin/finalwizard.php:7
+msgid "Setup Wizard"
+msgstr "Assistant d'installation"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:157
+msgid "Short Description"
+msgstr "Brève description"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:110
+msgid "Show All"
+msgstr "Tout afficher"
+
+#: includes/admin/ui/final-sidebar.php:496
+msgid "Show all notifications in the Backend."
+msgstr "Afficher toutes les notifications dans le backend."
+
+#: includes/admin/ui/final-sidebar.php:496
+msgid "Show Notifications"
+msgstr "Afficher les notifications"
+
+#: includes/admin/ui/final-sidebar.php:493
+msgid "Show the regular Wordpress Menu."
+msgstr "Afficher le menu Wordpress habituel."
+
+#: includes/admin/finalwizard.php:178
+msgid "Sign In to an existing account"
+msgstr "Connectez-vous à un compte existant"
+
+#: includes/admin/finalwizard.php:158
+msgid "Sign In to an existing account or Sign Up in Final"
+msgstr "Connectez-vous à un compte existant ou inscrivez-vous dans Final"
+
+#: includes/admin/finalwizard.php:177
+msgid "Sign In to your Final account to get started!"
+msgstr "Connectez-vous à votre compte Final pour commencer !"
+
+#: includes/admin/finalwizard.php:179
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: includes/admin/ui/final-sidebar.php:342
+msgid "Site Health"
+msgstr "Santé du site"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:172
+msgid "SKU"
+msgstr "UGS"
+
+#: includes/admin/ui/dashboard.php:193
+msgid "Sold"
+msgstr "Vendu"
+
+#: includes/admin/finalwizard.php:271
+msgid "Sorted Admin Menu"
+msgstr "Menu d'administration trié"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:170
+msgid "Source"
+msgstr "Source"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:169
+msgid "Status"
+msgstr "Statut"
+
+#: includes/admin/finalwizard.php:283
+msgid "Stick with classic"
+msgstr "Restez fidèle au classique"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:171
+#: integrations/woo/woo/stockmanagement-single.php:64
+msgid "Stock"
+msgstr "Action"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:40
+msgid "Stock action"
+msgstr "Actions boursières"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:147
+msgid "Stock data updated successfully."
+msgstr "Les données boursières ont été mises à jour avec succès."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:35
+msgid "Stock on hand"
+msgstr "Stock disponible"
+
+#: integrations/woo/woo/stockmanagement-single.php:34
+msgid "Stock quantity"
+msgstr "Quantité en stock"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:43
+msgid "Stock Received (Add Stock)"
+msgstr "Stock reçu (Ajouter du stock)"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:153
+msgid "Stock sync with Final failed, please check connection"
+msgstr ""
+"La synchronisation des stocks avec Final a échoué, veuillez vérifier la "
+"connexion"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:159
+msgid "Stock update failed: "
+msgstr "La mise à jour des stocks a échoué :"
+
+#: includes/admin/ui/menu.php:147
+msgid "Store"
+msgstr "Magasin"
+
+#: integrations/woo/woo/final-woo.php:71
+msgid "Store Address"
+msgstr "Adresse du magasin"
+
+#: integrations/woo/woo/final-woo.php:72
+msgid "Store City"
+msgstr "Magasin de la ville"
+
+#: integrations/woo/woo/final-woo.php:73
+msgid "Store Country"
+msgstr "Pays du magasin"
+
+#: integrations/woo/woo/final-woo.php:74
+msgid "Store Postcode"
+msgstr "Code postal du magasin"
+
+#: includes/admin/ui/final-sidebar.php:415
+#: includes/admin/ui/final-sidebar.php:416
+#: includes/admin/ui/final-sidebar.php:417
+#: includes/admin/ui/final-sidebar.php:418
+#: includes/admin/ui/final-sidebar.php:419
+msgid "Streamline your workflow with the Oliver POS."
+msgstr "Optimisez votre flux de travail avec Oliver POS."
+
+#: includes/api/sync.php:88
+msgid "Sync Actions"
+msgstr "Actions de synchronisation"
+
+#: includes/api/sync.php:92
+msgid "Sync All"
+msgstr "Synchroniser tout"
+
+#: includes/api/sync.php:74
+msgid "Sync API Page"
+msgstr "Page de l'API de synchronisation"
+
+#: includes/api/sync.php:93
+msgid "Sync Customers"
+msgstr "Synchroniser les clients"
+
+#: includes/api/sync.php:95
+msgid "Sync Orders"
+msgstr "Synchroniser les commandes"
+
+#: includes/api/sync.php:94
+msgid "Sync Products"
+msgstr "Synchroniser les produits"
+
+#: includes/admin/other/settings.php:78 includes/admin/other/settings.php:88
+msgid "Sync Settings"
+msgstr "Paramètres de synchronisation"
+
+#: includes/admin/finalwizard.php:166
+msgid "Sync your WooCommerce Store in Final"
+msgstr "Synchronisez votre boutique WooCommerce dans Final"
+
+#. %s: sync type (products, orders, or customers)
+#: includes/admin/other/settings.php:102
+#, php-format
+msgid "Syncing all %s."
+msgstr "Synchronisation de tous les %s."
+
+#: includes/admin/finalwizard.php:234
+msgid "Syncing all categories."
+msgstr "Synchronisation de toutes les catégories."
+
+#: includes/admin/ui/final-sidebar.php:334
+msgid "System Status"
+msgstr "État du système"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:155
+msgid "Tags"
+msgstr "Mots clés"
+
+#: integrations/woo/woo/final-woo.php:66
+msgid "Tax Display in Shop"
+msgstr "Affichage des taxes dans le magasin"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:638
+#: integrations/woo/bulkeditor/bulkeditor-main.php:661
+#: integrations/woo/bulkeditor/bulkeditor-main.php:675
+msgid "Term not provided."
+msgstr "Terme non fourni."
+
+#: includes/api/sync.php:106
+msgid "Test Stock Actions"
+msgstr "Test des actions boursières"
+
+#: integrations/woo/bulkeditor/stockmanagement.php:31
+msgid "The Settings below apply to all variations without stock management."
+msgstr ""
+"Les paramètres ci-dessous s'appliquent à toutes les variantes sans gestion "
+"des stocks."
+
+#: integrations/woo/bulkeditor/stockmanagement.php:47
+msgid "Theft (Remove Stock)"
+msgstr "Vol (Retirer le stock)"
+
+#: includes/admin/ui/ui.php:230
+msgid "There was a problem loading the content."
+msgstr "Un problème est survenu lors du chargement du contenu."
+
+#: integrations/woo/woo.php:79
+msgid "This order is read-only and cannot be modified."
+msgstr "Cette commande est en lecture seule et ne peut pas être modifiée."
+
+#: includes/admin/ui/dashboard.php:216
+msgid "Title"
+msgstr "Titre"
+
+#: includes/admin/ui/final-sidebar.php:198
+#, php-format
+msgid "Total: %s | Email: %s"
+msgstr "Total : %s | Courriel : %s"
+
+#: includes/admin/ui/final-sidebar.php:483
+msgid "UI Preferences"
+msgstr "Préférences de l'interface utilisateur"
+
+#: includes/admin/other/settings.php:82
+msgid "UI Pro"
+msgstr "Interface utilisateur Pro"
+
+#: includes/admin/other/settings.php:211
+msgid "UI Pro Settings"
+msgstr "Paramètres de l'interface utilisateur Pro"
+
+#: includes/admin/other/settings.php:80 includes/admin/other/settings.php:125
+msgid "UI Settings"
+msgstr "Paramètres de l'interface utilisateur"
+
+#: includes/admin/ui/final-sidebar.php:377
+msgid "Up to date"
+msgstr "À jour"
+
+#: includes/admin/ui/final-sidebar.php:389
+msgid "Update"
+msgstr "Mise à jour"
+
+#: includes/admin/ui/final-sidebar.php:338
+msgid "Updates"
+msgstr "Mises à jour"
+
+#: includes/admin/other/settings.php:224
+msgid "Upload Logo"
+msgstr "Télécharger le logo"
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:61
+msgid "Used for variations"
+msgstr "Utilisé pour les variations"
+
+#: includes/admin/ui/final-sidebar.php:111
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: includes/api/sync.php:113
+msgid "Variant ID (optional):"
+msgstr "ID de variante (facultatif) :"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:70
+msgid "Variation data saved successfully."
+msgstr "Les données de variation ont été enregistrées avec succès."
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:834
+msgid "Variation deleted successfully."
+msgstr "Variation supprimée avec succès."
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:72
+msgid "Variation ID:"
+msgstr "ID de la variante :"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:69
+#: integrations/woo/bulkeditor/bulkeditor-main.php:720
+msgid "Variations"
+msgstr "Variations"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:305
+#: integrations/woo/bulkeditor/bulkeditor-main.php:365
+msgid "View"
+msgstr "Voir"
+
+#: includes/admin/ui/final-sidebar.php:474
+msgid "View Website"
+msgstr "Voir le site Web"
+
+#: integrations/woo/bulkeditor/bulk-common-functions.php:54
+msgid "Visible on the product page"
+msgstr "Visible sur la page produit"
+
+#. %s: comparison value from the previous period
+#. %s: value from the previous period for comparison
+#: includes/admin/ui/dashboard.php:172 includes/admin/ui/dashboard.php:362
+#, php-format
+msgid "vs. %s in last period"
+msgstr "contre %s dans la dernière période"
+
+#: includes/admin/finalwizard.php:430 includes/admin/finalwizard.php:431
+msgid "WC Auth"
+msgstr "Autorisation WC"
+
+#: includes/admin/finalwizard.php:301 includes/admin/other/settings.php:282
+msgid ""
+"We will sync all your product categories, or you can choose specific "
+"categories to sync from your WooCommerce store to Final POS."
+msgstr ""
+"Nous synchroniserons toutes vos catégories de produits, ou vous pouvez "
+"choisir des catégories spécifiques à synchroniser depuis votre boutique "
+"WooCommerce vers Final POS."
+
+#: includes/admin/finalwizard.php:358 includes/admin/other/settings.php:338
+msgid ""
+"We will sync online orders from your WooCommerce store to Final POS for the "
+"last 30 days, or you can select a specific time period:"
+msgstr ""
+"Nous synchroniserons les commandes en ligne de votre boutique WooCommerce "
+"avec Final POS au cours des 30 derniers jours, ou vous pouvez sélectionner "
+"une période spécifique :"
+
+#: includes/admin/finalwizard.php:265
+msgid ""
+"We've redesigned the WordPress Admin interface for a cleaner, more intuitive "
+"experience."
+msgstr ""
+"Nous avons repensé l'interface d'administration de WordPress pour une "
+"expérience plus propre et plus intuitive."
+
+#: includes/admin/finalwizard.php:153
+msgid ""
+"Welcome to Final POS Builder! Here are the steps to set up your website with "
+"Final:"
+msgstr ""
+"Bienvenue dans Final POS Builder ! Voici les étapes à suivre pour configurer "
+"votre site Web avec Final :"
+
+#: includes/admin/finalwizard.php:186
+msgid "What is Final POS Builder?"
+msgstr "Qu'est-ce que Final POS Builder ?"
+
+#: includes/admin/finalwizard.php:442
+msgid "WooCommerce Authorization"
+msgstr "Autorisation WooCommerce"
+
+#: includes/admin/ui/final-sidebar.php:493
+msgid "WP Admin Menu"
+msgstr "Menu d'administration WP"
+
+#: includes/admin/finalwizard.php:279
+msgid "Yes, I want to switch to the new UI!"
+msgstr "Oui, je souhaite passer à la nouvelle interface utilisateur !"
+
+#: integrations/woo/bulkeditor/bulkeditor-main.php:52
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+"Vous n'avez pas les autorisations suffisantes pour accéder à cette page."
+
+#: includes/admin/ui/ui.php:225
+msgid "You have %d notifications that you might want to check."
+msgstr "Vous avez %d notifications que vous souhaiterez peut-être vérifier."
+
+#: includes/admin/ui/ui.php:224
+msgid "You have one notification that you might want to check."
+msgstr "Vous avez une notification que vous souhaiterez peut-être vérifier."
+
+#: includes/admin/finalwizard.php:146
+msgid ""
+"You need to approve the WooCommerce Auth Screen to use FinalPOS sync features"
+msgstr ""
+"Vous devez approuver l'écran d'authentification WooCommerce pour utiliser "
+"les fonctionnalités de synchronisation FinalPOS"
