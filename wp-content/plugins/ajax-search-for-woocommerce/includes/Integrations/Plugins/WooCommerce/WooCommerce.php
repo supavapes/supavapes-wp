@@ -31,6 +31,8 @@ class WooCommerce {
 		$this->syncWithOutOfStockVisibility();
 
 		add_action( 'before_woocommerce_init', array( $this, 'declare_compatibility' ) );
+
+		$this->brandsSupport();
 	}
 
 	/**
@@ -147,5 +149,40 @@ class WooCommerce {
 		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', DGWT_WCAS_FILE, true );
 		}
+	}
+
+	/**
+	 * Adds support fow a WooCommerce brands feature.
+	 * https://developer.woocommerce.com/2024/10/01/introducing-brands/
+	 *
+	 * Starting with WooCommerce 9.4, all functionality previously offered by the WooCommerce Brands plugin
+	 * are part of WooCommerce core, and available to use for free.
+	 * The feature will be enabled for all users, starting with WooCommerce 9.6.
+	 *
+	 * @return void
+	 */
+	private function brandsSupport() {
+		$minWooVersion    = defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '9.6', '>=' );
+		$inStagedRollouts = ( class_exists( 'Automattic\WooCommerce\Internal\Brands' )
+		                      && method_exists( 'Automattic\WooCommerce\Internal\Brands', 'is_enabled' )
+		                      && \Automattic\WooCommerce\Internal\Brands::is_enabled() );
+
+		// Break early if the WooCommerce doesn't support brands.
+		if ( ! $minWooVersion && ! $inStagedRollouts ) {
+			return;
+		}
+
+		add_filter( 'dgwt/wcas/indexer/taxonomies', function ( $taxonomies ) {
+			$taxonomies[] = array(
+				'taxonomy'      => 'product_brand',
+				'labels'        => array(
+					'name'          => __( 'Brands', 'woocommerce' ),
+					'singular_name' => __( 'Brand', 'woocommerce' ),
+				),
+				'image_support' => true,
+			);
+
+			return $taxonomies;
+		} );
 	}
 }

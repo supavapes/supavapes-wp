@@ -5,6 +5,29 @@ if ( ! defined( 'DGWT_WCAS_FILE' ) ) {
 	exit;
 }
 
+/**
+ * Solves conflict with the Divi builder and "Woo Products" module.
+ * When using this module the wrong sorting was being determined on the search results page.
+ * Due to this, the order of the autocomplete results was not preserved on the search results page.
+ */
+add_filter( 'woocommerce_get_catalog_ordering_args', function ( $args, $orderby, $order ) {
+	if (
+		! empty( get_query_var( 'dgwt_wcas' ) ) &&
+		$orderby === 'post__in' &&
+		$order === 'ASC' &&
+		is_callable( 'DgoraWcas\Helpers::is_running_inside_class' ) &&
+		\DgoraWcas\Helpers::is_running_inside_class( 'ET_Builder_Module_Shop', 20 )
+	) {
+		$args = [
+			'orderby'  => 'relevance',
+			'order'    => 'DESC',
+			'meta_key' => '',
+		];
+	}
+
+	return $args;
+}, 10, 3 );
+
 add_filter( 'et_builder_load_requests', function ( $requests ) {
 	if ( ! isset( $requests['wc-ajax'] ) ) {
 		$requests['wc-ajax'] = array();

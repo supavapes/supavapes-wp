@@ -40,7 +40,9 @@
 .woocommerce_page_dgwt_wcas_settings .dup-updated,
 .woocommerce_page_dgwt_wcas_settings .sbi_notice,
 .dgwt-wcas-settings > .updated:not(.fs-slug-ajax-search-for-woocommerce),
-.woocommerce_page_dgwt_wcas_settings .sp-eafree-review-notice {
+.woocommerce_page_dgwt_wcas_settings .sp-eafree-review-notice,
+.woocommerce_page_dgwt_wcas_settings #beacon-container,
+.woocommerce_page_dgwt_wcas_debug #beacon-container {
 	display: none !important;
 }
 

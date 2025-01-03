@@ -44,11 +44,16 @@ class Settings_Pointer {
 		?>
 		<script>
 				const onClose = () => {
-					return wp.ajax.post( 'image_optimizer_pointer_dismissed', {
+					return jQuery.ajax( {
+						url: ajaxurl,
+						method: 'POST',
 						data: {
-							pointer: '<?php echo esc_attr( static::CURRENT_POINTER_SLUG ); ?>',
-						},
-						nonce: '<?php echo esc_attr( wp_create_nonce( 'image-optimization-pointer-dismissed' ) ); ?>',
+							action: 'image_optimizer_pointer_dismissed',
+							data: {
+								pointer: '<?php echo esc_attr( static::CURRENT_POINTER_SLUG ); ?>'
+							},
+							nonce: '<?php echo esc_attr( wp_create_nonce( 'image-optimization-pointer-dismissed' ) ); ?>'
+						}
 					} );
 				}
 

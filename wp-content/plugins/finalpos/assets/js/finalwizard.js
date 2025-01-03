@@ -1,5 +1,6 @@
 // At the beginning of the file, ensure this function is defined
 function nextStep(step) {
+    console.log('Moving to step:', step);
     const allSteps = document.querySelectorAll('.wizard-step');
     const wizardContainer = document.getElementById('final-pos-wizard');
     
@@ -26,6 +27,10 @@ function prevStep(step) {
 
 function showUI(choice) {
     const uiPreview = document.getElementById('ui-preview');
+    if (!uiPreview) {
+        console.error('UI preview element not found.');
+        return;
+    };
     const pluginUrl = getPluginUrl();
     const imageUrl = choice === 'modern' ? 'wizard-step3-modern.jpg' : 'wizard-step3-legacy.jpg';
     uiPreview.style.backgroundImage = `url("${pluginUrl}assets/img/${imageUrl}")`;
@@ -198,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Set initial UI preview
-    showUI('modern');
+    // showUI('modern');
 
     // Configure link click handlers
     const configureLinks = document.querySelectorAll('.configure-link');
@@ -244,13 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // "All categories" checkbox functionality
     const allCategoriesCheckbox = document.getElementById('allCategories');
     const categoryCheckboxes = document.querySelectorAll('.category-item input[type="checkbox"]:not(#allCategories)');
-
+    const toggleAll=()=>{
+        categoryCheckboxes.forEach(checkbox=>{checkbox.checked=allCategoriesCheckbox.checked})
+      }
+    
     if (allCategoriesCheckbox) {
-        allCategoriesCheckbox.addEventListener('change', () => {
-            categoryCheckboxes.forEach(checkbox => {
-                checkbox.checked = allCategoriesCheckbox.checked;
-            });
-        });
+        toggleAll()
+        allCategoriesCheckbox.addEventListener('change',toggleAll)
     }
 
     categoryCheckboxes.forEach(checkbox => {
@@ -258,7 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
             allCategoriesCheckbox.checked = Array.from(categoryCheckboxes).every(cb => cb.checked);
         });
     });
-
+    const updateChildren=c=>{
+        let stack=[c.value]
+        while(stack.length){
+         let p=stack.pop()
+         let kids=[...document.querySelectorAll(`.category-item input[data-parent-id="${p}"]`)]
+         kids.forEach(k=>{
+          k.checked=c.checked
+          stack.push(k.value)
+         })
+        }
+       }
+       categoryCheckboxes.forEach(c=>c.addEventListener('change',()=>updateChildren(c)))
     // Save categories button functionality
     const saveButton = document.querySelector('.save-categories');
     if (saveButton) {
@@ -268,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     // Save timeframe button functionality
     const saveTimeframeButton = document.querySelector('.save-timeframe');
     if (saveTimeframeButton) {
@@ -357,9 +372,8 @@ function saveAllWizardSettings() {
     // If no categories are selected or "All categories" is checked, get all categories
     const allCategoriesChecked = document.getElementById('allCategories')?.checked;
     const categorySync = (selectedCategories.length === 0 || allCategoriesChecked) ? 
-        getAllWooCategories() : 
-        selectedCategories;
-
+    getAllWooCategories() : selectedCategories;
+    
     // Get selected timeframe or use default (60 days)
     const selectedTimeframe = document.querySelector('input[name="order_timeframe"]:checked')?.value || '60';
     
@@ -367,7 +381,7 @@ function saveAllWizardSettings() {
         category_sync: categorySync,
         order_timeframe: selectedTimeframe,
         order_timeframe_start: calculateStartTimestamp(parseInt(selectedTimeframe)),
-        ui_choice: document.querySelector('input[name="ui-choice"]:checked')?.value || 'modern',
+        ui_choice: document.querySelector('input[name="ui-choice"]:checked')?.value || 'classic',
         sync_status: {
             products: document.getElementById('products')?.checked ?? true,
             orders: document.getElementById('orders')?.checked ?? true,

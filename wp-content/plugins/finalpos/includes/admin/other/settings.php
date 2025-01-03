@@ -4,7 +4,8 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-function final_add_settings_page() {
+function final_add_settings_page()
+{
     add_submenu_page(
         'final-admin-dashboard',
         'Final Settings',
@@ -14,22 +15,35 @@ function final_add_settings_page() {
         'final_render_settings_page'
     );
 }
-add_action('admin_menu', 'final_add_settings_page');
+
+$wizard_status = get_option('final_wizard_status',  '');
+if ($wizard_status === 'completed_sync' && get_option('final_pos_consumer_key')) {
+    add_action('admin_menu', 'final_add_settings_page');
+}
 
 require_once plugin_dir_path(__FILE__) . '../../api/sync.php';
 
-function final_render_settings_page() {
+function final_render_settings_page()
+{
     // Load saved options
     $ui_choice = get_option('final_pos_ui_choice', 'modern');
 
     // Load UI and Advanced settings
     $ui_settings = [
-        'dark_mode', 'wp_admin_menu', 'hide_menu_icons', 'hide_admin_toolbar', 'show_notifications'
+        'dark_mode',
+        'wp_admin_menu',
+        'hide_menu_icons',
+        'hide_admin_toolbar',
+        'show_notifications'
     ];
 
     $advanced_settings = [
-        'wordpress_optimizations', 'gutenberg_disable',
-        'disable_comments', 'disable_feeds', 'disable_xmlrpc', 'final_debug_log'
+        'wordpress_optimizations',
+        'gutenberg_disable',
+        'disable_comments',
+        'disable_feeds',
+        'disable_xmlrpc',
+        'final_debug_log'
     ];
 
     // Check if WooCommerce is active
@@ -80,55 +94,61 @@ function final_render_settings_page() {
             <div class="final-settings-sidebar">
                 <ul>
                     <?php if ($woocommerce_active): ?>
-                    <li><a href="#tab1"><?php esc_html_e('Sync Settings', 'final-pos'); ?></a></li>
+                        <li><a href="#tab1"><?php esc_html_e('Sync Settings', 'final-pos'); ?></a></li>
                     <?php endif; ?>
-                    <li><a href="#tab2"><?php esc_html_e('UI Settings', 'final-pos'); ?></a></li>
+                    <!-- <li><a href="#tab2"><?php esc_html_e('UI Settings', 'final-pos'); ?></a></li> -->
                     <li><a href="#tab3"><?php esc_html_e('Advanced', 'final-pos'); ?></a></li>
                     <li><a href="#tab4"><?php esc_html_e('UI Pro', 'final-pos'); ?></a></li>
                 </ul>
             </div>
             <div class="final-settings-content">
                 <?php if ($woocommerce_active): ?>
-                <div id="tab1" class="final-tab-content">
-                    <h2><?php esc_html_e('Sync Settings', 'final-pos'); ?></h2>
-                    <p><?php esc_html_e('Choose the types you want to sync from your WooCommerce store to Final POS:', 'final-pos'); ?></p>
-                    <hr>
-                    <div class="toggle-group">
-                        <?php foreach (['products', 'orders', 'customers'] as $type): ?>
-                        <div class="toggle-item">
-                            <div class="toggle-label">
-                                <div class="icon-box">
-                                    <?php include(plugin_dir_path(__FILE__) . '../../../assets/img/icons/' . esc_attr($type) . '.svg'); ?>
+                    <div id="tab1" class="final-tab-content">
+                        <h2><?php esc_html_e('Sync Settings', 'final-pos'); ?></h2>
+                        <p><?php esc_html_e('Choose the types you want to sync from your WooCommerce store to Final POS:', 'final-pos'); ?>
+                        </p>
+                        <hr>
+                        <div class="toggle-group">
+                            <?php foreach (['products', 'orders', 'customers'] as $type): ?>
+                                <div class="toggle-item">
+                                    <div class="toggle-label">
+                                        <div class="icon-box">
+                                            <?php include(plugin_dir_path(__FILE__) . '../../../assets/img/icons/' . esc_attr($type) . '.svg'); ?>
+                                        </div>
+                                        <div>
+                                            <label for="<?php echo esc_attr($type); ?>"
+                                                class="toggle-labeltext"><?php echo esc_html(ucfirst($type)); ?></label>
+                                            <?php
+                                            /* translators: %s: sync type (products, orders, or customers) */
+                                            $sync_description = sprintf(__('Syncing all %s.', 'final-pos'), esc_html($type));
+                                            ?>
+                                            <p class="toggle-description"><?php echo esc_html($sync_description); ?></p>
+                                            <?php if ($type !== 'customers'): ?>
+                                                <a href="#" class="configure-link"
+                                                    data-popup="<?php echo esc_attr($type); ?>"><?php esc_html_e('Configure your sync terms', 'final-pos'); ?></a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-control">
+                                        <label class="switch">
+                                            <input type="checkbox" id="<?php echo esc_attr($type); ?>" <?php checked(isset($sync_status[$type]) && $sync_status[$type]); ?>>
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <div
+                                            class="sync-icon <?php echo (isset($sync_status[$type]) && $sync_status[$type]) ? '' : 'hidden'; ?>">
+                                            <span class="material-symbols-outlined sync-button"
+                                                data-sync-type="<?php echo esc_attr($type); ?>">sync</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="<?php echo esc_attr($type); ?>" class="toggle-labeltext"><?php echo esc_html(ucfirst($type)); ?></label>
-                                    <?php
-                                    /* translators: %s: sync type (products, orders, or customers) */
-                                    $sync_description = sprintf(__('Syncing all %s.', 'final-pos'), esc_html($type));
-                                    ?>
-                                    <p class="toggle-description"><?php echo esc_html($sync_description); ?></p>
-                                    <?php if ($type !== 'customers'): ?>
-                                    <a href="#" class="configure-link" data-popup="<?php echo esc_attr($type); ?>"><?php esc_html_e('Configure your sync terms', 'final-pos'); ?></a>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="toggle-control">
-                                <label class="switch">
-                                    <input type="checkbox" id="<?php echo esc_attr($type); ?>" <?php checked(isset($sync_status[$type]) && $sync_status[$type]); ?>>
-                                    <span class="slider round"></span>
-                                </label>
-                                <div class="sync-icon <?php echo (isset($sync_status[$type]) && $sync_status[$type]) ? '' : 'hidden'; ?>">
-                                    <span class="material-symbols-outlined sync-button" data-sync-type="<?php echo esc_attr($type); ?>">sync</span>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
-                        <?php endforeach; ?>
                     </div>
-                </div>
                 <?php endif; ?>
                 <div id="tab2" class="final-tab-content">
                     <h2><?php esc_html_e('UI Settings', 'final-pos'); ?></h2>
-                    <p><?php esc_html_e('Select your preferred style. Precedence over individual user preferences:', 'final-pos'); ?></p>
+                    <p><?php esc_html_e('Select your preferred style. Precedence over individual user preferences:', 'final-pos'); ?>
+                    </p>
                     <hr>
                     <div class="ui-choice-container">
                         <div class="radio-group">
@@ -142,7 +162,7 @@ function final_render_settings_page() {
                     </div>
                     <hr>
                     <div class="toggle-group">
-                        <?php 
+                        <?php
                         $toggles = [
                             'dark_mode' => ['icon' => 'dark_mode', 'label' => 'Enable Dark Mode', 'description' => 'Enable dark mode in the Backend.'],
                             'wp_admin_menu' => ['icon' => 'menu', 'label' => 'WP Admin Menu', 'description' => 'Show the regular WordPress Menu.'],
@@ -153,9 +173,11 @@ function final_render_settings_page() {
                         foreach ($toggles as $id => $toggle): ?>
                             <div class="toggle-item">
                                 <div class="toggle-label">
-                                    <span class="material-symbols-outlined uxlabs-boxed-icon"><?php echo esc_html($toggle['icon']); ?></span>
+                                    <span
+                                        class="material-symbols-outlined uxlabs-boxed-icon"><?php echo esc_html($toggle['icon']); ?></span>
                                     <div>
-                                        <label for="<?php echo esc_attr($id); ?>" class="toggle-labeltext"><?php echo esc_html($toggle['label']); ?></label>
+                                        <label for="<?php echo esc_attr($id); ?>"
+                                            class="toggle-labeltext"><?php echo esc_html($toggle['label']); ?></label>
                                         <p class="toggle-description"><?php echo esc_html($toggle['description']); ?></p>
                                     </div>
                                 </div>
@@ -171,10 +193,11 @@ function final_render_settings_page() {
                 </div>
                 <div id="tab3" class="final-tab-content">
                     <h2><?php esc_html_e('Advanced Settings', 'final-pos'); ?></h2>
-                    <p><?php esc_html_e('Configure advanced performance, optimization and expert settings:', 'final-pos'); ?></p>
+                    <p><?php esc_html_e('Configure advanced performance, optimization and expert settings:', 'final-pos'); ?>
+                    </p>
                     <hr>
                     <div class="toggle-group">
-                        <?php 
+                        <?php
                         $advanced_toggles = [
                             'wordpress_optimizations' => ['icon' => 'public', 'label' => 'WordPress Optimizations', 'description' => 'Optimize various WordPress core features and behaviors.'],
                             'gutenberg_disable' => ['icon' => 'dashboard_customize', 'label' => 'Disable Gutenberg', 'description' => 'Disable Gutenberg editor and related features.'],
@@ -195,9 +218,11 @@ function final_render_settings_page() {
                         foreach ($advanced_toggles as $id => $toggle): ?>
                             <div class="toggle-item">
                                 <div class="toggle-label">
-                                    <span class="material-symbols-outlined uxlabs-boxed-icon"><?php echo esc_html($toggle['icon']); ?></span>
+                                    <span
+                                        class="material-symbols-outlined uxlabs-boxed-icon"><?php echo esc_html($toggle['icon']); ?></span>
                                     <div>
-                                        <label for="<?php echo esc_attr($id); ?>" class="toggle-labeltext"><?php echo esc_html($toggle['label']); ?></label>
+                                        <label for="<?php echo esc_attr($id); ?>"
+                                            class="toggle-labeltext"><?php echo esc_html($toggle['label']); ?></label>
                                         <p class="toggle-description"><?php echo esc_html($toggle['description']); ?></p>
                                     </div>
                                 </div>
@@ -210,30 +235,35 @@ function final_render_settings_page() {
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button id="reset-wizard-status" class="button button-secondary"><?php esc_html_e('Reset Wizard Status', 'final-pos'); ?></button>
+                    <button id="reset-wizard-status"
+                        class="button button-secondary"><?php esc_html_e('Reset Wizard Status', 'final-pos'); ?></button>
                 </div>
                 <div id="tab4" class="final-tab-content hidden-pro-settings">
                     <h2><?php esc_html_e('UI Pro Settings', 'final-pos'); ?></h2>
-                    <p><?php esc_html_e('Customize the main colors of your admin interface and upload your logo:', 'final-pos'); ?></p>
+                    <p><?php esc_html_e('Customize the main colors of your admin interface and upload your logo:', 'final-pos'); ?>
+                    </p>
                     <hr>
                     <h3><?php esc_html_e('Logo Upload', 'final-pos'); ?></h3>
                     <div class="logo-upload-container">
                         <div class="logo-preview">
-                            <?php 
+                            <?php
                             $logo_url = esc_url(get_option('final_pos_logo_url', ''));
                             echo !empty($logo_url) ? '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr__('Logo Preview', 'final-pos') . '">' : '<p>' . esc_html__('No logo uploaded', 'final-pos') . '</p>';
                             ?>
                         </div>
                         <div class="logo-upload-controls">
-                            <input type="text" id="logo_url" name="logo_url" value="<?php echo esc_attr($logo_url); ?>" placeholder="<?php esc_attr_e('Enter logo URL or use upload button', 'final-pos'); ?>">
-                            <button type="button" id="upload_logo_button" class="button"><?php esc_html_e('Upload Logo', 'final-pos'); ?></button>
-                            <button type="button" id="remove_logo_button" class="button"><?php esc_html_e('Remove Logo', 'final-pos'); ?></button>
+                            <input type="text" id="logo_url" name="logo_url" value="<?php echo esc_attr($logo_url); ?>"
+                                placeholder="<?php esc_attr_e('Enter logo URL or use upload button', 'final-pos'); ?>">
+                            <button type="button" id="upload_logo_button"
+                                class="button"><?php esc_html_e('Upload Logo', 'final-pos'); ?></button>
+                            <button type="button" id="remove_logo_button"
+                                class="button"><?php esc_html_e('Remove Logo', 'final-pos'); ?></button>
                         </div>
                     </div>
                     <hr>
                     <h3><?php esc_html_e('Color Settings', 'final-pos'); ?></h3>
                     <div class="color-picker-group">
-                        <?php 
+                        <?php
                         $color_settings = [
                             'primary_color' => ['label' => 'Primary Color', 'default' => '#3D4C66'],
                             'base_color' => ['label' => 'Base Color', 'default' => '#2797e8'],
@@ -244,15 +274,18 @@ function final_render_settings_page() {
                             <div class="color-picker-item">
                                 <label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($setting['label']); ?></label>
                                 <div class="color-picker-wrapper">
-                                    <input type="color" id="<?php echo esc_attr($key); ?>" name="<?php echo esc_attr($key); ?>" value="<?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>">
-                                    <div class="color-preview" style="background-color: <?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>;"></div>
+                                    <input type="color" id="<?php echo esc_attr($key); ?>" name="<?php echo esc_attr($key); ?>"
+                                        value="<?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>">
+                                    <div class="color-preview"
+                                        style="background-color: <?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>;">
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                     <h3><?php esc_html_e('Dark Mode', 'final-pos'); ?></h3>
                     <div class="color-picker-group">
-                        <?php 
+                        <?php
                         $dark_color_settings = [
                             'dark_primary_color' => ['label' => 'Primary Color', 'default' => '#54698e'],
                             'dark_base_color' => ['label' => 'Base Color', 'default' => '#2797e8'],
@@ -263,15 +296,20 @@ function final_render_settings_page() {
                             <div class="color-picker-item">
                                 <label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($setting['label']); ?></label>
                                 <div class="color-picker-wrapper">
-                                    <input type="color" id="<?php echo esc_attr($key); ?>" name="<?php echo esc_attr($key); ?>" value="<?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>">
-                                    <div class="color-preview" style="background-color: <?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>;"></div>
+                                    <input type="color" id="<?php echo esc_attr($key); ?>" name="<?php echo esc_attr($key); ?>"
+                                        value="<?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>">
+                                    <div class="color-preview"
+                                        style="background-color: <?php echo esc_attr(get_option('final_pos_' . $key, $setting['default'])); ?>;">
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                     <div>
-                        <button type="button" id="save-ui-pro-settings" class="button button-primary"><?php esc_html_e('Save UI Pro Settings', 'final-pos'); ?></button>
-                        <button type="button" id="reset-ui-pro-settings" class="button"><?php esc_html_e('Reset to Default Colors', 'final-pos'); ?></button>
+                        <button type="button" id="save-ui-pro-settings"
+                            class="button button-primary"><?php esc_html_e('Save UI Pro Settings', 'final-pos'); ?></button>
+                        <button type="button" id="reset-ui-pro-settings"
+                            class="button"><?php esc_html_e('Reset to Default Colors', 'final-pos'); ?></button>
                     </div>
                 </div>
             </div>
@@ -279,99 +317,106 @@ function final_render_settings_page() {
     </div>
 
     <?php if ($woocommerce_active): ?>
-    <!-- Popups -->
-    <div id="productsPopup" class="setup-popup">
-        <div class="setup-popup-content">
-            <span class="close-popup">&times;</span>
-            <h2><?php esc_html_e('Product Categories', 'final-pos'); ?></h2>
-            <p><?php esc_html_e('We will sync all your product categories, or you can choose specific categories to sync from your WooCommerce store to Final POS.', 'final-pos'); ?></p>
-            
-            <div class="category-list-container">
-                <h3><?php esc_html_e('Category list', 'final-pos'); ?></h3>
-                <div class="search-container">
-                    <input type="text" id="categorySearch" placeholder="<?php esc_attr_e('Search for category', 'final-pos'); ?>">
-                    <span class="material-symbols-outlined search-icon">search</span>
-                </div>
-                <div class="category-list">
-                    <label class="category-item">
-                        <input type="checkbox" id="allCategories" checked>
-                        <span class="category-name"><?php esc_html_e('All categories', 'final-pos'); ?></span>
-                    </label>
-                    <?php
-                    function display_category_hierarchical($category, $depth = 0) {
-                        $indent = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth);
-                        $sync_status = get_term_meta($category->term_id, 'final_sync', true);
-                        $checked = $sync_status ? 'checked' : '';
-                        echo '<label class="category-item" style="padding-left: ' . esc_attr($depth * 20) . 'px;">';
-                        echo esc_html($indent) . '<input type="checkbox" name="product_category[]" value="' . esc_attr($category->term_id) . '" ' . esc_attr($checked) . '>';
-                        echo '<span class="category-name">' . esc_html($category->name) . '</span>';
-                        echo '</label>';
+        <!-- Popups -->
+        <div id="productsPopup" class="setup-popup">
+            <div class="setup-popup-content">
+                <span class="close-popup">&times;</span>
+                <h2><?php esc_html_e('Product Categories', 'final-pos'); ?></h2>
+                <p><?php esc_html_e('We will sync all your product categories, or you can choose specific categories to sync from your WooCommerce store to Final POS.', 'final-pos'); ?>
+                </p>
 
-                        $child_categories = get_terms(array(
-                            'taxonomy' => 'product_cat',
-                            'hide_empty' => false,
-                            'parent' => $category->term_id
-                        ));
+                <div class="category-list-container">
+                    <h3><?php esc_html_e('Category list', 'final-pos'); ?></h3>
+                    <div class="search-container">
+                        <input type="text" id="categorySearch"
+                            placeholder="<?php esc_attr_e('Search for category', 'final-pos'); ?>">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                    </div>
+                    <div class="category-list">
+                        <label class="category-item">
+                            <input type="checkbox" id="allCategories" checked>
+                            <span class="category-name"><?php esc_html_e('All categories', 'final-pos'); ?></span>
+                        </label>
+                        <?php
+                        function display_category_hierarchical($category, $depth = 0)
+                        {
+                            $indent = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth);
+                            $sync_status = get_term_meta($category->term_id, 'final_sync', true);
+                            $checked = $sync_status ? 'checked' : '';
+                            echo '<label class="category-item" style="padding-left: ' . esc_attr($depth * 20) . 'px;">';
+                            echo esc_html($indent) . '<input type="checkbox" name="product_category[]" value="' . esc_attr($category->term_id) . '" data-parent-id="' . esc_attr($category->parent) . '" ' . esc_attr($checked) . '>';
+                            echo '<span class="category-name">' . esc_html($category->name) . '</span>';
+                            echo '</label>';
 
-                        if (!empty($child_categories)) {
-                            foreach ($child_categories as $child_category) {
-                                display_category_hierarchical($child_category, $depth + 1);
+                            $child_categories = get_terms(array(
+                                'taxonomy' => 'product_cat',
+                                'hide_empty' => false,
+                                'parent' => $category->term_id
+                            ));
+
+                            if (!empty($child_categories)) {
+                                foreach ($child_categories as $child_category) {
+                                    display_category_hierarchical($child_category, $depth + 1);
+                                }
                             }
                         }
-                    }
 
-                    $top_level_categories = get_terms(array(
-                        'taxonomy' => 'product_cat',
-                        'hide_empty' => false,
-                        'parent' => 0
-                    ));
+                        $top_level_categories = get_terms(array(
+                            'taxonomy' => 'product_cat',
+                            'hide_empty' => false,
+                            'parent' => 0
+                        ));
 
-                    foreach ($top_level_categories as $category) {
-                        display_category_hierarchical($category, 0);
+                        foreach ($top_level_categories as $category) {
+                            display_category_hierarchical($category, 0);
+                        }
+                        ?>
+                    </div>
+                </div>
+                <button type="button" class="save-categories"><?php esc_html_e('Save', 'final-pos'); ?></button>
+            </div>
+        </div>
+
+        <div id="ordersPopup" class="setup-popup">
+            <div class="setup-popup-content">
+                <span class="close-popup">&times;</span>
+                <h2><?php esc_html_e('Order timeframe', 'final-pos'); ?></h2>
+                <p><?php esc_html_e('We will sync online orders from your WooCommerce store to Final POS for the last 30 days, or you can select a specific time period:', 'final-pos'); ?>
+                </p>
+                <p class="infotext">
+                    <?php esc_html_e('Please note that extending the timeframe might affect your device\'s performance.', 'final-pos'); ?>
+                </p>
+
+                <div class="timeframe-list">
+                    <?php
+                    $timeframes = array(7, 30, 60, 90, 365, 730);
+                    foreach ($timeframes as $days) {
+                        $checked = $order_timeframe == $days ? 'checked' : '';
+                        echo '<label class="timeframe-item">';
+                        echo '<input type="radio" name="order_timeframe" value="' . esc_attr($days) . '" ' . esc_attr($checked) . '>';
+                        echo '<span class="timeframe-name">' . esc_html('Last ' . ($days == 365 ? '1 year' : ($days == 730 ? '2 years' : $days . ' days'))) . '</span>';
+                        echo '</label>';
                     }
                     ?>
                 </div>
+                <button type="button" class="save-timeframe"><?php esc_html_e('Save', 'final-pos'); ?></button>
             </div>
-            <button type="button" class="save-categories"><?php esc_html_e('Save', 'final-pos'); ?></button>
         </div>
-    </div>
-
-    <div id="ordersPopup" class="setup-popup">
-        <div class="setup-popup-content">
-            <span class="close-popup">&times;</span>
-            <h2><?php esc_html_e('Order timeframe', 'final-pos'); ?></h2>
-            <p><?php esc_html_e('We will sync online orders from your WooCommerce store to Final POS for the last 30 days, or you can select a specific time period:', 'final-pos'); ?></p>
-            <p class="infotext"><?php esc_html_e('Please note that extending the timeframe might affect your device\'s performance.', 'final-pos'); ?></p>
-            
-            <div class="timeframe-list">
-                <?php
-                $timeframes = array(7, 30, 60, 90, 365, 730);
-                foreach ($timeframes as $days) {
-                    $checked = $order_timeframe == $days ? 'checked' : '';
-                    echo '<label class="timeframe-item">';
-                    echo '<input type="radio" name="order_timeframe" value="' . esc_attr($days) . '" ' . esc_attr($checked) . '>';
-                    echo '<span class="timeframe-name">' . esc_html('Last ' . ($days == 365 ? '1 year' : ($days == 730 ? '2 years' : $days . ' days'))) . '</span>';
-                    echo '</label>';
-                }
-                ?>
-            </div>
-            <button type="button" class="save-timeframe"><?php esc_html_e('Save', 'final-pos'); ?></button>
-        </div>
-    </div>
     <?php endif; ?>
 
     <script>
-    var savedSettings = <?php echo wp_json_encode($saved_settings); ?>;
-    <?php if ($woocommerce_active): ?>
-    var selectedCategories = <?php echo wp_json_encode($selected_categories); ?>;
-    <?php endif; ?>
-    var woocommerceActive = <?php echo wp_json_encode($woocommerce_active); ?>;
+        var savedSettings = <?php echo wp_json_encode($saved_settings); ?>;
+        <?php if ($woocommerce_active): ?>
+            var selectedCategories = <?php echo wp_json_encode($selected_categories); ?>;
+        <?php endif; ?>
+        var woocommerceActive = <?php echo wp_json_encode($woocommerce_active); ?>;
     </script>
     <?php
 }
 
 // Fügen Sie diese Funktion hinzu oder aktualisieren Sie sie, falls sie bereits existiert
-function final_save_wizard_option() {
+function final_save_wizard_option()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options')) {
@@ -380,7 +425,7 @@ function final_save_wizard_option() {
     }
 
     $option_name = isset($_POST['option_name']) ? sanitize_text_field(wp_unslash($_POST['option_name'])) : '';
-    
+
     // Sanitize the raw input value immediately
     $raw_value = isset($_POST['option_value']) ? sanitize_text_field(wp_unslash($_POST['option_value'])) : '';
 
@@ -394,14 +439,14 @@ function final_save_wizard_option() {
     if (json_last_error() === JSON_ERROR_NONE) {
         // Wenn es ein Array ist, sanitize jeden Wert rekursiv
         $option_value = final_sanitize_array_recursive($decoded_value);
-        
+
         // Spezielle Behandlung für sync_status
         if ($option_name === 'final_pos_sync_status') {
             $option_value = array_merge(
                 ['products' => false, 'orders' => false, 'customers' => false],
                 array_intersect_key($option_value, array_flip(['products', 'orders', 'customers']))
             );
-            array_walk($option_value, function(&$value) {
+            array_walk($option_value, function (&$value) {
                 $value = (bool) $value;
             });
         }
@@ -424,7 +469,8 @@ function final_save_wizard_option() {
 add_action('wp_ajax_save_wizard_option', 'final_save_wizard_option');
 
 // Hilfsfunktion zum rekursiven Sanitizen von Arrays
-function final_sanitize_array_recursive($array) {
+function final_sanitize_array_recursive($array)
+{
     if (!is_array($array)) {
         return sanitize_text_field($array);
     }
@@ -448,14 +494,15 @@ function final_sanitize_array_recursive($array) {
 }
 
 // Add this new helper function
-function final_sanitize_option_value($value) {
+function final_sanitize_option_value($value)
+{
     // If the value is a JSON string, decode it first
     $decoded = json_decode($value, true);
-    
+
     if (json_last_error() === JSON_ERROR_NONE) {
         // If it's an array, sanitize each element recursively
         if (is_array($decoded)) {
-            return array_map(function($item) {
+            return array_map(function ($item) {
                 if (is_array($item)) {
                     return final_sanitize_option_value($item);
                 }
@@ -473,22 +520,23 @@ function final_sanitize_option_value($value) {
         }
         return $decoded;
     }
-    
+
     // If it's not JSON, sanitize as regular text
     if (is_numeric($value)) {
         return is_float($value) ? floatval($value) : intval($value);
     }
-    
+
     if (is_bool($value)) {
         return (bool) $value;
     }
-    
+
     // Default to sanitizing as text
     return sanitize_text_field($value);
 }
 
 // Fügen Sie diese neue Funktion hinzu, um die Kategorien im Frontend zu laden
-function final_get_selected_categories() {
+function final_get_selected_categories()
+{
     $selected_categories = get_option('final_pos_category_sync', array());
     if (!is_array($selected_categories)) {
         $selected_categories = array();
@@ -497,14 +545,15 @@ function final_get_selected_categories() {
 }
 
 // Fügen Sie diese Funktion hinzu
-function final_enqueue_admin_scripts($hook) {
+function final_enqueue_admin_scripts($hook)
+{
     if ('final-pos_page_final-plugin-settings' !== $hook) {
         return;
     }
     wp_enqueue_style('final-wizard-css', plugin_dir_url(__FILE__) . '../../../assets/css/finalwizard.css', [], '1.0'); // Added version parameter
     wp_enqueue_style('final-admin-css', plugin_dir_url(__FILE__) . '../../../assets/css/settings.css', [], '1.0'); // Added version parameter
     wp_enqueue_script('final-admin-js', plugin_dir_url(__FILE__) . '../../../assets/js/other/settings.js', array('jquery'), '1.0', true);
-    
+
     // Add nonce for AJAX
     wp_localize_script('final-admin-js', 'finalWizardNonce', array(
         'nonce' => wp_create_nonce('final_wizard_nonce'),
@@ -529,7 +578,8 @@ function final_enqueue_admin_scripts($hook) {
 add_action('admin_enqueue_scripts', 'final_enqueue_admin_scripts');
 
 // Add this new function to handle the AJAX request
-function final_handle_sync_request() {
+function final_handle_sync_request()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options') || !final_is_woocommerce_active()) {
@@ -567,7 +617,8 @@ function final_handle_sync_request() {
 }
 add_action('wp_ajax_final_sync_request', 'final_handle_sync_request');
 
-function final_save_ui_advanced_settings() {
+function final_save_ui_advanced_settings()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options')) {
@@ -602,7 +653,8 @@ function final_save_ui_advanced_settings() {
 }
 add_action('wp_ajax_save_ui_advanced_settings', 'final_save_ui_advanced_settings');
 
-function final_save_ui_pro_settings() {
+function final_save_ui_pro_settings()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options')) {
@@ -641,7 +693,8 @@ function final_save_ui_pro_settings() {
 }
 add_action('wp_ajax_save_ui_pro_settings', 'final_save_ui_pro_settings');
 
-function final_save_logo_url() {
+function final_save_logo_url()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options')) {
@@ -655,7 +708,8 @@ function final_save_logo_url() {
 }
 add_action('wp_ajax_save_logo_url', 'final_save_logo_url');
 
-function final_reset_wizard_status() {
+function final_reset_wizard_status()
+{
     check_ajax_referer('final_wizard_nonce', 'nonce');
 
     if (!current_user_can('manage_options')) {

@@ -28,7 +28,7 @@ class Sync_Page {
             'platform' => 'woo-commerce'
         ];
 
-        add_action('admin_menu', [$this, 'add_sync_page']);
+        // add_action('admin_menu', [$this, 'add_sync_page']);
         add_action('admin_init', array($this, 'check_and_run_initial_sync'));
     }
 

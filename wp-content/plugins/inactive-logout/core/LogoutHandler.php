@@ -8,8 +8,8 @@ class LogoutHandler {
 
 	protected function __construct() {
 		if ( ! wp_doing_ajax() ) {
-			add_filter( 'logout_redirect', [ $this, 'logout_redirect' ], 999999999, 3 );
-			add_action( 'wp_logout', [ $this, 'wp_logout' ], 999999999 );
+			add_filter( 'logout_redirect', [ $this, 'logout_redirect' ], 99, 3 );
+			add_action( 'wp_logout', [ $this, 'wp_logout' ], 99 );
 		}
 
 		$this->settings = Helpers::getInactiveSettingsData();
@@ -46,7 +46,7 @@ class LogoutHandler {
 			$redirect_to = Helpers::getLogoutRedirectPage( $this->settings );
 		}
 
-		return $redirect_to;
+		return apply_filters( 'ina_logout_redirect_url', $redirect_to, $current_user );
 	}
 
 	private static $_instance = null;

@@ -2,9 +2,9 @@
 Contributors: elemntor
 Tags: image optimization, image compression, convert webp, convert avif, performance,
 Requires at least: 6.2
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.5.4
+Stable tag: 1.6.3
 License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -105,6 +105,10 @@ Yes. By changing the requested level of optimization in the settings page, you c
 
 Yes, the Elementor team offers full support for image optimization questions. You can contact us via [https://elementor.com/contact/](https://go.elementor.com/wp-repo-description-tab-io-contact-us/)
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability](https://patchstack.com/database/vdp/image-optimization).
+
 == Screenshots ==
 
 1. Image Optimizer - Settings Page
@@ -114,6 +118,21 @@ Yes, the Elementor team offers full support for image optimization questions. Yo
 5. Image Optimizer - Image Optimization in the Media Uploader
 
 == Changelog ==
+
+= 1.6.3 - 2024-12-19 =
+* Fix: Blank settings panel on edge cases
+
+= 1.6.2 - 2024-12-17 =
+* New: Added Renewal notice for expired plans
+* New: Added Upgrade notice for users with trial plan
+
+= 1.6.1 - 2024-11-28 =
+* Fix: RTL issue in certain scenarios
+
+= 1.6.0 - 2024-11-19 =
+* New: Added support for images up to 25Mb for eligible plans
+* Tweak: Avoid creating past due actions
+
 = 1.5.4 - 2024-10-01 =
 * New: Added a notice to help users connect from dashboard
 * Fix: Undefined property notice

@@ -4,6 +4,7 @@ namespace ImageOptimization\Modules\Settings;
 
 use ImageOptimization\Classes\Image\Image_Conversion_Option;
 use ImageOptimization\Classes\Module_Base;
+use ImageOptimization\Modules\Settings\Banners\Sale_Banner;
 use ImageOptimization\Modules\Settings\Classes\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -81,6 +82,8 @@ class Module extends Module_Base {
 
 	public function render_app() {
 		?>
+		<?php Sale_Banner::get_banner( 'https://go.elementor.com/io-bf-banner/' ); ?>
+
 		<!-- The hack required to wrap WP notifications -->
 		<div class="wrap">
 			<h1 style="display: none;" role="presentation"></h1>

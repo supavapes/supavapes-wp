@@ -66,6 +66,7 @@ function render_stock_popup() {
                 <option value="notify">' . esc_html__('Allow, but notify customers', 'final-pos') . '</option>
                 <option value="yes">' . esc_html__('Allow', 'final-pos') . '</option>
             </select>
+             <!-- disable changging stock management for now 
             <div class="stock-management-toggle">
                 <label for="manage-stock" class="switch">
                     <input type="checkbox" id="manage-stock">
@@ -73,6 +74,7 @@ function render_stock_popup() {
                 </label>
                 <span>' . esc_html__(' Enable stock management', 'final-pos') . '</span>
             </div>
+            --> 
         </div>
         <div class="generic-popup-actions">
             <button class="cancel-button">' . esc_html__('Cancel', 'final-pos') . '</button>

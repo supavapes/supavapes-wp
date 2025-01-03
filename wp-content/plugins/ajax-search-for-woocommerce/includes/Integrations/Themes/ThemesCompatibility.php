@@ -377,12 +377,21 @@ class ThemesCompatibility {
 					'forceLayoutBreakpoint'        => 1024,
 				),
 			),
-			'cartzilla'         => array(
+			'cartzilla'        => array(
 				'slug' => 'cartzilla',
 				'name' => 'Cartzilla',
 				'args' => array(
 					'forceMobileOverlay'           => true,
 					'forceMobileOverlayBreakpoint' => 991,
+				),
+			),
+			'listeo'           => array(
+				'slug' => 'listeo',
+				'name' => 'Listeo',
+				'args' => array(
+					'forceMobileOverlay'           => true,
+					'forceMobileOverlayBreakpoint' => 980,
+					'forceLayoutBreakpoint'        => 980,
 				),
 			),
 		);

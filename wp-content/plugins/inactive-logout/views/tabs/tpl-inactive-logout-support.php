@@ -46,6 +46,10 @@ use Codemanas\InactiveLogout\Helpers;
 	<?php } ?>
 
     <div class="ina-settings-admin-support-bg">
+        <h3><?php esc_html_e( 'Documentation', 'inactive-logout' ); ?></h3>
+        <p><?php printf(esc_html__( 'Explore documentation: %s.', 'inactive-logout' ),'<a href="https://docs.inactive-logout.com" target="_blank">https://docs.inactive-logout.com</a>'); ?></p>
+    </div>
+    <div class="ina-settings-admin-support-bg">
         <h3><?php esc_html_e( 'Want to Contribute with Translations?', 'inactive-logout' ); ?></h3>
         <p><?php printf(esc_html__( 'We really appreciate and welcome translation contributions. Please send us an email at %s with translation file if you want to contribute.', 'inactive-logout' ),'<a href="mailto:support@inactive-logout.com" target="_blank">support@inactive-logout.com</a>'); ?></p>
     </div>

@@ -41,11 +41,11 @@ class AdminMenu {
             'dgwt_wcas_settings',
             array($this, 'settingsPage')
         );
-        if ( !dgoraAsfwFs()->is_activation_mode() ) {
+        if ( !dgoraAsfwFs()->is_activation_mode() && Helpers::isDebugPage() ) {
             add_submenu_page(
-                'dgwt_wcas_settings',
+                'woocommerce',
                 'FiboSearch Debug',
-                'FiboSearch [Hidden]',
+                sprintf( '<span class="fs-submenu-item fs-sub">%s</span>', 'Debug' ),
                 'manage_options',
                 'dgwt_wcas_debug',
                 array($this, 'debugPage')

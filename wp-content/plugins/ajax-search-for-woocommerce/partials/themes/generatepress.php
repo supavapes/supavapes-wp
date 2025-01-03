@@ -69,6 +69,10 @@ add_action( 'wp_head', function () {
 			fill: <?php echo esc_attr($settings['navigation_text_hover_color']); ?>;
 		}
 
+		body.woocommerce-checkout .dgwt-wcas-search-wrapp {
+			position: relative !important;
+		}
+
 		<?php } ?>
 	</style>
 	<?php

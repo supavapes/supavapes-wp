@@ -773,7 +773,7 @@
                     }, 110);
 
                 }
-
+                return false;
             });
 
             if ($('.js-dgwt-wcas-initialized').length == 0 && $('.js-dgwt-wcas-search-icon-handler').length > 0) {
@@ -820,15 +820,21 @@
         },
         activateMobileOverlayMode: function () {
             var that = this,
-                $formWrapper = that.getFormWrapper();
+                $formWrapper = that.getFormWrapper(),
+                $iconHandler = $formWrapper.find('.js-dgwt-wcas-search-icon-handler');
 
             if (
                 $formWrapper.hasClass('js-dgwt-wcas-mobile-overlay-enabled')
                 && !$formWrapper.find('.js-dgwt-wcas-enable-mobile-form').length
             ) {
 
-                $formWrapper.prepend('<div class="js-dgwt-wcas-enable-mobile-form dgwt-wcas-enable-mobile-form"></div>');
+                $formWrapper.prepend('<a href="#" class="js-dgwt-wcas-enable-mobile-form dgwt-wcas-enable-mobile-form"></a>');
                 $formWrapper.addClass('dgwt-wcas-mobile-overlay-trigger-active');
+
+                // Don't focus an icon handler when mobile overlay handler is displayed.
+                if ($iconHandler.length) {
+                    $iconHandler.attr('tabindex', '-1');
+                }
 
                 var $el = $formWrapper.find('.js-dgwt-wcas-enable-mobile-form');
 
@@ -842,15 +848,15 @@
                         that.showMobileOverlay();
                     }
 
+                    return false;
                 });
-
             }
 
         },
         deactivateMobileOverlayMode: function () {
             var that = this,
                 $formWrapper = that.getFormWrapper(),
-                $suggestionsWrapper = that.getSuggestionsContainer();
+                $iconHandler = $formWrapper.find('.js-dgwt-wcas-search-icon-handler');
 
             var $el = $formWrapper.find('.js-dgwt-wcas-enable-mobile-form');
 
@@ -860,6 +866,11 @@
                 that.closeOverlayMobile();
                 $el.remove();
                 $formWrapper.removeClass('dgwt-wcas-mobile-overlay-trigger-active');
+
+                // Focus an icon handler when mobile overlay is deactivated.
+                if ($iconHandler.length) {
+                    $iconHandler.removeAttr('tabindex');
+                }
             }
 
         },
@@ -1004,7 +1015,8 @@
         reloadFlexibleLayout: function () {
             var that = this,
                 $searchWrapp = that.getFormWrapper(),
-                flexibleMode = 0;
+                flexibleMode = 0,
+                $iconPreloader = $searchWrapp.find('.dgwt-wcas-icon-preloader');
 
             /**
              * flexibleMode
@@ -1034,6 +1046,9 @@
                 }
 
                 $searchWrapp.addClass('dgwt-wcas-layout-icon-flexible-loaded');
+                if ($iconPreloader.length) {
+                    $iconPreloader.remove();
+                }
             }
         },
         onFocus: function (e) {
@@ -1409,6 +1424,11 @@
                     that.el.blur();
                 }
 
+                // Hide the mobile overlay on ESC.
+                if (e.keyCode === keys.ESC && $('html').hasClass('dgwt-wcas-overlay-mobile-on')) {
+                    that.closeOverlayMobile();
+                }
+
                 return;
             }
 
@@ -1580,7 +1600,7 @@
                     break;
             }
 
-            return $(window).width() <= breakpoint;
+            return window.innerWidth <= breakpoint;
         },
         getQuery: function (value) {
             var delimiter = this.options.delimiter,

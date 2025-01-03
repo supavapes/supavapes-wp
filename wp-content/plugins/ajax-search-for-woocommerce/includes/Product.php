@@ -292,7 +292,7 @@ class Product {
     public function getAvailableVariations() {
         global $wpdb;
         if ( empty( $this->variations ) && is_a( $this->wcProduct, 'WC_Product_Variable' ) ) {
-            $sql = $wpdb->prepare( "\n\t\t\t\tSELECT {$wpdb->posts}.ID AS variation_id, postmeta.meta_value AS variation_description, wc_product_meta_lookup.sku\n\t\t\t\tFROM {$wpdb->posts}\n                LEFT JOIN {$wpdb->wc_product_meta_lookup} wc_product_meta_lookup ON {$wpdb->posts}.ID = wc_product_meta_lookup.product_id\n\t\t\t\tLEFT JOIN {$wpdb->postmeta} postmeta ON {$wpdb->posts}.ID = postmeta.post_id AND postmeta.meta_key = '_variation_description'\n\t\t\t\tWHERE {$wpdb->posts}.post_parent = %d\n\t\t\t", $this->getID() );
+            $sql = $wpdb->prepare( "\n\t\t\t\tSELECT {$wpdb->posts}.ID AS variation_id, postmeta.meta_value AS variation_description, wc_product_meta_lookup.sku\n\t\t\t\tFROM {$wpdb->posts}\n                LEFT JOIN {$wpdb->wc_product_meta_lookup} wc_product_meta_lookup ON {$wpdb->posts}.ID = wc_product_meta_lookup.product_id\n\t\t\t\tLEFT JOIN {$wpdb->postmeta} postmeta ON {$wpdb->posts}.ID = postmeta.post_id AND postmeta.meta_key = '_variation_description'\n\t\t\t\tWHERE {$wpdb->posts}.post_parent = %d\n\t\t\t\tAND {$wpdb->posts}.post_status = 'publish'\n\t\t\t", $this->getID() );
             if ( apply_filters( 'dgwt/wcas/indexer/include_variations_with_zero_price', false ) === false ) {
                 $sql .= " AND wc_product_meta_lookup.min_price > 0";
             }
@@ -596,6 +596,20 @@ class Product {
             }
         }
         return $result;
+    }
+
+    /**
+     * Check if the parent product (Variable product) can be indexed.
+     * If there aren't available variations, the product shouldn't be indexed.
+     *
+     * @return bool
+     */
+    public function canIndexParent() {
+        $canIndex = true;
+        if ( $this->getWooObject()->get_type() === 'variable' && empty( $this->getAvailableVariations() ) ) {
+            $canIndex = false;
+        }
+        return $canIndex;
     }
 
 }

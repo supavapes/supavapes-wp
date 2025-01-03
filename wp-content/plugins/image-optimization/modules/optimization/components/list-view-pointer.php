@@ -38,11 +38,16 @@ class List_View_Pointer {
 							align: '<?php echo is_rtl() ? 'right' : 'left'; ?>',
 						},
 						close() {
-							wp.ajax.post( 'image_optimizer_pointer_dismissed', {
+							return jQuery.ajax( {
+								url: ajaxurl,
+								method: 'POST',
 								data: {
-									pointer: '<?php echo esc_attr( static::CURRENT_POINTER_SLUG ); ?>',
-								},
-								nonce: '<?php echo esc_attr( wp_create_nonce( 'image-optimization-pointer-dismissed' ) ); ?>',
+									action: 'image_optimizer_pointer_dismissed',
+									data: {
+										pointer: '<?php echo esc_attr( static::CURRENT_POINTER_SLUG ); ?>'
+									},
+									nonce: '<?php echo esc_attr( wp_create_nonce( 'image-optimization-pointer-dismissed' ) ); ?>'
+								}
 							} );
 						}
 					} ).pointer( 'open' );

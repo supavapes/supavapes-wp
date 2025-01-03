@@ -19,6 +19,7 @@ class Settings {
 	public const STRIP_EXIF_METADATA_OPTION_NAME = 'image_optimizer_exif_metadata';
 	public const BACKUP_ORIGINAL_IMAGES_OPTION_NAME = 'image_optimizer_original_images';
 	public const CUSTOM_SIZES_OPTION_NAME = 'image_optimizer_custom_sizes';
+	public const SUPPORT_BIG_FILES = 'image_optimizer_support_big_files';
 
 	/**
 	 * Returns plugin settings data by option name typecasted to an appropriate data type.
@@ -62,5 +63,9 @@ class Settings {
 			default:
 				return $data;
 		}
+	}
+
+	public static function set( string $option_name, $value ): bool {
+		return update_option( $option_name, $value, false );
 	}
 }

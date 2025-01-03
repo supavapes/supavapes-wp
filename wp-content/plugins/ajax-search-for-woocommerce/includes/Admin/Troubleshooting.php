@@ -259,6 +259,14 @@ class Troubleshooting {
         if ( defined( 'WC_PSAD_VERSION' ) ) {
             $errors[] = sprintf( __( 'You are using the %s plugin. The %s does not support this plugin.', 'ajax-search-for-woocommerce' ), 'WooCommerce Product Sort and Display', DGWT_WCAS_NAME );
         }
+        // Ajax Search Lite (by WPDreams) - no search results.
+        if ( defined( 'ASL_CURR_VER_STRING' ) ) {
+            $errors[] = sprintf( __( 'You use the %s plugin, which may cause errors in the search results returned by our plugin.', 'ajax-search-for-woocommerce' ), '<strong>Ajax Search Lite (by WPDreams)</strong>' );
+        }
+        // Ajax Search Pro (by WPDreams) - no search results.
+        if ( defined( 'ASP_CURR_VER_STRING' ) ) {
+            $errors[] = sprintf( __( 'You use the %s plugin, which may cause errors in the search results returned by our plugin.', 'ajax-search-for-woocommerce' ), '<strong>Ajax Search Pro (by WPDreams)</strong>' );
+        }
         if ( !empty( $errors ) ) {
             $result['description'] = join( '<br>', $errors );
             $result['status'] = 'critical';

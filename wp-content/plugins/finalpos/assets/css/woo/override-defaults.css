@@ -1,0 +1,27 @@
+
+/* product page stock management */
+p:has(> label[for="_manage_stock"]), p.form-field._manage_stock_field.show_if_simple.show_if_variable {
+    /* hide the stock editing in the UI */
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* all-product page stock management */
+#woocommerce-fields > div.stock_fields > label > span.input-text-wrap > input, #woocommerce-fields > div.stock_fields, #woocommerce-fields > div.inline-edit-group.manage_stock_field, .inline-edit-group.manage_stock_field, .backorder_field  {
+    /* hide the stock editing in the UI */
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+
+input#manage-stock {
+    max-width: 16px;
+}
+
+.stock_status_field {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}

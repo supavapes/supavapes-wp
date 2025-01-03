@@ -224,6 +224,8 @@ class Base {
 					$data['settings']['debug_msg']['date_time_format'] = $date_format . ' ' . $time_format;
 				}
 
+				$data['settings'] = apply_filters( 'ina_logout_settings', $data['settings'] );
+
 				$dependencies = require_once INACTIVE_LOGOUT_DIR_PATH . 'build/index.asset.php';
 				$dependencies = ! empty( $dependencies ) ? $dependencies['dependencies'] : [];
 

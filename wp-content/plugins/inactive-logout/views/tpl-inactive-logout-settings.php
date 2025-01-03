@@ -40,10 +40,13 @@ $multi_role_enabled = \Codemanas\InactiveLogout\Helpers::get_option( '__ina_enab
 ?>
 <div class="ina-settings-nav-wrapper">
     <a href="?page=inactive-logout&tab=ina-basic" class="nav-tab-custom <?php echo ( ! empty( $active_tab ) && 'ina-basic' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
-        <span class="dashicons dashicons-admin-settings"></span> <?php esc_html_e( 'General Settings', 'inactive-logout' ); ?>
+        <span class="dashicons dashicons-admin-settings"></span> <?php esc_html_e( 'General', 'inactive-logout' ); ?>
     </a>
     <a href="?page=inactive-logout&tab=ina-advanced" class="nav-tab-custom <?php echo ( ! empty( $active_tab ) && 'ina-advanced' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
-        <span class="dashicons dashicons-admin-users"></span> <?php esc_html_e( 'Role Based Settings', 'inactive-logout' ); ?><?php echo ! empty( $multi_role_enabled ) ? ' <span class="dashicons dashicons-yes-alt" style="color:#008000;"></span>' : ''; ?>
+        <span class="dashicons dashicons-groups"></span> <?php esc_html_e( 'Role Based', 'inactive-logout' ); ?><?php echo ! empty( $multi_role_enabled ) ? ' <span class="dashicons dashicons-yes-alt" style="color:#008000;"></span>' : ''; ?>
+    </a>
+    <a href="?page=inactive-logout&tab=ina-user-based" class="nav-tab-custom <?php echo ( ! empty( $active_tab ) && 'ina-user-based' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
+        <span class="dashicons dashicons-admin-users"></span> <?php esc_html_e( 'User Based', 'inactive-logout' ); ?>
     </a>
 	<?php do_action( 'ina_settings_page_tabs_before' ); ?>
     <a href="?page=inactive-logout&tab=ina-support" class="nav-tab-custom <?php echo ( ! empty( $active_tab ) && 'ina-support' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>"><span class="dashicons dashicons-admin-comments"></span> <?php esc_html_e( 'Support', 'inactive-logout' ); ?></a>

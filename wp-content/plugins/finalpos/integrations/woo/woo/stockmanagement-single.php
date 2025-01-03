@@ -20,7 +20,7 @@ add_action('plugins_loaded', function() {
 function replace_stock_field_with_popup_trigger() {
     global $post;
     $product = wc_get_product($post->ID);
-    
+
     if (!$product) {
         return;
     }
@@ -41,6 +41,7 @@ function replace_stock_field_with_popup_trigger() {
     echo '</div>';
 
     // Enqueue necessary scripts and styles
+    wp_enqueue_style('final-overrides', plugin_dir_url(__FILE__) . '../../../assets/css/woo/override-defaults.css', [], '1.2'); // Added version parameter
     wp_enqueue_script('final-stock-management', plugin_dir_url(__FILE__) . '../../../assets/js/woo/bulkeditor/popup.js', ['jquery'], '1.0', true);
     wp_enqueue_style('final-stock-management', plugin_dir_url(__FILE__) . '../../../assets/css/woo/bulkeditor-popup.css', [], '1.0'); // Added version parameter
 
@@ -53,7 +54,18 @@ function replace_stock_field_with_popup_trigger() {
     add_action('admin_footer', 'add_stock_management_popup_script');
 }
 
-function add_variation_stock_management_button($loop, $variation_data, $variation) {
+
+function disable_stock_fields_in_product_list()
+{
+    $screen = get_current_screen();
+    if ($screen && $screen->id === 'edit-product') {
+        //hide the stock quantity column from the UI
+        wp_enqueue_style('final-overrides', plugin_dir_url(__FILE__) . '../../../assets/css/woo/override-defaults.css', [], '1.3'); 
+    }
+}
+
+function add_variation_stock_management_button($loop, $variation_data, $variation)
+{
     $variation_object = wc_get_product($variation->ID);
     $stock_quantity = $variation_object->get_stock_quantity();
     $manage_stock = $variation_object->get_manage_stock() ? 'yes' : 'no';
@@ -232,6 +244,7 @@ function add_stock_management_popup_script() {
 }
 
 add_action('woocommerce_product_options_inventory_product_data', 'replace_stock_field_with_popup_trigger', 9);
+add_action('admin_head', 'disable_stock_fields_in_product_list', 9);
 add_action('woocommerce_variation_options_inventory', 'add_variation_stock_management_button', 11, 3);
 add_action('admin_footer', 'render_stock_popup');
 add_action('wp_ajax_final_update_stock_data', 'final_update_stock_data_ajax_handler');

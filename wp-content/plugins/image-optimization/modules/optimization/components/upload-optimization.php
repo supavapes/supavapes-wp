@@ -8,7 +8,7 @@ use ImageOptimization\Classes\Async_Operation\{
 	Async_Operation_Queue,
 };
 use ImageOptimization\Classes\Image\{
-	Image,
+	Exceptions\Invalid_Image_Exception,
 	Image_Meta,
 	Image_Optimization_Error_Type,
 	Image_Status
@@ -17,7 +17,9 @@ use ImageOptimization\Classes\Image\{
 use ImageOptimization\Classes\Logger;
 use ImageOptimization\Classes\Exceptions\Quota_Exceeded_Error;
 use ImageOptimization\Modules\Optimization\Classes\Exceptions\Image_File_Already_Exists_Error;
+use ImageOptimization\Modules\Optimization\Classes\Exceptions\Image_Validation_Error;
 use ImageOptimization\Modules\Optimization\Classes\Optimize_Image;
+use ImageOptimization\Modules\Optimization\Classes\Validate_Image;
 use ImageOptimization\Modules\Settings\Classes\Settings;
 
 use Throwable;
@@ -28,30 +30,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Upload_Optimization {
-	public function handle_upload( int $attachment_id ) {
+	public function handle_upload( array $metadata, int $attachment_id, string $context ) {
+		if ( 'create' !== $context ) {
+			return $metadata;
+		}
+
 		if ( ! Settings::get( Settings::OPTIMIZE_ON_UPLOAD_OPTION_NAME ) ) {
-			return;
+			return $metadata;
 		}
 
 		// @var ImageOptimizer/Modules/ConnectManager/Module
 		$module = Plugin::instance()->modules_manager->get_modules( 'connect-manager' );
 
 		if ( ! $module->connect_instance->is_connected() || ! $module->connect_instance->is_activated() ) {
-			return;
+			return $metadata;
 		}
 
-		$attachment_object = get_post( $attachment_id );
-
-		// TODO: Check how we can use Validate_Image::is_valid() here
-		if (
-			! wp_attachment_is_image( $attachment_object ) ||
-			! in_array( $attachment_object->post_mime_type, Image::get_supported_mime_types(), true ) ||
-			(
-				in_array( $attachment_object->post_mime_type, Image::get_mime_types_cannot_be_optimized(), true ) &&
-				! get_post_meta( $attachment_id, Image_Meta::IMAGE_OPTIMIZER_METADATA_KEY, true )
-			)
-		) {
-			return;
+		try {
+			Validate_Image::is_valid( $attachment_id );
+		} catch ( Invalid_Image_Exception | Image_Validation_Error $iie ) {
+			return $metadata;
 		}
 
 		$meta = new Image_Meta( $attachment_id );
@@ -71,6 +69,8 @@ class Upload_Optimization {
 				->set_status( Image_Status::OPTIMIZATION_FAILED )
 				->save();
 		}
+
+		return $metadata;
 	}
 
 	/** @async */
@@ -103,7 +103,7 @@ class Upload_Optimization {
 	}
 
 	public function __construct() {
-		add_action( 'add_attachment', [ $this, 'handle_upload' ] );
+		add_action( 'wp_generate_attachment_metadata', [ $this, 'handle_upload' ], 10, 3 );
 		add_action( Async_Operation_Hook::OPTIMIZE_ON_UPLOAD, [ $this, 'optimize_image_on_upload' ] );
 	}
 }

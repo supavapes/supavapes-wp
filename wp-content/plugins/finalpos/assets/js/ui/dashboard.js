@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Helper Function: Format Number with Thousand and Decimal Separators
     const formatNumber = (number, decimals = 0) => {
         const { thousandSeparator, decimalSeparator, numDecimals } = currencySettings;
-
         let negative = number < 0;
         number = Math.abs(number);
 
@@ -245,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Calculate Percentage Change
     const calculateChangePercent = (currentTotal, previousTotal) => 
-        previousTotal ? (((currentTotal - previousTotal) / previousTotal) * 100).toFixed(2) : 'N/A';
+        previousTotal ? (((currentTotal - previousTotal) / previousTotal) * 100).toFixed(2) : (100).toFixed(2);
 
     const last14DaysRevenueTotal = filledLast14DaysRevenue.reduce((sum, day) => sum + day.y, 0);
     const previous14DaysRevenueTotal = filledPrevious14DaysRevenue.reduce((sum, day) => sum + day.y, 0);

@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * 5. Brands for WooCommerce since v3.5.2 by BeRocket
  * 6. WP Bingo by wpbingo
  * 7. Premmerce Brands for WooCommerce since v1.2.11 by premmerce
+ * 8. WooCommerce Core (since v9.4) -> The integration was added in \DgoraWcas\Integrations\Plugins\WooCommerce\WooCommerce
  */
 class Brands {
 	/**

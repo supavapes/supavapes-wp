@@ -69,7 +69,7 @@ $labelSeeAll = Helpers::getLabel( 'show_more' );
 				<span><?php _e( 'On desktop', 'ajax-search-for-woocommerce' ); ?></span>
 			</span>
 			<div class="js-dgwt-wcas-search-wrapp dgwt-wcas-layout-icon-open js-dgwt-wcas-preview-icon-example dgwt-wcas-search-wrapp dgwt-wcas-hidden <?php echo Helpers::searchWrappClasses(); ?>" data-wcas-context="75c3">
-				<div class="dgwt-wcas-search-icon js-dgwt-wcas-search-icon-handler"><?php echo Helpers::getMagnifierIco( 'dgwt-wcas-ico-magnifier-handler' ); ?></div>
+				<a href="#" class="dgwt-wcas-search-icon js-dgwt-wcas-search-icon-handler"><?php echo Helpers::getMagnifierIco( 'dgwt-wcas-ico-magnifier-handler' ); ?></a>
 				<div class="dgwt-wcas-search-icon-arrow"></div>
 				<form class="dgwt-wcas-search-form" role="search" action="" method="get">
 					<div class="dgwt-wcas-sf-wrapp">

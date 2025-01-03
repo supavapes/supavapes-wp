@@ -5,7 +5,9 @@ namespace ImageOptimization\Classes\Client;
 use ImageOptimization\Classes\Exceptions\Client_Exception;
 use ImageOptimization\Classes\File_Utils;
 use ImageOptimization\Classes\Image\Image;
+use ImageOptimization\Classes\Logger;
 use ImageOptimization\Modules\Stats\Classes\Optimization_Stats;
+use Throwable;
 use WP_Error;
 
 use ImageOptimization\Plugin;
@@ -20,6 +22,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Client {
 	const BASE_URL = 'https://my.elementor.com/api/v2/image-optimizer/';
 	const STATUS_CHECK = 'status/check';
+	const SITE_INFO = 'site/info';
+	const SITE_INFO_TRANSIENT = 'image_optimizer_site_info_transient';
+
 
 	private bool $refreshed = false;
 
@@ -36,8 +41,8 @@ class Client {
 		return self::$instance;
 	}
 
-	public static function get_site_info(): array {
-		return [
+	public static function get_site_info( $endpoint = null ): array {
+		$data = [
 			// Which API version is used.
 			'app_version' => IMAGE_OPTIMIZATION_VERSION,
 			// Which language to return.
@@ -46,9 +51,34 @@ class Client {
 			'site_url' => trailingslashit( home_url() ),
 			// current user
 			'local_id' => get_current_user_id(),
-			// Media library stats
-			'media_data' => base64_encode( wp_json_encode( self::get_request_stats() ) ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+
 		];
+
+		if ( $endpoint !== self::STATUS_CHECK ) {
+			// Media library stats
+			$data['media_data'] = base64_encode( wp_json_encode( self::get_request_stats() ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Get site info
+	 * @return mixed|WP_Error|null
+	 */
+	public static function get_subscription_info() {
+		$info = get_transient( self::SITE_INFO_TRANSIENT );
+		if ( ! $info ) {
+			try {
+				$info = self::get_instance()->make_request( 'POST', self::SITE_INFO );
+			} catch ( Throwable $t ) {
+				Logger::log( Logger::LEVEL_ERROR, 'Cannot get site info response from service: ' . $t->getMessage() );
+				return null;
+			}
+
+			set_transient( self::SITE_INFO_TRANSIENT, $info, ( 24 * 60 * 60 ) );
+		}
+		return $info;
 	}
 
 	private static function get_request_stats(): array {
@@ -79,7 +109,7 @@ class Client {
 			$this->is_connected() ? $this->generate_authentication_headers( $endpoint ) : []
 		);
 
-		$body = array_replace_recursive( $body, $this->get_site_info() );
+		$body = array_replace_recursive( $body, $this->get_site_info( $endpoint ) );
 
 		try {
 			if ( $file ) {
@@ -106,7 +136,9 @@ class Client {
 	}
 
 	private static function get_remote_url( $endpoint ): string {
-		return self::BASE_URL . $endpoint;
+		$base_url = apply_filters( 'image_optimizer_client_get_base_url', self::BASE_URL );
+
+		return $base_url . $endpoint;
 	}
 
 	protected function is_connected(): bool {
@@ -215,7 +247,7 @@ class Client {
 	 *
 	 * @return string
 	 * @throws Client_Exception
-*/
+	 */
 	private function get_upload_request_body( array $body, $file, string $boundary, string $file_name = '' ): string {
 		$payload = '';
 		// add all body fields as standard POST fields:

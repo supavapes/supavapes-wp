@@ -30,7 +30,8 @@ if ( ! empty( $args['layout_breakpoint'] ) && ! empty( $args['layout_breakpoint'
 ?>
 <div <?php echo $isAMP ? "id='dgwt-wcas-search-wrapp{$uniqueID}'" : ''; ?> class="dgwt-wcas-search-wrapp <?php echo Helpers::searchWrappClasses( $args ); ?>">
 	<?php if ( in_array( $layoutType, array( 'icon', 'icon-flexible', 'icon-flexible-inv' ) ) ): ?>
-		<div <?php echo $isAMP ? "on='tap:dgwt-wcas-search-wrapp{$uniqueID}.toggleClass(class=\"dgwt-wcas-layout-icon-open\")'" : ""; ?> class="dgwt-wcas-search-icon js-dgwt-wcas-search-icon-handler"><?php echo Helpers::getMagnifierIco( 'dgwt-wcas-ico-magnifier-handler', $iconType, $iconColor ); ?></div>
+		<?php echo Helpers::getIcon( 'preloader', 'dgwt-wcas-icon-preloader' ); ?>
+		<a href="#" <?php echo $isAMP ? "on='tap:dgwt-wcas-search-wrapp{$uniqueID}.toggleClass(class=\"dgwt-wcas-layout-icon-open\")'" : ""; ?> class="dgwt-wcas-search-icon js-dgwt-wcas-search-icon-handler"><?php echo Helpers::getMagnifierIco( 'dgwt-wcas-ico-magnifier-handler', $iconType, $iconColor ); ?></a>
 		<div class="dgwt-wcas-search-icon-arrow"></div>
 	<?php endif; ?>
 	<form class="dgwt-wcas-search-form" role="search" action="<?php echo Helpers::searchFormAction(); ?>" method="get">

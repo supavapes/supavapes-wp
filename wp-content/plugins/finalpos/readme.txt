@@ -6,7 +6,7 @@ Tags: Point of sale, POS, WooCommerce Point of Sale, WooCommerce POS, POS Plugin
 Requires at least: 4.9
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 1.1.1
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0
 
@@ -24,7 +24,7 @@ With Final POS, you're not limited by pre-defined functionality or industry-spec
 Final POS doesn't just stop at customization – it's packed with features to streamline your business operations. Unify your in-store and online records with a single source of data for products, orders, and customers. From real-time sync between POS devices to offline mode for when the internet goes down, Final has you covered. Plus, integrated payments, cash management, and detailed reports in the Hub give you everything you need to run your business smoothly.
 
 ==Final POS Features==
-* Pre-made POS templates to get you started
+* Pre-made  POS templates to get you started
 * Real-time sync between POS devices
 * Offline mode for uninterrupted sales during internet outages
 * Integrated card payments where available
@@ -90,6 +90,16 @@ After activating the plugin, follow the setup wizard to connect your WooCommerce
 Simply deactivate and delete the Final POS plugin from the **Plugins** page in WordPress.
 
 == Changelog ==
+= 1.1.4 =
+* Fix: small bugs
+* imporved sync by category
+
+= 1.1.3 =
+* UI changes.
+
+= 1.1.2 =
+* Fix: Revoke API key on uninstall,  UI changes.
+
 = 1.1.1 =
 * Fix: Resolved an issue with image rendering.
 

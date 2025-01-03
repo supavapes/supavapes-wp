@@ -109,13 +109,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // "All categories" checkbox functionality
-    var allCategoriesCheckbox = document.getElementById('allCategories');
-    var categoryCheckboxes = document.querySelectorAll('.category-item input[type="checkbox"]:not(#allCategories)');
-
+    const allCategoriesCheckbox = document.getElementById('allCategories');
+    const categoryCheckboxes = document.querySelectorAll('.category-item input[type="checkbox"]:not(#allCategories)');
+    const toggleAll=()=>{
+        categoryCheckboxes.forEach(checkbox=>{checkbox.checked=allCategoriesCheckbox.checked})
+      }
+    
     if (allCategoriesCheckbox) {
-        allCategoriesCheckbox.addEventListener('change', function() {
-            categoryCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
-        });
+        toggleAll()
+        allCategoriesCheckbox.addEventListener('change',toggleAll)    
     }
 
     categoryCheckboxes.forEach(function(checkbox) {
@@ -124,6 +126,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    categoryCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            allCategoriesCheckbox.checked = Array.from(categoryCheckboxes).every(cb => cb.checked);
+        });
+    });
+    const updateChildren=c=>{
+        let stack=[c.value]
+        while(stack.length){
+         let p=stack.pop()
+         let kids=[...document.querySelectorAll(`.category-item input[data-parent-id="${p}"]`)]
+         kids.forEach(k=>{
+          k.checked=c.checked
+          stack.push(k.value)
+         })
+        }
+       }
+       categoryCheckboxes.forEach(c=>c.addEventListener('change',()=>updateChildren(c)))
     // Save categories button functionality
     var saveButton = document.querySelector('.save-categories');
     if (saveButton) {
@@ -451,9 +470,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typeof finalWizardData !== 'undefined' && finalWizardData.selectedCategories) {
             var selectedCategories = finalWizardData.selectedCategories;
             document.querySelectorAll('.category-item input[type="checkbox"]:not(#allCategories)').forEach(function(checkbox) {
-                checkbox.checked = selectedCategories.includes(parseInt(checkbox.value, 10));
+                console.log(checkbox.value, selectedCategories);
+                checkbox.checked = selectedCategories.map(a=>parseInt(a,10)).includes(parseInt(checkbox.value, 10));
             });
-            var allCategoriesCheckbox = document.getElementById('allCategories');
             if (allCategoriesCheckbox) {
                 allCategoriesCheckbox.checked = document.querySelectorAll('.category-item input[type="checkbox"]:not(#allCategories)').length === selectedCategories.length;
             }
