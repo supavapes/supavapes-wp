@@ -94,6 +94,9 @@ class Polylang_Theme_Translation {
 	 */
 	public function run_plugin_scanner() {
 		$plugins = wp_get_active_and_valid_plugins();
+		if (is_multisite()) {
+			$plugins = array_merge($plugins, wp_get_active_network_plugins());
+		}
 		$data = [];
 
 		$settings = Polylang_Theme_Translation_Settings::getInstance();
@@ -415,7 +418,9 @@ function convert_pll_to_polylang_pro($slug) {
 add_filter('rest_pre_dispatch', 'tt_pll_set_language_rest', 999, 3);
 
 /**
- * Load current language for "Multilingual Contact Form 7 with Polylang" plugin in translate_cf7_messages.
+ * Load current language for "Multilingual Contact Form 7 with Polylang" plugin
+ * in translate_cf7_messages.
+ *
  * @param $result
  * @param $server
  * @param $request

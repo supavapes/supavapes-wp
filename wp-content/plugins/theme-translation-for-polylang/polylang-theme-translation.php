@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:			Theme and plugin translation for Polylang (TTfP)
  * Description:			Polylang - theme and plugin translation for WordPress
- * Version:				3.4.7
+ * Version:				3.4.8
  * Requires PHP:		7.0
  * Author:				Marcin Kazmierski
  * Text Domain:			polylang-tt

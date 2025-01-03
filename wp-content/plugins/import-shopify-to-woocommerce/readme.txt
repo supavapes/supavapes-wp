@@ -3,7 +3,7 @@ Contributors: villatheme, mrt3vn
 Donate link: https://www.villatheme.com/donate
 Tags: import, migration, SHOPIFY, woocommerce
 Requires at least: 5.0.0
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPLv2 or later
@@ -21,7 +21,7 @@ Learn how to get your Shopify API key and password to use with S2W - Import Shop
 [youtube https://youtu.be/1kyEp4d_cfw]
 
 Preview S2W - Import Shopify to WooCommerce
-[youtube https://youtu.be/uh0Ysq9KLKM]
+[youtube https://youtu.be/zbadTXnKNh8]
 
 ### IMPORTANT NOTICE:
 
@@ -101,7 +101,7 @@ Preview S2W - Import Shopify to WooCommerce
 
 - [Project Page](https://villatheme.com)
 - [Documentation](http://docs.villatheme.com/?item=import-shopify-to-woocommerce)
-- [Report Bugs/Issues](https://villatheme.com/supports)
+- [Report Bugs/Issues](https://villatheme.com/knowledge-base/security-is-our-priority/)
 
 ### MAY BE YOU NEED
 [SUBRE – Product Subscription for WooCommerce](https://bit.ly/subre-product-subscription-for-woo): Convert WooCommerce simple products(physical or downloadable/virtual) to subscription products and allow recurring payments
@@ -205,6 +205,13 @@ Preview S2W - Import Shopify to WooCommerce
 1. Import progress
 
 == Changelog ==
+/**1.2.3 - 2024.11.26**/
+- Fixed: Error in products page
+
+/**1.2.2 - 2024.11.25**/
+- Updated: VillaTheme_Support
+- Updated: Compatibility check with WP 6.7 and WC 9.4
+
 /**1.2.1 - 2024.07.18**/
 - Updated: VillaTheme_Support
 - Updated: Compatibility check with WP 6.6 and WC 9.0.2
