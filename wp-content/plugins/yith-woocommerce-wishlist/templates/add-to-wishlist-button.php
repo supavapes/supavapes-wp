@@ -30,9 +30,7 @@
  * @var $container_classes         string Container classes
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly.
 
 global $product;
 ?>

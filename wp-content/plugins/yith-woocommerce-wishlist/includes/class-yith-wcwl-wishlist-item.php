@@ -2,14 +2,12 @@
 /**
  * Wishlist Item class
  *
- * @author YITH <plugins@yithemes.com>
  * @package YITH\Wishlist\Classes\Wishlists
+ * @author  YITH <plugins@yithemes.com>
  * @version 3.0.0
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly.
 
 if ( ! class_exists( 'YITH_WCWL_Wishlist_Item' ) ) {
 	/**
@@ -319,7 +317,7 @@ if ( ! class_exists( 'YITH_WCWL_Wishlist_Item' ) ) {
 		/**
 		 * Get related wishlist
 		 *
-		 * @return \YITH_WCWL_Wishlist|bool Wishlist object, or false on failure
+		 * @return YITH_WCWL_Wishlist|bool Wishlist object, or false on failure
 		 */
 		public function get_wishlist() {
 			$wishlist_id = $this->get_wishlist_id();

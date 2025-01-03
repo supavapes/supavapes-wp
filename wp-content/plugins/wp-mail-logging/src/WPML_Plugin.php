@@ -190,6 +190,7 @@ class WPML_Plugin extends WPML_LifeCycle implements IHooks {
         // http://plugin.michael-simpson.com/?page_id=37
         add_filter( 'plugin_action_links', array( &$this, 'registerPluginActionLinks'), 10, 5 );
         add_filter( 'wp_mail', array( $this, self::HOOK_LOGGING_MAIL ), self::HOOK_LOGGING_MAIL_PRIORITY );
+        add_action( 'wp_mail_logging_log_email', [ $this, 'save_email_log' ] );
         add_action( 'wp_mail_failed', array( &$this, 'log_email_failed' ) );
         add_filter( 'set-screen-option', array( &$this, 'save_screen_options' ), 10, 3);
         add_filter( 'wpml_get_plugin_version', array( &$this, 'getVersion' ) );
@@ -500,34 +501,102 @@ class WPML_Plugin extends WPML_LifeCycle implements IHooks {
      *
      * @since 1.0
      * @since 1.12.0 Short-circuit if $mailArray is not an array.
+     * @since 1.13.0 Trim the subject to < 200 characters and save the Content-Type header if not set.
+     * @since 1.13.1 Add a hook action `wp_mail_logging_log_email` to log email data before being sent.
      *
      * @return array $mailOriginal
      */
     public function log_email( $mailArray ) {
 
         /**
+         * Log email data before being sent.
+         *
+         * @since 1.13.1
+         *
+         * @param array $mailArray Array containing the mail data to be logged.
+         */
+        do_action( 'wp_mail_logging_log_email', $mailArray );
+
+        return $mailArray;
+    }
+
+    /**
+     * Save the email logs to the database.
+     *
+     * @since 1.13.1
+     *
+     * @param array $mail_data Array containing the mail data to be logged.
+     */
+    public function save_email_log( $mail_data ) {
+
+        /**
          * Filters mail data before it is logged.
          *
          * @since 1.12.0
          *
-         * @param array $mailArray Array containing the mail data to be logged.
+         * @param array $mail_data Array containing the mail data to be logged.
          */
-        $mailArray = apply_filters( 'wp_mail_logging_before_log_email', $mailArray );
+        $mail_data = apply_filters( 'wp_mail_logging_before_log_email', $mail_data );
 
-        if ( ! is_array( $mailArray ) ) {
-            return $mailArray;
+        if ( ! is_array( $mail_data ) ) {
+            return $mail_data;
         }
 
         global $wpml_current_mail_id;
 
-        $mail = (new WPML_MailExtractor())->extract($mailArray);
-        $mail->set_plugin_version($this->getVersionSaved());
-        $mail->set_timestamp(current_time( 'mysql' ));
-        $mail->set_host( isset( $_SERVER['SERVER_ADDR'] ) ? $_SERVER['SERVER_ADDR'] : '');
+        if ( ! empty( $mail_data['subject'] ) && mb_strlen( $mail_data['subject'] ) > 200 ) {
+            $mail_data['subject'] = mb_substr( $mail_data['subject'], 0, 195 ) . '...';
+        }
+
+        $mail_data['headers'] = $this->get_mail_headers( $mail_data );
+
+        $mail = (new WPML_MailExtractor())->extract( $mail_data );
+        $mail->set_plugin_version( $this->getVersionSaved() );
+        $mail->set_timestamp( current_time( 'mysql' ) );
+        $mail->set_host( isset( $_SERVER['SERVER_ADDR'] ) ? $_SERVER['SERVER_ADDR'] : '' );
 
         $wpml_current_mail_id = $mail->save();
+    }
 
-        return $mailArray;
+    /**
+     * Get the headers of the mail to be logged.
+     *
+     * @since 1.13.0
+     *
+     * @param array $mail_array Array containing the mail data to be logged.
+     *
+     * @return string[]
+     */
+    public function get_mail_headers( $mail_array ) {
+
+        $content_type = 'Content-Type: ' . apply_filters( 'wp_mail_content_type', 'text/html' );
+
+        if ( empty( $mail_array['headers'] ) ) {
+            return [ $content_type ];
+        }
+
+        $mail_headers = WPML_Utils::clean_headers( $mail_array['headers'] );
+
+        if ( empty( $mail_headers ) ) {
+            return [ $content_type ];
+        }
+
+        $should_force_add_content_type = true;
+
+        foreach ( $mail_headers as $mail_header ) {
+            $header_arr = explode( ":", $mail_header );
+
+            // If Content-Type header is already set, don't add it again.
+            if ( ! empty( $header_arr[0] ) && strtolower( $header_arr[0] ) === 'content-type' ) {
+                $should_force_add_content_type = false;
+            }
+        }
+
+        if ( $should_force_add_content_type ) {
+            $mail_headers[] = $content_type;
+        }
+
+        return $mail_headers;
     }
 
     public static function getClass() {

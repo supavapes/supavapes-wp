@@ -2,12 +2,10 @@
 /**
  * Settings options
  *
- * @package YITH\GiftCards\PluginOptions
+ * @package YITH\Wishlist\PluginOptions
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly
 
 $sub_tabs = array(
 	'settings-general'         => array(
@@ -31,7 +29,7 @@ $options = array(
 	'settings' => array(
 		'settings-tabs' => array(
 			'type'     => 'multi_tab',
-			'sub-tabs' => $sub_tabs,
+			'sub-tabs' => apply_filters( 'yith_wcwl_setting_options_sub_tabs', $sub_tabs ),
 		),
 	),
 );

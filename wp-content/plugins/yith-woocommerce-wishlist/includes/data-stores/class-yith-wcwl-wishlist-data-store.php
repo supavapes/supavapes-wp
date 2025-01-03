@@ -1076,7 +1076,7 @@ if ( ! class_exists( 'YITH_WCWL_Wishlist_Data_Store' ) ) {
 						 *
 						 * @return string
 						 */
-						$default_title = apply_filters( 'yith_wcwl_default_wishlist_formatted_title', get_option( 'yith_wcwl_wishlist_title' ) );
+						$default_title = apply_filters( 'yith_wcwl_default_wishlist_formatted_title', get_option( 'yith_wcwl_wishlist_title', __( 'My wishlist', 'yith-woocommerce-wishlist' ) ) );
 						$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->yith_wcwl_wishlists} SET wishlist_name = %s WHERE ID IN ({$where_statement}) AND wishlist_name = ''", $default_title ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					}
 				} catch ( Exception $e ) {

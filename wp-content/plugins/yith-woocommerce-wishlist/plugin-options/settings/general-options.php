@@ -7,9 +7,7 @@
  * @version 3.0.0
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly.
 
 $yith_wfbt_installed = ( defined( 'YITH_WFBT' ) && YITH_WFBT );
 
@@ -31,7 +29,7 @@ return apply_filters(
 			 * General settings
 			 */
 			'general_section_start' => array(
-				'name' => __( 'General Settings', 'yith-woocommerce-wishlist' ),
+				'name' => __( 'General settings', 'yith-woocommerce-wishlist' ),
 				'type' => 'title',
 				'desc' => '',
 				'id'   => 'yith_wcwl_general_settings',

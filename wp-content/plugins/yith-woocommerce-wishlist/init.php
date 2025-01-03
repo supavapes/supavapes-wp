@@ -3,7 +3,7 @@
  * Plugin Name: YITH WooCommerce Wishlist
  * Plugin URI: https://yithemes.com/themes/plugins/yith-woocommerce-wishlist/
  * Description: <code><strong>YITH WooCommerce Wishlist</strong></code> gives your users the possibility to create, fill, manage and share their wishlists allowing you to analyze their interests and needs to improve your marketing strategies. <a href="https://yithemes.com/" target="_blank">Get more plugins for your e-commerce on <strong>YITH</strong></a>
- * Version: 3.38.0
+ * Version: 4.0.1
  * Author: YITH
  * Author URI: https://yithemes.com/
  * Text Domain: yith-woocommerce-wishlist
@@ -11,41 +11,32 @@
  * WC requires at least: 9.1
  * WC tested up to: 9.3
  *
- * @author YITH <plugins@yithemes.com>
  * @package YITH\Wishlist
- * @version 3.0.0
+ * @author  YITH <plugins@yithemes.com>
+ * @version 4.0.1
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	define( 'YITH_WCWL', true );
-}
+defined( 'YITH_WCWL' ) || define( 'YITH_WCWL', true );
+defined( 'YITH_WCWL_VERSION' ) || define( 'YITH_WCWL_VERSION', '4.0.1' );
+defined( 'YITH_WCWL_URL' ) || define( 'YITH_WCWL_URL', plugin_dir_url( __FILE__ ) );
+defined( 'YITH_WCWL_DIR' ) || define( 'YITH_WCWL_DIR', plugin_dir_path( __FILE__ ) );
+defined( 'YITH_WCWL_INC' ) || define( 'YITH_WCWL_INC', YITH_WCWL_DIR . 'includes/' );
+defined( 'YITH_WCWL_VIEWS' ) || define( 'YITH_WCWL_VIEWS', YITH_WCWL_DIR . 'views/' );
+defined( 'YITH_WCWL_ASSETS' ) || define( 'YITH_WCWL_ASSETS', YITH_WCWL_DIR . 'assets/' );
+defined( 'YITH_WCWL_ASSETS_URL' ) || define( 'YITH_WCWL_ASSETS_URL', YITH_WCWL_URL . 'assets/' );
+defined( 'YITH_WCWL_ASSETS_CSS_URL' ) || define( 'YITH_WCWL_ASSETS_CSS_URL', YITH_WCWL_ASSETS_URL . 'css/' );
+defined( 'YITH_WCWL_ASSETS_JS_URL' ) || define( 'YITH_WCWL_ASSETS_JS_URL', YITH_WCWL_ASSETS_URL . 'js/' );
+defined( 'YITH_WCWL_ASSETS_IMAGES' ) || define( 'YITH_WCWL_ASSETS_IMAGES', YITH_WCWL_ASSETS . 'images/' );
+defined( 'YITH_WCWL_ASSETS_ICONS' ) || define( 'YITH_WCWL_ASSETS_ICONS', YITH_WCWL_ASSETS_IMAGES . 'icons/' );
+defined( 'YITH_WCWL_ASSETS_ICONS_URL' ) || define( 'YITH_WCWL_ASSETS_ICONS_URL', YITH_WCWL_ASSETS_URL . 'images/icons/' );
+defined( 'YITH_WCWL_INIT' ) || define( 'YITH_WCWL_INIT', plugin_basename( __FILE__ ) );
+defined( 'YITH_WCWL_FREE_INIT' ) || define( 'YITH_WCWL_FREE_INIT', plugin_basename( __FILE__ ) );
+defined( 'YITH_WCWL_SLUG' ) || define( 'YITH_WCWL_SLUG', 'yith-woocommerce-wishlist' );
 
-if ( ! defined( 'YITH_WCWL_URL' ) ) {
-	define( 'YITH_WCWL_URL', plugin_dir_url( __FILE__ ) );
-}
-
-if ( ! defined( 'YITH_WCWL_DIR' ) ) {
-	define( 'YITH_WCWL_DIR', plugin_dir_path( __FILE__ ) );
-}
-
-if ( ! defined( 'YITH_WCWL_INC' ) ) {
-	define( 'YITH_WCWL_INC', YITH_WCWL_DIR . 'includes/' );
-}
-
-if ( ! defined( 'YITH_WCWL_INIT' ) ) {
-	define( 'YITH_WCWL_INIT', plugin_basename( __FILE__ ) );
-}
-
-if ( ! defined( 'YITH_WCWL_FREE_INIT' ) ) {
-	define( 'YITH_WCWL_FREE_INIT', plugin_basename( __FILE__ ) );
-}
-
-if ( ! defined( 'YITH_WCWL_SLUG' ) ) {
-	define( 'YITH_WCWL_SLUG', 'yith-woocommerce-wishlist' );
+if ( ! class_exists( 'YITH_WCWL_Autoloader' ) ) {
+	require_once YITH_WCWL_INC . 'class-yith-wcwl-autoloader.php';
 }
 
 if ( ! function_exists( 'yith_wcwl_install_plugin_fw' ) ) {
@@ -87,29 +78,20 @@ if ( ! function_exists( 'yith_wishlist_constructor' ) ) {
 
 		load_plugin_textdomain( 'yith-woocommerce-wishlist', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		// Load required classes and functions.
-		require_once YITH_WCWL_INC . 'data-stores/class-yith-wcwl-wishlist-data-store.php';
-		require_once YITH_WCWL_INC . 'data-stores/class-yith-wcwl-wishlist-item-data-store.php';
+		// Let's start the game!
+
+		// Functions
 		require_once YITH_WCWL_INC . 'functions-yith-wcwl.php';
 		require_once YITH_WCWL_INC . 'legacy/functions-yith-wcwl-legacy.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-exception.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-form-handler.php';
+
+		// AJAX Handle classes
 		require_once YITH_WCWL_INC . 'class-yith-wcwl-ajax-handler.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-session.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-cron.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-wishlist.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-wishlist-item.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-wishlist-factory.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-frontend.php';
-		require_once YITH_WCWL_INC . 'class-yith-wcwl-install.php';
+
+		// Shortcodes classes
 		require_once YITH_WCWL_INC . 'class-yith-wcwl-shortcode.php';
 
-		if ( is_admin() ) {
-			require_once YITH_WCWL_INC . 'class-yith-wcwl-admin.php';
-		}
-
-		// Let's start the game!
+		// Form handler classes
+		require_once YITH_WCWL_INC . 'class-yith-wcwl-form-handler.php';
 
 		/**
 		 * $yith_wcwl global was deprecated since 3.0.0
@@ -117,7 +99,8 @@ if ( ! function_exists( 'yith_wishlist_constructor' ) ) {
 		 * @deprecated
 		 */
 		global $yith_wcwl;
-		$yith_wcwl = YITH_WCWL();
+
+		$yith_wcwl = YITH_WCWL::get_instance();
 	}
 }
 
@@ -143,22 +126,6 @@ if ( ! function_exists( 'yith_wishlist_install' ) ) {
 	}
 }
 
-if ( ! function_exists( 'yith_wcwl_install_woocommerce_admin_notice' ) ) {
-	/**
-	 * Shows admin notice when plugin is activated without WooCommerce
-	 *
-	 * @return void
-	 * @since 2.0.0
-	 */
-	function yith_wcwl_install_woocommerce_admin_notice() {
-		?>
-		<div class="error">
-			<p><?php echo esc_html( 'YITH WooCommerce Wishlist ' . __( 'is enabled but not effective. It requires WooCommerce to work.', 'yith-woocommerce-wishlist' ) ); ?></p>
-		</div>
-		<?php
-	}
-}
-
 if ( ! function_exists( 'yith_wcwl_deactivate_lower_tier_notice' ) ) {
 	/**
 	 * Print an admin notice if trying to activate this version when an higher tier is already enabled
@@ -176,8 +143,24 @@ if ( ! function_exists( 'yith_wcwl_deactivate_lower_tier_notice' ) ) {
 	}
 }
 
+if ( ! function_exists( 'yith_wcwl_install_woocommerce_admin_notice' ) ) {
+	/**
+	 * Shows admin notice when plugin is activated without WooCommerce
+	 *
+	 * @return void
+	 * @since 2.0.0
+	 */
+	function yith_wcwl_install_woocommerce_admin_notice() {
+		?>
+		<div class="error">
+			<p><?php echo esc_html( 'YITH WooCommerce Wishlist ' . __( 'is enabled but not effective. It requires WooCommerce to work.', 'yith-woocommerce-wishlist' ) ); ?></p>
+		</div>
+		<?php
+	}
+}
+
 yith_wcwl_register_activation();
 yith_wcwl_install_plugin_fw();
 
-add_action( 'yith_wcwl_init', 'yith_wishlist_constructor' );
 add_action( 'plugins_loaded', 'yith_wishlist_install', 11 );
+add_action( 'yith_wcwl_init', 'yith_wishlist_constructor' );

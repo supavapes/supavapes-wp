@@ -130,6 +130,7 @@ class WPML_Email_Log_List extends \WP_List_Table implements IHooks {
      * Process action the admin initiated.
      *
      * @since 1.11.0
+     * @since 1.13.0 Updated the user capability check.
      *
      * @return void
      */
@@ -141,9 +142,7 @@ class WPML_Email_Log_List extends \WP_List_Table implements IHooks {
             return;
         }
 
-        $settings = SettingsTab::get_settings( SettingsTab::DEFAULT_SETTINGS );
-
-        if ( ! current_user_can( $settings['can-see-submission-data'] ) ) {
+        if ( ! WPML_Utils::can_current_user_access_wp_mail_logging_submissions() ) {
             return;
         }
 
@@ -799,8 +798,8 @@ class WPML_Email_Log_List extends \WP_List_Table implements IHooks {
      */
     function get_bulk_actions() {
         $actions = array(
-            'delete'    => 'Delete',
-            'resend'    => 'Resend'
+            'delete'    => __( 'Delete', 'wp-mail-logging' ),
+            'resend'    => __( 'Resend', 'wp-mail-logging' ),
         );
         return $actions;
     }

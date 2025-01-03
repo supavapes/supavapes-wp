@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e
+class ComposerStaticInit31f994310b2c7d6f9759f25f664a2dcc
 {
     public static $prefixLengthsPsr4 = array (
         'N' => 
@@ -41,6 +41,7 @@ class ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'No3x\\WPML\\Admin\\EmailLogsTab' => __DIR__ . '/../..' . '/src/inc/Admin/EmailLogsTab.php',
         'No3x\\WPML\\Admin\\SMTPTab' => __DIR__ . '/../..' . '/src/inc/Admin/SMTPTab.php',
         'No3x\\WPML\\Admin\\SettingsTab' => __DIR__ . '/../..' . '/src/inc/Admin/SettingsTab.php',
@@ -54,9 +55,9 @@ class ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit69a7d59a98d30eebcee330fbb3951b1e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit31f994310b2c7d6f9759f25f664a2dcc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit31f994310b2c7d6f9759f25f664a2dcc::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit31f994310b2c7d6f9759f25f664a2dcc::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -104,7 +104,7 @@ if ( ! defined( 'YITH_WCWL' ) ) {
 			<?php if ( $count && $show_update ) : ?>
 				<!-- Update wishlist button -->
 				<div class="yith_wcwl_wishlist_update">
-					<input type="submit" name="update_wishlist" value="<?php esc_html_e( 'Update', 'yith-woocommerce-wishlist' ); ?>"/>
+					<input type="submit" class="<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ); ?>" name="update_wishlist" value="<?php esc_html_e( 'Update', 'yith-woocommerce-wishlist' ); ?>"/>
 				</div>
 			<?php endif; ?>
 

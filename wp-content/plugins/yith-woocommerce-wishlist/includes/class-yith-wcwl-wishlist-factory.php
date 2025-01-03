@@ -232,7 +232,7 @@ if ( ! class_exists( 'YITH_WCWL_Wishlist_Factory' ) ) {
 				empty( $action ) ||
 				! in_array( $action, YITH_WCWL()->get_available_views(), true ) ||
 				in_array( $action, array( 'view', 'user' ), true ) ||
-				( in_array( $action, array( 'manage', 'create' ), true ) && ! YITH_WCWL()->is_multi_wishlist_enabled() )
+				( in_array( $action, array( 'manage', 'create' ), true ) && ! yith_wcwl_wishlists()->is_multi_wishlist_enabled() )
 			) {
 				switch ( $action ) {
 					case 'user':

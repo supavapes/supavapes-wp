@@ -475,7 +475,7 @@ if ( ! defined( 'YITH_WCWL' ) ) {
 							<!-- Date added -->
 							<?php
 							if ( $show_dateadded && $item->get_date_added() ) :
-								// translators: date added label: 1 date added.
+								// translators: 1. Date product was added to wishlist.
 								echo '<span class="dateadded">' . esc_html( sprintf( __( 'Added on: %s', 'yith-woocommerce-wishlist' ), $item->get_date_added_formatted() ) ) . '</span>';
 							endif;
 							?>

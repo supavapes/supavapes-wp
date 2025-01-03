@@ -29,9 +29,7 @@
  * @var $is_single                 bool Whether we're on single template
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly.
 
 global $product;
 ?>

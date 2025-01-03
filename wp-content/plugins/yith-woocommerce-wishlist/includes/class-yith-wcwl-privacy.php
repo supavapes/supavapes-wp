@@ -129,7 +129,7 @@ if ( ! class_exists( 'YITH_WCWL_Privacy' ) ) {
 			$data_to_export = array();
 
 			if ( $user instanceof WP_User ) {
-				$wishlists = YITH_WCWL()->get_wishlists(
+				$wishlists = YITH_WCWL_Wishlist_Factory::get_wishlists(
 					array(
 						'limit'   => 10,
 						'offset'  => $offset,
@@ -185,7 +185,7 @@ if ( ! class_exists( 'YITH_WCWL_Privacy' ) ) {
 				return $response;
 			}
 
-			$wishlists = YITH_WCWL()->get_wishlists(
+			$wishlists = YITH_WCWL_Wishlist_Factory::get_wishlists(
 				array(
 					'limit'   => 10,
 					'offset'  => $offset,
@@ -312,7 +312,7 @@ if ( ! class_exists( 'YITH_WCWL_Privacy' ) ) {
 					case 'wishlist_name':
 						$wishlist_name = $wishlist->get_formatted_name();
 
-						$value = $wishlist_name ? $wishlist_name : get_option( 'yith_wcwl_wishlist_title' );
+						$value = $wishlist_name ? $wishlist_name : get_option( 'yith_wcwl_wishlist_title', __( 'My wishlist', 'yith-woocommerce-wishlist' ) );
 						break;
 					case 'dateadded':
 						$value = $wishlist->get_date_added();

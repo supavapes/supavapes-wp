@@ -33,9 +33,7 @@
  * @var $found_item                YITH_WCWL_Wishlist_Item Wishlist item
  */
 
-if ( ! defined( 'YITH_WCWL' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'YITH_WCWL' ) || exit; // Exit if accessed directly.
 
 global $product;
 ?>

@@ -15,6 +15,7 @@ class WPML_Email_Resender {
 
     /**
      * Resend mail
+     *
      * @param WPML_Mail $mail
      */
     public function resendMail($mail) {
@@ -31,23 +32,7 @@ class WPML_Email_Resender {
             return WPML_Attachment::fromRelPath($attachments)->getPath();
         }, $attachments);
 
-        $clean_headers = str_replace(
-            [
-                "\\r\\n",
-                "\r\n",
-                ",\n",
-                ",\\n"
-            ],
-            "\n",
-            $mail->get_headers()
-        );
-
-        $headers = explode( "\n", $clean_headers );
-        $headers = array_map(function ($header) {
-            return rtrim($header, ",");
-        }, $headers);
-
-        $this->dispatcher->dispatch($receivers, $mail->get_subject(), $mail->get_message(), $headers, $attachments );
+        $this->dispatcher->dispatch( $receivers, $mail->get_subject(), $mail->get_message(), WPML_Utils::clean_headers( $mail->get_headers() ), $attachments );
     }
 
 }

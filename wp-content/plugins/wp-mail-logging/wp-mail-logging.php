@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Mail Logging
  * Plugin URI: https://wordpress.org/plugins/wp-mail-logging/
- * Version: 1.12.0
+ * Version: 1.14.0
  * Requires at least: 5.0
  * Requires PHP: 7.1
  * Author: WP Mail Logging Team
@@ -63,7 +63,7 @@ function WPML_i18n_init() {
 /////////////////////////////////
 
 // First initialize i18n
-WPML_i18n_init();
+add_action( 'init', __NAMESPACE__ .'\WPML_i18n_init' );
 
 
 // Next, run the version check.
