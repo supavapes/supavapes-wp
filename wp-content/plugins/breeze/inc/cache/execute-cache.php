@@ -218,6 +218,7 @@ if ( ! $check_exclude ) {
 	breeze_serve_cache( $filename, $breeze_current_url_path, $X1, $devices );
 	\ob_start( 'Breeze_Cache_Init\breeze_cache' );
 } else {
+
 	header( 'Cache-Control: no-cache' );
 }
 
@@ -232,6 +233,10 @@ if ( ! $check_exclude ) {
  */
 function breeze_cache( $buffer, $flags ) {
 	global $breeze_user_logged, $breeze_use_cache_system;
+
+	if ( constant_donotcachepage_found() ) {
+		return $buffer;
+	}
 	// No cache for pages without 200 response status
 	if ( http_response_code() !== 200 ) {
 		return $buffer;
@@ -312,7 +317,13 @@ function breeze_cache( $buffer, $flags ) {
 		}
 		// Regular expression pattern to match anchor (a) tags
 		$pattern = '/<a\s+(.*?)>/si';
-		$buffer  = preg_replace_callback( $pattern, 'breeze_cc_process_match', $buffer );
+		$buffer  = preg_replace_callback(
+			$pattern,
+			function ( $matches ) {
+				return breeze_cc_process_match( $matches );
+			},
+			$buffer
+		);
 
 		// Buffer decoding.
 		$buffer = mb_decode_numericentity( $buffer, array( 0x80, 0x10FFFF, 0, ~0 ), 'UTF-8' );
@@ -466,6 +477,17 @@ function breeze_cache( $buffer, $flags ) {
 }
 
 /**
+ * Check for the constant woocommerce and other plugins declares.
+ */
+function constant_donotcachepage_found() {
+	if ( ! defined( 'DONOTCACHEPAGE' ) || ! DONOTCACHEPAGE ) {
+		return false;
+	}
+
+	return ! apply_filters( 'breeze_override_donotcachepage', false );
+}
+
+/**
  * Get URL path for caching
  *
  * @return string
@@ -598,9 +620,13 @@ function check_exclude_page( $opts_config, $current_url ) {
 					}
 				} else { // Whole path
 
+
 					$exclude_url = ltrim( $exclude_url, 'https:' );
 					$current_url = ltrim( $current_url, 'https:' );
-					if ( mb_strtolower( $exclude_url ) === mb_strtolower( $current_url ) ) {
+					if (
+						mb_strtolower( $exclude_url ) === mb_strtolower( $current_url ) ||
+						br_trailingslashit( mb_strtolower( $exclude_url ) ) === br_trailingslashit( mb_strtolower( $current_url ) )
+					) {
 						return true;
 					}
 				}
@@ -611,7 +637,12 @@ function check_exclude_page( $opts_config, $current_url ) {
 	return false;
 }
 
-
+function br_trailingslashit( $value ): string {
+	return br_untrailingslashit( $value ) . '/';
+}
+function br_untrailingslashit( $value ): string {
+	return rtrim( $value, '/\\' );
+}
 /**
  * Used to check for regexp exclude pages
  *
@@ -623,6 +654,7 @@ function check_exclude_page( $opts_config, $current_url ) {
  *
  */
 function exec_breeze_check_for_exclude_values( $needle = '', $haystack = array() ) {
+
 	if ( empty( $needle ) || empty( $haystack ) ) {
 		return array();
 	}
@@ -641,7 +673,6 @@ function exec_breeze_check_for_exclude_values( $needle = '', $haystack = array()
 
 	return $is_string_in_array;
 }
-
 
 /**
  * Function used to determine if the excluded URL contains regexp
@@ -687,5 +718,60 @@ function exec_breeze_file_match_pattern( $file_url, $pattern ) {
 	$result           = preg_match( '/' . $pattern . '/', $file_url );
 
 	return $result;
+}
+
+/**
+ * Preg replace callback function for anchor handling
+ *
+ * @param $match
+ *
+ * @return string
+ */
+function breeze_cc_process_match( $match ) {
+	// Get the home URL
+	$home_url = $GLOBALS['breeze_config']['homepage'];
+	$home_url = ltrim( $home_url, 'https:' );
+
+	// Set the rel attribute values
+	$replacement_rel_arr = array( 'noopener', 'noreferrer' );
+
+	// Extract the href and target attributes
+	$href_attr   = '';
+	$target_attr = '';
+	preg_match( '/href=(\'|")(.*?)\\1/si', $match[1], $href_match );
+	preg_match( '/target=(\'|")(.*?)\\1/si', $match[1], $target_match );
+	if ( $href_match ) {
+		$href_attr = $href_match[2];
+	}
+	if ( $target_match ) {
+		$target_attr = $target_match[2];
+	}
+
+	// Check if this is an external link
+	if ( ! empty( $href_attr ) &&
+		filter_var( $href_attr, FILTER_VALIDATE_URL ) &&
+		strpos( $href_attr, $home_url ) === false &&
+		strpos( $target_attr, '_blank' ) !== false ) {
+
+		// Extract the rel attribute, if present
+		$rel_attr = '';
+		preg_match( '/rel=(\'|")(.*?)\\1/si', $match[1], $rel_match );
+		if ( $rel_match ) {
+			$rel_attr = $rel_match[2];
+		}
+
+		// Set or modify the rel attribute as necessary
+		if ( empty( $rel_attr ) ) {
+			return '<a ' . $match[1] . ' rel="noopener noreferrer">';
+		} else {
+			$existing_rels = explode( ' ', $rel_attr );
+			$existing_rels = array_unique( array_merge( $replacement_rel_arr, $existing_rels ) );
+
+			return '<a ' . str_replace( $rel_attr, implode( ' ', $existing_rels ), $match[1] ) . '>';
+		}
+	} else {
+		// If this is not an external link, just return the matched string
+		return '<a ' . $match[1] . '>';
+	}
 }
 

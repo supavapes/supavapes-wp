@@ -2,9 +2,9 @@
 Contributors: Cloudways
 Tags: cache,caching, performance, wp-cache, cdn
 Requires at least: 6.0
-Tested up to: 6.6.1
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.1.14
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,6 +159,46 @@ Yes. The process of setting up CloudFlare with Breeze is easy. Check out the fol
 Using Gzip, Breeze compresses the request files, further reducing the size of the download files and speeding up the user experience.
 
 == Changelog ==
+
+= 2.2.0 =
+
+* Improved: Enhanced cache purging messages to display the purge status for each module individually.
+* Improved: The Breeze error notice for file/folder permission issues and missing files/folders will no longer appear when the cache system is OFF.
+* Fix: To prevent caching of Cloudflare firewall headers, use Cache-Control headers and Page Rules.
+* Fix: The issue with incorrect default options being saved for HTML optimization Tab settings has been fixed.
+* Fix: Resolved an issue where links remained cached even after being added to the 'Never Cache URL(s)' list.
+
+= 2.1.20 = 
+
+* Fix: Resolved an issue where the lazy load library was being loaded even when not enabled. This occurred in rare instances.
+* Fix: Enhanced Lazy-Load functionality to prevent conflicts with the "Elementor" and "EWWW Image Optimizer" plugins.
+* Fix: Updated the Heartbeat option range to include "Default," "30 to 120 seconds," and "Disable" settings.
+* Fix: Pages/Posts and Custom Post Types containing the Gutenberg block "Latest Comments" will now have their cache reset when a comment is added, deleted, or edited. The comment must be approved for the cache reset to occur.
+* Fix: Enhanced validation for URLs added to the “Never Cache URL(s)” option.
+
+= 2.1.19 =
+
+* Fix: The 'Never cache URL(s)' option is now compatible with URLs that contain non-ASCII characters.
+* Fix: Enhance the plugin update process by implementing new functionality to remove related cron jobs automatically.
+
+
+= 2.1.18 =
+
+* Fix: By setting WooCommerce pages as the homepage, all website pages were excluded from caching. This issue has now been successfully fixed for both the single site and multisite environments.
+
+= 2.1.17 =
+
+* Fix: Errors have been resolved during the activation, deactivation, updating, and deletion of plugins and themes from ManageWP.
+* Fix: The 'Host Google Fonts Locally' feature has been improved to prevent PHP warnings.
+* Fix: Improved multi-site sub-directory sub-site detection, ensuring the correct handling of blog_id for cache storage and cache purging.
+
+= 2.1.16 =
+
+* Fix: Refactor the handling of the woocommerce_after_product_object_save hook to ensure it is only executed once per request when  products  updated via the  API.
+
+= 2.1.15 =
+
+* Fix: Addressed vulnerabilities related to Broken Access Control and Cross-Site Scripting (XSS) as discovered by Patchstack.
 
 = 2.1.14 =
 
