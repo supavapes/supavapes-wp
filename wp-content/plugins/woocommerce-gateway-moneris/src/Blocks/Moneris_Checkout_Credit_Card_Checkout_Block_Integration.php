@@ -24,9 +24,9 @@
 namespace SkyVerge\WooCommerce\Moneris\Blocks;
 
 use Exception;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1\Payment_Gateway\Blocks\Gateway_Checkout_Block_Integration;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1\SV_WC_API_Exception;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1\SV_WC_Payment_Gateway;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0\Payment_Gateway\Blocks\Gateway_Checkout_Block_Integration;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0\SV_WC_API_Exception;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0\SV_WC_Payment_Gateway;
 
 /**
  * Checkout block integration for the {@see \WC_Gateway_Moneris_Checkout_Credit_Card} gateway.

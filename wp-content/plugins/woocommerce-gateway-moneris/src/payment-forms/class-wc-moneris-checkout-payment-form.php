@@ -23,7 +23,7 @@
 defined( 'ABSPATH' ) or exit;
 
 use SkyVerge\WooCommerce\Moneris\Handlers\Checkout;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 /**
  * Moneris payment form class.

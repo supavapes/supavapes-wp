@@ -25,7 +25,7 @@ namespace SkyVerge\WooCommerce\Moneris\Handlers;
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 /**
  * The lifecycle handler.

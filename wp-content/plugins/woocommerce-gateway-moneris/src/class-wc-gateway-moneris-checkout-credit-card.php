@@ -22,7 +22,7 @@
  */
 
 use SkyVerge\WooCommerce\Moneris\Blocks\Moneris_Checkout_Credit_Card_Checkout_Block_Integration;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 defined( 'ABSPATH' ) or exit;
 
@@ -863,7 +863,9 @@ class WC_Gateway_Moneris_Checkout_Credit_Card extends Framework\SV_WC_Payment_Ga
 			}
 		}
 
-		$order->payment->card_type = Framework\SV_WC_Payment_Gateway_Helper::normalize_card_type( $order->payment->card_type );
+		if ($order->payment->card_type) {
+			$order->payment->card_type = Framework\SV_WC_Payment_Gateway_Helper::normalize_card_type($order->payment->card_type);
+		}
 
 		return $order;
 	}
@@ -2006,14 +2008,14 @@ class WC_Gateway_Moneris_Checkout_Credit_Card extends Framework\SV_WC_Payment_Ga
 			return $this->api;
 		}
 
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-request.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-response.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-create-payment-token-response.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-delete-payment-token-response.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-receipt-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-request.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-create-payment-token-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-delete-payment-token-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-receipt-response.php';
 
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-response-message-helper.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-response-message-helper.php';
 
 		return $this->api = new WC_Moneris_API( $this->get_id(), $this->get_api_endpoint(), $this->get_store_id(), $this->get_api_token() );
 	}
@@ -2032,14 +2034,14 @@ class WC_Gateway_Moneris_Checkout_Credit_Card extends Framework\SV_WC_Payment_Ga
 			return $this->checkoutAPI;
 		}
 
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-request.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/checkout/class-wc-moneris-checkout-api.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/checkout/class-wc-moneris-checkout-api-request.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/checkout/class-wc-moneris-checkout-api-response.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-response.php';
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-delete-payment-token-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-request.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/Checkout/class-wc-moneris-checkout-api.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/Checkout/class-wc-moneris-checkout-api-request.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/Checkout/class-wc-moneris-checkout-api-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-response.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-delete-payment-token-response.php';
 
-		require_once $this->get_plugin()->get_plugin_path().'/src/api/class-wc-moneris-api-response-message-helper.php';
+		require_once $this->get_plugin()->get_plugin_path().'/src/API/class-wc-moneris-api-response-message-helper.php';
 
 		return $this->checkoutAPI = new WC_Moneris_Checkout_API( $this->get_id(), $this->get_store_id(), $this->get_api_token(), $this->get_checkout_id(), $this->is_test_environment() ? WC_Moneris_Checkout_API::ENVIRONMENT_STAGING : WC_Moneris_Checkout_API::ENVIRONMENT_PRODUCTION );
 	}

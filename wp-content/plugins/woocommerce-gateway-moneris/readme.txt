@@ -3,7 +3,7 @@ Author: skyverge
 Tags: woocommerce
 Requires PHP: 7.4
 Requires at least: 5.6
-Tested up to: 6.4.3
+Tested up to: 6.6.2
 
 Accept credit cards and Interac Online in WooCommerce with the Moneris Gateway
 

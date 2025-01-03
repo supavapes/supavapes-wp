@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 defined( 'ABSPATH' ) or exit;
 
@@ -1054,7 +1054,9 @@ class WC_Gateway_Moneris_Credit_Card extends Framework\SV_WC_Payment_Gateway_Dir
 			}
 		}
 
-		$order->payment->card_type = Framework\SV_WC_Payment_Gateway_Helper::normalize_card_type( $order->payment->card_type );
+		if ($order->payment->card_type) {
+			$order->payment->card_type = Framework\SV_WC_Payment_Gateway_Helper::normalize_card_type($order->payment->card_type);
+		}
 
 		return $order;
 	}
@@ -1993,14 +1995,14 @@ class WC_Gateway_Moneris_Credit_Card extends Framework\SV_WC_Payment_Gateway_Dir
 			return $this->api;
 		}
 
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api.php';
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-request.php';
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-response.php';
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-create-payment-token-response.php';
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-delete-payment-token-response.php';
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-receipt-response.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-request.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-response.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-create-payment-token-response.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-delete-payment-token-response.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-receipt-response.php';
 
-		require_once $this->get_plugin()->get_plugin_path() . '/src/api/class-wc-moneris-api-response-message-helper.php';
+		require_once $this->get_plugin()->get_plugin_path() . '/src/API/class-wc-moneris-api-response-message-helper.php';
 
 		return $this->api = new WC_Moneris_API( $this->get_id(), $this->get_api_endpoint(), $this->get_store_id(), $this->get_api_token(), $this->get_integration_country() );
 	}

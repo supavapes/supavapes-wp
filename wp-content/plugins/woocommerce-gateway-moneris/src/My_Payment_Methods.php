@@ -25,7 +25,7 @@ namespace SkyVerge\WooCommerce\Moneris;
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 /**
  * The My Payment Methods handler.
@@ -45,7 +45,7 @@ class My_Payment_Methods extends Framework\SV_WC_Payment_Gateway_My_Payment_Meth
 		parent::maybe_enqueue_styles_scripts();
 
 		if ( $this->has_tokens ) {
-			wp_enqueue_script( 'wc-moneris-my-payment-methods', $this->get_plugin()->get_plugin_url().'/assets/js/frontend/wc-moneris-my-payment-methods.min.js', ['jquery', 'sv-wc-payment-gateway-my-payment-methods-v5_12_1'], $this->get_plugin()->get_version() );
+			wp_enqueue_script( 'wc-moneris-my-payment-methods', $this->get_plugin()->get_plugin_url().'/assets/js/frontend/wc-moneris-my-payment-methods.min.js', ['jquery', 'sv-wc-payment-gateway-my-payment-methods-v5_15_0'], $this->get_plugin()->get_version() );
 		}
 	}
 

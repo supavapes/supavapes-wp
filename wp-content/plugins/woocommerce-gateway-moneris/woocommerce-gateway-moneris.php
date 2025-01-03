@@ -6,7 +6,7 @@
  * Description: Accept credit card and digital wallet payments online in WooCommerce with the Moneris Gateway
  * Author: SkyVerge
  * Author URI: https://woocommerce.com
- * Version: 3.4.1
+ * Version: 3.4.3
  * Text Domain: woocommerce-gateway-moneris
  * Domain Path: /i18n/languages/.
  *
@@ -22,7 +22,7 @@
  *
  * Woo: 18638:fb15ca1ba925054072fe2ef35b2e1925
  * WC requires at least: 3.9.4
- * WC tested up to: 8.6.1
+ * WC tested up to: 9.3.3
  */
 defined( 'ABSPATH' ) or exit;
 
@@ -44,7 +44,7 @@ class WC_Moneris_Loader {
 	const MINIMUM_WC_VERSION = '3.9.4';
 
 	/** SkyVerge plugin framework version used by this plugin */
-	const FRAMEWORK_VERSION = '5.12.1';
+	const FRAMEWORK_VERSION = '5.15.0';
 
 	/** the plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WooCommerce Moneris Gateway';
@@ -111,6 +111,8 @@ class WC_Moneris_Loader {
 		}
 
 		$this->load_framework();
+
+		require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 		// load the main plugin class
 		require_once plugin_dir_path( __FILE__ ) . 'class-wc-moneris.php';

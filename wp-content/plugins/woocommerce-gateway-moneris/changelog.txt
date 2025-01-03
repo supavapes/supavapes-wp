@@ -1,5 +1,12 @@
 *** WooCommerce Moneris Gateway Changelog ***
 
+2024.10.10 - version 3.4.3
+ * Fix - Critical error during activation
+
+2024.10.09 - version 3.4.2
+ * Tweak - Order items now sent to Moneris in API requests
+ * Misc - Update SkyVerge Plugin Framework to 5.15.0
+
 2024.03.18 - version 3.4.1
  * Fix - Correctly handle additional 3DSecure transactions responses
  * Fix - Resolve fatal errors being thrown from legacy gateway during upgrade routine

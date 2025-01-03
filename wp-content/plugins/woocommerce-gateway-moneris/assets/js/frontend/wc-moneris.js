@@ -21,7 +21,7 @@ jQuery( ( $ ) => {
 	 *
 	 * @since 3.0.0
 	 */
-	window.WC_Moneris_Payment_Form_Handler = class WC_Moneris_Payment_Form_Handler extends SV_WC_Payment_Form_Handler_v5_12_1 {
+	window.WC_Moneris_Payment_Form_Handler = class WC_Moneris_Payment_Form_Handler extends SV_WC_Payment_Form_Handler_v5_15_0 {
 
 
 		/**

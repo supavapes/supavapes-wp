@@ -22,7 +22,9 @@
  */
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\Moneris\API\Checkout\Adapters\CartBuilder;
+use SkyVerge\WooCommerce\Moneris\API\Checkout\Adapters\CartAdapter;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 defined( 'ABSPATH' ) or exit;
 
@@ -52,6 +54,9 @@ class WC_Moneris_Checkout_API_Request extends Framework\SV_WC_API_JSON_Request {
 
 	/** @var WC_Order optional order object if this request was associated with an order */
 	protected $order;
+
+	/** @var array<string, mixed> data for the API request */
+	protected array $request_data = [];
 
 
 	/**
@@ -112,6 +117,8 @@ class WC_Moneris_Checkout_API_Request extends Framework\SV_WC_API_JSON_Request {
 
 	/**
 	 * Creates a checkout request.
+	 *
+	 * @link https://developer.moneris.com/livedemo/checkout/preload_req/guide/php
 	 *
 	 * @since 3.0.0
 	 *
@@ -202,6 +209,9 @@ class WC_Moneris_Checkout_API_Request extends Framework\SV_WC_API_JSON_Request {
 			'postal_code' => $customer_data['postcode'] ?? '',
 		];
 
+		// include cart details
+		$request_data['cart'] = $this->order ? $this->getPreloadCartDataFromOrder($this->order) : $this->getPreloadCartDataFromCart(WC()->cart);
+
 		/**
 		 * Checkout API 'preload' Request Data
 		 *
@@ -224,6 +234,16 @@ class WC_Moneris_Checkout_API_Request extends Framework\SV_WC_API_JSON_Request {
 		}
 
 		// @TODO: handle it for different checks like 3Ds, AVS, etc.
+	}
+
+	protected function getPreloadCartDataFromOrder(WC_Order $order): array
+	{
+		return (new CartBuilder())->buildFromWooOrder($order)->toArray();
+	}
+
+	protected function getPreloadCartDataFromCart(WC_Cart $cart) : array
+	{
+		return (new CartAdapter())->convertFromSource($cart)->toArray();
 	}
 
 

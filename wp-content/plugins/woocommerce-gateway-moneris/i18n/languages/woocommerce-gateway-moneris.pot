@@ -2,16 +2,16 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Moneris Gateway 3.4.1\n"
+"Project-Id-Version: WooCommerce Moneris Gateway 3.4.3\n"
 "Report-Msgid-Bugs-To: https://woocommerce.com/my-account/marketplace-ticket-form/\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-03-18T05:32:44+00:00\n"
+"POT-Creation-Date: 2024-10-10T13:33:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: woocommerce-gateway-moneris\n"
 
 #. Plugin Name of the plugin
@@ -92,58 +92,58 @@ msgstr ""
 msgid "Issuer Name:"
 msgstr ""
 
-#: src/api/checkout/class-wc-moneris-checkout-api-response.php:460
+#: src/API/Checkout/class-wc-moneris-checkout-api-response.php:460
 msgid "Please enable CVD handling in your Moneris merchant profile, or contact your Moneris account rep to enable CVD handling for your account."
 msgstr ""
 
-#: src/api/checkout/class-wc-moneris-checkout-api-response.php:464
-#: src/api/class-wc-moneris-api-response.php:168
+#: src/API/Checkout/class-wc-moneris-checkout-api-response.php:464
+#: src/API/class-wc-moneris-api-response.php:168
 msgid "Transaction incomplete: %s"
 msgstr ""
 
-#: src/api/checkout/class-wc-moneris-checkout-api-response.php:466
-#: src/api/class-wc-moneris-api-response.php:170
+#: src/API/Checkout/class-wc-moneris-checkout-api-response.php:466
+#: src/API/class-wc-moneris-api-response.php:170
 msgid "Transaction incomplete"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:71
-#: src/api/class-wc-moneris-api-interac-response.php:80
+#: src/API/class-wc-moneris-api-interac-response.php:71
+#: src/API/class-wc-moneris-api-interac-response.php:80
 msgid "Request-back data incomplete: order id signature could not be validated"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:85
+#: src/API/class-wc-moneris-api-interac-response.php:85
 msgid "Request-back order id signature validation failed"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:185
+#: src/API/class-wc-moneris-api-interac-response.php:185
 msgid "Interac idebit transaction funded"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:187
+#: src/API/class-wc-moneris-api-interac-response.php:187
 msgid "Interac idebit PAN number failed mod 10 check"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:191
+#: src/API/class-wc-moneris-api-interac-response.php:191
 msgid "Interac idebit transaction not funded"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:193
+#: src/API/class-wc-moneris-api-interac-response.php:193
 msgid "Interac idebit transaction response error"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-interac-response.php:560
+#: src/API/class-wc-moneris-api-interac-response.php:560
 msgid "Invalid %1$s data: %2$s"
 msgstr ""
 
-#: src/api/class-wc-moneris-api-response-message-helper.php:211
+#: src/API/class-wc-moneris-api-response-message-helper.php:211
 msgid "Oops, sorry! A temporary error occurred. Please try again in 5 minutes."
 msgstr ""
 
-#: src/api/class-wc-moneris-api-response-message-helper.php:215
+#: src/API/class-wc-moneris-api-response-message-helper.php:215
 msgid "We cannot process your order with the payment information that you provided. Please use a different payment account or an alternate payment method."
 msgstr ""
 
-#: src/api/class-wc-moneris-api-response.php:164
+#: src/API/class-wc-moneris-api-response.php:164
 msgid "  Please enable CVD handling in your Moneris merchant profile, or contact your Moneris account rep to enable CVD handling for your account."
 msgstr ""
 
@@ -532,130 +532,130 @@ msgstr ""
 msgid "Moneris Order ID:"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:965
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:967
 msgid "AVS %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:969
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:971
 msgid "CSC %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:973
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1001
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:975
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1003
 msgid "CAVV %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:973
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:975
 msgid "authentication failed."
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:993
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1083
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1103
-#: src/class-wc-gateway-moneris-credit-card.php:1205
-#: src/class-wc-gateway-moneris-credit-card.php:1225
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:995
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1085
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1105
+#: src/class-wc-gateway-moneris-credit-card.php:1207
+#: src/class-wc-gateway-moneris-credit-card.php:1227
 msgid "AVS %s (result: %s)"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:997
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1087
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1107
-#: src/class-wc-gateway-moneris-credit-card.php:1209
-#: src/class-wc-gateway-moneris-credit-card.php:1229
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:999
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1089
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1109
+#: src/class-wc-gateway-moneris-credit-card.php:1211
+#: src/class-wc-gateway-moneris-credit-card.php:1231
 msgid "CSC %s (result: %s)"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1001
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1003
 msgid "(3Ds 2.0) authentication failed."
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1004
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1110
-#: src/class-wc-gateway-moneris-credit-card.php:1232
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1006
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1112
+#: src/class-wc-gateway-moneris-credit-card.php:1234
 msgid "Authorization"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1276
-#: src/class-wc-gateway-moneris-credit-card.php:1295
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1278
+#: src/class-wc-gateway-moneris-credit-card.php:1297
 msgid "%s%s Authorization Reversed"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1278
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1299
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1325
-#: src/class-wc-gateway-moneris-credit-card.php:1297
-#: src/class-wc-gateway-moneris-credit-card.php:1318
-#: src/class-wc-gateway-moneris-credit-card.php:1346
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1280
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1301
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1327
+#: src/class-wc-gateway-moneris-credit-card.php:1299
+#: src/class-wc-gateway-moneris-credit-card.php:1320
+#: src/class-wc-gateway-moneris-credit-card.php:1348
 msgid "Test"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1283
-#: src/class-wc-gateway-moneris-credit-card.php:1302
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1285
+#: src/class-wc-gateway-moneris-credit-card.php:1304
 msgid "(Transaction ID %s)"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1297
-#: src/class-wc-gateway-moneris-credit-card.php:1316
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1299
+#: src/class-wc-gateway-moneris-credit-card.php:1318
 msgid "%s%s Authorization Reversal Failed: %s - %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1323
-#: src/class-wc-gateway-moneris-credit-card.php:1344
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1325
+#: src/class-wc-gateway-moneris-credit-card.php:1346
 msgid "%s%s Authorization Reversal Failed: %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1763
-#: src/class-wc-gateway-moneris-credit-card.php:1684
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1765
+#: src/class-wc-gateway-moneris-credit-card.php:1686
 msgid "postal code match, street address no match"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1766
-#: src/class-wc-gateway-moneris-credit-card.php:1687
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1768
+#: src/class-wc-gateway-moneris-credit-card.php:1689
 msgid "postal code no match, street address match"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1769
-#: src/class-wc-gateway-moneris-credit-card.php:1690
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1771
+#: src/class-wc-gateway-moneris-credit-card.php:1692
 msgid "postal code no match, street address no match"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1772
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1825
-#: src/class-wc-gateway-moneris-credit-card.php:1693
-#: src/class-wc-gateway-moneris-credit-card.php:1739
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1774
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1827
+#: src/class-wc-gateway-moneris-credit-card.php:1695
+#: src/class-wc-gateway-moneris-credit-card.php:1741
 msgid "could not be verified"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1775
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1777
 msgid "unknown error"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1821
-#: src/class-wc-gateway-moneris-credit-card.php:1736
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1823
+#: src/class-wc-gateway-moneris-credit-card.php:1738
 msgid "no match"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1828
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1830
 msgid "invalid"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1906
-#: src/class-wc-gateway-moneris-credit-card.php:1785
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1908
+#: src/class-wc-gateway-moneris-credit-card.php:1787
 msgid "Data Key"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:1977
-#: src/class-wc-gateway-moneris-credit-card.php:1938
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:1979
+#: src/class-wc-gateway-moneris-credit-card.php:1940
 msgctxt "Order Note: (Payment method) Payment failed (error)"
 msgid "%s Payment Failed (%s)"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:2493
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:2495
 #: assets/js/blocks/wc-moneris-checkout-block.js:1
 msgid "Continue to Payment"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-checkout-credit-card.php:2493
+#: src/class-wc-gateway-moneris-checkout-credit-card.php:2495
 msgid "Place order"
 msgstr ""
 
@@ -786,11 +786,11 @@ msgstr ""
 msgid "Card number is missing or invalid"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-credit-card.php:1878
+#: src/class-wc-gateway-moneris-credit-card.php:1880
 msgid "token: %s"
 msgstr ""
 
-#: src/class-wc-gateway-moneris-credit-card.php:1882
+#: src/class-wc-gateway-moneris-credit-card.php:1884
 msgid "hosted tokenization response error message: %s"
 msgstr ""
 

@@ -26,7 +26,7 @@ namespace SkyVerge\WooCommerce\Moneris;
 defined( 'ABSPATH' ) or exit;
 
 use Exception;
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 /**
  * The Moneris Apple Pay handler.

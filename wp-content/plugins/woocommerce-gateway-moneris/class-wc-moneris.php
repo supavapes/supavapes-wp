@@ -22,7 +22,7 @@
  */
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_12_1 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_15_0 as Framework;
 
 /**
  * WooCommerce Moneris Gateway Main Plugin Class.
@@ -36,7 +36,7 @@ class WC_Moneris extends Framework\SV_WC_Payment_Gateway_Plugin {
 
 
 	/** version number */
-	const VERSION = '3.4.1';
+	const VERSION = '3.4.3';
 
 	/** @var WC_Moneris single instance of this plugin */
 	protected static $instance;
