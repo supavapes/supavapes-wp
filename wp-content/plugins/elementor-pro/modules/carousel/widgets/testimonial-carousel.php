@@ -8,6 +8,7 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Stroke;
 use Elementor\Repeater;
 use Elementor\Utils;
+use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -29,6 +30,24 @@ class Testimonial_Carousel extends Base {
 
 	public function get_keywords() {
 		return [ 'testimonial', 'carousel', 'image' ];
+	}
+
+	public function has_widget_inner_wrapper(): bool {
+		return ! Plugin::elementor()->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the widget requires.
+	 *
+	 * @since 3.24.0
+	 * @access public
+	 *
+	 * @return array Widget style dependencies.
+	 */
+	public function get_style_depends(): array {
+		return [ 'e-swiper', 'widget-testimonial-carousel', 'widget-carousel-module-base' ];
 	}
 
 	protected function register_controls() {

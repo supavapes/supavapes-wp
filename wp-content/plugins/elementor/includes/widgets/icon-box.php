@@ -77,6 +77,24 @@ class Widget_Icon_Box extends Widget_Base {
 		return false;
 	}
 
+	public function has_widget_inner_wrapper(): bool {
+		return ! Plugin::$instance->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the widget requires.
+	 *
+	 * @since 3.24.0
+	 * @access public
+	 *
+	 * @return array Widget style dependencies.
+	 */
+	public function get_style_depends(): array {
+		return [ 'widget-icon-box' ];
+	}
+
 	/**
 	 * Register icon box widget controls.
 	 *
@@ -130,8 +148,9 @@ class Widget_Icon_Box extends Widget_Base {
 				'label' => esc_html__( 'Shape', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'circle' => esc_html__( 'Circle', 'elementor' ),
 					'square' => esc_html__( 'Square', 'elementor' ),
+					'rounded' => esc_html__( 'Rounded', 'elementor' ),
+					'circle' => esc_html__( 'Circle', 'elementor' ),
 				],
 				'default' => 'circle',
 				'condition' => [

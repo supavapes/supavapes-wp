@@ -8,6 +8,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Typography;
 use ElementorPro\Base\Base_Widget;
+use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -37,16 +38,20 @@ class Lottie extends Base_Widget {
 		return [ 'lottie' ];
 	}
 
-	public function get_style_depends() {
-		return [ 'e-lottie' ];
-	}
-
 	public function get_icon() {
 		return 'eicon-lottie';
 	}
 
 	protected function is_dynamic_content(): bool {
 		return false;
+	}
+
+	public function has_widget_inner_wrapper(): bool {
+		return ! Plugin::elementor()->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
+	public function get_style_depends(): array {
+		return [ 'widget-lottie', 'e-lottie' ];
 	}
 
 	protected function register_controls() {

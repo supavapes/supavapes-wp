@@ -2,7 +2,8 @@
 namespace Brightplugins_COS;
 
 class WCBV_Order_Status_Email extends \WC_Email {
-
+	
+	public $default_body_text;
 	/**
 	 * @param $id
 	 * @param array $args

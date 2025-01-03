@@ -20,7 +20,26 @@ class Status {
 		add_filter( 'woocommerce_admin_order_actions', array( $this, 'add_custom_status_actions_buttons' ), 9999, 2 );
 		add_filter( 'wc_order_is_editable', array( $this, 'bp_add_order_statuses_to_editable' ), 10, 2 );
 		$this->reduce_stock_status_if_order_status_is_paid();
+		add_action( 'woocommerce_order_status_changed', [$this, 'set_payment_date_on_status_change'], 10, 3 );
+
 	}
+
+	public function set_payment_date_on_status_change( $order_id, $old_status, $new_status ){
+		$status_paid_list = $this->wcbvCustomStatusIsPaid([]);
+		if( empty( $status_paid_list ) ){
+			return;
+		}
+		$order = wc_get_order( $order_id );
+		if( !$order || !empty( $order->get_date_paid() ) ){
+			return;
+		}
+		if ( in_array( $new_status, $status_paid_list, true ) ) {
+			$order->set_date_paid( current_time( 'timestamp', true ) );
+        	$order->save();
+		}
+		
+	}
+		
 	/**
 	 * Show paid data after order admin table if status is paid
 	 * @param $_order_id

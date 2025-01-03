@@ -26,7 +26,6 @@ class Bootstrap {
 
 		add_action( 'admin_notices', [$this, 'review'] );
 		add_action( 'admin_init', [$this, 'url_param_check'] );
-		add_action( 'admin_init', array( 'PAnD', 'init' ) );
 		add_filter( 'cosm_upsale_notice', [$this, 'cosm_upsale_notice_render'] );
 	}
 	/**
@@ -39,19 +38,19 @@ class Bootstrap {
 
 		if ( is_plugin_active( 'bp-order-date-time-for-woocommerce/main.php' ) ) {
 
-			$this->woddp_title     = __( 'Check Options', 'bv-order-status' );
+			$this->woddp_title      = __( 'Check Options', 'bv-order-status' );
 			$this->woddp_activate   = true;
 			$this->woddp_plugin_url = admin_url( 'admin.php?page=wcbp-woodevelivery-setting' );
 
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/bp-order-date-time-for-woocommerce/main.php' ) ) {
 
-			$this->woddp_title     = __( 'Activate Now', 'bv-order-status' );
+			$this->woddp_title      = __( 'Activate Now', 'bv-order-status' );
 			$this->woddp_activate   = false;
 			$this->woddp_plugin_url = wp_nonce_url( 'plugins.php?action=activate&plugin=bp-order-date-time-for-woocommerce/main.php&plugin_status=all&paged=1', 'activate-plugin_bp-order-date-time-for-woocommerce/main.php' );
 
 		} else {
 
-			$this->woddp_title     = __( 'Install Now', 'bv-order-status' );
+			$this->woddp_title      = __( 'Install Now', 'bv-order-status' );
 			$this->woddp_activate   = false;
 			$this->woddp_plugin_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=bp-order-date-time-for-woocommerce' ), 'install-plugin_bp-order-date-time-for-woocommerce' );
 
@@ -61,11 +60,11 @@ class Bootstrap {
 	/**
 	 * @return null
 	 */
-	public function cosm_upsale_notice_render($data) {
-		
-		$data =	'🌟 Checkout our new <b>Order Delivery Date Time & Pickup for WooCommerce</b> plugin.<br>It\'s enables customers to conveniently select the date and time they prefer for the delivery of their orders. <a href="' . $this->woddp_plugin_url . '">' . $this->woddp_title . '</a>';
+	public function cosm_upsale_notice_render( $data ) {
+
+		$data = '🌟 Checkout our new <b>Order Delivery Date Time & Pickup for WooCommerce</b> plugin.<br>It\'s enables customers to conveniently select the date and time they prefer for the delivery of their orders. <a href="' . $this->woddp_plugin_url . '">' . $this->woddp_title . '</a>';
 		return $data;
-	
+
 	}
 	/**
 	 * simple dismissable logic
@@ -80,8 +79,12 @@ class Bootstrap {
 			set_transient( 'bpcosm_review_later', 1, 2 * WEEK_IN_SECONDS );
 		}
 	}
+	
 	/**
-	 * Leave Review Notice
+	 * Displays a review notice for the Custom Order Status Manager for WooCommerce plugin after 1 week of usage.
+	 * If the user has dismissed the notice or has chosen to review later, the notice won't be displayed.
+	 * If the user hasn't dismissed the notice and it has been more than 7 days since the plugin was installed, the notice will be displayed.
+	 * The notice includes a request for a five-star review on WordPress.org and options to dismiss or review later.
 	 *
 	 * @return void
 	 */
