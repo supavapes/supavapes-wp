@@ -158,7 +158,7 @@ if ( ! function_exists( 'wpgs_get_image_gallery_html' ) ) {
 		$lightbox_img_count        = ( Product::option( 'lightbox_img_count' ) == 1 ) ? 'true' : 'false';
 
 		$img_has_video            = get_post_meta( $attachment_id, 'twist_video_url', true );
-		$gallery_first_item_class = ( Product::option( 'variation_slide' ) == 'default' ) ? 'woocommerce-product-gallery__image' : 'wpgs1';
+		$gallery_first_item_class = ( Product::option( 'variation_slide' ) == 'default' ) ? 'woocommerce-product-gallery__image' : 'woocommerce-product-gallery__image';
 		$video_class              = $img_has_video ? 'wpgs-video' : '';
 		$gallery__image           = ( $main_image ) ? 'class="' . $gallery_first_item_class . ' wpgs_image"' : 'class="wpgs_image"';
 

@@ -4,7 +4,12 @@ if ( ! class_exists( 'WPGS_Variation_images' ) ) {
 
 	class WPGS_Variation_images {
 
+		/**
+		 * @var mixed
+		 */
+		protected $background_delete_cache;
 		public function __construct() {
+			$this->background_delete_cache = new wpgs_delete_cache();
 		}
 		public function init_actions() {
 			add_action( 'woocommerce_product_options_general_product_data', array( $this, 'add_csf' ), 10, 3 );
@@ -61,9 +66,15 @@ if ( ! class_exists( 'WPGS_Variation_images' ) ) {
 		 * @param string $prefix The prefix. Example: 'my_cool_transient_'.
 		 */
 		public function delete_transients_with_prefix( $prefix ) {
-			foreach ( $this->get_transient_keys_with_prefix( $prefix ) as $key ) {
-				delete_transient( $key );
+
+			// Process the product IDs in batches
+			$batch_size   = 50; // Number of products in each batch
+			$keys_batches = array_chunk( $this->get_transient_keys_with_prefix( $prefix ), $batch_size );
+			foreach ( $keys_batches as $batch ) {
+				$this->background_delete_cache->push_to_queue( $batch );
 			}
+			// Lets dispatch the queue to start processing.
+			$this->background_delete_cache->save()->dispatch();
 		}
 		/**
 		 * Gets all transient keys in the database with a specific prefix.

@@ -14,6 +14,10 @@ class Options {
 
 		$this->jvmw_data();
 		$this->pluginOptions();
+		add_action( 'csf_wpgs_form_save_after', array( $this, 'save_after' ) );
+	}
+	public function save_after(): void {
+		\WPGS_Variation_images::delete_transients();
 	}
 	/**
 	 * Get data of wishlist plugin
@@ -25,19 +29,19 @@ class Options {
 
 		if ( is_plugin_active( 'jvm-woocommerce-wishlist/jvm-woocommerce-wishlist.php' ) ) {
 
-			$this->jvmw_title     = __( 'Check Options', 'woo-product-gallery-slider' );
+			$this->jvmw_title      = __( 'Check Options', 'woo-product-gallery-slider' );
 			$this->jvmw_activate   = true;
 			$this->jvmw_plugin_url = apply_filters( 'cosm_admin_page', admin_url( 'admin.php?page=cixwishlist_settings' ) );
 
 		} elseif ( file_exists( WP_PLUGIN_DIR . '/jvm-woocommerce-wishlist/jvm-woocommerce-wishlist.php' ) ) {
 
-			$this->jvmw_title     = __( 'Activate Now', 'woo-product-gallery-slider' );
+			$this->jvmw_title      = __( 'Activate Now', 'woo-product-gallery-slider' );
 			$this->jvmw_activate   = false;
 			$this->jvmw_plugin_url = wp_nonce_url( 'plugins.php?action=activate&plugin=jvm-woocommerce-wishlist/jvm-woocommerce-wishlist.php&plugin_status=all&paged=1', 'activate-plugin_jvm-woocommerce-wishlist/jvm-woocommerce-wishlist.php' );
 
 		} else {
 
-			$this->jvmw_title     = __( 'Install Now', 'woo-product-gallery-slider' );
+			$this->jvmw_title      = __( 'Install Now', 'woo-product-gallery-slider' );
 			$this->jvmw_activate   = false;
 			$this->jvmw_plugin_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=jvm-woocommerce-wishlist' ), 'install-plugin_jvm-woocommerce-wishlist' );
 
@@ -55,7 +59,7 @@ class Options {
 				'menu_slug'       => 'cix-gallery-settings',
 				'menu_type'       => 'submenu',
 				'menu_parent'     => 'codeixer',
-				'framework_title' => 'Product Gallery Slider for WooCommerce <small>by Codeixer</small>',
+				'framework_title' => 'Product Gallery Slider for WooCommerce <small>by Codeixer</small><br><a href="https://www.codeixer.com/docs-category/product-gallery-slider/" target="_" class="button">Docs</a>',
 				'show_footer'     => true,
 				'show_bar_menu'   => false,
 				'save_defaults'   => true,
@@ -656,14 +660,7 @@ class Options {
 						'style'   => 'info',
 						'content' => 'If the image size is not loading correctly on the single product page, that becasue the image size you selected is not available for the product images. <br> To solve this problem download this plugin <a target="_blank" href="https://wordpress.org/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> and regenerate all images from "Tools > Regenerate Thumbnails" Menu',
 					),
-					array(
-						'id'      => 'load_assets',
-						'type'    => 'checkbox',
-						'default' => false,
-						'title'   => __( 'Global Assets', 'woo-product-gallery-slider' ),
-						'desc'    => __( 'Enable it for load plugin assets(CSS & JS) for entrie site.', 'woo-product-gallery-slider' ),
-
-					),
+					
 					array(
 						'id'       => 'custom_css',
 						'type'     => 'code_editor',

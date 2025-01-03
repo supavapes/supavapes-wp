@@ -68,9 +68,8 @@ class PaymentHandler {
 				$paypal_order_id = $this->get_paypal_order_id_from_request();
 				if ( ! $paypal_order_id ) {
 					$paypal_order_id = $this->cache->get( Constants::PAYPAL_ORDER_ID );
-					// If there isn't an existing PayPal order ID or this payment method is using the Place Order
-					// button, create a PayPal order.
-					if ( ! $paypal_order_id || $this->payment_method->is_place_order_button() ) {
+					// If there isn't an existing PayPal order ID button, create a PayPal order.
+					if ( ! $paypal_order_id ) {
 						$args = $this->get_create_order_params( $order );
 
 						$this->payment_method->logger->info(
@@ -344,7 +343,7 @@ class PaymentHandler {
 			$authorization_id = $order->get_meta( Constants::AUTHORIZATION_ID );
 			if ( ! $authorization_id ) {
 				if ( ! $manual ) {
-					return;
+					return false;
 				}
 				throw new \Exception( __( 'A valid authorization ID is required to perform a void.', 'pymntpl-paypal-woocommerce' ) );
 			}
@@ -389,8 +388,7 @@ class PaymentHandler {
 		];
 		if ( ! $txn_id ) {
 			$result = $this->process_void( $order );
-			if ( ! is_wp_error( $result ) ) {
-				wc_create_refund( $refund_args );
+			if ( ! is_wp_error( $result ) && $result !== false ) {
 				$order->add_order_note( sprintf( __( 'PayPal authorization cancelled. Authorization ID: %s', 'pymntpl-paypal-woocommerce' ), $order->get_meta( Constants::AUTHORIZATION_ID ) ) );
 			}
 		} else {

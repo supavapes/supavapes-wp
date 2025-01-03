@@ -3,8 +3,24 @@
 namespace Product_Gallery_Sldier;
 
 class Bootstrap {
-	public function __construct() {
-		new Product();
+	/**
+	 * Initializes a singleton instance
+	 *
+	 * @return $instance
+	 */
+	public static function get_instance() {
+
+		/**
+		 * @var mixed
+		 */
+		static $instance = false;
+		if ( ! $instance ) {
+			$instance = new self();
+		}
+		return $instance;
+	}
+	private function __construct() {
+		Product::get_instance();
 		new Options();
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 90 );
@@ -14,7 +30,7 @@ class Bootstrap {
 		add_action( 'admin_init', array( $this, 'wcpg_param_check' ), 10 );
 		add_action( 'plugin_action_links_' . CIPG_FILE, array( $this, 'wpgs_plugin_row_meta' ), 90 );
 		add_action( 'admin_init', array( 'PAnD', 'init' ) );
-		add_action( 'admin_notices', array( $this, 'get_pro_version_notice' ));
+		add_action( 'admin_notices', array( $this, 'get_pro_version_notice' ) );
 	}
 	function get_pro_version_notice() {
 		if ( ! \PAnD::is_admin_notice_active( 'twist-getpro-notice-45' ) ) {
@@ -47,7 +63,8 @@ class Bootstrap {
 
 		if ( get_option( 'wcpg_plugin_review' ) || get_transient( 'wpgs-review-later' ) ) {
 			return;
-		}?>
+		}
+		?>
 		<div class="notice ciplugin-review">
 		<p><img draggable="false" class="emoji" alt="🎉" src="https://s.w.org/images/core/emoji/11/svg/1f389.svg"><strong style="font-size: 19px; margin-bottom: 5px; display: inline-block;" ><?php echo __( 'Thanks for using Product gallery slider for WooCommerce.', 'woo-product-gallery-slider' ); ?></strong><br> <?php _e( 'If you can spare a minute, please help us by leaving a 5 star review on WordPress.org.', 'woo-product-gallery-slider' ); ?></p>
 		<p class="dfwc-message-actions">

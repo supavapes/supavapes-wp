@@ -3,8 +3,8 @@ Contributors: codeixer,im_niloy
 Tags: additional variation image, product gallery slider,woocommerce product gallery slider,woocommerce product image slider,woocommerce product gallery carousel
 Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to:  6.6.1
-Stable tag: 2.3.10
+Tested up to:  6.7
+Stable tag: 2.3.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Enhance your customers' shopping experience and boost sales instantly with this 
 == Description ==
 Product gallery slider for WooCommerce lets you add a customizable image carousel to your online store's default Gallery section. It enhances your product display, engages your customers, and boosts sales. 🚀
 
-[__Live Demo__](https://pgs.codeixer.com/product/a-demo-product-with-twist/) | [__Support__](https://www.codeixer.com/contact-us/) | [__Upgrade To Pro »__](https://www.codeixer.com/gallery-slider-for-woocommerce?utm_source=wp-org&utm_medium=plugin-description&utm_campaign=upgrade_pro)
+[__Live Demo__](https://pgs.betteropt.in/product/a-demo-product-with-twist/) | [__Support__](https://www.codeixer.com/contact-us/) | [__Upgrade To Pro »__](https://www.codeixer.com/gallery-slider-for-woocommerce?utm_source=wp-org&utm_medium=plugin-description&utm_campaign=upgrade_pro)
 
 Are you interested in enhancing your product page design to increase sales? Have you possibly overloaded your page with too many product images? 🤔
 
@@ -74,7 +74,7 @@ WooCommerce product gallery slider has a wide range of supportability for the mo
 * Advanced Zoom Options
 
 
-[__Live Demo__](https://pgs.codeixer.com/product/a-demo-product-with-twist/) | [__Support__](https://www.codeixer.com/contact-us/) | [__Upgrade To Pro »__](https://www.codeixer.com/gallery-slider-for-woocommerce?utm_source=wp-org&utm_medium=plugin-description&utm_campaign=upgrade_pro)
+[__Live Demo__](https://pgs.betteropt.in/product/a-demo-product-with-twist/) | [__Support__](https://www.codeixer.com/contact-us/) | [__Upgrade To Pro »__](https://www.codeixer.com/gallery-slider-for-woocommerce?utm_source=wp-org&utm_medium=plugin-description&utm_campaign=upgrade_pro)
 
 [youtube https://www.youtube.com/watch?v=grdD8pCe5zw&t=7s]
 
@@ -132,10 +132,31 @@ we're using this 'woocommerce_before_single_product_summary' this hook to overri
 
 == Changelog ==
 
+= 2.3.14 -26 Nov 24 =
+
+* Fixed: In some cases, PHP files do not load properly.
+
+= 2.3.13 -26 Nov 24 =
+
+* Tweak: Update the Appsero SDK as it is causing the `_load_textdomain_just_in_time` error in WordPress version 6.7.x.   
+
+
+= 2.3.12 -20 Nov 24 =
+
+* Fixed: Fatal error on activation.
+
+
+= 2.3.11 -15 Nov 24 =
+
+* Added: Clear variation transients when saving settings.  
+* Fixed: Ajax loads only if the variation has additional images. 
+* Fixed: Variation thumbnails gallery is missing when the default variation is selected from the backend on the first page load.
+* Support for WooCommerce version 9.4.x.
+
 = 2.3.10 - 7-Aug-24 =
 * Added: Compatibility support for YITH Quick view plugin
 * Added: global js scope `cix_product_gallery_slider_int()`
-* Tweak: WooCommerce `product-image.php` template version updated
+* Tweak: WooCommerce `product-image.php` Template version updated
 
 
 = 2.3.9 - 11-Jun-24 =

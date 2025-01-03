@@ -48,7 +48,7 @@ do_action( 'wpgs_before_image_gallery' );
 				$gallery_options['slider_image_size'],
 				true,
 				array(
-					'class'            => 'attachment-shop_single size-shop_single wp-post-image',
+					'class'            => 'woocommerce-product-gallery__image attachment-shop_single size-shop_single wp-post-image',
 					'data-zoom_src'    => wp_get_attachment_image_src( $post_thumbnail_id, apply_filters( 'gallery_slider_zoom_image_size', 'full' ) )[0],
 					'data-large_image' => wp_get_attachment_image_src( $post_thumbnail_id, apply_filters( 'gallery_slider_zoom_image_size', 'full' ) )[0],
 					'alt'              => trim( wp_strip_all_tags( get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true ) ) ),
@@ -137,7 +137,7 @@ do_action( 'wpgs_before_image_gallery' );
 					$gallery_thumbnail_size,
 					true,
 					array(
-						'class' => 'wpgs-thumb-main-image',
+						'class' => 'woocommerce-product-gallery__image wpgs-thumb-main-image',
 						'alt'   => trim( wp_strip_all_tags( get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true ) ) ),
 					)
 				);

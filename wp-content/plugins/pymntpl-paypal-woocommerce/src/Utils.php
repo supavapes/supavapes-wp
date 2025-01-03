@@ -9,6 +9,8 @@ use PaymentPlugins\WooCommerce\PPCP\Utilities\NumberUtil;
 
 class Utils {
 
+	static $_last_address_field_error = [];
+
 	/**
 	 * @param int $len
 	 *
@@ -61,12 +63,24 @@ class Utils {
 			$key2  = $type . $key2;
 			if ( isset( $fields[ $key2 ] ) && $fields[ $key2 ]['required'] ) {
 				if ( ! \is_string( $value ) || ! strlen( $value ) ) {
+					self::$_last_address_field_error = [
+						'field_key' => $key2,
+						'value'     => $value,
+						'required'  => $fields[ $key2 ]['required']
+					];
+
 					return false;
 				}
 				if ( $key2 === $type . 'country' ) {
 					// make sure the country value maps to an actual country
 					$countries = WC()->countries->get_countries();
 					if ( ! isset( $countries[ $value ] ) ) {
+						self::$_last_address_field_error = [
+							'field_key' => $key2,
+							'value'     => $value,
+							'required'  => true
+						];
+
 						return false;
 					}
 				}
@@ -74,6 +88,10 @@ class Utils {
 		}
 
 		return true;
+	}
+
+	public static function get_last_address_field_error() {
+		return self::$_last_address_field_error;
 	}
 
 	public static function get_address_mappings( $reverse = false ) {
@@ -181,6 +199,28 @@ class Utils {
 		}
 
 		return $product;
+	}
+
+	/**
+	 * @param $state
+	 * @param $country
+	 *
+	 * @since 1.0.53
+	 * @return int|mixed|string
+	 */
+	public static function normalize_address_state( $state, $country ) {
+		$countries = WC()->countries ? WC()->countries : null;
+		if ( $country && $state && $countries ) {
+			$states = $countries->get_states( $country );
+			if ( ! empty( $states ) && is_array( $states ) && ! isset( $states[ $state ] ) ) {
+				$state_keys = array_flip( array_map( 'strtoupper', $states ) );
+				if ( isset( $state_keys[ strtoupper( $state ) ] ) ) {
+					$state = $state_keys[ strtoupper( $state ) ];
+				}
+			}
+		}
+
+		return $state;
 	}
 
 }

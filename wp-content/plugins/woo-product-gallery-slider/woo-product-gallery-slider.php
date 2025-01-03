@@ -5,16 +5,16 @@
  * Plugin Name:       Product Gallery Slider for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-product-gallery-slider/
  * Description:       Best product image gallery slider for WooCommerce. It shows your WooCommerce products with an image carousel slider. Beautiful style, increase sales and get customer attention.
- * Version:           2.3.10
+ * Version:           2.3.14
  * Author:            Codeixer
  * Author URI:        http://codeixer.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       woo-product-gallery-slider
  * Domain Path:       /languages
- * Tested up to: 6.6.1
+ * Tested up to: 6.7
  * WC requires at least: 3.9
- * WC tested up to: 9.1
+ * WC tested up to: 9.4.1
  * Requires PHP: 7.4
  * Requires Plugin: WooCommerce
  */
@@ -64,9 +64,10 @@ final class CI_WPGS {
 	 *
 	 * @var string
 	 */
-	const version = '2.3.10';
+	const version = '2.3.14';
 
 	private function __construct() {
+		
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
 
@@ -75,7 +76,14 @@ final class CI_WPGS {
 		add_action( 'woocommerce_loaded', array( $this, 'init_plugin' ), 30 );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ) . '', array( $this, 'wpgs_plugin_row_meta' ) );
 	}
-
+	public function core_files() {
+		require_once WPGS_ROOT . 'includes/functions.php';
+		require_once WPGS_ROOT . 'includes/codestar/codestar-framework.php';
+		require_once WPGS_ROOT . 'includes/core.php';
+		require_once WPGS_ROOT . 'includes/class-delete-cache.php';
+		require_once WPGS_ROOT . 'includes/class-image-sizes.php';
+		require_once WPGS_ROOT . 'includes/class-variation-images.php';
+	}
 	/**
 	 * Add Pro version link into the plugin row meta
 	 *
@@ -98,7 +106,8 @@ final class CI_WPGS {
 	 * @return void
 	 */
 	public function init_plugin() {
-		new \Product_Gallery_Sldier\Bootstrap();
+		$this->core_files();
+		\Product_Gallery_Sldier\Bootstrap::get_instance();
 	}
 
 	/**
@@ -112,10 +121,8 @@ final class CI_WPGS {
 		if ( ! $installed ) {
 			update_option( 'ciwpgs_installed', date( 'Y/m/d' ) );
 		}
-		\WPGS_Variation_images::delete_transients();
 	}
 	public function deactivation(): void {
-		\WPGS_Variation_images::delete_transients();
 	}
 	/**
 	 * Define the required plugin constants

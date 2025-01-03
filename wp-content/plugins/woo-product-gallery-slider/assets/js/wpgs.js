@@ -254,7 +254,7 @@
 			cix_product_gallery_slider.misc();
 		},
 		variationImage: function () {
-			
+
 			var variation_form = $('.variations_form'),
 				i = 'input.variation_id',
 				body_wrap = $('body'),
@@ -262,9 +262,9 @@
 				DivParent = body_wrap.find('.woocommerce-product-gallery').parent();
 			variation_form.on('found_variation', function (event, variation) {
 
-				
-				if (wpgs_variation_list.hasOwnProperty(variation.variation_id)) {
 					
+				if (wpgs_variation_list.hasOwnProperty(variation.variation_id)) {
+
 					body_wrap.find('.woocommerce-product-gallery').remove();
 					DivParent.prepend(wpgs_variation_list[variation.variation_id]);
 					cix_product_gallery_slider.lazyLoad();
@@ -274,17 +274,21 @@
 
 
 				} else {
-					
-					// Set BlockUI on any element
-					body_wrap.find('.woocommerce-product-gallery').block({
-						message: null,
-						overlayCSS: {
-							cursor: 'none',
-							background: '#fff',
-							opacity: 0.6
-						}
-					});
-					cix_product_gallery_slider.variationAjax(variation.variation_id, body_wrap, DivParent);
+
+					if (variation.wavi_value) {
+						// Set BlockUI on any element
+						body_wrap.find('.woocommerce-product-gallery').block({
+							message: null,
+							overlayCSS: {
+								cursor: 'none',
+								background: '#fff',
+								opacity: 0.6
+							}
+						});
+						cix_product_gallery_slider.variationAjax(variation.variation_id, body_wrap, DivParent);
+					}
+
+
 
 
 				}
@@ -328,26 +332,25 @@
 
 	};
 
-	window.cix_product_gallery_slider_int = function(){
+	window.cix_product_gallery_slider_int = function () {
 		cix_product_gallery_slider.lazyLoad();
 		cix_product_gallery_slider.slick();
 		cix_product_gallery_slider.lightBox();
 		cix_product_gallery_slider.misc();
+		cix_product_gallery_slider.variationImage();
 		console.log('WPGS: Initialized');
 	}
 
 	$(document).ready(function () {
 		cix_product_gallery_slider_int();
+		
 	});
-	
+	//YITH quick view support
 	$(document).on('qv_loader_stop', function () {
 		cix_product_gallery_slider_int();
 	});
-	// jquery on load
-	$(window).on('load', function () {
-		cix_product_gallery_slider.variationImage();
-	});
 	
+
 
 })(jQuery);
 

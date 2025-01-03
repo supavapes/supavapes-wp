@@ -2,13 +2,29 @@
 
 namespace Product_Gallery_Sldier;
 
+
 class Product {
 	/**
 	 * @var mixed
 	 */
 	private $wpgs_variation_images;
+	/**
+	 * Initializes a singleton instance
+	 *
+	 * @return $instance
+	 */
+	public static function get_instance() {
 
-	public function __construct() {
+		/**
+		 * @var mixed
+		 */
+		static $instance = false;
+		if ( ! $instance ) {
+			$instance = new self();
+		}
+		return $instance;
+	}
+	private function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ), 90 );
 		add_action( 'after_setup_theme', array( $this, 'remove_default_gallery_support' ), 100 );
 		$this->hooks();
@@ -61,12 +77,11 @@ class Product {
 	 * @return mixed
 	 */
 	public function hooks() {
+
 		remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
 		remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
 		add_action( 'woocommerce_before_single_product_summary', array( $this, 'wpgs_product_image' ), 20 );
-		if ( wpgs_get_option( 'load_assets' ) == '1' ) {
-			add_filter( 'wpgs_load_entrie_site', '__return_true' );
-		}
+
 		add_filter(
 			'woocommerce_gallery_image_size',
 			function ( $size ) {

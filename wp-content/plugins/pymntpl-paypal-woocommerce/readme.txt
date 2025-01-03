@@ -2,9 +2,9 @@
 Contributors: mr.clayton
 Tags: paypal, paylater, venmo, credit cards
 Requires at least: 4.7
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.1
-Stable tag: 1.0.52
+Stable tag: 1.0.54
 Copyright: Payment Plugins
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 Developed exclusively between Payment Plugins and PayPal, PayPal for WooCommerce integrates with PayPal's newest API's.
 To boost conversion rates, you can offer PayPal, Pay Later, Venmo, or credit cards on your site. There are many supported features so
-merchants can tweak the plugin to suit their business needs.
+merchants can configure the plugin to suit their business needs.
+
+In order to process payments online, you will need a PayPal Business Account.
 
 = Supports =
 - WooCommerce Subscriptions
@@ -45,6 +47,14 @@ Our documentation has a step-by-step guide on how to connect the plugin to your 
 Payment Plugins is the team behind several of the highest reviewed and installed Payment integrations for WooCommerce.
 
 == Changelog ==
+= 1.0.54 - 12/31/24 =
+* Added - Logging if the add to cart call fails on the product page
+* Added - Improved error message if add to cart fails on product page
+* Updated - Do not create a refund object if an authorized payment is voided. [https://wordpress.org/support/topic/marking-refunds-for-canceled-orders/](https://wordpress.org/support/topic/marking-refunds-for-canceled-orders/)
+= 1.0.53 - 11/02/24 =
+* Fixed - German translation of text "Below checkout button"
+* Updated - Cast cart quantities to float since some plugins modify cart quantity to support decimal values
+* Updated - Normalize province values to their two character abbreviation. Example: Salamanca = SA
 = 1.0.52 - 09/10/24 =
 * Added - If product variation is not in stock, disable the PayPal buttons on the product page.
 = 1.0.51 - 08/07/24 =
